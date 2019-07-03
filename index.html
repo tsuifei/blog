@@ -98,6 +98,107 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-在-Github-上安裝-Hexo-記錄" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="2019/07/03/在-Github-上安裝-Hexo-記錄/" class="article-date">
+  <time datetime="2019-07-03T02:07:02.000Z" itemprop="datePublished">2019-07-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="categories/Other/">Other</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2019/07/03/在-Github-上安裝-Hexo-記錄/">在 Github 上安裝 Hexo 記錄</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在學員的鼓勵下，決定試試安裝輕量級 blog Hexo。隨然玩 Wordpress 已經很久了，但 WP 的架構越來越龐大更新速度快，整個檔案也越來越龐大了，且 WP 需要資料庫的配合。但 Hexo 不但不需要，且還可以部屬在 Github 上，超方便的！雖然設定與修改比較繁瑣，但也有它的樂趣，且既然是與程式有關的文章和內容，那何不把他們放在一起。</p>
+</blockquote>
+<p>將 Hexo 自動生成的靜態頁面、搭配 github 的 page 功能，推上 github 後就可達到輕量 blog 的基本功能，如果想要一些功能如搜尋、留言，則要自行設定或安裝外掛，比較方便的是找個完善的主題，就不需這些繁複的設置，但最好對 Hexo 架構有一定的了解，否則一有問題仍須花很多時間查詢。</p>
+<p>這裡使用的佈景主題是 Hexo 的預設主題：landscape，希望慢慢修改成自己喜歡的樣子即可，功能仍不是很完善，期待自己慢慢把它做的更完整一點。</p>
+<h2 id="如何安裝"><a href="#如何安裝" class="headerlink" title="如何安裝"></a>如何安裝</h2><p>條件：node.js 環境 ＋ git<br><a href="https://hexo.io/zh-tw/docs/" target="_blank" rel="noopener">官網文件</a></p>
+<p>先在本地端安裝好需要檔案，安裝後檔案夾內會有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
+
+<p><code>_config.yml</code> :<br>網站<a href="https://hexo.io/zh-tw/docs/configuration" target="_blank" rel="noopener">配置</a>檔案，可以在此配置大部分的設定。</p>
+<p><code>package.json</code> :<br>應用程式資料。EJS, Stylus 和 Markdown renderer 已預設安裝，可以稍後移除。</p>
+<p><code>scaffolds</code> :<br>鷹架 資料夾。當建立新文章時，Hexo 會根據 scaffold 來建立檔案。</p>
+<p><code>source</code> :<br>原始檔案資料夾是放置內容的地方。檔案 / 資料夾名稱開頭為 _ (底線) 和隱藏檔案會被忽略，除了 _posts 資料夾以外。Markdown 和 HTML 檔案會被處理並放到 public 資料夾，而其他檔案會被拷貝過去。</p>
+<p><code>themes</code> :<br>主題 資料夾。Hexo 會根據主題來產生靜態檔案。</p>
+<h2 id="Hexo-指令"><a href="#Hexo-指令" class="headerlink" title="Hexo 指令"></a>Hexo 指令</h2><p><a href="https://hexo.io/zh-tw/docs/commands" target="_blank" rel="noopener">指令明細</a><br><code>$ hexo init [folder]</code><br>建立一個新的網站。如果沒有設定 folder 的話，Hexo 會在目前的資料夾建立網站。</p>
+<h2 id="如何產生文章"><a href="#如何產生文章" class="headerlink" title="如何產生文章"></a>如何產生文章</h2><h3 id="建立文章-hexo-new-layout-lt-title-gt"><a href="#建立文章-hexo-new-layout-lt-title-gt" class="headerlink" title="建立文章 : hexo new [layout] &lt;title&gt;"></a>建立文章 : <code>hexo new [layout] &lt;title&gt;</code></h3><p><code>$ hexo new [layout] &lt;title&gt;</code><br>Hexo 的 layout 有三種：草稿 draft、頁面 page 和文章 post。也可以自定義 layout.<br>如果沒有設定 layout 的話，則會使用 <code>_config.yml</code> 中的 <code>default_layout</code> 設定代替，原始預設為 post。<br>檔案名稱可以中文，如果標題包含空格的話，請使用引號括起來。<br>建立文章後 hexo 會在 source 裡的 _posts 生成新的 .md。</p>
+<h3 id="產生靜態文章-hexo-g"><a href="#產生靜態文章-hexo-g" class="headerlink" title="產生靜態文章 : hexo g"></a>產生靜態文章 : <code>hexo g</code></h3><p><code>$ hexo generate</code><br>產生靜態檔案。<br>|選項    |描述|<br>| ——– | ——– |<br>|-g, –generate    |部署網站前先產生靜態檔案|</p>
+<h3 id="本地伺服器-hexo-s"><a href="#本地伺服器-hexo-s" class="headerlink" title="本地伺服器 : hexo s"></a>本地伺服器 : <code>hexo s</code></h3><p><code>$ hexo server</code><br>啟動伺服器，預設是 <a href="http://localhost:4000/。" target="_blank" rel="noopener">http://localhost:4000/。</a><br>| 選項|    描述|<br>| ——– | ——– |<br>|-p, –port    |覆蓋連接埠設定<br>|-s, –static    |只使用靜態檔案<br>|-l, –log    |啟動記錄器，或覆蓋記錄格式</p>
+<h3 id="部署到-github-hexo-d"><a href="#部署到-github-hexo-d" class="headerlink" title="部署到 github : hexo d"></a>部署到 github : <code>hexo d</code></h3><p><code>$ hexo deploy</code><br>部署網站。<br>| 選項 | 描述 |<br>| ——– | ——– |<br>| -d, –deploy    | 產生完成即部署網站     |<br>|-w, –watch|產生完成即部署網站|</p>
+<h3 id="可一起使用：hexo-g-hexo-s-hexo-d-hexo-new-文章名稱"><a href="#可一起使用：hexo-g-hexo-s-hexo-d-hexo-new-文章名稱" class="headerlink" title="可一起使用：hexo g hexo s hexo d hexo new [文章名稱]"></a>可一起使用：<code>hexo g hexo s hexo d hexo new [文章名稱]</code></h3><p><code>$ hexo render &lt;file&gt; [file2] ...</code><br>渲染檔案。</p>
+<table>
+<thead>
+<tr>
+<th>選項</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-o, –output</td>
+<td>輸出位置</td>
+</tr>
+</tbody></table>
+<p><a href="https://hexo.io/zh-tw/docs/commands" target="_blank" rel="noopener">其他指令</a> ｜ <a href="https://hexo.io/zh-tw/docs/migration" target="_blank" rel="noopener">侯塞雷還可以轉移！</a></p>
+<p>==注意==<br>如果有使用部分搜尋外掛，會使用 xml 格式搜尋，丟文章上去時先檢查是否有正確規格化為XML格式，以免出錯查不出來，所以可先去<a href="https://tool.oschina.net/codeformat/xml" target="_blank" rel="noopener">此網站檢查</a></p>
+<h2 id="常用-Hexo-指令"><a href="#常用-Hexo-指令" class="headerlink" title="常用 Hexo 指令"></a>常用 Hexo 指令</h2><p>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d<br>hexo clean ：清除快取檔案 (db.json) 和已產生的靜態檔案 (public)。</p>
+<h2 id="如何更換主題"><a href="#如何更換主題" class="headerlink" title="如何更換主題"></a>如何更換主題</h2><p>可上<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="noopener">Hexo 官網 Themes</a>直接找自己喜歡的主題，進入主題後，找到<code>install</code>這項，複製git clone的網址如，以Themes 名為 light 為例：</p>
+<blockquote>
+<p>git clone <a href="https://github.com/hexojs/hexo-theme-light.git" target="_blank" rel="noopener">https://github.com/hexojs/hexo-theme-light.git</a> themes/light</p>
+</blockquote>
+<p>Clon 完畢後，到根目錄的 <code>_config.yml</code> 去設定對應的 Themes 主題名稱： <code>theme: light</code></p>
+<h2 id="如何自動備份"><a href="#如何自動備份" class="headerlink" title="如何自動備份"></a>如何自動備份</h2><p>可以在同一專案上再開一條 Git 分支，專門儲存原始檔案，或是使用 <a href="https://askiebaby.github.io/macos-command-backup-update-hexo-blog/" target="_blank" rel="noopener">Askie 推薦的一鍵備份</a>，但須另開專案。</p>
+<h2 id="如何文章分類"><a href="#如何文章分類" class="headerlink" title="如何文章分類"></a>如何文章分類</h2><h3 id="第一種方法：手動加入"><a href="#第一種方法：手動加入" class="headerlink" title="第一種方法：手動加入"></a>第一種方法：手動加入</h3><p>使用 <code>$ hexo n &#39;name&#39;</code>新建頁面，打開此默認頁面是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: name</span><br><span class="line">date: 2019-08-05 11:15:00 </span><br><span class="line">tags: </span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>但裡面並沒有分類的資訊，可直接在 <code>tags:</code>上加 <code>categories:</code> 存檔後，重新執行 <code>hexo n &#39;name&#39;</code>，重新打開頁面裡頭就有分類了。</p>
+<h3 id="第二種方法："><a href="#第二種方法：" class="headerlink" title="第二種方法："></a>第二種方法：</h3><p>scaffolds目錄下，是新建頁面的模板，執行新建命令時，是根據這裡的模板頁來完成的，所以可在這裡根據自己的需求增加一些默認的分類值。<br>在寫文章時，如果我們的分類是程式，那麼在也面裡的分類就會是<code>categories:程式</code>，它的訪問路徑即是：<code>*/categories/程式</code></p>
+<p>如果想把路徑明和分類明分別設置，可打開根目錄的<code>_config.yml</code>，找到以下位置或增加以下這段做修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Category &amp; Tag</span><br><span class="line">default_category: uncategorized</span><br><span class="line">category_map:</span><br><span class="line">	程式: programming</span><br><span class="line">	生活: life</span><br><span class="line">	其他: other</span><br><span class="line">tag_map:</span><br></pre></td></tr></table></figure>
+
+<p><code>category_map:</code>是設置分類的地方，每行一個分類，冒號前面是分類名稱，後面是訪問路徑。可以提前在這裡設置好一些分類，當編輯的文章填寫了對應的分類名時，就會自動的按照對應的路徑來訪問。</p>
+<h3 id="設定分類標籤在頁面裡"><a href="#設定分類標籤在頁面裡" class="headerlink" title="設定分類標籤在頁面裡"></a>設定分類標籤在頁面裡</h3><p>在編輯文章的時候，tags:後面是設置標籤的地方，如果有多個標籤的話，可以用下面兩種辦法來設置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">tages: </span><br><span class="line">-標籤1</span><br><span class="line">-標籤2</span><br><span class="line">...</span><br><span class="line">- 標籤n</span><br><span class="line"></span><br><span class="line">// 或是</span><br><span class="line">tages: </span><br><span class="line">-標籤1</span><br><span class="line">-標籤2</span><br><span class="line">...</span><br><span class="line">- 標籤n</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何設定分類-menu"><a href="#如何設定分類-menu" class="headerlink" title="如何設定分類 menu"></a>如何設定分類 menu</h2><p>在 Hexo 默認菜單只有 Home 和 Archives 兩項，如何增加新的項目到 menu 裡？<br>打開themes裡主題的配置文件：<code>_config.yml</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">menu :</span><br><span class="line">  Home: /</span><br><span class="line">  Archives: /archives</span><br><span class="line">  About: / about</span><br></pre></td></tr></table></figure>
+
+<p><code>menu :</code> 表示 Nav，在底下加上的 <code>About: /about</code> 表示顯示的 Nav 項目/路徑。Nav 項目可為中文，路徑也可設置其他url。<br>記得建立一個 nav 的項目就要執行建立 Nav 項目的指令：<br><code>hexo n page &#39;about&#39;</code> hexo 就會自動生成這個分類的分類頁，在 source 目錄裡會生成一個對應的目錄，此目錄裡的<code>index.md</code> 就是顯示這個分類列表的頁面。</p>
+<p>參考：<a href="http://ijiaober.github.io/2014/08/05/hexo/hexo-04/" target="_blank" rel="noopener">Hexo使用攻略：（四）Hexo的分类和标签设置</a></p>
+<h2 id="如何增加站內搜尋功能"><a href="#如何增加站內搜尋功能" class="headerlink" title="如何增加站內搜尋功能"></a>如何增加站內搜尋功能</h2><p>以<a href="https://app.swiftype.com/" target="_blank" rel="noopener">swiftype.com</a>服務來設定站內服務，<br>先至 swiftype 申請帳號，再把生成的碼丟入網頁中。<br><a href="https://juejin.im/post/5bbdc8d8e51d450e5e0cb269" target="_blank" rel="noopener">參考教學 使用 Swiftype 给 Hexo 搭建的博客添加站内搜索功能</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="tsuifei.github.io/2019/07/03/在-Github-上安裝-Hexo-記錄/" data-id="cjxmzx0tr0006z28mfyv1o3kg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Other/">Other</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-JS-ES6-箭頭函式-Arrow-function" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="2019/07/02/JS-ES6-箭頭函式-Arrow-function/" class="article-date">
@@ -156,7 +257,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/02/JS-ES6-箭頭函式-Arrow-function/" data-id="cjxmyazm60000ra8mw6qw89e9" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/02/JS-ES6-箭頭函式-Arrow-function/" data-id="cjxmzx0tu0008z28mvt6e1geg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Javascript/">Javascript</a></li></ul>
@@ -213,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/02/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="cjxmyazme0002ra8m6gi1w2kw" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/02/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="cjxmzx0tb0000z28m53lo0kkb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/IDE/">IDE</a></li></ul>
@@ -264,7 +365,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/06/28/hello-world/" data-id="cjxmyazmm0006ra8mzpvuvhvm" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/06/28/hello-world/" data-id="cjxmzx0tj0002z28mcnbipuse" class="article-share-link">Share</a>
       
       
     </footer>
@@ -284,7 +385,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="categories/Javascript/">Javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="categories/Javascript/ES6/">ES6</a></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="categories/Javascript/">Javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="categories/Javascript/ES6/">ES6</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="categories/Other/">Other</a></li></ul>
     </div>
   </div>
 
@@ -294,7 +395,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Javascript/">Javascript</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Other/">Other</a></li></ul>
     </div>
   </div>
 
@@ -305,6 +406,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="2019/07/03/在-Github-上安裝-Hexo-記錄/">在 Github 上安裝 Hexo 記錄</a>
+          </li>
         
           <li>
             <a href="2019/07/02/JS-ES6-箭頭函式-Arrow-function/">JS ES6 箭頭函式 Arrow function</a>
@@ -327,7 +432,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="tags/ES6/" style="font-size: 10px;">ES6</a> <a href="tags/IDE/" style="font-size: 10px;">IDE</a> <a href="tags/Javascript/" style="font-size: 10px;">Javascript</a>
+      <a href="tags/ES6/" style="font-size: 10px;">ES6</a> <a href="tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="tags/IDE/" style="font-size: 10px;">IDE</a> <a href="tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="tags/Other/" style="font-size: 10px;">Other</a>
     </div>
   </div>
 
