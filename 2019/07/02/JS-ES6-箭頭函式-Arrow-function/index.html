@@ -7,18 +7,18 @@
   
   <title>JS ES6 箭頭函式 Arrow function | Cré-Coder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="箭頭函式是 ES6 的新語法。 123456789101112function double(x) &amp;#123;    return x * 2;&amp;#125;// 或是 var double = function(x) &amp;#123;    return x * 2;&amp;#125;// ES6 語法const double = (x) =&amp;gt; &amp;#123;    return x * 2;&amp;#12">
+  <meta name="description" content="箭頭函式是 ES6 的新語法。 12345678910111213// 原本的寫法function double(x) &amp;#123;    return x * 2;&amp;#125;// 或是 var double = function(x) &amp;#123;    return x * 2;&amp;#125;// ES6 語法const double = (x) =&amp;gt; &amp;#123;    return">
 <meta name="keywords" content="Javascript,ES6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS ES6 箭頭函式 Arrow function">
 <meta property="og:url" content="tsuifei.github.io/2019/07/02/JS-ES6-箭頭函式-Arrow-function/index.html">
 <meta property="og:site_name" content="Cré-Coder">
-<meta property="og:description" content="箭頭函式是 ES6 的新語法。 123456789101112function double(x) &amp;#123;    return x * 2;&amp;#125;// 或是 var double = function(x) &amp;#123;    return x * 2;&amp;#125;// ES6 語法const double = (x) =&amp;gt; &amp;#123;    return x * 2;&amp;#12">
+<meta property="og:description" content="箭頭函式是 ES6 的新語法。 12345678910111213// 原本的寫法function double(x) &amp;#123;    return x * 2;&amp;#125;// 或是 var double = function(x) &amp;#123;    return x * 2;&amp;#125;// ES6 語法const double = (x) =&amp;gt; &amp;#123;    return">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2019-07-03T04:12:48.000Z">
+<meta property="og:updated_time" content="2019-07-03T07:39:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS ES6 箭頭函式 Arrow function">
-<meta name="twitter:description" content="箭頭函式是 ES6 的新語法。 123456789101112function double(x) &amp;#123;    return x * 2;&amp;#125;// 或是 var double = function(x) &amp;#123;    return x * 2;&amp;#125;// ES6 語法const double = (x) =&amp;gt; &amp;#123;    return x * 2;&amp;#12">
+<meta name="twitter:description" content="箭頭函式是 ES6 的新語法。 12345678910111213// 原本的寫法function double(x) &amp;#123;    return x * 2;&amp;#125;// 或是 var double = function(x) &amp;#123;    return x * 2;&amp;#125;// ES6 語法const double = (x) =&amp;gt; &amp;#123;    return">
   
     <link rel="alternate" href="../../../../atom.xml" title="Cré-Coder" type="application/atom+xml">
   
@@ -60,7 +60,7 @@
         
         <a class="main-nav-link" href="../../../../javascript">Javascript</a>
         
-        <a class="main-nav-link" href="../../../../reactreact">React</a>
+        <a class="main-nav-link" href="../../../../react">React</a>
         
         <a class="main-nav-link" href="../../../../html">HTML</a>
         
@@ -124,7 +124,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>箭頭函式是 ES6 的新語法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">double</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或是 </span></span><br><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 語法</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function">(<span class="params">x</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原本的寫法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">double</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或是 </span></span><br><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 語法</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function">(<span class="params">x</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="箭頭函式的簡寫規則"><a href="#箭頭函式的簡寫規則" class="headerlink" title="箭頭函式的簡寫規則"></a>箭頭函式的簡寫規則</h3><p>1.如果參數只有一個，可省略參數的括號(x)=&gt; x，0或多個都不可省略。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">x</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -132,7 +132,7 @@
 <p>2.函式本體如果只有一行，且只有 return 一個值，可省略大花括號和 return，直接把本體接在=&gt;後面 </p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
 
-<h3 id="This-是什麼？"><a href="#This-是什麼？" class="headerlink" title="This 是什麼？"></a>This 是什麼？</h3><p>this 指的是函式的情境(context)，某人去101大樓往下跳，但跳下去沒事，因為在爬樓梯，他只有跳一格的樓梯，當然沒事，但是跳這個動作很明確，就像是函式的定義一樣。<br>但是你在什麼樣的情境下跳，會影響他的結果，這個情境就是 Context 。<br>例如：一個跳的函式，裡面內容是固定的，但裡面的this就要看他執行時的情境而定。</p>
+<h3 id="This-是什麼？和箭頭函式的關係"><a href="#This-是什麼？和箭頭函式的關係" class="headerlink" title="This 是什麼？和箭頭函式的關係"></a>This 是什麼？和箭頭函式的關係</h3><p>this 指的是函式的情境(context)，某人去101大樓往下跳，但跳下去沒事，因為在爬樓梯，他只有跳一格的樓梯，當然沒事，但是跳這個動作很明確，就像是函式的定義一樣。<br>但是你在什麼樣的情境下跳，會影響他的結果，這個情境就是 Context 。<br>例如：一個跳的函式，裡面內容是固定的，但裡面的this就要看他執行時的情境而定。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jump</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>javascript 裡函式的執行基本上可分為三種：<br>1.直接執行： 函式裡的 this 是 window (global)</p>
@@ -155,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/02/JS-ES6-箭頭函式-Arrow-function/" data-id="cjxmx0vr40000j58m1ts1c9i4" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/02/JS-ES6-箭頭函式-Arrow-function/" data-id="cjxmyazm60000ra8mw6qw89e9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Javascript/">Javascript</a></li></ul>
@@ -276,7 +276,7 @@
   
     <a href="../../../../javascript" class="mobile-nav-link">Javascript</a>
   
-    <a href="../../../../reactreact" class="mobile-nav-link">React</a>
+    <a href="../../../../react" class="mobile-nav-link">React</a>
   
     <a href="../../../../html" class="mobile-nav-link">HTML</a>
   
