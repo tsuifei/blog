@@ -97,7 +97,8 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼" class="article article-type-post" itemscope
+  itemprop="blogPost">
   <div class="article-meta">
     <a href="" class="article-date">
   <time datetime="2019-07-01T22:36:17.000Z" itemprop="datePublished">2019-07-02</time>
@@ -111,19 +112,40 @@
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
+    <header class="article-header">
+      
   
     <h1 class="article-title" itemprop="name">
       VS Code 秘技 Rename Refactoring 重新命名＋Formatting重新整理程式碼
     </h1>
   
 
-      </header>
+    </header>
     
+
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。<br>這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。</p>
+      <!-- <p>在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。<br>這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。</p>
+<ul>
+<li>help -&gt; Interactive Playground -&gt; </li>
+</ul>
+<h2 id="重構工具"><a href="#重構工具" class="headerlink" title="重構工具"></a>重構工具</h2><h3 id="Rename-Refactoring-重新命名"><a href="#Rename-Refactoring-重新命名" class="headerlink" title="Rename Refactoring (重新命名)"></a>Rename Refactoring (重新命名)</h3><p>選中要修改的某一個名稱，按 fn+F2 即可重新輸入新的命名， enter 之後會發現所有用此函式名的地方，都會換成新名字。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Reference the function</span></span><br><span class="line"><span class="keyword">new</span> Book(<span class="string">"War of the Worlds"</span>, <span class="string">"H G Wells"</span>);</span><br><span class="line"><span class="keyword">new</span> Book(<span class="string">"The Martian"</span>, <span class="string">"Andy Weir"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Represents a book.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Book</span>(<span class="params">title, author</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.title = title;</span><br><span class="line">    <span class="keyword">this</span>.author = author;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Refactoring-via-Extraction-透過提取重構函式"><a href="#Refactoring-via-Extraction-透過提取重構函式" class="headerlink" title="Refactoring via Extraction (透過提取重構函式)"></a>Refactoring via Extraction (透過提取重構函式)</h3><p>可將程式中某一部分提去出來自成一函式。<br>選取要提取出來成函式的部份，按 command + . 會出現選單：<br>1.Extract to inner function in function ‘findFirstEvenNumber’(提取函式中的內部函數尋找找’findFirstEvenNumber’函式)<br>2.Extract to function in global scope(提取全局範圍內的功能)<br>3.Extract to constant in enclosing scope(在封閉範圍內提取常量)</p>
+<p>例如選2.會將選取提取出的碼轉成一函式，並需賦予函式名稱，即可成函式，輸入新函式名之後會自動替換，原題取出來的函式位置。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findFirstEvenNumber</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> el <span class="keyword">of</span> arr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> el === <span class="string">'number'</span> &amp;&amp; el % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> el;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Formatting-重新整理程式碼"><a href="#Formatting-重新整理程式碼" class="headerlink" title="Formatting (重新整理程式碼)"></a>Formatting (重新整理程式碼)</h3><p>shift + option + F 可重新整理程式碼的排列。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cars = [<span class="string">"🚗"</span>, <span class="string">"🚙"</span>, <span class="string">"🚕"</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> car <span class="keyword">of</span> cars)&#123;</span><br><span class="line">    <span class="comment">// Drive the car</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`This is the car <span class="subst">$&#123;car&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>或是開啟 sstting 預設: editor.formatOnSave = true，即可啟動存檔就會自動編排的功能。</p>
+ -->
+      
+
+      
+      
+      <p>在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。<br>這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。</p>
 <ul>
 <li>help -&gt; Interactive Playground -&gt; </li>
 </ul>
@@ -140,9 +162,13 @@
 <p>或是開啟 sstting 預設: editor.formatOnSave = true，即可啟動存檔就會自動編排的功能。</p>
 
       
+      
+
+
     </div>
+
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/02/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="cjxn1lrje0008f08mqgii0bcl" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/02/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="cjxn29h6q0000kc8mee2w9ask" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/IDE/">IDE</a></li></ul>
@@ -150,7 +176,7 @@
     </footer>
   </div>
   
-    
+  
 <nav id="article-nav">
   
     <a href="../JS-ES6-箭頭函式-Arrow-function/" id="article-nav-newer" class="article-nav-link-wrap">
