@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="在學員的鼓勵下，決定試試安裝輕量級 blog Hexo。隨然玩 Wordpress 已經很久了，但 WP 的架構越來越龐大更新速度快，整個檔案也越來越龐大了，且 WP 需要資料庫的配合。但 Hexo 不但不需要，且還可以部屬在 Github 上，超方便的！雖然設定與修改比較繁瑣，但也有它的樂趣，且既然是與程式有關的文章和內容，那何不把他們放在一起。 將 Hexo 自動生成的靜態頁面、搭配 gith">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2019-07-03T08:47:00.000Z">
+<meta property="og:updated_time" content="2019-07-03T08:51:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Github 上安裝 Hexo 記錄">
 <meta name="twitter:description" content="在學員的鼓勵下，決定試試安裝輕量級 blog Hexo。隨然玩 Wordpress 已經很久了，但 WP 的架構越來越龐大更新速度快，整個檔案也越來越龐大了，且 WP 需要資料庫的配合。但 Hexo 不但不需要，且還可以部屬在 Github 上，超方便的！雖然設定與修改比較繁瑣，但也有它的樂趣，且既然是與程式有關的文章和內容，那何不把他們放在一起。 將 Hexo 自動生成的靜態頁面、搭配 gith">
@@ -137,9 +137,9 @@
 <p><code>themes</code> :<br>主題 資料夾。Hexo 會根據主題來產生靜態檔案。</p>
 <h2 id="Hexo-指令"><a href="#Hexo-指令" class="headerlink" title="Hexo 指令"></a>Hexo 指令</h2><p><a href="https://hexo.io/zh-tw/docs/commands" target="_blank" rel="noopener">指令明細</a><br><code>$ hexo init [folder]</code><br>建立一個新的網站。如果沒有設定 folder 的話，Hexo 會在目前的資料夾建立網站。</p>
 <h2 id="如何產生文章"><a href="#如何產生文章" class="headerlink" title="如何產生文章"></a>如何產生文章</h2><h3 id="建立文章-hexo-new-layout-lt-title-gt"><a href="#建立文章-hexo-new-layout-lt-title-gt" class="headerlink" title="建立文章 : hexo new [layout] &lt;title&gt;"></a>建立文章 : <code>hexo new [layout] &lt;title&gt;</code></h3><p><code>$ hexo new [layout] &lt;title&gt;</code><br>Hexo 的 layout 有三種：草稿 draft、頁面 page 和文章 post。也可以自定義 layout.<br>如果沒有設定 layout 的話，則會使用 <code>_config.yml</code> 中的 <code>default_layout</code> 設定代替，原始預設為 post。<br>檔案名稱可以中文，如果標題包含空格的話，請使用引號括起來。<br>建立文章後 hexo 會在 source 裡的 _posts 生成新的 .md。</p>
-<h3 id="產生靜態文章-hexo-g"><a href="#產生靜態文章-hexo-g" class="headerlink" title="產生靜態文章 : hexo g"></a>產生靜態文章 : <code>hexo g</code></h3><p><code>$ hexo generate</code><br>產生靜態檔案。<br>|選項    |描述|<br>| ——– | ——– |<br>|-g, –generate    |部署網站前先產生靜態檔案|</p>
-<h3 id="本地伺服器-hexo-s"><a href="#本地伺服器-hexo-s" class="headerlink" title="本地伺服器 : hexo s"></a>本地伺服器 : <code>hexo s</code></h3><p><code>$ hexo server</code><br>啟動伺服器，預設是 <a href="http://localhost:4000/。" target="_blank" rel="noopener">http://localhost:4000/。</a><br>| 選項|    描述|<br>| ——– | ——– |<br>|-p, –port    |覆蓋連接埠設定<br>|-s, –static    |只使用靜態檔案<br>|-l, –log    |啟動記錄器，或覆蓋記錄格式</p>
-<h3 id="部署到-github-hexo-d"><a href="#部署到-github-hexo-d" class="headerlink" title="部署到 github : hexo d"></a>部署到 github : <code>hexo d</code></h3><p><code>$ hexo deploy</code><br>部署網站。<br>| 選項 | 描述 |<br>| ——– | ——– |<br>| -d, –deploy    | 產生完成即部署網站     |<br>|-w, –watch|產生完成即部署網站|</p>
+<h3 id="產生靜態文章-hexo-g"><a href="#產生靜態文章-hexo-g" class="headerlink" title="產生靜態文章 : hexo g"></a>產生靜態文章 : <code>hexo g</code></h3><p><code>$ hexo generate</code><br>產生靜態檔案。<br>|選項    | 描述 |<br>| ——– | ——– |<br>| -g, –generate    | 部署網站前先產生靜態檔案 |</p>
+<h3 id="本地伺服器-hexo-s"><a href="#本地伺服器-hexo-s" class="headerlink" title="本地伺服器 : hexo s"></a>本地伺服器 : <code>hexo s</code></h3><p><code>$ hexo server</code><br>啟動伺服器，預設是 <a href="http://localhost:4000/。" target="_blank" rel="noopener">http://localhost:4000/。</a><br>| 選項|    描述|<br>| ——– | ——– |<br>| -p, –port    | 覆蓋連接埠設定 |<br>| -s, –static    | 只使用靜態檔案 |<br>| -l, –log    | 啟動記錄器，或覆蓋記錄格式 |</p>
+<h3 id="部署到-github-hexo-d"><a href="#部署到-github-hexo-d" class="headerlink" title="部署到 github : hexo d"></a>部署到 github : <code>hexo d</code></h3><p><code>$ hexo deploy</code><br>部署網站。<br>| 選項 | 描述 |<br>| ——– | ——– |<br>| -d, –deploy    | 產生完成即部署網站     |<br>| -w, –watch | 產生完成即部署網站 |</p>
 <h3 id="可一起使用：hexo-g-hexo-s-hexo-d-hexo-new-文章名稱"><a href="#可一起使用：hexo-g-hexo-s-hexo-d-hexo-new-文章名稱" class="headerlink" title="可一起使用：hexo g hexo s hexo d hexo new [文章名稱]"></a>可一起使用：<code>hexo g hexo s hexo d hexo new [文章名稱]</code></h3><p><code>$ hexo render &lt;file&gt; [file2] ...</code><br>渲染檔案。</p>
 <table>
 <thead>
@@ -184,7 +184,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/03/在-Github-上安裝-Hexo-記錄/" data-id="cjxn024vv00083t8m732zp6ty" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/03/在-Github-上安裝-Hexo-記錄/" data-id="cjxn05gb400085a8mpsovfa9y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Other/">Other</a></li></ul>
