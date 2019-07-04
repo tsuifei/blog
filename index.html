@@ -98,6 +98,91 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JavaScript-IIFE-立即呼叫函式" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="2019/07/03/JavaScript-IIFE-立即呼叫函式/" class="article-date">
+  <time datetime="2019-07-03T21:41:42.000Z" itemprop="datePublished">2019-07-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2019/07/03/JavaScript-IIFE-立即呼叫函式/">Javascript IIFE 立即呼叫函式</a>
+    </h1>
+  
+
+    </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      <!-- <p>IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。<br>IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。</p>
+<h2 id="IIFE語法"><a href="#IIFE語法" class="headerlink" title="IIFE語法"></a>IIFE語法</h2><p>將一個正常的函式包在()裡，後面加個()就成了匿名函式。<br>後面的()表示立即執行，也可帶參數。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">'foo'</span>; <span class="comment">// 注意：IIFE函式前面一定要有分號; 不然會產生錯誤</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">bar</span>) </span>&#123;</span><br><span class="line">    Console.log(bar)</span><br><span class="line">&#125;)(foo)</span><br></pre></td></tr></table></figure>
+
+<p>匿名函數的參數(foo)就是 var foo 的這個變數，如果匿名函數也兩個參數， 後面的() 也可帶兩個參數</p>
+<p>一般呼叫函式的方式可以是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">doSomething(123);</span><br><span class="line">// 匿名函式</span><br><span class="line">(function doSomething (i)&#123;</span><br><span class="line">  // 做一些事...</span><br><span class="line">&#125;)(123);</span><br></pre></td></tr></table></figure>
+
+<p>使用匿名函式即是馬上使用，也就是宣告他的同時也呼叫它，自然就不需要給名字了。所以就成了以下不需名字的函式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(function (i)&#123;</span><br><span class="line">  // 做一些事...</span><br><span class="line">&#125;)(123);</span><br></pre></td></tr></table></figure>
+
+<h3 id="經典迴圈非同步問題"><a href="#經典迴圈非同步問題" class="headerlink" title="經典迴圈非同步問題"></a>經典迴圈非同步問題</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i)</span><br><span class="line">    &#125;, i * <span class="number">1000</span>) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>目的：每一秒列出一個 i<br>但結果會”同時”列印出 10 個 10，而不會一秒一秒印，因為當進入列印迴圈時，i 已經跑到 10 了。<br>解決如何因非同步而無法印出 1-10 的方法，就是使用IIFE和閉包<br>使用IIFE：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>) </span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(j)</span><br><span class="line">        &#125;, j * <span class="number">1000</span>)</span><br><span class="line">    &#125;)(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在回圈內呼叫 function 會需要用 IIFE 來把參數的值保留起來，如果有看過 jQuery 的原始碼，會發現有這段：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> window, undefined</span>)</span>&#123;</span><br><span class="line"> <span class="comment">// ....</span></span><br><span class="line">&#125;)(<span class="built_in">window</span>);</span><br></pre></td></tr></table></figure>
+
+<p>jQuery 也用了相同的手法將 window 和 indefined 保留起來。<br>ES6 以後新增了 let 與 const 的變數型態，且改以 { } 作為它的 Scope。換句話說，將範例中的 for 的 var 改為以 let 宣告就可以做到保留 i 在執行迴圈當下的「值」的效果：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ ) &#123;</span><br><span class="line">  <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>參考：<a href="https://ithelp.ithome.com.tw/articles/10192739" target="_blank" rel="noopener">立即被呼叫的函式 (Immediately Invoked Function Expression, IIFE)</a></p>
+ -->
+      
+
+      
+      
+      <p>IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。<br>IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。</p>
+<h2 id="IIFE語法"><a href="#IIFE語法" class="headerlink" title="IIFE語法"></a>IIFE語法</h2><p>將一個正常的函式包在()裡，後面加個()就成了匿名函式。<br>後面的()表示立即執行，也可帶參數。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">'foo'</span>; <span class="comment">// 注意：IIFE函式前面一定要有分號; 不然會產生錯誤</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">bar</span>) </span>&#123;</span><br><span class="line">    Console.log(bar)</span><br><span class="line">&#125;)(foo)</span><br></pre></td></tr></table></figure>
+
+<p>匿名函數的參數(foo)就是 var foo 的這個變數，如果匿名函數也兩個參數， 後面的() 也可帶兩個參數</p>
+      
+      <p class="article-more-link">
+        <a href="2019/07/03/JavaScript-IIFE-立即呼叫函式/">Read More</a>
+      </p>
+      
+      
+      
+
+
+    </div>
+
+    <footer class="article-footer">
+      <a data-url="tsuifei.github.io/2019/07/03/JavaScript-IIFE-立即呼叫函式/" data-id="cjxomd62m000arw8mhkisitsa" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-在-Github-上安裝-Hexo-記錄" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
@@ -159,13 +244,10 @@
 <p><a href="https://hexo.io/zh-tw/docs/commands" target="_blank" rel="noopener">其他指令</a> ｜ <a href="https://hexo.io/zh-tw/docs/migration" target="_blank" rel="noopener">侯塞雷還可以轉移！</a></p>
 <p>==注意==<br>如果有使用部分搜尋外掛，會使用 xml 格式搜尋，丟文章上去時先檢查是否有正確規格化為XML格式，以免出錯查不出來，所以可先去<a href="https://tool.oschina.net/codeformat/xml" target="_blank" rel="noopener">此網站檢查</a></p>
 <h2 id="常用-Hexo-指令"><a href="#常用-Hexo-指令" class="headerlink" title="常用 Hexo 指令"></a>常用 Hexo 指令</h2><p>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d<br>hexo clean ：清除快取檔案 (db.json) 和已產生的靜態檔案 (public)。</p>
-<h2 id="如何更換主題"><a href="#如何更換主題" class="headerlink" title="如何更換主題"></a>如何更換主題</h2><p>可上<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="noopener">Hexo 官網 Themes</a>直接找自己喜歡的主題，進入主題後，找到<code>install</code>這項，複製git clone的網址如，以Themes 名為 light 為例：</p>
-<blockquote>
-<p>git clone <a href="https://github.com/hexojs/hexo-theme-light.git" target="_blank" rel="noopener">https://github.com/hexojs/hexo-theme-light.git</a> themes/light</p>
-</blockquote>
+<h2 id="如何更換主題"><a href="#如何更換主題" class="headerlink" title="如何更換主題"></a>如何更換主題</h2><p>可上<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="noopener">Hexo 官網 Themes</a>直接找自己喜歡的主題，進入主題後，找到<code>install</code>這項，複製git clone的網址如，以Themes 名為 light 為例：<br><code>git clone https://github.com/hexojs/hexo-theme-light.git themes/light</code></p>
 <p>Clon 完畢後，到根目錄的 <code>_config.yml</code> 去設定對應的 Themes 主題名稱： <code>theme: light</code></p>
 <h2 id="如何自動備份"><a href="#如何自動備份" class="headerlink" title="如何自動備份"></a>如何自動備份</h2><p>可以在同一專案上再開一條 Git 分支，專門儲存原始檔案，或是使用 <a href="https://askiebaby.github.io/macos-command-backup-update-hexo-blog/" target="_blank" rel="noopener">Askie 推薦的一鍵備份</a>，但須另開專案。</p>
-<h2 id="如何文章分類"><a href="#如何文章分類" class="headerlink" title="如何文章分類"></a>如何文章分類</h2><h3 id="第一種方法：手動加入"><a href="#第一種方法：手動加入" class="headerlink" title="第一種方法：手動加入"></a>第一種方法：手動加入</h3><p>使用 <code>$ hexo n &#39;name&#39;</code>新建頁面，打開此默認頁面是：</p>
+<h2 id="如何文章分類"><a href="#如何文章分類" class="headerlink" title="如何文章分類"></a>如何文章分類</h2><h3 id="第一種方法：手動加入"><a href="#第一種方法：手動加入" class="headerlink" title="第一種方法：手動加入"></a>第一種方法：手動加入</h3><p>使用 <code>$ hexo n &lt;name&gt;</code>新建頁面，打開此默認頁面是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: name</span><br><span class="line">date: 2019-08-05 11:15:00 </span><br><span class="line">tags: </span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 
 <p>但裡面並沒有分類的資訊，可直接在 <code>tags:</code>上加 <code>categories:</code> 存檔後，重新執行 <code>hexo n &#39;name&#39;</code>，重新打開頁面裡頭就有分類了。</p>
@@ -205,7 +287,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/03/在-Github-上安裝-Hexo-記錄/" data-id="cjxn29h7g0008kc8m6yft6dbq" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/03/在-Github-上安裝-Hexo-記錄/" data-id="cjxomd62j0008rw8mesxxvw0n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Other/">Other</a></li></ul>
@@ -295,7 +377,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/02/JS-ES6-箭頭函式-Arrow-function/" data-id="cjxn29h720002kc8mya6tkuod" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/02/JS-ES6-箭頭函式-Arrow-function/" data-id="cjxomd61y0000rw8mw18sov87" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Javascript/">Javascript</a></li></ul>
@@ -372,7 +454,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/02/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="cjxn29h6q0000kc8mee2w9ask" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/02/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="cjxomd62f0006rw8m2kje4665" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/IDE/">IDE</a></li></ul>
@@ -443,7 +525,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/06/28/hello-world/" data-id="cjxn29h7b0006kc8m8vm7np4o" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/06/28/hello-world/" data-id="cjxomd6260002rw8m1lfqu2hx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -463,7 +545,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="categories/Javascript/">Javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="categories/Javascript/ES6/">ES6</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="categories/Other/">Other</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="categories/Javascript/">Javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="categories/Javascript/ES6/">ES6</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="categories/Other/">Other</a></li></ul>
     </div>
   </div>
 
@@ -473,7 +555,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Other/">Other</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Other/">Other</a></li></ul>
     </div>
   </div>
 
@@ -484,6 +566,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="2019/07/03/JavaScript-IIFE-立即呼叫函式/">Javascript IIFE 立即呼叫函式</a>
+          </li>
         
           <li>
             <a href="2019/07/03/在-Github-上安裝-Hexo-記錄/">在 Github 上安裝 Hexo 記錄</a>
@@ -510,7 +596,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="tags/ES6/" style="font-size: 10px;">ES6</a> <a href="tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="tags/IDE/" style="font-size: 10px;">IDE</a> <a href="tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="tags/Other/" style="font-size: 10px;">Other</a>
+      <a href="tags/ES6/" style="font-size: 10px;">ES6</a> <a href="tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="tags/IDE/" style="font-size: 10px;">IDE</a> <a href="tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="tags/Other/" style="font-size: 10px;">Other</a>
     </div>
   </div>
 
