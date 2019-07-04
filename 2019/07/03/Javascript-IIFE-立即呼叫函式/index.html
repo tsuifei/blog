@@ -9,14 +9,14 @@
   <title>JavaScript IIFE 立即呼叫函式 | Cré-Coder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。 IIFE語法將一個正常的函式包在()裡，後面加個()就成了匿名函式。後面的()表示立即執行，也可帶參">
-<meta name="keywords" content="JavaScript">
+<meta name="keywords" content="Javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript IIFE 立即呼叫函式">
 <meta property="og:url" content="tsuifei.github.io/2019/07/03/JavaScript-IIFE-立即呼叫函式/index.html">
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。 IIFE語法將一個正常的函式包在()裡，後面加個()就成了匿名函式。後面的()表示立即執行，也可帶參">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2019-07-04T12:04:44.000Z">
+<meta property="og:updated_time" content="2019-07-04T12:19:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript IIFE 立即呼叫函式">
 <meta name="twitter:description" content="IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。 IIFE語法將一個正常的函式包在()裡，後面加個()就成了匿名函式。後面的()表示立即執行，也可帶參">
@@ -105,7 +105,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="../../../../categories/JavaScript/">JavaScript</a>
+    <a class="article-category-link" href="../../../../categories/Javascript/">Javascript</a>
   </div>
 
   </div>
@@ -127,7 +127,7 @@
       
       <!-- <p>IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。<br>IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。</p>
 <h2 id="IIFE語法"><a href="#IIFE語法" class="headerlink" title="IIFE語法"></a>IIFE語法</h2><p>將一個正常的函式包在()裡，後面加個()就成了匿名函式。<br>後面的()表示立即執行，也可帶參數。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">'foo'</span>; <span class="comment">// 注意：IIFE函式前面一定要有分號; 不然會產生錯誤</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">bar</span>) </span>&#123;</span><br><span class="line">    Console.log(bar)</span><br><span class="line">&#125;)(foo)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">'foo'</span>; <span class="comment">// 注意：IIFE函式前面一定要有分號; 不然會產生錯誤</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">bar</span>) </span>&#123;</span><br><span class="line">    Console.log(bar)</span><br><span class="line">&#125;)(foo)</span><br></pre></td></tr></table></figure>
 
 <p>匿名函數的參數(foo)就是 var foo 的這個變數，如果匿名函數有兩個參數， 後面的() 也可帶兩個參數</p>
 <p>一般呼叫函式的方式可以是：</p>
@@ -155,7 +155,7 @@
       
       <p>IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。<br>IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。</p>
 <h2 id="IIFE語法"><a href="#IIFE語法" class="headerlink" title="IIFE語法"></a>IIFE語法</h2><p>將一個正常的函式包在()裡，後面加個()就成了匿名函式。<br>後面的()表示立即執行，也可帶參數。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">'foo'</span>; <span class="comment">// 注意：IIFE函式前面一定要有分號; 不然會產生錯誤</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">bar</span>) </span>&#123;</span><br><span class="line">    Console.log(bar)</span><br><span class="line">&#125;)(foo)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">'foo'</span>; <span class="comment">// 注意：IIFE函式前面一定要有分號; 不然會產生錯誤</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">bar</span>) </span>&#123;</span><br><span class="line">    Console.log(bar)</span><br><span class="line">&#125;)(foo)</span><br></pre></td></tr></table></figure>
 
 <p>匿名函數的參數(foo)就是 var foo 的這個變數，如果匿名函數有兩個參數， 後面的() 也可帶兩個參數</p>
 <p>一般呼叫函式的方式可以是：</p>
@@ -184,10 +184,10 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/03/JavaScript-IIFE-立即呼叫函式/" data-id="cjxomwxq30002we8mx54c525z" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/03/JavaScript-IIFE-立即呼叫函式/" data-id="cjxon0y2z0002ym8mqvqzl2eh" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/JavaScript/">JavaScript</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Javascript/">Javascript</a></li></ul>
 
     </footer>
   </div>
@@ -214,7 +214,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/Javascript/">Javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/Javascript/ES6/">ES6</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/Other/">Other</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/Javascript/">Javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/Javascript/ES6/">ES6</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/Other/">Other</a></li></ul>
     </div>
   </div>
 
@@ -224,7 +224,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Other/">Other</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Other/">Other</a></li></ul>
     </div>
   </div>
 
@@ -265,7 +265,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../../../tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="../../../../tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="../../../../tags/Other/" style="font-size: 10px;">Other</a>
+      <a href="../../../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../../../tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="../../../../tags/Other/" style="font-size: 10px;">Other</a>
     </div>
   </div>
 
