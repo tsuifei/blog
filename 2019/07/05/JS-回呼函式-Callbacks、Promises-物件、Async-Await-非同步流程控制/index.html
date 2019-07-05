@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>JS 回呼函式 Callbacks、Promises 物件、Async/Await 非同步流程控制 | Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Javascript 近幾年來受歡迎的原因，有一大部分是因為 JS 可以處理非同步（異步）的問題，也因為可以非同步，所以處理速度快，且可帶給瀏覽者更好的體驗，所以了解如何控制非同步也成了前端重要的技能之一。 無非同步的程式12345678  function add(n1, n2)&amp;#123;    return n1+n2  &amp;#125;  function testNoAsync()&amp;#123">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 回呼函式 Callbacks、Promises 物件、Async&#x2F;Await 非同步流程控制">
+<meta property="og:url" content="tsuifei.github.io/2019/07/05/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="Javascript 近幾年來受歡迎的原因，有一大部分是因為 JS 可以處理非同步（異步）的問題，也因為可以非同步，所以處理速度快，且可帶給瀏覽者更好的體驗，所以了解如何控制非同步也成了前端重要的技能之一。 無非同步的程式12345678  function add(n1, n2)&amp;#123;    return n1+n2  &amp;#125;  function testNoAsync()&amp;#123">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-07-05T12:29:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 回呼函式 Callbacks、Promises 物件、Async&#x2F;Await 非同步流程控制">
+<meta name="twitter:description" content="Javascript 近幾年來受歡迎的原因，有一大部分是因為 JS 可以處理非同步（異步）的問題，也因為可以非同步，所以處理速度快，且可帶給瀏覽者更好的體驗，所以了解如何控制非同步也成了前端重要的技能之一。 無非同步的程式12345678  function add(n1, n2)&amp;#123;    return n1+n2  &amp;#125;  function testNoAsync()&amp;#123">
+  
+  <link rel="alternate" href="../../../../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../../../../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../../../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../../../../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../../../../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../../../../tsuifei">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../../../../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../../../../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../../../../react">React</a>
+        
+        <a class="main-nav-link" href="../../../../html">HTML</a>
+        
+        <a class="main-nav-link" href="../../../../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../../../../linux">Linux</a>
+        
+        <a class="main-nav-link" href="../../../../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../../../../life">Life</a>
+        
+        <a class="main-nav-link" href="../../../../other">Other</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../../../../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="" class="article-date">
+  <time datetime="2019-07-05T06:08:16.000Z" itemprop="datePublished">2019-07-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="../../../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      JS 回呼函式 Callbacks、Promises 物件、Async/Await 非同步流程控制
+    </h1>
+  
+
+    </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      <!-- <p>Javascript 近幾年來受歡迎的原因，有一大部分是因為 JS 可以處理非同步（異步）的問題，也因為可以非同步，所以處理速度快，且可帶給瀏覽者更好的體驗，所以了解如何控制非同步也成了前端重要的技能之一。</p>
+<h2 id="無非同步的程式"><a href="#無非同步的程式" class="headerlink" title="無非同步的程式"></a>無非同步的程式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">n1, n2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n1+n2</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">testNoAsync</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = add(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">// testNoAsync(); // 7</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="問題的起源，非同步程式"><a href="#問題的起源，非同步程式" class="headerlink" title="問題的起源，非同步程式"></a>問題的起源，非同步程式</h2><p>寫程式如果遇到要處理非同步的程式，就會變得複雜了起來，為什麼會複雜？<br>預設想要延遲執行，卻出現undefined 程式會一直往下跑， return的部分不會回傳會被忽略….。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd0</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 設定排程，延遲一段時間後執行</span></span><br><span class="line">  <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> n1+n2;</span><br><span class="line">  &#125;, delayTime);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>); <span class="comment">// 仔細觀察出現的順序</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = delayedAdd0(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">// 1, undefined, 2 (不會出現return結果)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第一個解決方式-callback-回呼函式"><a href="#第一個解決方式-callback-回呼函式" class="headerlink" title="第一個解決方式 : callback 回呼函式"></a>第一個解決方式 : callback 回呼函式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd1</span>(<span class="params">n1, n2, delayTime, callback</span>)</span>&#123; <span class="comment">// callback 函式</span></span><br><span class="line">  <span class="comment">// 設定排程，延遲一段時間後執行</span></span><br><span class="line">  <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 延遲一段時間，計算加法，呼叫callback函式</span></span><br><span class="line">    callback(n1+n2);</span><br><span class="line">  &#125;, delayTime);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  delayedAdd1(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>, <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">test1(); <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第二個解決方式-Promise-物件"><a href="#第二個解決方式-Promise-物件" class="headerlink" title="第二個解決方式 : Promise 物件"></a>第二個解決方式 : Promise 物件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd2</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 建立 Promise 物件 :  new promise(執行函式)</span></span><br><span class="line">  <span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123; <span class="comment">// 兩個系統給的參數</span></span><br><span class="line">    <span class="comment">// 要做的工作放到promise的函式裡</span></span><br><span class="line">    <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      resolve(n1+n2); <span class="comment">// 工作完成，呼叫 resolve 函式，並把結果透過參數傳遞進去，如果工作出現問題就呼叫 reject ex. reject(n1+n2);</span></span><br><span class="line">      </span><br><span class="line">    &#125;, delayTime);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// 把 promise 傳遞出來</span></span><br><span class="line">  <span class="keyword">return</span> p; <span class="comment">// 或直接以 return 去接以上的結果 回傳回去而不需要變數 p </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// resolve 會對應 .then / reject 會對應 .catch 但.catch可以忽略不寫</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> promise = delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">  &#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Error"</span>, error)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="需求-需要運行兩次的-promise-然後將結果相乘"><a href="#需求-需要運行兩次的-promise-然後將結果相乘" class="headerlink" title="需求: 需要運行兩次的 promise 然後將結果相乘"></a>需求: 需要運行兩次的 promise 然後將結果相乘</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> promise1 = delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="keyword">let</span> promise2 = delayedAdd2(<span class="number">1</span>, <span class="number">5</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="comment">// 多個 promise 都完成後才繼續工作.</span></span><br><span class="line">  <span class="comment">// 把 promises 放入陣列裡</span></span><br><span class="line">  <span class="built_in">Promise</span>.all([promise1, promise2]).then(<span class="function"><span class="keyword">function</span>(<span class="params">results</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 用 reduce() 處理相乘</span></span><br><span class="line">    <span class="keyword">let</span> answer = results.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">total, value</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> total * value;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">console</span>.log(answer);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">test2a();</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三個解決方式-使用-Async-Await-簡化-Promise-。"><a href="#第三個解決方式-使用-Async-Await-簡化-Promise-。" class="headerlink" title="第三個解決方式 : 使用 Async/Await 簡化 Promise 。"></a>第三個解決方式 : 使用 Async/Await 簡化 Promise 。</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Async/Await 背後的邏輯就是和 Promise 是一樣的。</span></span><br><span class="line"><span class="comment">// 使用 Async/Await 的大前提是仍要建立一個 Promise 物件 將它回傳</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd3</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 建立 Promise 物件 : new promise(執行函式)</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123; <span class="comment">// 兩個系統給的參數</span></span><br><span class="line">    <span class="comment">// 要做的工作放到promise的函式裡</span></span><br><span class="line">    <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    resolve(n1+n2); <span class="comment">// 工作完成，呼叫 resolve 函式，並把結果透過參數傳遞進去，如果工作出現問題就呼叫 reject</span></span><br><span class="line">    &#125;, delayTime);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 語法糖，函式前面加 async， async / await 需要一起使用</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test3</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// await 後面接函式. 上面的 resolve 會直接由 result 接收</span></span><br><span class="line">  <span class="keyword">let</span> result = <span class="keyword">await</span> delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="需求-需要運行兩次的-promise-然後將結果相乘-1"><a href="#需求-需要運行兩次的-promise-然後將結果相乘-1" class="headerlink" title="需求 需要運行兩次的 promise 然後將結果相乘"></a>需求 需要運行兩次的 promise 然後將結果相乘</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test3a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="comment">// await 後面接函式. 上面的 resolve 會直接由 result 接收</span></span><br><span class="line">  <span class="keyword">let</span> result1 = <span class="keyword">await</span> delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="keyword">let</span> result2 = <span class="keyword">await</span> delayedAdd2(<span class="number">3</span>, <span class="number">1</span>, <span class="number">3000</span>);</span><br><span class="line">  <span class="keyword">let</span> answer = result1 * result2;</span><br><span class="line">  <span class="built_in">console</span>.log(answer);</span><br><span class="line">&#125;</span><br><span class="line">test3a();</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.youtube.com/watch?v=NOprCnnjHm0" target="_blank" rel="noopener">參考1 彭彭的課程</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/setTimeout" target="_blank" rel="noopener">參考2 code</a></p>
+ -->
+      
+
+      
+      
+      <p>Javascript 近幾年來受歡迎的原因，有一大部分是因為 JS 可以處理非同步（異步）的問題，也因為可以非同步，所以處理速度快，且可帶給瀏覽者更好的體驗，所以了解如何控制非同步也成了前端重要的技能之一。</p>
+<h2 id="無非同步的程式"><a href="#無非同步的程式" class="headerlink" title="無非同步的程式"></a>無非同步的程式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">n1, n2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n1+n2</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">testNoAsync</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = add(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">// testNoAsync(); // 7</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="問題的起源，非同步程式"><a href="#問題的起源，非同步程式" class="headerlink" title="問題的起源，非同步程式"></a>問題的起源，非同步程式</h2><p>寫程式如果遇到要處理非同步的程式，就會變得複雜了起來，為什麼會複雜？<br>預設想要延遲執行，卻出現undefined 程式會一直往下跑， return的部分不會回傳會被忽略….。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd0</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 設定排程，延遲一段時間後執行</span></span><br><span class="line">  <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> n1+n2;</span><br><span class="line">  &#125;, delayTime);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>); <span class="comment">// 仔細觀察出現的順序</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = delayedAdd0(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">// 1, undefined, 2 (不會出現return結果)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第一個解決方式-callback-回呼函式"><a href="#第一個解決方式-callback-回呼函式" class="headerlink" title="第一個解決方式 : callback 回呼函式"></a>第一個解決方式 : callback 回呼函式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd1</span>(<span class="params">n1, n2, delayTime, callback</span>)</span>&#123; <span class="comment">// callback 函式</span></span><br><span class="line">  <span class="comment">// 設定排程，延遲一段時間後執行</span></span><br><span class="line">  <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 延遲一段時間，計算加法，呼叫callback函式</span></span><br><span class="line">    callback(n1+n2);</span><br><span class="line">  &#125;, delayTime);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  delayedAdd1(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>, <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">test1(); <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第二個解決方式-Promise-物件"><a href="#第二個解決方式-Promise-物件" class="headerlink" title="第二個解決方式 : Promise 物件"></a>第二個解決方式 : Promise 物件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd2</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 建立 Promise 物件 :  new promise(執行函式)</span></span><br><span class="line">  <span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123; <span class="comment">// 兩個系統給的參數</span></span><br><span class="line">    <span class="comment">// 要做的工作放到promise的函式裡</span></span><br><span class="line">    <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      resolve(n1+n2); <span class="comment">// 工作完成，呼叫 resolve 函式，並把結果透過參數傳遞進去，如果工作出現問題就呼叫 reject ex. reject(n1+n2);</span></span><br><span class="line">      </span><br><span class="line">    &#125;, delayTime);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// 把 promise 傳遞出來</span></span><br><span class="line">  <span class="keyword">return</span> p; <span class="comment">// 或直接以 return 去接以上的結果 回傳回去而不需要變數 p </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// resolve 會對應 .then / reject 會對應 .catch 但.catch可以忽略不寫</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> promise = delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">  &#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Error"</span>, error)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="需求-需要運行兩次的-promise-然後將結果相乘"><a href="#需求-需要運行兩次的-promise-然後將結果相乘" class="headerlink" title="需求: 需要運行兩次的 promise 然後將結果相乘"></a>需求: 需要運行兩次的 promise 然後將結果相乘</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> promise1 = delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="keyword">let</span> promise2 = delayedAdd2(<span class="number">1</span>, <span class="number">5</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="comment">// 多個 promise 都完成後才繼續工作.</span></span><br><span class="line">  <span class="comment">// 把 promises 放入陣列裡</span></span><br><span class="line">  <span class="built_in">Promise</span>.all([promise1, promise2]).then(<span class="function"><span class="keyword">function</span>(<span class="params">results</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 用 reduce() 處理相乘</span></span><br><span class="line">    <span class="keyword">let</span> answer = results.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">total, value</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> total * value;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">console</span>.log(answer);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">test2a();</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三個解決方式-使用-Async-Await-簡化-Promise-。"><a href="#第三個解決方式-使用-Async-Await-簡化-Promise-。" class="headerlink" title="第三個解決方式 : 使用 Async/Await 簡化 Promise 。"></a>第三個解決方式 : 使用 Async/Await 簡化 Promise 。</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Async/Await 背後的邏輯就是和 Promise 是一樣的。</span></span><br><span class="line"><span class="comment">// 使用 Async/Await 的大前提是仍要建立一個 Promise 物件 將它回傳</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd3</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 建立 Promise 物件 : new promise(執行函式)</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123; <span class="comment">// 兩個系統給的參數</span></span><br><span class="line">    <span class="comment">// 要做的工作放到promise的函式裡</span></span><br><span class="line">    <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    resolve(n1+n2); <span class="comment">// 工作完成，呼叫 resolve 函式，並把結果透過參數傳遞進去，如果工作出現問題就呼叫 reject</span></span><br><span class="line">    &#125;, delayTime);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 語法糖，函式前面加 async， async / await 需要一起使用</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test3</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// await 後面接函式. 上面的 resolve 會直接由 result 接收</span></span><br><span class="line">  <span class="keyword">let</span> result = <span class="keyword">await</span> delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="需求-需要運行兩次的-promise-然後將結果相乘-1"><a href="#需求-需要運行兩次的-promise-然後將結果相乘-1" class="headerlink" title="需求 需要運行兩次的 promise 然後將結果相乘"></a>需求 需要運行兩次的 promise 然後將結果相乘</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test3a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="comment">// await 後面接函式. 上面的 resolve 會直接由 result 接收</span></span><br><span class="line">  <span class="keyword">let</span> result1 = <span class="keyword">await</span> delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="keyword">let</span> result2 = <span class="keyword">await</span> delayedAdd2(<span class="number">3</span>, <span class="number">1</span>, <span class="number">3000</span>);</span><br><span class="line">  <span class="keyword">let</span> answer = result1 * result2;</span><br><span class="line">  <span class="built_in">console</span>.log(answer);</span><br><span class="line">&#125;</span><br><span class="line">test3a();</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.youtube.com/watch?v=NOprCnnjHm0" target="_blank" rel="noopener">參考1 彭彭的課程</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/setTimeout" target="_blank" rel="noopener">參考2 code</a></p>
+
+      
+      
+
+
+    </div>
+
+    <footer class="article-footer">
+      <a data-url="tsuifei.github.io/2019/07/05/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="cjxq2umq10006xl8m21akpoe7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+  
+<nav id="article-nav">
+  
+  
+    <a href="../../04/JS-IIFE-立即呼叫函式/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript IIFE 立即呼叫函式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../../../categories/JavaScript/ES6/">ES6</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../../../../categories/Other/">Other</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../../../tags/Other/">Other</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">JS 回呼函式 Callbacks、Promises 物件、Async/Await 非同步流程控制</a>
+          </li>
+        
+          <li>
+            <a href="../../04/JS-IIFE-立即呼叫函式/">JavaScript IIFE 立即呼叫函式</a>
+          </li>
+        
+          <li>
+            <a href="../../03/在-Github-上安裝-Hexo-記錄/">在 Github 上安裝 Hexo 記錄</a>
+          </li>
+        
+          <li>
+            <a href="../../02/JS-ES6-箭頭函式-Arrow-function/">JavaScript ES6 箭頭函式 Arrow function</a>
+          </li>
+        
+          <li>
+            <a href="../../02/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/">VS Code 秘技 Rename Refactoring 重新命名＋Formatting重新整理程式碼</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../../../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../../../tags/Other/" style="font-size: 10px;">Other</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../../../tsuifei" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../../../../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../../../../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../../../../react" class="mobile-nav-link">React</a>
+  
+    <a href="../../../../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../../../../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../../../../linux" class="mobile-nav-link">Linux</a>
+  
+    <a href="../../../../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../../../../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../../../../other" class="mobile-nav-link">Other</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../../../../fancybox/jquery.fancybox.css">
+  <script src="../../../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../../../../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
