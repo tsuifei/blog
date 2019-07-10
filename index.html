@@ -134,7 +134,7 @@
 
 <p>a 和 b 如期的印出我們賦予的值。我們可成功無誤的修改 b 的值。</p>
 <p>Primitive type(基本型別)：Number, String, Boolean, Null, Undefined</p>
-<h4 id="by-reference-參考值"><a href="#by-reference-參考值" class="headerlink" title="by reference(參考值)"></a>by reference(參考值)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Tracy"</span>,</span><br><span class="line">    city: <span class="string">"Tainan"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person2 = person; </span><br><span class="line">person2.name = <span class="string">"Philippe"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// name: "Philippe"</span></span><br><span class="line"><span class="built_in">console</span>.log(person2); <span class="comment">// name: "Philippe"</span></span><br></pre></td></tr></table></figure>
+<h4 id="By-reference-參考值"><a href="#By-reference-參考值" class="headerlink" title="By reference(參考值)"></a>By reference(參考值)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Tracy"</span>,</span><br><span class="line">    city: <span class="string">"Tainan"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person2 = person; </span><br><span class="line">person2.name = <span class="string">"Philippe"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// name: "Philippe"</span></span><br><span class="line"><span class="built_in">console</span>.log(person2); <span class="comment">// name: "Philippe"</span></span><br></pre></td></tr></table></figure>
 
 <p>上面的範例在修改 person2 這個 object 裡的name屬性時，也會同時改到原來參考的person的name屬性，是不是很恐怖？</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 陣列</span></span><br><span class="line"><span class="keyword">var</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = arr1;</span><br><span class="line">arr2[<span class="number">3</span>] = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">// [1, 2, 3, 4]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr2); <span class="comment">// [1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
@@ -174,7 +174,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/10/JS-複製By-reference與By-value的不同/" data-id="cjxwwzhbe000axi8mpbdrm1bj" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/10/JS-複製By-reference與By-value的不同/" data-id="cjxwxmpu000052j8mulb5m2py" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
@@ -322,7 +322,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/09/Git-GitHub-實際操作/" data-id="cjxwwzhah0000xi8mtuu6muka" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/09/Git-GitHub-實際操作/" data-id="cjxwxmptl00002j8mpie9jxja" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/GitHub/">GitHub</a></li></ul>
@@ -403,7 +403,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/09/git-github練習心得/" data-id="cjxwwzhbs000gxi8me2mrkrhg" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/09/git-github練習心得/" data-id="cjxwxmpv4000s2j8m9ngnmrh8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Note/">Note</a></li></ul>
@@ -482,7 +482,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/05/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="cjxwwzhb90008xi8mnom7vaqc" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/05/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="cjxwxmpv0000q2j8m9ujxrph7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
@@ -567,7 +567,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/04/JS-IIFE-立即呼叫函式/" data-id="cjxwwzhb50006xi8m2l168qsh" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/04/JS-IIFE-立即呼叫函式/" data-id="cjxwxmpty00042j8m8r9i17zi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
@@ -683,7 +683,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/03/在-Github-上安裝-Hexo-記錄/" data-id="cjxwwzhc1000lxi8mi9ctf1bd" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/03/在-Github-上安裝-Hexo-記錄/" data-id="cjxwxmpv8000v2j8m92crwbdo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Other/">Other</a></li></ul>
@@ -773,7 +773,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/02/JS-ES6-箭頭函式-Arrow-function/" data-id="cjxwwzhat0002xi8m7th15yxh" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/02/JS-ES6-箭頭函式-Arrow-function/" data-id="cjxwxmpts00012j8mbahk2rzd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
@@ -850,7 +850,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/02/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="cjxwwzhbo000exi8mhdog0uia" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/02/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="cjxwxmpve000y2j8midho0drh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/IDE/">IDE</a></li></ul>
