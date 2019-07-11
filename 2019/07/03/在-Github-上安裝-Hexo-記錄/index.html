@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="在學員的鼓勵下，決定試試安裝輕量級 blog Hexo。隨然玩 Wordpress 已經很久了，但 WP 的架構越來越龐大更新速度快，整個檔案也越來越龐大了，且 WP 需要資料庫的配合。但 Hexo 不但不需要，且還可以部屬在 Github 上，超方便的！雖然設定與修改比較繁瑣，但也有它的樂趣，且既然是與程式有關的文章和內容，那何不把他們放在一起。 將 Hexo 自動生成的靜態頁面、搭配 gith">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2019-07-03T09:51:46.000Z">
+<meta property="og:updated_time" content="2019-07-10T09:27:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Github 上安裝 Hexo 記錄">
 <meta name="twitter:description" content="在學員的鼓勵下，決定試試安裝輕量級 blog Hexo。隨然玩 Wordpress 已經很久了，但 WP 的架構越來越龐大更新速度快，整個檔案也越來越龐大了，且 WP 需要資料庫的配合。但 Hexo 不但不需要，且還可以部屬在 Github 上，超方便的！雖然設定與修改比較繁瑣，但也有它的樂趣，且既然是與程式有關的文章和內容，那何不把他們放在一起。 將 Hexo 自動生成的靜態頁面、搭配 gith">
@@ -142,7 +142,7 @@
 <h3 id="產生靜態文章-hexo-g"><a href="#產生靜態文章-hexo-g" class="headerlink" title="產生靜態文章 : hexo g"></a>產生靜態文章 : <code>hexo g</code></h3><p><code>$ hexo generate</code><br>產生靜態檔案。<br>|選項    | 描述 |<br>| ——– | ——– |<br>| -g, –generate    | 部署網站前先產生靜態檔案 |</p>
 <h3 id="本地伺服器-hexo-s"><a href="#本地伺服器-hexo-s" class="headerlink" title="本地伺服器 : hexo s"></a>本地伺服器 : <code>hexo s</code></h3><p><code>$ hexo server</code><br>啟動伺服器，預設是 <a href="http://localhost:4000/。" target="_blank" rel="noopener">http://localhost:4000/。</a><br>| 選項|    描述|<br>| ——– | ——– |<br>| -p, –port    | 覆蓋連接埠設定 |<br>| -s, –static    | 只使用靜態檔案 |<br>| -l, –log    | 啟動記錄器，或覆蓋記錄格式 |</p>
 <h3 id="部署到-github-hexo-d"><a href="#部署到-github-hexo-d" class="headerlink" title="部署到 github : hexo d"></a>部署到 github : <code>hexo d</code></h3><p><code>$ hexo deploy</code><br>部署網站。<br>| 選項 | 描述 |<br>| ——– | ——– |<br>| -d, –deploy    | 產生完成即部署網站     |<br>| -w, –watch | 產生完成即部署網站 |</p>
-<h3 id="可一起使用：hexo-g-hexo-s-hexo-d-hexo-new-文章名稱"><a href="#可一起使用：hexo-g-hexo-s-hexo-d-hexo-new-文章名稱" class="headerlink" title="可一起使用：hexo g hexo s hexo d hexo new [文章名稱]"></a>可一起使用：<code>hexo g hexo s hexo d hexo new [文章名稱]</code></h3><p><code>$ hexo render &lt;file&gt; [file2] ...</code><br>渲染檔案。</p>
+<p><code>$ hexo render &lt;file&gt; [file2] ...</code><br>渲染檔案。</p>
 <table>
 <thead>
 <tr>
@@ -158,7 +158,7 @@
 <p><a href="https://hexo.io/zh-tw/docs/commands" target="_blank" rel="noopener">其他指令</a> ｜ <a href="https://hexo.io/zh-tw/docs/migration" target="_blank" rel="noopener">侯塞雷還可以轉移！</a></p>
 <p>==注意==<br>如果有使用部分搜尋外掛，會使用 xml 格式搜尋，丟文章上去時先檢查是否有正確規格化為XML格式，以免出錯查不出來，所以可先去<a href="https://tool.oschina.net/codeformat/xml" target="_blank" rel="noopener">此網站檢查</a></p>
 <h2 id="常用-Hexo-指令"><a href="#常用-Hexo-指令" class="headerlink" title="常用 Hexo 指令"></a>常用 Hexo 指令</h2><p>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d<br>hexo clean ：清除快取檔案 (db.json) 和已產生的靜態檔案 (public)。</p>
-<h2 id="如何更換主題"><a href="#如何更換主題" class="headerlink" title="如何更換主題"></a>如何更換主題</h2><p>可上<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="noopener">Hexo 官網 Themes</a>直接找自己喜歡的主題，進入主題後，找到<code>install</code>這項，複製git clone的網址如，以Themes 名為 light 為例：<br><code>git clone https://github.com/hexojs/hexo-theme-light.git themes/light</code></p>
+<h3 id="可一起使用：hexo-g-amp-amp-hexo-s-amp-amp-hexo-d-amp-amp-hexo-new-文章名稱"><a href="#可一起使用：hexo-g-amp-amp-hexo-s-amp-amp-hexo-d-amp-amp-hexo-new-文章名稱" class="headerlink" title="可一起使用：hexo g &amp;&amp; hexo s &amp;&amp; hexo d &amp;&amp; hexo new [文章名稱]"></a>可一起使用：<code>hexo g &amp;&amp; hexo s &amp;&amp; hexo d &amp;&amp; hexo new [文章名稱]</code></h3><h2 id="如何更換主題"><a href="#如何更換主題" class="headerlink" title="如何更換主題"></a>如何更換主題</h2><p>可上<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="noopener">Hexo 官網 Themes</a>直接找自己喜歡的主題，進入主題後，找到<code>install</code>這項，複製git clone的網址如，以Themes 名為 light 為例：<br><code>git clone https://github.com/hexojs/hexo-theme-light.git themes/light</code></p>
 <p>Clon 完畢後，到根目錄的 <code>_config.yml</code> 去設定對應的 Themes 主題名稱： <code>theme: light</code></p>
 <h2 id="如何自動備份"><a href="#如何自動備份" class="headerlink" title="如何自動備份"></a>如何自動備份</h2><p>可以在同一專案上再開一條 Git 分支，專門儲存原始檔案，或是使用 <a href="https://askiebaby.github.io/macos-command-backup-update-hexo-blog/" target="_blank" rel="noopener">Askie 推薦的一鍵備份</a>，但須另開專案。</p>
 <h2 id="如何文章分類"><a href="#如何文章分類" class="headerlink" title="如何文章分類"></a>如何文章分類</h2><h3 id="第一種方法：手動加入"><a href="#第一種方法：手動加入" class="headerlink" title="第一種方法：手動加入"></a>第一種方法：手動加入</h3><p>使用 <code>$ hexo n &lt;name&gt;</code>新建頁面，打開此默認頁面是：</p>
@@ -201,7 +201,7 @@
 <h3 id="產生靜態文章-hexo-g"><a href="#產生靜態文章-hexo-g" class="headerlink" title="產生靜態文章 : hexo g"></a>產生靜態文章 : <code>hexo g</code></h3><p><code>$ hexo generate</code><br>產生靜態檔案。<br>|選項    | 描述 |<br>| ——– | ——– |<br>| -g, –generate    | 部署網站前先產生靜態檔案 |</p>
 <h3 id="本地伺服器-hexo-s"><a href="#本地伺服器-hexo-s" class="headerlink" title="本地伺服器 : hexo s"></a>本地伺服器 : <code>hexo s</code></h3><p><code>$ hexo server</code><br>啟動伺服器，預設是 <a href="http://localhost:4000/。" target="_blank" rel="noopener">http://localhost:4000/。</a><br>| 選項|    描述|<br>| ——– | ——– |<br>| -p, –port    | 覆蓋連接埠設定 |<br>| -s, –static    | 只使用靜態檔案 |<br>| -l, –log    | 啟動記錄器，或覆蓋記錄格式 |</p>
 <h3 id="部署到-github-hexo-d"><a href="#部署到-github-hexo-d" class="headerlink" title="部署到 github : hexo d"></a>部署到 github : <code>hexo d</code></h3><p><code>$ hexo deploy</code><br>部署網站。<br>| 選項 | 描述 |<br>| ——– | ——– |<br>| -d, –deploy    | 產生完成即部署網站     |<br>| -w, –watch | 產生完成即部署網站 |</p>
-<h3 id="可一起使用：hexo-g-hexo-s-hexo-d-hexo-new-文章名稱"><a href="#可一起使用：hexo-g-hexo-s-hexo-d-hexo-new-文章名稱" class="headerlink" title="可一起使用：hexo g hexo s hexo d hexo new [文章名稱]"></a>可一起使用：<code>hexo g hexo s hexo d hexo new [文章名稱]</code></h3><p><code>$ hexo render &lt;file&gt; [file2] ...</code><br>渲染檔案。</p>
+<p><code>$ hexo render &lt;file&gt; [file2] ...</code><br>渲染檔案。</p>
 <table>
 <thead>
 <tr>
@@ -217,7 +217,7 @@
 <p><a href="https://hexo.io/zh-tw/docs/commands" target="_blank" rel="noopener">其他指令</a> ｜ <a href="https://hexo.io/zh-tw/docs/migration" target="_blank" rel="noopener">侯塞雷還可以轉移！</a></p>
 <p>==注意==<br>如果有使用部分搜尋外掛，會使用 xml 格式搜尋，丟文章上去時先檢查是否有正確規格化為XML格式，以免出錯查不出來，所以可先去<a href="https://tool.oschina.net/codeformat/xml" target="_blank" rel="noopener">此網站檢查</a></p>
 <h2 id="常用-Hexo-指令"><a href="#常用-Hexo-指令" class="headerlink" title="常用 Hexo 指令"></a>常用 Hexo 指令</h2><p>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d<br>hexo clean ：清除快取檔案 (db.json) 和已產生的靜態檔案 (public)。</p>
-<h2 id="如何更換主題"><a href="#如何更換主題" class="headerlink" title="如何更換主題"></a>如何更換主題</h2><p>可上<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="noopener">Hexo 官網 Themes</a>直接找自己喜歡的主題，進入主題後，找到<code>install</code>這項，複製git clone的網址如，以Themes 名為 light 為例：<br><code>git clone https://github.com/hexojs/hexo-theme-light.git themes/light</code></p>
+<h3 id="可一起使用：hexo-g-amp-amp-hexo-s-amp-amp-hexo-d-amp-amp-hexo-new-文章名稱"><a href="#可一起使用：hexo-g-amp-amp-hexo-s-amp-amp-hexo-d-amp-amp-hexo-new-文章名稱" class="headerlink" title="可一起使用：hexo g &amp;&amp; hexo s &amp;&amp; hexo d &amp;&amp; hexo new [文章名稱]"></a>可一起使用：<code>hexo g &amp;&amp; hexo s &amp;&amp; hexo d &amp;&amp; hexo new [文章名稱]</code></h3><h2 id="如何更換主題"><a href="#如何更換主題" class="headerlink" title="如何更換主題"></a>如何更換主題</h2><p>可上<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="noopener">Hexo 官網 Themes</a>直接找自己喜歡的主題，進入主題後，找到<code>install</code>這項，複製git clone的網址如，以Themes 名為 light 為例：<br><code>git clone https://github.com/hexojs/hexo-theme-light.git themes/light</code></p>
 <p>Clon 完畢後，到根目錄的 <code>_config.yml</code> 去設定對應的 Themes 主題名稱： <code>theme: light</code></p>
 <h2 id="如何自動備份"><a href="#如何自動備份" class="headerlink" title="如何自動備份"></a>如何自動備份</h2><p>可以在同一專案上再開一條 Git 分支，專門儲存原始檔案，或是使用 <a href="https://askiebaby.github.io/macos-command-backup-update-hexo-blog/" target="_blank" rel="noopener">Askie 推薦的一鍵備份</a>，但須另開專案。</p>
 <h2 id="如何文章分類"><a href="#如何文章分類" class="headerlink" title="如何文章分類"></a>如何文章分類</h2><h3 id="第一種方法：手動加入"><a href="#第一種方法：手動加入" class="headerlink" title="第一種方法：手動加入"></a>第一種方法：手動加入</h3><p>使用 <code>$ hexo n &lt;name&gt;</code>新建頁面，打開此默認頁面是：</p>
@@ -246,7 +246,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/03/在-Github-上安裝-Hexo-記錄/" data-id="cjxwxmpv8000v2j8m92crwbdo" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/03/在-Github-上安裝-Hexo-記錄/" data-id="cjxynn94d000o118mn7gyyrdc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Other/">Other</a></li></ul>
@@ -308,6 +308,10 @@
       <ul>
         
           <li>
+            <a href="../../11/JS-三元運算符與比較運算符/">JavaScript 三元運算符(ternary conditional operator)與比較運算符(Comparison operator)</a>
+          </li>
+        
+          <li>
             <a href="../../10/JS-複製By-reference與By-value的不同/">JS 複製 By reference 與 By value 的不同</a>
           </li>
         
@@ -321,10 +325,6 @@
         
           <li>
             <a href="../../05/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/">JS 回呼函式 Callbacks、Promises 物件、Async/Await 非同步流程控制</a>
-          </li>
-        
-          <li>
-            <a href="../../04/JS-IIFE-立即呼叫函式/">JavaScript IIFE 立即呼叫函式</a>
           </li>
         
       </ul>

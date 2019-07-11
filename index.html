@@ -98,6 +98,105 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS-三元運算符與比較運算符" class="article article-type-post" itemscope
+  itemprop="blogPost">
+  <div class="article-meta">
+    <a href="2019/07/11/JS-三元運算符與比較運算符/" class="article-date">
+  <time datetime="2019-07-11T06:22:41.000Z" itemprop="datePublished">2019-07-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2019/07/11/JS-三元運算符與比較運算符/">JavaScript 三元運算符(ternary conditional operator)與比較運算符(Comparison operator)</a>
+    </h1>
+  
+
+    </header>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      <!-- <h2 id="相等比較運算-與-的不同"><a href="#相等比較運算-與-的不同" class="headerlink" title="相等比較運算 == 與 === 的不同"></a>相等比較運算 == 與 === 的不同</h2><p>兩個等號通常是拿來比較兩邊的==值==是否不同<br>三個等號除了判斷==值==是否相同，也會判斷==型別==是否相同。</p>
+<p>兩個等於會引發諸多問題的原因是 JS 常會暗地裡幫我們將資料轉型別，所以常常莫名的就通過判斷。以至於很容易就會出現誤判型別而導致出現錯誤。在使用判斷比較時盡量或只使用三個等於會比較精確與安全。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下的結果都是true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">"0"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">""</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> == <span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> == <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log([] == <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>產生 1 == true 的原因是在 Boolean 時，1 即表示 true，也就是 Boolean(1)理所當然 JS 就會把它視為相同。相反地Boolean(0) 等於 false.</p>
+<p>如果將 false 轉成數字型 Number(false) // 0 ，也可得到 0。</p>
+<p>空字串也是如此，當我們把空字串轉成數字時 Number([]) // 0 也會得到 0。</p>
+<p>將所有上述比較全換成三個等號，結果全都成了 false：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下的結果都是 false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="string">"0"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> === <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="string">""</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> === <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> === <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> === <span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> === <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log([] === <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>由此可見，用三個等號來判斷兩變得值，還是比較準確與保險。看圖表來表示更清楚！三個等號比兩個等號規律多了，除非可以全背下兩個等號的變化，不然還是用三個等號來判斷比較保險。</p>
+<p><img src="https://i.imgur.com/f0T10zg.png" alt></p>
+<p><img src="https://i.imgur.com/6eGZaB8.png" alt></p>
+<p><img src="https://i.imgur.com/b2Iyiqw.png" alt></p>
+<h3 id="唯一特例-NaN不是NaN"><a href="#唯一特例-NaN不是NaN" class="headerlink" title="唯一特例 NaN不是NaN"></a>唯一特例 NaN不是NaN</h3><p>在 JavaScript 裡如果左右兩邊都是一樣且用三個等號來比較，結果通常是 True 但是 Nan 和自己相比，無論使用兩個或三個等號都是 false。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> === <span class="literal">NaN</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> !== <span class="literal">NaN</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> lettre = <span class="string">"abc"</span></span><br><span class="line">lettre / <span class="number">10</span> <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+
+<p>NaN -&gt; 不是數字。何時會用到 NaN ?<br>如果把數字和不是數字做運算，便會返回 NaN 。</p>
+<p>如果想知道一個變數是不是 NaN 可使用 <code>isNaN()</code> 來判斷是不是NaN。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isNaN</span>(<span class="literal">NaN</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>但是<code>isNaN()</code>也會悄悄幫你改型別。 明明 a 就不是數字…。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"a"</span></span><br><span class="line"><span class="built_in">isNaN</span>(a); <span class="comment">// true </span></span><br><span class="line"><span class="built_in">Number</span>(a); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>如果用 typeof 來看 NaN 會得到 number，也就是說，當我們用 isNaN() ，其實這個函式會先將()裡面用Number()轉換。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isNaN</span>(<span class="built_in">Number</span>(<span class="literal">NaN</span>)) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>圖表出處：<a href="https://dorey.github.io/JavaScript-Equality-Table/" target="_blank" rel="noopener">一目了然的比較表</a></p>
+<h2 id="JS-三元運算子"><a href="#JS-三元運算子" class="headerlink" title="JS 三元運算子"></a>JS 三元運算子</h2><p>「三元運算子」 又稱為「條件運算子」，也就是拿來處理條件判斷用的。<br>條件成立(true)-&gt; 回傳第一個, 條件不成立(false)-&gt;回傳第二個</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果 true 這個條件成立，就返回 100，否則就回傳 50</span></span><br><span class="line"><span class="keyword">var</span> result = <span class="number">100</span> &lt; <span class="number">1000</span> ? <span class="number">100</span> : <span class="number">50</span>;</span><br><span class="line"><span class="comment">// 100 小於 1000 嗎？ 是 (true) -&gt; 回傳 100</span></span><br></pre></td></tr></table></figure>
+
+<p>如何將一般的 if else 轉成三元運算子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">16</span>;</span><br><span class="line"><span class="keyword">var</span> title;</span><br><span class="line"><span class="keyword">if</span> (age &gt;= <span class="number">18</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (age &gt;= <span class="number">45</span>) &#123;</span><br><span class="line">            title = <span class="string">"Middle-aged"</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            title = <span class="string">"Adult"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        title = <span class="string">"Minor"</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="built_in">console</span>.log(title);</span><br></pre></td></tr></table></figure>
+
+<p>三元運算子較簡短，但可讀性不高，應避免使用可讀性不高的寫法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title = age &gt;= <span class="number">18</span> ? age &gt;= <span class="number">45</span> ? <span class="string">"Middle-aged"</span> : <span class="string">"Adult"</span> : <span class="string">"Minor"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(title);</span><br></pre></td></tr></table></figure>
+
+ -->
+      
+
+      
+      
+      <h2 id="相等比較運算-與-的不同"><a href="#相等比較運算-與-的不同" class="headerlink" title="相等比較運算 == 與 === 的不同"></a>相等比較運算 == 與 === 的不同</h2><p>兩個等號通常是拿來比較兩邊的==值==是否不同<br>三個等號除了判斷==值==是否相同，也會判斷==型別==是否相同。</p>
+<p>兩個等於會引發諸多問題的原因是 JS 常會暗地裡幫我們將資料轉型別，所以常常莫名的就通過判斷。以至於很容易就會出現誤判型別而導致出現錯誤。在使用判斷比較時盡量或只使用三個等於會比較精確與安全。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下的結果都是true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">"0"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">""</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> == <span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> == <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log([] == <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>產生 1 == true 的原因是在 Boolean 時，1 即表示 true，也就是 Boolean(1)理所當然 JS 就會把它視為相同。相反地Boolean(0) 等於 false.</p>
+      
+      <p class="article-more-link">
+        <a href="2019/07/11/JS-三元運算符與比較運算符/">Read More</a>
+      </p>
+      
+      
+      
+
+
+    </div>
+
+    <footer class="article-footer">
+      <a data-url="tsuifei.github.io/2019/07/11/JS-三元運算符與比較運算符/" data-id="cjxynn91y0002118mcawh6ky6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-JS-複製By-reference與By-value的不同" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
@@ -174,7 +273,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/10/JS-複製By-reference與By-value的不同/" data-id="cjxwxmpu000052j8mulb5m2py" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/10/JS-複製By-reference與By-value的不同/" data-id="cjxynn92d0008118mzyidto8n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
@@ -322,7 +421,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/09/Git-GitHub-實際操作/" data-id="cjxwxmptl00002j8mpie9jxja" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/09/Git-GitHub-實際操作/" data-id="cjxynn90i0000118mwpye3nnn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/GitHub/">GitHub</a></li></ul>
@@ -403,7 +502,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/09/git-github練習心得/" data-id="cjxwxmpv4000s2j8m9ngnmrh8" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/09/git-github練習心得/" data-id="cjxynn946000g118mr75hs1x9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Note/">Note</a></li></ul>
@@ -482,7 +581,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/05/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="cjxwxmpv0000q2j8m9ujxrph7" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/05/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="cjxynn92g000a118munuqt3tp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
@@ -567,7 +666,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/04/JS-IIFE-立即呼叫函式/" data-id="cjxwxmpty00042j8m8r9i17zi" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/04/JS-IIFE-立即呼叫函式/" data-id="cjxynn9270006118m0p90jc53" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
@@ -624,7 +723,7 @@
 <h3 id="產生靜態文章-hexo-g"><a href="#產生靜態文章-hexo-g" class="headerlink" title="產生靜態文章 : hexo g"></a>產生靜態文章 : <code>hexo g</code></h3><p><code>$ hexo generate</code><br>產生靜態檔案。<br>|選項    | 描述 |<br>| ——– | ——– |<br>| -g, –generate    | 部署網站前先產生靜態檔案 |</p>
 <h3 id="本地伺服器-hexo-s"><a href="#本地伺服器-hexo-s" class="headerlink" title="本地伺服器 : hexo s"></a>本地伺服器 : <code>hexo s</code></h3><p><code>$ hexo server</code><br>啟動伺服器，預設是 <a href="http://localhost:4000/。" target="_blank" rel="noopener">http://localhost:4000/。</a><br>| 選項|    描述|<br>| ——– | ——– |<br>| -p, –port    | 覆蓋連接埠設定 |<br>| -s, –static    | 只使用靜態檔案 |<br>| -l, –log    | 啟動記錄器，或覆蓋記錄格式 |</p>
 <h3 id="部署到-github-hexo-d"><a href="#部署到-github-hexo-d" class="headerlink" title="部署到 github : hexo d"></a>部署到 github : <code>hexo d</code></h3><p><code>$ hexo deploy</code><br>部署網站。<br>| 選項 | 描述 |<br>| ——– | ——– |<br>| -d, –deploy    | 產生完成即部署網站     |<br>| -w, –watch | 產生完成即部署網站 |</p>
-<h3 id="可一起使用：hexo-g-hexo-s-hexo-d-hexo-new-文章名稱"><a href="#可一起使用：hexo-g-hexo-s-hexo-d-hexo-new-文章名稱" class="headerlink" title="可一起使用：hexo g hexo s hexo d hexo new [文章名稱]"></a>可一起使用：<code>hexo g hexo s hexo d hexo new [文章名稱]</code></h3><p><code>$ hexo render &lt;file&gt; [file2] ...</code><br>渲染檔案。</p>
+<p><code>$ hexo render &lt;file&gt; [file2] ...</code><br>渲染檔案。</p>
 <table>
 <thead>
 <tr>
@@ -640,7 +739,7 @@
 <p><a href="https://hexo.io/zh-tw/docs/commands" target="_blank" rel="noopener">其他指令</a> ｜ <a href="https://hexo.io/zh-tw/docs/migration" target="_blank" rel="noopener">侯塞雷還可以轉移！</a></p>
 <p>==注意==<br>如果有使用部分搜尋外掛，會使用 xml 格式搜尋，丟文章上去時先檢查是否有正確規格化為XML格式，以免出錯查不出來，所以可先去<a href="https://tool.oschina.net/codeformat/xml" target="_blank" rel="noopener">此網站檢查</a></p>
 <h2 id="常用-Hexo-指令"><a href="#常用-Hexo-指令" class="headerlink" title="常用 Hexo 指令"></a>常用 Hexo 指令</h2><p>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d<br>hexo clean ：清除快取檔案 (db.json) 和已產生的靜態檔案 (public)。</p>
-<h2 id="如何更換主題"><a href="#如何更換主題" class="headerlink" title="如何更換主題"></a>如何更換主題</h2><p>可上<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="noopener">Hexo 官網 Themes</a>直接找自己喜歡的主題，進入主題後，找到<code>install</code>這項，複製git clone的網址如，以Themes 名為 light 為例：<br><code>git clone https://github.com/hexojs/hexo-theme-light.git themes/light</code></p>
+<h3 id="可一起使用：hexo-g-amp-amp-hexo-s-amp-amp-hexo-d-amp-amp-hexo-new-文章名稱"><a href="#可一起使用：hexo-g-amp-amp-hexo-s-amp-amp-hexo-d-amp-amp-hexo-new-文章名稱" class="headerlink" title="可一起使用：hexo g &amp;&amp; hexo s &amp;&amp; hexo d &amp;&amp; hexo new [文章名稱]"></a>可一起使用：<code>hexo g &amp;&amp; hexo s &amp;&amp; hexo d &amp;&amp; hexo new [文章名稱]</code></h3><h2 id="如何更換主題"><a href="#如何更換主題" class="headerlink" title="如何更換主題"></a>如何更換主題</h2><p>可上<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="noopener">Hexo 官網 Themes</a>直接找自己喜歡的主題，進入主題後，找到<code>install</code>這項，複製git clone的網址如，以Themes 名為 light 為例：<br><code>git clone https://github.com/hexojs/hexo-theme-light.git themes/light</code></p>
 <p>Clon 完畢後，到根目錄的 <code>_config.yml</code> 去設定對應的 Themes 主題名稱： <code>theme: light</code></p>
 <h2 id="如何自動備份"><a href="#如何自動備份" class="headerlink" title="如何自動備份"></a>如何自動備份</h2><p>可以在同一專案上再開一條 Git 分支，專門儲存原始檔案，或是使用 <a href="https://askiebaby.github.io/macos-command-backup-update-hexo-blog/" target="_blank" rel="noopener">Askie 推薦的一鍵備份</a>，但須另開專案。</p>
 <h2 id="如何文章分類"><a href="#如何文章分類" class="headerlink" title="如何文章分類"></a>如何文章分類</h2><h3 id="第一種方法：手動加入"><a href="#第一種方法：手動加入" class="headerlink" title="第一種方法：手動加入"></a>第一種方法：手動加入</h3><p>使用 <code>$ hexo n &lt;name&gt;</code>新建頁面，打開此默認頁面是：</p>
@@ -683,7 +782,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/03/在-Github-上安裝-Hexo-記錄/" data-id="cjxwxmpv8000v2j8m92crwbdo" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/03/在-Github-上安裝-Hexo-記錄/" data-id="cjxynn94d000o118mn7gyyrdc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Other/">Other</a></li></ul>
@@ -773,7 +872,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/02/JS-ES6-箭頭函式-Arrow-function/" data-id="cjxwxmpts00012j8mbahk2rzd" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/02/JS-ES6-箭頭函式-Arrow-function/" data-id="cjxynn94b000l118mvzbkts75" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
@@ -850,7 +949,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/02/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="cjxwxmpve000y2j8midho0drh" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/02/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="cjxynn93r000e118mp3vk5mey" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/IDE/">IDE</a></li></ul>
@@ -895,6 +994,10 @@
       <ul>
         
           <li>
+            <a href="2019/07/11/JS-三元運算符與比較運算符/">JavaScript 三元運算符(ternary conditional operator)與比較運算符(Comparison operator)</a>
+          </li>
+        
+          <li>
             <a href="2019/07/10/JS-複製By-reference與By-value的不同/">JS 複製 By reference 與 By value 的不同</a>
           </li>
         
@@ -908,10 +1011,6 @@
         
           <li>
             <a href="2019/07/05/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/">JS 回呼函式 Callbacks、Promises 物件、Async/Await 非同步流程控制</a>
-          </li>
-        
-          <li>
-            <a href="2019/07/04/JS-IIFE-立即呼叫函式/">JavaScript IIFE 立即呼叫函式</a>
           </li>
         
       </ul>
