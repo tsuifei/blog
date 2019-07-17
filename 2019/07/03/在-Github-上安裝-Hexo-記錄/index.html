@@ -4,6 +4,19 @@
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
 
   
   <title>在 Github 上安裝 Hexo 記錄 | Cré-Coder</title>
@@ -16,7 +29,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="在學員的鼓勵下，決定試試安裝輕量級 blog Hexo。隨然玩 Wordpress 已經很久了，但 WP 的架構越來越龐大更新速度快，整個檔案也越來越龐大了，且 WP 需要資料庫的配合。但 Hexo 不但不需要，且還可以部屬在 Github 上，超方便的！雖然設定與修改比較繁瑣，但也有它的樂趣，且既然是與程式有關的文章和內容，那何不把他們放在一起。 將 Hexo 自動生成的靜態頁面、搭配 gith">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2019-07-17T04:35:21.951Z">
+<meta property="og:updated_time" content="2019-07-17T04:54:30.247Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Github 上安裝 Hexo 記錄">
 <meta name="twitter:description" content="在學員的鼓勵下，決定試試安裝輕量級 blog Hexo。隨然玩 Wordpress 已經很久了，但 WP 的架構越來越龐大更新速度快，整個檔案也越來越龐大了，且 WP 需要資料庫的配合。但 Hexo 不但不需要，且還可以部屬在 Github 上，超方便的！雖然設定與修改比較繁瑣，但也有它的樂趣，且既然是與程式有關的文章和內容，那何不把他們放在一起。 將 Hexo 自動生成的靜態頁面、搭配 gith">
@@ -186,6 +199,7 @@
 <h3 id="本機預覽草稿"><a href="#本機預覽草稿" class="headerlink" title="本機預覽草稿"></a>本機預覽草稿</h3><p><code>$ hexo S --draft</code><br>雖然 hexo generate 不會編譯 source/_drafts 目錄下的文章，但 Hexo 的 Hexo server 另外提供<code>--draft</code>的參數，這讓我們只要搭配<code>hexo-browsersyncplugins</code>，就可以做到一邊編輯 markdown 文章，一邊使用瀏覽器預覽的目的。</p>
 <h3 id="將草稿發佈為正式文章"><a href="#將草稿發佈為正式文章" class="headerlink" title="將草稿發佈為正式文章"></a>將草稿發佈為正式文章</h3><p><code>$ hexo P &lt;filename&gt;</code><br>其中<code>&lt;filename&gt;</code>為不包含md後綴的文章名稱。它的原理只是將文章從source/_drafts移動到source/_posts而已。</p>
 <h3 id="將正式文章發佈為草稿"><a href="#將正式文章發佈為草稿" class="headerlink" title="將正式文章發佈為草稿"></a>將正式文章發佈為草稿</h3><p>之後的 hexo generate 與 hexo deploy 的用法就完全一樣了。<br>若日後想將正式文章轉為為草稿，只需手動將文章從source/_posts目錄移動到source/_drafts目錄即可。</p>
+<p>參考 <a href="https://hexo.io/zh-tw/docs/configuration.html" target="_blank" rel="noopener">Hexo 檔案配置</a><br><a href="https://coffee0127.github.io/blog/2016/08/09/hexo-configuration/" target="_blank" rel="noopener">在 landscape 主題安裝一些功能</a></p>
  -->
       
 
@@ -252,6 +266,7 @@
 <h3 id="本機預覽草稿"><a href="#本機預覽草稿" class="headerlink" title="本機預覽草稿"></a>本機預覽草稿</h3><p><code>$ hexo S --draft</code><br>雖然 hexo generate 不會編譯 source/_drafts 目錄下的文章，但 Hexo 的 Hexo server 另外提供<code>--draft</code>的參數，這讓我們只要搭配<code>hexo-browsersyncplugins</code>，就可以做到一邊編輯 markdown 文章，一邊使用瀏覽器預覽的目的。</p>
 <h3 id="將草稿發佈為正式文章"><a href="#將草稿發佈為正式文章" class="headerlink" title="將草稿發佈為正式文章"></a>將草稿發佈為正式文章</h3><p><code>$ hexo P &lt;filename&gt;</code><br>其中<code>&lt;filename&gt;</code>為不包含md後綴的文章名稱。它的原理只是將文章從source/_drafts移動到source/_posts而已。</p>
 <h3 id="將正式文章發佈為草稿"><a href="#將正式文章發佈為草稿" class="headerlink" title="將正式文章發佈為草稿"></a>將正式文章發佈為草稿</h3><p>之後的 hexo generate 與 hexo deploy 的用法就完全一樣了。<br>若日後想將正式文章轉為為草稿，只需手動將文章從source/_posts目錄移動到source/_drafts目錄即可。</p>
+<p>參考 <a href="https://hexo.io/zh-tw/docs/configuration.html" target="_blank" rel="noopener">Hexo 檔案配置</a><br><a href="https://coffee0127.github.io/blog/2016/08/09/hexo-configuration/" target="_blank" rel="noopener">在 landscape 主題安裝一些功能</a></p>
 
       
       
@@ -260,7 +275,7 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/03/在-Github-上安裝-Hexo-記錄/" data-id="cjy6rbudn001rrduwjslpsyz7" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/03/在-Github-上安裝-Hexo-記錄/" data-id="cjy6s1dkf001r2uuwu7yfvynk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Other/">Other</a></li></ul>
