@@ -137,7 +137,7 @@ ga('send', 'pageview');
 
                     <div class="article-entry" itemprop="articleBody">
                         
-                                            <p>在實作時常會聽到 call by reference 還是 call by value，這兩個有什麼不同？最簡易的解釋方法是：<br>call by reference : 呼叫變數的記憶體位置<br>call by value : 呼叫變數的值</p>
+                                            <!-- <p>在實作時常會聽到 call by reference 還是 call by value，這兩個有什麼不同？最簡易的解釋方法是：<br>call by reference : 呼叫變數的記憶體位置<br>call by value : 呼叫變數的值</p>
 <p>事實上除了這兩種，還有一種叫 call by Sharing，在傳遞參數時會用到，之後再來介紹。</p>
 <h3 id="Object-物件-Object-Array"><a href="#Object-物件-Object-Array" class="headerlink" title="Object(物件): Object, Array"></a>Object(物件): Object, Array</h3><p>Objet 和 Array 在 Javascript 屬於複合型(composite)或參考型(reference)的原始資料類型，<br>在呼叫、複製或傳參數的時候，是參考記憶體的位置而不是值，這點要特別注意。</p>
 <h3 id="複製資料的時候"><a href="#複製資料的時候" class="headerlink" title="複製資料的時候"></a>複製資料的時候</h3><p>複製資料的時候 是用 By valur 或是 By reference 呢？</p>
@@ -163,13 +163,13 @@ ga('send', 'pageview');
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Ayda"</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        id: <span class="number">24</span>,</span><br><span class="line">        city: <span class="string">"Paris"</span>,</span><br><span class="line">        job: <span class="string">"artist"</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person2 = <span class="built_in">Object</span>.assign(&#123;&#125;, person);</span><br><span class="line">person2.data.id = <span class="number">42</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// 42</span></span><br><span class="line"><span class="built_in">console</span>.log(person2); <span class="comment">// 42</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 改成用第二種方法</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person3 = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(person));</span><br><span class="line">person3.data.id = <span class="number">66</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// 42,原本 24 被Object.assign()改成 42</span></span><br><span class="line"><span class="built_in">console</span>.log(person3); <span class="comment">// 66</span></span><br></pre></td></tr></table></figure>
 
 <p>function 也是一種特殊的 Object 資料型別。<br>參考：<a href="https://hackmd.io/m0alSWZBQ4aKROtyQVeejw?view" target="_blank" rel="noopener">小龜前輩：參數傳遞方式</a></p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
 
-                                                <!-- Table of Contents -->
-                                                
-
+                                                    
                                                         
-                                                            
-                                                                <p>在實作時常會聽到 call by reference 還是 call by value，這兩個有什麼不同？最簡易的解釋方法是：<br>call by reference : 呼叫變數的記憶體位置<br>call by value : 呼叫變數的值</p>
+                                                            <p>在實作時常會聽到 call by reference 還是 call by value，這兩個有什麼不同？最簡易的解釋方法是：<br>call by reference : 呼叫變數的記憶體位置<br>call by value : 呼叫變數的值</p>
 <p>事實上除了這兩種，還有一種叫 call by Sharing，在傳遞參數時會用到，之後再來介紹。</p>
 <h3 id="Object-物件-Object-Array"><a href="#Object-物件-Object-Array" class="headerlink" title="Object(物件): Object, Array"></a>Object(物件): Object, Array</h3><p>Objet 和 Array 在 Javascript 屬於複合型(composite)或參考型(reference)的原始資料類型，<br>在呼叫、複製或傳參數的時候，是參考記憶體的位置而不是值，這點要特別注意。</p>
 <h3 id="複製資料的時候"><a href="#複製資料的時候" class="headerlink" title="複製資料的時候"></a>複製資料的時候</h3><p>複製資料的時候 是用 By valur 或是 By reference 呢？</p>
@@ -196,14 +196,14 @@ ga('send', 'pageview');
 
 <p>function 也是一種特殊的 Object 資料型別。<br>參考：<a href="https://hackmd.io/m0alSWZBQ4aKROtyQVeejw?view" target="_blank" rel="noopener">小龜前輩：參數傳遞方式</a></p>
 
-                                                                    
-                                                                                        
+                                                                
+                                                                                    
 
 
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/2019/07/10/JS-複製By-reference與By-value的不同/" data-id="cjy6somic000k9nuw7clec19g" class="article-share-link">
+                        <a data-url="tsuifei.github.io/2019/07/10/JS-複製By-reference與By-value的不同/" data-id="cjy6spxmb000gc4uw49ltpkw4" class="article-share-link">
                             Share
                         </a>
                         
