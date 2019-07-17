@@ -29,7 +29,7 @@ ga('send', 'pageview');
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="在學員的鼓勵下，決定試試安裝輕量級 blog Hexo。隨然玩 Wordpress 已經很久了，但 WP 的架構越來越龐大更新速度快，整個檔案也越來越龐大了，且 WP 需要資料庫的配合。但 Hexo 不但不需要，且還可以部屬在 Github 上，超方便的！雖然設定與修改比較繁瑣，但也有它的樂趣，且既然是與程式有關的文章和內容，那何不把他們放在一起。 將 Hexo 自動生成的靜態頁面、搭配 gith">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2019-07-17T05:12:12.649Z">
+<meta property="og:updated_time" content="2019-07-17T06:55:39.345Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Github 上安裝 Hexo 記錄">
 <meta name="twitter:description" content="在學員的鼓勵下，決定試試安裝輕量級 blog Hexo。隨然玩 Wordpress 已經很久了，但 WP 的架構越來越龐大更新速度快，整個檔案也越來越龐大了，且 WP 需要資料庫的配合。但 Hexo 不但不需要，且還可以部屬在 Github 上，超方便的！雖然設定與修改比較繁瑣，但也有它的樂趣，且既然是與程式有關的文章和內容，那何不把他們放在一起。 將 Hexo 自動生成的靜態頁面、搭配 gith">
@@ -199,7 +199,11 @@ ga('send', 'pageview');
 <h3 id="將草稿發佈為正式文章"><a href="#將草稿發佈為正式文章" class="headerlink" title="將草稿發佈為正式文章"></a>將草稿發佈為正式文章</h3><p><code>$ hexo P &lt;filename&gt;</code><br>其中<code>&lt;filename&gt;</code>為不包含md後綴的文章名稱。它的原理只是將文章從source/_drafts移動到source/_posts而已。</p>
 <h3 id="將正式文章發佈為草稿"><a href="#將正式文章發佈為草稿" class="headerlink" title="將正式文章發佈為草稿"></a>將正式文章發佈為草稿</h3><p>之後的 hexo generate 與 hexo deploy 的用法就完全一樣了。<br>若日後想將正式文章轉為為草稿，只需手動將文章從source/_posts目錄移動到source/_drafts目錄即可。</p>
 <p>向 Google 申請 Blog Search: <a href="https://search.google.com/search-console/welcome" target="_blank" rel="noopener">Google Search Console</a></p>
-<p>參考 <a href="https://hexo.io/zh-tw/docs/configuration.html" target="_blank" rel="noopener">Hexo 檔案配置</a><br><a href="https://coffee0127.github.io/blog/2016/08/09/hexo-configuration/" target="_blank" rel="noopener">在 landscape 主題安裝一些功能</a></p>
+<h2 id="增加邊欄"><a href="#增加邊欄" class="headerlink" title="增加邊欄"></a>增加邊欄</h2><p>進入themes\layout_widget目錄中，建立 about.ejs 文件，模仿其他文件中的模版，輸入以下內容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (site.tags.length)&#123; %&gt;</span><br><span class="line">  &lt;div class=&quot;widget-wrap&quot;&gt;</span><br><span class="line">    &lt;h3 class=&quot;widget-title&quot;&gt;About&lt;/h3&gt;</span><br><span class="line">    &lt;div class=&quot;widget&quot;&gt;</span><br><span class="line">      Email：xxx@xxx.com&lt;br /&gt;</span><br><span class="line">      Site：www.</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+<p>打開themes_config.yml，找到#Sidebar，在最後面添加- about。刷新頁面。<br>Ref:<a href="https://wizardforcel.gitbooks.io/markdown-simple-world/hexo-tutor-4.html" target="_blank" rel="noopener">Hexo 入門指南</a></p>
+<h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://hexo.io/zh-tw/docs/configuration.html" target="_blank" rel="noopener">Hexo 檔案配置</a><br><a href="https://coffee0127.github.io/blog/2016/08/09/hexo-configuration/" target="_blank" rel="noopener">在 landscape 主題安裝一些功能</a></p>
 <p><a href="https://kennyliblog.nctu.me/2019/06/24/Google-search-Hexo-Blog/" target="_blank" rel="noopener">讓 Google 能搜尋到自己的 Hexo Blog</a></p>
 <p><a href="http://kuangqi.me/tricks/enable-table-of-contents-on-hexo/" target="_blank" rel="noopener">为Hexo博客添加目录</a></p>
  -->
@@ -270,7 +274,11 @@ ga('send', 'pageview');
 <h3 id="將草稿發佈為正式文章"><a href="#將草稿發佈為正式文章" class="headerlink" title="將草稿發佈為正式文章"></a>將草稿發佈為正式文章</h3><p><code>$ hexo P &lt;filename&gt;</code><br>其中<code>&lt;filename&gt;</code>為不包含md後綴的文章名稱。它的原理只是將文章從source/_drafts移動到source/_posts而已。</p>
 <h3 id="將正式文章發佈為草稿"><a href="#將正式文章發佈為草稿" class="headerlink" title="將正式文章發佈為草稿"></a>將正式文章發佈為草稿</h3><p>之後的 hexo generate 與 hexo deploy 的用法就完全一樣了。<br>若日後想將正式文章轉為為草稿，只需手動將文章從source/_posts目錄移動到source/_drafts目錄即可。</p>
 <p>向 Google 申請 Blog Search: <a href="https://search.google.com/search-console/welcome" target="_blank" rel="noopener">Google Search Console</a></p>
-<p>參考 <a href="https://hexo.io/zh-tw/docs/configuration.html" target="_blank" rel="noopener">Hexo 檔案配置</a><br><a href="https://coffee0127.github.io/blog/2016/08/09/hexo-configuration/" target="_blank" rel="noopener">在 landscape 主題安裝一些功能</a></p>
+<h2 id="增加邊欄"><a href="#增加邊欄" class="headerlink" title="增加邊欄"></a>增加邊欄</h2><p>進入themes\layout_widget目錄中，建立 about.ejs 文件，模仿其他文件中的模版，輸入以下內容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (site.tags.length)&#123; %&gt;</span><br><span class="line">  &lt;div class=&quot;widget-wrap&quot;&gt;</span><br><span class="line">    &lt;h3 class=&quot;widget-title&quot;&gt;About&lt;/h3&gt;</span><br><span class="line">    &lt;div class=&quot;widget&quot;&gt;</span><br><span class="line">      Email：xxx@xxx.com&lt;br /&gt;</span><br><span class="line">      Site：www.</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+<p>打開themes_config.yml，找到#Sidebar，在最後面添加- about。刷新頁面。<br>Ref:<a href="https://wizardforcel.gitbooks.io/markdown-simple-world/hexo-tutor-4.html" target="_blank" rel="noopener">Hexo 入門指南</a></p>
+<h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://hexo.io/zh-tw/docs/configuration.html" target="_blank" rel="noopener">Hexo 檔案配置</a><br><a href="https://coffee0127.github.io/blog/2016/08/09/hexo-configuration/" target="_blank" rel="noopener">在 landscape 主題安裝一些功能</a></p>
 <p><a href="https://kennyliblog.nctu.me/2019/06/24/Google-search-Hexo-Blog/" target="_blank" rel="noopener">讓 Google 能搜尋到自己的 Hexo Blog</a></p>
 <p><a href="http://kuangqi.me/tricks/enable-table-of-contents-on-hexo/" target="_blank" rel="noopener">为Hexo博客添加目录</a></p>
 
@@ -281,7 +289,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/2019/07/03/在-Github-上安裝-Hexo-記錄/" data-id="cjy6vv5d3001r7juwklq7d9j7" class="article-share-link">
+                        <a data-url="tsuifei.github.io/2019/07/03/在-Github-上安裝-Hexo-記錄/" data-id="cjy6w6hxm001qbeuwjxmnz9k1" class="article-share-link">
                             Share
                         </a>
                         
@@ -317,6 +325,15 @@ ga('send', 'pageview');
 </section>
         
           <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：tsuifei@gmail.com<br /> Site：www.tsuifei.com
+        </div>
+    </div>
+    
   
     
   <div class="widget-wrap">
