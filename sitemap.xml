@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/tsuifei/index.html</loc>
+    
+    <lastmod>2019-07-17T06:29:33.394Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/2019/07/10/JS-%E8%A4%87%E8%A3%BDBy-reference%E8%88%87By-value%E7%9A%84%E4%B8%8D%E5%90%8C/</loc>
     
     <lastmod>2019-07-17T06:06:25.019Z</lastmod>
@@ -131,13 +138,6 @@
     <loc>tsuifei.github.io/javascript/index.html</loc>
     
     <lastmod>2019-07-02T06:05:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/tsuifei/index.html</loc>
-    
-    <lastmod>2019-07-02T06:04:50.000Z</lastmod>
     
   </url>
   
