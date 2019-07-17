@@ -6,20 +6,20 @@
   
 
   
-  <title>Git/GitHub練習心得 | Cré-Coder</title>
+  <title>JavaScript ES6 好用特色--解構 | Cré-Coder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="照著程式導師實驗計畫的操作，學會如何設置本端和遠端之間的更新與開分支，合併等方法，程序有點小複雜，但對於版本控管的確是輕度多了，只是還沒和其他人合作控管，這部分須多操控。.gitignore 的設置在設github前就應該處理，不然之後刪來刪去很麻煩，記得不要上傳node_modules/不然會很龐大。 小筆記設分支練習：  原本在master，創另一個分支 ：git branch [分支名]">
-<meta name="keywords" content="Git,Github,Note">
+  <meta name="description" content="Un blog pour partager, expérimenter et s&apos;améliorer en programmation.">
+<meta name="keywords" content="JavaScript,ES6">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git&#x2F;GitHub練習心得">
-<meta property="og:url" content="tsuifei.github.io/2019/07/09/git-github練習心得/index.html">
+<meta property="og:title" content="JavaScript ES6 好用特色--解構">
+<meta property="og:url" content="tsuifei.github.io/2019/07/16/JS-ES6-好用特色-解構/index.html">
 <meta property="og:site_name" content="Cré-Coder">
-<meta property="og:description" content="照著程式導師實驗計畫的操作，學會如何設置本端和遠端之間的更新與開分支，合併等方法，程序有點小複雜，但對於版本控管的確是輕度多了，只是還沒和其他人合作控管，這部分須多操控。.gitignore 的設置在設github前就應該處理，不然之後刪來刪去很麻煩，記得不要上傳node_modules/不然會很龐大。 小筆記設分支練習：  原本在master，創另一個分支 ：git branch [分支名]">
+<meta property="og:description" content="Un blog pour partager, expérimenter et s&apos;améliorer en programmation.">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2019-07-09T13:05:10.000Z">
+<meta property="og:updated_time" content="2019-07-17T03:40:48.454Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git&#x2F;GitHub練習心得">
-<meta name="twitter:description" content="照著程式導師實驗計畫的操作，學會如何設置本端和遠端之間的更新與開分支，合併等方法，程序有點小複雜，但對於版本控管的確是輕度多了，只是還沒和其他人合作控管，這部分須多操控。.gitignore 的設置在設github前就應該處理，不然之後刪來刪去很麻煩，記得不要上傳node_modules/不然會很龐大。 小筆記設分支練習：  原本在master，創另一個分支 ：git branch [分支名]">
+<meta name="twitter:title" content="JavaScript ES6 好用特色--解構">
+<meta name="twitter:description" content="Un blog pour partager, expérimenter et s&apos;améliorer en programmation.">
   
   <link rel="alternate" href="../../../../atom.xml" title="Cré-Coder" type="application/atom+xml">
   
@@ -97,15 +97,15 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-git-github練習心得" class="article article-type-post" itemscope
+        <section id="main"><article id="post-JS-ES6-好用特色-解構" class="article article-type-post" itemscope
   itemprop="blogPost">
   <div class="article-meta">
     <a href="" class="article-date">
-  <time datetime="2019-07-09T07:02:24.000Z" itemprop="datePublished">2019-07-09</time>
+  <time datetime="2019-07-16T20:44:58.000Z" itemprop="datePublished">2019-07-17</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="../../../../categories/Git/">Git</a>
+    <a class="article-category-link" href="../../../../categories/JavaScript/">JavaScript</a>►<a class="article-category-link" href="../../../../categories/JavaScript/ES6/">ES6</a>
   </div>
 
   </div>
@@ -116,7 +116,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      Git/GitHub練習心得
+      JavaScript ES6 好用特色--解構
     </h1>
   
 
@@ -125,50 +125,12 @@
 
     <div class="article-entry" itemprop="articleBody">
       
-      <!-- <p>照著程式導師實驗計畫的操作，學會如何設置本端和遠端之間的更新與開分支，合併等方法，程序有點小複雜，但對於版本控管的確是輕度多了，只是還沒和其他人合作控管，這部分須多操控。<br>.gitignore 的設置在設github前就應該處理，不然之後刪來刪去很麻煩，記得不要上傳node_modules/不然會很龐大。</p>
-<h3 id="小筆記"><a href="#小筆記" class="headerlink" title="小筆記"></a>小筆記</h3><p>設分支練習：</p>
-<ol>
-<li>原本在master，創另一個分支 ：git branch [分支名] </li>
-<li>切換到那個分支：git checkout [分支名] </li>
-<li>用git status查在哪個分支</li>
-<li>用git branch -v 看有哪些branch</li>
-<li>push 到新的branch上：git push origin [branch名]</li>
-</ol>
-<h3 id="在github上merge合併："><a href="#在github上merge合併：" class="headerlink" title="在github上merge合併："></a>在github上merge合併：</h3><ol>
-<li>在github上的標籤頁pull requests上點Create pull request → 會顯示兩邊的不同</li>
-<li>再點Create pull request 之後，等Merge pull request出現，點下確認即可</li>
-<li>Merge後切換到Master就會看到更新結果。</li>
-<li>用git pull origin master 把已經merge好得檔案拉到本地端</li>
-</ol>
-<p>要改東西一定要新開branch再merge到master本支</p>
-<blockquote>
-<p>忘記切回test分支，所以後來無法順利merge到master分支，雖然後來看似解決，但還真不知道自己是怎麼解決的，就是試了幾個鍵，跟著打就好了．．．這樣其實有點可怕，下次再注意！</p>
-</blockquote>
- -->
+      <!--  -->
       
 
       
       
-      <p>照著程式導師實驗計畫的操作，學會如何設置本端和遠端之間的更新與開分支，合併等方法，程序有點小複雜，但對於版本控管的確是輕度多了，只是還沒和其他人合作控管，這部分須多操控。<br>.gitignore 的設置在設github前就應該處理，不然之後刪來刪去很麻煩，記得不要上傳node_modules/不然會很龐大。</p>
-<h3 id="小筆記"><a href="#小筆記" class="headerlink" title="小筆記"></a>小筆記</h3><p>設分支練習：</p>
-<ol>
-<li>原本在master，創另一個分支 ：git branch [分支名] </li>
-<li>切換到那個分支：git checkout [分支名] </li>
-<li>用git status查在哪個分支</li>
-<li>用git branch -v 看有哪些branch</li>
-<li>push 到新的branch上：git push origin [branch名]</li>
-</ol>
-<h3 id="在github上merge合併："><a href="#在github上merge合併：" class="headerlink" title="在github上merge合併："></a>在github上merge合併：</h3><ol>
-<li>在github上的標籤頁pull requests上點Create pull request → 會顯示兩邊的不同</li>
-<li>再點Create pull request 之後，等Merge pull request出現，點下確認即可</li>
-<li>Merge後切換到Master就會看到更新結果。</li>
-<li>用git pull origin master 把已經merge好得檔案拉到本地端</li>
-</ol>
-<p>要改東西一定要新開branch再merge到master本支</p>
-<blockquote>
-<p>忘記切回test分支，所以後來無法順利merge到master分支，雖然後來看似解決，但還真不知道自己是怎麼解決的，就是試了幾個鍵，跟著打就好了．．．這樣其實有點可怕，下次再注意！</p>
-</blockquote>
-
+      
       
       
 
@@ -176,10 +138,10 @@
     </div>
 
     <footer class="article-footer">
-      <a data-url="tsuifei.github.io/2019/07/09/git-github練習心得/" data-id="cjy6px90n000oaauwbbbs7l2y" class="article-share-link">Share</a>
+      <a data-url="tsuifei.github.io/2019/07/16/JS-ES6-好用特色-解構/" data-id="cjy6px9030002aauwn3xv7ry6" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/Note/">Note</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/JavaScript/">JavaScript</a></li></ul>
 
     </footer>
   </div>
@@ -187,19 +149,10 @@
   
 <nav id="article-nav">
   
-    <a href="../Git-GitHub-實際操作/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Git / GitHub 實際操作
-        
-      </div>
-    </a>
   
-  
-    <a href="../../05/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../../11/JS-三元運算符與比較運算符/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">JS 回呼函式 Callbacks、Promises 物件、Async/Await 非同步流程控制</div>
+      <div class="article-nav-title">JavaScript 三元運算符(ternary conditional operator)與比較運算符(Comparison operator)</div>
     </a>
   
 </nav>
@@ -238,7 +191,7 @@
       <ul>
         
           <li>
-            <a href="../../16/JS-ES6-好用特色-解構/">JavaScript ES6 好用特色--解構</a>
+            <a href="">JavaScript ES6 好用特色--解構</a>
           </li>
         
           <li>
@@ -250,11 +203,11 @@
           </li>
         
           <li>
-            <a href="../Git-GitHub-實際操作/">Git / GitHub 實際操作</a>
+            <a href="../../09/Git-GitHub-實際操作/">Git / GitHub 實際操作</a>
           </li>
         
           <li>
-            <a href="">Git/GitHub練習心得</a>
+            <a href="../../09/git-github練習心得/">Git/GitHub練習心得</a>
           </li>
         
       </ul>
