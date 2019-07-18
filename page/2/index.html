@@ -19,13 +19,13 @@ ga('send', 'pageview');
 
 
   
-  <title>Archives: 2019 | Cré-Coder</title>
+  <title>Cré-Coder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Un blog pour partager, expérimenter et s&apos;améliorer en programmation.">
 <meta name="keywords" content="tsuifei, Pommier, JavaScript, HTML, CSS, linux, sass, coding">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cré-Coder">
-<meta property="og:url" content="tsuifei.github.io/archives/2019/index.html">
+<meta property="og:url" content="tsuifei.github.io/page/2/index.html">
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="Un blog pour partager, expérimenter et s&apos;améliorer en programmation.">
 <meta property="og:locale" content="zh-tw">
@@ -111,213 +111,92 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="../../2019/07/17/SASS-環境部署與基礎/" class="archive-article-date">
-  <time datetime="2019-07-17T19:53:46.000Z" itemprop="datePublished">7月 18</time>
+    <article id="post-VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../2019/07/02/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" class="article-date">
+  <time datetime="2019-07-01T22:36:17.000Z" itemprop="datePublished">2019-07-02</time>
 </a>
-      
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/IDE/">IDE</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="../../2019/07/17/SASS-環境部署與基礎/">SASS 環境部署與基礎</a>
+      <a class="article-title" href="../../2019/07/02/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/">VS Code 秘技 Rename Refactoring 重新命名＋Formatting重新整理程式碼</a>
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="../../2019/07/16/JS-迴圈-Loop-裡的-return/" class="archive-article-date">
-  <time datetime="2019-07-16T21:51:44.000Z" itemprop="datePublished">7月 17</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="../../2019/07/16/JS-迴圈-Loop-裡的-return/">JS 迴圈 Loop 裡的 return</a>
-    </h1>
-  
+                </header>
+                
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="../../2019/07/11/JS-三元運算符與比較運算符/" class="archive-article-date">
-  <time datetime="2019-07-11T06:22:41.000Z" itemprop="datePublished">7月 11</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="../../2019/07/11/JS-三元運算符與比較運算符/">JavaScript 三元運算符(ternary conditional operator)與比較運算符(Comparison operator)</a>
-    </h1>
-  
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。<br>這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。</p>
+<ul>
+<li>help -&gt; Interactive Playground -&gt; </li>
+</ul>
+<h2 id="重構工具"><a href="#重構工具" class="headerlink" title="重構工具"></a>重構工具</h2><h3 id="Rename-Refactoring-重新命名"><a href="#Rename-Refactoring-重新命名" class="headerlink" title="Rename Refactoring (重新命名)"></a>Rename Refactoring (重新命名)</h3><p>選中要修改的某一個名稱，按 fn+F2 即可重新輸入新的命名， enter 之後會發現所有用此函式名的地方，都會換成新名字。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Reference the function</span></span><br><span class="line"><span class="keyword">new</span> Book(<span class="string">"War of the Worlds"</span>, <span class="string">"H G Wells"</span>);</span><br><span class="line"><span class="keyword">new</span> Book(<span class="string">"The Martian"</span>, <span class="string">"Andy Weir"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Represents a book.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Book</span>(<span class="params">title, author</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.title = title;</span><br><span class="line">    <span class="keyword">this</span>.author = author;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="../../2019/07/10/JS-複製By-reference與By-value的不同/" class="archive-article-date">
-  <time datetime="2019-07-10T01:07:30.000Z" itemprop="datePublished">7月 10</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="../../2019/07/10/JS-複製By-reference與By-value的不同/">JS 複製 By reference 與 By value 的不同</a>
-    </h1>
-  
+<h3 id="Refactoring-via-Extraction-透過提取重構函式"><a href="#Refactoring-via-Extraction-透過提取重構函式" class="headerlink" title="Refactoring via Extraction (透過提取重構函式)"></a>Refactoring via Extraction (透過提取重構函式)</h3><p>可將程式中某一部分提去出來自成一函式。<br>選取要提取出來成函式的部份，按 command + . 會出現選單：<br>1.Extract to inner function in function ‘findFirstEvenNumber’(提取函式中的內部函數尋找找’findFirstEvenNumber’函式)<br>2.Extract to function in global scope(提取全局範圍內的功能)<br>3.Extract to constant in enclosing scope(在封閉範圍內提取常量)</p>
+<p>例如選2.會將選取提取出的碼轉成一函式，並需賦予函式名稱，即可成函式，輸入新函式名之後會自動替換，原題取出來的函式位置。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findFirstEvenNumber</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> el <span class="keyword">of</span> arr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> el === <span class="string">'number'</span> &amp;&amp; el % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> el;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="../../2019/07/09/Git-GitHub-實際操作/" class="archive-article-date">
-  <time datetime="2019-07-09T07:08:41.000Z" itemprop="datePublished">7月 9</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="../../2019/07/09/Git-GitHub-實際操作/">Git / GitHub 實際操作</a>
-    </h1>
-  
+<h3 id="Formatting-重新整理程式碼"><a href="#Formatting-重新整理程式碼" class="headerlink" title="Formatting (重新整理程式碼)"></a>Formatting (重新整理程式碼)</h3><p>shift + option + F 可重新整理程式碼的排列。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cars = [<span class="string">"🚗"</span>, <span class="string">"🚙"</span>, <span class="string">"🚕"</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> car <span class="keyword">of</span> cars)&#123;</span><br><span class="line">    <span class="comment">// Drive the car</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`This is the car <span class="subst">$&#123;car&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="../../2019/07/09/git-github練習心得/" class="archive-article-date">
-  <time datetime="2019-07-09T07:02:24.000Z" itemprop="datePublished">7月 9</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="../../2019/07/09/git-github練習心得/">Git/GitHub練習心得</a>
-    </h1>
-  
+<p>或是開啟 sstting 預設: editor.formatOnSave = true，即可啟動存檔就會自動編排的功能。</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="../../2019/07/05/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" class="archive-article-date">
-  <time datetime="2019-07-05T06:08:16.000Z" itemprop="datePublished">7月 5</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="../../2019/07/05/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/">JS 回呼函式 Callbacks、Promises 物件、Async/Await 非同步流程控制</a>
-    </h1>
-  
+                                                    
+                                                        
+                                                                    <p>在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。<br>這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。</p>
+<ul>
+<li>help -&gt; Interactive Playground -&gt; </li>
+</ul>
+<h2 id="重構工具"><a href="#重構工具" class="headerlink" title="重構工具"></a>重構工具</h2><h3 id="Rename-Refactoring-重新命名"><a href="#Rename-Refactoring-重新命名" class="headerlink" title="Rename Refactoring (重新命名)"></a>Rename Refactoring (重新命名)</h3><p>選中要修改的某一個名稱，按 fn+F2 即可重新輸入新的命名， enter 之後會發現所有用此函式名的地方，都會換成新名字。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../2019/07/02/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="../../2019/07/04/JS-IIFE-立即呼叫函式/" class="archive-article-date">
-  <time datetime="2019-07-04T06:25:44.000Z" itemprop="datePublished">7月 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="../../2019/07/04/JS-IIFE-立即呼叫函式/">JavaScript IIFE 立即呼叫函式</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="../../2019/07/03/在-Github-上安裝-Hexo-記錄/" class="archive-article-date">
-  <time datetime="2019-07-03T02:07:02.000Z" itemprop="datePublished">7月 3</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="../../2019/07/03/在-Github-上安裝-Hexo-記錄/">在 Github 上安裝 Hexo 記錄</a>
-    </h1>
-  
+                    </div>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="../../2019/07/02/JS-ES6-箭頭函式-Arrow-function/" class="archive-article-date">
-  <time datetime="2019-07-02T01:17:36.000Z" itemprop="datePublished">7月 2</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="../../2019/07/02/JS-ES6-箭頭函式-Arrow-function/">JavaScript ES6 箭頭函式 Arrow function</a>
-    </h1>
-  
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/2019/07/02/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="cjy80yazq000qdcuwnfmp1k0w" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/IDE/">IDE</a></li></ul>
 
-    </header>
-  </div>
+                    </footer>
+    </div>
+    
 </article>
-  
-  
-    </div></section>
+
+
   
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="page/2/">2</a><a class="extend next" rel="next" href="page/2/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="../../">&laquo; Prev</a><a class="page-number" href="../../">1</a><span class="page-number current">2</span>
   </nav>
 
 </section>
@@ -398,7 +277,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="07/">七月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/07/">七月 2019</a></li></ul>
     </div>
   </div>
 
