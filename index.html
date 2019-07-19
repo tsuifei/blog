@@ -117,6 +117,10 @@ ga('send', 'pageview');
   <time datetime="2019-07-18T20:26:59.000Z" itemprop="datePublished">2019-07-19</time>
 </a>
             
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
     </div>
     <div class="article-inner">
         
@@ -134,25 +138,43 @@ ga('send', 'pageview');
 
                     <div class="article-entry" itemprop="articleBody">
                         
-                                            <!--  -->
+                                            <!-- <h2 id="判斷條件練習"><a href="#判斷條件練習" class="headerlink" title="判斷條件練習"></a>判斷條件練習</h2><h3 id="練習一：判斷是否及格"><a href="#練習一：判斷是否及格" class="headerlink" title="練習一：判斷是否及格"></a>練習一：判斷是否及格</h3><p>請你自己寫出一段程式碼，是判斷一個叫做 score 的變數是否及格（超過或剛好 60 分），如果及格的話就輸出 pass，否則輸出 fail。<br>進階練習：<br>除了判斷是否及格以外，也請你對滿分做出特別判斷，如果是 100 分的話就輸出 you are no1!</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pass</span>(<span class="params">score</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (score &lt; <span class="number">60</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'不及格，但沒關係，再接再厲！'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (score === <span class="number">100</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'你真是好棒棒！'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (score &gt; <span class="number">100</span> || score &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'咦，沒這樣的分數耶'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span>(score) !== <span class="built_in">Number</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'輸入的不是數字型態'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'恭喜，及格了'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">pass(<span class="number">100</span>)  <span class="comment">// 程式內是用 console.log，所以呼叫函式時就不需用 console.log</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="練習二：BMI-計算"><a href="#練習二：BMI-計算" class="headerlink" title="練習二：BMI 計算"></a>練習二：BMI 計算</h3><p>假設體重是 70，身高是 180(1.8m)，BMI 就是 70/(1.8*1.8) = 21。<br>現在請你寫出一個簡單的 BMI 計算器，用兩個變數代表體重跟身高，算出 BMI 之後判斷 BMI 是落在哪個範圍內並輸出相對應的字串。<br>體重過輕：BMI &lt; 18.5<br>正常範圍：18.5 &lt;= BMI &lt; 24<br>過重：24 &lt;= BMI &lt; 27<br>輕度肥胖：27 &lt;= BMI &lt; 30<br>中度肥胖：30 &lt;= BMI &lt; 35<br>重度肥胖：35 &lt;= BMI </p>
+<h4 id="這題原本做時一直多一個-undefined-，後來請教hu大才理解，console-log-是印出，return-是回傳，印出是印出、回傳是回傳。如果在程式裡使用-console-log-，那麼呼叫程式時就不需用-console-log-，如果程式內是用return-那麼呼叫函式時就要用console-log-來印出在螢幕上。"><a href="#這題原本做時一直多一個-undefined-，後來請教hu大才理解，console-log-是印出，return-是回傳，印出是印出、回傳是回傳。如果在程式裡使用-console-log-，那麼呼叫程式時就不需用-console-log-，如果程式內是用return-那麼呼叫函式時就要用console-log-來印出在螢幕上。" class="headerlink" title="這題原本做時一直多一個 undefined ，後來請教hu大才理解，console.log() 是印出，return 是回傳，印出是印出、回傳是回傳。如果在程式裡使用 console.log()，那麼呼叫程式時就不需用 console.log()，如果程式內是用return 那麼呼叫函式時就要用console.log() 來印出在螢幕上。"></a>這題原本做時一直多一個 undefined ，後來請教hu大才理解，console.log() 是印出，return 是回傳，印出是印出、回傳是回傳。如果在程式裡使用 console.log()，那麼呼叫程式時就不需用 console.log()，如果程式內是用return 那麼呼叫函式時就要用console.log() 來印出在螢幕上。</h4><p>一般建議用 return ，function 裡面不要出現 console.log 讓程式保持乾淨。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testBMI2</span>(<span class="params">weight, height</span>) </span>&#123;</span><br><span class="line">    height = height * <span class="number">0.01</span></span><br><span class="line">    <span class="keyword">var</span> bmi = weight / (height * height)</span><br><span class="line">    bmi = <span class="built_in">parseFloat</span>(bmi).toFixed(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (bmi &lt; <span class="number">18.5</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重過輕'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bmi &gt;= <span class="number">18.5</span> &amp;&amp; bmi &lt; <span class="number">24</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重正常'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bmi &gt;= <span class="number">24</span> &amp;&amp; bmi &lt; <span class="number">27</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重過重'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bmi &gt;= <span class="number">27</span> &amp;&amp; bmi &lt; <span class="number">30</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重為輕度肥胖'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bmi &gt;= <span class="number">30</span> &amp;&amp; bmi &lt; <span class="number">35</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重過輕為中度肥胖'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bmi &gt;= <span class="number">35</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重過輕為重度肥胖'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'輸入資料不正確'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(testBMI2(<span class="string">'s'</span>, <span class="number">162</span>))</span><br></pre></td></tr></table></figure> -->
                                             <!-- Table of Contents -->
                                             
 
                                                     
                                                         
-                                                            
-                                                                
+                                                                    <h2 id="判斷條件練習"><a href="#判斷條件練習" class="headerlink" title="判斷條件練習"></a>判斷條件練習</h2><h3 id="練習一：判斷是否及格"><a href="#練習一：判斷是否及格" class="headerlink" title="練習一：判斷是否及格"></a>練習一：判斷是否及格</h3><p>請你自己寫出一段程式碼，是判斷一個叫做 score 的變數是否及格（超過或剛好 60 分），如果及格的話就輸出 pass，否則輸出 fail。<br>進階練習：<br>除了判斷是否及格以外，也請你對滿分做出特別判斷，如果是 100 分的話就輸出 you are no1!</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pass</span>(<span class="params">score</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (score &lt; <span class="number">60</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'不及格，但沒關係，再接再厲！'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (score === <span class="number">100</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'你真是好棒棒！'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (score &gt; <span class="number">100</span> || score &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'咦，沒這樣的分數耶'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span>(score) !== <span class="built_in">Number</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'輸入的不是數字型態'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'恭喜，及格了'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">pass(<span class="number">100</span>)  <span class="comment">// 程式內是用 console.log，所以呼叫函式時就不需用 console.log</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="練習二：BMI-計算"><a href="#練習二：BMI-計算" class="headerlink" title="練習二：BMI 計算"></a>練習二：BMI 計算</h3><p>假設體重是 70，身高是 180(1.8m)，BMI 就是 70/(1.8*1.8) = 21。<br>現在請你寫出一個簡單的 BMI 計算器，用兩個變數代表體重跟身高，算出 BMI 之後判斷 BMI 是落在哪個範圍內並輸出相對應的字串。<br>體重過輕：BMI &lt; 18.5<br>正常範圍：18.5 &lt;= BMI &lt; 24<br>過重：24 &lt;= BMI &lt; 27<br>輕度肥胖：27 &lt;= BMI &lt; 30<br>中度肥胖：30 &lt;= BMI &lt; 35<br>重度肥胖：35 &lt;= BMI </p>
+<h4 id="這題原本做時一直多一個-undefined-，後來請教hu大才理解，console-log-是印出，return-是回傳，印出是印出、回傳是回傳。如果在程式裡使用-console-log-，那麼呼叫程式時就不需用-console-log-，如果程式內是用return-那麼呼叫函式時就要用console-log-來印出在螢幕上。"><a href="#這題原本做時一直多一個-undefined-，後來請教hu大才理解，console-log-是印出，return-是回傳，印出是印出、回傳是回傳。如果在程式裡使用-console-log-，那麼呼叫程式時就不需用-console-log-，如果程式內是用return-那麼呼叫函式時就要用console-log-來印出在螢幕上。" class="headerlink" title="這題原本做時一直多一個 undefined ，後來請教hu大才理解，console.log() 是印出，return 是回傳，印出是印出、回傳是回傳。如果在程式裡使用 console.log()，那麼呼叫程式時就不需用 console.log()，如果程式內是用return 那麼呼叫函式時就要用console.log() 來印出在螢幕上。"></a>這題原本做時一直多一個 undefined ，後來請教hu大才理解，console.log() 是印出，return 是回傳，印出是印出、回傳是回傳。如果在程式裡使用 console.log()，那麼呼叫程式時就不需用 console.log()，如果程式內是用return 那麼呼叫函式時就要用console.log() 來印出在螢幕上。</h4><p>一般建議用 return ，function 裡面不要出現 console.log 讓程式保持乾淨。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="2019/07/18/JS-JS101-練習/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
                                                                                     
                                                                                         <!-- FIN 要出現的段落數 -->
 
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/2019/07/18/JS-JS101-練習/" data-id="cjy9hm1qm0009hquwnka33w5b" class="article-share-link">
+                        <a data-url="tsuifei.github.io/2019/07/18/JS-JS101-練習/" data-id="cjy9hmvu6000aj5uwzadtzv3f" class="article-share-link">
                             Share
                         </a>
                         
                                 
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/ExerciceJS/">ExerciceJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JS101/">JS101</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
+
                     </footer>
     </div>
     
@@ -279,7 +301,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/2019/07/17/SASS-環境部署與基礎/" data-id="cjy9hm1rc001qhquwmcgi80xp" class="article-share-link">
+                        <a data-url="tsuifei.github.io/2019/07/17/SASS-環境部署與基礎/" data-id="cjy9hmvup001yj5uwcj5y3u63" class="article-share-link">
                             Share
                         </a>
                         
@@ -365,7 +387,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/2019/07/16/JS-迴圈-Loop-裡的-return/" data-id="cjy9hm1qw000ohquwc5mnujs3" class="article-share-link">
+                        <a data-url="tsuifei.github.io/2019/07/16/JS-迴圈-Loop-裡的-return/" data-id="cjy9hmvue000nj5uw485whwit" class="article-share-link">
                             Share
                         </a>
                         
@@ -468,7 +490,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/2019/07/11/JS-三元運算符與比較運算符/" data-id="cjy9hm1qt000hhquw53y6o2o0" class="article-share-link">
+                        <a data-url="tsuifei.github.io/2019/07/11/JS-三元運算符與比較運算符/" data-id="cjy9hmvua000gj5uwpxikw9tt" class="article-share-link">
                             Share
                         </a>
                         
@@ -560,7 +582,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/2019/07/10/JS-複製By-reference與By-value的不同/" data-id="cjy9hm1qu000jhquwuw0cxoru" class="article-share-link">
+                        <a data-url="tsuifei.github.io/2019/07/10/JS-複製By-reference與By-value的不同/" data-id="cjy9hmvub000ij5uwa71h1pil" class="article-share-link">
                             Share
                         </a>
                         
@@ -712,7 +734,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/2019/07/09/Git-GitHub-實際操作/" data-id="cjy9hm1qi0003hquwiklgd1vp" class="article-share-link">
+                        <a data-url="tsuifei.github.io/2019/07/09/Git-GitHub-實際操作/" data-id="cjy9hmvtz0002j5uw73tf5k8h" class="article-share-link">
                             Share
                         </a>
                         
@@ -797,7 +819,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/2019/07/09/git-github練習心得/" data-id="cjy9hm1qy000whquwmkmkzg2x" class="article-share-link">
+                        <a data-url="tsuifei.github.io/2019/07/09/git-github練習心得/" data-id="cjy9hmvug000wj5uw7wj7xq0v" class="article-share-link">
                             Share
                         </a>
                         
@@ -880,7 +902,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/2019/07/05/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="cjy9hm1qr000dhquwldjvfunl" class="article-share-link">
+                        <a data-url="tsuifei.github.io/2019/07/05/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="cjy9hmvu8000cj5uw1i1q9eas" class="article-share-link">
                             Share
                         </a>
                         
@@ -969,7 +991,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/2019/07/04/JS-IIFE-立即呼叫函式/" data-id="cjy9hm1qo000bhquwha05twc7" class="article-share-link">
+                        <a data-url="tsuifei.github.io/2019/07/04/JS-IIFE-立即呼叫函式/" data-id="cjy9hmvu40008j5uw46299zet" class="article-share-link">
                             Share
                         </a>
                         
@@ -1104,7 +1126,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/2019/07/03/在-Github-上安裝-Hexo-記錄/" data-id="cjy9hm1rd001rhquwafgkxq9j" class="article-share-link">
+                        <a data-url="tsuifei.github.io/2019/07/03/在-Github-上安裝-Hexo-記錄/" data-id="cjy9hmvup001zj5uwe9ag2m8r" class="article-share-link">
                             Share
                         </a>
                         
@@ -1153,7 +1175,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/SASS/">SASS</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/SASS/">SASS</a></li></ul>
     </div>
   </div>
 
@@ -1194,7 +1216,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="tags/ES6/" style="font-size: 10px;">ES6</a> <a href="tags/Git/" style="font-size: 15px;">Git</a> <a href="tags/GitHub/" style="font-size: 15px;">GitHub</a> <a href="tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="tags/IDE/" style="font-size: 10px;">IDE</a> <a href="tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="tags/Note/" style="font-size: 10px;">Note</a> <a href="tags/Other/" style="font-size: 10px;">Other</a> <a href="tags/SASS/" style="font-size: 10px;">SASS</a>
+      <a href="tags/ES6/" style="font-size: 10px;">ES6</a> <a href="tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="tags/Git/" style="font-size: 15px;">Git</a> <a href="tags/GitHub/" style="font-size: 15px;">GitHub</a> <a href="tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="tags/IDE/" style="font-size: 10px;">IDE</a> <a href="tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="tags/JS101/" style="font-size: 10px;">JS101</a> <a href="tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="tags/Note/" style="font-size: 10px;">Note</a> <a href="tags/Other/" style="font-size: 10px;">Other</a> <a href="tags/SASS/" style="font-size: 10px;">SASS</a>
     </div>
   </div>
 
