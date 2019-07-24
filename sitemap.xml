@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/2019/07/04/JS-IIFE-%E7%AB%8B%E5%8D%B3%E5%91%BC%E5%8F%AB%E5%87%BD%E5%BC%8F/</loc>
+    
+    <lastmod>2019-07-19T12:23:06.812Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/2019/07/18/JS-JS101-%E7%B7%B4%E7%BF%92/</loc>
     
     <lastmod>2019-07-19T02:33:16.761Z</lastmod>
@@ -75,13 +82,6 @@
     <loc>tsuifei.github.io/2019/07/02/JS-ES6-%E7%AE%AD%E9%A0%AD%E5%87%BD%E5%BC%8F-Arrow-function/</loc>
     
     <lastmod>2019-07-04T12:40:06.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/2019/07/04/JS-IIFE-%E7%AB%8B%E5%8D%B3%E5%91%BC%E5%8F%AB%E5%87%BD%E5%BC%8F/</loc>
-    
-    <lastmod>2019-07-04T12:38:42.000Z</lastmod>
     
   </url>
   
