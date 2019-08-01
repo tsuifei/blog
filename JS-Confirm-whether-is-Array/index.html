@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>JavaScript 判別是否為陣列 Array 的方法 | Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="陣列在 JS 裡的原生型別是 object，這點可以由 typeof 來確認。但如果要確認某一元素的原型是陣列，或是在物件裡的某一元素是陣列，又該怎麼判別？如果元素不是陣列，就無法使用陣列專用的函式或做些陣列的處理，因此才會有確認某元素的原型是陣列的需求。 1.isArray最簡單的陣列判斷語法 isArray，用的是內建Array物件中的isArray，是個ES5的標準方法:Array.isAr">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 判別是否為陣列 Array 的方法">
+<meta property="og:url" content="tsuifei.github.io/JS-Confirm-whether-is-Array/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="陣列在 JS 裡的原生型別是 object，這點可以由 typeof 來確認。但如果要確認某一元素的原型是陣列，或是在物件裡的某一元素是陣列，又該怎麼判別？如果元素不是陣列，就無法使用陣列專用的函式或做些陣列的處理，因此才會有確認某元素的原型是陣列的需求。 1.isArray最簡單的陣列判斷語法 isArray，用的是內建Array物件中的isArray，是個ES5的標準方法:Array.isAr">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-08-01T01:38:39.876Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript 判別是否為陣列 Array 的方法">
+<meta name="twitter:description" content="陣列在 JS 裡的原生型別是 object，這點可以由 typeof 來確認。但如果要確認某一元素的原型是陣列，或是在物件裡的某一元素是陣列，又該怎麼判別？如果元素不是陣列，就無法使用陣列專用的函式或做些陣列的處理，因此才會有確認某元素的原型是陣列的需求。 1.isArray最簡單的陣列判斷語法 isArray，用的是內建Array物件中的isArray，是個ES5的標準方法:Array.isAr">
+  
+  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../react">React</a>
+        
+        <a class="main-nav-link" href="../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../life">Life</a>
+        
+        <a class="main-nav-link" href="../other">Other</a>
+        
+        <a class="main-nav-link" href="../html">HTML</a>
+        
+        <a class="main-nav-link" href="../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../linux">Linux</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS-Confirm-whether-is-Array" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="" class="article-date">
+  <time datetime="2019-07-31T04:08:31.000Z" itemprop="datePublished">2019-07-31</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript 判別是否為陣列 Array 的方法
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>陣列在 JS 裡的原生型別是 object，這點可以由 typeof 來確認。但如果要確認某一元素的原型是陣列，或是在物件裡的某一元素是陣列，又該怎麼判別？<br>如果元素不是陣列，就無法使用陣列專用的函式或做些陣列的處理，因此才會有確認某元素的原型是陣列的需求。</p>
+<h5 id="1-isArray"><a href="#1-isArray" class="headerlink" title="1.isArray"></a>1.isArray</h5><p>最簡單的陣列判斷語法 isArray，用的是內建Array物件中的isArray，是個ES5的標準方法:<br><code>Array.isArray(variable)</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="built_in">Array</span>.isArray(a); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-constructor"><a href="#2-constructor" class="headerlink" title="2.constructor"></a>2.constructor</h5><p>使用<code>constructor</code>，這是在Chrome瀏覽器中效能最佳的判斷方法，它是直接用物件的建構式來判斷:<br><code>variable.constructor === Array</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="string">'2'</span>, [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]];</span><br><span class="line">a.constructor === <span class="built_in">Array</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="判別物件中的陣列"><a href="#判別物件中的陣列" class="headerlink" title="判別物件中的陣列"></a>判別物件中的陣列</h4><h5 id="3-constructor-Array"><a href="#3-constructor-Array" class="headerlink" title="3.constructor === Array"></a>3.constructor === Array</h5><p>如果要判別物件中的其中屬性是否為陣列，可以先判斷這個屬性是否存在，如下(foo指的是物件屬性):<br><code>variable.foo &amp;&amp; variable.foo.constructor === Array</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = &#123;</span><br><span class="line">  foo:[<span class="number">1</span>,<span class="number">2</span>,<span class="string">"f"</span>],</span><br><span class="line">  ho:[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],</span><br><span class="line">  hi: <span class="string">"hello"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">b.foo &amp;&amp; b.foo.constructor === <span class="built_in">Array</span> <span class="comment">// true</span></span><br><span class="line">b.ho &amp;&amp; b.ho.constructor === <span class="built_in">Array</span> <span class="comment">// true</span></span><br><span class="line">b.hi &amp;&amp; b.hi.constructor === <span class="built_in">Array</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>例外: 當使用在一個繼承自陣列的陣列會失效</p>
+<h5 id="4-instanceof"><a href="#4-instanceof" class="headerlink" title="4.instanceof"></a>4.instanceof</h5><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof" target="_blank" rel="noopener">instanceof</a> 也是用物件的相關判別方法來判斷，instanceof 運算符是用於判斷是否為某個物件的實例，優點為語法簡潔清楚。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]; </span><br><span class="line">a <span class="keyword">instanceof</span> <span class="built_in">Array</span>; <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> oArrayObject = <span class="keyword">new</span> <span class="built_in">Array</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]); </span><br><span class="line">oArrayObject <span class="keyword">instanceof</span> <span class="built_in">Array</span>;   <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 也適用於其他型別的判別</span></span><br><span class="line"><span class="keyword">var</span> oStringObject = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"hello world"</span>); </span><br><span class="line">oStringObject <span class="keyword">instanceof</span> <span class="built_in">String</span>;   <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>例外: 處理不同window或iframe時的變數會失效</p>
+<h5 id="5-toString-call"><a href="#5-toString-call" class="headerlink" title="5.toString.call"></a>5.toString.call</h5><p>==推薦使用==<br>網路上推薦這種方式判別的頗多，原因應該是這種方式是所有情況都可以正確判斷的一種，且可適用各種狀況，也可以判斷陣列以外的其他特別物件，唯一缺點是效率最差。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(variable) === <span class="string">'[object Array]'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>據說在JavaScript: The Definitive Guide, 6th Edition書中有提到，Array.isArray其實就是用這個方式實作的。</p>
+<p>另外，網路上也有人寫成一支判斷陣列終極解決方案：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArrayFn</span>(<span class="params">obj</span>)</span>&#123;  <span class="comment">// 包成函式</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Array</span>.isArray === <span class="string">"function"</span>) &#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.isArray(obj); <span class="comment">// 如果瀏覽器支援就用 isArray() 方法</span></span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;  <span class="comment">// 否則就使用 toString 方法</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">"[object Array]"</span>; </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line">isArrayFn(arr)<span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="用哪一種？"><a href="#用哪一種？" class="headerlink" title="用哪一種？"></a>用哪一種？</h3><p>這幾個方式的選擇，網路上的前輩建議是==只要學最後一種==就行了(如果不考慮舊瀏覽器就用第一種)，它可以正確判斷並應用在各種情況，有時候正確比效能快更為重要，更何況它其實是萬用的，除了陣列之外也可以用於其它的判斷情況。雖然它的語法對初學者來說，可能無法在此時完全理解，不過就先知道要這樣用就行了。</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                            <p>陣列在 JS 裡的原生型別是 object，這點可以由 typeof 來確認。但如果要確認某一元素的原型是陣列，或是在物件裡的某一元素是陣列，又該怎麼判別？<br>如果元素不是陣列，就無法使用陣列專用的函式或做些陣列的處理，因此才會有確認某元素的原型是陣列的需求。</p>
+<h5 id="1-isArray"><a href="#1-isArray" class="headerlink" title="1.isArray"></a>1.isArray</h5><p>最簡單的陣列判斷語法 isArray，用的是內建Array物件中的isArray，是個ES5的標準方法:<br><code>Array.isArray(variable)</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="built_in">Array</span>.isArray(a); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-constructor"><a href="#2-constructor" class="headerlink" title="2.constructor"></a>2.constructor</h5><p>使用<code>constructor</code>，這是在Chrome瀏覽器中效能最佳的判斷方法，它是直接用物件的建構式來判斷:<br><code>variable.constructor === Array</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="string">'2'</span>, [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]];</span><br><span class="line">a.constructor === <span class="built_in">Array</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="判別物件中的陣列"><a href="#判別物件中的陣列" class="headerlink" title="判別物件中的陣列"></a>判別物件中的陣列</h4><h5 id="3-constructor-Array"><a href="#3-constructor-Array" class="headerlink" title="3.constructor === Array"></a>3.constructor === Array</h5><p>如果要判別物件中的其中屬性是否為陣列，可以先判斷這個屬性是否存在，如下(foo指的是物件屬性):<br><code>variable.foo &amp;&amp; variable.foo.constructor === Array</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = &#123;</span><br><span class="line">  foo:[<span class="number">1</span>,<span class="number">2</span>,<span class="string">"f"</span>],</span><br><span class="line">  ho:[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],</span><br><span class="line">  hi: <span class="string">"hello"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">b.foo &amp;&amp; b.foo.constructor === <span class="built_in">Array</span> <span class="comment">// true</span></span><br><span class="line">b.ho &amp;&amp; b.ho.constructor === <span class="built_in">Array</span> <span class="comment">// true</span></span><br><span class="line">b.hi &amp;&amp; b.hi.constructor === <span class="built_in">Array</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>例外: 當使用在一個繼承自陣列的陣列會失效</p>
+<h5 id="4-instanceof"><a href="#4-instanceof" class="headerlink" title="4.instanceof"></a>4.instanceof</h5><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof" target="_blank" rel="noopener">instanceof</a> 也是用物件的相關判別方法來判斷，instanceof 運算符是用於判斷是否為某個物件的實例，優點為語法簡潔清楚。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]; </span><br><span class="line">a <span class="keyword">instanceof</span> <span class="built_in">Array</span>; <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> oArrayObject = <span class="keyword">new</span> <span class="built_in">Array</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]); </span><br><span class="line">oArrayObject <span class="keyword">instanceof</span> <span class="built_in">Array</span>;   <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 也適用於其他型別的判別</span></span><br><span class="line"><span class="keyword">var</span> oStringObject = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"hello world"</span>); </span><br><span class="line">oStringObject <span class="keyword">instanceof</span> <span class="built_in">String</span>;   <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>例外: 處理不同window或iframe時的變數會失效</p>
+<h5 id="5-toString-call"><a href="#5-toString-call" class="headerlink" title="5.toString.call"></a>5.toString.call</h5><p>==推薦使用==<br>網路上推薦這種方式判別的頗多，原因應該是這種方式是所有情況都可以正確判斷的一種，且可適用各種狀況，也可以判斷陣列以外的其他特別物件，唯一缺點是效率最差。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(variable) === <span class="string">'[object Array]'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>據說在JavaScript: The Definitive Guide, 6th Edition書中有提到，Array.isArray其實就是用這個方式實作的。</p>
+<p>另外，網路上也有人寫成一支判斷陣列終極解決方案：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArrayFn</span>(<span class="params">obj</span>)</span>&#123;  <span class="comment">// 包成函式</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Array</span>.isArray === <span class="string">"function"</span>) &#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.isArray(obj); <span class="comment">// 如果瀏覽器支援就用 isArray() 方法</span></span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;  <span class="comment">// 否則就使用 toString 方法</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">"[object Array]"</span>; </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line">isArrayFn(arr)<span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="用哪一種？"><a href="#用哪一種？" class="headerlink" title="用哪一種？"></a>用哪一種？</h3><p>這幾個方式的選擇，網路上的前輩建議是==只要學最後一種==就行了(如果不考慮舊瀏覽器就用第一種)，它可以正確判斷並應用在各種情況，有時候正確比效能快更為重要，更何況它其實是萬用的，除了陣列之外也可以用於其它的判斷情況。雖然它的語法對初學者來說，可能無法在此時完全理解，不過就先知道要這樣用就行了。</p>
+
+                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS-Confirm-whether-is-Array/" data-id="cjys08chb0003v7uwm1ho3fkv" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+  
+  
+    <a href="../JS-Array-Slice/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JS Array Slice</div>
+    </a>
+  
+</nav>
+
+            
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
+            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Js-Array/">Js_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">JavaScript 判別是否為陣列 Array 的方法</a>
+          </li>
+        
+          <li>
+            <a href="../JS-Array-Slice/">JS Array Slice</a>
+          </li>
+        
+          <li>
+            <a href="../JS-JS101-練習/">JS-[JS101] 練習</a>
+          </li>
+        
+          <li>
+            <a href="../SASS-環境部署與基礎/">SASS 環境部署與基礎</a>
+          </li>
+        
+          <li>
+            <a href="../JS-迴圈-Loop-裡的-return/">JS 迴圈 Loop 裡的 return</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 15px;">Git</a> <a href="../tags/GitHub/" style="font-size: 15px;">GitHub</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/Js-Array/" style="font-size: 10px;">Js_Array</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../react" class="mobile-nav-link">React</a>
+  
+    <a href="../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../other" class="mobile-nav-link">Other</a>
+  
+    <a href="../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../linux" class="mobile-nav-link">Linux</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
+  <script src="../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

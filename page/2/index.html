@@ -111,6 +111,96 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS-IIFE-立即呼叫函式" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS-IIFE-立即呼叫函式/" class="article-date">
+  <time datetime="2019-07-04T06:25:44.000Z" itemprop="datePublished">2019-07-04</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS-IIFE-立即呼叫函式/">JavaScript IIFE 立即呼叫函式</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。<br>IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。</p>
+<h2 id="IIFE語法"><a href="#IIFE語法" class="headerlink" title="IIFE語法"></a>IIFE語法</h2><p>將一個正常的函式包在()裡，後面加個()就成了匿名函式。<br>後面的()表示立即執行，也可帶參數。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>IIFE函式前面一定要有; 不然會有錯誤<br>範例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="string">'foo'</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">bar</span>) </span>&#123;</span><br><span class="line">    Console.log(bar)</span><br><span class="line">&#125;)(foo)</span><br></pre></td></tr></table></figure>
+
+<p>匿名函數的參數(foo)就是 var foo 的這個變數，如果匿名函數有兩個參數， 後面的() 也可帶兩個參數</p>
+<p>一般呼叫函式的方式可以是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">doSomething(<span class="number">123</span>);</span><br><span class="line"><span class="comment">// 匿名函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">doSomething</span> (<span class="params">i</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;)(<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
+
+<p>使用匿名函式即是馬上使用，也就是宣告他的同時也呼叫它，自然就不需要給名字了。所以就成了以下不需名字的函式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">i</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;)(<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
+
+<p>在回圈內呼叫 function 會需要用 IIFE 來把參數的值保留起來，如果有看過 jQuery 的原始碼，會發現有這段：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> window, undefined</span>)</span>&#123;</span><br><span class="line"> <span class="comment">// ....</span></span><br><span class="line">&#125;)(<span class="built_in">window</span>);</span><br></pre></td></tr></table></figure>
+
+<p>jQuery 也用了相同的手法將 window 和 indefined 保留起來。<br>ES6 以後新增了 let 與 const 的變數型態，且改以 { } 作為它的 Scope。換句話說，將範例中的 for 的 var 改為以 let 宣告就可以做到保留 i 在執行迴圈當下的「值」的效果：</p>
+<h4 id="經典迴圈非同步問題"><a href="#經典迴圈非同步問題" class="headerlink" title="經典迴圈非同步問題"></a>經典迴圈非同步問題</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i)</span><br><span class="line">    &#125;, i * <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>目的：每一秒列出一個 i<br>但會列印出１０個１０，因為當進入列印迴圈時，i已經跑到１０了<br>解決如何因非同步而無法印出１－１０的方法：使用IIFE和閉包<br>使用IIFE</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>) </span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(j)</span><br><span class="line">        &#125;, j * <span class="number">1000</span>)</span><br><span class="line">    &#125;)(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>參考：<a href="https://ithelp.ithome.com.tw/articles/10192739" target="_blank" rel="noopener">立即被呼叫的函式 (Immediately Invoked Function Expression, IIFE)</a></p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。<br>IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。</p>
+<h2 id="IIFE語法"><a href="#IIFE語法" class="headerlink" title="IIFE語法"></a>IIFE語法</h2><p>將一個正常的函式包在()裡，後面加個()就成了匿名函式。<br>後面的()表示立即執行，也可帶參數。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>IIFE函式前面一定要有; 不然會有錯誤<br>範例：</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS-IIFE-立即呼叫函式/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS-IIFE-立即呼叫函式/" data-id="cjys08chm000hv7uws0a4rrnr" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-在-Github-上安裝-Hexo-記錄" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../在-Github-上安裝-Hexo-記錄/" class="article-date">
@@ -232,7 +322,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/在-Github-上安裝-Hexo-記錄/" data-id="cjyp6x2o400242cuwdv3i50bf" class="article-share-link">
+                        <a data-url="tsuifei.github.io/在-Github-上安裝-Hexo-記錄/" data-id="cjys08ci60025v7uw89it6iy8" class="article-share-link">
                             Share
                         </a>
                         
@@ -326,7 +416,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-ES6-箭頭函式-Arrow-function/" data-id="cjyp6x2nf00082cuw3c1z23ic" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-ES6-箭頭函式-Arrow-function/" data-id="cjys08chf0007v7uwc4uh1xy7" class="article-share-link">
                             Share
                         </a>
                         
@@ -407,7 +497,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="cjyp6x2ns000w2cuwdzza330h" class="article-share-link">
+                        <a data-url="tsuifei.github.io/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="cjys08chv0013v7uwpousakf3" class="article-share-link">
                             Share
                         </a>
                         
@@ -469,6 +559,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="../../JS-Confirm-whether-is-Array/">JavaScript 判別是否為陣列 Array 的方法</a>
+          </li>
+        
+          <li>
             <a href="../../JS-Array-Slice/">JS Array Slice</a>
           </li>
         
@@ -482,10 +576,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="../../JS-迴圈-Loop-裡的-return/">JS 迴圈 Loop 裡的 return</a>
-          </li>
-        
-          <li>
-            <a href="../../JS-三元運算符與比較運算符/">JavaScript 三元運算符(ternary conditional operator)與比較運算符(Comparison operator)</a>
           </li>
         
       </ul>

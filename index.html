@@ -111,6 +111,95 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS-Confirm-whether-is-Array" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="JS-Confirm-whether-is-Array/" class="article-date">
+  <time datetime="2019-07-31T04:08:31.000Z" itemprop="datePublished">2019-07-31</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="JS-Confirm-whether-is-Array/">JavaScript 判別是否為陣列 Array 的方法</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>陣列在 JS 裡的原生型別是 object，這點可以由 typeof 來確認。但如果要確認某一元素的原型是陣列，或是在物件裡的某一元素是陣列，又該怎麼判別？<br>如果元素不是陣列，就無法使用陣列專用的函式或做些陣列的處理，因此才會有確認某元素的原型是陣列的需求。</p>
+<h5 id="1-isArray"><a href="#1-isArray" class="headerlink" title="1.isArray"></a>1.isArray</h5><p>最簡單的陣列判斷語法 isArray，用的是內建Array物件中的isArray，是個ES5的標準方法:<br><code>Array.isArray(variable)</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="built_in">Array</span>.isArray(a); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-constructor"><a href="#2-constructor" class="headerlink" title="2.constructor"></a>2.constructor</h5><p>使用<code>constructor</code>，這是在Chrome瀏覽器中效能最佳的判斷方法，它是直接用物件的建構式來判斷:<br><code>variable.constructor === Array</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="string">'2'</span>, [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]];</span><br><span class="line">a.constructor === <span class="built_in">Array</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="判別物件中的陣列"><a href="#判別物件中的陣列" class="headerlink" title="判別物件中的陣列"></a>判別物件中的陣列</h4><h5 id="3-constructor-Array"><a href="#3-constructor-Array" class="headerlink" title="3.constructor === Array"></a>3.constructor === Array</h5><p>如果要判別物件中的其中屬性是否為陣列，可以先判斷這個屬性是否存在，如下(foo指的是物件屬性):<br><code>variable.foo &amp;&amp; variable.foo.constructor === Array</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = &#123;</span><br><span class="line">  foo:[<span class="number">1</span>,<span class="number">2</span>,<span class="string">"f"</span>],</span><br><span class="line">  ho:[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],</span><br><span class="line">  hi: <span class="string">"hello"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">b.foo &amp;&amp; b.foo.constructor === <span class="built_in">Array</span> <span class="comment">// true</span></span><br><span class="line">b.ho &amp;&amp; b.ho.constructor === <span class="built_in">Array</span> <span class="comment">// true</span></span><br><span class="line">b.hi &amp;&amp; b.hi.constructor === <span class="built_in">Array</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>例外: 當使用在一個繼承自陣列的陣列會失效</p>
+<h5 id="4-instanceof"><a href="#4-instanceof" class="headerlink" title="4.instanceof"></a>4.instanceof</h5><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof" target="_blank" rel="noopener">instanceof</a> 也是用物件的相關判別方法來判斷，instanceof 運算符是用於判斷是否為某個物件的實例，優點為語法簡潔清楚。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]; </span><br><span class="line">a <span class="keyword">instanceof</span> <span class="built_in">Array</span>; <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> oArrayObject = <span class="keyword">new</span> <span class="built_in">Array</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]); </span><br><span class="line">oArrayObject <span class="keyword">instanceof</span> <span class="built_in">Array</span>;   <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 也適用於其他型別的判別</span></span><br><span class="line"><span class="keyword">var</span> oStringObject = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"hello world"</span>); </span><br><span class="line">oStringObject <span class="keyword">instanceof</span> <span class="built_in">String</span>;   <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>例外: 處理不同window或iframe時的變數會失效</p>
+<h5 id="5-toString-call"><a href="#5-toString-call" class="headerlink" title="5.toString.call"></a>5.toString.call</h5><p>==推薦使用==<br>網路上推薦這種方式判別的頗多，原因應該是這種方式是所有情況都可以正確判斷的一種，且可適用各種狀況，也可以判斷陣列以外的其他特別物件，唯一缺點是效率最差。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(variable) === <span class="string">'[object Array]'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>據說在JavaScript: The Definitive Guide, 6th Edition書中有提到，Array.isArray其實就是用這個方式實作的。</p>
+<p>另外，網路上也有人寫成一支判斷陣列終極解決方案：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArrayFn</span>(<span class="params">obj</span>)</span>&#123;  <span class="comment">// 包成函式</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Array</span>.isArray === <span class="string">"function"</span>) &#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.isArray(obj); <span class="comment">// 如果瀏覽器支援就用 isArray() 方法</span></span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;  <span class="comment">// 否則就使用 toString 方法</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">"[object Array]"</span>; </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line">isArrayFn(arr)<span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="用哪一種？"><a href="#用哪一種？" class="headerlink" title="用哪一種？"></a>用哪一種？</h3><p>這幾個方式的選擇，網路上的前輩建議是==只要學最後一種==就行了(如果不考慮舊瀏覽器就用第一種)，它可以正確判斷並應用在各種情況，有時候正確比效能快更為重要，更何況它其實是萬用的，除了陣列之外也可以用於其它的判斷情況。雖然它的語法對初學者來說，可能無法在此時完全理解，不過就先知道要這樣用就行了。</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>陣列在 JS 裡的原生型別是 object，這點可以由 typeof 來確認。但如果要確認某一元素的原型是陣列，或是在物件裡的某一元素是陣列，又該怎麼判別？<br>如果元素不是陣列，就無法使用陣列專用的函式或做些陣列的處理，因此才會有確認某元素的原型是陣列的需求。</p>
+<h5 id="1-isArray"><a href="#1-isArray" class="headerlink" title="1.isArray"></a>1.isArray</h5><p>最簡單的陣列判斷語法 isArray，用的是內建Array物件中的isArray，是個ES5的標準方法:<br><code>Array.isArray(variable)</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="built_in">Array</span>.isArray(a); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-constructor"><a href="#2-constructor" class="headerlink" title="2.constructor"></a>2.constructor</h5><p>使用<code>constructor</code>，這是在Chrome瀏覽器中效能最佳的判斷方法，它是直接用物件的建構式來判斷:<br><code>variable.constructor === Array</code></p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="JS-Confirm-whether-is-Array/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS-Confirm-whether-is-Array/" data-id="cjys08chb0003v7uwm1ho3fkv" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS-Array-Slice" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="JS-Array-Slice/" class="article-date">
@@ -176,7 +265,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-Array-Slice/" data-id="cjyp6x2nc00042cuw2bywo1w2" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-Array-Slice/" data-id="cjys08chi000bv7uwtg2u8nhm" class="article-share-link">
                             Share
                         </a>
                         
@@ -247,7 +336,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-JS101-練習/" data-id="cjyp6x2nl000c2cuw164srglr" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-JS101-練習/" data-id="cjys08chu000yv7uwo9j62zrx" class="article-share-link">
                             Share
                         </a>
                         
@@ -380,7 +469,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/SASS-環境部署與基礎/" data-id="cjyp6x2o300232cuwsjsvowkm" class="article-share-link">
+                        <a data-url="tsuifei.github.io/SASS-環境部署與基礎/" data-id="cjys08ci40024v7uwu6gi584u" class="article-share-link">
                             Share
                         </a>
                         
@@ -466,7 +555,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-迴圈-Loop-裡的-return/" data-id="cjyp6x2nr000q2cuwwtl55jxj" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-迴圈-Loop-裡的-return/" data-id="cjys08cht000vv7uwxekqs78r" class="article-share-link">
                             Share
                         </a>
                         
@@ -569,7 +658,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-三元運算符與比較運算符/" data-id="cjyp6x2nm000g2cuwzhe1wplm" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-三元運算符與比較運算符/" data-id="cjys08chl000fv7uw07giek4s" class="article-share-link">
                             Share
                         </a>
                         
@@ -661,7 +750,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-複製By-reference與By-value的不同/" data-id="cjyp6x2nq000n2cuwnvl0mk86" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-複製By-reference與By-value的不同/" data-id="cjys08chq000pv7uw6juwz7kw" class="article-share-link">
                             Share
                         </a>
                         
@@ -813,7 +902,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/Git-GitHub-實際操作/" data-id="cjyp6x2na00022cuw2tbgbmbk" class="article-share-link">
+                        <a data-url="tsuifei.github.io/Git-GitHub-實際操作/" data-id="cjys08ch70001v7uwscj1810x" class="article-share-link">
                             Share
                         </a>
                         
@@ -898,7 +987,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/git-github練習心得/" data-id="cjyp6x2nt000z2cuwlsqgyq78" class="article-share-link">
+                        <a data-url="tsuifei.github.io/git-github練習心得/" data-id="cjys08chw0016v7uw865hdqfz" class="article-share-link">
                             Share
                         </a>
                         
@@ -981,97 +1070,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="cjyp6x2no000i2cuwa9fbndo9" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
-    <article id="post-JS-IIFE-立即呼叫函式" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="JS-IIFE-立即呼叫函式/" class="article-date">
-  <time datetime="2019-07-04T06:25:44.000Z" itemprop="datePublished">2019-07-04</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="JS-IIFE-立即呼叫函式/">JavaScript IIFE 立即呼叫函式</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。<br>IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。</p>
-<h2 id="IIFE語法"><a href="#IIFE語法" class="headerlink" title="IIFE語法"></a>IIFE語法</h2><p>將一個正常的函式包在()裡，後面加個()就成了匿名函式。<br>後面的()表示立即執行，也可帶參數。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<p>IIFE函式前面一定要有; 不然會有錯誤<br>範例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="string">'foo'</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">bar</span>) </span>&#123;</span><br><span class="line">    Console.log(bar)</span><br><span class="line">&#125;)(foo)</span><br></pre></td></tr></table></figure>
-
-<p>匿名函數的參數(foo)就是 var foo 的這個變數，如果匿名函數有兩個參數， 後面的() 也可帶兩個參數</p>
-<p>一般呼叫函式的方式可以是：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">doSomething(<span class="number">123</span>);</span><br><span class="line"><span class="comment">// 匿名函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">doSomething</span> (<span class="params">i</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;)(<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
-
-<p>使用匿名函式即是馬上使用，也就是宣告他的同時也呼叫它，自然就不需要給名字了。所以就成了以下不需名字的函式。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">i</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;)(<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
-
-<p>在回圈內呼叫 function 會需要用 IIFE 來把參數的值保留起來，如果有看過 jQuery 的原始碼，會發現有這段：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> window, undefined</span>)</span>&#123;</span><br><span class="line"> <span class="comment">// ....</span></span><br><span class="line">&#125;)(<span class="built_in">window</span>);</span><br></pre></td></tr></table></figure>
-
-<p>jQuery 也用了相同的手法將 window 和 indefined 保留起來。<br>ES6 以後新增了 let 與 const 的變數型態，且改以 { } 作為它的 Scope。換句話說，將範例中的 for 的 var 改為以 let 宣告就可以做到保留 i 在執行迴圈當下的「值」的效果：</p>
-<h4 id="經典迴圈非同步問題"><a href="#經典迴圈非同步問題" class="headerlink" title="經典迴圈非同步問題"></a>經典迴圈非同步問題</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i)</span><br><span class="line">    &#125;, i * <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>目的：每一秒列出一個 i<br>但會列印出１０個１０，因為當進入列印迴圈時，i已經跑到１０了<br>解決如何因非同步而無法印出１－１０的方法：使用IIFE和閉包<br>使用IIFE</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>) </span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(j)</span><br><span class="line">        &#125;, j * <span class="number">1000</span>)</span><br><span class="line">    &#125;)(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>參考：<a href="https://ithelp.ithome.com.tw/articles/10192739" target="_blank" rel="noopener">立即被呼叫的函式 (Immediately Invoked Function Expression, IIFE)</a></p>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <p>IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。<br>IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。</p>
-<h2 id="IIFE語法"><a href="#IIFE語法" class="headerlink" title="IIFE語法"></a>IIFE語法</h2><p>將一個正常的函式包在()裡，後面加個()就成了匿名函式。<br>後面的()表示立即執行，也可帶參數。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<p>IIFE函式前面一定要有; 不然會有錯誤<br>範例：</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="JS-IIFE-立即呼叫函式/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-IIFE-立即呼叫函式/" data-id="cjyp6x2ng000a2cuwbgzsy266" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="cjys08chp000mv7uw9ayttery" class="article-share-link">
                             Share
                         </a>
                         
@@ -1133,6 +1132,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="JS-Confirm-whether-is-Array/">JavaScript 判別是否為陣列 Array 的方法</a>
+          </li>
+        
+          <li>
             <a href="JS-Array-Slice/">JS Array Slice</a>
           </li>
         
@@ -1146,10 +1149,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="JS-迴圈-Loop-裡的-return/">JS 迴圈 Loop 裡的 return</a>
-          </li>
-        
-          <li>
-            <a href="JS-三元運算符與比較運算符/">JavaScript 三元運算符(ternary conditional operator)與比較運算符(Comparison operator)</a>
           </li>
         
       </ul>
