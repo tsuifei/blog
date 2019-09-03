@@ -21,19 +21,19 @@ ga('send', 'pageview');
   
   <title>JS 奇怪的部分:函數呼叫與執行堆 | Cré-Coder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。  我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行">
+  <meta name="description" content="這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。 我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行的。">
 <meta name="keywords" content="JavaScript,Strange JS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS 奇怪的部分:函數呼叫與執行堆">
 <meta property="og:url" content="tsuifei.github.io/Strange-JS-call-function-execution-stack/index.html">
 <meta property="og:site_name" content="Cré-Coder">
-<meta property="og:description" content="這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。  我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行">
+<meta property="og:description" content="這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。 我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行的。">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="/images/js_stack01.jpg">
-<meta property="og:updated_time" content="2019-09-03T02:02:18.704Z">
+<meta property="og:updated_time" content="2019-09-03T02:03:20.190Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS 奇怪的部分:函數呼叫與執行堆">
-<meta name="twitter:description" content="這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。  我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行">
+<meta name="twitter:description" content="這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。 我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行的。">
 <meta name="twitter:image" content="/images/js_stack01.jpg">
   
   <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
@@ -119,7 +119,7 @@ ga('send', 'pageview');
 </a>
             
   <div class="article-category">
-    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
+    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>►<a class="article-category-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a>
   </div>
 
     </div>
@@ -139,9 +139,7 @@ ga('send', 'pageview');
 
                     <div class="article-entry" itemprop="articleBody">
                         
-                                            <!-- <blockquote>
-<p>這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。<br>JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？<br>了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。</p>
-</blockquote>
+                                            <!-- <p>這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。<br>JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？<br>了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。</p>
 <p>我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行的。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b();</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
 
@@ -169,9 +167,7 @@ ga('send', 'pageview');
 
                                                     
                                                         
-                                                            <blockquote>
-<p>這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。<br>JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？<br>了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。</p>
-</blockquote>
+                                                            <p>這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。<br>JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？<br>了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。</p>
 <p>我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行的。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b();</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
 
@@ -201,7 +197,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/Strange-JS-call-function-execution-stack/" data-id="ck036tpyp000zhtuwnuzyzr5c" class="article-share-link">
+                        <a data-url="tsuifei.github.io/Strange-JS-call-function-execution-stack/" data-id="ck036v1vn0017kxuwjpy3ed9h" class="article-share-link">
                             Share
                         </a>
                         
@@ -243,7 +239,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li></ul>
     </div>
   </div>
 

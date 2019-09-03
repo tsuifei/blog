@@ -118,7 +118,7 @@ ga('send', 'pageview');
 </a>
             
   <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>►<a class="article-category-link" href="categories/JavaScript/Strange-JS/">Strange JS</a>
   </div>
 
     </div>
@@ -138,9 +138,7 @@ ga('send', 'pageview');
 
                     <div class="article-entry" itemprop="articleBody">
                         
-                                            <!-- <blockquote>
-<p>這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。<br>JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？<br>了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。</p>
-</blockquote>
+                                            <!-- <p>這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。<br>JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？<br>了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。</p>
 <p>我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行的。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b();</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
 
@@ -168,11 +166,11 @@ ga('send', 'pageview');
 
                                                     
                                                         
-                                                                    <blockquote>
-<p>這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。<br>JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？<br>了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。</p>
-</blockquote>
+                                                                    <p>這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。<br>JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？<br>了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。</p>
 <p>我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行的。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b();</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
+
+<p>當我們呼叫<code>a()</code>函數時，第一個被創造的是全域執行環境(Global Execution)。語法解析器會分析程式，然後編譯程式，接著創造全域執行環境與全域變數 <code>this</code>。如果是在瀏覽器，就會創造<code>windows</code>這個物件，然後將這些函數放進記憶體中。這裡的<code>this</code> 等同全域物件或瀏覽器裡的window。</p>
                                                                         
                                                                             <p class="article-more-link">
                                                                                 <a href="Strange-JS-call-function-execution-stack/">
@@ -187,7 +185,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/Strange-JS-call-function-execution-stack/" data-id="ck036tpyp000zhtuwnuzyzr5c" class="article-share-link">
+                        <a data-url="tsuifei.github.io/Strange-JS-call-function-execution-stack/" data-id="ck036v1vn0017kxuwjpy3ed9h" class="article-share-link">
                             Share
                         </a>
                         
@@ -276,7 +274,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-Confirm-whether-is-Array/" data-id="ck036tpya0008htuwc3qk6msc" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-Confirm-whether-is-Array/" data-id="ck036v1v80008kxuwf7hj7ioy" class="article-share-link">
                             Share
                         </a>
                         
@@ -355,7 +353,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-Array-Slice/" data-id="ck036tpy70004htuwgqduisz8" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-Array-Slice/" data-id="ck036v1v50004kxuwcuchem2a" class="article-share-link">
                             Share
                         </a>
                         
@@ -426,7 +424,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-JS101-Exercise/" data-id="ck036tpyf000chtuwxhi9oj8k" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-JS101-Exercise/" data-id="ck036v1vc000ckxuw22qgtr87" class="article-share-link">
                             Share
                         </a>
                         
@@ -559,7 +557,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/SASS-deployment-environment-and-fundamental/" data-id="ck036tpz0002bhtuwryhslww5" class="article-share-link">
+                        <a data-url="tsuifei.github.io/SASS-deployment-environment-and-fundamental/" data-id="ck036v1vz002dkxuwgskfk4fr" class="article-share-link">
                             Share
                         </a>
                         
@@ -645,7 +643,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-Return-in-the-loop/" data-id="ck036tpyh000ghtuwni7qxvmb" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-Return-in-the-loop/" data-id="ck036v1vh000nkxuwot7jit8w" class="article-share-link">
                             Share
                         </a>
                         
@@ -748,7 +746,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-ternary-conditional-operator-and-Comparison-operator/" data-id="ck036tpyl000nhtuw1x1u7zmu" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-ternary-conditional-operator-and-Comparison-operator/" data-id="ck036v1vf000ikxuwegh1iumd" class="article-share-link">
                             Share
                         </a>
                         
@@ -840,7 +838,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-複製By-reference與By-value的不同/" data-id="ck036tpyo000whtuw209zk34p" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-複製By-reference與By-value的不同/" data-id="ck036v1vk000wkxuwmd29uo3e" class="article-share-link">
                             Share
                         </a>
                         
@@ -992,7 +990,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/Git-GitHub-實際操作/" data-id="ck036tpy50002htuwg5c3loi3" class="article-share-link">
+                        <a data-url="tsuifei.github.io/Git-GitHub-實際操作/" data-id="ck036v1v30002kxuwzqwnh7sn" class="article-share-link">
                             Share
                         </a>
                         
@@ -1077,7 +1075,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/git-github練習心得/" data-id="ck036tpyr0014htuwqk3ph73q" class="article-share-link">
+                        <a data-url="tsuifei.github.io/git-github練習心得/" data-id="ck036v1vm0014kxuwt21xx34p" class="article-share-link">
                             Share
                         </a>
                         
@@ -1116,7 +1114,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="categories/JavaScript/ES6/">ES6</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="categories/SASS/">SASS</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="categories/SASS/">SASS</a></li></ul>
     </div>
   </div>
 
