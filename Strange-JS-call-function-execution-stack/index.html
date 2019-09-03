@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>JS 奇怪的部分:函數呼叫與執行堆 | Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。  我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行">
+<meta name="keywords" content="JavaScript,Strange JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 奇怪的部分:函數呼叫與執行堆">
+<meta property="og:url" content="tsuifei.github.io/Strange-JS-call-function-execution-stack/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。  我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="/images/js_stack01.jpg">
+<meta property="og:updated_time" content="2019-09-03T02:01:16.455Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 奇怪的部分:函數呼叫與執行堆">
+<meta name="twitter:description" content="這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。  我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行">
+<meta name="twitter:image" content="/images/js_stack01.jpg">
+  
+  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../react">React</a>
+        
+        <a class="main-nav-link" href="../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../life">Life</a>
+        
+        <a class="main-nav-link" href="../other">Other</a>
+        
+        <a class="main-nav-link" href="../html">HTML</a>
+        
+        <a class="main-nav-link" href="../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../linux">Linux</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Strange-JS-call-function-execution-stack" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="" class="article-date">
+  <time datetime="2019-09-02T19:04:21.000Z" itemprop="datePublished">2019-09-03</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>►<a class="article-category-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 class="article-title" itemprop="name">
+      JS 奇怪的部分:函數呼叫與執行堆
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <blockquote>
+<p>這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。<br>JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？<br>了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。</p>
+</blockquote>
+<p>我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b();</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
+
+<p>當我們呼叫<code>a()</code>函數時，第一個被創造的是全域執行環境(Global Execution)。語法解析器會分析程式，然後編譯程式，接著創造全域執行環境與全域變數 <code>this</code>。如果是在瀏覽器，就會創造<code>windows</code>這個物件，然後將這些函數放進記憶體中。這裡的<code>this</code> 等同全域物件或瀏覽器裡的window。</p>
+<p>在創造的第一個階段，是把<code>a()</code>和<code>b()</code>都先放在記憶體裡，然後程式碼會逐行被執行。雖然是先放在記憶體裡，但 JS 不會執行函數中的程式，因為它們還沒被呼叫。</p>
+<p>當編譯器遇到最下面這個<code>a()</code>時，<code>a()</code>函數被呼叫了，這時候<code>a()</code>會被放進執行堆（execution stack）中。這個執行堆會一個一個疊起來，誰在最上面的就是正在執行的東西。</p>
+<p>所以每此 JavaScript 呼叫函數，就會創造一個新的執行環境，然後被放進執行堆中，一個新的執行環境被創造，就像全域執行環境一樣，會有它自己的記憶體空間給變數和函數。</p>
+<p>這個過程會歷經創造階段，然後逐行執行函數中的程式。但是一但我們呼叫另一個函數，它就會停止執行程式，然後，再創造另一個執行環境，然後繼續執行。</p>
+<p>如果函式裡沒有程式需要被執行，如<code>b()</code>，JavaScript 仍會創造一個執行環境，然後如上述般，逐行執行程式。</p>
+<p>當<code>b()</code>結束後，因為它在執行堆的最上面，所以它會離開執行堆，然後是<code>a()</code>，最後回到最下面的全域執行環境。<br><img src="/images/js_stack01.jpg" alt></p>
+<p>程式執行中實際排列的順序並不重要，在函數中剩下的程式碼順序也不會影響執行先後<br>，假設我們把<code>a()</code>放到<code>b()</code>前面，然後在函數裡多了一些程式（如下），這並不會影響執行，因為雖然<code>a()</code>看起來在<code>b()</code>前面，但這些函數在創造階段就已經在記憶體中了，也就是在全域執行環境被初始化時就在了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b();</span><br><span class="line">    <span class="keyword">var</span> c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> d;</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br><span class="line"><span class="keyword">var</span> d;</span><br></pre></td></tr></table></figure>
+
+<p>我們所看到下面被函數呼叫的<code>var c</code>和<code>var d</code>也都在記憶體中了。</p>
+<p>他們的執行順序是，首先<code>a()</code>函數會被呼叫，因此<code>a()</code>會被放入執行堆，同時進入<code>a()</code>的執行環境。接著，它會變成目前執行的程式，而最後一行的 <code>var d</code> 在 <code>a ()</code>下面所以不會被呼叫。</p>
+<p>因為 JavaScript 是同步且一次執行一行，現在執行的程式就是目前的執行環境，也就是執行堆最上面的那個。所以當<code>a()</code>在最上面時 它會進入函式逐行執行，在a函式中呼叫<code>b()</code>函數，<code>b()</code>會創造出自己的執行環境，然後進入執行堆最上面，再逐行執行它裡面的程式，等執行完最後一行之後，再跳回去繼續執行<code>a()</code>函數裡的其他程式。</p>
+<p>為什麼？ 因為當我們結束<code>b()</code>函數後，<code>b()</code>的執行環境就會離開執行堆，所以現在在最上面的是誰？是<code>a()</code>。然後繼續執行剛剛在<code>b()</code>後面的<code>var c</code></p>
+<p>當<code>a()</code>執行完畢後a()會離開執行堆，接著下一行還沒被執行的程式，也就是在全域執行環境中，最後的<code>var d</code></p>
+<p>這就是 JavaScript 執行的順序。每當函數被呼叫，一個新的執行環境就被創造給函數，同時，<code>this</code> 變數被創造給這個函數，而裡面的變數在創造階段就已經建立了，<br>然後程式碼會被逐行的執行。但每當函數被呼叫，即使是被自己呼叫，一個新的執行環境就會進入執行堆，然後當執行完畢後，離開執行堆。所以無論最上面是什麼，那個就是正在執行的程式。–&gt;正在執行的永遠在執行堆的最上面。</p>
+<p>逐行的、同步的這個觀念是非常重要，了解程式執行的逐一步驟，才會預防一些不知名的問題。</p>
+<h6 id="單字"><a href="#單字" class="headerlink" title="單字"></a>單字</h6><p>invoke the function 或是 function invocation, 意思是執行這個函數</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                            <blockquote>
+<p>這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。<br>JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？<br>了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。</p>
+</blockquote>
+<p>我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b();</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
+
+<p>當我們呼叫<code>a()</code>函數時，第一個被創造的是全域執行環境(Global Execution)。語法解析器會分析程式，然後編譯程式，接著創造全域執行環境與全域變數 <code>this</code>。如果是在瀏覽器，就會創造<code>windows</code>這個物件，然後將這些函數放進記憶體中。這裡的<code>this</code> 等同全域物件或瀏覽器裡的window。</p>
+<p>在創造的第一個階段，是把<code>a()</code>和<code>b()</code>都先放在記憶體裡，然後程式碼會逐行被執行。雖然是先放在記憶體裡，但 JS 不會執行函數中的程式，因為它們還沒被呼叫。</p>
+<p>當編譯器遇到最下面這個<code>a()</code>時，<code>a()</code>函數被呼叫了，這時候<code>a()</code>會被放進執行堆（execution stack）中。這個執行堆會一個一個疊起來，誰在最上面的就是正在執行的東西。</p>
+<p>所以每此 JavaScript 呼叫函數，就會創造一個新的執行環境，然後被放進執行堆中，一個新的執行環境被創造，就像全域執行環境一樣，會有它自己的記憶體空間給變數和函數。</p>
+<p>這個過程會歷經創造階段，然後逐行執行函數中的程式。但是一但我們呼叫另一個函數，它就會停止執行程式，然後，再創造另一個執行環境，然後繼續執行。</p>
+<p>如果函式裡沒有程式需要被執行，如<code>b()</code>，JavaScript 仍會創造一個執行環境，然後如上述般，逐行執行程式。</p>
+<p>當<code>b()</code>結束後，因為它在執行堆的最上面，所以它會離開執行堆，然後是<code>a()</code>，最後回到最下面的全域執行環境。<br><img src="/images/js_stack01.jpg" alt></p>
+<p>程式執行中實際排列的順序並不重要，在函數中剩下的程式碼順序也不會影響執行先後<br>，假設我們把<code>a()</code>放到<code>b()</code>前面，然後在函數裡多了一些程式（如下），這並不會影響執行，因為雖然<code>a()</code>看起來在<code>b()</code>前面，但這些函數在創造階段就已經在記憶體中了，也就是在全域執行環境被初始化時就在了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b();</span><br><span class="line">    <span class="keyword">var</span> c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> d;</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br><span class="line"><span class="keyword">var</span> d;</span><br></pre></td></tr></table></figure>
+
+<p>我們所看到下面被函數呼叫的<code>var c</code>和<code>var d</code>也都在記憶體中了。</p>
+<p>他們的執行順序是，首先<code>a()</code>函數會被呼叫，因此<code>a()</code>會被放入執行堆，同時進入<code>a()</code>的執行環境。接著，它會變成目前執行的程式，而最後一行的 <code>var d</code> 在 <code>a ()</code>下面所以不會被呼叫。</p>
+<p>因為 JavaScript 是同步且一次執行一行，現在執行的程式就是目前的執行環境，也就是執行堆最上面的那個。所以當<code>a()</code>在最上面時 它會進入函式逐行執行，在a函式中呼叫<code>b()</code>函數，<code>b()</code>會創造出自己的執行環境，然後進入執行堆最上面，再逐行執行它裡面的程式，等執行完最後一行之後，再跳回去繼續執行<code>a()</code>函數裡的其他程式。</p>
+<p>為什麼？ 因為當我們結束<code>b()</code>函數後，<code>b()</code>的執行環境就會離開執行堆，所以現在在最上面的是誰？是<code>a()</code>。然後繼續執行剛剛在<code>b()</code>後面的<code>var c</code></p>
+<p>當<code>a()</code>執行完畢後a()會離開執行堆，接著下一行還沒被執行的程式，也就是在全域執行環境中，最後的<code>var d</code></p>
+<p>這就是 JavaScript 執行的順序。每當函數被呼叫，一個新的執行環境就被創造給函數，同時，<code>this</code> 變數被創造給這個函數，而裡面的變數在創造階段就已經建立了，<br>然後程式碼會被逐行的執行。但每當函數被呼叫，即使是被自己呼叫，一個新的執行環境就會進入執行堆，然後當執行完畢後，離開執行堆。所以無論最上面是什麼，那個就是正在執行的程式。–&gt;正在執行的永遠在執行堆的最上面。</p>
+<p>逐行的、同步的這個觀念是非常重要，了解程式執行的逐一步驟，才會預防一些不知名的問題。</p>
+<h6 id="單字"><a href="#單字" class="headerlink" title="單字"></a>單字</h6><p>invoke the function 或是 function invocation, 意思是執行這個函數</p>
+
+                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/Strange-JS-call-function-execution-stack/" data-id="ck036seyw000zevuw5g6oprse" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li></ul>
+
+                    </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+  
+  
+    <a href="../JS-Confirm-whether-is-Array/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript 判別是否為陣列 Array 的方法</div>
+    </a>
+  
+</nav>
+
+            
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
+            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Js-Array/">Js_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">JS 奇怪的部分:函數呼叫與執行堆</a>
+          </li>
+        
+          <li>
+            <a href="../JS-Confirm-whether-is-Array/">JavaScript 判別是否為陣列 Array 的方法</a>
+          </li>
+        
+          <li>
+            <a href="../JS-Array-Slice/">JS Array Slice</a>
+          </li>
+        
+          <li>
+            <a href="../JS-JS101-Exercise/">JS-[JS101] 練習</a>
+          </li>
+        
+          <li>
+            <a href="../SASS-deployment-environment-and-fundamental/">SASS 環境部署與基礎</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 15px;">Git</a> <a href="../tags/GitHub/" style="font-size: 15px;">GitHub</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/Js-Array/" style="font-size: 10px;">Js_Array</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../react" class="mobile-nav-link">React</a>
+  
+    <a href="../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../other" class="mobile-nav-link">Other</a>
+  
+    <a href="../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../linux" class="mobile-nav-link">Linux</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
+  <script src="../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

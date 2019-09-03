@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>JS 奇怪的部分:函數呼叫與執行堆</title>
+      <link href="/tsuifei.github.io/Strange-JS-call-function-execution-stack/"/>
+      <url>/tsuifei.github.io/Strange-JS-call-function-execution-stack/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。<br>JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？<br>了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。</p></blockquote><p>我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行的。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b();</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure><p>當我們呼叫<code>a()</code>函數時，第一個被創造的是全域執行環境(Global Execution)。語法解析器會分析程式，然後編譯程式，接著創造全域執行環境與全域變數 <code>this</code>。如果是在瀏覽器，就會創造<code>windows</code>這個物件，然後將這些函數放進記憶體中。這裡的<code>this</code> 等同全域物件或瀏覽器裡的window。</p><p>在創造的第一個階段，是把<code>a()</code>和<code>b()</code>都先放在記憶體裡，然後程式碼會逐行被執行。雖然是先放在記憶體裡，但 JS 不會執行函數中的程式，因為它們還沒被呼叫。</p><p>當編譯器遇到最下面這個<code>a()</code>時，<code>a()</code>函數被呼叫了，這時候<code>a()</code>會被放進執行堆（execution stack）中。這個執行堆會一個一個疊起來，誰在最上面的就是正在執行的東西。</p><p>所以每此 JavaScript 呼叫函數，就會創造一個新的執行環境，然後被放進執行堆中，一個新的執行環境被創造，就像全域執行環境一樣，會有它自己的記憶體空間給變數和函數。</p><p>這個過程會歷經創造階段，然後逐行執行函數中的程式。但是一但我們呼叫另一個函數，它就會停止執行程式，然後，再創造另一個執行環境，然後繼續執行。</p><p>如果函式裡沒有程式需要被執行，如<code>b()</code>，JavaScript 仍會創造一個執行環境，然後如上述般，逐行執行程式。</p><p>當<code>b()</code>結束後，因為它在執行堆的最上面，所以它會離開執行堆，然後是<code>a()</code>，最後回到最下面的全域執行環境。<br><img src="/images/js_stack01.jpg" alt></p><p>程式執行中實際排列的順序並不重要，在函數中剩下的程式碼順序也不會影響執行先後<br>，假設我們把<code>a()</code>放到<code>b()</code>前面，然後在函數裡多了一些程式（如下），這並不會影響執行，因為雖然<code>a()</code>看起來在<code>b()</code>前面，但這些函數在創造階段就已經在記憶體中了，也就是在全域執行環境被初始化時就在了。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b();</span><br><span class="line">    <span class="keyword">var</span> c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> d;</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br><span class="line"><span class="keyword">var</span> d;</span><br></pre></td></tr></table></figure><p>我們所看到下面被函數呼叫的<code>var c</code>和<code>var d</code>也都在記憶體中了。</p><p>他們的執行順序是，首先<code>a()</code>函數會被呼叫，因此<code>a()</code>會被放入執行堆，同時進入<code>a()</code>的執行環境。接著，它會變成目前執行的程式，而最後一行的 <code>var d</code> 在 <code>a ()</code>下面所以不會被呼叫。</p><p>因為 JavaScript 是同步且一次執行一行，現在執行的程式就是目前的執行環境，也就是執行堆最上面的那個。所以當<code>a()</code>在最上面時 它會進入函式逐行執行，在a函式中呼叫<code>b()</code>函數，<code>b()</code>會創造出自己的執行環境，然後進入執行堆最上面，再逐行執行它裡面的程式，等執行完最後一行之後，再跳回去繼續執行<code>a()</code>函數裡的其他程式。</p><p>為什麼？ 因為當我們結束<code>b()</code>函數後，<code>b()</code>的執行環境就會離開執行堆，所以現在在最上面的是誰？是<code>a()</code>。然後繼續執行剛剛在<code>b()</code>後面的<code>var c</code></p><p>當<code>a()</code>執行完畢後a()會離開執行堆，接著下一行還沒被執行的程式，也就是在全域執行環境中，最後的<code>var d</code></p><p>這就是 JavaScript 執行的順序。每當函數被呼叫，一個新的執行環境就被創造給函數，同時，<code>this</code> 變數被創造給這個函數，而裡面的變數在創造階段就已經建立了，<br>然後程式碼會被逐行的執行。但每當函數被呼叫，即使是被自己呼叫，一個新的執行環境就會進入執行堆，然後當執行完畢後，離開執行堆。所以無論最上面是什麼，那個就是正在執行的程式。–&gt;正在執行的永遠在執行堆的最上面。</p><p>逐行的、同步的這個觀念是非常重要，了解程式執行的逐一步驟，才會預防一些不知名的問題。</p><h6 id="單字"><a href="#單字" class="headerlink" title="單字"></a>單字</h6><p>invoke the function 或是 function invocation, 意思是執行這個函數</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> JavaScript </category>
+          
+          <category> Strange JS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> Strange JS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>JavaScript 判別是否為陣列 Array 的方法</title>
       <link href="/tsuifei.github.io/JS-Confirm-whether-is-Array/"/>
       <url>/tsuifei.github.io/JS-Confirm-whether-is-Array/</url>

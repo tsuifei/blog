@@ -111,6 +111,89 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" class="article-date">
+  <time datetime="2019-07-05T06:08:16.000Z" itemprop="datePublished">2019-07-05</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/">JS 回呼函式 Callbacks、Promises 物件、Async/Await 非同步流程控制</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>Javascript 近幾年來受歡迎的原因，有一大部分是因為 JS 可以處理非同步（異步）的問題，也因為可以非同步，所以處理速度快，且可帶給瀏覽者更好的體驗，所以了解如何控制非同步也成了前端重要的技能之一。</p>
+<h2 id="無非同步的程式"><a href="#無非同步的程式" class="headerlink" title="無非同步的程式"></a>無非同步的程式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">n1, n2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n1+n2</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">testNoAsync</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = add(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">// testNoAsync(); // 7</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="問題的起源，非同步程式"><a href="#問題的起源，非同步程式" class="headerlink" title="問題的起源，非同步程式"></a>問題的起源，非同步程式</h2><p>寫程式如果遇到要處理非同步的程式，就會變得複雜了起來，為什麼會複雜？<br>預設想要延遲執行，卻出現undefined 程式會一直往下跑， return的部分不會回傳會被忽略….。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd0</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 設定排程，延遲一段時間後執行</span></span><br><span class="line">  <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> n1+n2;</span><br><span class="line">  &#125;, delayTime);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>); <span class="comment">// 仔細觀察出現的順序</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = delayedAdd0(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">// 1, undefined, 2 (不會出現return結果)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第一個解決方式-callback-回呼函式"><a href="#第一個解決方式-callback-回呼函式" class="headerlink" title="第一個解決方式 : callback 回呼函式"></a>第一個解決方式 : callback 回呼函式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd1</span>(<span class="params">n1, n2, delayTime, callback</span>)</span>&#123; <span class="comment">// callback 函式</span></span><br><span class="line">  <span class="comment">// 設定排程，延遲一段時間後執行</span></span><br><span class="line">  <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 延遲一段時間，計算加法，呼叫callback函式</span></span><br><span class="line">    callback(n1+n2);</span><br><span class="line">  &#125;, delayTime);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  delayedAdd1(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>, <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">test1(); <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第二個解決方式-Promise-物件"><a href="#第二個解決方式-Promise-物件" class="headerlink" title="第二個解決方式 : Promise 物件"></a>第二個解決方式 : Promise 物件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd2</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 建立 Promise 物件 :  new promise(執行函式)</span></span><br><span class="line">  <span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123; <span class="comment">// 兩個系統給的參數</span></span><br><span class="line">    <span class="comment">// 要做的工作放到promise的函式裡</span></span><br><span class="line">    <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      resolve(n1+n2); <span class="comment">// 工作完成，呼叫 resolve 函式，並把結果透過參數傳遞進去，如果工作出現問題就呼叫 reject ex. reject(n1+n2);</span></span><br><span class="line">      </span><br><span class="line">    &#125;, delayTime);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// 把 promise 傳遞出來</span></span><br><span class="line">  <span class="keyword">return</span> p; <span class="comment">// 或直接以 return 去接以上的結果 回傳回去而不需要變數 p </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// resolve 會對應 .then / reject 會對應 .catch 但.catch可以忽略不寫</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> promise = delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">  &#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Error"</span>, error)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="需求-需要運行兩次的-promise-然後將結果相乘"><a href="#需求-需要運行兩次的-promise-然後將結果相乘" class="headerlink" title="需求: 需要運行兩次的 promise 然後將結果相乘"></a>需求: 需要運行兩次的 promise 然後將結果相乘</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> promise1 = delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="keyword">let</span> promise2 = delayedAdd2(<span class="number">1</span>, <span class="number">5</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="comment">// 多個 promise 都完成後才繼續工作.</span></span><br><span class="line">  <span class="comment">// 把 promises 放入陣列裡</span></span><br><span class="line">  <span class="built_in">Promise</span>.all([promise1, promise2]).then(<span class="function"><span class="keyword">function</span>(<span class="params">results</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 用 reduce() 處理相乘</span></span><br><span class="line">    <span class="keyword">let</span> answer = results.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">total, value</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> total * value;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">console</span>.log(answer);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">test2a();</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三個解決方式-使用-Async-Await-簡化-Promise-。"><a href="#第三個解決方式-使用-Async-Await-簡化-Promise-。" class="headerlink" title="第三個解決方式 : 使用 Async/Await 簡化 Promise 。"></a>第三個解決方式 : 使用 Async/Await 簡化 Promise 。</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Async/Await 背後的邏輯就是和 Promise 是一樣的。</span></span><br><span class="line"><span class="comment">// 使用 Async/Await 的大前提是仍要建立一個 Promise 物件 將它回傳</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd3</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 建立 Promise 物件 : new promise(執行函式)</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123; <span class="comment">// 兩個系統給的參數</span></span><br><span class="line">    <span class="comment">// 要做的工作放到promise的函式裡</span></span><br><span class="line">    <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    resolve(n1+n2); <span class="comment">// 工作完成，呼叫 resolve 函式，並把結果透過參數傳遞進去，如果工作出現問題就呼叫 reject</span></span><br><span class="line">    &#125;, delayTime);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 語法糖，函式前面加 async， async / await 需要一起使用</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test3</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// await 後面接函式. 上面的 resolve 會直接由 result 接收</span></span><br><span class="line">  <span class="keyword">let</span> result = <span class="keyword">await</span> delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="需求-需要運行兩次的-promise-然後將結果相乘-1"><a href="#需求-需要運行兩次的-promise-然後將結果相乘-1" class="headerlink" title="需求 需要運行兩次的 promise 然後將結果相乘"></a>需求 需要運行兩次的 promise 然後將結果相乘</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test3a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="comment">// await 後面接函式. 上面的 resolve 會直接由 result 接收</span></span><br><span class="line">  <span class="keyword">let</span> result1 = <span class="keyword">await</span> delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="keyword">let</span> result2 = <span class="keyword">await</span> delayedAdd2(<span class="number">3</span>, <span class="number">1</span>, <span class="number">3000</span>);</span><br><span class="line">  <span class="keyword">let</span> answer = result1 * result2;</span><br><span class="line">  <span class="built_in">console</span>.log(answer);</span><br><span class="line">&#125;</span><br><span class="line">test3a();</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.youtube.com/watch?v=NOprCnnjHm0" target="_blank" rel="noopener">參考1 彭彭的課程</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/setTimeout" target="_blank" rel="noopener">參考2 code</a></p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>Javascript 近幾年來受歡迎的原因，有一大部分是因為 JS 可以處理非同步（異步）的問題，也因為可以非同步，所以處理速度快，且可帶給瀏覽者更好的體驗，所以了解如何控制非同步也成了前端重要的技能之一。</p>
+<h2 id="無非同步的程式"><a href="#無非同步的程式" class="headerlink" title="無非同步的程式"></a>無非同步的程式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">n1, n2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n1+n2</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">testNoAsync</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = add(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">// testNoAsync(); // 7</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="問題的起源，非同步程式"><a href="#問題的起源，非同步程式" class="headerlink" title="問題的起源，非同步程式"></a>問題的起源，非同步程式</h2><p>寫程式如果遇到要處理非同步的程式，就會變得複雜了起來，為什麼會複雜？<br>預設想要延遲執行，卻出現undefined 程式會一直往下跑， return的部分不會回傳會被忽略….。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd0</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 設定排程，延遲一段時間後執行</span></span><br><span class="line">  <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> n1+n2;</span><br><span class="line">  &#125;, delayTime);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>); <span class="comment">// 仔細觀察出現的順序</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = delayedAdd0(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">// 1, undefined, 2 (不會出現return結果)</span></span><br></pre></td></tr></table></figure>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="ck036seyv000wevuw5pk8tbzz" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS-What-is-an-IIFE-in-JavaScript" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS-What-is-an-IIFE-in-JavaScript/" class="article-date">
@@ -187,7 +270,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-What-is-an-IIFE-in-JavaScript/" data-id="ck036qac3000ibmuwctrta5bh" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-What-is-an-IIFE-in-JavaScript/" data-id="ck036seyr000ievuwalyhr8uy" class="article-share-link">
                             Share
                         </a>
                         
@@ -322,7 +405,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/在-Github-上安裝-Hexo-記錄/" data-id="ck036qacs0027bmuw143apviw" class="article-share-link">
+                        <a data-url="tsuifei.github.io/在-Github-上安裝-Hexo-記錄/" data-id="ck036sez9002eevuwr32wf8pg" class="article-share-link">
                             Share
                         </a>
                         
@@ -416,7 +499,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-ES6-箭頭函式-Arrow-function/" data-id="ck036qaby000abmuwd0imsn5w" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-ES6-箭頭函式-Arrow-function/" data-id="ck036seyk000aevuwv9xps84c" class="article-share-link">
                             Share
                         </a>
                         
@@ -497,7 +580,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="ck036qac9000zbmuwl78ojhy8" class="article-share-link">
+                        <a data-url="tsuifei.github.io/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="ck036seyy0014evuwx0jh252v" class="article-share-link">
                             Share
                         </a>
                         
@@ -536,7 +619,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/ES6/">ES6</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/SASS/">SASS</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/SASS/">SASS</a></li></ul>
     </div>
   </div>
 
@@ -546,7 +629,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Js-Array/">Js_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SASS/">SASS</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Js-Array/">Js_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li></ul>
     </div>
   </div>
 
@@ -557,6 +640,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="../../Strange-JS-call-function-execution-stack/">JS 奇怪的部分:函數呼叫與執行堆</a>
+          </li>
         
           <li>
             <a href="../../JS-Confirm-whether-is-Array/">JavaScript 判別是否為陣列 Array 的方法</a>
@@ -574,10 +661,6 @@ ga('send', 'pageview');
             <a href="../../SASS-deployment-environment-and-fundamental/">SASS 環境部署與基礎</a>
           </li>
         
-          <li>
-            <a href="../../JS-Return-in-the-loop/">JS 迴圈 Loop 裡的 return</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -587,7 +670,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 15px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 15px;">GitHub</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/Js-Array/" style="font-size: 10px;">Js_Array</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/SASS/" style="font-size: 10px;">SASS</a>
+      <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 15px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 15px;">GitHub</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/Js-Array/" style="font-size: 10px;">Js_Array</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a>
     </div>
   </div>
 
@@ -596,7 +679,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/07/">七月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/07/">七月 2019</a></li></ul>
     </div>
   </div>
 
