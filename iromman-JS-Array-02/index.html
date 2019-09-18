@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Array 陣列是什麼 | Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="C’est quoi un Array測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。在討論陣列之前，可以先來想像一下，如果今天天氣超級好，我們洗了很多衣服，曬乾之後的衣服充滿陽光的氣息，我們把這些衣服整包的丟到床上，一邊開著電視，一邊開始折衣服，再將所有的上衣折好放成一疊、長褲折好一疊、襪子捲好放成一堆，再一一放入衣櫃裡，我們">
+<meta name="keywords" content="JavaScript,鐵人賽,JS_Array">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Array 陣列是什麼">
+<meta property="og:url" content="tsuifei.github.io/iromman-JS-Array-02/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="C’est quoi un Array測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。在討論陣列之前，可以先來想像一下，如果今天天氣超級好，我們洗了很多衣服，曬乾之後的衣服充滿陽光的氣息，我們把這些衣服整包的丟到床上，一邊開著電視，一邊開始折衣服，再將所有的上衣折好放成一疊、長褲折好一疊、襪子捲好放成一堆，再一一放入衣櫃裡，我們">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://lh3.google.com/u/0/d/1nGDgv3Yig9uGJRuuXZyes5ijhNCP7Pp0=w1434-h1624-iv1">
+<meta property="og:updated_time" content="2019-09-18T02:07:07.910Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Array 陣列是什麼">
+<meta name="twitter:description" content="C’est quoi un Array測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。在討論陣列之前，可以先來想像一下，如果今天天氣超級好，我們洗了很多衣服，曬乾之後的衣服充滿陽光的氣息，我們把這些衣服整包的丟到床上，一邊開著電視，一邊開始折衣服，再將所有的上衣折好放成一疊、長褲折好一疊、襪子捲好放成一堆，再一一放入衣櫃裡，我們">
+<meta name="twitter:image" content="https://lh3.google.com/u/0/d/1nGDgv3Yig9uGJRuuXZyes5ijhNCP7Pp0=w1434-h1624-iv1">
+  
+  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../react">React</a>
+        
+        <a class="main-nav-link" href="../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../life">Life</a>
+        
+        <a class="main-nav-link" href="../other">Other</a>
+        
+        <a class="main-nav-link" href="../html">HTML</a>
+        
+        <a class="main-nav-link" href="../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../linux">Linux</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-iromman-JS-Array-02" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="" class="article-date">
+  <time datetime="2019-09-17T19:53:22.000Z" itemprop="datePublished">2019-09-18</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 class="article-title" itemprop="name">
+      Array 陣列是什麼
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h2 id="C’est-quoi-un-Array"><a href="#C’est-quoi-un-Array" class="headerlink" title="C’est quoi un Array"></a>C’est quoi un Array</h2><h5 id="測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。"><a href="#測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。" class="headerlink" title="測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。"></a>測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。</h5><p>在討論陣列之前，可以先來想像一下，如果今天天氣超級好，我們洗了很多衣服，曬乾之後的衣服充滿陽光的氣息，我們把這些衣服整包的丟到床上，一邊開著電視，一邊開始折衣服，再將所有的上衣折好放成一疊、長褲折好一疊、襪子捲好放成一堆，再一一放入衣櫃裡，我們分門別類地把這些衣服摺好時，這一疊的衣服就有陣列的概念了。</p>
+<p>一般來說，陣列在程式語言裡的定義是：陣列(Array)是一組相同型態的連續變數，它們使用同一個變數名稱，而另外用一個索引值來指定使用第幾個變數。且陣列本質上是有序的，索引是從零開始計算的。</p>
+<p>在<a href="https://zh.wikipedia.org/zh-tw/%E6%95%B0%E7%BB%84" target="_blank" rel="noopener">維基百科</a>裡，對於陣列的說明是：</p>
+<blockquote>
+<p>在電腦科學中，陣列資料結構（英語：array data structure），簡稱陣列（英語：Array），是由相同類型的元素（element）的集合所組成的資料結構，分配一塊連續的記憶體來儲存。利用元素的索引（index）可以計算出該元素對應的儲存位址。</p>
+</blockquote>
+<h3 id="簡單的說，陣列就是一個「有序」、「有索引」、「有值」的一個「集合」。"><a href="#簡單的說，陣列就是一個「有序」、「有索引」、「有值」的一個「集合」。" class="headerlink" title="簡單的說，陣列就是一個「有序」、「有索引」、「有值」的一個「集合」。"></a>簡單的說，陣列就是一個「有序」、「有索引」、「有值」的一個「集合」。</h3><p>但在 JavaScript ，我們如何定義它？依據 <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="noopener">NDM</a> 的解釋：</p>
+<blockquote>
+<p>陣列的值的有序序列。有別於其他的語言，JavaScript 並沒有明確的陣列資料類型。取而代之，提供了 Array 物件，可以直接實體化或使用陣列的字面表達記法。</p>
+</blockquote>
+<p>JavaScript 果然是個很奇特的語言，不只沒限制放在陣列裡的資料型別，也就是說在陣列裡，要放數字、字串、陣列甚至是物件都可以，簡直是百寶箱了。不只這樣，JavaScript 還幫我們做好了陣列 Array 的物件供我們應用，以及許多陣列的方法，讓我們可以輕易的操控陣列，這些方法將在後續一一來介紹。</p>
+<h2 id="陣列-Array-的真面目"><a href="#陣列-Array-的真面目" class="headerlink" title="陣列 Array 的真面目"></a>陣列 Array 的真面目</h2><p>JavaScript 的資料型別有數字(Number)、字串(String)、布林(Boolean)、空(null)、未定義(undefined)、符號(Symbol)、陣列(Array)、物件(Object)。雖然字面上 JavaScript 的型別有這麼多種，但是其實骨子裡 JavaScript 在這些型別裡又分組，甚至，有些還喬裝成別組，是不是很錯亂？</p>
+<p>想要各型別現出原形，得用 JavaScript 裡的關鍵運算子 typeof 來照妖，猜猜陣列 Array 的真面目是什麼？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">typeof</span> arr; <span class="comment">// "object" 是物件</span></span><br></pre></td></tr></table></figure>
+
+<p>怎麼回事？居然是”object”物件！關於陣列或 JavaScript 的各型別，我們在之後也會陸續提到。</p>
+<h2 id="陣列長什麼樣子"><a href="#陣列長什麼樣子" class="headerlink" title="陣列長什麼樣子"></a>陣列長什麼樣子</h2><p>JavaScript 陣列的基本長相為下圖，是由一對中括號 [ ] 組成， [ ] 裡面為陣列元素，每個元素以逗號分開，通常我們會將一組陣列，賦值給一個變數。再以這個變數來做各種處理。</p>
+<img src="https://lh3.google.com/u/0/d/1nGDgv3Yig9uGJRuuXZyes5ijhNCP7Pp0=w1434-h1624-iv1" width="70%" height="70%">
+
+<p>以下是幾個陣列的範例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 變數 = [ 元素, 元素, 元素, ]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arrDeux = [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>],</span><br><span class="line">    [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>]</span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arrObj = [<span class="number">1</span>, <span class="number">2</span>, &#123; <span class="attr">name</span>: <span class="string">"Ayda"</span>, <span class="attr">city</span>: <span class="string">"Paris"</span>,<span class="attr">luckyNumbers</span> :[<span class="number">24</span>,<span class="number">42</span>,<span class="number">15</span>]&#125;]</span><br></pre></td></tr></table></figure>
+
+<p>有沒有被陣列能裝載的東西嚇到，看得出最後一個陣列像什麼嗎？有沒有覺得似曾相似？似乎，陣列不像我們想像的那樣單純，明天我們再繼續了解囉。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+<h4 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h4><p> <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Obsolete_Pages/Obsolete_Pages/Obsolete_Pages/%E9%99%A3%E5%88%97%E7%9A%84%E9%81%8B%E7%94%A8" target="_blank" rel="noopener">陣列的運用 - JavaScript | MDN</a> </p>
+<p> <a href="https://zh.wikipedia.org/zh-tw/%E6%95%B0%E7%BB%84" target="_blank" rel="noopener">陣列 - 維基百科，自由的百科全書</a></p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                            <h2 id="C’est-quoi-un-Array"><a href="#C’est-quoi-un-Array" class="headerlink" title="C’est quoi un Array"></a>C’est quoi un Array</h2><h5 id="測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。"><a href="#測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。" class="headerlink" title="測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。"></a>測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。</h5><p>在討論陣列之前，可以先來想像一下，如果今天天氣超級好，我們洗了很多衣服，曬乾之後的衣服充滿陽光的氣息，我們把這些衣服整包的丟到床上，一邊開著電視，一邊開始折衣服，再將所有的上衣折好放成一疊、長褲折好一疊、襪子捲好放成一堆，再一一放入衣櫃裡，我們分門別類地把這些衣服摺好時，這一疊的衣服就有陣列的概念了。</p>
+<p>一般來說，陣列在程式語言裡的定義是：陣列(Array)是一組相同型態的連續變數，它們使用同一個變數名稱，而另外用一個索引值來指定使用第幾個變數。且陣列本質上是有序的，索引是從零開始計算的。</p>
+<p>在<a href="https://zh.wikipedia.org/zh-tw/%E6%95%B0%E7%BB%84" target="_blank" rel="noopener">維基百科</a>裡，對於陣列的說明是：</p>
+<blockquote>
+<p>在電腦科學中，陣列資料結構（英語：array data structure），簡稱陣列（英語：Array），是由相同類型的元素（element）的集合所組成的資料結構，分配一塊連續的記憶體來儲存。利用元素的索引（index）可以計算出該元素對應的儲存位址。</p>
+</blockquote>
+<h3 id="簡單的說，陣列就是一個「有序」、「有索引」、「有值」的一個「集合」。"><a href="#簡單的說，陣列就是一個「有序」、「有索引」、「有值」的一個「集合」。" class="headerlink" title="簡單的說，陣列就是一個「有序」、「有索引」、「有值」的一個「集合」。"></a>簡單的說，陣列就是一個「有序」、「有索引」、「有值」的一個「集合」。</h3><p>但在 JavaScript ，我們如何定義它？依據 <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="noopener">NDM</a> 的解釋：</p>
+<blockquote>
+<p>陣列的值的有序序列。有別於其他的語言，JavaScript 並沒有明確的陣列資料類型。取而代之，提供了 Array 物件，可以直接實體化或使用陣列的字面表達記法。</p>
+</blockquote>
+<p>JavaScript 果然是個很奇特的語言，不只沒限制放在陣列裡的資料型別，也就是說在陣列裡，要放數字、字串、陣列甚至是物件都可以，簡直是百寶箱了。不只這樣，JavaScript 還幫我們做好了陣列 Array 的物件供我們應用，以及許多陣列的方法，讓我們可以輕易的操控陣列，這些方法將在後續一一來介紹。</p>
+<h2 id="陣列-Array-的真面目"><a href="#陣列-Array-的真面目" class="headerlink" title="陣列 Array 的真面目"></a>陣列 Array 的真面目</h2><p>JavaScript 的資料型別有數字(Number)、字串(String)、布林(Boolean)、空(null)、未定義(undefined)、符號(Symbol)、陣列(Array)、物件(Object)。雖然字面上 JavaScript 的型別有這麼多種，但是其實骨子裡 JavaScript 在這些型別裡又分組，甚至，有些還喬裝成別組，是不是很錯亂？</p>
+<p>想要各型別現出原形，得用 JavaScript 裡的關鍵運算子 typeof 來照妖，猜猜陣列 Array 的真面目是什麼？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">typeof</span> arr; <span class="comment">// "object" 是物件</span></span><br></pre></td></tr></table></figure>
+
+<p>怎麼回事？居然是”object”物件！關於陣列或 JavaScript 的各型別，我們在之後也會陸續提到。</p>
+<h2 id="陣列長什麼樣子"><a href="#陣列長什麼樣子" class="headerlink" title="陣列長什麼樣子"></a>陣列長什麼樣子</h2><p>JavaScript 陣列的基本長相為下圖，是由一對中括號 [ ] 組成， [ ] 裡面為陣列元素，每個元素以逗號分開，通常我們會將一組陣列，賦值給一個變數。再以這個變數來做各種處理。</p>
+<img src="https://lh3.google.com/u/0/d/1nGDgv3Yig9uGJRuuXZyes5ijhNCP7Pp0=w1434-h1624-iv1" width="70%" height="70%">
+
+<p>以下是幾個陣列的範例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 變數 = [ 元素, 元素, 元素, ]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arrDeux = [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>],</span><br><span class="line">    [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>]</span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arrObj = [<span class="number">1</span>, <span class="number">2</span>, &#123; <span class="attr">name</span>: <span class="string">"Ayda"</span>, <span class="attr">city</span>: <span class="string">"Paris"</span>,<span class="attr">luckyNumbers</span> :[<span class="number">24</span>,<span class="number">42</span>,<span class="number">15</span>]&#125;]</span><br></pre></td></tr></table></figure>
+
+<p>有沒有被陣列能裝載的東西嚇到，看得出最後一個陣列像什麼嗎？有沒有覺得似曾相似？似乎，陣列不像我們想像的那樣單純，明天我們再繼續了解囉。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+<h4 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h4><p> <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Obsolete_Pages/Obsolete_Pages/Obsolete_Pages/%E9%99%A3%E5%88%97%E7%9A%84%E9%81%8B%E7%94%A8" target="_blank" rel="noopener">陣列的運用 - JavaScript | MDN</a> </p>
+<p> <a href="https://zh.wikipedia.org/zh-tw/%E6%95%B0%E7%BB%84" target="_blank" rel="noopener">陣列 - 維基百科，自由的百科全書</a></p>
+
+                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/iromman-JS-Array-02/" data-id="ck0ome35y001crguw0l6lvaau" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/鐵人賽/">鐵人賽</a></li></ul>
+
+                    </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+  
+  
+    <a href="../ironman_JS_array_01/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2019 鐵人賽 參賽緣由</div>
+    </a>
+  
+</nav>
+
+            
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
+            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Js-Array/">Js_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/鐵人賽/">鐵人賽</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Array 陣列是什麼</a>
+          </li>
+        
+          <li>
+            <a href="../ironman_JS_array_01/">2019 鐵人賽 參賽緣由</a>
+          </li>
+        
+          <li>
+            <a href="../Strange-JS-call-function-execution-stack/">JS 奇怪的部分:函數呼叫與執行堆</a>
+          </li>
+        
+          <li>
+            <a href="../JS-Confirm-whether-is-Array/">JavaScript 判別是否為陣列 Array 的方法</a>
+          </li>
+        
+          <li>
+            <a href="../JS-Array-Slice/">JS Array Slice</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 15px;">Git</a> <a href="../tags/GitHub/" style="font-size: 15px;">GitHub</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 15px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/Js-Array/" style="font-size: 10px;">Js_Array</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../tags/鐵人賽/" style="font-size: 15px;">鐵人賽</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../react" class="mobile-nav-link">React</a>
+  
+    <a href="../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../other" class="mobile-nav-link">Other</a>
+  
+    <a href="../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../linux" class="mobile-nav-link">Linux</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
+  <script src="../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

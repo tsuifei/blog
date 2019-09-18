@@ -111,6 +111,158 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-Git-GitHub-實際操作" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../Git-GitHub-實際操作/" class="article-date">
+  <time datetime="2019-07-09T07:08:41.000Z" itemprop="datePublished">2019-07-09</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/Git/">Git</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../Git-GitHub-實際操作/">Git / GitHub 實際操作</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h2 id="在本地使用git版本控制"><a href="#在本地使用git版本控制" class="headerlink" title="在本地使用git版本控制"></a>在本地使用git版本控制</h2><h4 id="init-初始化"><a href="#init-初始化" class="headerlink" title="init  初始化"></a>init  初始化</h4><ul>
+<li>在要使用版本控制的檔案夾裡輸入 init 初始化，以ls -la可看到隱藏的 .git 檔案夾</li>
+<li>使用 git status 觀察版本狀態</li>
+</ul>
+<h4 id="git-add-加入版本控制檔案"><a href="#git-add-加入版本控制檔案" class="headerlink" title="git add 加入版本控制檔案"></a>git add 加入版本控制檔案</h4><ul>
+<li>使用 git add [fileName] 加入要版本控制的檔案，或是使用 git add . 表示全部加入</li>
+<li>使用 git status 會發現有兩區域： staged (加入)/ untracked (沒加入)版本控制，可使用 git rm —cached [fileName] 將已加入的檔案移出至 untracked。</li>
+<li>要 add 才能 commit</li>
+</ul>
+<h4 id="git-commit-新建一個版本"><a href="#git-commit-新建一個版本" class="headerlink" title="git commit 新建一個版本"></a>git commit 新建一個版本</h4><ul>
+<li>使用 git commit 新建一個版本，或出vim文字編輯器 ( i insert  / :q 退出)，會出現 commit 是空的(empty)訊息。</li>
+<li>以 git commit -m  “[訊息]”<br>git commit 如出現錯誤，跳出設定帳號跟姓名的畫面，請輸入以下指令</li>
+</ul>
+<ol>
+<li>git config –global user.name “your name”</li>
+<li>git config –global user.email “youremail”</li>
+</ol>
+<h4 id="git-log-歷史紀錄"><a href="#git-log-歷史紀錄" class="headerlink" title="git log 歷史紀錄"></a>git log 歷史紀錄</h4><ul>
+<li>使用 git log 會出現所有 commit 的歷史紀錄編號，q 離開 log</li>
+</ul>
+<h4 id="git-checkout-回到過去某個版本狀態"><a href="#git-checkout-回到過去某個版本狀態" class="headerlink" title="git checkout 回到過去某個版本狀態"></a>git checkout 回到過去某個版本狀態</h4><ul>
+<li>使用 git log —online 會出現 commit 短版本列表，前7碼為版本簡碼，後面是 commit 時輸入的訊息。</li>
+<li>使用 git checkout [版本碼] 即可回到要去的版本時間點，用 git log 觀察這個版本時間點之後的版本都會看不見。</li>
+<li>使用 git checkout master 回去現在的時間點版本，再用 git log 觀察就可看到所有版本。</li>
+</ul>
+<h4 id="gitignore-忽略檔案"><a href="#gitignore-忽略檔案" class="headerlink" title=".gitignore 忽略檔案"></a>.gitignore 忽略檔案</h4><p>在檔案夾裡增加一個 .gitignore 檔案，裡面寫上不要加入版本控制裡的檔案，這樣 git 就不會每次提醒，例如連線資料、test、log等系統自動產生的檔案。</p>
+<ul>
+<li>touch .gitignore 產生檔案</li>
+<li>vim .gitignore 編輯檔案</li>
+<li>Git commit -am “commit message” 可直接 add+commit 但只會加入曾經加入的，而不會加入新的檔案。所以每次有新檔案時最好使用 git add [fileName] 加入，或用 git add .  全部加入再 commit。</li>
+</ul>
+<h3 id="小筆記"><a href="#小筆記" class="headerlink" title="小筆記"></a>小筆記</h3><p>git checkout -b [分支名]  可直接開分支並切換過去<br>git -d [分支名]  把分支刪除<br>git diff 可看上一次做的變動，q 退出</p>
+<h2 id="在本地端開分支-branch-–-gt-合併主版本-merge"><a href="#在本地端開分支-branch-–-gt-合併主版本-merge" class="headerlink" title="在本地端開分支  branch  –&gt; 合併主版本 merge"></a>在本地端開分支  branch  –&gt; 合併主版本 merge</h2><h4 id="設分支-branch"><a href="#設分支-branch" class="headerlink" title="設分支 branch"></a>設分支 branch</h4><ul>
+<li>用git branch -v 看有哪些 branch 主分支為 master，也會顯示這支分支最後一個 commit </li>
+<li>原本在 master，創另一個分支 ：git branch [分支名]</li>
+<li>切換到那個分支：git checkout [分支名]</li>
+<li>刪除分支：git branch -d [分支名]</li>
+<li>切換分支 ：git checkout [分支名]</li>
+<li>用 git branch -v 查看現在在哪個分支(顯示綠色)</li>
+</ul>
+<h3 id="merge-branch-to-master-將分支合併到主支幹"><a href="#merge-branch-to-master-將分支合併到主支幹" class="headerlink" title="merge branch to master 將分支合併到主支幹"></a>merge branch to master 將分支合併到主支幹</h3><ul>
+<li>git [分支] merge : 把某一分支合併過來 master </li>
+<li>git branch -d [分支] : 合併後即可把原本的分支刪除</li>
+</ul>
+<h4 id="合併時發生衝突-conflict"><a href="#合併時發生衝突-conflict" class="headerlink" title="合併時發生衝突 conflict"></a>合併時發生衝突 conflict</h4><ul>
+<li>主支和分支同時修改時，分支要合併至主支時，會產生  auto-merging [fileName] CONFLICT (content) : Merge conflict in [fileName] automatic merge failed; fix conflicts and then commit the result.</li>
+<li>用 git status 查看會以 both modified :  [fileName] 顯示有問題的檔案</li>
+<li>進入有問題的 [fileName] 手動修改，=====為兩版本分隔，&lt;&lt;&lt;&lt;&lt; [分支名]。將其中一個刪除與更正存檔，再 commit 一次，再合併。</li>
+<li>git status 顯示 resolve conflicts 表示衝突解決。 </li>
+</ul>
+<h4 id="注意-小觀念"><a href="#注意-小觀念" class="headerlink" title="注意 + 小觀念"></a>注意 + 小觀念</h4><p>Git : 版本控制的程式<br>GitHub :  放 git repository 的存儲庫<br>有用 git 不一定要用 GitHub，但用 GitHub 就一定要會用到 git<br>忘記切回test分支，所以後來無法順利 merge 到 master 分支，雖然後來看似解決，但還真不知道自己是怎麼解決的，就是試了幾個間，跟著打就好了．．．這樣其實有點可怕，下次再注意！</p>
+<h2 id="把本地端-code-放上-GitHub"><a href="#把本地端-code-放上-GitHub" class="headerlink" title="把本地端 code 放上 GitHub"></a>把本地端 code 放上 GitHub</h2><h3 id="Create-a-new-repository-在-github-開一個新的存儲庫"><a href="#Create-a-new-repository-在-github-開一個新的存儲庫" class="headerlink" title="Create a new repository 在 github 開一個新的存儲庫"></a>Create a new repository 在 github 開一個新的存儲庫</h3><ul>
+<li>填入 Repository name 和 Description，就好有使用技術關鍵字</li>
+<li>選擇 Public 或 Private</li>
+<li>Initialize this repository whit a README 可以先不選</li>
+<li>Add .gitignore 和 a license 都選預設 None</li>
+</ul>
+<h4 id="方法ㄧ-在本地端還沒有code-可使用這種方法"><a href="#方法ㄧ-在本地端還沒有code-可使用這種方法" class="headerlink" title="方法ㄧ) 在本地端還沒有code 可使用這種方法"></a>方法ㄧ) 在本地端還沒有code 可使用這種方法</h4><p>…or create a new repository on the command line<br>echo “# github.io-“ &gt;&gt; README.md<br>git init<br>git add README.md<br>git commit -m “first commit”<br>git remote add origin [<a href="https://github.com/tsuifei/倉庫位址.git]" target="_blank" rel="noopener">https://github.com/tsuifei/倉庫位址.git]</a><br>git push -u origin master</p>
+<h4 id="方法二-在本地端已經有-code-用這種把-code-push-到-github-的方法。"><a href="#方法二-在本地端已經有-code-用這種把-code-push-到-github-的方法。" class="headerlink" title="方法二) 在本地端已經有 code 用這種把 code push 到 github 的方法。"></a>方法二) 在本地端已經有 code 用這種把 code push 到 github 的方法。</h4><p>…or push an existing repository from the command line<br>從本地push到遠端<br>git remote add origin [<a href="https://github.com/tsuifei/倉庫位址.git]" target="_blank" rel="noopener">https://github.com/tsuifei/倉庫位址.git]</a><br>git push -u origin master  把 code push 到github的這個 master 主支上 通常這之後會要你的 github 的帳號和密碼，有輸入才算與遠端相通 單字 : remote 遠端 / origin 代號<br>-u -&gt; set-upstream </p>
+<h4 id="方法三-以引入的方式將-code-放進來"><a href="#方法三-以引入的方式將-code-放進來" class="headerlink" title="方法三) 以引入的方式將 code 放進來"></a>方法三) 以引入的方式將 code 放進來</h4><p>…or import code from another repository<br>You can initialize this repository with code from a Subversion, Mercurial, or TFS project.</p>
+<h2 id="把本地端最新的版本推上-GitHub"><a href="#把本地端最新的版本推上-GitHub" class="headerlink" title="把本地端最新的版本推上 GitHub"></a>把本地端最新的版本推上 GitHub</h2><h4 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h4><ul>
+<li>本地端 : 把檔案 commit 之後， 使用git push origin master 推到主支上  </li>
+<li>Github 端 : 重新整理頁面後 branch 會更新，commits 數量也會增加</li>
+<li>如果只有 commit 沒 push，Github 端不會變動</li>
+<li>可開分支 再 git push origin [分支名] ，再到Github 端看就有兩個 branch</li>
+</ul>
+<h2 id="把Github-端上最新版本-拉下本地端"><a href="#把Github-端上最新版本-拉下本地端" class="headerlink" title="把Github 端上最新版本 拉下本地端"></a>把Github 端上最新版本 拉下本地端</h2><h4 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h4><ul>
+<li>先到要拉下來的位置</li>
+<li>執行 git pull origin master</li>
+<li>如有 conflict 可依上述 merge 的衝突解決方式處理。</li>
+</ul>
+<h2 id="把其他人-Github-端上的code-拉下本地端"><a href="#把其他人-Github-端上的code-拉下本地端" class="headerlink" title="把其他人 Github 端上的code 拉下本地端"></a>把其他人 Github 端上的code 拉下本地端</h2><h4 id="git-clone-42-就是用這種方法"><a href="#git-clone-42-就是用這種方法" class="headerlink" title="git clone (42 就是用這種方法)"></a>git clone (42 就是用這種方法)</h4><ul>
+<li>先到要拉下來的位置</li>
+<li>執行 git colne [<a href="https://github.com/tsuifei/倉庫位址.git]" target="_blank" rel="noopener">https://github.com/tsuifei/倉庫位址.git]</a> 可自行取名</li>
+<li>git clone 之後可以commit 因為在本地端，且專案是別人的，所以如果執行 push 會因無權限而無法執行</li>
+</ul>
+<h3 id="將別人的專案變成自己的"><a href="#將別人的專案變成自己的" class="headerlink" title="將別人的專案變成自己的"></a>將別人的專案變成自己的</h3><ul>
+<li>使用 Fork 功能，再使用 clone 方式將專案拉下至本地端 </li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="直接在-Github-端-commit-修改檔案"><a href="#直接在-Github-端-commit-修改檔案" class="headerlink" title="直接在 Github 端 commit 修改檔案"></a>直接在 Github 端 commit 修改檔案</h3><ul>
+<li>選要修改的檔案，按icon筆(Edit this file)</li>
+<li>直接在檔案下方下 commit 選擇要commit 的支，通常選(commit directly to the master branch)</li>
+</ul>
+<h2 id="Git-問題處理集合"><a href="#Git-問題處理集合" class="headerlink" title="Git 問題處理集合"></a>Git 問題處理集合</h2><h4 id="Git-提示-fatal-remote-origin-already-exists-錯誤解決辦法"><a href="#Git-提示-fatal-remote-origin-already-exists-錯誤解決辦法" class="headerlink" title="Git 提示 fatal: remote origin already exists 錯誤解決辦法"></a>Git 提示 fatal: remote origin already exists 錯誤解決辦法</h4><p>使用 git 上傳至遠程 github 倉庫的時候出現提示錯誤：fatal: remote origin already exists.<br>1、先刪除遠端Git倉庫<br>$ git remote rm origin</p>
+<p>2、再增加遠端 Git 倉庫<br>$ git remote add origin [<a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:遠端位址]</p>
+<p>如果執行 git remote rm origin 有出現錯誤訊息的話，可以手動修改 gitconfig 文件的內容<br>$ vi .git / config<br>把[remote “origin”] 那一行刪掉就可以了。</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h2 id="在本地使用git版本控制"><a href="#在本地使用git版本控制" class="headerlink" title="在本地使用git版本控制"></a>在本地使用git版本控制</h2><h4 id="init-初始化"><a href="#init-初始化" class="headerlink" title="init  初始化"></a>init  初始化</h4><ul>
+<li>在要使用版本控制的檔案夾裡輸入 init 初始化，以ls -la可看到隱藏的 .git 檔案夾</li>
+<li>使用 git status 觀察版本狀態</li>
+</ul>
+<h4 id="git-add-加入版本控制檔案"><a href="#git-add-加入版本控制檔案" class="headerlink" title="git add 加入版本控制檔案"></a>git add 加入版本控制檔案</h4><ul>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../Git-GitHub-實際操作/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/Git-GitHub-實際操作/" data-id="ck0ome3590002rguwzqsdp39p" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/GitHub/">GitHub</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-git-github練習心得" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../git-github練習心得/" class="article-date">
@@ -182,7 +334,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/git-github練習心得/" data-id="ck0om22pn001bfhuwohvmydl7" class="article-share-link">
+                        <a data-url="tsuifei.github.io/git-github練習心得/" data-id="ck0ome35w0017rguwu3x3ar88" class="article-share-link">
                             Share
                         </a>
                         
@@ -265,7 +417,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="ck0om22ph000qfhuwzemr2ow0" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="ck0ome35r000qrguw6wvyc42c" class="article-share-link">
                             Share
                         </a>
                         
@@ -355,7 +507,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-What-is-an-IIFE-in-JavaScript/" data-id="ck0om22pd000ifhuwxbe6l8mz" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-What-is-an-IIFE-in-JavaScript/" data-id="ck0ome35o000irguwn49xgpsv" class="article-share-link">
                             Share
                         </a>
                         
@@ -490,7 +642,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/在-Github-上安裝-Hexo-記錄/" data-id="ck0om22q8002kfhuw5fwngtnx" class="article-share-link">
+                        <a data-url="tsuifei.github.io/在-Github-上安裝-Hexo-記錄/" data-id="ck0ome36a002srguwl3zauvz8" class="article-share-link">
                             Share
                         </a>
                         
@@ -584,7 +736,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-ES6-箭頭函式-Arrow-function/" data-id="ck0om22p8000afhuwaw9jt4lw" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-ES6-箭頭函式-Arrow-function/" data-id="ck0ome35h000arguwvfu6a3b0" class="article-share-link">
                             Share
                         </a>
                         
@@ -665,7 +817,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="ck0om22pl0013fhuwyxgibyjb" class="article-share-link">
+                        <a data-url="tsuifei.github.io/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="ck0ome35v0014rguwboaqhtbh" class="article-share-link">
                             Share
                         </a>
                         
@@ -714,7 +866,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Array/">Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Js-Array/">Js_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/鐵人賽/">鐵人賽</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Js-Array/">Js_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/鐵人賽/">鐵人賽</a></li></ul>
     </div>
   </div>
 
@@ -727,7 +879,11 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="../../ironman_array_01/">2019 鐵人賽 參賽緣由</a>
+            <a href="../../iromman-JS-Array-02/">Array 陣列是什麼</a>
+          </li>
+        
+          <li>
+            <a href="../../ironman_JS_array_01/">2019 鐵人賽 參賽緣由</a>
           </li>
         
           <li>
@@ -742,10 +898,6 @@ ga('send', 'pageview');
             <a href="../../JS-Array-Slice/">JS Array Slice</a>
           </li>
         
-          <li>
-            <a href="../../JS-JS101-Exercise/">JS-[JS101] 練習</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -755,7 +907,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/Array/" style="font-size: 10px;">Array</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 15px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 15px;">GitHub</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/Js-Array/" style="font-size: 10px;">Js_Array</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/鐵人賽/" style="font-size: 10px;">鐵人賽</a>
+      <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 15px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 15px;">GitHub</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 15px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/Js-Array/" style="font-size: 10px;">Js_Array</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/鐵人賽/" style="font-size: 15px;">鐵人賽</a>
     </div>
   </div>
 
