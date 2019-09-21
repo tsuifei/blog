@@ -111,9 +111,123 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
-    <article id="post-JS-What-can-the-array-do" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-JS_create-and-declare-arrays" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
-        <a href="JS-What-can-the-array-do/" class="article-date">
+        <a href="JS_create-and-declare-arrays/" class="article-date">
+  <time datetime="2019-09-21T19:29:42.000Z" itemprop="datePublished">2019-09-22</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="JS_create-and-declare-arrays/">創建與宣告陣列 Array</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-04"><a href="#Day-04" class="headerlink" title="Day 04"></a>Day 04</h6><p>這次的鐵人賽，參考書籍有可拿來當枕頭的大犀牛「Javascript 大全」和「你所不知道的JS」系列為主要參考，學習前端以來深深覺得有些書，程度不到來讀，真的很吃力，本人就是如此。但既然知道這些書都是許多大神推薦的書，那麼就試著了解，不懂的地方透過實作和請教前輩得到答案，也是頗好的學習方式，但本人不才，如有解釋錯誤的地方，還請各位海函啊。</p>
+<p>前一篇我們有提到陣列可以做什麼，是不是對陣列有個比較清楚的概念？有些參考書籍會把陣列形容成有很多個格子的抽屜或盒子，這樣去解釋陣列也是頗具體的，但要記得一般來說，每個格子都會有連續的編號，也就是前幾篇提到的索引值(index)是「有序」的這件事情。但到底有序是不是絕對呢？記得曾經看過，把陣列的索引值改成字串的數字作法，例如：let arr = []; arr[“5”] = 42 會有什麼結果呢？我們先賣個關子。</p>
+<p>當我們宣告一個陣列時，也同時在創建一個陣列，如果沒有考慮後續的處理問題，創建陣列是非常簡單的，但如果要讓陣列在後續可以很順利地被處理與運用，就不得不謹慎的考慮陣列裡的元素是什麼型別的問題了。</p>
+<h2 id="字面值宣告陣列"><a href="#字面值宣告陣列" class="headerlink" title="字面值宣告陣列"></a>字面值宣告陣列</h2><p>最簡單的創建陣列方式是使用陣列的字面值(array literal)，也就是用一對中括號 []，把值放在[]中，並以逗號區隔陣列中的值(元素)，再指定給一個變數。</p>
+<h3 id="空陣列"><a href="#空陣列" class="headerlink" title="空陣列"></a>空陣列</h3><p>什麼都沒放，當然也可以。通常是先設一個空陣列，再將要放進去的值已不同的方法放入，列如 push();。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> emptyArray =[];</span><br></pre></td></tr></table></figure>
+
+<h3 id="同型陣列"><a href="#同型陣列" class="headerlink" title="同型陣列"></a>同型陣列</h3><p>陣列裡面的值都是同類型的資料，這種陣列最好做後續的處理，處理過後的結果也最穩定。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrNumber = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">24</span>,<span class="number">42</span>];</span><br></pre></td></tr></table></figure>
+
+<h3 id="非同型陣列"><a href="#非同型陣列" class="headerlink" title="非同型陣列"></a>非同型陣列</h3><p>什麼資料型別都有的陣列， <del>不知道是什麼意圖</del> 或許可以用物件來裝會比較清楚一些，不然只有你知道每個元素的意義。有沒發現陣列的結尾也有一個逗點，在JavaScript 裡是被允許的，但並不會因為有這個逗點，而讓陣列的長度變長，或者是多一個空值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrMixValue = [<span class="string">"Hi"</span>, <span class="number">4.2</span>, <span class="literal">true</span>, <span class="string">"24"</span>,]</span><br></pre></td></tr></table></figure>
+
+<h3 id="包含運算式的陣列"><a href="#包含運算式的陣列" class="headerlink" title="包含運算式的陣列"></a>包含運算式的陣列</h3><p>陣列裡的值不一定是要常數，陣列裡面的元素也可以是任意的運算式，例如，某一個商品的定價是42，我們想知道這個商品打七折、八折、九折的價錢，並把它放在陣列裡， <del>或許</del>就可以用這個方法，但是，有時會有些意想不到的結果，這部分可以另外去查看 JavaScript 是如何處理運算子與數字的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> unit = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">let</span> rebateList = [unit, unit*<span class="number">0.7</span>, unit*<span class="number">0.8</span>, unit*<span class="number">0.9</span>] </span><br><span class="line"><span class="comment">//  [42, 29.4, 33.6, 37.800000000000004]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="逗點造成的稀疏陣列"><a href="#逗點造成的稀疏陣列" class="headerlink" title="逗點造成的稀疏陣列"></a>逗點造成的稀疏陣列</h3><p>如果在宣告陣列時，夾雜了多個分隔的痘點，逗號和逗號之間沒有值，都會被視為是 undefined。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrNumber = [<span class="number">2</span>,<span class="number">4</span>, ,<span class="number">24</span>,,<span class="number">42</span>];</span><br></pre></td></tr></table></figure>
+
+<h3 id="含有-undefined-的陣列"><a href="#含有-undefined-的陣列" class="headerlink" title="含有 undefined 的陣列"></a>含有 undefined 的陣列</h3><p>如果宣告陣列時，介於兩個逗號之間沒有值或空的，這個陣列就會成為稀疏陣列，這些空的元素會被填入 undefined，變成所謂的空插槽(empty slots)，這些空的位置看似被填入了 undefined，但是在瀏覽器的開發工具 Console 使用同樣的語法，填入的卻是 Empty 而不是 undefined。在「你所不知道的JS - 導讀，型別語文法」裡也有寫到這樣的現象，說明了在這裡產生的 undefined 和 arr[1] = undefined 不同，使用方法的結果也較不穩定，需要特別注意。</p>
+<h3 id="包含物件和陣列的陣列"><a href="#包含物件和陣列的陣列" class="headerlink" title="包含物件和陣列的陣列"></a>包含物件和陣列的陣列</h3><p>在大全裡，有一個範例是陣列被宣告時，陣列裡的值如下，加好多料，有陣列也有物件，這真的超過本人的理解範圍，也真的不建議這麼寫。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> vrayMix = [[<span class="number">0</span>,&#123;<span class="attr">a</span>:<span class="number">1</span>,<span class="attr">b</span>:<span class="number">2</span>&#125;], [<span class="number">1</span>, &#123;<span class="attr">a</span>:<span class="number">3</span>, <span class="attr">b</span>:<span class="number">4</span> &#125;]];</span><br></pre></td></tr></table></figure>
+
+<h2 id="建構式宣告"><a href="#建構式宣告" class="headerlink" title="建構式宣告"></a>建構式宣告</h2><p>另一種創建陣列的方式是使用 JavaScript 內建的建構式 Array() ，把建構式直接指定給變數，就成了陣列。<br>創建陣列有三種方法：</p>
+<h3 id="不帶引數就是空陣列"><a href="#不帶引數就是空陣列" class="headerlink" title="不帶引數就是空陣列"></a>不帶引數就是空陣列</h3><p>1.不帶引數的呼叫，這裡的引數指的是 new Array()括號內所放的值，結果同等於空陣列。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(); <span class="comment">// -&gt; []</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="給長度仍然是空的"><a href="#給長度仍然是空的" class="headerlink" title="給長度仍然是空的"></a>給長度仍然是空的</h3><p>2.在內建的建構式 Array() 裡帶一個值數值，而這個值也會成為這個陣列的長度，且裡面的值都會是空值 undefined。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">5</span>); <span class="comment">// -&gt; [empty × 5]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="陣列內容就在括弧裡"><a href="#陣列內容就在括弧裡" class="headerlink" title="陣列內容就在括弧裡"></a>陣列內容就在括弧裡</h3><p>3.把要宣告的陣列內容，直接以引數的方式帶入建構式，感覺建構式的括號裡可以包山包海，放不同的型別資料也可以。但是放入時記得要把陣列的中括號[]拿掉。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr3 = <span class="keyword">new</span> <span class="built_in">Array</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],<span class="string">"hi"</span>,<span class="number">42</span>); <span class="comment">// -&gt;  [Array(3), "hi", 42]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="總結：要用哪一種？"><a href="#總結：要用哪一種？" class="headerlink" title="總結：要用哪一種？"></a>總結：要用哪一種？</h2><p>看了「Javascript 大全」和「你所不知道的JS」系列，都是建議盡量少用建構式的方式去宣告或創建陣列，原因不是很清楚，但比較下來「字面值」宣告陣列的方式明顯比「建構式」宣告來的直覺與簡單。</p>
+<p>建構式的陣列宣告與一般的陣列宣告本質上是相同的，唯一一點不同的是，如果宣告時我們只給一個參數，那麼字面值會把第一個參數當作是陣列裡第一個元素值，而建構式則會把第一個參數當作是陣列的長度，這點不可不注意。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">8</span>]; <span class="comment">// [8]  length: 1</span></span><br><span class="line"><span class="keyword">let</span> arr2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">8</span>); <span class="comment">// [empty x 8] length: 1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="JS-很奇怪捏"><a href="#JS-很奇怪捏" class="headerlink" title="JS 很奇怪捏"></a>JS 很奇怪捏</h3><p>在文章的開頭，有提到把陣列的索引值改成字串的數字作法，例如：let arr = []; arr[“5”] = 42 會有什麼結果呢？答案是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = []; </span><br><span class="line">arr[<span class="string">"5"</span>] = <span class="number">42</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr) <span class="comment">// (6) [empty × 5, 42]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.length) <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+<p>當我們這樣宣告時，JavaScript 並不會報錯，而直接把字串的數字轉成陣列長度，然後加上我們把 42 指定給它，JavaScript 直接把42放進陣列，長度因此變成 6，有猜對嗎？</p>
+<p>但這只有字串的數字會有這種現象，如果是純字串，那麼字串就會被轉換成key，而指定的值則會轉換成為 key:value 的形式。<br>因為 Javascript 的陣列不能用字串作為索引值。 當一個 Javascript 陣列是只能以數字作為索引值的，所以當我們設定以字串作為索引值的時候，實際上是在設置物件的屬性。 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = []; </span><br><span class="line">arr[<span class="string">"Hi"</span>] = <span class="number">42</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr) <span class="comment">// [Hi: 42]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.length) <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+
+<p>介紹了四天的陣列，有沒覺得膩？小菜才吃了四碟，明天我們就來介紹陣列唯一的屬性 length 與其他較輕鬆的話題吧！</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-04"><a href="#Day-04" class="headerlink" title="Day 04"></a>Day 04</h6><p>這次的鐵人賽，參考書籍有可拿來當枕頭的大犀牛「Javascript 大全」和「你所不知道的JS」系列為主要參考，學習前端以來深深覺得有些書，程度不到來讀，真的很吃力，本人就是如此。但既然知道這些書都是許多大神推薦的書，那麼就試著了解，不懂的地方透過實作和請教前輩得到答案，也是頗好的學習方式，但本人不才，如有解釋錯誤的地方，還請各位海函啊。</p>
+<p>前一篇我們有提到陣列可以做什麼，是不是對陣列有個比較清楚的概念？有些參考書籍會把陣列形容成有很多個格子的抽屜或盒子，這樣去解釋陣列也是頗具體的，但要記得一般來說，每個格子都會有連續的編號，也就是前幾篇提到的索引值(index)是「有序」的這件事情。但到底有序是不是絕對呢？記得曾經看過，把陣列的索引值改成字串的數字作法，例如：let arr = []; arr[“5”] = 42 會有什麼結果呢？我們先賣個關子。</p>
+<p>當我們宣告一個陣列時，也同時在創建一個陣列，如果沒有考慮後續的處理問題，創建陣列是非常簡單的，但如果要讓陣列在後續可以很順利地被處理與運用，就不得不謹慎的考慮陣列裡的元素是什麼型別的問題了。</p>
+<h2 id="字面值宣告陣列"><a href="#字面值宣告陣列" class="headerlink" title="字面值宣告陣列"></a>字面值宣告陣列</h2><p>最簡單的創建陣列方式是使用陣列的字面值(array literal)，也就是用一對中括號 []，把值放在[]中，並以逗號區隔陣列中的值(元素)，再指定給一個變數。</p>
+<h3 id="空陣列"><a href="#空陣列" class="headerlink" title="空陣列"></a>空陣列</h3><p>什麼都沒放，當然也可以。通常是先設一個空陣列，再將要放進去的值已不同的方法放入，列如 push();。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="JS_create-and-declare-arrays/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_create-and-declare-arrays/" data-id="ck0u4i8w900177duw8gtm1o82" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/鐵人賽/">鐵人賽</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-JS_What-can-the-array-do" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="JS_What-can-the-array-do/" class="article-date">
   <time datetime="2019-09-20T20:23:12.000Z" itemprop="datePublished">2019-09-21</time>
 </a>
             
@@ -129,7 +243,7 @@ ga('send', 'pageview');
                     
   
     <h1 itemprop="name">
-      <a class="article-title" href="JS-What-can-the-array-do/">陣列可以做什麼、裝什麼有差嗎？</a>
+      <a class="article-title" href="JS_What-can-the-array-do/">陣列可以做什麼、裝什麼有差嗎？</a>
     </h1>
   
 
@@ -138,7 +252,7 @@ ga('send', 'pageview');
 
                     <div class="article-entry" itemprop="articleBody">
                         
-                                            <!-- <h2 id="Que-peut-faire-avec-un-Array"><a href="#Que-peut-faire-avec-un-Array" class="headerlink" title="Que peut faire avec un Array ?"></a>Que peut faire avec un Array ?</h2><p>陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。</p>
+                                            <!-- <h6 id="Day-03"><a href="#Day-03" class="headerlink" title="Day 03"></a>Day 03</h6><h2 id="Que-peut-faire-avec-un-Array"><a href="#Que-peut-faire-avec-un-Array" class="headerlink" title="Que peut faire avec un Array ?"></a>Que peut faire avec un Array ?</h2><p>陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。</p>
 <p>或許是陣列排序的特性，有如電腦中記憶體的一維陣列結構，而索引就像是記憶體的位址是連續的，因此編譯器通常可以針對陣列操作進行最佳化處理。代表順序的索引(index)會有其對應的值(元素)，利用這種特性，我們可以輕易的找到某個指定的索引，再來對值做處理。且在一個陣列裡，我們可以放大量的資料，所以當我們要對這一大串的資料做處理，就可以以「批次」的方式，快速地進行處理。</p>
 <h3 id="陣列如何處理一大筆資料？"><a href="#陣列如何處理一大筆資料？" class="headerlink" title="陣列如何處理一大筆資料？"></a>陣列如何處理一大筆資料？</h3><p>昨天我們有稍微的提到，在陣列裡我們可以塞下許多不同類型的資料，雖然一般而言，我們會建議陣列裡放的資料最好具有相同資料型別，要對裡面的元素處理也比較單純，但就像我們買了一個承重量只有500g的紙袋，也會遇到ㄧ定要撐到爆的時候，有些時候我們也會在陣列裡放下許多類型的資料 <del>（什麼心態啊～）</del>。但為了批次處理，還是盡量讓陣列裡的資料結構的元素同型別吧，不然得要經過層層的預處理，反而失去陣列可以批次處理的方便特性。</p>
 <p>為什麼在陣列裡的元素，具有相同資料型別很重要，來看看 Javascript 會怎麼處理這些不同型別的資料就知道。比如說，一個陣列裡，元素皆是數字(Number)，如何把這個陣列裡的數字相加得到總和？只要一個 for 迴圈就可輕易辦到，但如果其中一個陣列元素，長得和其他人不一樣，那麼會有什麼結果呢？</p>
@@ -181,14 +295,14 @@ ga('send', 'pageview');
 
                                                     
                                                         
-                                                                    <h2 id="Que-peut-faire-avec-un-Array"><a href="#Que-peut-faire-avec-un-Array" class="headerlink" title="Que peut faire avec un Array ?"></a>Que peut faire avec un Array ?</h2><p>陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。</p>
+                                                                    <h6 id="Day-03"><a href="#Day-03" class="headerlink" title="Day 03"></a>Day 03</h6><h2 id="Que-peut-faire-avec-un-Array"><a href="#Que-peut-faire-avec-un-Array" class="headerlink" title="Que peut faire avec un Array ?"></a>Que peut faire avec un Array ?</h2><p>陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。</p>
 <p>或許是陣列排序的特性，有如電腦中記憶體的一維陣列結構，而索引就像是記憶體的位址是連續的，因此編譯器通常可以針對陣列操作進行最佳化處理。代表順序的索引(index)會有其對應的值(元素)，利用這種特性，我們可以輕易的找到某個指定的索引，再來對值做處理。且在一個陣列裡，我們可以放大量的資料，所以當我們要對這一大串的資料做處理，就可以以「批次」的方式，快速地進行處理。</p>
 <h3 id="陣列如何處理一大筆資料？"><a href="#陣列如何處理一大筆資料？" class="headerlink" title="陣列如何處理一大筆資料？"></a>陣列如何處理一大筆資料？</h3><p>昨天我們有稍微的提到，在陣列裡我們可以塞下許多不同類型的資料，雖然一般而言，我們會建議陣列裡放的資料最好具有相同資料型別，要對裡面的元素處理也比較單純，但就像我們買了一個承重量只有500g的紙袋，也會遇到ㄧ定要撐到爆的時候，有些時候我們也會在陣列裡放下許多類型的資料 <del>（什麼心態啊～）</del>。但為了批次處理，還是盡量讓陣列裡的資料結構的元素同型別吧，不然得要經過層層的預處理，反而失去陣列可以批次處理的方便特性。</p>
 <p>為什麼在陣列裡的元素，具有相同資料型別很重要，來看看 Javascript 會怎麼處理這些不同型別的資料就知道。比如說，一個陣列裡，元素皆是數字(Number)，如何把這個陣列裡的數字相加得到總和？只要一個 for 迴圈就可輕易辦到，但如果其中一個陣列元素，長得和其他人不一樣，那麼會有什麼結果呢？</p>
 <p>Javascript 弱型別語言的特性，常會給我們神奇的傑克！我們來看以下的這些例子，以 for 迴圈來相加陣列裡面的數字，看看如果在陣列裡夾雜了其他型別的元素，會有什麼結果：</p>
                                                                         
                                                                             <p class="article-more-link">
-                                                                                <a href="JS-What-can-the-array-do/">
+                                                                                <a href="JS_What-can-the-array-do/">
                                                                                     Read More
                                                                                 </a>
                                                                             </p>
@@ -200,7 +314,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-What-can-the-array-do/" data-id="ck0sxr7y6000iynuw0530y6zf" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_What-can-the-array-do/" data-id="ck0u4i8w6000z7duw0z7jdxvc" class="article-share-link">
                             Share
                         </a>
                         
@@ -214,9 +328,9 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-iromman-JS-Array-02" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-JS_What-is-the-array" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
-        <a href="iromman-JS-Array-02/" class="article-date">
+        <a href="JS_What-is-the-array/" class="article-date">
   <time datetime="2019-09-17T19:53:22.000Z" itemprop="datePublished">2019-09-18</time>
 </a>
             
@@ -232,7 +346,7 @@ ga('send', 'pageview');
                     
   
     <h1 itemprop="name">
-      <a class="article-title" href="iromman-JS-Array-02/">Array 陣列是什麼</a>
+      <a class="article-title" href="JS_What-is-the-array/">Array 陣列是什麼</a>
     </h1>
   
 
@@ -241,7 +355,7 @@ ga('send', 'pageview');
 
                     <div class="article-entry" itemprop="articleBody">
                         
-                                            <!-- <h2 id="C’est-quoi-un-Array"><a href="#C’est-quoi-un-Array" class="headerlink" title="C’est quoi un Array"></a>C’est quoi un Array</h2><h5 id="測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。"><a href="#測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。" class="headerlink" title="測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。"></a>測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。</h5><p>在討論陣列之前，可以先來想像一下，如果今天天氣超級好，我們洗了很多衣服，曬乾之後的衣服充滿陽光的氣息，我們把這些衣服整包的丟到床上，一邊開著電視，一邊開始折衣服，再將所有的上衣折好放成一疊、長褲折好一疊、襪子捲好放成一堆，再一一放入衣櫃裡，我們分門別類地把這些衣服摺好時，這一疊的衣服就有陣列的概念了。</p>
+                                            <!-- <h6 id="Day-02"><a href="#Day-02" class="headerlink" title="Day 02"></a>Day 02</h6><h2 id="C’est-quoi-un-Array"><a href="#C’est-quoi-un-Array" class="headerlink" title="C’est quoi un Array"></a>C’est quoi un Array</h2><h5 id="測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。"><a href="#測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。" class="headerlink" title="測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。"></a>測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。</h5><p>在討論陣列之前，可以先來想像一下，如果今天天氣超級好，我們洗了很多衣服，曬乾之後的衣服充滿陽光的氣息，我們把這些衣服整包的丟到床上，一邊開著電視，一邊開始折衣服，再將所有的上衣折好放成一疊、長褲折好一疊、襪子捲好放成一堆，再一一放入衣櫃裡，我們分門別類地把這些衣服摺好時，這一疊的衣服就有陣列的概念了。</p>
 <p>一般來說，陣列在程式語言裡的定義是：陣列(Array)是一組相同型態的連續變數，它們使用同一個變數名稱，而另外用一個索引值來指定使用第幾個變數。且陣列本質上是有序的，索引是從零開始計算的。</p>
 <p>在<a href="https://zh.wikipedia.org/zh-tw/%E6%95%B0%E7%BB%84" target="_blank" rel="noopener">維基百科</a>裡，對於陣列的說明是：</p>
 <blockquote>
@@ -275,14 +389,14 @@ ga('send', 'pageview');
 
                                                     
                                                         
-                                                                    <h2 id="C’est-quoi-un-Array"><a href="#C’est-quoi-un-Array" class="headerlink" title="C’est quoi un Array"></a>C’est quoi un Array</h2><h5 id="測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。"><a href="#測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。" class="headerlink" title="測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。"></a>測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。</h5><p>在討論陣列之前，可以先來想像一下，如果今天天氣超級好，我們洗了很多衣服，曬乾之後的衣服充滿陽光的氣息，我們把這些衣服整包的丟到床上，一邊開著電視，一邊開始折衣服，再將所有的上衣折好放成一疊、長褲折好一疊、襪子捲好放成一堆，再一一放入衣櫃裡，我們分門別類地把這些衣服摺好時，這一疊的衣服就有陣列的概念了。</p>
+                                                                    <h6 id="Day-02"><a href="#Day-02" class="headerlink" title="Day 02"></a>Day 02</h6><h2 id="C’est-quoi-un-Array"><a href="#C’est-quoi-un-Array" class="headerlink" title="C’est quoi un Array"></a>C’est quoi un Array</h2><h5 id="測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。"><a href="#測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。" class="headerlink" title="測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。"></a>測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。</h5><p>在討論陣列之前，可以先來想像一下，如果今天天氣超級好，我們洗了很多衣服，曬乾之後的衣服充滿陽光的氣息，我們把這些衣服整包的丟到床上，一邊開著電視，一邊開始折衣服，再將所有的上衣折好放成一疊、長褲折好一疊、襪子捲好放成一堆，再一一放入衣櫃裡，我們分門別類地把這些衣服摺好時，這一疊的衣服就有陣列的概念了。</p>
 <p>一般來說，陣列在程式語言裡的定義是：陣列(Array)是一組相同型態的連續變數，它們使用同一個變數名稱，而另外用一個索引值來指定使用第幾個變數。且陣列本質上是有序的，索引是從零開始計算的。</p>
 <p>在<a href="https://zh.wikipedia.org/zh-tw/%E6%95%B0%E7%BB%84" target="_blank" rel="noopener">維基百科</a>裡，對於陣列的說明是：</p>
 <blockquote>
 <p>在電腦科學中，陣列資料結構（英語：array data structure），簡稱陣列（英語：Array），是由相同類型的元素（element）的集合所組成的資料結構，分配一塊連續的記憶體來儲存。利用元素的索引（index）可以計算出該元素對應的儲存位址。</p>
                                                                         
                                                                             <p class="article-more-link">
-                                                                                <a href="iromman-JS-Array-02/">
+                                                                                <a href="JS_What-is-the-array/">
                                                                                     Read More
                                                                                 </a>
                                                                             </p>
@@ -294,7 +408,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/iromman-JS-Array-02/" data-id="ck0sxr7yh001dynuwkuicl30v" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_What-is-the-array/" data-id="ck0u4i8w800147duww3fotlia" class="article-share-link">
                             Share
                         </a>
                         
@@ -308,9 +422,9 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-ironman_JS_array_01" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-JS_iron-man-foreword" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
-        <a href="ironman_JS_array_01/" class="article-date">
+        <a href="JS_iron-man-foreword/" class="article-date">
   <time datetime="2019-09-17T19:29:42.000Z" itemprop="datePublished">2019-09-18</time>
 </a>
             
@@ -326,7 +440,7 @@ ga('send', 'pageview');
                     
   
     <h1 itemprop="name">
-      <a class="article-title" href="ironman_JS_array_01/">2019 鐵人賽 參賽緣由</a>
+      <a class="article-title" href="JS_iron-man-foreword/">2019 鐵人賽 參賽緣由</a>
     </h1>
   
 
@@ -335,7 +449,7 @@ ga('send', 'pageview');
 
                     <div class="article-entry" itemprop="articleBody">
                         
-                                            <!-- <h2 id="人生總是要做些沒做過的事，例如寫鐵人賽"><a href="#人生總是要做些沒做過的事，例如寫鐵人賽" class="headerlink" title="人生總是要做些沒做過的事，例如寫鐵人賽"></a>人生總是要做些沒做過的事，例如寫鐵人賽</h2><p>從來沒想過自己會參加這種接力賽，因為自認自己的恆毅力常常被自己的記憶力擊潰，有許多事自己做著做著就忘記了，即使做著筆記，也會常常記著記著就忘記自己記在哪裡了，金害！但是，人生總是要做些沒做過的事，例如寫鐵人賽，而且很幸運的可以跟好想工作室的夥伴一起參加，有人陪伴再好也不過。</p>
+                                            <!-- <h6 id="Day-01"><a href="#Day-01" class="headerlink" title="Day 01"></a>Day 01</h6><h2 id="人生總是要做些沒做過的事，例如寫鐵人賽"><a href="#人生總是要做些沒做過的事，例如寫鐵人賽" class="headerlink" title="人生總是要做些沒做過的事，例如寫鐵人賽"></a>人生總是要做些沒做過的事，例如寫鐵人賽</h2><p>從來沒想過自己會參加這種接力賽，因為自認自己的恆毅力常常被自己的記憶力擊潰，有許多事自己做著做著就忘記了，即使做著筆記，也會常常記著記著就忘記自己記在哪裡了，金害！但是，人生總是要做些沒做過的事，例如寫鐵人賽，而且很幸運的可以跟好想工作室的夥伴一起參加，有人陪伴再好也不過。</p>
 <p>本人曾經做過一段很長時間的平面設計，也忘了在那個還在做手工稿的年代，自己怎麼學會用電腦完稿的。接著網路還在撥接的年代，開始自學 HTML 和 CSS 從靜態網頁做到動畫網頁 Flash，接著用PHP做動態網頁，就這樣一路下來，幾年前的前端大變革，本人也差不多老了，but, but 總不能因為新的時代的來臨，而不去迎接它，於是在兩年前，因在職多年的傳統公司轉型沒成功翻身，公司瀕臨破產，於是就活生生地被資遣了。當時不知戲到底要不要繼續演下去，但還是很愛 WEB 這一塊，於是不小心把頭洗下去，那就繼續學習吧！</p>
 <p>也很感謝好想工作室與一起學習的夥伴，互相學習彼此切磋的力量太強大了，也因為在好想，讓我的轉職變得更有意義。</p>
 <p>覺得 JavaScript 真的只能用女大十八變來形容，想當年它常被拿來做走馬燈，或一閃一閃極度干擾視覺的按鈕，沒想到短短的這幾年，已經變成了瀏覽器的當家花旦，只有它能搞定在瀏覽器上的異步要求，甚至跨界跨到後端去了！但它似乎不是那麼好搞定，那麼就藉由這次的機會好好的認識它。</p>
@@ -349,14 +463,14 @@ ga('send', 'pageview');
 
                                                     
                                                         
-                                                                    <h2 id="人生總是要做些沒做過的事，例如寫鐵人賽"><a href="#人生總是要做些沒做過的事，例如寫鐵人賽" class="headerlink" title="人生總是要做些沒做過的事，例如寫鐵人賽"></a>人生總是要做些沒做過的事，例如寫鐵人賽</h2><p>從來沒想過自己會參加這種接力賽，因為自認自己的恆毅力常常被自己的記憶力擊潰，有許多事自己做著做著就忘記了，即使做著筆記，也會常常記著記著就忘記自己記在哪裡了，金害！但是，人生總是要做些沒做過的事，例如寫鐵人賽，而且很幸運的可以跟好想工作室的夥伴一起參加，有人陪伴再好也不過。</p>
+                                                                    <h6 id="Day-01"><a href="#Day-01" class="headerlink" title="Day 01"></a>Day 01</h6><h2 id="人生總是要做些沒做過的事，例如寫鐵人賽"><a href="#人生總是要做些沒做過的事，例如寫鐵人賽" class="headerlink" title="人生總是要做些沒做過的事，例如寫鐵人賽"></a>人生總是要做些沒做過的事，例如寫鐵人賽</h2><p>從來沒想過自己會參加這種接力賽，因為自認自己的恆毅力常常被自己的記憶力擊潰，有許多事自己做著做著就忘記了，即使做著筆記，也會常常記著記著就忘記自己記在哪裡了，金害！但是，人生總是要做些沒做過的事，例如寫鐵人賽，而且很幸運的可以跟好想工作室的夥伴一起參加，有人陪伴再好也不過。</p>
 <p>本人曾經做過一段很長時間的平面設計，也忘了在那個還在做手工稿的年代，自己怎麼學會用電腦完稿的。接著網路還在撥接的年代，開始自學 HTML 和 CSS 從靜態網頁做到動畫網頁 Flash，接著用PHP做動態網頁，就這樣一路下來，幾年前的前端大變革，本人也差不多老了，but, but 總不能因為新的時代的來臨，而不去迎接它，於是在兩年前，因在職多年的傳統公司轉型沒成功翻身，公司瀕臨破產，於是就活生生地被資遣了。當時不知戲到底要不要繼續演下去，但還是很愛 WEB 這一塊，於是不小心把頭洗下去，那就繼續學習吧！</p>
 <p>也很感謝好想工作室與一起學習的夥伴，互相學習彼此切磋的力量太強大了，也因為在好想，讓我的轉職變得更有意義。</p>
 <p>覺得 JavaScript 真的只能用女大十八變來形容，想當年它常被拿來做走馬燈，或一閃一閃極度干擾視覺的按鈕，沒想到短短的這幾年，已經變成了瀏覽器的當家花旦，只有它能搞定在瀏覽器上的異步要求，甚至跨界跨到後端去了！但它似乎不是那麼好搞定，那麼就藉由這次的機會好好的認識它。</p>
 <p>這次寫鐵人賽的主題會圍繞在如題的JavaScript Array 陣列上，什麼？！ Array 寫30天？這樣小菜一碟也敢端出來？各位看官，別看只是小菜，每天變化出新花樣也是不容易的，況且小菜做得好，那麼拼湊一桌好菜就有希望了。期望自己能把小菜功夫先練好，那才能繼續往前菜邁進啊～ 除了寫陣列的各個面向和方法，也會穿插較輕鬆的話題，學習經驗或者是和開發者相關議題的內容，小菜吃太久，偶爾還是要換一下口味。</p>
                                                                         
                                                                             <p class="article-more-link">
-                                                                                <a href="ironman_JS_array_01/">
+                                                                                <a href="JS_iron-man-foreword/">
                                                                                     Read More
                                                                                 </a>
                                                                             </p>
@@ -368,7 +482,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/ironman_JS_array_01/" data-id="ck0sxr7yj001iynuwhr0mu8ih" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_iron-man-foreword/" data-id="ck0u4i8wa001c7duw05b5n34a" class="article-share-link">
                             Share
                         </a>
                         
@@ -456,7 +570,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/Strange-JS-call-function-execution-stack/" data-id="ck0sxr7yd0012ynuwpwgm2xlm" class="article-share-link">
+                        <a data-url="tsuifei.github.io/Strange-JS-call-function-execution-stack/" data-id="ck0u4i8wc001f7duwz8npkxgc" class="article-share-link">
                             Share
                         </a>
                         
@@ -545,7 +659,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-Confirm-whether-is-Array/" data-id="ck0sxr7xy0008ynuwdw9k84qo" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-Confirm-whether-is-Array/" data-id="ck0u4i8vs00087duwfotitwcx" class="article-share-link">
                             Share
                         </a>
                         
@@ -624,7 +738,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-Array-Slice/" data-id="ck0sxr7xu0004ynuwh7y4hzrg" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-Array-Slice/" data-id="ck0u4i8vp00047duwr9gjy7gi" class="article-share-link">
                             Share
                         </a>
                         
@@ -695,7 +809,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-JS101-Exercise/" data-id="ck0sxr7y2000cynuwvsujcwct" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-JS101-Exercise/" data-id="ck0u4i8vw000c7duwpapkyfaj" class="article-share-link">
                             Share
                         </a>
                         
@@ -828,7 +942,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/SASS-deployment-environment-and-fundamental/" data-id="ck0sxr7z3002xynuwsuht8m3e" class="article-share-link">
+                        <a data-url="tsuifei.github.io/SASS-deployment-environment-and-fundamental/" data-id="ck0u4i8wq00357duwqznhy5lf" class="article-share-link">
                             Share
                         </a>
                         
@@ -914,115 +1028,12 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-Return-in-the-loop/" data-id="ck0sxr7y4000gynuw97pm09s9" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-Return-in-the-loop/" data-id="ck0u4i8vy000g7duw1anl52g3" class="article-share-link">
                             Share
                         </a>
                         
                                 
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JS-Basic/">JS Basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
-    <article id="post-JS-ternary-conditional-operator-and-Comparison-operator" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="JS-ternary-conditional-operator-and-Comparison-operator/" class="article-date">
-  <time datetime="2019-07-11T06:22:41.000Z" itemprop="datePublished">2019-07-11</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="JS-ternary-conditional-operator-and-Comparison-operator/">JavaScript 三元運算符(ternary conditional operator)與比較運算符(Comparison operator)</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h2 id="相等比較運算-與-的不同"><a href="#相等比較運算-與-的不同" class="headerlink" title="相等比較運算 == 與 === 的不同"></a>相等比較運算 == 與 === 的不同</h2><p>兩個等號通常是拿來比較兩邊的==值==是否不同<br>三個等號除了判斷==值==是否相同，也會判斷==型別==是否相同。</p>
-<p>兩個等於會引發諸多問題的原因是 JS 常會暗地裡幫我們將資料轉型別，所以常常莫名的就通過判斷。以至於很容易就會出現誤判型別而導致出現錯誤。在使用判斷比較時盡量或只使用三個等於會比較精確與安全。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下的結果都是true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">"0"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">""</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> == <span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> == <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log([] == <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-
-<p>產生 1 == true 的原因是在 Boolean 時，1 即表示 true，也就是 Boolean(1)理所當然 JS 就會把它視為相同。相反地Boolean(0) 等於 false.</p>
-<p>如果將 false 轉成數字型 Number(false) // 0 ，也可得到 0。</p>
-<p>空字串也是如此，當我們把空字串轉成數字時 Number([]) // 0 也會得到 0。</p>
-<p>將所有上述比較全換成三個等號，結果全都成了 false：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下的結果都是 false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="string">"0"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> === <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="string">""</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> === <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> === <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> === <span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> === <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log([] === <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-
-<p>由此可見，用三個等號來判斷兩變得值，還是比較準確與保險。看圖表來表示更清楚！三個等號比兩個等號規律多了，除非可以全背下兩個等號的變化，不然還是用三個等號來判斷比較保險。</p>
-<p><img src="https://i.imgur.com/f0T10zg.png" alt></p>
-<p><img src="https://i.imgur.com/6eGZaB8.png" alt></p>
-<p><img src="https://i.imgur.com/b2Iyiqw.png" alt></p>
-<h3 id="唯一特例-NaN不是NaN"><a href="#唯一特例-NaN不是NaN" class="headerlink" title="唯一特例 NaN不是NaN"></a>唯一特例 NaN不是NaN</h3><p>在 JavaScript 裡如果左右兩邊都是一樣且用三個等號來比較，結果通常是 True 但是 Nan 和自己相比，無論使用兩個或三個等號都是 false。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> === <span class="literal">NaN</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> !== <span class="literal">NaN</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> lettre = <span class="string">"abc"</span></span><br><span class="line">lettre / <span class="number">10</span> <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
-
-<p>NaN -&gt; 不是數字。何時會用到 NaN ?<br>如果把數字和不是數字做運算，便會返回 NaN 。</p>
-<p>如果想知道一個變數是不是 NaN 可使用 <code>isNaN()</code> 來判斷是不是NaN。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isNaN</span>(<span class="literal">NaN</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<p>但是<code>isNaN()</code>也會悄悄幫你改型別。 明明 a 就不是數字…。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"a"</span></span><br><span class="line"><span class="built_in">isNaN</span>(a); <span class="comment">// true </span></span><br><span class="line"><span class="built_in">Number</span>(a); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<p>如果用 typeof 來看 NaN 會得到 number，也就是說，當我們用 isNaN() ，其實這個函式會先將()裡面用Number()轉換。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isNaN</span>(<span class="built_in">Number</span>(<span class="literal">NaN</span>)) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<p>圖表出處：<a href="https://dorey.github.io/JavaScript-Equality-Table/" target="_blank" rel="noopener">一目了然的比較表</a></p>
-<h2 id="JS-三元運算子"><a href="#JS-三元運算子" class="headerlink" title="JS 三元運算子"></a>JS 三元運算子</h2><p>「三元運算子」 又稱為「條件運算子」，也就是拿來處理條件判斷用的。<br>條件成立(true)-&gt; 回傳第一個, 條件不成立(false)-&gt;回傳第二個</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果 true 這個條件成立，就返回 100，否則就回傳 50</span></span><br><span class="line"><span class="keyword">var</span> result = <span class="number">100</span> &lt; <span class="number">1000</span> ? <span class="number">100</span> : <span class="number">50</span>;</span><br><span class="line"><span class="comment">// 100 小於 1000 嗎？ 是 (true) -&gt; 回傳 100</span></span><br></pre></td></tr></table></figure>
-
-<p>如何將一般的 if else 轉成三元運算子</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">16</span>;</span><br><span class="line"><span class="keyword">var</span> title;</span><br><span class="line"><span class="keyword">if</span> (age &gt;= <span class="number">18</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (age &gt;= <span class="number">45</span>) &#123;</span><br><span class="line">            title = <span class="string">"Middle-aged"</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            title = <span class="string">"Adult"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        title = <span class="string">"Minor"</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="built_in">console</span>.log(title);</span><br></pre></td></tr></table></figure>
-
-<p>三元運算子較簡短，但可讀性不高，應避免使用可讀性不高的寫法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title = age &gt;= <span class="number">18</span> ? age &gt;= <span class="number">45</span> ? <span class="string">"Middle-aged"</span> : <span class="string">"Adult"</span> : <span class="string">"Minor"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(title);</span><br></pre></td></tr></table></figure>
-
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h2 id="相等比較運算-與-的不同"><a href="#相等比較運算-與-的不同" class="headerlink" title="相等比較運算 == 與 === 的不同"></a>相等比較運算 == 與 === 的不同</h2><p>兩個等號通常是拿來比較兩邊的==值==是否不同<br>三個等號除了判斷==值==是否相同，也會判斷==型別==是否相同。</p>
-<p>兩個等於會引發諸多問題的原因是 JS 常會暗地裡幫我們將資料轉型別，所以常常莫名的就通過判斷。以至於很容易就會出現誤判型別而導致出現錯誤。在使用判斷比較時盡量或只使用三個等於會比較精確與安全。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下的結果都是true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">"0"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">""</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> == <span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> == <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log([] == <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-
-<p>產生 1 == true 的原因是在 Boolean 時，1 即表示 true，也就是 Boolean(1)理所當然 JS 就會把它視為相同。相反地Boolean(0) 等於 false.</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="JS-ternary-conditional-operator-and-Comparison-operator/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-ternary-conditional-operator-and-Comparison-operator/" data-id="ck0sxr7y9000pynuw0pk5yt5q" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
 
                     </footer>
     </div>
@@ -1079,23 +1090,23 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="JS-What-can-the-array-do/">陣列可以做什麼、裝什麼有差嗎？</a>
+            <a href="JS_create-and-declare-arrays/">創建與宣告陣列 Array</a>
           </li>
         
           <li>
-            <a href="iromman-JS-Array-02/">Array 陣列是什麼</a>
+            <a href="JS_What-can-the-array-do/">陣列可以做什麼、裝什麼有差嗎？</a>
           </li>
         
           <li>
-            <a href="ironman_JS_array_01/">2019 鐵人賽 參賽緣由</a>
+            <a href="JS_What-is-the-array/">Array 陣列是什麼</a>
+          </li>
+        
+          <li>
+            <a href="JS_iron-man-foreword/">2019 鐵人賽 參賽緣由</a>
           </li>
         
           <li>
             <a href="Strange-JS-call-function-execution-stack/">JS 奇怪的部分:函數呼叫與執行堆</a>
-          </li>
-        
-          <li>
-            <a href="JS-Confirm-whether-is-Array/">JavaScript 判別是否為陣列 Array 的方法</a>
           </li>
         
       </ul>

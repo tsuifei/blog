@@ -111,6 +111,109 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS-ternary-conditional-operator-and-Comparison-operator" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS-ternary-conditional-operator-and-Comparison-operator/" class="article-date">
+  <time datetime="2019-07-11T06:22:41.000Z" itemprop="datePublished">2019-07-11</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS-ternary-conditional-operator-and-Comparison-operator/">JavaScript 三元運算符(ternary conditional operator)與比較運算符(Comparison operator)</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h2 id="相等比較運算-與-的不同"><a href="#相等比較運算-與-的不同" class="headerlink" title="相等比較運算 == 與 === 的不同"></a>相等比較運算 == 與 === 的不同</h2><p>兩個等號通常是拿來比較兩邊的==值==是否不同<br>三個等號除了判斷==值==是否相同，也會判斷==型別==是否相同。</p>
+<p>兩個等於會引發諸多問題的原因是 JS 常會暗地裡幫我們將資料轉型別，所以常常莫名的就通過判斷。以至於很容易就會出現誤判型別而導致出現錯誤。在使用判斷比較時盡量或只使用三個等於會比較精確與安全。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下的結果都是true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">"0"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">""</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> == <span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> == <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log([] == <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>產生 1 == true 的原因是在 Boolean 時，1 即表示 true，也就是 Boolean(1)理所當然 JS 就會把它視為相同。相反地Boolean(0) 等於 false.</p>
+<p>如果將 false 轉成數字型 Number(false) // 0 ，也可得到 0。</p>
+<p>空字串也是如此，當我們把空字串轉成數字時 Number([]) // 0 也會得到 0。</p>
+<p>將所有上述比較全換成三個等號，結果全都成了 false：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下的結果都是 false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="string">"0"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> === <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="string">""</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> === <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> === <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> === <span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> === <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log([] === <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>由此可見，用三個等號來判斷兩變得值，還是比較準確與保險。看圖表來表示更清楚！三個等號比兩個等號規律多了，除非可以全背下兩個等號的變化，不然還是用三個等號來判斷比較保險。</p>
+<p><img src="https://i.imgur.com/f0T10zg.png" alt></p>
+<p><img src="https://i.imgur.com/6eGZaB8.png" alt></p>
+<p><img src="https://i.imgur.com/b2Iyiqw.png" alt></p>
+<h3 id="唯一特例-NaN不是NaN"><a href="#唯一特例-NaN不是NaN" class="headerlink" title="唯一特例 NaN不是NaN"></a>唯一特例 NaN不是NaN</h3><p>在 JavaScript 裡如果左右兩邊都是一樣且用三個等號來比較，結果通常是 True 但是 Nan 和自己相比，無論使用兩個或三個等號都是 false。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> === <span class="literal">NaN</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> !== <span class="literal">NaN</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> lettre = <span class="string">"abc"</span></span><br><span class="line">lettre / <span class="number">10</span> <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+
+<p>NaN -&gt; 不是數字。何時會用到 NaN ?<br>如果把數字和不是數字做運算，便會返回 NaN 。</p>
+<p>如果想知道一個變數是不是 NaN 可使用 <code>isNaN()</code> 來判斷是不是NaN。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isNaN</span>(<span class="literal">NaN</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>但是<code>isNaN()</code>也會悄悄幫你改型別。 明明 a 就不是數字…。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"a"</span></span><br><span class="line"><span class="built_in">isNaN</span>(a); <span class="comment">// true </span></span><br><span class="line"><span class="built_in">Number</span>(a); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>如果用 typeof 來看 NaN 會得到 number，也就是說，當我們用 isNaN() ，其實這個函式會先將()裡面用Number()轉換。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isNaN</span>(<span class="built_in">Number</span>(<span class="literal">NaN</span>)) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>圖表出處：<a href="https://dorey.github.io/JavaScript-Equality-Table/" target="_blank" rel="noopener">一目了然的比較表</a></p>
+<h2 id="JS-三元運算子"><a href="#JS-三元運算子" class="headerlink" title="JS 三元運算子"></a>JS 三元運算子</h2><p>「三元運算子」 又稱為「條件運算子」，也就是拿來處理條件判斷用的。<br>條件成立(true)-&gt; 回傳第一個, 條件不成立(false)-&gt;回傳第二個</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果 true 這個條件成立，就返回 100，否則就回傳 50</span></span><br><span class="line"><span class="keyword">var</span> result = <span class="number">100</span> &lt; <span class="number">1000</span> ? <span class="number">100</span> : <span class="number">50</span>;</span><br><span class="line"><span class="comment">// 100 小於 1000 嗎？ 是 (true) -&gt; 回傳 100</span></span><br></pre></td></tr></table></figure>
+
+<p>如何將一般的 if else 轉成三元運算子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">16</span>;</span><br><span class="line"><span class="keyword">var</span> title;</span><br><span class="line"><span class="keyword">if</span> (age &gt;= <span class="number">18</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (age &gt;= <span class="number">45</span>) &#123;</span><br><span class="line">            title = <span class="string">"Middle-aged"</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            title = <span class="string">"Adult"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        title = <span class="string">"Minor"</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="built_in">console</span>.log(title);</span><br></pre></td></tr></table></figure>
+
+<p>三元運算子較簡短，但可讀性不高，應避免使用可讀性不高的寫法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title = age &gt;= <span class="number">18</span> ? age &gt;= <span class="number">45</span> ? <span class="string">"Middle-aged"</span> : <span class="string">"Adult"</span> : <span class="string">"Minor"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(title);</span><br></pre></td></tr></table></figure>
+
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h2 id="相等比較運算-與-的不同"><a href="#相等比較運算-與-的不同" class="headerlink" title="相等比較運算 == 與 === 的不同"></a>相等比較運算 == 與 === 的不同</h2><p>兩個等號通常是拿來比較兩邊的==值==是否不同<br>三個等號除了判斷==值==是否相同，也會判斷==型別==是否相同。</p>
+<p>兩個等於會引發諸多問題的原因是 JS 常會暗地裡幫我們將資料轉型別，所以常常莫名的就通過判斷。以至於很容易就會出現誤判型別而導致出現錯誤。在使用判斷比較時盡量或只使用三個等於會比較精確與安全。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下的結果都是true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">"0"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">""</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> == <span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> == <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log([] == <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>產生 1 == true 的原因是在 Boolean 時，1 即表示 true，也就是 Boolean(1)理所當然 JS 就會把它視為相同。相反地Boolean(0) 等於 false.</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS-ternary-conditional-operator-and-Comparison-operator/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS-ternary-conditional-operator-and-Comparison-operator/" data-id="ck0u4i8w2000n7duwhdgo18gy" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS-複製By-reference與By-value的不同" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS-複製By-reference與By-value的不同/" class="article-date">
@@ -189,7 +292,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-複製By-reference與By-value的不同/" data-id="ck0sxr7yc000xynuwkptmx7ji" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-複製By-reference與By-value的不同/" data-id="ck0u4i8w5000w7duwckboixul" class="article-share-link">
                             Share
                         </a>
                         
@@ -341,7 +444,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/Git-GitHub-實際操作/" data-id="ck0sxr7xs0002ynuwl3po2ycd" class="article-share-link">
+                        <a data-url="tsuifei.github.io/Git-GitHub-實際操作/" data-id="ck0u4i8vm00027duwst61kg72" class="article-share-link">
                             Share
                         </a>
                         
@@ -426,7 +529,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/git-github練習心得/" data-id="ck0sxr7yg001aynuwogjxw9d9" class="article-share-link">
+                        <a data-url="tsuifei.github.io/git-github練習心得/" data-id="ck0u4i8we001l7duwvo052m5c" class="article-share-link">
                             Share
                         </a>
                         
@@ -509,7 +612,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="ck0sxr7yb000uynuwbs81pczr" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="ck0u4i8w3000q7duwdcxjg8km" class="article-share-link">
                             Share
                         </a>
                         
@@ -599,7 +702,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-What-is-an-IIFE-in-JavaScript/" data-id="ck0sxr7y8000nynuw0ry6u4bz" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-What-is-an-IIFE-in-JavaScript/" data-id="ck0u4i8w0000i7duwtmtvle4m" class="article-share-link">
                             Share
                         </a>
                         
@@ -734,7 +837,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/在-Github-上安裝-Hexo-記錄/" data-id="ck0sxr7z5002zynuwhfj26i8i" class="article-share-link">
+                        <a data-url="tsuifei.github.io/在-Github-上安裝-Hexo-記錄/" data-id="ck0u4i8wr00367duwvkkbs8mv" class="article-share-link">
                             Share
                         </a>
                         
@@ -828,7 +931,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-ES6-箭頭函式-Arrow-function/" data-id="ck0sxr7xz000aynuwlojt4op1" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-ES6-箭頭函式-Arrow-function/" data-id="ck0u4i8vu000a7duwes8edq2d" class="article-share-link">
                             Share
                         </a>
                         
@@ -909,7 +1012,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="ck0sxr7yf0015ynuwjzsn0poj" class="article-share-link">
+                        <a data-url="tsuifei.github.io/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="ck0u4i8wd001j7duws3478mj5" class="article-share-link">
                             Share
                         </a>
                         
@@ -971,23 +1074,23 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="../../JS-What-can-the-array-do/">陣列可以做什麼、裝什麼有差嗎？</a>
+            <a href="../../JS_create-and-declare-arrays/">創建與宣告陣列 Array</a>
           </li>
         
           <li>
-            <a href="../../iromman-JS-Array-02/">Array 陣列是什麼</a>
+            <a href="../../JS_What-can-the-array-do/">陣列可以做什麼、裝什麼有差嗎？</a>
           </li>
         
           <li>
-            <a href="../../ironman_JS_array_01/">2019 鐵人賽 參賽緣由</a>
+            <a href="../../JS_What-is-the-array/">Array 陣列是什麼</a>
+          </li>
+        
+          <li>
+            <a href="../../JS_iron-man-foreword/">2019 鐵人賽 參賽緣由</a>
           </li>
         
           <li>
             <a href="../../Strange-JS-call-function-execution-stack/">JS 奇怪的部分:函數呼叫與執行堆</a>
-          </li>
-        
-          <li>
-            <a href="../../JS-Confirm-whether-is-Array/">JavaScript 判別是否為陣列 Array 的方法</a>
           </li>
         
       </ul>
