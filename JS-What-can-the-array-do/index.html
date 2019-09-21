@@ -21,18 +21,18 @@ ga('send', 'pageview');
   
   <title>陣列可以做什麼、裝什麼有差嗎？ | Cré-Coder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="What can the array do?陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。 或許是陣列排序的特性，有如電腦中記憶體的一維陣列結構，而索引就像是記憶體的位址是連續的，因此編譯器通常可以針對陣列操作進行最佳化處理。代表順序的索引(index)會有其對應的值(元素)，利用這種特性，我們可以輕">
+  <meta name="description" content="Que peut faire avec un Array ?陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。 或許是陣列排序的特性，有如電腦中記憶體的一維陣列結構，而索引就像是記憶體的位址是連續的，因此編譯器通常可以針對陣列操作進行最佳化處理。代表順序的索引(index)會有其對應的值(元素)，利用這種">
 <meta name="keywords" content="JavaScript,鐵人賽,JS_Array">
 <meta property="og:type" content="article">
 <meta property="og:title" content="陣列可以做什麼、裝什麼有差嗎？">
 <meta property="og:url" content="tsuifei.github.io/JS-What-can-the-array-do/index.html">
 <meta property="og:site_name" content="Cré-Coder">
-<meta property="og:description" content="What can the array do?陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。 或許是陣列排序的特性，有如電腦中記憶體的一維陣列結構，而索引就像是記憶體的位址是連續的，因此編譯器通常可以針對陣列操作進行最佳化處理。代表順序的索引(index)會有其對應的值(元素)，利用這種特性，我們可以輕">
+<meta property="og:description" content="Que peut faire avec un Array ?陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。 或許是陣列排序的特性，有如電腦中記憶體的一維陣列結構，而索引就像是記憶體的位址是連續的，因此編譯器通常可以針對陣列操作進行最佳化處理。代表順序的索引(index)會有其對應的值(元素)，利用這種">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2019-09-21T02:27:12.284Z">
+<meta property="og:updated_time" content="2019-09-21T02:30:08.044Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="陣列可以做什麼、裝什麼有差嗎？">
-<meta name="twitter:description" content="What can the array do?陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。 或許是陣列排序的特性，有如電腦中記憶體的一維陣列結構，而索引就像是記憶體的位址是連續的，因此編譯器通常可以針對陣列操作進行最佳化處理。代表順序的索引(index)會有其對應的值(元素)，利用這種特性，我們可以輕">
+<meta name="twitter:description" content="Que peut faire avec un Array ?陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。 或許是陣列排序的特性，有如電腦中記憶體的一維陣列結構，而索引就像是記憶體的位址是連續的，因此編譯器通常可以針對陣列操作進行最佳化處理。代表順序的索引(index)會有其對應的值(元素)，利用這種">
   
   <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
   
@@ -137,7 +137,7 @@ ga('send', 'pageview');
 
                     <div class="article-entry" itemprop="articleBody">
                         
-                                            <!-- <h2 id="What-can-the-array-do"><a href="#What-can-the-array-do" class="headerlink" title="What can the array do?"></a>What can the array do?</h2><p>陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。</p>
+                                            <!-- <h2 id="Que-peut-faire-avec-un-Array"><a href="#Que-peut-faire-avec-un-Array" class="headerlink" title="Que peut faire avec un Array ?"></a>Que peut faire avec un Array ?</h2><p>陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。</p>
 <p>或許是陣列排序的特性，有如電腦中記憶體的一維陣列結構，而索引就像是記憶體的位址是連續的，因此編譯器通常可以針對陣列操作進行最佳化處理。代表順序的索引(index)會有其對應的值(元素)，利用這種特性，我們可以輕易的找到某個指定的索引，再來對值做處理。且在一個陣列裡，我們可以放大量的資料，所以當我們要對這一大串的資料做處理，就可以以「批次」的方式，快速地進行處理。</p>
 <h3 id="陣列如何處理一大筆資料？"><a href="#陣列如何處理一大筆資料？" class="headerlink" title="陣列如何處理一大筆資料？"></a>陣列如何處理一大筆資料？</h3><p>昨天我們有稍微的提到，在陣列裡我們可以塞下許多不同類型的資料，雖然一般而言，我們會建議陣列裡放的資料最好具有相同資料型別，要對裡面的元素處理也比較單純，但就像我們買了一個承重量只有500g的紙袋，也會遇到ㄧ定要撐到爆的時候，有些時候我們也會在陣列裡放下許多類型的資料 <del>（什麼心態啊～）</del>。但為了批次處理，還是盡量讓陣列裡的資料結構的元素同型別吧，不然得要經過層層的預處理，反而失去陣列可以批次處理的方便特性。</p>
 <p>為什麼在陣列裡的元素，具有相同資料型別很重要，來看看 Javascript 會怎麼處理這些不同型別的資料就知道。比如說，一個陣列裡，元素皆是數字(Number)，如何把這個陣列裡的數字相加得到總和？只要一個 for 迴圈就可輕易辦到，但如果其中一個陣列元素，長得和其他人不一樣，那麼會有什麼結果呢？</p>
@@ -180,7 +180,7 @@ ga('send', 'pageview');
 
                                                     
                                                         
-                                                            <h2 id="What-can-the-array-do"><a href="#What-can-the-array-do" class="headerlink" title="What can the array do?"></a>What can the array do?</h2><p>陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。</p>
+                                                            <h2 id="Que-peut-faire-avec-un-Array"><a href="#Que-peut-faire-avec-un-Array" class="headerlink" title="Que peut faire avec un Array ?"></a>Que peut faire avec un Array ?</h2><p>陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。</p>
 <p>或許是陣列排序的特性，有如電腦中記憶體的一維陣列結構，而索引就像是記憶體的位址是連續的，因此編譯器通常可以針對陣列操作進行最佳化處理。代表順序的索引(index)會有其對應的值(元素)，利用這種特性，我們可以輕易的找到某個指定的索引，再來對值做處理。且在一個陣列裡，我們可以放大量的資料，所以當我們要對這一大串的資料做處理，就可以以「批次」的方式，快速地進行處理。</p>
 <h3 id="陣列如何處理一大筆資料？"><a href="#陣列如何處理一大筆資料？" class="headerlink" title="陣列如何處理一大筆資料？"></a>陣列如何處理一大筆資料？</h3><p>昨天我們有稍微的提到，在陣列裡我們可以塞下許多不同類型的資料，雖然一般而言，我們會建議陣列裡放的資料最好具有相同資料型別，要對裡面的元素處理也比較單純，但就像我們買了一個承重量只有500g的紙袋，也會遇到ㄧ定要撐到爆的時候，有些時候我們也會在陣列裡放下許多類型的資料 <del>（什麼心態啊～）</del>。但為了批次處理，還是盡量讓陣列裡的資料結構的元素同型別吧，不然得要經過層層的預處理，反而失去陣列可以批次處理的方便特性。</p>
 <p>為什麼在陣列裡的元素，具有相同資料型別很重要，來看看 Javascript 會怎麼處理這些不同型別的資料就知道。比如說，一個陣列裡，元素皆是數字(Number)，如何把這個陣列裡的數字相加得到總和？只要一個 for 迴圈就可輕易辦到，但如果其中一個陣列元素，長得和其他人不一樣，那麼會有什麼結果呢？</p>
@@ -225,7 +225,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-What-can-the-array-do/" data-id="ck0sxp5u8000ivvuwjvc09ecb" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-What-can-the-array-do/" data-id="ck0sxr7y6000iynuw0530y6zf" class="article-share-link">
                             Share
                         </a>
                         
