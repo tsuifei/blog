@@ -111,6 +111,109 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS-What-can-the-array-do" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="JS-What-can-the-array-do/" class="article-date">
+  <time datetime="2019-09-20T20:23:12.000Z" itemprop="datePublished">2019-09-21</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="JS-What-can-the-array-do/">陣列可以做什麼、裝什麼有差嗎？</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h2 id="What-can-the-array-do"><a href="#What-can-the-array-do" class="headerlink" title="What can the array do?"></a>What can the array do?</h2><p>陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。</p>
+<p>或許是陣列排序的特性，有如電腦中記憶體的一維陣列結構，而索引就像是記憶體的位址是連續的，因此編譯器通常可以針對陣列操作進行最佳化處理。代表順序的索引(index)會有其對應的值(元素)，利用這種特性，我們可以輕易的找到某個指定的索引，再來對值做處理。且在一個陣列裡，我們可以放大量的資料，所以當我們要對這一大串的資料做處理，就可以以「批次」的方式，快速地進行處理。</p>
+<h3 id="陣列如何處理一大筆資料？"><a href="#陣列如何處理一大筆資料？" class="headerlink" title="陣列如何處理一大筆資料？"></a>陣列如何處理一大筆資料？</h3><p>昨天我們有稍微的提到，在陣列裡我們可以塞下許多不同類型的資料，雖然一般而言，我們會建議陣列裡放的資料最好具有相同資料型別，要對裡面的元素處理也比較單純，但就像我們買了一個承重量只有500g的紙袋，也會遇到ㄧ定要撐到爆的時候，有些時候我們也會在陣列裡放下許多類型的資料 <del>（什麼心態啊～）</del>。但為了批次處理，還是盡量讓陣列裡的資料結構的元素同型別吧，不然得要經過層層的預處理，反而失去陣列可以批次處理的方便特性。</p>
+<p>為什麼在陣列裡的元素，具有相同資料型別很重要，來看看 Javascript 會怎麼處理這些不同型別的資料就知道。比如說，一個陣列裡，元素皆是數字(Number)，如何把這個陣列裡的數字相加得到總和？只要一個 for 迴圈就可輕易辦到，但如果其中一個陣列元素，長得和其他人不一樣，那麼會有什麼結果呢？</p>
+<p>Javascript 弱型別語言的特性，常會給我們神奇的傑克！我們來看以下的這些例子，以 for 迴圈來相加陣列裡面的數字，看看如果在陣列裡夾雜了其他型別的元素，會有什麼結果：</p>
+<h3 id="都是數字，加的很高興"><a href="#都是數字，加的很高興" class="headerlink" title="都是數字，加的很高興"></a>都是數字，加的很高興</h3><p>第一個是正常的陣列，裡面的元素皆是數字(number)。<br>相加陣列裡的數字，總和是 6。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="陣列裡有「偽數字」的字串"><a href="#陣列裡有「偽數字」的字串" class="headerlink" title="陣列裡有「偽數字」的字串"></a>陣列裡有「偽數字」的字串</h3><p>陣列裡夾著一個「偽數字」的字串，會是 33 ，因為加到這個字串的時候加法就失效了，只好把字串 3 硬加上去站隔壁，就成了 33 了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="number">1</span>,<span class="number">2</span>,<span class="string">"3"</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 33</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="陣列裡有「偽數字」的字串放前面"><a href="#陣列裡有「偽數字」的字串放前面" class="headerlink" title="陣列裡有「偽數字」的字串放前面"></a>陣列裡有「偽數字」的字串放前面</h3><p>但是如果把「偽數字」的字串放在陣列的第一個，JavaScript 會把其他的數字也當成是字串處理，結果就是把原本 sum 初始化的 0 繼續和其他數字(已變成字串) 堆疊排排站。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b =[<span class="string">"1"</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; b.length; i++) &#123;</span><br><span class="line">  sum = sum + b[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 0123</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="其他的運算子才不吃這套"><a href="#其他的運算子才不吃這套" class="headerlink" title="其他的運算子才不吃這套"></a>其他的運算子才不吃這套</h3><p>把其他數字自動轉換成字串的狀況，只會出現在 + 的運算子上 <del>（好偏心）</del>，如果是減、乘、除呢？答案是 JavaScript 會自動把字串轉成數字，「偽數字」的字串依放在陣列的位置不同，而有不同的結果，這點還蠻讓人驚訝的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="string">"1"</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum * a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="陣列裡參雜字串，叫它如何是好？"><a href="#陣列裡參雜字串，叫它如何是好？" class="headerlink" title="陣列裡參雜字串，叫它如何是好？"></a>陣列裡參雜字串，叫它如何是好？</h3><p>JavaScript 會先相加前面的數字，加到字串時發現無法加了，也無法轉數字，就只好用停在那裡，請字串站旁邊。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="string">"Hi"</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 3Hi</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="可以來點更扯的放陣列"><a href="#可以來點更扯的放陣列" class="headerlink" title="可以來點更扯的放陣列"></a>可以來點更扯的放陣列</h3><p>這一定是個失誤，會把另一個陣列放進去累加，然而 JavaScript 很不領情的只接受第一個元素，其他的就放生了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 31,2,3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="未被定義的壞了一鍋粥"><a href="#未被定義的壞了一鍋粥" class="headerlink" title="未被定義的壞了一鍋粥"></a>未被定義的壞了一鍋粥</h3><p>在陣列裡放了個 undefined，就什麼也不用加了，直接告訴我們，你不是數字。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="number">1</span>,<span class="number">2</span>,<span class="literal">undefined</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="雖然是空，但還有剩"><a href="#雖然是空，但還有剩" class="headerlink" title="雖然是空，但還有剩"></a>雖然是空，但還有剩</h3><p>再來試試看空值的 null，結果是有比較正常，JavaScript 直接把 null 當成 0，而且無論是放在陣列的頭或尾，都會把 null 當成 0。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="number">1</span>,<span class="number">2</span>,<span class="literal">null</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="布林值原來也可以拿來算數"><a href="#布林值原來也可以拿來算數" class="headerlink" title="布林值原來也可以拿來算數"></a>布林值原來也可以拿來算數</h3><p>因為對 JavaScript 而言，false 的另一個含義是 0，而 true 則代表 1，也因此 1+2+1=4 。當然如果是 false 總和就會是 3。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="number">1</span>,<span class="number">2</span>,<span class="literal">true</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 4 true=1</span></span><br></pre></td></tr></table></figure>
+
+<p>以上做了那麼多的測試，只是想告訴大家如果陣列的型別不一，處理起來有多麼多的彩蛋，尤其是 JavaScript 弱型別的特色，即使型別不同拿來運算，也不會報錯，實在是蠻可怕的，所以趁此機會了解一下 Javascript 的古怪，也是挺好的，不是嗎？</p>
+<p>況且今天測試的也只是資料型別 Primitive 原始型別裡的 Number 而已，等到我們遇到了複合型(composite)或參考型(reference)的資料類型，就要要開始燒腦了。恰巧 JavaScript 的 Array 陣列就是燒腦的型別，但 Array 也是用來存取大量數據的好工具，所以還是很值得好好學習的。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h2 id="What-can-the-array-do"><a href="#What-can-the-array-do" class="headerlink" title="What can the array do?"></a>What can the array do?</h2><p>陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。</p>
+<p>或許是陣列排序的特性，有如電腦中記憶體的一維陣列結構，而索引就像是記憶體的位址是連續的，因此編譯器通常可以針對陣列操作進行最佳化處理。代表順序的索引(index)會有其對應的值(元素)，利用這種特性，我們可以輕易的找到某個指定的索引，再來對值做處理。且在一個陣列裡，我們可以放大量的資料，所以當我們要對這一大串的資料做處理，就可以以「批次」的方式，快速地進行處理。</p>
+<h3 id="陣列如何處理一大筆資料？"><a href="#陣列如何處理一大筆資料？" class="headerlink" title="陣列如何處理一大筆資料？"></a>陣列如何處理一大筆資料？</h3><p>昨天我們有稍微的提到，在陣列裡我們可以塞下許多不同類型的資料，雖然一般而言，我們會建議陣列裡放的資料最好具有相同資料型別，要對裡面的元素處理也比較單純，但就像我們買了一個承重量只有500g的紙袋，也會遇到ㄧ定要撐到爆的時候，有些時候我們也會在陣列裡放下許多類型的資料 <del>（什麼心態啊～）</del>。但為了批次處理，還是盡量讓陣列裡的資料結構的元素同型別吧，不然得要經過層層的預處理，反而失去陣列可以批次處理的方便特性。</p>
+<p>為什麼在陣列裡的元素，具有相同資料型別很重要，來看看 Javascript 會怎麼處理這些不同型別的資料就知道。比如說，一個陣列裡，元素皆是數字(Number)，如何把這個陣列裡的數字相加得到總和？只要一個 for 迴圈就可輕易辦到，但如果其中一個陣列元素，長得和其他人不一樣，那麼會有什麼結果呢？</p>
+<p>Javascript 弱型別語言的特性，常會給我們神奇的傑克！我們來看以下的這些例子，以 for 迴圈來相加陣列裡面的數字，看看如果在陣列裡夾雜了其他型別的元素，會有什麼結果：</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="JS-What-can-the-array-do/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS-What-can-the-array-do/" data-id="ck0sxp5u8000ivvuwjvc09ecb" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/鐵人賽/">鐵人賽</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-iromman-JS-Array-02" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="iromman-JS-Array-02/" class="article-date">
@@ -191,7 +294,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/iromman-JS-Array-02/" data-id="ck0omxn1u001c66uwz5tiz3ue" class="article-share-link">
+                        <a data-url="tsuifei.github.io/iromman-JS-Array-02/" data-id="ck0sxp5uj001dvvuw60so57mi" class="article-share-link">
                             Share
                         </a>
                         
@@ -265,7 +368,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/ironman_JS_array_01/" data-id="ck0omxn1w001f66uwunw6ue2t" class="article-share-link">
+                        <a data-url="tsuifei.github.io/ironman_JS_array_01/" data-id="ck0sxp5uk001ivvuwldl0usck" class="article-share-link">
                             Share
                         </a>
                         
@@ -353,7 +456,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/Strange-JS-call-function-execution-stack/" data-id="ck0omxn1r000z66uwiahyt1ky" class="article-share-link">
+                        <a data-url="tsuifei.github.io/Strange-JS-call-function-execution-stack/" data-id="ck0sxp5uf0012vvuwqw6sis6b" class="article-share-link">
                             Share
                         </a>
                         
@@ -442,7 +545,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-Confirm-whether-is-Array/" data-id="ck0omxn1c000866uwryc5x9sb" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-Confirm-whether-is-Array/" data-id="ck0sxp5tz0004vvuwspqsub21" class="article-share-link">
                             Share
                         </a>
                         
@@ -521,7 +624,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-Array-Slice/" data-id="ck0omxn19000466uwion0t9li" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-Array-Slice/" data-id="ck0sxp5u20008vvuwokqcrcvv" class="article-share-link">
                             Share
                         </a>
                         
@@ -592,7 +695,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-JS101-Exercise/" data-id="ck0omxn1g000c66uw5ohcd4g0" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-JS101-Exercise/" data-id="ck0sxp5u5000cvvuwke9r53lo" class="article-share-link">
                             Share
                         </a>
                         
@@ -725,7 +828,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/SASS-deployment-environment-and-fundamental/" data-id="ck0omxn27002r66uwud8wp8aw" class="article-share-link">
+                        <a data-url="tsuifei.github.io/SASS-deployment-environment-and-fundamental/" data-id="ck0sxp5v5002xvvuw2i34oqbw" class="article-share-link">
                             Share
                         </a>
                         
@@ -811,7 +914,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-Return-in-the-loop/" data-id="ck0omxn1j000g66uw5xhvweli" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-Return-in-the-loop/" data-id="ck0sxp5u7000gvvuwsms6nxan" class="article-share-link">
                             Share
                         </a>
                         
@@ -914,99 +1017,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-ternary-conditional-operator-and-Comparison-operator/" data-id="ck0omxn1n000n66uwv6nopvuy" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
-    <article id="post-JS-複製By-reference與By-value的不同" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="JS-複製By-reference與By-value的不同/" class="article-date">
-  <time datetime="2019-07-10T01:07:30.000Z" itemprop="datePublished">2019-07-10</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="JS-複製By-reference與By-value的不同/">JS 複製 By reference 與 By value 的不同</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>在實作時常會聽到 call by reference 還是 call by value，這兩個有什麼不同？最簡易的解釋方法是：<br>call by reference : 呼叫變數的記憶體位置<br>call by value : 呼叫變數的值</p>
-<p>事實上除了這兩種，還有一種叫 call by Sharing，在傳遞參數時會用到，之後再來介紹。</p>
-<h3 id="Object-物件-Object-Array"><a href="#Object-物件-Object-Array" class="headerlink" title="Object(物件): Object, Array"></a>Object(物件): Object, Array</h3><p>Objet 和 Array 在 Javascript 屬於複合型(composite)或參考型(reference)的原始資料類型，<br>在呼叫、複製或傳參數的時候，是參考記憶體的位置而不是值，這點要特別注意。</p>
-<h3 id="複製資料的時候"><a href="#複製資料的時候" class="headerlink" title="複製資料的時候"></a>複製資料的時候</h3><p>複製資料的時候 是用 By valur 或是 By reference 呢？</p>
-<h4 id="By-valur"><a href="#By-valur" class="headerlink" title="By valur"></a>By valur</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"something"</span>;</span><br><span class="line"><span class="keyword">var</span> b = a; <span class="comment">// 這時 b 應該是 something</span></span><br><span class="line">b = <span class="string">"somebody"</span>; <span class="comment">// 再次將其他值賦予給 b </span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// something</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// somebody</span></span><br></pre></td></tr></table></figure>
-
-<p>a 和 b 如期的印出我們賦予的值。我們可成功無誤的修改 b 的值。</p>
-<p>Primitive type(基本型別)：Number, String, Boolean, Null, Undefined</p>
-<h4 id="By-reference-參考值"><a href="#By-reference-參考值" class="headerlink" title="By reference(參考值)"></a>By reference(參考值)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Tracy"</span>,</span><br><span class="line">    city: <span class="string">"Tainan"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person2 = person; </span><br><span class="line">person2.name = <span class="string">"Philippe"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// name: "Philippe"</span></span><br><span class="line"><span class="built_in">console</span>.log(person2); <span class="comment">// name: "Philippe"</span></span><br></pre></td></tr></table></figure>
-
-<p>上面的範例在修改 person2 這個 object 裡的name屬性時，也會同時改到原來參考的person的name屬性，是不是很恐怖？</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 陣列</span></span><br><span class="line"><span class="keyword">var</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = arr1;</span><br><span class="line">arr2[<span class="number">3</span>] = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">// [1, 2, 3, 4]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr2); <span class="comment">// [1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
-
-<p>因為 Array 也是參考型(reference)的原始資料類型所以也會像 Object 一樣，在修改時也會更改到原始參考值 by reference。</p>
-<p>如何複製一個物件而不要更動到參考值？以下是方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Jacques"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="方法一-使用-assign：先給一個空-來裝複製過來的物件"><a href="#方法一-使用-assign：先給一個空-來裝複製過來的物件" class="headerlink" title="方法一 使用 assign：先給一個空{} 來裝複製過來的物件"></a>方法一 使用 assign：先給一個空{} 來裝複製過來的物件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person2 = <span class="built_in">Object</span>.saaign(&#123;&#125;, person);</span><br></pre></td></tr></table></figure>
-
-<h3 id="方法二-使用JSON文字化"><a href="#方法二-使用JSON文字化" class="headerlink" title="方法二 使用JSON文字化"></a>方法二 使用JSON文字化</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person2 = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(person)); </span><br><span class="line"><span class="comment">// 這時兩筆資料已無關連</span></span><br><span class="line">person2.name = <span class="string">"Gisèle"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// &#123;name:"Jacques"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(person2); <span class="comment">// &#123;name:"Gisèle"&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>JSON.stringify(); 是文字化、JSON.parse(); 是解析文字，兩函式處理下來等於複製了一份 person 到 person2</p>
-<h3 id="使用-Object-assign-處理-object-的缺點"><a href="#使用-Object-assign-處理-object-的缺點" class="headerlink" title="使用 Object.assign()處理 object 的缺點"></a>使用 Object.assign()處理 object 的缺點</h3><p>如果遇上多層結構的 Object，就無法使用 assign()來處理，因為它只能處理一層的結構而無法處理兩層，也就是說這種方法只能用在 Array 上。在第二層裡的原始資料仍然會被更動到。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Ayda"</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        id: <span class="number">24</span>,</span><br><span class="line">        city: <span class="string">"Paris"</span>,</span><br><span class="line">        job: <span class="string">"artist"</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person2 = <span class="built_in">Object</span>.assign(&#123;&#125;, person);</span><br><span class="line">person2.data.id = <span class="number">42</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// 42</span></span><br><span class="line"><span class="built_in">console</span>.log(person2); <span class="comment">// 42</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 改成用第二種方法</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person3 = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(person));</span><br><span class="line">person3.data.id = <span class="number">66</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// 42,原本 24 被Object.assign()改成 42</span></span><br><span class="line"><span class="built_in">console</span>.log(person3); <span class="comment">// 66</span></span><br></pre></td></tr></table></figure>
-
-<p>function 也是一種特殊的 Object 資料型別。<br>參考：<a href="https://hackmd.io/m0alSWZBQ4aKROtyQVeejw?view" target="_blank" rel="noopener">小龜前輩：參數傳遞方式</a></p>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <p>在實作時常會聽到 call by reference 還是 call by value，這兩個有什麼不同？最簡易的解釋方法是：<br>call by reference : 呼叫變數的記憶體位置<br>call by value : 呼叫變數的值</p>
-<p>事實上除了這兩種，還有一種叫 call by Sharing，在傳遞參數時會用到，之後再來介紹。</p>
-<h3 id="Object-物件-Object-Array"><a href="#Object-物件-Object-Array" class="headerlink" title="Object(物件): Object, Array"></a>Object(物件): Object, Array</h3><p>Objet 和 Array 在 Javascript 屬於複合型(composite)或參考型(reference)的原始資料類型，<br>在呼叫、複製或傳參數的時候，是參考記憶體的位置而不是值，這點要特別注意。</p>
-<h3 id="複製資料的時候"><a href="#複製資料的時候" class="headerlink" title="複製資料的時候"></a>複製資料的時候</h3><p>複製資料的時候 是用 By valur 或是 By reference 呢？</p>
-<h4 id="By-valur"><a href="#By-valur" class="headerlink" title="By valur"></a>By valur</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"something"</span>;</span><br><span class="line"><span class="keyword">var</span> b = a; <span class="comment">// 這時 b 應該是 something</span></span><br><span class="line">b = <span class="string">"somebody"</span>; <span class="comment">// 再次將其他值賦予給 b </span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// something</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// somebody</span></span><br></pre></td></tr></table></figure>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="JS-複製By-reference與By-value的不同/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-複製By-reference與By-value的不同/" data-id="ck0omxn1q000w66uwd5d2wfai" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-ternary-conditional-operator-and-Comparison-operator/" data-id="ck0sxp5ub000pvvuwdv6yf4es" class="article-share-link">
                             Share
                         </a>
                         
@@ -1068,6 +1079,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="JS-What-can-the-array-do/">陣列可以做什麼、裝什麼有差嗎？</a>
+          </li>
+        
+          <li>
             <a href="iromman-JS-Array-02/">Array 陣列是什麼</a>
           </li>
         
@@ -1083,10 +1098,6 @@ ga('send', 'pageview');
             <a href="JS-Confirm-whether-is-Array/">JavaScript 判別是否為陣列 Array 的方法</a>
           </li>
         
-          <li>
-            <a href="JS-Array-Slice/">JS Array Slice</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1096,7 +1107,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="tags/ES6/" style="font-size: 10px;">ES6</a> <a href="tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="tags/Git/" style="font-size: 15px;">Git</a> <a href="tags/GitHub/" style="font-size: 15px;">GitHub</a> <a href="tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="tags/IDE/" style="font-size: 10px;">IDE</a> <a href="tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="tags/JS101/" style="font-size: 10px;">JS101</a> <a href="tags/JS-Array/" style="font-size: 15px;">JS_Array</a> <a href="tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="tags/Js-Array/" style="font-size: 10px;">Js_Array</a> <a href="tags/Note/" style="font-size: 10px;">Note</a> <a href="tags/Other/" style="font-size: 10px;">Other</a> <a href="tags/SASS/" style="font-size: 10px;">SASS</a> <a href="tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="tags/鐵人賽/" style="font-size: 15px;">鐵人賽</a>
+      <a href="tags/ES6/" style="font-size: 10px;">ES6</a> <a href="tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="tags/Git/" style="font-size: 13.33px;">Git</a> <a href="tags/GitHub/" style="font-size: 13.33px;">GitHub</a> <a href="tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="tags/IDE/" style="font-size: 10px;">IDE</a> <a href="tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="tags/JS101/" style="font-size: 10px;">JS101</a> <a href="tags/JS-Array/" style="font-size: 16.67px;">JS_Array</a> <a href="tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="tags/Js-Array/" style="font-size: 10px;">Js_Array</a> <a href="tags/Note/" style="font-size: 10px;">Note</a> <a href="tags/Other/" style="font-size: 10px;">Other</a> <a href="tags/SASS/" style="font-size: 10px;">SASS</a> <a href="tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="tags/鐵人賽/" style="font-size: 16.67px;">鐵人賽</a>
     </div>
   </div>
 

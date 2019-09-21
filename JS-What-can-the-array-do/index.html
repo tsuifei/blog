@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>陣列可以做什麼、裝什麼有差嗎？ | Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="What can the array do?陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。 或許是陣列排序的特性，有如電腦中記憶體的一維陣列結構，而索引就像是記憶體的位址是連續的，因此編譯器通常可以針對陣列操作進行最佳化處理。代表順序的索引(index)會有其對應的值(元素)，利用這種特性，我們可以輕">
+<meta name="keywords" content="JavaScript,鐵人賽,JS_Array">
+<meta property="og:type" content="article">
+<meta property="og:title" content="陣列可以做什麼、裝什麼有差嗎？">
+<meta property="og:url" content="tsuifei.github.io/JS-What-can-the-array-do/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="What can the array do?陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。 或許是陣列排序的特性，有如電腦中記憶體的一維陣列結構，而索引就像是記憶體的位址是連續的，因此編譯器通常可以針對陣列操作進行最佳化處理。代表順序的索引(index)會有其對應的值(元素)，利用這種特性，我們可以輕">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-09-21T02:27:12.284Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="陣列可以做什麼、裝什麼有差嗎？">
+<meta name="twitter:description" content="What can the array do?陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。 或許是陣列排序的特性，有如電腦中記憶體的一維陣列結構，而索引就像是記憶體的位址是連續的，因此編譯器通常可以針對陣列操作進行最佳化處理。代表順序的索引(index)會有其對應的值(元素)，利用這種特性，我們可以輕">
+  
+  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../react">React</a>
+        
+        <a class="main-nav-link" href="../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../life">Life</a>
+        
+        <a class="main-nav-link" href="../other">Other</a>
+        
+        <a class="main-nav-link" href="../html">HTML</a>
+        
+        <a class="main-nav-link" href="../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../linux">Linux</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS-What-can-the-array-do" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="" class="article-date">
+  <time datetime="2019-09-20T20:23:12.000Z" itemprop="datePublished">2019-09-21</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 class="article-title" itemprop="name">
+      陣列可以做什麼、裝什麼有差嗎？
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h2 id="What-can-the-array-do"><a href="#What-can-the-array-do" class="headerlink" title="What can the array do?"></a>What can the array do?</h2><p>陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。</p>
+<p>或許是陣列排序的特性，有如電腦中記憶體的一維陣列結構，而索引就像是記憶體的位址是連續的，因此編譯器通常可以針對陣列操作進行最佳化處理。代表順序的索引(index)會有其對應的值(元素)，利用這種特性，我們可以輕易的找到某個指定的索引，再來對值做處理。且在一個陣列裡，我們可以放大量的資料，所以當我們要對這一大串的資料做處理，就可以以「批次」的方式，快速地進行處理。</p>
+<h3 id="陣列如何處理一大筆資料？"><a href="#陣列如何處理一大筆資料？" class="headerlink" title="陣列如何處理一大筆資料？"></a>陣列如何處理一大筆資料？</h3><p>昨天我們有稍微的提到，在陣列裡我們可以塞下許多不同類型的資料，雖然一般而言，我們會建議陣列裡放的資料最好具有相同資料型別，要對裡面的元素處理也比較單純，但就像我們買了一個承重量只有500g的紙袋，也會遇到ㄧ定要撐到爆的時候，有些時候我們也會在陣列裡放下許多類型的資料 <del>（什麼心態啊～）</del>。但為了批次處理，還是盡量讓陣列裡的資料結構的元素同型別吧，不然得要經過層層的預處理，反而失去陣列可以批次處理的方便特性。</p>
+<p>為什麼在陣列裡的元素，具有相同資料型別很重要，來看看 Javascript 會怎麼處理這些不同型別的資料就知道。比如說，一個陣列裡，元素皆是數字(Number)，如何把這個陣列裡的數字相加得到總和？只要一個 for 迴圈就可輕易辦到，但如果其中一個陣列元素，長得和其他人不一樣，那麼會有什麼結果呢？</p>
+<p>Javascript 弱型別語言的特性，常會給我們神奇的傑克！我們來看以下的這些例子，以 for 迴圈來相加陣列裡面的數字，看看如果在陣列裡夾雜了其他型別的元素，會有什麼結果：</p>
+<h3 id="都是數字，加的很高興"><a href="#都是數字，加的很高興" class="headerlink" title="都是數字，加的很高興"></a>都是數字，加的很高興</h3><p>第一個是正常的陣列，裡面的元素皆是數字(number)。<br>相加陣列裡的數字，總和是 6。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="陣列裡有「偽數字」的字串"><a href="#陣列裡有「偽數字」的字串" class="headerlink" title="陣列裡有「偽數字」的字串"></a>陣列裡有「偽數字」的字串</h3><p>陣列裡夾著一個「偽數字」的字串，會是 33 ，因為加到這個字串的時候加法就失效了，只好把字串 3 硬加上去站隔壁，就成了 33 了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="number">1</span>,<span class="number">2</span>,<span class="string">"3"</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 33</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="陣列裡有「偽數字」的字串放前面"><a href="#陣列裡有「偽數字」的字串放前面" class="headerlink" title="陣列裡有「偽數字」的字串放前面"></a>陣列裡有「偽數字」的字串放前面</h3><p>但是如果把「偽數字」的字串放在陣列的第一個，JavaScript 會把其他的數字也當成是字串處理，結果就是把原本 sum 初始化的 0 繼續和其他數字(已變成字串) 堆疊排排站。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b =[<span class="string">"1"</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; b.length; i++) &#123;</span><br><span class="line">  sum = sum + b[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 0123</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="其他的運算子才不吃這套"><a href="#其他的運算子才不吃這套" class="headerlink" title="其他的運算子才不吃這套"></a>其他的運算子才不吃這套</h3><p>把其他數字自動轉換成字串的狀況，只會出現在 + 的運算子上 <del>（好偏心）</del>，如果是減、乘、除呢？答案是 JavaScript 會自動把字串轉成數字，「偽數字」的字串依放在陣列的位置不同，而有不同的結果，這點還蠻讓人驚訝的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="string">"1"</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum * a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="陣列裡參雜字串，叫它如何是好？"><a href="#陣列裡參雜字串，叫它如何是好？" class="headerlink" title="陣列裡參雜字串，叫它如何是好？"></a>陣列裡參雜字串，叫它如何是好？</h3><p>JavaScript 會先相加前面的數字，加到字串時發現無法加了，也無法轉數字，就只好用停在那裡，請字串站旁邊。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="string">"Hi"</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 3Hi</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="可以來點更扯的放陣列"><a href="#可以來點更扯的放陣列" class="headerlink" title="可以來點更扯的放陣列"></a>可以來點更扯的放陣列</h3><p>這一定是個失誤，會把另一個陣列放進去累加，然而 JavaScript 很不領情的只接受第一個元素，其他的就放生了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 31,2,3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="未被定義的壞了一鍋粥"><a href="#未被定義的壞了一鍋粥" class="headerlink" title="未被定義的壞了一鍋粥"></a>未被定義的壞了一鍋粥</h3><p>在陣列裡放了個 undefined，就什麼也不用加了，直接告訴我們，你不是數字。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="number">1</span>,<span class="number">2</span>,<span class="literal">undefined</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="雖然是空，但還有剩"><a href="#雖然是空，但還有剩" class="headerlink" title="雖然是空，但還有剩"></a>雖然是空，但還有剩</h3><p>再來試試看空值的 null，結果是有比較正常，JavaScript 直接把 null 當成 0，而且無論是放在陣列的頭或尾，都會把 null 當成 0。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="number">1</span>,<span class="number">2</span>,<span class="literal">null</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="布林值原來也可以拿來算數"><a href="#布林值原來也可以拿來算數" class="headerlink" title="布林值原來也可以拿來算數"></a>布林值原來也可以拿來算數</h3><p>因為對 JavaScript 而言，false 的另一個含義是 0，而 true 則代表 1，也因此 1+2+1=4 。當然如果是 false 總和就會是 3。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="number">1</span>,<span class="number">2</span>,<span class="literal">true</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 4 true=1</span></span><br></pre></td></tr></table></figure>
+
+<p>以上做了那麼多的測試，只是想告訴大家如果陣列的型別不一，處理起來有多麼多的彩蛋，尤其是 JavaScript 弱型別的特色，即使型別不同拿來運算，也不會報錯，實在是蠻可怕的，所以趁此機會了解一下 Javascript 的古怪，也是挺好的，不是嗎？</p>
+<p>況且今天測試的也只是資料型別 Primitive 原始型別裡的 Number 而已，等到我們遇到了複合型(composite)或參考型(reference)的資料類型，就要要開始燒腦了。恰巧 JavaScript 的 Array 陣列就是燒腦的型別，但 Array 也是用來存取大量數據的好工具，所以還是很值得好好學習的。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                            <h2 id="What-can-the-array-do"><a href="#What-can-the-array-do" class="headerlink" title="What can the array do?"></a>What can the array do?</h2><p>陣列是最早期和重要的資料結構之一，有許多程式都會用到陣列。我們也會拿陣列來實作許多其他的資料結構，像是列表（list）以及字串（string）。</p>
+<p>或許是陣列排序的特性，有如電腦中記憶體的一維陣列結構，而索引就像是記憶體的位址是連續的，因此編譯器通常可以針對陣列操作進行最佳化處理。代表順序的索引(index)會有其對應的值(元素)，利用這種特性，我們可以輕易的找到某個指定的索引，再來對值做處理。且在一個陣列裡，我們可以放大量的資料，所以當我們要對這一大串的資料做處理，就可以以「批次」的方式，快速地進行處理。</p>
+<h3 id="陣列如何處理一大筆資料？"><a href="#陣列如何處理一大筆資料？" class="headerlink" title="陣列如何處理一大筆資料？"></a>陣列如何處理一大筆資料？</h3><p>昨天我們有稍微的提到，在陣列裡我們可以塞下許多不同類型的資料，雖然一般而言，我們會建議陣列裡放的資料最好具有相同資料型別，要對裡面的元素處理也比較單純，但就像我們買了一個承重量只有500g的紙袋，也會遇到ㄧ定要撐到爆的時候，有些時候我們也會在陣列裡放下許多類型的資料 <del>（什麼心態啊～）</del>。但為了批次處理，還是盡量讓陣列裡的資料結構的元素同型別吧，不然得要經過層層的預處理，反而失去陣列可以批次處理的方便特性。</p>
+<p>為什麼在陣列裡的元素，具有相同資料型別很重要，來看看 Javascript 會怎麼處理這些不同型別的資料就知道。比如說，一個陣列裡，元素皆是數字(Number)，如何把這個陣列裡的數字相加得到總和？只要一個 for 迴圈就可輕易辦到，但如果其中一個陣列元素，長得和其他人不一樣，那麼會有什麼結果呢？</p>
+<p>Javascript 弱型別語言的特性，常會給我們神奇的傑克！我們來看以下的這些例子，以 for 迴圈來相加陣列裡面的數字，看看如果在陣列裡夾雜了其他型別的元素，會有什麼結果：</p>
+<h3 id="都是數字，加的很高興"><a href="#都是數字，加的很高興" class="headerlink" title="都是數字，加的很高興"></a>都是數字，加的很高興</h3><p>第一個是正常的陣列，裡面的元素皆是數字(number)。<br>相加陣列裡的數字，總和是 6。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="陣列裡有「偽數字」的字串"><a href="#陣列裡有「偽數字」的字串" class="headerlink" title="陣列裡有「偽數字」的字串"></a>陣列裡有「偽數字」的字串</h3><p>陣列裡夾著一個「偽數字」的字串，會是 33 ，因為加到這個字串的時候加法就失效了，只好把字串 3 硬加上去站隔壁，就成了 33 了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="number">1</span>,<span class="number">2</span>,<span class="string">"3"</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 33</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="陣列裡有「偽數字」的字串放前面"><a href="#陣列裡有「偽數字」的字串放前面" class="headerlink" title="陣列裡有「偽數字」的字串放前面"></a>陣列裡有「偽數字」的字串放前面</h3><p>但是如果把「偽數字」的字串放在陣列的第一個，JavaScript 會把其他的數字也當成是字串處理，結果就是把原本 sum 初始化的 0 繼續和其他數字(已變成字串) 堆疊排排站。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b =[<span class="string">"1"</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; b.length; i++) &#123;</span><br><span class="line">  sum = sum + b[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 0123</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="其他的運算子才不吃這套"><a href="#其他的運算子才不吃這套" class="headerlink" title="其他的運算子才不吃這套"></a>其他的運算子才不吃這套</h3><p>把其他數字自動轉換成字串的狀況，只會出現在 + 的運算子上 <del>（好偏心）</del>，如果是減、乘、除呢？答案是 JavaScript 會自動把字串轉成數字，「偽數字」的字串依放在陣列的位置不同，而有不同的結果，這點還蠻讓人驚訝的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="string">"1"</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum * a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="陣列裡參雜字串，叫它如何是好？"><a href="#陣列裡參雜字串，叫它如何是好？" class="headerlink" title="陣列裡參雜字串，叫它如何是好？"></a>陣列裡參雜字串，叫它如何是好？</h3><p>JavaScript 會先相加前面的數字，加到字串時發現無法加了，也無法轉數字，就只好用停在那裡，請字串站旁邊。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="string">"Hi"</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 3Hi</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="可以來點更扯的放陣列"><a href="#可以來點更扯的放陣列" class="headerlink" title="可以來點更扯的放陣列"></a>可以來點更扯的放陣列</h3><p>這一定是個失誤，會把另一個陣列放進去累加，然而 JavaScript 很不領情的只接受第一個元素，其他的就放生了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 31,2,3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="未被定義的壞了一鍋粥"><a href="#未被定義的壞了一鍋粥" class="headerlink" title="未被定義的壞了一鍋粥"></a>未被定義的壞了一鍋粥</h3><p>在陣列裡放了個 undefined，就什麼也不用加了，直接告訴我們，你不是數字。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="number">1</span>,<span class="number">2</span>,<span class="literal">undefined</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="雖然是空，但還有剩"><a href="#雖然是空，但還有剩" class="headerlink" title="雖然是空，但還有剩"></a>雖然是空，但還有剩</h3><p>再來試試看空值的 null，結果是有比較正常，JavaScript 直接把 null 當成 0，而且無論是放在陣列的頭或尾，都會把 null 當成 0。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="number">1</span>,<span class="number">2</span>,<span class="literal">null</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="布林值原來也可以拿來算數"><a href="#布林值原來也可以拿來算數" class="headerlink" title="布林值原來也可以拿來算數"></a>布林值原來也可以拿來算數</h3><p>因為對 JavaScript 而言，false 的另一個含義是 0，而 true 則代表 1，也因此 1+2+1=4 。當然如果是 false 總和就會是 3。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a =[<span class="number">1</span>,<span class="number">2</span>,<span class="literal">true</span>]</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">  sum = sum + a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log (sum); <span class="comment">// 4 true=1</span></span><br></pre></td></tr></table></figure>
+
+<p>以上做了那麼多的測試，只是想告訴大家如果陣列的型別不一，處理起來有多麼多的彩蛋，尤其是 JavaScript 弱型別的特色，即使型別不同拿來運算，也不會報錯，實在是蠻可怕的，所以趁此機會了解一下 Javascript 的古怪，也是挺好的，不是嗎？</p>
+<p>況且今天測試的也只是資料型別 Primitive 原始型別裡的 Number 而已，等到我們遇到了複合型(composite)或參考型(reference)的資料類型，就要要開始燒腦了。恰巧 JavaScript 的 Array 陣列就是燒腦的型別，但 Array 也是用來存取大量數據的好工具，所以還是很值得好好學習的。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+
+                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS-What-can-the-array-do/" data-id="ck0sxp5u8000ivvuwjvc09ecb" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/鐵人賽/">鐵人賽</a></li></ul>
+
+                    </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+  
+  
+    <a href="../iromman-JS-Array-02/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Array 陣列是什麼</div>
+    </a>
+  
+</nav>
+
+            
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
+            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Js-Array/">Js_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/鐵人賽/">鐵人賽</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">陣列可以做什麼、裝什麼有差嗎？</a>
+          </li>
+        
+          <li>
+            <a href="../iromman-JS-Array-02/">Array 陣列是什麼</a>
+          </li>
+        
+          <li>
+            <a href="../ironman_JS_array_01/">2019 鐵人賽 參賽緣由</a>
+          </li>
+        
+          <li>
+            <a href="../Strange-JS-call-function-execution-stack/">JS 奇怪的部分:函數呼叫與執行堆</a>
+          </li>
+        
+          <li>
+            <a href="../JS-Confirm-whether-is-Array/">JavaScript 判別是否為陣列 Array 的方法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 13.33px;">Git</a> <a href="../tags/GitHub/" style="font-size: 13.33px;">GitHub</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 16.67px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/Js-Array/" style="font-size: 10px;">Js_Array</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../tags/鐵人賽/" style="font-size: 16.67px;">鐵人賽</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../react" class="mobile-nav-link">React</a>
+  
+    <a href="../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../other" class="mobile-nav-link">Other</a>
+  
+    <a href="../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../linux" class="mobile-nav-link">Linux</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
+  <script src="../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
