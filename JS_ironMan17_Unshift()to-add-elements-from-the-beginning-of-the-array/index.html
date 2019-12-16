@@ -19,20 +19,25 @@ ga('send', 'pageview');
 
 
   
-  <title>JS 從陣列 Array 的開頭新增元素 unshift() | Cré-Coder</title>
+  <title>JS 從陣列 Array 的開頭新增元素的 unshift() | Cré-Coder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Day 17">
+  <meta name="description" content="Day 17 頭和腳的關係如此微妙，一個思考一個執行，但對程式的陣列來說，都只是陣列的一部分而已，很公平。  接下來我們會分兩天，聊聊從陣列的開頭（前面）新增或刪除陣列元素的方法。 unshift()和shift()這一對，說穿了和push()、pop()ㄧ樣，只是一個從陣列的前頭增加與刪除元素，另一個則是從陣列的尾端操作。 這是我們從操作面來看的不同，要再探討深一點，就必須了解這兩對寶，在記憶體">
 <meta name="keywords" content="JavaScript,JS_Array,Iron man 30 鐵人賽">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS 從陣列 Array 的開頭新增元素 unshift()">
-<meta property="og:url" content="tsuifei.github.io/JS_ironMan17_Unshift()to-add-elements-from-the-beginning-of-the-array/index.html">
+<meta property="og:title" content="JS 從陣列 Array 的開頭新增元素的 unshift()">
+<meta property="og:url" content="tsuifei.github.io/JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array/index.html">
 <meta property="og:site_name" content="Cré-Coder">
-<meta property="og:description" content="Day 17">
+<meta property="og:description" content="Day 17 頭和腳的關係如此微妙，一個思考一個執行，但對程式的陣列來說，都只是陣列的一部分而已，很公平。  接下來我們會分兩天，聊聊從陣列的開頭（前面）新增或刪除陣列元素的方法。 unshift()和shift()這一對，說穿了和push()、pop()ㄧ樣，只是一個從陣列的前頭增加與刪除元素，另一個則是從陣列的尾端操作。 這是我們從操作面來看的不同，要再探討深一點，就必須了解這兩對寶，在記憶體">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2019-12-16T18:27:54.711Z">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20191002/20104175DIqBdswLxB.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20191002/2010417512XaDyfODV.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20191002/20104175rxy2OArQNk.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20191002/20104175HbWEcAZu28.png">
+<meta property="og:updated_time" content="2019-12-16T18:38:25.807Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS 從陣列 Array 的開頭新增元素 unshift()">
-<meta name="twitter:description" content="Day 17">
+<meta name="twitter:title" content="JS 從陣列 Array 的開頭新增元素的 unshift()">
+<meta name="twitter:description" content="Day 17 頭和腳的關係如此微妙，一個思考一個執行，但對程式的陣列來說，都只是陣列的一部分而已，很公平。  接下來我們會分兩天，聊聊從陣列的開頭（前面）新增或刪除陣列元素的方法。 unshift()和shift()這一對，說穿了和push()、pop()ㄧ樣，只是一個從陣列的前頭增加與刪除元素，另一個則是從陣列的尾端操作。 這是我們從操作面來看的不同，要再探討深一點，就必須了解這兩對寶，在記憶體">
+<meta name="twitter:image" content="https://ithelp.ithome.com.tw/upload/images/20191002/20104175DIqBdswLxB.png">
   
   <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
   
@@ -110,7 +115,7 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-JS_ironMan17_Unshift()to-add-elements-from-the-beginning-of-the-array" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="" class="article-date">
   <time datetime="2019-11-16T20:21:14.000Z" itemprop="datePublished">2019-11-17</time>
@@ -128,7 +133,7 @@ ga('send', 'pageview');
                     
   
     <h1 class="article-title" itemprop="name">
-      JS 從陣列 Array 的開頭新增元素 unshift()
+      JS 從陣列 Array 的開頭新增元素的 unshift()
     </h1>
   
 
@@ -137,13 +142,85 @@ ga('send', 'pageview');
 
                     <div class="article-entry" itemprop="articleBody">
                         
-                                            <!-- <h6 id="Day-17"><a href="#Day-17" class="headerlink" title="Day 17"></a>Day 17</h6> -->
+                                            <!-- <h6 id="Day-17"><a href="#Day-17" class="headerlink" title="Day 17"></a>Day 17</h6><blockquote>
+<p>頭和腳的關係如此微妙，一個思考一個執行，但對程式的陣列來說，都只是陣列的一部分而已，很公平。</p>
+</blockquote>
+<p>接下來我們會分兩天，聊聊從陣列的開頭（前面）新增或刪除陣列元素的方法。</p>
+<p><code>unshift()</code>和<code>shift()</code>這一對，說穿了和<code>push()</code>、<code>pop()</code>ㄧ樣，只是一個從陣列的前頭增加與刪除元素，另一個則是從陣列的尾端操作。<br><img src="https://ithelp.ithome.com.tw/upload/images/20191002/20104175DIqBdswLxB.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/20104175DIqBdswLxB.png"></p>
+<p>這是我們從操作面來看的不同，要再探討深一點，就必須了解這兩對寶，在記憶體的操作方式也就是資料結構還是有很大的不同。前一篇我們有介紹到<a href="https://ithelp.ithome.com.tw/articles/10223356" target="_blank" rel="noopener">資料結構的堆疊（Stack）和佇列（Queue）</a>，從尾部增加和刪除元素的<code>push()</code>、<code>pop()</code>是以堆疊（Stack）「後進先出 LIFO」的方式記憶，而從陣列前頭的<code>unshift()</code>和<code>shift()</code>的儲存則是採用佇列(Queue)「先進先出 FIFO」的資料結構。<br>我們再來以此圖複習一下：</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191002/2010417512XaDyfODV.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/2010417512XaDyfODV.png"></p>
+<h2 id="unshift-頭上頂著好幾塊餅的非洲婦女"><a href="#unshift-頭上頂著好幾塊餅的非洲婦女" class="headerlink" title="unshift() 頭上頂著好幾塊餅的非洲婦女"></a>unshift() 頭上頂著好幾塊餅的非洲婦女</h2><p>使用<code>unshift()</code>陣列方法，可將一個或多個一組的元素，從陣列的前端加入。也因為是從開端加入元素，連帶也會變動到所有元素的索引值（index），最後被加入陣列的元素索引值，永遠都是<code>index[0]</code>，如果是以多個元素一組的方式加入，則是第一個元素的索引值是 0 。</p>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift" target="_blank" rel="noopener">Array.prototype.unshift() - JavaScript | MDN</a></p>
+<p><strong>原型：</strong> Array.prototype.unshift()<br><strong>功能：</strong> 會添加一個或多個元素至陣列的開頭，並且回傳陣列的新長度。<br><strong>改變：</strong> 原陣列會改變<br><strong>語法：</strong> <code>arr.unshift(element1[, ...[, elementN]])</code><br><strong>回傳值：</strong> 呼叫此方法之物件的新 length 屬性值。<br><strong>參數：</strong> elementN 欲添加至陣列開頭的元素。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191002/20104175rxy2OArQNk.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/20104175rxy2OArQNk.png"></p>
+<p>我們先來看一下操作方式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">arr.unshift(<span class="number">0</span>); <span class="comment">// 6</span></span><br><span class="line">arr; <span class="comment">// [0, 1, 2, 3, 4, 5]</span></span><br><span class="line"></span><br><span class="line">arr.unshift(<span class="number">-1</span>,<span class="number">0</span>); <span class="comment">// 8</span></span><br><span class="line">arr; <span class="comment">// [-1, 0, 0, 1, 2, 3, 4, 5]</span></span><br><span class="line"></span><br><span class="line">arr.unshift([<span class="string">'Hello'</span>,<span class="string">'Wow'</span>]); <span class="comment">// 9</span></span><br><span class="line">arr; <span class="comment">// [Array(2), -1, 0, 0, 1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+
+<p>當我們查閱<code>arr</code>時會，我們可以觀察到，一整個陣列被當作是一個元素加入。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191002/20104175HbWEcAZu28.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/20104175HbWEcAZu28.png"></p>
+<p>如果想要一次加入多個元素，都要以逗號做區隔，索引值也會以逗號分隔的數量來增加。</p>
+<p>需要注意的是<code>unshift()</code>會將我們所放在<code>unshift()</code>裡的引數列（argument list）<code>unshift(引數列)</code>，以「一次性的」加入陣列的前端，而不會「一個個」的多次放入陣列裡，所以需要注意放入後的順序問題。假如元素是「逐次」的放入陣列前端，那麼這些加入的元素順序就會是倒過來的。</p>
+<h2 id="unshift-是怎麼被寫出來的？"><a href="#unshift-是怎麼被寫出來的？" class="headerlink" title="unshift() 是怎麼被寫出來的？"></a>unshift() 是怎麼被寫出來的？</h2><p>前面有提到<code>unshift()</code>可以ㄧ次或多個元素一起新增至陣列中，所以比較方便的是也把這些引數放在一個陣列裡處理。<br>我們可以使用其餘參數（rest parameter）的功能，其餘參數會將一個不確定數量的參數，集合在一個陣列中。且<code>unshift()</code>的回傳值是返回處理過的陣列長度，這點只要使用陣列的屬性<code>length</code>就可拿到，接下來怎麼把引數的內容一一放到陣列前頭呢？</p>
+<p>我們先來直接看一下 code:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.unshift2 = <span class="function"><span class="keyword">function</span> (<span class="params"> ...elements </span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">let</span> i = <span class="keyword">this</span>.length + ( elements.length - <span class="number">1</span> ); i &gt;= <span class="number">0</span>; i-- ) &#123;</span><br><span class="line">    <span class="keyword">this</span>[ i ] = <span class="keyword">this</span>[ i - ( elements.length ) ];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; elements.length; i++ ) &#123;</span><br><span class="line">        <span class="keyword">this</span>[ i ] = elements[ i ];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr =[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.unshift2(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br></pre></td></tr></table></figure>
+
+<p>第一個迴圈，我們把<code>i</code>設為原陣列的長度＋引數長度-1，條件為<code>i &gt;= 0;</code>，每跑一次<code>i</code>就減 1。<br>用此方式去偵測原陣列和引數 elements 的長度，再把引數長度先空出來。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">也就是指定引數的索引值，給空出來的原陣列索引值。</span><br><span class="line">整理一下：this -&gt; let arr = [1, 2, 3];</span><br><span class="line">第一個 for(i=3+2 -&gt; 5; i &gt;= 0; i--)</span><br><span class="line">第一圈 this[5] = this[5-(3)=2] 5--  -&gt; i = 4</span><br><span class="line">第二圈 this[4] = this[4-(3)=1] 4--  -&gt; i = 3</span><br><span class="line">第三圈 this[3] = this[3-(3)=0] 3--  -&gt; i = 2</span><br><span class="line">第四圈 this[2] = this[2-(3)=-1] 2--  -&gt; i = 1</span><br><span class="line">第五圈 this[1] = this[1-(3)=-2] 1--  -&gt; i = 0</span><br><span class="line">第六圈 this[0] = this[0-(3)=-3] 0--  -&gt; i = 0   &gt;=0 終止</span><br></pre></td></tr></table></figure>
+
+<p>這時的 this -&gt; <code>[undefined, undefined, undefined, 1, 2, 3]</code>。</p>
+<p>第二個迴圈負責把要增加的元素（引數），一一指定給第一個迴圈先空下來的引數數量空隙。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第二個 for(i=0; i &lt; 3; i++)</span><br><span class="line">第一圈 this[0] = elements[0]</span><br><span class="line">第二圈 this[1] = elements[1]</span><br><span class="line">第三圈 this[2] = elements[2]</span><br></pre></td></tr></table></figure>
+
+<p>這個迴圈主要是把引數陣列裡的index 對應到第一個迴圈空出來的index裡，只要對應到 index 也表示會對應到值。 </p>
+<p>最後，再把整個陣列長度回傳出來。就完成了！</p>
+<p>本人實在不太會解說整個程式的流程 <del>弱到趴糞</del>，所以把迴圈的部份寫出來，這也是我們在觀察其他人寫的程式碼的方法之一。<br>希望有幫助到大家 <del>自己也受益</del> ！</p>
+<p>明天就來點單純的<code>shift()</code>小菜囉～</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
                                             <!-- Table of Contents -->
                                             
 
                                                     
                                                         
-                                                            <h6 id="Day-17"><a href="#Day-17" class="headerlink" title="Day 17"></a>Day 17</h6>
+                                                            <h6 id="Day-17"><a href="#Day-17" class="headerlink" title="Day 17"></a>Day 17</h6><blockquote>
+<p>頭和腳的關係如此微妙，一個思考一個執行，但對程式的陣列來說，都只是陣列的一部分而已，很公平。</p>
+</blockquote>
+<p>接下來我們會分兩天，聊聊從陣列的開頭（前面）新增或刪除陣列元素的方法。</p>
+<p><code>unshift()</code>和<code>shift()</code>這一對，說穿了和<code>push()</code>、<code>pop()</code>ㄧ樣，只是一個從陣列的前頭增加與刪除元素，另一個則是從陣列的尾端操作。<br><img src="https://ithelp.ithome.com.tw/upload/images/20191002/20104175DIqBdswLxB.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/20104175DIqBdswLxB.png"></p>
+<p>這是我們從操作面來看的不同，要再探討深一點，就必須了解這兩對寶，在記憶體的操作方式也就是資料結構還是有很大的不同。前一篇我們有介紹到<a href="https://ithelp.ithome.com.tw/articles/10223356" target="_blank" rel="noopener">資料結構的堆疊（Stack）和佇列（Queue）</a>，從尾部增加和刪除元素的<code>push()</code>、<code>pop()</code>是以堆疊（Stack）「後進先出 LIFO」的方式記憶，而從陣列前頭的<code>unshift()</code>和<code>shift()</code>的儲存則是採用佇列(Queue)「先進先出 FIFO」的資料結構。<br>我們再來以此圖複習一下：</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191002/2010417512XaDyfODV.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/2010417512XaDyfODV.png"></p>
+<h2 id="unshift-頭上頂著好幾塊餅的非洲婦女"><a href="#unshift-頭上頂著好幾塊餅的非洲婦女" class="headerlink" title="unshift() 頭上頂著好幾塊餅的非洲婦女"></a>unshift() 頭上頂著好幾塊餅的非洲婦女</h2><p>使用<code>unshift()</code>陣列方法，可將一個或多個一組的元素，從陣列的前端加入。也因為是從開端加入元素，連帶也會變動到所有元素的索引值（index），最後被加入陣列的元素索引值，永遠都是<code>index[0]</code>，如果是以多個元素一組的方式加入，則是第一個元素的索引值是 0 。</p>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift" target="_blank" rel="noopener">Array.prototype.unshift() - JavaScript | MDN</a></p>
+<p><strong>原型：</strong> Array.prototype.unshift()<br><strong>功能：</strong> 會添加一個或多個元素至陣列的開頭，並且回傳陣列的新長度。<br><strong>改變：</strong> 原陣列會改變<br><strong>語法：</strong> <code>arr.unshift(element1[, ...[, elementN]])</code><br><strong>回傳值：</strong> 呼叫此方法之物件的新 length 屬性值。<br><strong>參數：</strong> elementN 欲添加至陣列開頭的元素。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191002/20104175rxy2OArQNk.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/20104175rxy2OArQNk.png"></p>
+<p>我們先來看一下操作方式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">arr.unshift(<span class="number">0</span>); <span class="comment">// 6</span></span><br><span class="line">arr; <span class="comment">// [0, 1, 2, 3, 4, 5]</span></span><br><span class="line"></span><br><span class="line">arr.unshift(<span class="number">-1</span>,<span class="number">0</span>); <span class="comment">// 8</span></span><br><span class="line">arr; <span class="comment">// [-1, 0, 0, 1, 2, 3, 4, 5]</span></span><br><span class="line"></span><br><span class="line">arr.unshift([<span class="string">'Hello'</span>,<span class="string">'Wow'</span>]); <span class="comment">// 9</span></span><br><span class="line">arr; <span class="comment">// [Array(2), -1, 0, 0, 1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+
+<p>當我們查閱<code>arr</code>時會，我們可以觀察到，一整個陣列被當作是一個元素加入。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191002/20104175HbWEcAZu28.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/20104175HbWEcAZu28.png"></p>
+<p>如果想要一次加入多個元素，都要以逗號做區隔，索引值也會以逗號分隔的數量來增加。</p>
+<p>需要注意的是<code>unshift()</code>會將我們所放在<code>unshift()</code>裡的引數列（argument list）<code>unshift(引數列)</code>，以「一次性的」加入陣列的前端，而不會「一個個」的多次放入陣列裡，所以需要注意放入後的順序問題。假如元素是「逐次」的放入陣列前端，那麼這些加入的元素順序就會是倒過來的。</p>
+<h2 id="unshift-是怎麼被寫出來的？"><a href="#unshift-是怎麼被寫出來的？" class="headerlink" title="unshift() 是怎麼被寫出來的？"></a>unshift() 是怎麼被寫出來的？</h2><p>前面有提到<code>unshift()</code>可以ㄧ次或多個元素一起新增至陣列中，所以比較方便的是也把這些引數放在一個陣列裡處理。<br>我們可以使用其餘參數（rest parameter）的功能，其餘參數會將一個不確定數量的參數，集合在一個陣列中。且<code>unshift()</code>的回傳值是返回處理過的陣列長度，這點只要使用陣列的屬性<code>length</code>就可拿到，接下來怎麼把引數的內容一一放到陣列前頭呢？</p>
+<p>我們先來直接看一下 code:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.unshift2 = <span class="function"><span class="keyword">function</span> (<span class="params"> ...elements </span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">let</span> i = <span class="keyword">this</span>.length + ( elements.length - <span class="number">1</span> ); i &gt;= <span class="number">0</span>; i-- ) &#123;</span><br><span class="line">    <span class="keyword">this</span>[ i ] = <span class="keyword">this</span>[ i - ( elements.length ) ];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; elements.length; i++ ) &#123;</span><br><span class="line">        <span class="keyword">this</span>[ i ] = elements[ i ];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr =[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.unshift2(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br></pre></td></tr></table></figure>
+
+<p>第一個迴圈，我們把<code>i</code>設為原陣列的長度＋引數長度-1，條件為<code>i &gt;= 0;</code>，每跑一次<code>i</code>就減 1。<br>用此方式去偵測原陣列和引數 elements 的長度，再把引數長度先空出來。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">也就是指定引數的索引值，給空出來的原陣列索引值。</span><br><span class="line">整理一下：this -&gt; let arr = [1, 2, 3];</span><br><span class="line">第一個 for(i=3+2 -&gt; 5; i &gt;= 0; i--)</span><br><span class="line">第一圈 this[5] = this[5-(3)=2] 5--  -&gt; i = 4</span><br><span class="line">第二圈 this[4] = this[4-(3)=1] 4--  -&gt; i = 3</span><br><span class="line">第三圈 this[3] = this[3-(3)=0] 3--  -&gt; i = 2</span><br><span class="line">第四圈 this[2] = this[2-(3)=-1] 2--  -&gt; i = 1</span><br><span class="line">第五圈 this[1] = this[1-(3)=-2] 1--  -&gt; i = 0</span><br><span class="line">第六圈 this[0] = this[0-(3)=-3] 0--  -&gt; i = 0   &gt;=0 終止</span><br></pre></td></tr></table></figure>
+
+<p>這時的 this -&gt; <code>[undefined, undefined, undefined, 1, 2, 3]</code>。</p>
+<p>第二個迴圈負責把要增加的元素（引數），一一指定給第一個迴圈先空下來的引數數量空隙。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第二個 for(i=0; i &lt; 3; i++)</span><br><span class="line">第一圈 this[0] = elements[0]</span><br><span class="line">第二圈 this[1] = elements[1]</span><br><span class="line">第三圈 this[2] = elements[2]</span><br></pre></td></tr></table></figure>
+
+<p>這個迴圈主要是把引數陣列裡的index 對應到第一個迴圈空出來的index裡，只要對應到 index 也表示會對應到值。 </p>
+<p>最後，再把整個陣列長度回傳出來。就完成了！</p>
+<p>本人實在不太會解說整個程式的流程 <del>弱到趴糞</del>，所以把迴圈的部份寫出來，這也是我們在觀察其他人寫的程式碼的方法之一。<br>希望有幫助到大家 <del>自己也受益</del> ！</p>
+<p>明天就來點單純的<code>shift()</code>小菜囉～</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+
                                                                 
                                                                                     
                                                                                         <!-- FIN 要出現的段落數 -->
@@ -151,7 +228,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan17_Unshift()to-add-elements-from-the-beginning-of-the-array/" data-id="ck48rsxb9001218uwlnwbu5u6" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array/" data-id="ck48tlmyt0027mbuw5a2wj4h2" class="article-share-link">
                             Share
                         </a>
                         
@@ -164,11 +241,11 @@ ga('send', 'pageview');
         
 <nav id="article-nav">
   
-    <a href="../JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="../JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          JS 從陣列 Array 的開頭新增元素的 unshift()
+          JS 從陣列 Array 的開頭刪除元素 shift()
         
       </div>
     </a>
@@ -237,257 +314,11 @@ ga('send', 'pageview');
           </li>
         
           <li>
-            <a href="../JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array/">JS 從陣列 Array 的開頭新增元素的 unshift()</a>
-          </li>
-        
-          <li>
-            <a href="">JS 從陣列 Array 的開頭新增元素 unshift()</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 Tsuifei Pommier<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-    <script type="text/javascript">
-      (function (w, d, t, u, n, s, e) {
-        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
-          (w[n].q = w[n].q || []).push(arguments);
-        }; s = d.createElement(t);
-        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
-      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
-
-      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
-    </script>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="../index.html" class="mobile-nav-link">Home</a>
-  
-    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
-  
-    <a href="../coding_style" class="mobile-nav-link">Coding style</a>
-  
-    <a href="../javascript" class="mobile-nav-link">JavaScript</a>
-  
-    <a href="../react" class="mobile-nav-link">React</a>
-  
-    <a href="../ide" class="mobile-nav-link">IDE</a>
-  
-    <a href="../life" class="mobile-nav-link">Life</a>
-  
-    <a href="../other" class="mobile-nav-link">Other</a>
-  
-    <a href="../html" class="mobile-nav-link">HTML</a>
-  
-    <a href="../css_sass" class="mobile-nav-link">CSS+SASS</a>
-  
-    <a href="../linux" class="mobile-nav-link">Linux</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
-  <script src="../fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="../js/script.js"></script>
-
-
-
-  </div>
-</body>
-</html></span><br><span class="line">        <span class="keyword">this</span>[ i ] = elements[ i ];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr =[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.unshift2(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br></pre></td></tr></table></figure>
-
-<p>第一個迴圈，我們把<code>i</code>設為原陣列的長度＋引數長度-1，條件為<code>i &gt;= 0;</code>，每跑一次<code>i</code>就減 1。<br>用此方式去偵測原陣列和引數 elements 的長度，再把引數長度先空出來。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">也就是指定引數的索引值，給空出來的原陣列索引值。</span><br><span class="line">整理一下：this -&gt; let arr = [1, 2, 3];</span><br><span class="line">第一個 for(i=3+2 -&gt; 5; i &gt;= 0; i--)</span><br><span class="line">第一圈 this[5] = this[5-(3)=2] 5--  -&gt; i = 4</span><br><span class="line">第二圈 this[4] = this[4-(3)=1] 4--  -&gt; i = 3</span><br><span class="line">第三圈 this[3] = this[3-(3)=0] 3--  -&gt; i = 2</span><br><span class="line">第四圈 this[2] = this[2-(3)=-1] 2--  -&gt; i = 1</span><br><span class="line">第五圈 this[1] = this[1-(3)=-2] 1--  -&gt; i = 0</span><br><span class="line">第六圈 this[0] = this[0-(3)=-3] 0--  -&gt; i = 0   &gt;=0 終止</span><br></pre></td></tr></table></figure>
-
-<p>這時的 this -&gt; <code>[undefined, undefined, undefined, 1, 2, 3]</code>。</p>
-<p>第二個迴圈負責把要增加的元素（引數），一一指定給第一個迴圈先空下來的引數數量空隙。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第二個 for(i=0; i &lt; 3; i++)</span><br><span class="line">第一圈 this[0] = elements[0]</span><br><span class="line">第二圈 this[1] = elements[1]</span><br><span class="line">第三圈 this[2] = elements[2]</span><br></pre></td></tr></table></figure>
-
-<p>這個迴圈主要是把引數陣列裡的index 對應到第一個迴圈空出來的index裡，只要對應到 index 也表示會對應到值。 </p>
-<p>最後，再把整個陣列長度回傳出來。就完成了！</p>
-<p>本人實在不太會解說整個程式的流程 <del>弱到趴糞</del>，所以把迴圈的部份寫出來，這也是我們在觀察其他人寫的程式碼的方法之一。<br>希望有幫助到大家 <del>自己也受益</del> ！</p>
-<p>明天就來點單純的<code>shift()</code>小菜囉～</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                            <h6 id="Day-17"><a href="#Day-17" class="headerlink" title="Day 17"></a>Day 17</h6><blockquote>
-<p>頭和腳的關係如此微妙，一個思考一個執行，但對程式的陣列來說，都只是陣列的一部分而已，很公平。</p>
-</blockquote>
-<p>接下來我們會分兩天，聊聊從陣列的開頭（前面）新增或刪除陣列元素的方法。</p>
-<p><code>unshift()</code>和<code>shift()</code>這一對，說穿了和<code>push()</code>、<code>pop()</code>ㄧ樣，只是一個從陣列的前頭增加與刪除元素，另一個則是從陣列的尾端操作。<br><img src="https://ithelp.ithome.com.tw/upload/images/20191002/20104175DIqBdswLxB.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/20104175DIqBdswLxB.png"></p>
-<p>這是我們從操作面來看的不同，要再探討深一點，就必須了解這兩對寶，在記憶體的操作方式也就是資料結構還是有很大的不同。前一篇我們有介紹到<a href="https://ithelp.ithome.com.tw/articles/10223356" target="_blank" rel="noopener">資料結構的堆疊（Stack）和佇列（Queue）</a>，從尾部增加和刪除元素的<code>push()</code>、<code>pop()</code>是以堆疊（Stack）「後進先出 LIFO」的方式記憶，而從陣列前頭的<code>unshift()</code>和<code>shift()</code>的儲存則是採用佇列(Queue)「先進先出 FIFO」的資料結構。<br>我們再來以此圖複習一下：</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20191002/2010417512XaDyfODV.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/2010417512XaDyfODV.png"></p>
-<h2 id="unshift-頭上頂著好幾塊餅的非洲婦女"><a href="#unshift-頭上頂著好幾塊餅的非洲婦女" class="headerlink" title="unshift() 頭上頂著好幾塊餅的非洲婦女"></a>unshift() 頭上頂著好幾塊餅的非洲婦女</h2><p>使用<code>unshift()</code>陣列方法，可將一個或多個一組的元素，從陣列的前端加入。也因為是從開端加入元素，連帶也會變動到所有元素的索引值（index），最後被加入陣列的元素索引值，永遠都是<code>index[0]</code>，如果是以多個元素一組的方式加入，則是第一個元素的索引值是 0 。</p>
-<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift" target="_blank" rel="noopener">Array.prototype.unshift() - JavaScript | MDN</a></p>
-<p><strong>原型：</strong> Array.prototype.unshift()<br><strong>功能：</strong> 會添加一個或多個元素至陣列的開頭，並且回傳陣列的新長度。<br><strong>改變：</strong> 原陣列會改變<br><strong>語法：</strong> <code>arr.unshift(element1[, ...[, elementN]])</code><br><strong>回傳值：</strong> 呼叫此方法之物件的新 length 屬性值。<br><strong>參數：</strong> elementN 欲添加至陣列開頭的元素。</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20191002/20104175rxy2OArQNk.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/20104175rxy2OArQNk.png"></p>
-<p>我們先來看一下操作方式：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">arr.unshift(<span class="number">0</span>); <span class="comment">// 6</span></span><br><span class="line">arr; <span class="comment">// [0, 1, 2, 3, 4, 5]</span></span><br><span class="line"></span><br><span class="line">arr.unshift(<span class="number">-1</span>,<span class="number">0</span>); <span class="comment">// 8</span></span><br><span class="line">arr; <span class="comment">// [-1, 0, 0, 1, 2, 3, 4, 5]</span></span><br><span class="line"></span><br><span class="line">arr.unshift([<span class="string">'Hello'</span>,<span class="string">'Wow'</span>]); <span class="comment">// 9</span></span><br><span class="line">arr; <span class="comment">// [Array(2), -1, 0, 0, 1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
-
-<p>當我們查閱<code>arr</code>時會，我們可以觀察到，一整個陣列被當作是一個元素加入。</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20191002/20104175HbWEcAZu28.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/20104175HbWEcAZu28.png"></p>
-<p>如果想要一次加入多個元素，都要以逗號做區隔，索引值也會以逗號分隔的數量來增加。</p>
-<p>需要注意的是<code>unshift()</code>會將我們所放在<code>unshift()</code>裡的引數列（argument list）<code>unshift(引數列)</code>，以「一次性的」加入陣列的前端，而不會「一個個」的多次放入陣列裡，所以需要注意放入後的順序問題。假如元素是「逐次」的放入陣列前端，那麼這些加入的元素順序就會是倒過來的。</p>
-<h2 id="unshift-是怎麼被寫出來的？"><a href="#unshift-是怎麼被寫出來的？" class="headerlink" title="unshift() 是怎麼被寫出來的？"></a>unshift() 是怎麼被寫出來的？</h2><p>前面有提到<code>unshift()</code>可以ㄧ次或多個元素一起新增至陣列中，所以比較方便的是也把這些引數放在一個陣列裡處理。<br>我們可以使用其餘參數（rest parameter）的功能，其餘參數會將一個不確定數量的參數，集合在一個陣列中。且<code>unshift()</code>的回傳值是返回處理過的陣列長度，這點只要使用陣列的屬性<code>length</code>就可拿到，接下來怎麼把引數的內容一一放到陣列前頭呢？</p>
-<p>我們先來直接看一下 code:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.unshift2 = <span class="function"><span class="keyword">function</span> (<span class="params"> ...elements </span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">let</span> i = <span class="keyword">this</span>.length + ( elements.length - <span class="number">1</span> ); i &gt;= <span class="number">0</span>; i-- ) &#123;</span><br><span class="line">    <span class="keyword">this</span>[ i ] = <span class="keyword">this</span>[ i - ( elements.length ) ];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; elements.length; i++ ) &#123;</span><br><span class="line">        <span class="keyword">this</span>[ i ] = elements[ i ];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr =[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.unshift2(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br></pre></td></tr></table></figure>
-
-<p>第一個迴圈，我們把<code>i</code>設為原陣列的長度＋引數長度-1，條件為<code>i &gt;= 0;</code>，每跑一次<code>i</code>就減 1。<br>用此方式去偵測原陣列和引數 elements 的長度，再把引數長度先空出來。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">也就是指定引數的索引值，給空出來的原陣列索引值。</span><br><span class="line">整理一下：this -&gt; let arr = [1, 2, 3];</span><br><span class="line">第一個 for(i=3+2 -&gt; 5; i &gt;= 0; i--)</span><br><span class="line">第一圈 this[5] = this[5-(3)=2] 5--  -&gt; i = 4</span><br><span class="line">第二圈 this[4] = this[4-(3)=1] 4--  -&gt; i = 3</span><br><span class="line">第三圈 this[3] = this[3-(3)=0] 3--  -&gt; i = 2</span><br><span class="line">第四圈 this[2] = this[2-(3)=-1] 2--  -&gt; i = 1</span><br><span class="line">第五圈 this[1] = this[1-(3)=-2] 1--  -&gt; i = 0</span><br><span class="line">第六圈 this[0] = this[0-(3)=-3] 0--  -&gt; i = 0   &gt;=0 終止</span><br></pre></td></tr></table></figure>
-
-<p>這時的 this -&gt; <code>[undefined, undefined, undefined, 1, 2, 3]</code>。</p>
-<p>第二個迴圈負責把要增加的元素（引數），一一指定給第一個迴圈先空下來的引數數量空隙。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第二個 for(i=0; i &lt; 3; i++)</span><br><span class="line">第一圈 this[0] = elements[0]</span><br><span class="line">第二圈 this[1] = elements[1]</span><br><span class="line">第三圈 this[2] = elements[2]</span><br></pre></td></tr></table></figure>
-
-<p>這個迴圈主要是把引數陣列裡的index 對應到第一個迴圈空出來的index裡，只要對應到 index 也表示會對應到值。 </p>
-<p>最後，再把整個陣列長度回傳出來。就完成了！</p>
-<p>本人實在不太會解說整個程式的流程 <del>弱到趴糞</del>，所以把迴圈的部份寫出來，這也是我們在觀察其他人寫的程式碼的方法之一。<br>希望有幫助到大家 <del>自己也受益</del> ！</p>
-<p>明天就來點單純的<code>shift()</code>小菜囉～</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
-</blockquote>
-
-                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array/" data-id="ck48rtod3001718uw4ucliibq" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-        
-<nav id="article-nav">
-  
-    <a href="../JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          JS 從陣列 Array 的開頭刪除元素 shift()
-        
-      </div>
-    </a>
-  
-  
-    <a href="../JS_ironMan17_Unshift()to-add-elements-from-the-beginning-of-the-array/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">JS 從陣列 Array 的開頭新增元素 unshift()</div>
-    </a>
-  
-</nav>
-
-            
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-    <div class="widget-wrap">
-        <h3 class="widget-title">About Tsuifei</h3>
-        <div class="widget">
-            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
-            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
-        </div>
-    </div>
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="../JS_ironMan20_Shallow-copy-array-slice()-method/">JS 輕鬆淺拷貝的陣列 Array 方法 slice()</a>
-          </li>
-        
-          <li>
-            <a href="../JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/">JS 合併陣列 Array 的方法 concat()</a>
-          </li>
-        
-          <li>
-            <a href="../JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/">JS 從陣列 Array 的開頭刪除元素 shift()</a>
-          </li>
-        
-          <li>
             <a href="">JS 從陣列 Array 的開頭新增元素的 unshift()</a>
           </li>
         
           <li>
-            <a href="../JS_ironMan17_Unshift()to-add-elements-from-the-beginning-of-the-array/">JS 從陣列 Array 的開頭新增元素 unshift()</a>
+            <a href="../JS_ironMan16_JavaScript-Array-pop()-Method/">JS 從陣列 Array 尾端刪除元素的 pop()</a>
           </li>
         
       </ul>

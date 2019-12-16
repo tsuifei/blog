@@ -120,35 +120,6 @@
     
     
     <entry>
-      <title>JS 從陣列 Array 的開頭新增元素 unshift()</title>
-      <link href="/tsuifei.github.io/JS_ironMan17_Unshift()to-add-elements-from-the-beginning-of-the-array/"/>
-      <url>/tsuifei.github.io/JS_ironMan17_Unshift()to-add-elements-from-the-beginning-of-the-array/</url>
-      
-        <content type="html"><![CDATA[<h6 id="Day-17"><a href="#Day-17" class="headerlink" title="Day 17"></a>Day 17</h6>]]></content>
-      
-      
-      <categories>
-          
-          <category> JavaScript </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> JavaScript </tag>
-            
-            <tag> JS_Array </tag>
-            
-            <tag> Iron man 30 鐵人賽 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>JS 從陣列 Array 尾端刪除元素的 pop()</title>
       <link href="/tsuifei.github.io/JS_ironMan16_JavaScript-Array-pop()-Method/"/>
       <url>/tsuifei.github.io/JS_ironMan16_JavaScript-Array-pop()-Method/</url>
