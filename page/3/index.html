@@ -111,6 +111,697 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS-Return-in-the-loop" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS-Return-in-the-loop/" class="article-date">
+  <time datetime="2019-07-16T21:51:44.000Z" itemprop="datePublished">2019-07-17</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS-Return-in-the-loop/">JS 迴圈 Loop 裡的 return</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>可能在 42 學 C 的時候大量也只能用 while迴圈，所以已經習慣While一行行跑的步驟，自從開始用 for 之後，雖然碼比較簡潔，但自己千萬沒想到對它的誤解這磨深…..以為只要條件符合就直接 i++ 了，但其實並不是！！是如果條件符合，會先去跑我們要叫它做的事，然後再 i++ 。視覺上看是條件符合後就 i++ 是個大雷，切記。<br>==也就是說只要條件符合＋return，就會跳出 loop==</p>
+<p>[ 第一題 ]</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">return</span> i</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(test1()) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>而while迴圈的寫法，真的就一行行跑，i &lt;= 10 條件符合再去做該做的事，做完該做的事再 i++ ，但當我們回傳時就會終止程式，當然也就不會跑下一行 i++ </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt;= <span class="number">10</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> i</span><br><span class="line">        i++</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(test2()) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>==很重要，所以再說一次==</p>
+<h3 id="注意一旦-return-程式就會因-return-而終止跳出程式"><a href="#注意一旦-return-程式就會因-return-而終止跳出程式" class="headerlink" title="注意一旦 return 程式就會因 return 而終止跳出程式"></a>注意一旦 return 程式就會因 return 而終止跳出程式</h3><p>這題的結果是回傳 123 便終止結束<br>[ 第二題 ]</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">123</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">return</span> i</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>==很重要，所以再說一次==</p>
+<h3 id="一旦-return-程式就會因此終止跳出程式，if-也是"><a href="#一旦-return-程式就會因此終止跳出程式，if-也是" class="headerlink" title="一旦 return 程式就會因此終止跳出程式，if 也是"></a>一旦 return 程式就會因此終止跳出程式，if 也是</h3><p>[ 第三題 ]</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">debugger</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">3</span> === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> i</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(test())</span><br></pre></td></tr></table></figure>
+
+<p>這題回傳是 3 ，即使條件是 i &lt;= 10 ，但遇到( i % 3 === 0 ) 3 除 3 無餘數就回傳 i ，程式因此終止。<br>第1圈 i=1除3= 有餘數 no return i++ = i=2<br>第2圈 i=2除3= 有餘數 no return i++ = i=3<br>第3圈 i=3除3= 無餘數 return i = 3  結束</p>
+<p>[ 第四題 ]<br>經過上三題的觀念釐清，這題總算試著用腦袋跟著程式跑而猜出會跑出 6 了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt; <span class="number">5</span> &amp;&amp; i % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> i</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(test())</span><br></pre></td></tr></table></figure>
+
+<p>huli大好用心，這幾題就是要釐清 return 扮演的角色：回傳值後 離開！</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>可能在 42 學 C 的時候大量也只能用 while迴圈，所以已經習慣While一行行跑的步驟，自從開始用 for 之後，雖然碼比較簡潔，但自己千萬沒想到對它的誤解這磨深…..以為只要條件符合就直接 i++ 了，但其實並不是！！是如果條件符合，會先去跑我們要叫它做的事，然後再 i++ 。視覺上看是條件符合後就 i++ 是個大雷，切記。<br>==也就是說只要條件符合＋return，就會跳出 loop==</p>
+<p>[ 第一題 ]</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">return</span> i</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(test1()) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>而while迴圈的寫法，真的就一行行跑，i &lt;= 10 條件符合再去做該做的事，做完該做的事再 i++ ，但當我們回傳時就會終止程式，當然也就不會跑下一行 i++ </p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS-Return-in-the-loop/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS-Return-in-the-loop/" data-id="ck48mw9az000mgtuwsfh3ko4e" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-JS-ternary-conditional-operator-and-Comparison-operator" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS-ternary-conditional-operator-and-Comparison-operator/" class="article-date">
+  <time datetime="2019-07-11T06:22:41.000Z" itemprop="datePublished">2019-07-11</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS-ternary-conditional-operator-and-Comparison-operator/">JavaScript 三元運算符(ternary conditional operator)與比較運算符(Comparison operator)</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h2 id="相等比較運算-與-的不同"><a href="#相等比較運算-與-的不同" class="headerlink" title="相等比較運算 == 與 === 的不同"></a>相等比較運算 == 與 === 的不同</h2><p>兩個等號通常是拿來比較兩邊的==值==是否不同<br>三個等號除了判斷==值==是否相同，也會判斷==型別==是否相同。</p>
+<p>兩個等於會引發諸多問題的原因是 JS 常會暗地裡幫我們將資料轉型別，所以常常莫名的就通過判斷。以至於很容易就會出現誤判型別而導致出現錯誤。在使用判斷比較時盡量或只使用三個等於會比較精確與安全。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下的結果都是true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">"0"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">""</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> == <span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> == <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log([] == <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>產生 1 == true 的原因是在 Boolean 時，1 即表示 true，也就是 Boolean(1)理所當然 JS 就會把它視為相同。相反地Boolean(0) 等於 false.</p>
+<p>如果將 false 轉成數字型 Number(false) // 0 ，也可得到 0。</p>
+<p>空字串也是如此，當我們把空字串轉成數字時 Number([]) // 0 也會得到 0。</p>
+<p>將所有上述比較全換成三個等號，結果全都成了 false：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下的結果都是 false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="string">"0"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> === <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="string">""</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> === <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> === <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> === <span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> === <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log([] === <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>由此可見，用三個等號來判斷兩變得值，還是比較準確與保險。看圖表來表示更清楚！三個等號比兩個等號規律多了，除非可以全背下兩個等號的變化，不然還是用三個等號來判斷比較保險。</p>
+<p><img src="https://i.imgur.com/f0T10zg.png" alt></p>
+<p><img src="https://i.imgur.com/6eGZaB8.png" alt></p>
+<p><img src="https://i.imgur.com/b2Iyiqw.png" alt></p>
+<h3 id="唯一特例-NaN不是NaN"><a href="#唯一特例-NaN不是NaN" class="headerlink" title="唯一特例 NaN不是NaN"></a>唯一特例 NaN不是NaN</h3><p>在 JavaScript 裡如果左右兩邊都是一樣且用三個等號來比較，結果通常是 True 但是 Nan 和自己相比，無論使用兩個或三個等號都是 false。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> === <span class="literal">NaN</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> !== <span class="literal">NaN</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> lettre = <span class="string">"abc"</span></span><br><span class="line">lettre / <span class="number">10</span> <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+
+<p>NaN -&gt; 不是數字。何時會用到 NaN ?<br>如果把數字和不是數字做運算，便會返回 NaN 。</p>
+<p>如果想知道一個變數是不是 NaN 可使用 <code>isNaN()</code> 來判斷是不是NaN。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isNaN</span>(<span class="literal">NaN</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>但是<code>isNaN()</code>也會悄悄幫你改型別。 明明 a 就不是數字…。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"a"</span></span><br><span class="line"><span class="built_in">isNaN</span>(a); <span class="comment">// true </span></span><br><span class="line"><span class="built_in">Number</span>(a); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>如果用 typeof 來看 NaN 會得到 number，也就是說，當我們用 isNaN() ，其實這個函式會先將()裡面用Number()轉換。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isNaN</span>(<span class="built_in">Number</span>(<span class="literal">NaN</span>)) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>圖表出處：<a href="https://dorey.github.io/JavaScript-Equality-Table/" target="_blank" rel="noopener">一目了然的比較表</a></p>
+<h2 id="JS-三元運算子"><a href="#JS-三元運算子" class="headerlink" title="JS 三元運算子"></a>JS 三元運算子</h2><p>「三元運算子」 又稱為「條件運算子」，也就是拿來處理條件判斷用的。<br>條件成立(true)-&gt; 回傳第一個, 條件不成立(false)-&gt;回傳第二個</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果 true 這個條件成立，就返回 100，否則就回傳 50</span></span><br><span class="line"><span class="keyword">var</span> result = <span class="number">100</span> &lt; <span class="number">1000</span> ? <span class="number">100</span> : <span class="number">50</span>;</span><br><span class="line"><span class="comment">// 100 小於 1000 嗎？ 是 (true) -&gt; 回傳 100</span></span><br></pre></td></tr></table></figure>
+
+<p>如何將一般的 if else 轉成三元運算子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">16</span>;</span><br><span class="line"><span class="keyword">var</span> title;</span><br><span class="line"><span class="keyword">if</span> (age &gt;= <span class="number">18</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (age &gt;= <span class="number">45</span>) &#123;</span><br><span class="line">            title = <span class="string">"Middle-aged"</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            title = <span class="string">"Adult"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        title = <span class="string">"Minor"</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="built_in">console</span>.log(title);</span><br></pre></td></tr></table></figure>
+
+<p>三元運算子較簡短，但可讀性不高，應避免使用可讀性不高的寫法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title = age &gt;= <span class="number">18</span> ? age &gt;= <span class="number">45</span> ? <span class="string">"Middle-aged"</span> : <span class="string">"Adult"</span> : <span class="string">"Minor"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(title);</span><br></pre></td></tr></table></figure>
+
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h2 id="相等比較運算-與-的不同"><a href="#相等比較運算-與-的不同" class="headerlink" title="相等比較運算 == 與 === 的不同"></a>相等比較運算 == 與 === 的不同</h2><p>兩個等號通常是拿來比較兩邊的==值==是否不同<br>三個等號除了判斷==值==是否相同，也會判斷==型別==是否相同。</p>
+<p>兩個等於會引發諸多問題的原因是 JS 常會暗地裡幫我們將資料轉型別，所以常常莫名的就通過判斷。以至於很容易就會出現誤判型別而導致出現錯誤。在使用判斷比較時盡量或只使用三個等於會比較精確與安全。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下的結果都是true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">"0"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">""</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> == <span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> == <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log([] == <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>產生 1 == true 的原因是在 Boolean 時，1 即表示 true，也就是 Boolean(1)理所當然 JS 就會把它視為相同。相反地Boolean(0) 等於 false.</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS-ternary-conditional-operator-and-Comparison-operator/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS-ternary-conditional-operator-and-Comparison-operator/" data-id="ck48mw9b0000pgtuwdrzq70nr" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-JS-複製By-reference與By-value的不同" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS-複製By-reference與By-value的不同/" class="article-date">
+  <time datetime="2019-07-10T01:07:30.000Z" itemprop="datePublished">2019-07-10</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS-複製By-reference與By-value的不同/">JS 複製 By reference 與 By value 的不同</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>在實作時常會聽到 call by reference 還是 call by value，這兩個有什麼不同？最簡易的解釋方法是：<br>call by reference : 呼叫變數的記憶體位置<br>call by value : 呼叫變數的值</p>
+<p>事實上除了這兩種，還有一種叫 call by Sharing，在傳遞參數時會用到，之後再來介紹。</p>
+<h3 id="Object-物件-Object-Array"><a href="#Object-物件-Object-Array" class="headerlink" title="Object(物件): Object, Array"></a>Object(物件): Object, Array</h3><p>Objet 和 Array 在 Javascript 屬於複合型(composite)或參考型(reference)的原始資料類型，<br>在呼叫、複製或傳參數的時候，是參考記憶體的位置而不是值，這點要特別注意。</p>
+<h3 id="複製資料的時候"><a href="#複製資料的時候" class="headerlink" title="複製資料的時候"></a>複製資料的時候</h3><p>複製資料的時候 是用 By valur 或是 By reference 呢？</p>
+<h4 id="By-valur"><a href="#By-valur" class="headerlink" title="By valur"></a>By valur</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"something"</span>;</span><br><span class="line"><span class="keyword">var</span> b = a; <span class="comment">// 這時 b 應該是 something</span></span><br><span class="line">b = <span class="string">"somebody"</span>; <span class="comment">// 再次將其他值賦予給 b </span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// something</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// somebody</span></span><br></pre></td></tr></table></figure>
+
+<p>a 和 b 如期的印出我們賦予的值。我們可成功無誤的修改 b 的值。</p>
+<p>Primitive type(基本型別)：Number, String, Boolean, Null, Undefined</p>
+<h4 id="By-reference-參考值"><a href="#By-reference-參考值" class="headerlink" title="By reference(參考值)"></a>By reference(參考值)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Tracy"</span>,</span><br><span class="line">    city: <span class="string">"Tainan"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person2 = person; </span><br><span class="line">person2.name = <span class="string">"Philippe"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// name: "Philippe"</span></span><br><span class="line"><span class="built_in">console</span>.log(person2); <span class="comment">// name: "Philippe"</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的範例在修改 person2 這個 object 裡的name屬性時，也會同時改到原來參考的person的name屬性，是不是很恐怖？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 陣列</span></span><br><span class="line"><span class="keyword">var</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = arr1;</span><br><span class="line">arr2[<span class="number">3</span>] = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">// [1, 2, 3, 4]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr2); <span class="comment">// [1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+
+<p>因為 Array 也是參考型(reference)的原始資料類型所以也會像 Object 一樣，在修改時也會更改到原始參考值 by reference。</p>
+<p>如何複製一個物件而不要更動到參考值？以下是方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Jacques"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法一-使用-assign：先給一個空-來裝複製過來的物件"><a href="#方法一-使用-assign：先給一個空-來裝複製過來的物件" class="headerlink" title="方法一 使用 assign：先給一個空{} 來裝複製過來的物件"></a>方法一 使用 assign：先給一個空{} 來裝複製過來的物件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person2 = <span class="built_in">Object</span>.saaign(&#123;&#125;, person);</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法二-使用JSON文字化"><a href="#方法二-使用JSON文字化" class="headerlink" title="方法二 使用JSON文字化"></a>方法二 使用JSON文字化</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person2 = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(person)); </span><br><span class="line"><span class="comment">// 這時兩筆資料已無關連</span></span><br><span class="line">person2.name = <span class="string">"Gisèle"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// &#123;name:"Jacques"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(person2); <span class="comment">// &#123;name:"Gisèle"&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>JSON.stringify(); 是文字化、JSON.parse(); 是解析文字，兩函式處理下來等於複製了一份 person 到 person2</p>
+<h3 id="使用-Object-assign-處理-object-的缺點"><a href="#使用-Object-assign-處理-object-的缺點" class="headerlink" title="使用 Object.assign()處理 object 的缺點"></a>使用 Object.assign()處理 object 的缺點</h3><p>如果遇上多層結構的 Object，就無法使用 assign()來處理，因為它只能處理一層的結構而無法處理兩層，也就是說這種方法只能用在 Array 上。在第二層裡的原始資料仍然會被更動到。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Ayda"</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        id: <span class="number">24</span>,</span><br><span class="line">        city: <span class="string">"Paris"</span>,</span><br><span class="line">        job: <span class="string">"artist"</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person2 = <span class="built_in">Object</span>.assign(&#123;&#125;, person);</span><br><span class="line">person2.data.id = <span class="number">42</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// 42</span></span><br><span class="line"><span class="built_in">console</span>.log(person2); <span class="comment">// 42</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 改成用第二種方法</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person3 = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(person));</span><br><span class="line">person3.data.id = <span class="number">66</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// 42,原本 24 被Object.assign()改成 42</span></span><br><span class="line"><span class="built_in">console</span>.log(person3); <span class="comment">// 66</span></span><br></pre></td></tr></table></figure>
+
+<p>function 也是一種特殊的 Object 資料型別。<br>參考：<a href="https://hackmd.io/m0alSWZBQ4aKROtyQVeejw?view" target="_blank" rel="noopener">小龜前輩：參數傳遞方式</a></p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>在實作時常會聽到 call by reference 還是 call by value，這兩個有什麼不同？最簡易的解釋方法是：<br>call by reference : 呼叫變數的記憶體位置<br>call by value : 呼叫變數的值</p>
+<p>事實上除了這兩種，還有一種叫 call by Sharing，在傳遞參數時會用到，之後再來介紹。</p>
+<h3 id="Object-物件-Object-Array"><a href="#Object-物件-Object-Array" class="headerlink" title="Object(物件): Object, Array"></a>Object(物件): Object, Array</h3><p>Objet 和 Array 在 Javascript 屬於複合型(composite)或參考型(reference)的原始資料類型，<br>在呼叫、複製或傳參數的時候，是參考記憶體的位置而不是值，這點要特別注意。</p>
+<h3 id="複製資料的時候"><a href="#複製資料的時候" class="headerlink" title="複製資料的時候"></a>複製資料的時候</h3><p>複製資料的時候 是用 By valur 或是 By reference 呢？</p>
+<h4 id="By-valur"><a href="#By-valur" class="headerlink" title="By valur"></a>By valur</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"something"</span>;</span><br><span class="line"><span class="keyword">var</span> b = a; <span class="comment">// 這時 b 應該是 something</span></span><br><span class="line">b = <span class="string">"somebody"</span>; <span class="comment">// 再次將其他值賦予給 b </span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// something</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// somebody</span></span><br></pre></td></tr></table></figure>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS-複製By-reference與By-value的不同/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS-複製By-reference與By-value的不同/" data-id="ck48mw9b3000ygtuwohgafomm" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-Git-GitHub-實際操作" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../Git-GitHub-實際操作/" class="article-date">
+  <time datetime="2019-07-09T07:08:41.000Z" itemprop="datePublished">2019-07-09</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/Git/">Git</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../Git-GitHub-實際操作/">Git / GitHub 實際操作</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h2 id="在本地使用git版本控制"><a href="#在本地使用git版本控制" class="headerlink" title="在本地使用git版本控制"></a>在本地使用git版本控制</h2><h4 id="init-初始化"><a href="#init-初始化" class="headerlink" title="init  初始化"></a>init  初始化</h4><ul>
+<li>在要使用版本控制的檔案夾裡輸入 init 初始化，以ls -la可看到隱藏的 .git 檔案夾</li>
+<li>使用 git status 觀察版本狀態</li>
+</ul>
+<h4 id="git-add-加入版本控制檔案"><a href="#git-add-加入版本控制檔案" class="headerlink" title="git add 加入版本控制檔案"></a>git add 加入版本控制檔案</h4><ul>
+<li>使用 git add [fileName] 加入要版本控制的檔案，或是使用 git add . 表示全部加入</li>
+<li>使用 git status 會發現有兩區域： staged (加入)/ untracked (沒加入)版本控制，可使用 git rm —cached [fileName] 將已加入的檔案移出至 untracked。</li>
+<li>要 add 才能 commit</li>
+</ul>
+<h4 id="git-commit-新建一個版本"><a href="#git-commit-新建一個版本" class="headerlink" title="git commit 新建一個版本"></a>git commit 新建一個版本</h4><ul>
+<li>使用 git commit 新建一個版本，或出vim文字編輯器 ( i insert  / :q 退出)，會出現 commit 是空的(empty)訊息。</li>
+<li>以 git commit -m  “[訊息]”<br>git commit 如出現錯誤，跳出設定帳號跟姓名的畫面，請輸入以下指令</li>
+</ul>
+<ol>
+<li>git config –global user.name “your name”</li>
+<li>git config –global user.email “youremail”</li>
+</ol>
+<h4 id="git-log-歷史紀錄"><a href="#git-log-歷史紀錄" class="headerlink" title="git log 歷史紀錄"></a>git log 歷史紀錄</h4><ul>
+<li>使用 git log 會出現所有 commit 的歷史紀錄編號，q 離開 log</li>
+</ul>
+<h4 id="git-checkout-回到過去某個版本狀態"><a href="#git-checkout-回到過去某個版本狀態" class="headerlink" title="git checkout 回到過去某個版本狀態"></a>git checkout 回到過去某個版本狀態</h4><ul>
+<li>使用 git log —online 會出現 commit 短版本列表，前7碼為版本簡碼，後面是 commit 時輸入的訊息。</li>
+<li>使用 git checkout [版本碼] 即可回到要去的版本時間點，用 git log 觀察這個版本時間點之後的版本都會看不見。</li>
+<li>使用 git checkout master 回去現在的時間點版本，再用 git log 觀察就可看到所有版本。</li>
+</ul>
+<h4 id="gitignore-忽略檔案"><a href="#gitignore-忽略檔案" class="headerlink" title=".gitignore 忽略檔案"></a>.gitignore 忽略檔案</h4><p>在檔案夾裡增加一個 .gitignore 檔案，裡面寫上不要加入版本控制裡的檔案，這樣 git 就不會每次提醒，例如連線資料、test、log等系統自動產生的檔案。</p>
+<ul>
+<li>touch .gitignore 產生檔案</li>
+<li>vim .gitignore 編輯檔案</li>
+<li>Git commit -am “commit message” 可直接 add+commit 但只會加入曾經加入的，而不會加入新的檔案。所以每次有新檔案時最好使用 git add [fileName] 加入，或用 git add .  全部加入再 commit。</li>
+</ul>
+<h3 id="小筆記"><a href="#小筆記" class="headerlink" title="小筆記"></a>小筆記</h3><p>git checkout -b [分支名]  可直接開分支並切換過去<br>git -d [分支名]  把分支刪除<br>git diff 可看上一次做的變動，q 退出</p>
+<h2 id="在本地端開分支-branch-–-gt-合併主版本-merge"><a href="#在本地端開分支-branch-–-gt-合併主版本-merge" class="headerlink" title="在本地端開分支  branch  –&gt; 合併主版本 merge"></a>在本地端開分支  branch  –&gt; 合併主版本 merge</h2><h4 id="設分支-branch"><a href="#設分支-branch" class="headerlink" title="設分支 branch"></a>設分支 branch</h4><ul>
+<li>用git branch -v 看有哪些 branch 主分支為 master，也會顯示這支分支最後一個 commit </li>
+<li>原本在 master，創另一個分支 ：git branch [分支名]</li>
+<li>切換到那個分支：git checkout [分支名]</li>
+<li>刪除分支：git branch -d [分支名]</li>
+<li>切換分支 ：git checkout [分支名]</li>
+<li>用 git branch -v 查看現在在哪個分支(顯示綠色)</li>
+</ul>
+<h3 id="merge-branch-to-master-將分支合併到主支幹"><a href="#merge-branch-to-master-將分支合併到主支幹" class="headerlink" title="merge branch to master 將分支合併到主支幹"></a>merge branch to master 將分支合併到主支幹</h3><ul>
+<li>git [分支] merge : 把某一分支合併過來 master </li>
+<li>git branch -d [分支] : 合併後即可把原本的分支刪除</li>
+</ul>
+<h4 id="合併時發生衝突-conflict"><a href="#合併時發生衝突-conflict" class="headerlink" title="合併時發生衝突 conflict"></a>合併時發生衝突 conflict</h4><ul>
+<li>主支和分支同時修改時，分支要合併至主支時，會產生  auto-merging [fileName] CONFLICT (content) : Merge conflict in [fileName] automatic merge failed; fix conflicts and then commit the result.</li>
+<li>用 git status 查看會以 both modified :  [fileName] 顯示有問題的檔案</li>
+<li>進入有問題的 [fileName] 手動修改，=====為兩版本分隔，&lt;&lt;&lt;&lt;&lt; [分支名]。將其中一個刪除與更正存檔，再 commit 一次，再合併。</li>
+<li>git status 顯示 resolve conflicts 表示衝突解決。 </li>
+</ul>
+<h4 id="注意-小觀念"><a href="#注意-小觀念" class="headerlink" title="注意 + 小觀念"></a>注意 + 小觀念</h4><p>Git : 版本控制的程式<br>GitHub :  放 git repository 的存儲庫<br>有用 git 不一定要用 GitHub，但用 GitHub 就一定要會用到 git<br>忘記切回test分支，所以後來無法順利 merge 到 master 分支，雖然後來看似解決，但還真不知道自己是怎麼解決的，就是試了幾個間，跟著打就好了．．．這樣其實有點可怕，下次再注意！</p>
+<h2 id="把本地端-code-放上-GitHub"><a href="#把本地端-code-放上-GitHub" class="headerlink" title="把本地端 code 放上 GitHub"></a>把本地端 code 放上 GitHub</h2><h3 id="Create-a-new-repository-在-github-開一個新的存儲庫"><a href="#Create-a-new-repository-在-github-開一個新的存儲庫" class="headerlink" title="Create a new repository 在 github 開一個新的存儲庫"></a>Create a new repository 在 github 開一個新的存儲庫</h3><ul>
+<li>填入 Repository name 和 Description，就好有使用技術關鍵字</li>
+<li>選擇 Public 或 Private</li>
+<li>Initialize this repository whit a README 可以先不選</li>
+<li>Add .gitignore 和 a license 都選預設 None</li>
+</ul>
+<h4 id="方法ㄧ-在本地端還沒有code-可使用這種方法"><a href="#方法ㄧ-在本地端還沒有code-可使用這種方法" class="headerlink" title="方法ㄧ) 在本地端還沒有code 可使用這種方法"></a>方法ㄧ) 在本地端還沒有code 可使用這種方法</h4><p>…or create a new repository on the command line<br>echo “# github.io-“ &gt;&gt; README.md<br>git init<br>git add README.md<br>git commit -m “first commit”<br>git remote add origin [<a href="https://github.com/tsuifei/倉庫位址.git]" target="_blank" rel="noopener">https://github.com/tsuifei/倉庫位址.git]</a><br>git push -u origin master</p>
+<h4 id="方法二-在本地端已經有-code-用這種把-code-push-到-github-的方法。"><a href="#方法二-在本地端已經有-code-用這種把-code-push-到-github-的方法。" class="headerlink" title="方法二) 在本地端已經有 code 用這種把 code push 到 github 的方法。"></a>方法二) 在本地端已經有 code 用這種把 code push 到 github 的方法。</h4><p>…or push an existing repository from the command line<br>從本地push到遠端<br>git remote add origin [<a href="https://github.com/tsuifei/倉庫位址.git]" target="_blank" rel="noopener">https://github.com/tsuifei/倉庫位址.git]</a><br>git push -u origin master  把 code push 到github的這個 master 主支上 通常這之後會要你的 github 的帳號和密碼，有輸入才算與遠端相通 單字 : remote 遠端 / origin 代號<br>-u -&gt; set-upstream </p>
+<h4 id="方法三-以引入的方式將-code-放進來"><a href="#方法三-以引入的方式將-code-放進來" class="headerlink" title="方法三) 以引入的方式將 code 放進來"></a>方法三) 以引入的方式將 code 放進來</h4><p>…or import code from another repository<br>You can initialize this repository with code from a Subversion, Mercurial, or TFS project.</p>
+<h2 id="把本地端最新的版本推上-GitHub"><a href="#把本地端最新的版本推上-GitHub" class="headerlink" title="把本地端最新的版本推上 GitHub"></a>把本地端最新的版本推上 GitHub</h2><h4 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h4><ul>
+<li>本地端 : 把檔案 commit 之後， 使用git push origin master 推到主支上  </li>
+<li>Github 端 : 重新整理頁面後 branch 會更新，commits 數量也會增加</li>
+<li>如果只有 commit 沒 push，Github 端不會變動</li>
+<li>可開分支 再 git push origin [分支名] ，再到Github 端看就有兩個 branch</li>
+</ul>
+<h2 id="把Github-端上最新版本-拉下本地端"><a href="#把Github-端上最新版本-拉下本地端" class="headerlink" title="把Github 端上最新版本 拉下本地端"></a>把Github 端上最新版本 拉下本地端</h2><h4 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h4><ul>
+<li>先到要拉下來的位置</li>
+<li>執行 git pull origin master</li>
+<li>如有 conflict 可依上述 merge 的衝突解決方式處理。</li>
+</ul>
+<h2 id="把其他人-Github-端上的code-拉下本地端"><a href="#把其他人-Github-端上的code-拉下本地端" class="headerlink" title="把其他人 Github 端上的code 拉下本地端"></a>把其他人 Github 端上的code 拉下本地端</h2><h4 id="git-clone-42-就是用這種方法"><a href="#git-clone-42-就是用這種方法" class="headerlink" title="git clone (42 就是用這種方法)"></a>git clone (42 就是用這種方法)</h4><ul>
+<li>先到要拉下來的位置</li>
+<li>執行 git colne [<a href="https://github.com/tsuifei/倉庫位址.git]" target="_blank" rel="noopener">https://github.com/tsuifei/倉庫位址.git]</a> 可自行取名</li>
+<li>git clone 之後可以commit 因為在本地端，且專案是別人的，所以如果執行 push 會因無權限而無法執行</li>
+</ul>
+<h3 id="將別人的專案變成自己的"><a href="#將別人的專案變成自己的" class="headerlink" title="將別人的專案變成自己的"></a>將別人的專案變成自己的</h3><ul>
+<li>使用 Fork 功能，再使用 clone 方式將專案拉下至本地端 </li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="直接在-Github-端-commit-修改檔案"><a href="#直接在-Github-端-commit-修改檔案" class="headerlink" title="直接在 Github 端 commit 修改檔案"></a>直接在 Github 端 commit 修改檔案</h3><ul>
+<li>選要修改的檔案，按icon筆(Edit this file)</li>
+<li>直接在檔案下方下 commit 選擇要commit 的支，通常選(commit directly to the master branch)</li>
+</ul>
+<h2 id="Git-問題處理集合"><a href="#Git-問題處理集合" class="headerlink" title="Git 問題處理集合"></a>Git 問題處理集合</h2><h4 id="Git-提示-fatal-remote-origin-already-exists-錯誤解決辦法"><a href="#Git-提示-fatal-remote-origin-already-exists-錯誤解決辦法" class="headerlink" title="Git 提示 fatal: remote origin already exists 錯誤解決辦法"></a>Git 提示 fatal: remote origin already exists 錯誤解決辦法</h4><p>使用 git 上傳至遠程 github 倉庫的時候出現提示錯誤：fatal: remote origin already exists.<br>1、先刪除遠端Git倉庫<br>$ git remote rm origin</p>
+<p>2、再增加遠端 Git 倉庫<br>$ git remote add origin [<a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:遠端位址]</p>
+<p>如果執行 git remote rm origin 有出現錯誤訊息的話，可以手動修改 gitconfig 文件的內容<br>$ vi .git / config<br>把[remote “origin”] 那一行刪掉就可以了。</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h2 id="在本地使用git版本控制"><a href="#在本地使用git版本控制" class="headerlink" title="在本地使用git版本控制"></a>在本地使用git版本控制</h2><h4 id="init-初始化"><a href="#init-初始化" class="headerlink" title="init  初始化"></a>init  初始化</h4><ul>
+<li>在要使用版本控制的檔案夾裡輸入 init 初始化，以ls -la可看到隱藏的 .git 檔案夾</li>
+<li>使用 git status 觀察版本狀態</li>
+</ul>
+<h4 id="git-add-加入版本控制檔案"><a href="#git-add-加入版本控制檔案" class="headerlink" title="git add 加入版本控制檔案"></a>git add 加入版本控制檔案</h4><ul>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../Git-GitHub-實際操作/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/Git-GitHub-實際操作/" data-id="ck48mw9ai0001gtuwn5jztctx" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/GitHub/">GitHub</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-git-github練習心得" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../git-github練習心得/" class="article-date">
+  <time datetime="2019-07-09T07:02:24.000Z" itemprop="datePublished">2019-07-09</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/Git/">Git</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../git-github練習心得/">Git/GitHub練習心得</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>照著程式導師實驗計畫的操作，學會如何設置本端和遠端之間的更新與開分支，合併等方法，程序有點小複雜，但對於版本控管的確是輕度多了，只是還沒和其他人合作控管，這部分須多操控。<br>.gitignore 的設置在設github前就應該處理，不然之後刪來刪去很麻煩，記得不要上傳node_modules/不然會很龐大。</p>
+<h3 id="小筆記"><a href="#小筆記" class="headerlink" title="小筆記"></a>小筆記</h3><p>設分支練習：</p>
+<ol>
+<li>原本在master，創另一個分支 ：git branch [分支名] </li>
+<li>切換到那個分支：git checkout [分支名] </li>
+<li>用git status查在哪個分支</li>
+<li>用git branch -v 看有哪些branch</li>
+<li>push 到新的branch上：git push origin [branch名]</li>
+</ol>
+<h3 id="在github上merge合併："><a href="#在github上merge合併：" class="headerlink" title="在github上merge合併："></a>在github上merge合併：</h3><ol>
+<li>在github上的標籤頁pull requests上點Create pull request → 會顯示兩邊的不同</li>
+<li>再點Create pull request 之後，等Merge pull request出現，點下確認即可</li>
+<li>Merge後切換到Master就會看到更新結果。</li>
+<li>用git pull origin master 把已經merge好得檔案拉到本地端</li>
+</ol>
+<p>要改東西一定要新開branch再merge到master本支</p>
+<blockquote>
+<p>忘記切回test分支，所以後來無法順利merge到master分支，雖然後來看似解決，但還真不知道自己是怎麼解決的，就是試了幾個鍵，跟著打就好了．．．這樣其實有點可怕，下次再注意！</p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>照著程式導師實驗計畫的操作，學會如何設置本端和遠端之間的更新與開分支，合併等方法，程序有點小複雜，但對於版本控管的確是輕度多了，只是還沒和其他人合作控管，這部分須多操控。<br>.gitignore 的設置在設github前就應該處理，不然之後刪來刪去很麻煩，記得不要上傳node_modules/不然會很龐大。</p>
+<h3 id="小筆記"><a href="#小筆記" class="headerlink" title="小筆記"></a>小筆記</h3><p>設分支練習：</p>
+<ol>
+<li>原本在master，創另一個分支 ：git branch [分支名] </li>
+<li>切換到那個分支：git checkout [分支名] </li>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../git-github練習心得/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/git-github練習心得/" data-id="ck48mw9bk002cgtuwlkq1z50p" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Note/">Note</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" class="article-date">
+  <time datetime="2019-07-05T06:08:16.000Z" itemprop="datePublished">2019-07-05</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/">JS 回呼函式 Callbacks、Promises 物件、Async/Await 非同步流程控制</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>Javascript 近幾年來受歡迎的原因，有一大部分是因為 JS 可以處理非同步（異步）的問題，也因為可以非同步，所以處理速度快，且可帶給瀏覽者更好的體驗，所以了解如何控制非同步也成了前端重要的技能之一。</p>
+<h2 id="無非同步的程式"><a href="#無非同步的程式" class="headerlink" title="無非同步的程式"></a>無非同步的程式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">n1, n2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n1+n2</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">testNoAsync</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = add(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">// testNoAsync(); // 7</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="問題的起源，非同步程式"><a href="#問題的起源，非同步程式" class="headerlink" title="問題的起源，非同步程式"></a>問題的起源，非同步程式</h2><p>寫程式如果遇到要處理非同步的程式，就會變得複雜了起來，為什麼會複雜？<br>預設想要延遲執行，卻出現undefined 程式會一直往下跑， return的部分不會回傳會被忽略….。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd0</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 設定排程，延遲一段時間後執行</span></span><br><span class="line">  <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> n1+n2;</span><br><span class="line">  &#125;, delayTime);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>); <span class="comment">// 仔細觀察出現的順序</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = delayedAdd0(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">// 1, undefined, 2 (不會出現return結果)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第一個解決方式-callback-回呼函式"><a href="#第一個解決方式-callback-回呼函式" class="headerlink" title="第一個解決方式 : callback 回呼函式"></a>第一個解決方式 : callback 回呼函式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd1</span>(<span class="params">n1, n2, delayTime, callback</span>)</span>&#123; <span class="comment">// callback 函式</span></span><br><span class="line">  <span class="comment">// 設定排程，延遲一段時間後執行</span></span><br><span class="line">  <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 延遲一段時間，計算加法，呼叫callback函式</span></span><br><span class="line">    callback(n1+n2);</span><br><span class="line">  &#125;, delayTime);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  delayedAdd1(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>, <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">test1(); <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第二個解決方式-Promise-物件"><a href="#第二個解決方式-Promise-物件" class="headerlink" title="第二個解決方式 : Promise 物件"></a>第二個解決方式 : Promise 物件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd2</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 建立 Promise 物件 :  new promise(執行函式)</span></span><br><span class="line">  <span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123; <span class="comment">// 兩個系統給的參數</span></span><br><span class="line">    <span class="comment">// 要做的工作放到promise的函式裡</span></span><br><span class="line">    <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      resolve(n1+n2); <span class="comment">// 工作完成，呼叫 resolve 函式，並把結果透過參數傳遞進去，如果工作出現問題就呼叫 reject ex. reject(n1+n2);</span></span><br><span class="line">      </span><br><span class="line">    &#125;, delayTime);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// 把 promise 傳遞出來</span></span><br><span class="line">  <span class="keyword">return</span> p; <span class="comment">// 或直接以 return 去接以上的結果 回傳回去而不需要變數 p </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// resolve 會對應 .then / reject 會對應 .catch 但.catch可以忽略不寫</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> promise = delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">  &#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Error"</span>, error)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="需求-需要運行兩次的-promise-然後將結果相乘"><a href="#需求-需要運行兩次的-promise-然後將結果相乘" class="headerlink" title="需求: 需要運行兩次的 promise 然後將結果相乘"></a>需求: 需要運行兩次的 promise 然後將結果相乘</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> promise1 = delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="keyword">let</span> promise2 = delayedAdd2(<span class="number">1</span>, <span class="number">5</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="comment">// 多個 promise 都完成後才繼續工作.</span></span><br><span class="line">  <span class="comment">// 把 promises 放入陣列裡</span></span><br><span class="line">  <span class="built_in">Promise</span>.all([promise1, promise2]).then(<span class="function"><span class="keyword">function</span>(<span class="params">results</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 用 reduce() 處理相乘</span></span><br><span class="line">    <span class="keyword">let</span> answer = results.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">total, value</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> total * value;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">console</span>.log(answer);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">test2a();</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三個解決方式-使用-Async-Await-簡化-Promise-。"><a href="#第三個解決方式-使用-Async-Await-簡化-Promise-。" class="headerlink" title="第三個解決方式 : 使用 Async/Await 簡化 Promise 。"></a>第三個解決方式 : 使用 Async/Await 簡化 Promise 。</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Async/Await 背後的邏輯就是和 Promise 是一樣的。</span></span><br><span class="line"><span class="comment">// 使用 Async/Await 的大前提是仍要建立一個 Promise 物件 將它回傳</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd3</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 建立 Promise 物件 : new promise(執行函式)</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123; <span class="comment">// 兩個系統給的參數</span></span><br><span class="line">    <span class="comment">// 要做的工作放到promise的函式裡</span></span><br><span class="line">    <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    resolve(n1+n2); <span class="comment">// 工作完成，呼叫 resolve 函式，並把結果透過參數傳遞進去，如果工作出現問題就呼叫 reject</span></span><br><span class="line">    &#125;, delayTime);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 語法糖，函式前面加 async， async / await 需要一起使用</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test3</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// await 後面接函式. 上面的 resolve 會直接由 result 接收</span></span><br><span class="line">  <span class="keyword">let</span> result = <span class="keyword">await</span> delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="需求-需要運行兩次的-promise-然後將結果相乘-1"><a href="#需求-需要運行兩次的-promise-然後將結果相乘-1" class="headerlink" title="需求 需要運行兩次的 promise 然後將結果相乘"></a>需求 需要運行兩次的 promise 然後將結果相乘</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test3a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="comment">// await 後面接函式. 上面的 resolve 會直接由 result 接收</span></span><br><span class="line">  <span class="keyword">let</span> result1 = <span class="keyword">await</span> delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="keyword">let</span> result2 = <span class="keyword">await</span> delayedAdd2(<span class="number">3</span>, <span class="number">1</span>, <span class="number">3000</span>);</span><br><span class="line">  <span class="keyword">let</span> answer = result1 * result2;</span><br><span class="line">  <span class="built_in">console</span>.log(answer);</span><br><span class="line">&#125;</span><br><span class="line">test3a();</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.youtube.com/watch?v=NOprCnnjHm0" target="_blank" rel="noopener">參考1 彭彭的課程</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/setTimeout" target="_blank" rel="noopener">參考2 code</a></p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>Javascript 近幾年來受歡迎的原因，有一大部分是因為 JS 可以處理非同步（異步）的問題，也因為可以非同步，所以處理速度快，且可帶給瀏覽者更好的體驗，所以了解如何控制非同步也成了前端重要的技能之一。</p>
+<h2 id="無非同步的程式"><a href="#無非同步的程式" class="headerlink" title="無非同步的程式"></a>無非同步的程式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">n1, n2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n1+n2</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">testNoAsync</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = add(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">// testNoAsync(); // 7</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="問題的起源，非同步程式"><a href="#問題的起源，非同步程式" class="headerlink" title="問題的起源，非同步程式"></a>問題的起源，非同步程式</h2><p>寫程式如果遇到要處理非同步的程式，就會變得複雜了起來，為什麼會複雜？<br>預設想要延遲執行，卻出現undefined 程式會一直往下跑， return的部分不會回傳會被忽略….。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd0</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 設定排程，延遲一段時間後執行</span></span><br><span class="line">  <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> n1+n2;</span><br><span class="line">  &#125;, delayTime);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>); <span class="comment">// 仔細觀察出現的順序</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = delayedAdd0(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">// 1, undefined, 2 (不會出現return結果)</span></span><br></pre></td></tr></table></figure>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="ck48mw9b2000vgtuwal4ik7u8" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-JS-What-is-an-IIFE-in-JavaScript" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS-What-is-an-IIFE-in-JavaScript/" class="article-date">
+  <time datetime="2019-07-04T06:25:44.000Z" itemprop="datePublished">2019-07-04</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS-What-is-an-IIFE-in-JavaScript/">JavaScript IIFE 立即呼叫函式</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。<br>IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。</p>
+<h2 id="IIFE語法"><a href="#IIFE語法" class="headerlink" title="IIFE語法"></a>IIFE語法</h2><p>將一個正常的函式包在()裡，後面加個()就成了匿名函式。<br>後面的()表示立即執行，也可帶參數。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>IIFE函式前面一定要有; 不然會有錯誤<br>範例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="string">'foo'</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">bar</span>) </span>&#123;</span><br><span class="line">    Console.log(bar)</span><br><span class="line">&#125;)(foo)</span><br></pre></td></tr></table></figure>
+
+<p>匿名函數的參數(foo)就是 var foo 的這個變數，如果匿名函數有兩個參數， 後面的() 也可帶兩個參數</p>
+<p>一般呼叫函式的方式可以是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">doSomething(<span class="number">123</span>);</span><br><span class="line"><span class="comment">// 匿名函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">doSomething</span> (<span class="params">i</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;)(<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
+
+<p>使用匿名函式即是馬上使用，也就是宣告他的同時也呼叫它，自然就不需要給名字了。所以就成了以下不需名字的函式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">i</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;)(<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
+
+<p>在回圈內呼叫 function 會需要用 IIFE 來把參數的值保留起來，如果有看過 jQuery 的原始碼，會發現有這段：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> window, undefined</span>)</span>&#123;</span><br><span class="line"> <span class="comment">// ....</span></span><br><span class="line">&#125;)(<span class="built_in">window</span>);</span><br></pre></td></tr></table></figure>
+
+<p>jQuery 也用了相同的手法將 window 和 indefined 保留起來。<br>ES6 以後新增了 let 與 const 的變數型態，且改以 { } 作為它的 Scope。換句話說，將範例中的 for 的 var 改為以 let 宣告就可以做到保留 i 在執行迴圈當下的「值」的效果：</p>
+<h4 id="經典迴圈非同步問題"><a href="#經典迴圈非同步問題" class="headerlink" title="經典迴圈非同步問題"></a>經典迴圈非同步問題</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i)</span><br><span class="line">    &#125;, i * <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>目的：每一秒列出一個 i<br>但會列印出１０個１０，因為當進入列印迴圈時，i已經跑到１０了<br>解決如何因非同步而無法印出１－１０的方法：使用IIFE和閉包<br>使用IIFE</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>) </span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(j)</span><br><span class="line">        &#125;, j * <span class="number">1000</span>)</span><br><span class="line">    &#125;)(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>參考：<a href="https://ithelp.ithome.com.tw/articles/10192739" target="_blank" rel="noopener">立即被呼叫的函式 (Immediately Invoked Function Expression, IIFE)</a></p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。<br>IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。</p>
+<h2 id="IIFE語法"><a href="#IIFE語法" class="headerlink" title="IIFE語法"></a>IIFE語法</h2><p>將一個正常的函式包在()裡，後面加個()就成了匿名函式。<br>後面的()表示立即執行，也可帶參數。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>IIFE函式前面一定要有; 不然會有錯誤<br>範例：</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS-What-is-an-IIFE-in-JavaScript/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS-What-is-an-IIFE-in-JavaScript/" data-id="ck48mw9aw000fgtuwyozly0lb" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-在-Github-上安裝-Hexo-記錄" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../在-Github-上安裝-Hexo-記錄/" class="article-date">
@@ -232,7 +923,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/在-Github-上安裝-Hexo-記錄/" data-id="ck48ih5lv003k2xuw14s3oc69" class="article-share-link">
+                        <a data-url="tsuifei.github.io/在-Github-上安裝-Hexo-記錄/" data-id="ck48mw9c4004ngtuwdvmbguks" class="article-share-link">
                             Share
                         </a>
                         
@@ -326,7 +1017,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-ES6-箭頭函式-Arrow-function/" data-id="ck48ih5kj00062xuw8yyvhklx" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-ES6-箭頭函式-Arrow-function/" data-id="ck48mw9am0003gtuwg2hfc4gl" class="article-share-link">
                             Share
                         </a>
                         
@@ -407,7 +1098,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="ck48ih5l4001i2xuwr60wwxls" class="article-share-link">
+                        <a data-url="tsuifei.github.io/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="ck48mw9bf0021gtuwbkzfkkrs" class="article-share-link">
                             Share
                         </a>
                         
@@ -469,23 +1160,23 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="../../JS_ironMan08_How-to-determine-if-it-is-an-array/">判別是否為陣列 Array</a>
+            <a href="../../JS_ironMan15_JavaScript-Array-push()-Method/">JS 從陣列 Array 尾端新增元素的 push()</a>
           </li>
         
           <li>
-            <a href="../../JS_ironMan07_How-to-read-and-write-array-elements/">如何讀取和寫入陣列 Array 元素</a>
+            <a href="../../JS_ironMan14_About-JavaScript-Array-Methods/">陣列 Array 方法概觀</a>
           </li>
         
           <li>
-            <a href="../../JS_ironMan06_What-are-the-types-of-Array/">陣列 Array 有哪幾種型態 ?</a>
+            <a href="../../JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript/">遍歷陣列的方法</a>
           </li>
         
           <li>
-            <a href="../../JS_ironMan05_The-array-property-length/">陣列屬性 length 的真面貌 </a>
+            <a href="../../JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/">以陣列 Array 的複製談型別（下）</a>
           </li>
         
           <li>
-            <a href="../../JS_ironMan04_create-and-declare-arrays/">創建與宣告陣列 Array</a>
+            <a href="../../JS_ironMan11_How-to-copy-an-Array-in-JavaScript-part1/">以陣列 Array 的複製談型別（上）</a>
           </li>
         
       </ul>

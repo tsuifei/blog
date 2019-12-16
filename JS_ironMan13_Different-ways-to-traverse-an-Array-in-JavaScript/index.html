@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>遍歷陣列的方法 | Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Day 13 傻傻以為迴圈是唯一，那只是沙灘上的一塊小岩石。  回想剛開始學程式時，看到 While 迴圈可以透過 ASCII 碼，把英文數字從 ａ 到 Z 印出來，感到好驚訝！到底是怎麼辦到的？但是，經過了幾次無限迴圈的背叛後，才知道如果迴圈不給一個「範圍」，就會出大事。 電腦整個當掉要重開 記得小時候家裡小孩多，當時的台灣經濟正在起飛 馬上透露了世代，家庭代工正興起。記得媽媽總是會叫我們兄弟姐">
+<meta name="keywords" content="JavaScript,JS_Array,Iron man 30 鐵人賽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="遍歷陣列的方法">
+<meta property="og:url" content="tsuifei.github.io/JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="Day 13 傻傻以為迴圈是唯一，那只是沙灘上的一塊小岩石。  回想剛開始學程式時，看到 While 迴圈可以透過 ASCII 碼，把英文數字從 ａ 到 Z 印出來，感到好驚訝！到底是怎麼辦到的？但是，經過了幾次無限迴圈的背叛後，才知道如果迴圈不給一個「範圍」，就會出大事。 電腦整個當掉要重開 記得小時候家裡小孩多，當時的台灣經濟正在起飛 馬上透露了世代，家庭代工正興起。記得媽媽總是會叫我們兄弟姐">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-12-16T16:07:58.245Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="遍歷陣列的方法">
+<meta name="twitter:description" content="Day 13 傻傻以為迴圈是唯一，那只是沙灘上的一塊小岩石。  回想剛開始學程式時，看到 While 迴圈可以透過 ASCII 碼，把英文數字從 ａ 到 Z 印出來，感到好驚訝！到底是怎麼辦到的？但是，經過了幾次無限迴圈的背叛後，才知道如果迴圈不給一個「範圍」，就會出大事。 電腦整個當掉要重開 記得小時候家裡小孩多，當時的台灣經濟正在起飛 馬上透露了世代，家庭代工正興起。記得媽媽總是會叫我們兄弟姐">
+  
+  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../react">React</a>
+        
+        <a class="main-nav-link" href="../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../life">Life</a>
+        
+        <a class="main-nav-link" href="../other">Other</a>
+        
+        <a class="main-nav-link" href="../html">HTML</a>
+        
+        <a class="main-nav-link" href="../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../linux">Linux</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="" class="article-date">
+  <time datetime="2019-11-12T20:21:14.000Z" itemprop="datePublished">2019-11-13</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 class="article-title" itemprop="name">
+      遍歷陣列的方法
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-13"><a href="#Day-13" class="headerlink" title="Day 13"></a>Day 13</h6><blockquote>
+<p>傻傻以為迴圈是唯一，那只是沙灘上的一塊小岩石。</p>
+</blockquote>
+<p>回想剛開始學程式時，看到 While 迴圈可以透過 ASCII 碼，把英文數字從 ａ 到 Z 印出來，感到好驚訝！到底是怎麼辦到的？但是，經過了幾次無限迴圈的背叛後，才知道如果迴圈不給一個「範圍」，就會出大事。 <del>電腦整個當掉要重開</del></p>
+<p>記得小時候家裡小孩多，當時的台灣經濟正在起飛 <del>馬上透露了世代</del>，家庭代工正興起。記得媽媽總是會叫我們兄弟姐妹來幫忙 <del>是滴，本人兄弟姐妹都有。</del> 當時的手工產品是要寄往北方某個遙遠國度的聖誕節飾品，也就是要掛在樹上的小型禮物盒。媽媽先是叫我們排排坐，開始解說步驟，接著就開始這條要完成「一百個」小禮物的童工生產線：</p>
+<ul>
+<li>哥哥把一張包裝紙拿起來放桌上</li>
+<li>姊姊把四方形的保麗龍放在包裝紙上</li>
+<li>我用包禮物的方法把保麗龍包起來</li>
+<li>妹妹用金線把四方形的禮物綑起來 <del>有時還要我幫她</del></li>
+<li>弟弟把印有 Mede in Taiwan 的小金貼紙貼在禮物的底部</li>
+</ul>
+<p>這樣就完成了一個小飾品。</p>
+<p><a href="https://ithelp.ithome.com.tw/upload/images/20190928/20104175SagETy0KNh.png" target="_blank" rel="noopener">圖</a></p>
+<h2 id="迴圈和陣列有什麼關係？"><a href="#迴圈和陣列有什麼關係？" class="headerlink" title="迴圈和陣列有什麼關係？"></a>迴圈和陣列有什麼關係？</h2><p>以上述的情境來說，所有要做的小飾品是陣列；童工生產線是迴圈；小童工各自的工作項目，是在迴圈裡的處理步驟。而陣列的範圍是長度「一百個」這個數量。也就是說，這個迴圈要跑一百次。</p>
+<p>一般我們想要「批次處理」一堆資料就會想到用迴圈，因為迴圈可以自動化的將我們想做的事「逐ㄧ」套在各個元素上執行，而迴圈又以<code>for</code>迴圈最常被使用。</p>
+<p>那我們常聽到的「迭代(iterate)」是什麼？和「遍歷(traversal)」又有什麼不同？請教了前輩才比較清楚的理解，剛剛說的“「逐ㄧ」套在各個元素上執行”，其實就是「迭代」。而迭代是由「遍歷 + 改變」構成的，整個過程即為「迭代 = 遍歷 + 改變」。</p>
+<p>對於陣列，<code>for</code>迴圈是最常使用的遍歷方式，我們可以在這個遍歷的方法裡做許多事。例如說在迴圈裡畫星星 <del>或耍廢</del>。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 印出五顆星星</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> star = <span class="number">0</span>; star &lt; <span class="number">5</span>; star++) &#123;</span><br><span class="line">  <span class="comment">// 執行五次：從star為0到4</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'*'</span>); <span class="comment">// 印出星星</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是時代不同了，JavaScript 每次更新，都會給我們帶來許多好用的方法，該做的事都和迴圈都幫我們一起包在裡面了，尤其是<code>ECMAScript 5</code>增加了許多功能強大的迭代陣列方法，這就是 JavaScript 的內建陣列函式的巧妙之處了。有關 JavaScript 的內建陣列函式，會在接下來的篇章一一介紹。</p>
+<h2 id="遇到稀疏陣列怎麼辦？"><a href="#遇到稀疏陣列怎麼辦？" class="headerlink" title="遇到稀疏陣列怎麼辦？"></a>遇到稀疏陣列怎麼辦？</h2><p>遍歷陣列的作法，是逐一的去走訪在陣列的每一個值，看過政治人物在街頭嗎？他們看到民眾時會和民眾逐一握手，那一排的民眾是陣列；每一個民眾就像是元素；握手就是讓元素產生變化 <del>考慮看看要不要投你</del>。
+但是，如果這位政治人物在逐一握手的時候，中間卡了座石獅子，他也會跳過這隻不會握手的石獅子，繼續跟下一位民眾握手。這一排民眾就成了稀疏（spars）陣列的民眾、而這隻石獅子就是稀疏陣列裡面無效或空的元素。</p>
+<p>通常在使用迭代陣列方法，遇到是稀疏陣列的時候，我們會先把一些無效或空的元素先排除，例如<code>null</code>或<code>undefined</code>，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,,<span class="literal">null</span>,<span class="number">5</span>,<span class="literal">undefined</span>];</span><br><span class="line"><span class="keyword">let</span> arr2=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.length;i++ )&#123;</span><br><span class="line">  <span class="keyword">if</span>(!arr[i]) <span class="keyword">continue</span>;</span><br><span class="line">  arr2.push(arr[i]);</span><br><span class="line">&#125;</span><br><span class="line">arr2; <span class="comment">// [1,2,5]</span></span><br></pre></td></tr></table></figure>
+
+<p>我們希望回傳的是這個陣列被處理過後的結果，但如果是稀疏陣列，這些無效的值也會被一併保留，很沒意義。所以在做處理前，最好先把陣列處理成密集的陣列，這樣迭代才有意義。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                            <h6 id="Day-13"><a href="#Day-13" class="headerlink" title="Day 13"></a>Day 13</h6><blockquote>
+<p>傻傻以為迴圈是唯一，那只是沙灘上的一塊小岩石。</p>
+</blockquote>
+<p>回想剛開始學程式時，看到 While 迴圈可以透過 ASCII 碼，把英文數字從 ａ 到 Z 印出來，感到好驚訝！到底是怎麼辦到的？但是，經過了幾次無限迴圈的背叛後，才知道如果迴圈不給一個「範圍」，就會出大事。 <del>電腦整個當掉要重開</del></p>
+<p>記得小時候家裡小孩多，當時的台灣經濟正在起飛 <del>馬上透露了世代</del>，家庭代工正興起。記得媽媽總是會叫我們兄弟姐妹來幫忙 <del>是滴，本人兄弟姐妹都有。</del> 當時的手工產品是要寄往北方某個遙遠國度的聖誕節飾品，也就是要掛在樹上的小型禮物盒。媽媽先是叫我們排排坐，開始解說步驟，接著就開始這條要完成「一百個」小禮物的童工生產線：</p>
+<ul>
+<li>哥哥把一張包裝紙拿起來放桌上</li>
+<li>姊姊把四方形的保麗龍放在包裝紙上</li>
+<li>我用包禮物的方法把保麗龍包起來</li>
+<li>妹妹用金線把四方形的禮物綑起來 <del>有時還要我幫她</del></li>
+<li>弟弟把印有 Mede in Taiwan 的小金貼紙貼在禮物的底部</li>
+</ul>
+<p>這樣就完成了一個小飾品。</p>
+<p><a href="https://ithelp.ithome.com.tw/upload/images/20190928/20104175SagETy0KNh.png" target="_blank" rel="noopener">圖</a></p>
+<h2 id="迴圈和陣列有什麼關係？"><a href="#迴圈和陣列有什麼關係？" class="headerlink" title="迴圈和陣列有什麼關係？"></a>迴圈和陣列有什麼關係？</h2><p>以上述的情境來說，所有要做的小飾品是陣列；童工生產線是迴圈；小童工各自的工作項目，是在迴圈裡的處理步驟。而陣列的範圍是長度「一百個」這個數量。也就是說，這個迴圈要跑一百次。</p>
+<p>一般我們想要「批次處理」一堆資料就會想到用迴圈，因為迴圈可以自動化的將我們想做的事「逐ㄧ」套在各個元素上執行，而迴圈又以<code>for</code>迴圈最常被使用。</p>
+<p>那我們常聽到的「迭代(iterate)」是什麼？和「遍歷(traversal)」又有什麼不同？請教了前輩才比較清楚的理解，剛剛說的“「逐ㄧ」套在各個元素上執行”，其實就是「迭代」。而迭代是由「遍歷 + 改變」構成的，整個過程即為「迭代 = 遍歷 + 改變」。</p>
+<p>對於陣列，<code>for</code>迴圈是最常使用的遍歷方式，我們可以在這個遍歷的方法裡做許多事。例如說在迴圈裡畫星星 <del>或耍廢</del>。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 印出五顆星星</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> star = <span class="number">0</span>; star &lt; <span class="number">5</span>; star++) &#123;</span><br><span class="line">  <span class="comment">// 執行五次：從star為0到4</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'*'</span>); <span class="comment">// 印出星星</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是時代不同了，JavaScript 每次更新，都會給我們帶來許多好用的方法，該做的事都和迴圈都幫我們一起包在裡面了，尤其是<code>ECMAScript 5</code>增加了許多功能強大的迭代陣列方法，這就是 JavaScript 的內建陣列函式的巧妙之處了。有關 JavaScript 的內建陣列函式，會在接下來的篇章一一介紹。</p>
+<h2 id="遇到稀疏陣列怎麼辦？"><a href="#遇到稀疏陣列怎麼辦？" class="headerlink" title="遇到稀疏陣列怎麼辦？"></a>遇到稀疏陣列怎麼辦？</h2><p>遍歷陣列的作法，是逐一的去走訪在陣列的每一個值，看過政治人物在街頭嗎？他們看到民眾時會和民眾逐一握手，那一排的民眾是陣列；每一個民眾就像是元素；握手就是讓元素產生變化 <del>考慮看看要不要投你</del>。
+但是，如果這位政治人物在逐一握手的時候，中間卡了座石獅子，他也會跳過這隻不會握手的石獅子，繼續跟下一位民眾握手。這一排民眾就成了稀疏（spars）陣列的民眾、而這隻石獅子就是稀疏陣列裡面無效或空的元素。</p>
+<p>通常在使用迭代陣列方法，遇到是稀疏陣列的時候，我們會先把一些無效或空的元素先排除，例如<code>null</code>或<code>undefined</code>，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,,<span class="literal">null</span>,<span class="number">5</span>,<span class="literal">undefined</span>];</span><br><span class="line"><span class="keyword">let</span> arr2=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.length;i++ )&#123;</span><br><span class="line">  <span class="keyword">if</span>(!arr[i]) <span class="keyword">continue</span>;</span><br><span class="line">  arr2.push(arr[i]);</span><br><span class="line">&#125;</span><br><span class="line">arr2; <span class="comment">// [1,2,5]</span></span><br></pre></td></tr></table></figure>
+
+<p>我們希望回傳的是這個陣列被處理過後的結果，但如果是稀疏陣列，這些無效的值也會被一併保留，很沒意義。所以在做處理前，最好先把陣列處理成密集的陣列，這樣迭代才有意義。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+
+                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript/" data-id="ck48mw9bd001sgtuwwafg3qqe" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+  
+    <a href="../JS_ironMan14_About-JavaScript-Array-Methods/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          陣列 Array 方法概觀
+        
+      </div>
+    </a>
+  
+  
+    <a href="../JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">以陣列 Array 的複製談型別（下）</div>
+    </a>
+  
+</nav>
+
+            
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
+            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../JS_ironMan15_JavaScript-Array-push()-Method/">JS 從陣列 Array 尾端新增元素的 push()</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan14_About-JavaScript-Array-Methods/">陣列 Array 方法概觀</a>
+          </li>
+        
+          <li>
+            <a href="">遍歷陣列的方法</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/">以陣列 Array 的複製談型別（下）</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan11_How-to-copy-an-Array-in-JavaScript-part1/">以陣列 Array 的複製談型別（上）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../react" class="mobile-nav-link">React</a>
+  
+    <a href="../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../other" class="mobile-nav-link">Other</a>
+  
+    <a href="../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../linux" class="mobile-nav-link">Linux</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
+  <script src="../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

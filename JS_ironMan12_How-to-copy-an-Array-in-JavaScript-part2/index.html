@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>以陣列 Array 的複製談型別（下） | Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Day 12 拿到它，先看它是什麼？拿它來做什麼? 再決定。  在複製陣列之前，先理解了 JavaScript 會依資料型別 Primitive type（基本型別）和Non-primitive type（非基本型別）而有不同的運作方式，我們就可以進一步的來了解，我們常聽到的深拷貝（DeepCopy)和淺拷貝(shallow) 是什麼、在什麼情境下要選擇哪一種複製方法、如何實作出這些深拷貝和淺拷貝">
+<meta name="keywords" content="JavaScript,JS_Array,Iron man 30 鐵人賽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以陣列 Array 的複製談型別（下）">
+<meta property="og:url" content="tsuifei.github.io/JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="Day 12 拿到它，先看它是什麼？拿它來做什麼? 再決定。  在複製陣列之前，先理解了 JavaScript 會依資料型別 Primitive type（基本型別）和Non-primitive type（非基本型別）而有不同的運作方式，我們就可以進一步的來了解，我們常聽到的深拷貝（DeepCopy)和淺拷貝(shallow) 是什麼、在什麼情境下要選擇哪一種複製方法、如何實作出這些深拷貝和淺拷貝">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-12-16T16:03:21.089Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="以陣列 Array 的複製談型別（下）">
+<meta name="twitter:description" content="Day 12 拿到它，先看它是什麼？拿它來做什麼? 再決定。  在複製陣列之前，先理解了 JavaScript 會依資料型別 Primitive type（基本型別）和Non-primitive type（非基本型別）而有不同的運作方式，我們就可以進一步的來了解，我們常聽到的深拷貝（DeepCopy)和淺拷貝(shallow) 是什麼、在什麼情境下要選擇哪一種複製方法、如何實作出這些深拷貝和淺拷貝">
+  
+  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../react">React</a>
+        
+        <a class="main-nav-link" href="../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../life">Life</a>
+        
+        <a class="main-nav-link" href="../other">Other</a>
+        
+        <a class="main-nav-link" href="../html">HTML</a>
+        
+        <a class="main-nav-link" href="../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../linux">Linux</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="" class="article-date">
+  <time datetime="2019-11-11T20:21:14.000Z" itemprop="datePublished">2019-11-12</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 class="article-title" itemprop="name">
+      以陣列 Array 的複製談型別（下）
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-12"><a href="#Day-12" class="headerlink" title="Day 12"></a>Day 12</h6><blockquote>
+<p>拿到它，先看它是什麼？拿它來做什麼? 再決定。</p>
+</blockquote>
+<p>在複製陣列之前，先理解了 JavaScript 會依資料型別 Primitive type（基本型別）和Non-primitive type（非基本型別）而有不同的運作方式，我們就可以進一步的來了解，我們常聽到的深拷貝（DeepCopy)和淺拷貝(shallow) 是什麼、在什麼情境下要選擇哪一種複製方法、如何實作出這些深拷貝和淺拷貝。</p>
+<h2 id="什麼是拷貝？"><a href="#什麼是拷貝？" class="headerlink" title="什麼是拷貝？"></a>什麼是拷貝？</h2><p>在生活中我們最常做的拷貝就是影印，假如我有一份筆記，朋友跟我借去拷貝，當他拿著我的筆記，到影印機前，按下拷貝鍵的那一刻，複製的筆記從機器跑出來，這時「拷貝」這件事就算完成，「我的筆記」和「他影印的筆記」是各自獨立的筆記，之後他要在這份影印的筆記上塗鴉也好、修改也好，也不會影響我的筆記。</p>
+<p>但是在 JavaScript 裡，當我們新建立一個變數<code>a</code>，賦予這個變數一個值，然後再建立一個新變數<code>b</code>，接著以<code>=</code>指定運算子來把<code>a</code> 指定給<code>b</code>，這樣就算拷貝嗎？雖然我們<code>a</code>、<code>b</code>叫出來看都是ˋ42ˋ，但是這真的是拷貝嗎。？是或不是？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">let</span> b = a;</span><br><span class="line">a; <span class="comment">// 42</span></span><br><span class="line">b; <span class="comment">// 42</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="被複製的資料型別是重點"><a href="#被複製的資料型別是重點" class="headerlink" title="被複製的資料型別是重點"></a>被複製的資料型別是重點</h3><p>事實上，這得要看我們要複製什麼東西，才能知道我們是否可以「輕易」的複製，且「真正」的把複製和被複製的徹底分離。<br>更確切的說，如果我們要複製的變數值型態，是屬於Primitive data types（基本資料型別），也就是以下的資料型態：</p>
+<ul>
+<li>Number (數字)，例如 <code>42</code></li>
+<li>String (字串)，例如 <code>&quot;Hi&quot;</code> </li>
+<li>Boolean (布林值)，例如 <code>true</code></li>
+<li>undefined</li>
+<li>null</li>
+</ul>
+<p>那麼我們就可以放心的以上述的方式複製。</p>
+<p>還記得前一篇提到的 Call by value（呼叫變數的值）嗎？這些資料型別在 JavaScript 裡是屬於 Immutable (不可變)的基本型別，以值的方式複製可以得到真正的、獨立的複製。</p>
+<h3 id="你以為你複製了，但是並。沒。有。"><a href="#你以為你複製了，但是並。沒。有。" class="headerlink" title="你以為你複製了，但是並。沒。有。"></a>你以為你複製了，但是並。沒。有。</h3><p>但是，如果今天要被複製的資料型態是 Non Primitive data types（非基本資料型別），也就是 Object (物件型別)，那就無法完全複製。例如：</p>
+<ul>
+<li>Array (陣列)，例如 <code>[1, 2, 3, 4, 5]</code></li>
+<li>Object (物件)，例如 <code>{ name : &quot;Tsuifei&quot;}</code></li>
+</ul>
+<p>因為陣列和物件是屬於 Call by reference（呼叫變數的記憶體位址），也就是說當我們複製這類型的資料，只是複製了這個變數的記憶體位置，所以當我們呼叫複製和被複製的變數時，都會指向同一個記憶體位置，當然，裡面的值也是同一個值，改任何一個，都會動到兩個變數的值。<br>我們再來複習一下前一篇的範例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// by reference(參考值)</span></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Tracy"</span>,</span><br><span class="line">    city: <span class="string">"Tainan"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person2 = person; </span><br><span class="line">person2.name = <span class="string">"Ayda"</span></span><br><span class="line"></span><br><span class="line">person; <span class="comment">// name: "Ayda"</span></span><br><span class="line">person2; <span class="comment">// name: "Ayda"</span></span><br></pre></td></tr></table></figure>
+
+<p>我們可以看到，在我們修改從<code>person</code>複製出來的<code>person2</code>時，<code>person</code>也被修改了。</p>
+<h2 id="物件專用的深拷貝和淺拷貝"><a href="#物件專用的深拷貝和淺拷貝" class="headerlink" title="物件專用的深拷貝和淺拷貝"></a>物件專用的深拷貝和淺拷貝</h2><p>終於，我們要進入 <del>深眠和淺眠</del> 這個正題了。<br>不知大家有沒發現，在討論這個深淺拷貝的範例時，清一色都是用物件來示範？原來，「深拷貝」和「淺拷貝」是針對物件的資料型別複製時，所產生的現象而來的啊！</p>
+<p>但是要如何在 JavaScript 中區分深拷貝和淺拷貝？何時該用「深拷貝」或「淺拷貝」，用最簡單的方式是取決於我們想要複製的資料<code>[元素]</code>是什麼型別。 <del>結束。</del></p>
+<h3 id="淺拷貝-只要一層都好說"><a href="#淺拷貝-只要一層都好說" class="headerlink" title="淺拷貝 [ ] 只要一層都好說"></a>淺拷貝 [ ] 只要一層都好說</h3><p>完全的複製 Array 而不受原陣列影響，即使修改複製過來的物件裡的值，也不會改變複製來源，這個物件裡面的「元素」可以是任何一種資料型態，反著說，就是這個物件裡面的元素，不能是物件。如果遇到這樣的資料，就可以用淺拷貝的方法複製。</p>
+<p>有哪幾種方法可以做淺拷貝？最常被拿來用的是 JavaScript 內建的陣列方法<code>slice()</code>。 <del>它的詳細解說會在後幾章才會介紹到。</del> <code>slice()</code>通常拿來做從陣列中切取我們需要的元素出來，在這裡我們使用<code>slice(0)</code>表示我們要從頭到尾都切下來。 <del>切切切</del></p>
+<p>在下面第一個範例，「淺拷貝」是可行的，因為<code>arr1</code>陣列裡的元素是基本資料型別<code>Number</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr1.slice(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">arr2[<span class="number">0</span>] = <span class="number">42</span>;</span><br><span class="line">arr1; <span class="comment">// [1, 2, 3]</span></span><br><span class="line">arr2; <span class="comment">// [42, 2, 3]</span></span><br></pre></td></tr></table></figure>
+
+<p>但是以下這個範例，<code>arr1</code>陣列裡的「元素」是「物件型別」的陣列，淺拷貝對於原物件裡面的元素值是物件型態就是不行！ <del>噠美噠美</del></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 淺拷貝 []</span></span><br><span class="line"><span class="keyword">let</span> arr1 = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr1.slice(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">arr2[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">42</span>;</span><br><span class="line">arr1; </span><br><span class="line"><span class="comment">// 0: (3) [42, 2, 3]</span></span><br><span class="line"><span class="comment">// 1: (3) [4, 5, 6]</span></span><br><span class="line">arr2; </span><br><span class="line"><span class="comment">// 0: (3) [42, 2, 3]</span></span><br><span class="line"><span class="comment">// 1: (3) [4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+
+<p>網路上能找到的大多是淺拷貝的例子，雖然淺 <del>可別因此就鄙視它</del>，只要確認要複製的來源物件，裡面的元素不是物件型別，還是非常好用的。<br>礙於篇幅，這裡只介紹一種淺拷貝的方式，有興趣的朋友可查找網路上其他的方法，例如用解構式、迴圈或使用<code>map()</code>都可達到淺拷貝的效果。</p>
+<h3 id="深拷貝-–-gt-DNA被複製，桃莉羊出現了"><a href="#深拷貝-–-gt-DNA被複製，桃莉羊出現了" class="headerlink" title="深拷貝 [ [ ],[ ] ] –&gt; DNA被複製，桃莉羊出現了"></a>深拷貝 [ [ ],[ ] ] –&gt; DNA被複製，桃莉羊出現了</h3><p>何時使用深拷貝？當我們想要完全複製一份「物件」裡面的元素也是「物件」，就可以使用深拷貝，這種情境就是我們在本文開頭所說的，用影印機複製筆記ㄧ樣，複製完就是兩個獨立的個體了。</p>
+<p>做深拷貝的方法並不多，大部分都是靠外來的函式庫來撐腰，例如 lodash 和 jQuery 的第三方主流函式庫，如果使用原生的 JavaScript 來做深拷貝，似乎只能使用<code>JSON.stringify()</code>和<code>JSON.parse()</code>的交互作用，達到深拷貝的效果。</p>
+<p>來看一下 MDN 對這兩個函式的解釋： <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" target="_blank" rel="noopener">JSON.stringify()| MDN</a> ｜ <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse" target="_blank" rel="noopener">JSON.parse() | MDN</a></p>
+<blockquote>
+<p><code>JSON.stringify()</code>方法是將一個 JavaScript 的值(物件或陣列)轉換為一個<code>JSON</code>的字串。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]];</span><br><span class="line">arr = <span class="built_in">JSON</span>.stringify(arr); <span class="comment">// "[[1,2,3],[4,5,6]]"</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>JSON.parse()</code>方法用來解析<code>JSON</code>的字串，構造由字串描述的JavaScript值或物件。</p>
+</blockquote>
+<p>這時的<code>arr</code>已經變成JSON的字串格式：<code>&quot;[[1,2,3],[4,5,6]]&quot;</code>。
+接下來再轉回陣列的型態：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = <span class="built_in">JSON</span>.parse(arr); <span class="comment">// [[1,2,3],[4,5,6]]</span></span><br></pre></td></tr></table></figure>
+
+<p>把原本的物件值轉成字串，然後再轉回來物件的型態，兩個函式手牽手處理下來，就等於複製了一份<code>arr1</code>到<code>arr2</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jsonDeepClone</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(obj));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr1 = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]];</span><br><span class="line"><span class="keyword">let</span> arr2 = jsonDeepClone(arr1);</span><br><span class="line"></span><br><span class="line">arr2[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">42</span>;</span><br><span class="line">arr1;</span><br><span class="line"><span class="comment">// 0: (3) [1, 2, 3]</span></span><br><span class="line"><span class="comment">// 1: (3) [4, 5, 6]</span></span><br><span class="line">arr2;</span><br><span class="line"><span class="comment">// 0: (3) [42, 2, 3]</span></span><br><span class="line"><span class="comment">// 1: (3) [4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+
+<p>這樣的一個拷貝過程與結果就是深拷貝（DeepCopy）了。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                            <h6 id="Day-12"><a href="#Day-12" class="headerlink" title="Day 12"></a>Day 12</h6><blockquote>
+<p>拿到它，先看它是什麼？拿它來做什麼? 再決定。</p>
+</blockquote>
+<p>在複製陣列之前，先理解了 JavaScript 會依資料型別 Primitive type（基本型別）和Non-primitive type（非基本型別）而有不同的運作方式，我們就可以進一步的來了解，我們常聽到的深拷貝（DeepCopy)和淺拷貝(shallow) 是什麼、在什麼情境下要選擇哪一種複製方法、如何實作出這些深拷貝和淺拷貝。</p>
+<h2 id="什麼是拷貝？"><a href="#什麼是拷貝？" class="headerlink" title="什麼是拷貝？"></a>什麼是拷貝？</h2><p>在生活中我們最常做的拷貝就是影印，假如我有一份筆記，朋友跟我借去拷貝，當他拿著我的筆記，到影印機前，按下拷貝鍵的那一刻，複製的筆記從機器跑出來，這時「拷貝」這件事就算完成，「我的筆記」和「他影印的筆記」是各自獨立的筆記，之後他要在這份影印的筆記上塗鴉也好、修改也好，也不會影響我的筆記。</p>
+<p>但是在 JavaScript 裡，當我們新建立一個變數<code>a</code>，賦予這個變數一個值，然後再建立一個新變數<code>b</code>，接著以<code>=</code>指定運算子來把<code>a</code> 指定給<code>b</code>，這樣就算拷貝嗎？雖然我們<code>a</code>、<code>b</code>叫出來看都是ˋ42ˋ，但是這真的是拷貝嗎。？是或不是？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">let</span> b = a;</span><br><span class="line">a; <span class="comment">// 42</span></span><br><span class="line">b; <span class="comment">// 42</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="被複製的資料型別是重點"><a href="#被複製的資料型別是重點" class="headerlink" title="被複製的資料型別是重點"></a>被複製的資料型別是重點</h3><p>事實上，這得要看我們要複製什麼東西，才能知道我們是否可以「輕易」的複製，且「真正」的把複製和被複製的徹底分離。<br>更確切的說，如果我們要複製的變數值型態，是屬於Primitive data types（基本資料型別），也就是以下的資料型態：</p>
+<ul>
+<li>Number (數字)，例如 <code>42</code></li>
+<li>String (字串)，例如 <code>&quot;Hi&quot;</code> </li>
+<li>Boolean (布林值)，例如 <code>true</code></li>
+<li>undefined</li>
+<li>null</li>
+</ul>
+<p>那麼我們就可以放心的以上述的方式複製。</p>
+<p>還記得前一篇提到的 Call by value（呼叫變數的值）嗎？這些資料型別在 JavaScript 裡是屬於 Immutable (不可變)的基本型別，以值的方式複製可以得到真正的、獨立的複製。</p>
+<h3 id="你以為你複製了，但是並。沒。有。"><a href="#你以為你複製了，但是並。沒。有。" class="headerlink" title="你以為你複製了，但是並。沒。有。"></a>你以為你複製了，但是並。沒。有。</h3><p>但是，如果今天要被複製的資料型態是 Non Primitive data types（非基本資料型別），也就是 Object (物件型別)，那就無法完全複製。例如：</p>
+<ul>
+<li>Array (陣列)，例如 <code>[1, 2, 3, 4, 5]</code></li>
+<li>Object (物件)，例如 <code>{ name : &quot;Tsuifei&quot;}</code></li>
+</ul>
+<p>因為陣列和物件是屬於 Call by reference（呼叫變數的記憶體位址），也就是說當我們複製這類型的資料，只是複製了這個變數的記憶體位置，所以當我們呼叫複製和被複製的變數時，都會指向同一個記憶體位置，當然，裡面的值也是同一個值，改任何一個，都會動到兩個變數的值。<br>我們再來複習一下前一篇的範例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// by reference(參考值)</span></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Tracy"</span>,</span><br><span class="line">    city: <span class="string">"Tainan"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person2 = person; </span><br><span class="line">person2.name = <span class="string">"Ayda"</span></span><br><span class="line"></span><br><span class="line">person; <span class="comment">// name: "Ayda"</span></span><br><span class="line">person2; <span class="comment">// name: "Ayda"</span></span><br></pre></td></tr></table></figure>
+
+<p>我們可以看到，在我們修改從<code>person</code>複製出來的<code>person2</code>時，<code>person</code>也被修改了。</p>
+<h2 id="物件專用的深拷貝和淺拷貝"><a href="#物件專用的深拷貝和淺拷貝" class="headerlink" title="物件專用的深拷貝和淺拷貝"></a>物件專用的深拷貝和淺拷貝</h2><p>終於，我們要進入 <del>深眠和淺眠</del> 這個正題了。<br>不知大家有沒發現，在討論這個深淺拷貝的範例時，清一色都是用物件來示範？原來，「深拷貝」和「淺拷貝」是針對物件的資料型別複製時，所產生的現象而來的啊！</p>
+<p>但是要如何在 JavaScript 中區分深拷貝和淺拷貝？何時該用「深拷貝」或「淺拷貝」，用最簡單的方式是取決於我們想要複製的資料<code>[元素]</code>是什麼型別。 <del>結束。</del></p>
+<h3 id="淺拷貝-只要一層都好說"><a href="#淺拷貝-只要一層都好說" class="headerlink" title="淺拷貝 [ ] 只要一層都好說"></a>淺拷貝 [ ] 只要一層都好說</h3><p>完全的複製 Array 而不受原陣列影響，即使修改複製過來的物件裡的值，也不會改變複製來源，這個物件裡面的「元素」可以是任何一種資料型態，反著說，就是這個物件裡面的元素，不能是物件。如果遇到這樣的資料，就可以用淺拷貝的方法複製。</p>
+<p>有哪幾種方法可以做淺拷貝？最常被拿來用的是 JavaScript 內建的陣列方法<code>slice()</code>。 <del>它的詳細解說會在後幾章才會介紹到。</del> <code>slice()</code>通常拿來做從陣列中切取我們需要的元素出來，在這裡我們使用<code>slice(0)</code>表示我們要從頭到尾都切下來。 <del>切切切</del></p>
+<p>在下面第一個範例，「淺拷貝」是可行的，因為<code>arr1</code>陣列裡的元素是基本資料型別<code>Number</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr1.slice(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">arr2[<span class="number">0</span>] = <span class="number">42</span>;</span><br><span class="line">arr1; <span class="comment">// [1, 2, 3]</span></span><br><span class="line">arr2; <span class="comment">// [42, 2, 3]</span></span><br></pre></td></tr></table></figure>
+
+<p>但是以下這個範例，<code>arr1</code>陣列裡的「元素」是「物件型別」的陣列，淺拷貝對於原物件裡面的元素值是物件型態就是不行！ <del>噠美噠美</del></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 淺拷貝 []</span></span><br><span class="line"><span class="keyword">let</span> arr1 = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr1.slice(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">arr2[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">42</span>;</span><br><span class="line">arr1; </span><br><span class="line"><span class="comment">// 0: (3) [42, 2, 3]</span></span><br><span class="line"><span class="comment">// 1: (3) [4, 5, 6]</span></span><br><span class="line">arr2; </span><br><span class="line"><span class="comment">// 0: (3) [42, 2, 3]</span></span><br><span class="line"><span class="comment">// 1: (3) [4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+
+<p>網路上能找到的大多是淺拷貝的例子，雖然淺 <del>可別因此就鄙視它</del>，只要確認要複製的來源物件，裡面的元素不是物件型別，還是非常好用的。<br>礙於篇幅，這裡只介紹一種淺拷貝的方式，有興趣的朋友可查找網路上其他的方法，例如用解構式、迴圈或使用<code>map()</code>都可達到淺拷貝的效果。</p>
+<h3 id="深拷貝-–-gt-DNA被複製，桃莉羊出現了"><a href="#深拷貝-–-gt-DNA被複製，桃莉羊出現了" class="headerlink" title="深拷貝 [ [ ],[ ] ] –&gt; DNA被複製，桃莉羊出現了"></a>深拷貝 [ [ ],[ ] ] –&gt; DNA被複製，桃莉羊出現了</h3><p>何時使用深拷貝？當我們想要完全複製一份「物件」裡面的元素也是「物件」，就可以使用深拷貝，這種情境就是我們在本文開頭所說的，用影印機複製筆記ㄧ樣，複製完就是兩個獨立的個體了。</p>
+<p>做深拷貝的方法並不多，大部分都是靠外來的函式庫來撐腰，例如 lodash 和 jQuery 的第三方主流函式庫，如果使用原生的 JavaScript 來做深拷貝，似乎只能使用<code>JSON.stringify()</code>和<code>JSON.parse()</code>的交互作用，達到深拷貝的效果。</p>
+<p>來看一下 MDN 對這兩個函式的解釋： <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" target="_blank" rel="noopener">JSON.stringify()| MDN</a> ｜ <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse" target="_blank" rel="noopener">JSON.parse() | MDN</a></p>
+<blockquote>
+<p><code>JSON.stringify()</code>方法是將一個 JavaScript 的值(物件或陣列)轉換為一個<code>JSON</code>的字串。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]];</span><br><span class="line">arr = <span class="built_in">JSON</span>.stringify(arr); <span class="comment">// "[[1,2,3],[4,5,6]]"</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>JSON.parse()</code>方法用來解析<code>JSON</code>的字串，構造由字串描述的JavaScript值或物件。</p>
+</blockquote>
+<p>這時的<code>arr</code>已經變成JSON的字串格式：<code>&quot;[[1,2,3],[4,5,6]]&quot;</code>。
+接下來再轉回陣列的型態：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = <span class="built_in">JSON</span>.parse(arr); <span class="comment">// [[1,2,3],[4,5,6]]</span></span><br></pre></td></tr></table></figure>
+
+<p>把原本的物件值轉成字串，然後再轉回來物件的型態，兩個函式手牽手處理下來，就等於複製了一份<code>arr1</code>到<code>arr2</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jsonDeepClone</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(obj));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr1 = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]];</span><br><span class="line"><span class="keyword">let</span> arr2 = jsonDeepClone(arr1);</span><br><span class="line"></span><br><span class="line">arr2[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">42</span>;</span><br><span class="line">arr1;</span><br><span class="line"><span class="comment">// 0: (3) [1, 2, 3]</span></span><br><span class="line"><span class="comment">// 1: (3) [4, 5, 6]</span></span><br><span class="line">arr2;</span><br><span class="line"><span class="comment">// 0: (3) [42, 2, 3]</span></span><br><span class="line"><span class="comment">// 1: (3) [4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+
+<p>這樣的一個拷貝過程與結果就是深拷貝（DeepCopy）了。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+
+                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/" data-id="ck48mw9bc001qgtuwknuan2dn" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+  
+    <a href="../JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          遍歷陣列的方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="../JS_ironMan11_How-to-copy-an-Array-in-JavaScript-part1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">以陣列 Array 的複製談型別（上）</div>
+    </a>
+  
+</nav>
+
+            
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
+            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../JS_ironMan15_JavaScript-Array-push()-Method/">JS 從陣列 Array 尾端新增元素的 push()</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan14_About-JavaScript-Array-Methods/">陣列 Array 方法概觀</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript/">遍歷陣列的方法</a>
+          </li>
+        
+          <li>
+            <a href="">以陣列 Array 的複製談型別（下）</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan11_How-to-copy-an-Array-in-JavaScript-part1/">以陣列 Array 的複製談型別（上）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../react" class="mobile-nav-link">React</a>
+  
+    <a href="../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../other" class="mobile-nav-link">Other</a>
+  
+    <a href="../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../linux" class="mobile-nav-link">Linux</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
+  <script src="../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
