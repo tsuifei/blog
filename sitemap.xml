@@ -2,44 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>tsuifei.github.io/JS-How-to-read-and-write-array-elements/</loc>
+    <loc>tsuifei.github.io/JS_ironMan02_What-is-the-array/</loc>
     
-    <lastmod>2019-09-23T02:27:44.949Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_How-to-determine-if-it-is-an-array/</loc>
-    
-    <lastmod>2019-09-23T02:23:50.539Z</lastmod>
+    <lastmod>2019-12-16T14:19:33.452Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_create-and-declare-arrays/</loc>
+    <loc>tsuifei.github.io/JS_ironMan05_The-array-property-length/</loc>
     
-    <lastmod>2019-09-21T22:39:38.542Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_What-is-the-array/</loc>
-    
-    <lastmod>2019-09-21T22:31:36.647Z</lastmod>
+    <lastmod>2019-12-16T14:19:30.737Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_What-can-the-array-do/</loc>
+    <loc>tsuifei.github.io/JS_ironMan06_What-are-the-types-of-Array/</loc>
     
-    <lastmod>2019-09-21T22:31:24.273Z</lastmod>
+    <lastmod>2019-12-16T14:19:29.220Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_iron-man-foreword/</loc>
+    <loc>tsuifei.github.io/JS_ironMan07_How-to-read-and-write-array-elements/</loc>
     
-    <lastmod>2019-09-21T22:31:19.041Z</lastmod>
+    <lastmod>2019-12-16T14:19:24.420Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan08_How-to-determine-if-it-is-an-array/</loc>
+    
+    <lastmod>2019-12-16T14:17:55.544Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan04_create-and-declare-arrays/</loc>
+    
+    <lastmod>2019-12-16T14:14:23.382Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan03_What-can-the-array-do/</loc>
+    
+    <lastmod>2019-12-16T14:13:59.080Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan01_foreword/</loc>
+    
+    <lastmod>2019-12-16T14:13:24.845Z</lastmod>
     
   </url>
   
