@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Un blog pour partager, expérimenter et s&apos;améliorer en programmation.">
+<meta name="keywords" content="tsuifei, Pommier, JavaScript, HTML, CSS, linux, sass, coding">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cré-Coder">
+<meta property="og:url" content="tsuifei.github.io/page/4/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="Un blog pour partager, expérimenter et s&apos;améliorer en programmation.">
+<meta property="og:locale" content="zh-tw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cré-Coder">
+<meta name="twitter:description" content="Un blog pour partager, expérimenter et s&apos;améliorer en programmation.">
+  
+  <link rel="alternate" href="../../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../../tsuifei/">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../../react">React</a>
+        
+        <a class="main-nav-link" href="../../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../../life">Life</a>
+        
+        <a class="main-nav-link" href="../../other">Other</a>
+        
+        <a class="main-nav-link" href="../../html">HTML</a>
+        
+        <a class="main-nav-link" href="../../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../../linux">Linux</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-git-github練習心得" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../git-github練習心得/" class="article-date">
+  <time datetime="2019-07-09T07:02:24.000Z" itemprop="datePublished">2019-07-09</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/Git/">Git</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../git-github練習心得/">Git/GitHub練習心得</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>照著程式導師實驗計畫的操作，學會如何設置本端和遠端之間的更新與開分支，合併等方法，程序有點小複雜，但對於版本控管的確是輕度多了，只是還沒和其他人合作控管，這部分須多操控。<br>.gitignore 的設置在設github前就應該處理，不然之後刪來刪去很麻煩，記得不要上傳node_modules/不然會很龐大。</p>
+<h3 id="小筆記"><a href="#小筆記" class="headerlink" title="小筆記"></a>小筆記</h3><p>設分支練習：</p>
+<ol>
+<li>原本在master，創另一個分支 ：git branch [分支名] </li>
+<li>切換到那個分支：git checkout [分支名] </li>
+<li>用git status查在哪個分支</li>
+<li>用git branch -v 看有哪些branch</li>
+<li>push 到新的branch上：git push origin [branch名]</li>
+</ol>
+<h3 id="在github上merge合併："><a href="#在github上merge合併：" class="headerlink" title="在github上merge合併："></a>在github上merge合併：</h3><ol>
+<li>在github上的標籤頁pull requests上點Create pull request → 會顯示兩邊的不同</li>
+<li>再點Create pull request 之後，等Merge pull request出現，點下確認即可</li>
+<li>Merge後切換到Master就會看到更新結果。</li>
+<li>用git pull origin master 把已經merge好得檔案拉到本地端</li>
+</ol>
+<p>要改東西一定要新開branch再merge到master本支</p>
+<blockquote>
+<p>忘記切回test分支，所以後來無法順利merge到master分支，雖然後來看似解決，但還真不知道自己是怎麼解決的，就是試了幾個鍵，跟著打就好了．．．這樣其實有點可怕，下次再注意！</p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>照著程式導師實驗計畫的操作，學會如何設置本端和遠端之間的更新與開分支，合併等方法，程序有點小複雜，但對於版本控管的確是輕度多了，只是還沒和其他人合作控管，這部分須多操控。<br>.gitignore 的設置在設github前就應該處理，不然之後刪來刪去很麻煩，記得不要上傳node_modules/不然會很龐大。</p>
+<h3 id="小筆記"><a href="#小筆記" class="headerlink" title="小筆記"></a>小筆記</h3><p>設分支練習：</p>
+<ol>
+<li>原本在master，創另一個分支 ：git branch [分支名] </li>
+<li>切換到那個分支：git checkout [分支名] </li>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../git-github練習心得/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/git-github練習心得/" data-id="ck48n1rq80027mxuwkg4pmnlj" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Note/">Note</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" class="article-date">
+  <time datetime="2019-07-05T06:08:16.000Z" itemprop="datePublished">2019-07-05</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/">JS 回呼函式 Callbacks、Promises 物件、Async/Await 非同步流程控制</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>Javascript 近幾年來受歡迎的原因，有一大部分是因為 JS 可以處理非同步（異步）的問題，也因為可以非同步，所以處理速度快，且可帶給瀏覽者更好的體驗，所以了解如何控制非同步也成了前端重要的技能之一。</p>
+<h2 id="無非同步的程式"><a href="#無非同步的程式" class="headerlink" title="無非同步的程式"></a>無非同步的程式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">n1, n2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n1+n2</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">testNoAsync</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = add(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">// testNoAsync(); // 7</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="問題的起源，非同步程式"><a href="#問題的起源，非同步程式" class="headerlink" title="問題的起源，非同步程式"></a>問題的起源，非同步程式</h2><p>寫程式如果遇到要處理非同步的程式，就會變得複雜了起來，為什麼會複雜？<br>預設想要延遲執行，卻出現undefined 程式會一直往下跑， return的部分不會回傳會被忽略….。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd0</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 設定排程，延遲一段時間後執行</span></span><br><span class="line">  <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> n1+n2;</span><br><span class="line">  &#125;, delayTime);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>); <span class="comment">// 仔細觀察出現的順序</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = delayedAdd0(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">// 1, undefined, 2 (不會出現return結果)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第一個解決方式-callback-回呼函式"><a href="#第一個解決方式-callback-回呼函式" class="headerlink" title="第一個解決方式 : callback 回呼函式"></a>第一個解決方式 : callback 回呼函式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd1</span>(<span class="params">n1, n2, delayTime, callback</span>)</span>&#123; <span class="comment">// callback 函式</span></span><br><span class="line">  <span class="comment">// 設定排程，延遲一段時間後執行</span></span><br><span class="line">  <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 延遲一段時間，計算加法，呼叫callback函式</span></span><br><span class="line">    callback(n1+n2);</span><br><span class="line">  &#125;, delayTime);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  delayedAdd1(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>, <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">test1(); <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第二個解決方式-Promise-物件"><a href="#第二個解決方式-Promise-物件" class="headerlink" title="第二個解決方式 : Promise 物件"></a>第二個解決方式 : Promise 物件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd2</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 建立 Promise 物件 :  new promise(執行函式)</span></span><br><span class="line">  <span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123; <span class="comment">// 兩個系統給的參數</span></span><br><span class="line">    <span class="comment">// 要做的工作放到promise的函式裡</span></span><br><span class="line">    <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      resolve(n1+n2); <span class="comment">// 工作完成，呼叫 resolve 函式，並把結果透過參數傳遞進去，如果工作出現問題就呼叫 reject ex. reject(n1+n2);</span></span><br><span class="line">      </span><br><span class="line">    &#125;, delayTime);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// 把 promise 傳遞出來</span></span><br><span class="line">  <span class="keyword">return</span> p; <span class="comment">// 或直接以 return 去接以上的結果 回傳回去而不需要變數 p </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// resolve 會對應 .then / reject 會對應 .catch 但.catch可以忽略不寫</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> promise = delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">  &#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Error"</span>, error)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="需求-需要運行兩次的-promise-然後將結果相乘"><a href="#需求-需要運行兩次的-promise-然後將結果相乘" class="headerlink" title="需求: 需要運行兩次的 promise 然後將結果相乘"></a>需求: 需要運行兩次的 promise 然後將結果相乘</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> promise1 = delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="keyword">let</span> promise2 = delayedAdd2(<span class="number">1</span>, <span class="number">5</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="comment">// 多個 promise 都完成後才繼續工作.</span></span><br><span class="line">  <span class="comment">// 把 promises 放入陣列裡</span></span><br><span class="line">  <span class="built_in">Promise</span>.all([promise1, promise2]).then(<span class="function"><span class="keyword">function</span>(<span class="params">results</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 用 reduce() 處理相乘</span></span><br><span class="line">    <span class="keyword">let</span> answer = results.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">total, value</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> total * value;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">console</span>.log(answer);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">test2a();</span><br></pre></td></tr></table></figure>
+
+<h2 id="第三個解決方式-使用-Async-Await-簡化-Promise-。"><a href="#第三個解決方式-使用-Async-Await-簡化-Promise-。" class="headerlink" title="第三個解決方式 : 使用 Async/Await 簡化 Promise 。"></a>第三個解決方式 : 使用 Async/Await 簡化 Promise 。</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Async/Await 背後的邏輯就是和 Promise 是一樣的。</span></span><br><span class="line"><span class="comment">// 使用 Async/Await 的大前提是仍要建立一個 Promise 物件 將它回傳</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd3</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 建立 Promise 物件 : new promise(執行函式)</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123; <span class="comment">// 兩個系統給的參數</span></span><br><span class="line">    <span class="comment">// 要做的工作放到promise的函式裡</span></span><br><span class="line">    <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    resolve(n1+n2); <span class="comment">// 工作完成，呼叫 resolve 函式，並把結果透過參數傳遞進去，如果工作出現問題就呼叫 reject</span></span><br><span class="line">    &#125;, delayTime);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 語法糖，函式前面加 async， async / await 需要一起使用</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test3</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// await 後面接函式. 上面的 resolve 會直接由 result 接收</span></span><br><span class="line">  <span class="keyword">let</span> result = <span class="keyword">await</span> delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="需求-需要運行兩次的-promise-然後將結果相乘-1"><a href="#需求-需要運行兩次的-promise-然後將結果相乘-1" class="headerlink" title="需求 需要運行兩次的 promise 然後將結果相乘"></a>需求 需要運行兩次的 promise 然後將結果相乘</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test3a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="comment">// await 後面接函式. 上面的 resolve 會直接由 result 接收</span></span><br><span class="line">  <span class="keyword">let</span> result1 = <span class="keyword">await</span> delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="keyword">let</span> result2 = <span class="keyword">await</span> delayedAdd2(<span class="number">3</span>, <span class="number">1</span>, <span class="number">3000</span>);</span><br><span class="line">  <span class="keyword">let</span> answer = result1 * result2;</span><br><span class="line">  <span class="built_in">console</span>.log(answer);</span><br><span class="line">&#125;</span><br><span class="line">test3a();</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.youtube.com/watch?v=NOprCnnjHm0" target="_blank" rel="noopener">參考1 彭彭的課程</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/setTimeout" target="_blank" rel="noopener">參考2 code</a></p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>Javascript 近幾年來受歡迎的原因，有一大部分是因為 JS 可以處理非同步（異步）的問題，也因為可以非同步，所以處理速度快，且可帶給瀏覽者更好的體驗，所以了解如何控制非同步也成了前端重要的技能之一。</p>
+<h2 id="無非同步的程式"><a href="#無非同步的程式" class="headerlink" title="無非同步的程式"></a>無非同步的程式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">n1, n2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n1+n2</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">testNoAsync</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = add(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">// testNoAsync(); // 7</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="問題的起源，非同步程式"><a href="#問題的起源，非同步程式" class="headerlink" title="問題的起源，非同步程式"></a>問題的起源，非同步程式</h2><p>寫程式如果遇到要處理非同步的程式，就會變得複雜了起來，為什麼會複雜？<br>預設想要延遲執行，卻出現undefined 程式會一直往下跑， return的部分不會回傳會被忽略….。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd0</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 設定排程，延遲一段時間後執行</span></span><br><span class="line">  <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> n1+n2;</span><br><span class="line">  &#125;, delayTime);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>); <span class="comment">// 仔細觀察出現的順序</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = delayedAdd0(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">// 1, undefined, 2 (不會出現return結果)</span></span><br></pre></td></tr></table></figure>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS-回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="ck48n1rpr000nmxuwph15hx9v" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-JS-What-is-an-IIFE-in-JavaScript" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS-What-is-an-IIFE-in-JavaScript/" class="article-date">
+  <time datetime="2019-07-04T06:25:44.000Z" itemprop="datePublished">2019-07-04</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS-What-is-an-IIFE-in-JavaScript/">JavaScript IIFE 立即呼叫函式</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。<br>IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。</p>
+<h2 id="IIFE語法"><a href="#IIFE語法" class="headerlink" title="IIFE語法"></a>IIFE語法</h2><p>將一個正常的函式包在()裡，後面加個()就成了匿名函式。<br>後面的()表示立即執行，也可帶參數。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>IIFE函式前面一定要有; 不然會有錯誤<br>範例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="string">'foo'</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">bar</span>) </span>&#123;</span><br><span class="line">    Console.log(bar)</span><br><span class="line">&#125;)(foo)</span><br></pre></td></tr></table></figure>
+
+<p>匿名函數的參數(foo)就是 var foo 的這個變數，如果匿名函數有兩個參數， 後面的() 也可帶兩個參數</p>
+<p>一般呼叫函式的方式可以是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">doSomething(<span class="number">123</span>);</span><br><span class="line"><span class="comment">// 匿名函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">doSomething</span> (<span class="params">i</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;)(<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
+
+<p>使用匿名函式即是馬上使用，也就是宣告他的同時也呼叫它，自然就不需要給名字了。所以就成了以下不需名字的函式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">i</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;)(<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
+
+<p>在回圈內呼叫 function 會需要用 IIFE 來把參數的值保留起來，如果有看過 jQuery 的原始碼，會發現有這段：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> window, undefined</span>)</span>&#123;</span><br><span class="line"> <span class="comment">// ....</span></span><br><span class="line">&#125;)(<span class="built_in">window</span>);</span><br></pre></td></tr></table></figure>
+
+<p>jQuery 也用了相同的手法將 window 和 indefined 保留起來。<br>ES6 以後新增了 let 與 const 的變數型態，且改以 { } 作為它的 Scope。換句話說，將範例中的 for 的 var 改為以 let 宣告就可以做到保留 i 在執行迴圈當下的「值」的效果：</p>
+<h4 id="經典迴圈非同步問題"><a href="#經典迴圈非同步問題" class="headerlink" title="經典迴圈非同步問題"></a>經典迴圈非同步問題</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i)</span><br><span class="line">    &#125;, i * <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>目的：每一秒列出一個 i<br>但會列印出１０個１０，因為當進入列印迴圈時，i已經跑到１０了<br>解決如何因非同步而無法印出１－１０的方法：使用IIFE和閉包<br>使用IIFE</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>) </span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(j)</span><br><span class="line">        &#125;, j * <span class="number">1000</span>)</span><br><span class="line">    &#125;)(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>參考：<a href="https://ithelp.ithome.com.tw/articles/10192739" target="_blank" rel="noopener">立即被呼叫的函式 (Immediately Invoked Function Expression, IIFE)</a></p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。<br>IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。</p>
+<h2 id="IIFE語法"><a href="#IIFE語法" class="headerlink" title="IIFE語法"></a>IIFE語法</h2><p>將一個正常的函式包在()裡，後面加個()就成了匿名函式。<br>後面的()表示立即執行，也可帶參數。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>IIFE函式前面一定要有; 不然會有錯誤<br>範例：</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS-What-is-an-IIFE-in-JavaScript/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS-What-is-an-IIFE-in-JavaScript/" data-id="ck48n1rpp000imxuws1ue97q9" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-在-Github-上安裝-Hexo-記錄" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../在-Github-上安裝-Hexo-記錄/" class="article-date">
+  <time datetime="2019-07-03T02:07:02.000Z" itemprop="datePublished">2019-07-03</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/Other/">Other</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../在-Github-上安裝-Hexo-記錄/">在 Github 上安裝 Hexo 記錄</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>在學員的鼓勵下，決定試試安裝輕量級 blog Hexo。隨然玩 Wordpress 已經很久了，但 WP 的架構越來越龐大更新速度快，整個檔案也越來越龐大了，且 WP 需要資料庫的配合。但 Hexo 不但不需要，且還可以部屬在 Github 上，超方便的！雖然設定與修改比較繁瑣，但也有它的樂趣，且既然是與程式有關的文章和內容，那何不把他們放在一起。</p>
+<p>將 Hexo 自動生成的靜態頁面、搭配 github 的 page 功能，推上 github 後就可達到輕量 blog 的基本功能，如果想要一些功能如搜尋、留言，則要自行設定或安裝外掛，比較方便的是找個完善的主題，就不需這些繁複的設置，但最好對 Hexo 架構有一定的了解，否則一有問題仍須花很多時間查詢。</p>
+<p>這裡使用的佈景主題是 Hexo 的預設主題：landscape，希望慢慢修改成自己喜歡的樣子即可，功能仍不是很完善，期待自己慢慢把它做的更完整一點。</p>
+<h2 id="Hexo-建立文章的方式"><a href="#Hexo-建立文章的方式" class="headerlink" title="Hexo 建立文章的方式"></a>Hexo 建立文章的方式</h2><p>一般我們都會使用hexo new <title>來建立新文章，這種方法會將新文章建立在source/_posts目錄下，當使用hexo generate 編譯markdown文件時，就會將其 HTML 結果編譯在 public 目錄下，之後 hexo deploy 再將把public目錄下所有文章一起部署到GitHub，這是我們熟悉的Hexo流程。</title></p>
+<p>這種建立文章方式的缺點是：如果同時編輯多篇文章，只要其中一篇文章尚未編輯完成，也會隨著 hexo deploy 通通一起部署到 GitHub，也就是 GitHub 可能會看到我們尚未完成的文章。以下會介紹先將文章存成草稿的步驟。</p>
+<h2 id="如何安裝"><a href="#如何安裝" class="headerlink" title="如何安裝"></a>如何安裝</h2><p>條件：node.js 環境 ＋ git<br><a href="https://hexo.io/zh-tw/docs/" target="_blank" rel="noopener">官網文件</a></p>
+<p>先在本地端安裝好需要檔案，安裝後檔案夾內會有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
+
+<p><code>_config.yml</code> :<br>網站<a href="https://hexo.io/zh-tw/docs/configuration" target="_blank" rel="noopener">配置</a>檔案，可以在此配置大部分的設定。</p>
+<p><code>package.json</code> :<br>應用程式資料。EJS, Stylus 和 Markdown renderer 已預設安裝，可以稍後移除。</p>
+<p><code>scaffolds</code> :<br>鷹架 資料夾。當建立新文章時，Hexo 會根據 scaffold 來建立檔案。</p>
+<p><code>source</code> :<br>原始檔案資料夾是放置內容的地方。檔案 / 資料夾名稱開頭為 _ (底線) 和隱藏檔案會被忽略，除了 _posts 資料夾以外。Markdown 和 HTML 檔案會被處理並放到 public 資料夾，而其他檔案會被拷貝過去。</p>
+<p><code>themes</code> :<br>主題 資料夾。Hexo 會根據主題來產生靜態檔案。</p>
+<h2 id="Hexo-指令"><a href="#Hexo-指令" class="headerlink" title="Hexo 指令"></a>Hexo 指令</h2><p><a href="https://hexo.io/zh-tw/docs/commands" target="_blank" rel="noopener">指令明細</a><br><code>$ hexo init [folder]</code><br>建立一個新的網站。如果沒有設定 folder 的話，Hexo 會在目前的資料夾建立網站。</p>
+<h2 id="如何產生文章"><a href="#如何產生文章" class="headerlink" title="如何產生文章"></a>如何產生文章</h2><h3 id="建立文章-hexo-new-layout-lt-title-gt"><a href="#建立文章-hexo-new-layout-lt-title-gt" class="headerlink" title="建立文章 : hexo new [layout] &lt;title&gt;"></a>建立文章 : <code>hexo new [layout] &lt;title&gt;</code></h3><p><code>$ hexo new [layout] &lt;title&gt;</code><br>Hexo 的 layout 有三種：草稿 draft、頁面 page 和文章 post。也可以自定義 layout.<br>如果沒有設定 layout 的話，則會使用 <code>_config.yml</code> 中的 <code>default_layout</code> 設定代替，原始預設為 post。<br>檔案名稱可以中文，如果標題包含空格的話，請使用引號括起來。<br>建立文章後 hexo 會在 source 裡的 _posts 生成新的 .md。</p>
+<h3 id="產生靜態文章-hexo-g"><a href="#產生靜態文章-hexo-g" class="headerlink" title="產生靜態文章 : hexo g"></a>產生靜態文章 : <code>hexo g</code></h3><p><code>$ hexo generate</code><br>產生靜態檔案。<br>|選項    | 描述 |<br>| ——– | ——– |<br>| -g, –generate    | 部署網站前先產生靜態檔案 |</p>
+<h3 id="本地伺服器-hexo-s"><a href="#本地伺服器-hexo-s" class="headerlink" title="本地伺服器 : hexo s"></a>本地伺服器 : <code>hexo s</code></h3><p><code>$ hexo server</code><br>啟動伺服器，預設是 <a href="http://localhost:4000/。" target="_blank" rel="noopener">http://localhost:4000/。</a><br>| 選項|    描述|<br>| ——– | ——– |<br>| -p, –port    | 覆蓋連接埠設定 |<br>| -s, –static    | 只使用靜態檔案 |<br>| -l, –log    | 啟動記錄器，或覆蓋記錄格式 |</p>
+<h3 id="部署到-github-hexo-d"><a href="#部署到-github-hexo-d" class="headerlink" title="部署到 github : hexo d"></a>部署到 github : <code>hexo d</code></h3><p><code>$ hexo deploy</code><br>部署網站。<br>| 選項 | 描述 |<br>| ——– | ——– |<br>| -d, –deploy    | 產生完成即部署網站     |<br>| -w, –watch | 產生完成即部署網站 |</p>
+<p><code>$ hexo render &lt;file&gt; [file2] ...</code><br>渲染檔案。</p>
+<table>
+<thead>
+<tr>
+<th>選項</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-o, –output</td>
+<td>輸出位置</td>
+</tr>
+</tbody></table>
+<p><a href="https://hexo.io/zh-tw/docs/commands" target="_blank" rel="noopener">其他指令</a> ｜ <a href="https://hexo.io/zh-tw/docs/migration" target="_blank" rel="noopener">侯塞雷還可以轉移！</a></p>
+<p>==注意==<br>如果有使用部分搜尋外掛，會使用 xml 格式搜尋，丟文章上去時先檢查是否有正確規格化為XML格式，以免出錯查不出來，所以可先去<a href="https://tool.oschina.net/codeformat/xml" target="_blank" rel="noopener">此網站檢查</a></p>
+<h2 id="常用-Hexo-指令"><a href="#常用-Hexo-指令" class="headerlink" title="常用 Hexo 指令"></a>常用 Hexo 指令</h2><p>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d<br>hexo clean ：清除快取檔案 (db.json) 和已產生的靜態檔案 (public)。</p>
+<h3 id="可一起使用：hexo-g-amp-amp-hexo-s-amp-amp-hexo-d-amp-amp-hexo-new-文章名稱"><a href="#可一起使用：hexo-g-amp-amp-hexo-s-amp-amp-hexo-d-amp-amp-hexo-new-文章名稱" class="headerlink" title="可一起使用：hexo g &amp;&amp; hexo s &amp;&amp; hexo d &amp;&amp; hexo new [文章名稱]"></a>可一起使用：<code>hexo g &amp;&amp; hexo s &amp;&amp; hexo d &amp;&amp; hexo new [文章名稱]</code></h3><h2 id="如何更換主題"><a href="#如何更換主題" class="headerlink" title="如何更換主題"></a>如何更換主題</h2><p>可上<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="noopener">Hexo 官網 Themes</a>直接找自己喜歡的主題，進入主題後，找到<code>install</code>這項，複製git clone的網址如，以Themes 名為 light 為例：<br><code>git clone https://github.com/hexojs/hexo-theme-light.git themes/light</code></p>
+<p>Clon 完畢後，到根目錄的 <code>_config.yml</code> 去設定對應的 Themes 主題名稱： <code>theme: light</code></p>
+<h2 id="如何自動備份"><a href="#如何自動備份" class="headerlink" title="如何自動備份"></a>如何自動備份</h2><p>可以在同一專案上再開一條 Git 分支，專門儲存原始檔案，或是使用 <a href="https://askiebaby.github.io/macos-command-backup-update-hexo-blog/" target="_blank" rel="noopener">Askie 推薦的一鍵備份</a>，但須另開專案。</p>
+<h2 id="如何文章分類"><a href="#如何文章分類" class="headerlink" title="如何文章分類"></a>如何文章分類</h2><h3 id="第一種方法：手動加入"><a href="#第一種方法：手動加入" class="headerlink" title="第一種方法：手動加入"></a>第一種方法：手動加入</h3><p>使用 <code>$ hexo n &lt;name&gt;</code>新建頁面，打開此默認頁面是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: name</span><br><span class="line">date: 2019-08-05 11:15:00 </span><br><span class="line">tags: </span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>但裡面並沒有分類的資訊，可直接在 <code>tags:</code>上加 <code>categories:</code> 存檔後，重新執行 <code>hexo n &#39;name&#39;</code>，重新打開頁面裡頭就有分類了。</p>
+<h3 id="第二種方法："><a href="#第二種方法：" class="headerlink" title="第二種方法："></a>第二種方法：</h3><p>scaffolds目錄下，是新建頁面的模板，執行新建命令時，是根據這裡的模板頁來完成的，所以可在這裡根據自己的需求增加一些默認的分類值。<br>在寫文章時，如果我們的分類是程式，那麼在也面裡的分類就會是<code>categories:程式</code>，它的訪問路徑即是：<code>*/categories/程式</code></p>
+<p>如果想把路徑明和分類明分別設置，可打開根目錄的<code>_config.yml</code>，找到以下位置或增加以下這段做修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Category &amp; Tag</span><br><span class="line">default_category: uncategorized</span><br><span class="line">category_map:</span><br><span class="line">	程式: programming</span><br><span class="line">	生活: life</span><br><span class="line">	其他: other</span><br><span class="line">tag_map:</span><br></pre></td></tr></table></figure>
+
+<p><code>category_map:</code>是設置分類的地方，每行一個分類，冒號前面是分類名稱，後面是訪問路徑。可以提前在這裡設置好一些分類，當編輯的文章填寫了對應的分類名時，就會自動的按照對應的路徑來訪問。</p>
+<h3 id="設定分類標籤在頁面裡"><a href="#設定分類標籤在頁面裡" class="headerlink" title="設定分類標籤在頁面裡"></a>設定分類標籤在頁面裡</h3><p>在編輯文章的時候，tags:後面是設置標籤的地方，如果有多個標籤的話，可以用下面兩種辦法來設置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">tages: </span><br><span class="line">-標籤1</span><br><span class="line">-標籤2</span><br><span class="line">...</span><br><span class="line">- 標籤n</span><br><span class="line"></span><br><span class="line">// 或是</span><br><span class="line">tages: </span><br><span class="line">-標籤1</span><br><span class="line">-標籤2</span><br><span class="line">...</span><br><span class="line">- 標籤n</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何設定分類-menu"><a href="#如何設定分類-menu" class="headerlink" title="如何設定分類 menu"></a>如何設定分類 menu</h2><p>在 Hexo 默認菜單只有 Home 和 Archives 兩項，如何增加新的項目到 menu 裡？<br>打開themes裡主題的配置文件：<code>_config.yml</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">menu :</span><br><span class="line">  Home: /</span><br><span class="line">  Archives: /archives</span><br><span class="line">  About: / about</span><br></pre></td></tr></table></figure>
+
+<p><code>menu :</code> 表示 Nav，在底下加上的 <code>About: /about</code> 表示顯示的 Nav 項目/路徑。Nav 項目可為中文，路徑也可設置其他url。<br>記得建立一個 nav 的項目就要執行建立 Nav 項目的指令：<br><code>hexo n page &#39;about&#39;</code> hexo 就會自動生成這個分類的分類頁，在 source 目錄裡會生成一個對應的目錄，此目錄裡的<code>index.md</code> 就是顯示這個分類列表的頁面。</p>
+<p>參考：<a href="http://ijiaober.github.io/2014/08/05/hexo/hexo-04/" target="_blank" rel="noopener">Hexo使用攻略：（四）Hexo的分类和标签设置</a></p>
+<h2 id="如何增加站內搜尋功能"><a href="#如何增加站內搜尋功能" class="headerlink" title="如何增加站內搜尋功能"></a>如何增加站內搜尋功能</h2><p>以<a href="https://app.swiftype.com/" target="_blank" rel="noopener">swiftype.com</a>服務來設定站內服務，<br>先至 swiftype 申請帳號，再把生成的碼丟入網頁中。<br><a href="https://juejin.im/post/5bbdc8d8e51d450e5e0cb269" target="_blank" rel="noopener">參考教學 使用 Swiftype 给 Hexo 搭建的博客添加站内搜索功能</a></p>
+<h2 id="如何將文章存成草稿-draft"><a href="#如何將文章存成草稿-draft" class="headerlink" title="如何將文章存成草稿 draft"></a>如何將文章存成草稿 draft</h2><p>必須先在 source/ 底下建立一個 _drafts 目錄，以存放草稿。</p>
+<h3 id="建立文章草稿"><a href="#建立文章草稿" class="headerlink" title="建立文章草稿"></a>建立文章草稿</h3><p><code>$ hexo new draft &lt;title&gt;</code><br>Hexo另外提供 draft 機制，原理是將新文章將建立在source/_drafts目錄下，因此 hexo generate 並不會將其編譯到 public 目錄下，所以 hexo deploy 也不會將其部署到 GitHub。</p>
+<h3 id="本機預覽草稿"><a href="#本機預覽草稿" class="headerlink" title="本機預覽草稿"></a>本機預覽草稿</h3><p><code>$ hexo S --draft</code><br>雖然 hexo generate 不會編譯 source/_drafts 目錄下的文章，但 Hexo 的 Hexo server 另外提供<code>--draft</code>的參數，這讓我們只要搭配<code>hexo-browsersyncplugins</code>，就可以做到一邊編輯 markdown 文章，一邊使用瀏覽器預覽的目的。</p>
+<h3 id="將草稿發佈為正式文章"><a href="#將草稿發佈為正式文章" class="headerlink" title="將草稿發佈為正式文章"></a>將草稿發佈為正式文章</h3><p><code>$ hexo P &lt;filename&gt;</code><br>其中<code>&lt;filename&gt;</code>為不包含md後綴的文章名稱。它的原理只是將文章從source/_drafts移動到source/_posts而已。</p>
+<h3 id="將正式文章發佈為草稿"><a href="#將正式文章發佈為草稿" class="headerlink" title="將正式文章發佈為草稿"></a>將正式文章發佈為草稿</h3><p>之後的 hexo generate 與 hexo deploy 的用法就完全一樣了。<br>若日後想將正式文章轉為為草稿，只需手動將文章從source/_posts目錄移動到source/_drafts目錄即可。</p>
+<p>向 Google 申請 Blog Search: <a href="https://search.google.com/search-console/welcome" target="_blank" rel="noopener">Google Search Console</a></p>
+<h2 id="增加邊欄"><a href="#增加邊欄" class="headerlink" title="增加邊欄"></a>增加邊欄</h2><p>進入themes\layout_widget目錄中，建立 about.ejs 文件，模仿其他文件中的模版，輸入以下內容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (site.tags.length)&#123; %&gt;</span><br><span class="line">  &lt;div class=&quot;widget-wrap&quot;&gt;</span><br><span class="line">    &lt;h3 class=&quot;widget-title&quot;&gt;About&lt;/h3&gt;</span><br><span class="line">    &lt;div class=&quot;widget&quot;&gt;</span><br><span class="line">      Email：xxx@xxx.com&lt;br /&gt;</span><br><span class="line">      Site：www.</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+<p>打開themes_config.yml，找到#Sidebar，在最後面添加- about。刷新頁面。<br>Ref:<a href="https://wizardforcel.gitbooks.io/markdown-simple-world/hexo-tutor-4.html" target="_blank" rel="noopener">Hexo 入門指南</a></p>
+<h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://hexo.io/zh-tw/docs/configuration.html" target="_blank" rel="noopener">Hexo 檔案配置</a><br><a href="https://coffee0127.github.io/blog/2016/08/09/hexo-configuration/" target="_blank" rel="noopener">在 landscape 主題安裝一些功能</a></p>
+<p><a href="https://kennyliblog.nctu.me/2019/06/24/Google-search-Hexo-Blog/" target="_blank" rel="noopener">讓 Google 能搜尋到自己的 Hexo Blog</a></p>
+<p><a href="http://kuangqi.me/tricks/enable-table-of-contents-on-hexo/" target="_blank" rel="noopener">为Hexo博客添加目录</a></p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>在學員的鼓勵下，決定試試安裝輕量級 blog Hexo。隨然玩 Wordpress 已經很久了，但 WP 的架構越來越龐大更新速度快，整個檔案也越來越龐大了，且 WP 需要資料庫的配合。但 Hexo 不但不需要，且還可以部屬在 Github 上，超方便的！雖然設定與修改比較繁瑣，但也有它的樂趣，且既然是與程式有關的文章和內容，那何不把他們放在一起。</p>
+<p>將 Hexo 自動生成的靜態頁面、搭配 github 的 page 功能，推上 github 後就可達到輕量 blog 的基本功能，如果想要一些功能如搜尋、留言，則要自行設定或安裝外掛，比較方便的是找個完善的主題，就不需這些繁複的設置，但最好對 Hexo 架構有一定的了解，否則一有問題仍須花很多時間查詢。</p>
+<p>這裡使用的佈景主題是 Hexo 的預設主題：landscape，希望慢慢修改成自己喜歡的樣子即可，功能仍不是很完善，期待自己慢慢把它做的更完整一點。</p>
+<h2 id="Hexo-建立文章的方式"><a href="#Hexo-建立文章的方式" class="headerlink" title="Hexo 建立文章的方式"></a>Hexo 建立文章的方式</h2><p>一般我們都會使用hexo new <title>來建立新文章，這種方法會將新文章建立在source/_posts目錄下，當使用hexo generate 編譯markdown文件時，就會將其 HTML 結果編譯在 public 目錄下，之後 hexo deploy 再將把public目錄下所有文章一起部署到GitHub，這是我們熟悉的Hexo流程。</title></p>
+<p>這種建立文章方式的缺點是：如果同時編輯多篇文章，只要其中一篇文章尚未編輯完成，也會隨著 hexo deploy 通通一起部署到 GitHub，也就是 GitHub 可能會看到我們尚未完成的文章。以下會介紹先將文章存成草稿的步驟。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../在-Github-上安裝-Hexo-記錄/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/在-Github-上安裝-Hexo-記錄/" data-id="ck48n1rqr004omxuw7s8vn6cu" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Other/">Other</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-JS-ES6-箭頭函式-Arrow-function" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS-ES6-箭頭函式-Arrow-function/" class="article-date">
+  <time datetime="2019-07-02T01:17:36.000Z" itemprop="datePublished">2019-07-02</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>►<a class="article-category-link" href="../../categories/JavaScript/ES6/">ES6</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS-ES6-箭頭函式-Arrow-function/">JavaScript ES6 箭頭函式 Arrow function</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>箭頭函式是 ES6 的新語法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原本的寫法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">double</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或是 </span></span><br><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 語法</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function">(<span class="params">x</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="箭頭函式的簡寫規則"><a href="#箭頭函式的簡寫規則" class="headerlink" title="箭頭函式的簡寫規則"></a>箭頭函式的簡寫規則</h3><p>1.如果參數只有一個，可省略參數的括號(x)=&gt; x，0或多個都不可省略。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">x</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.函式本體如果只有一行，且只有 return 一個值，可省略大花括號和 return，直接把本體接在=&gt;後面 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="This-是什麼？和箭頭函式的關係"><a href="#This-是什麼？和箭頭函式的關係" class="headerlink" title="This 是什麼？和箭頭函式的關係"></a>This 是什麼？和箭頭函式的關係</h3><p>this 指的是函式的情境(context)，某人去101大樓往下跳，但跳下去沒事，因為在爬樓梯，他只有跳一格的樓梯，當然沒事，但是跳這個動作很明確，就像是函式的定義一樣。<br>但是你在什麼樣的情境下跳，會影響他的結果，這個情境就是 Context 。<br>例如：一個跳的函式，裡面內容是固定的，但裡面的this就要看他執行時的情境而定。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jump</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>javascript 裡函式的執行基本上可分為三種：<br>1.直接執行： 函式裡的 this 是 window (global)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jump();</span><br><span class="line"><span class="comment">// window 物件</span></span><br></pre></td></tr></table></figure>
+
+<p>2.作為一個物件的方法來執行:裡面的 this 就是物件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123;&#125;</span><br><span class="line">a.jump = jump;</span><br><span class="line">a.jump();</span><br><span class="line"><span class="comment">// 執行結果是物件 &#123;jump:f..&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>3.假設頁面上有一個button，點它就會執行 jump()，<br>如果一個函式以 Dom 監聽函式來執行，函式裡面的this就會指向所監聽的元素 Dom。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=&quot;btn&quot;&gt;</span><br><span class="line">btn</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jump</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">btn.sddEventListener(<span class="string">'click'</span>, jump);</span><br><span class="line"><span class="comment">// button DOM</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="用箭頭-This-會改變"><a href="#用箭頭-This-會改變" class="headerlink" title="用箭頭 This 會改變"></a>用箭頭 This 會改變</h3><p>如果以箭頭函式攥寫 Dom 的監聽函式，This就會改變成指向 window。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> jump = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">btn.sddEventListener(<span class="string">'click'</span>, jump);</span><br><span class="line"><span class="comment">// window</span></span><br><span class="line"><span class="keyword">const</span> a = &#123;&#125;</span><br><span class="line">a.jump = jump; <span class="comment">// window</span></span><br><span class="line">a.jump(); <span class="comment">// window</span></span><br></pre></td></tr></table></figure>
+
+<p>只要是箭頭函式，無論如何執行它，裡面的 this 都會指向 window，這就是箭頭函式的特性，它沒有自己的情境(Context)，它的內部 context 就等於它宣告的時候，它外面的this。</p>
+<p>React 會大量的用到 This 所以一定要弄懂。</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>箭頭函式是 ES6 的新語法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原本的寫法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">double</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或是 </span></span><br><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 語法</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function">(<span class="params">x</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="箭頭函式的簡寫規則"><a href="#箭頭函式的簡寫規則" class="headerlink" title="箭頭函式的簡寫規則"></a>箭頭函式的簡寫規則</h3><p>1.如果參數只有一個，可省略參數的括號(x)=&gt; x，0或多個都不可省略。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">x</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS-ES6-箭頭函式-Arrow-function/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS-ES6-箭頭函式-Arrow-function/" data-id="ck48n1rpi0008mxuwrws798ef" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" class="article-date">
+  <time datetime="2019-07-01T22:36:17.000Z" itemprop="datePublished">2019-07-02</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/IDE/">IDE</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/">VS Code 秘技 Rename Refactoring 重新命名＋Formatting重新整理程式碼</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。<br>這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。</p>
+<ul>
+<li>help -&gt; Interactive Playground -&gt; </li>
+</ul>
+<h2 id="重構工具"><a href="#重構工具" class="headerlink" title="重構工具"></a>重構工具</h2><h3 id="Rename-Refactoring-重新命名"><a href="#Rename-Refactoring-重新命名" class="headerlink" title="Rename Refactoring (重新命名)"></a>Rename Refactoring (重新命名)</h3><p>選中要修改的某一個名稱，按 fn+F2 即可重新輸入新的命名， enter 之後會發現所有用此函式名的地方，都會換成新名字。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Reference the function</span></span><br><span class="line"><span class="keyword">new</span> Book(<span class="string">"War of the Worlds"</span>, <span class="string">"H G Wells"</span>);</span><br><span class="line"><span class="keyword">new</span> Book(<span class="string">"The Martian"</span>, <span class="string">"Andy Weir"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Represents a book.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Book</span>(<span class="params">title, author</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.title = title;</span><br><span class="line">    <span class="keyword">this</span>.author = author;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Refactoring-via-Extraction-透過提取重構函式"><a href="#Refactoring-via-Extraction-透過提取重構函式" class="headerlink" title="Refactoring via Extraction (透過提取重構函式)"></a>Refactoring via Extraction (透過提取重構函式)</h3><p>可將程式中某一部分提去出來自成一函式。<br>選取要提取出來成函式的部份，按 command + . 會出現選單：<br>1.Extract to inner function in function ‘findFirstEvenNumber’(提取函式中的內部函數尋找找’findFirstEvenNumber’函式)<br>2.Extract to function in global scope(提取全局範圍內的功能)<br>3.Extract to constant in enclosing scope(在封閉範圍內提取常量)</p>
+<p>例如選2.會將選取提取出的碼轉成一函式，並需賦予函式名稱，即可成函式，輸入新函式名之後會自動替換，原題取出來的函式位置。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findFirstEvenNumber</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> el <span class="keyword">of</span> arr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> el === <span class="string">'number'</span> &amp;&amp; el % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> el;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Formatting-重新整理程式碼"><a href="#Formatting-重新整理程式碼" class="headerlink" title="Formatting (重新整理程式碼)"></a>Formatting (重新整理程式碼)</h3><p>shift + option + F 可重新整理程式碼的排列。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cars = [<span class="string">"🚗"</span>, <span class="string">"🚙"</span>, <span class="string">"🚕"</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> car <span class="keyword">of</span> cars)&#123;</span><br><span class="line">    <span class="comment">// Drive the car</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`This is the car <span class="subst">$&#123;car&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>或是開啟 sstting 預設: editor.formatOnSave = true，即可啟動存檔就會自動編排的功能。</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。<br>這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。</p>
+<ul>
+<li>help -&gt; Interactive Playground -&gt; </li>
+</ul>
+<h2 id="重構工具"><a href="#重構工具" class="headerlink" title="重構工具"></a>重構工具</h2><h3 id="Rename-Refactoring-重新命名"><a href="#Rename-Refactoring-重新命名" class="headerlink" title="Rename Refactoring (重新命名)"></a>Rename Refactoring (重新命名)</h3><p>選中要修改的某一個名稱，按 fn+F2 即可重新輸入新的命名， enter 之後會發現所有用此函式名的地方，都會換成新名字。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="ck48n1rq80024mxuw0pa287fq" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/IDE/">IDE</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="../3/">&laquo; Prev</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><a class="page-number" href="../3/">3</a><span class="page-number current">4</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
+            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/SASS/">SASS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../../JS_ironMan20_Shallow-copy-array-slice()-method/">JS 輕鬆淺拷貝的陣列 Array 方法 slice()</a>
+          </li>
+        
+          <li>
+            <a href="../../JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/">JS 合併陣列 Array 的方法 concat()</a>
+          </li>
+        
+          <li>
+            <a href="../../JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/">JS 從陣列 Array 的開頭刪除元素 shift()</a>
+          </li>
+        
+          <li>
+            <a href="../../JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array/">JS 從陣列 Array 的開頭新增元素的 unshift()</a>
+          </li>
+        
+          <li>
+            <a href="../../JS_ironMan17_Unshift()to-add-elements-from-the-beginning-of-the-array/">JS 從陣列 Array 的開頭新增元素 unshift()</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../../react" class="mobile-nav-link">React</a>
+  
+    <a href="../../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../../other" class="mobile-nav-link">Other</a>
+  
+    <a href="../../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../../linux" class="mobile-nav-link">Linux</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../../fancybox/jquery.fancybox.css">
+  <script src="../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

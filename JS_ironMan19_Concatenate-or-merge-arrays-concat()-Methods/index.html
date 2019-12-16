@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>JS 合併陣列 Array 的方法 concat() | Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Day 19 人生像是一列火車，旅程中總是會搭載著不同貨物，走得越遠掛載的越多，包括肥肉。   圖片來源：www.unsplash.com / Dibyendu Sekhar Das在法國搭高速火車時，曾經收到朋友的告誡：千萬不要自己亂換車廂，尤其是火車停在某一站的時候。 原本不以為意，但聽到以下的故事就頓時聽話了：某人在火車停靠在某一站時，因為肚子痛急著想上廁所，但自己座位的那節車廂廁所卻有人，">
+<meta name="keywords" content="JavaScript,JS_Array,Iron man 30 鐵人賽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 合併陣列 Array 的方法 concat()">
+<meta property="og:url" content="tsuifei.github.io/JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="Day 19 人生像是一列火車，旅程中總是會搭載著不同貨物，走得越遠掛載的越多，包括肥肉。   圖片來源：www.unsplash.com / Dibyendu Sekhar Das在法國搭高速火車時，曾經收到朋友的告誡：千萬不要自己亂換車廂，尤其是火車停在某一站的時候。 原本不以為意，但聽到以下的故事就頓時聽話了：某人在火車停靠在某一站時，因為肚子痛急著想上廁所，但自己座位的那節車廂廁所卻有人，">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20191004/201041759bPpG8rNEQ.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20191004/20104175qI0DGY793E.png">
+<meta property="og:updated_time" content="2019-12-16T18:47:16.739Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 合併陣列 Array 的方法 concat()">
+<meta name="twitter:description" content="Day 19 人生像是一列火車，旅程中總是會搭載著不同貨物，走得越遠掛載的越多，包括肥肉。   圖片來源：www.unsplash.com / Dibyendu Sekhar Das在法國搭高速火車時，曾經收到朋友的告誡：千萬不要自己亂換車廂，尤其是火車停在某一站的時候。 原本不以為意，但聽到以下的故事就頓時聽話了：某人在火車停靠在某一站時，因為肚子痛急著想上廁所，但自己座位的那節車廂廁所卻有人，">
+<meta name="twitter:image" content="https://ithelp.ithome.com.tw/upload/images/20191004/201041759bPpG8rNEQ.png">
+  
+  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../react">React</a>
+        
+        <a class="main-nav-link" href="../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../life">Life</a>
+        
+        <a class="main-nav-link" href="../other">Other</a>
+        
+        <a class="main-nav-link" href="../html">HTML</a>
+        
+        <a class="main-nav-link" href="../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../linux">Linux</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="" class="article-date">
+  <time datetime="2019-11-18T20:21:14.000Z" itemprop="datePublished">2019-11-19</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 class="article-title" itemprop="name">
+      JS 合併陣列 Array 的方法 concat()
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-19"><a href="#Day-19" class="headerlink" title="Day 19"></a>Day 19</h6><blockquote>
+<p>人生像是一列火車，旅程中總是會搭載著不同貨物，走得越遠掛載的越多，包括肥肉。</p>
+</blockquote>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191004/201041759bPpG8rNEQ.png" alt="https://ithelp.ithome.com.tw/upload/images/20191004/201041759bPpG8rNEQ.png"></p>
+<h6 id="圖片來源：www-unsplash-com-Dibyendu-Sekhar-Das"><a href="#圖片來源：www-unsplash-com-Dibyendu-Sekhar-Das" class="headerlink" title="圖片來源：www.unsplash.com / Dibyendu Sekhar Das"></a>圖片來源：<a href="http://www.unsplash.com" target="_blank" rel="noopener">www.unsplash.com</a> / Dibyendu Sekhar Das</h6><p>在法國搭高速火車時，曾經收到朋友的告誡：千萬不要自己亂換車廂，尤其是火車停在某一站的時候。</p>
+<p>原本不以為意，但聽到以下的故事就頓時聽話了：<br>某人在火車停靠在某一站時，因為肚子痛急著想上廁所，但自己座位的那節車廂廁所卻有人，於是到隔壁的車廂去上，拉肚子總是不好解決，花了許多時間，等到舒緩之後，突然意會到怎麼火車還沒開，於是走回去原車廂時，驚！發現原本坐的那節車廂不見了！完全被<code>shift()</code>掉了！</p>
+<p>這是真實的故事，因為法國很大，火車從巴黎出發，一路往南開會經過好幾個城市，為了節省資源，會特意在訂票時就把到達同城市的旅客集中在固定的幾節車廂，這樣一來只要到達某站，就會把指定的那幾節車廂拆卸下來（切斷），然後其餘的車廂繼續開往其他城市。反過來想，這列火車也是可以陸續和其他的車廂合併，一起開往巴黎。</p>
+<p>火車的車廂就像是陣列，一節節的車廂合併串起來就是<code>concat()</code>了。 <del>轉大人成功了</del></p>
+<h2 id="concat-一列到達許多城市的火車"><a href="#concat-一列到達許多城市的火車" class="headerlink" title="concat() 一列到達許多城市的火車"></a>concat() 一列到達許多城市的火車</h2><p>concat() 可以在陣列中與其他多個陣列合併，並回傳新的陣列。原陣列不會被改變。我們可以將要合併的陣列或元素，多個或單個，以引數的方式，讓原陣列與這些要併入的陣列或元素合併在一起。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191004/20104175qI0DGY793E.png" alt="https://ithelp.ithome.com.tw/upload/images/20191004/20104175qI0DGY793E.png"></p>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/concat" target="_blank" rel="noopener">Array.prototype.concat() - JavaScript | MDN</a><br>concat() 方法<br><strong>原型：</strong> Array.prototype.concat()<br><strong>功能：</strong> 用來合併兩個或多個陣列或元素。concat()不會改變原有的陣列，回傳一個包含呼叫陣列本身的值，作為代替的是回傳一個新陣列。<br><strong>改變：</strong> 不會改變原有的陣列<br><strong>語法：</strong> var new_array = old_array.concat(value1[, value2[, …[, valueN]]])<br><strong>回傳值：</strong> 一個新的陣列實體。<br><strong>參數：</strong> valueN 陣列以及／或者值，用來合併成一個新的陣列。</p>
+<h2 id="只要放在-裡都吃-不偏食"><a href="#只要放在-裡都吃-不偏食" class="headerlink" title="只要放在( )裡都吃 不偏食"></a>只要放在( )裡都吃 不偏食</h2><p>我們以參數傳入的方式，把要合併的陣列或元素放在( )裡，這部分<code>concat()</code>非常彈性，要多個、單個、或陣列與物件的方式都可以，幾乎是給什麼吃什麼。 <del>好雜食啊</del></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="string">"Hi"</span>, <span class="string">"Wow"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果將陣列以參數傳入concat()，它會拆開這些陣列，並將元素加入原本的陣列。</span></span><br><span class="line"><span class="keyword">const</span> arr2 = arr1.concat([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line"><span class="keyword">const</span> arr3 = arr2.concat(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line"><span class="keyword">const</span> arr4 = arr3.concat(&#123; <span class="attr">a</span>: <span class="number">42</span> &#125;);</span><br><span class="line"></span><br><span class="line">arr1; <span class="comment">// [ 'Hi', 'Wow' ]</span></span><br><span class="line">arr2; <span class="comment">// [ 'Hi', 'Wow', 1, 2, 3 ]</span></span><br><span class="line">arr3; <span class="comment">// [ 'Hi', 'Wow', 1, 2, 3, 4, 5, 6 ]</span></span><br><span class="line">arr4; <span class="comment">// [ 'Hi', 'Wow', 1, 2, 3, 4, 5, 6, &#123; a: 42 &#125; ]</span></span><br></pre></td></tr></table></figure>
+
+<p>既然是多個，我們也可以一次就把要合併的元素或物件合併上去。像這樣：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="string">"Hi"</span>, <span class="string">"Wow"</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr2 = arr1.concat([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, &#123; <span class="attr">a</span>: <span class="number">42</span> &#125;);</span><br><span class="line"></span><br><span class="line">arr1; <span class="comment">// [ 'Hi', 'Wow' ]</span></span><br><span class="line">arr2; <span class="comment">// [ 'Hi', 'Wow', 1, 2, 3, 4, 5, 6, &#123; a: 42 &#125; ]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 字串也可以</span></span><br><span class="line"><span class="keyword">const</span> colorName = <span class="string">"purple"</span></span><br><span class="line"><span class="keyword">const</span> allColor4 = [...warmColor, ...coldColor, colorName];</span><br><span class="line"></span><br><span class="line">allColor4; <span class="comment">// [ 'red', 'yellow', 'blue', 'gray', 'purple' ]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="雖彈性也不要以為可以隨便"><a href="#雖彈性也不要以為可以隨便" class="headerlink" title="雖彈性也不要以為可以隨便"></a>雖彈性也不要以為可以隨便</h3><p>雖然我們可以將陣列以參數傳入<code>concat()</code>，它會自動拆開這些陣列，但並不表示多層的陣列就可行，要注意的是，<code>concat()</code>只會拆開提供給它的第一層陣列，而不會拆開第二層陣列(陣列中的陣列)。也就是說<code>concat()</code> 不會以遞迴(recursively)的方式，把多層的陣列攤平。 <del>想得美</del></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.concat([<span class="number">4</span>, <span class="number">5</span>], <span class="number">6</span>); <span class="comment">// [1,2,3,4,5,6]; </span></span><br><span class="line">arr.concat([<span class="number">7</span>, [<span class="number">8</span>, <span class="number">9</span>]]); <span class="comment">// [ 1, 2, 3, 7, [ 8, 9 ] ]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="拷貝拷的沒那麼深的-concat"><a href="#拷貝拷的沒那麼深的-concat" class="headerlink" title="拷貝拷的沒那麼深的 concat()"></a>拷貝拷的沒那麼深的 concat()</h3><p>看到網路上討論到，使用<code>concat()</code>時，如果沒有給參數，就相當是原陣列與一個空陣列拼接，返回的原陣列，就算是原陣列的深拷貝。<br>但是利用<code>concat()</code>來複製陣列，只限用在結構較簡單的陣列上，如果運用在比較複雜與多層的物件上，這個方法就行不通了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">"hi"</span>,<span class="string">"wow"</span>,[<span class="string">"O"</span>,<span class="string">"X"</span>]]</span><br><span class="line"><span class="keyword">let</span> arr2 = arr.concat();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 試著修改第一層和第二層的陣列元素</span></span><br><span class="line">arr[<span class="number">2</span>][<span class="number">0</span>]=<span class="string">"OOO"</span></span><br><span class="line">arr[<span class="number">0</span>] = <span class="string">"Hello"</span></span><br><span class="line"></span><br><span class="line">arr; <span class="comment">// ["Hello", "wow", ["OOO", "X"]]</span></span><br><span class="line">arr2; <span class="comment">//["hi", "wow", ["OOO", "X"]]</span></span><br></pre></td></tr></table></figure>
+
+<p>我們可以觀察到，如果修改第一層的<code>arr[0]</code>這個元素為<code>&quot;Hello&quot;</code>，<code>arr2[0]</code>並沒有被修改到，但是當我們修改<code>arr[2][0]</code>為<code>&quot;OOO&quot;</code>的時候，<code>arr2[2][0]</code>也會跟著改成<code>&quot;OOO&quot;</code>。如果要拿<code>concat()</code>來複製物件型態的資料時，還是要特別注意這點。</p>
+<h3 id="push-說-你會的我也會，且比你更會！"><a href="#push-說-你會的我也會，且比你更會！" class="headerlink" title="push() 說 你會的我也會，且比你更會！"></a>push() 說 你會的我也會，且比你更會！</h3><p>還記得我們前幾篇有介紹，從陣列尾端來「新增」元素的<code>push()</code>方法嗎？看起來<code>push()</code>做的事和<code>concat()</code>很像，都是從陣列的尾端加東西，不同之處在哪裡？</p>
+<table>
+<thead>
+<tr>
+<th>concat()</th>
+<th>從原陣列複製一個新的陣列，在新陣列上進行操作，不會改變原陣列的值。</th>
+<th>會拆開參數，把元素加進去</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>push()</td>
+<td>在原陣列上修改，執行push()原陣列的值也會變</td>
+<td>參數是陣列時，把整個陣列參數作為一個元素</td>
+</tr>
+</tbody></table>
+<h3 id="其餘參數說-你們會的我更會！"><a href="#其餘參數說-你們會的我更會！" class="headerlink" title="其餘參數說 你們會的我更會！"></a>其餘參數說 你們會的我更會！</h3><p>還有另外一種方式可以達到和<code>concat()</code>一樣效果的我們把其餘參數(rest parameter)，這個方式也很方便，效果也一樣。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> warmColor = [<span class="string">"red"</span>, <span class="string">"yellow"</span>]</span><br><span class="line"><span class="keyword">const</span> coldColor = [<span class="string">"blue"</span>, <span class="string">"gray"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 concat()</span></span><br><span class="line"><span class="keyword">const</span> allColor1 = [].concat(warmColor, coldColor);</span><br><span class="line"><span class="comment">// [ 'red', 'yellow', 'blue', 'gray' ]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以寫成</span></span><br><span class="line"><span class="keyword">const</span> allColor2 = warmColor.concat(coldColor);</span><br><span class="line"><span class="comment">// [ 'red', 'yellow', 'blue', 'gray' ]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> allColor3 = [...warmColor, ...coldColor];</span><br><span class="line"><span class="comment">// [ 'red', 'yellow', 'blue', 'gray' ]</span></span><br></pre></td></tr></table></figure>
+
+<p>但據說還是有些許不一樣，我們有機會再好好的測試。 <del>機會？鐵人賽後吧</del></p>
+<p>這三種吃小菜的方法：<code>push()</code>、<code>concat()</code>和其餘參數(rest parameter)大家喜歡哪一種？<br>希望這幾天的小菜，可以讓大家至少對如何刪除或增加陣列的方法有一個概觀，路還很長、小菜還很多樣，還請大家慢慢品嚐囉。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                            <h6 id="Day-19"><a href="#Day-19" class="headerlink" title="Day 19"></a>Day 19</h6><blockquote>
+<p>人生像是一列火車，旅程中總是會搭載著不同貨物，走得越遠掛載的越多，包括肥肉。</p>
+</blockquote>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191004/201041759bPpG8rNEQ.png" alt="https://ithelp.ithome.com.tw/upload/images/20191004/201041759bPpG8rNEQ.png"></p>
+<h6 id="圖片來源：www-unsplash-com-Dibyendu-Sekhar-Das"><a href="#圖片來源：www-unsplash-com-Dibyendu-Sekhar-Das" class="headerlink" title="圖片來源：www.unsplash.com / Dibyendu Sekhar Das"></a>圖片來源：<a href="http://www.unsplash.com" target="_blank" rel="noopener">www.unsplash.com</a> / Dibyendu Sekhar Das</h6><p>在法國搭高速火車時，曾經收到朋友的告誡：千萬不要自己亂換車廂，尤其是火車停在某一站的時候。</p>
+<p>原本不以為意，但聽到以下的故事就頓時聽話了：<br>某人在火車停靠在某一站時，因為肚子痛急著想上廁所，但自己座位的那節車廂廁所卻有人，於是到隔壁的車廂去上，拉肚子總是不好解決，花了許多時間，等到舒緩之後，突然意會到怎麼火車還沒開，於是走回去原車廂時，驚！發現原本坐的那節車廂不見了！完全被<code>shift()</code>掉了！</p>
+<p>這是真實的故事，因為法國很大，火車從巴黎出發，一路往南開會經過好幾個城市，為了節省資源，會特意在訂票時就把到達同城市的旅客集中在固定的幾節車廂，這樣一來只要到達某站，就會把指定的那幾節車廂拆卸下來（切斷），然後其餘的車廂繼續開往其他城市。反過來想，這列火車也是可以陸續和其他的車廂合併，一起開往巴黎。</p>
+<p>火車的車廂就像是陣列，一節節的車廂合併串起來就是<code>concat()</code>了。 <del>轉大人成功了</del></p>
+<h2 id="concat-一列到達許多城市的火車"><a href="#concat-一列到達許多城市的火車" class="headerlink" title="concat() 一列到達許多城市的火車"></a>concat() 一列到達許多城市的火車</h2><p>concat() 可以在陣列中與其他多個陣列合併，並回傳新的陣列。原陣列不會被改變。我們可以將要合併的陣列或元素，多個或單個，以引數的方式，讓原陣列與這些要併入的陣列或元素合併在一起。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191004/20104175qI0DGY793E.png" alt="https://ithelp.ithome.com.tw/upload/images/20191004/20104175qI0DGY793E.png"></p>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/concat" target="_blank" rel="noopener">Array.prototype.concat() - JavaScript | MDN</a><br>concat() 方法<br><strong>原型：</strong> Array.prototype.concat()<br><strong>功能：</strong> 用來合併兩個或多個陣列或元素。concat()不會改變原有的陣列，回傳一個包含呼叫陣列本身的值，作為代替的是回傳一個新陣列。<br><strong>改變：</strong> 不會改變原有的陣列<br><strong>語法：</strong> var new_array = old_array.concat(value1[, value2[, …[, valueN]]])<br><strong>回傳值：</strong> 一個新的陣列實體。<br><strong>參數：</strong> valueN 陣列以及／或者值，用來合併成一個新的陣列。</p>
+<h2 id="只要放在-裡都吃-不偏食"><a href="#只要放在-裡都吃-不偏食" class="headerlink" title="只要放在( )裡都吃 不偏食"></a>只要放在( )裡都吃 不偏食</h2><p>我們以參數傳入的方式，把要合併的陣列或元素放在( )裡，這部分<code>concat()</code>非常彈性，要多個、單個、或陣列與物件的方式都可以，幾乎是給什麼吃什麼。 <del>好雜食啊</del></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="string">"Hi"</span>, <span class="string">"Wow"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果將陣列以參數傳入concat()，它會拆開這些陣列，並將元素加入原本的陣列。</span></span><br><span class="line"><span class="keyword">const</span> arr2 = arr1.concat([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line"><span class="keyword">const</span> arr3 = arr2.concat(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line"><span class="keyword">const</span> arr4 = arr3.concat(&#123; <span class="attr">a</span>: <span class="number">42</span> &#125;);</span><br><span class="line"></span><br><span class="line">arr1; <span class="comment">// [ 'Hi', 'Wow' ]</span></span><br><span class="line">arr2; <span class="comment">// [ 'Hi', 'Wow', 1, 2, 3 ]</span></span><br><span class="line">arr3; <span class="comment">// [ 'Hi', 'Wow', 1, 2, 3, 4, 5, 6 ]</span></span><br><span class="line">arr4; <span class="comment">// [ 'Hi', 'Wow', 1, 2, 3, 4, 5, 6, &#123; a: 42 &#125; ]</span></span><br></pre></td></tr></table></figure>
+
+<p>既然是多個，我們也可以一次就把要合併的元素或物件合併上去。像這樣：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="string">"Hi"</span>, <span class="string">"Wow"</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr2 = arr1.concat([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, &#123; <span class="attr">a</span>: <span class="number">42</span> &#125;);</span><br><span class="line"></span><br><span class="line">arr1; <span class="comment">// [ 'Hi', 'Wow' ]</span></span><br><span class="line">arr2; <span class="comment">// [ 'Hi', 'Wow', 1, 2, 3, 4, 5, 6, &#123; a: 42 &#125; ]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 字串也可以</span></span><br><span class="line"><span class="keyword">const</span> colorName = <span class="string">"purple"</span></span><br><span class="line"><span class="keyword">const</span> allColor4 = [...warmColor, ...coldColor, colorName];</span><br><span class="line"></span><br><span class="line">allColor4; <span class="comment">// [ 'red', 'yellow', 'blue', 'gray', 'purple' ]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="雖彈性也不要以為可以隨便"><a href="#雖彈性也不要以為可以隨便" class="headerlink" title="雖彈性也不要以為可以隨便"></a>雖彈性也不要以為可以隨便</h3><p>雖然我們可以將陣列以參數傳入<code>concat()</code>，它會自動拆開這些陣列，但並不表示多層的陣列就可行，要注意的是，<code>concat()</code>只會拆開提供給它的第一層陣列，而不會拆開第二層陣列(陣列中的陣列)。也就是說<code>concat()</code> 不會以遞迴(recursively)的方式，把多層的陣列攤平。 <del>想得美</del></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.concat([<span class="number">4</span>, <span class="number">5</span>], <span class="number">6</span>); <span class="comment">// [1,2,3,4,5,6]; </span></span><br><span class="line">arr.concat([<span class="number">7</span>, [<span class="number">8</span>, <span class="number">9</span>]]); <span class="comment">// [ 1, 2, 3, 7, [ 8, 9 ] ]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="拷貝拷的沒那麼深的-concat"><a href="#拷貝拷的沒那麼深的-concat" class="headerlink" title="拷貝拷的沒那麼深的 concat()"></a>拷貝拷的沒那麼深的 concat()</h3><p>看到網路上討論到，使用<code>concat()</code>時，如果沒有給參數，就相當是原陣列與一個空陣列拼接，返回的原陣列，就算是原陣列的深拷貝。<br>但是利用<code>concat()</code>來複製陣列，只限用在結構較簡單的陣列上，如果運用在比較複雜與多層的物件上，這個方法就行不通了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">"hi"</span>,<span class="string">"wow"</span>,[<span class="string">"O"</span>,<span class="string">"X"</span>]]</span><br><span class="line"><span class="keyword">let</span> arr2 = arr.concat();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 試著修改第一層和第二層的陣列元素</span></span><br><span class="line">arr[<span class="number">2</span>][<span class="number">0</span>]=<span class="string">"OOO"</span></span><br><span class="line">arr[<span class="number">0</span>] = <span class="string">"Hello"</span></span><br><span class="line"></span><br><span class="line">arr; <span class="comment">// ["Hello", "wow", ["OOO", "X"]]</span></span><br><span class="line">arr2; <span class="comment">//["hi", "wow", ["OOO", "X"]]</span></span><br></pre></td></tr></table></figure>
+
+<p>我們可以觀察到，如果修改第一層的<code>arr[0]</code>這個元素為<code>&quot;Hello&quot;</code>，<code>arr2[0]</code>並沒有被修改到，但是當我們修改<code>arr[2][0]</code>為<code>&quot;OOO&quot;</code>的時候，<code>arr2[2][0]</code>也會跟著改成<code>&quot;OOO&quot;</code>。如果要拿<code>concat()</code>來複製物件型態的資料時，還是要特別注意這點。</p>
+<h3 id="push-說-你會的我也會，且比你更會！"><a href="#push-說-你會的我也會，且比你更會！" class="headerlink" title="push() 說 你會的我也會，且比你更會！"></a>push() 說 你會的我也會，且比你更會！</h3><p>還記得我們前幾篇有介紹，從陣列尾端來「新增」元素的<code>push()</code>方法嗎？看起來<code>push()</code>做的事和<code>concat()</code>很像，都是從陣列的尾端加東西，不同之處在哪裡？</p>
+<table>
+<thead>
+<tr>
+<th>concat()</th>
+<th>從原陣列複製一個新的陣列，在新陣列上進行操作，不會改變原陣列的值。</th>
+<th>會拆開參數，把元素加進去</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>push()</td>
+<td>在原陣列上修改，執行push()原陣列的值也會變</td>
+<td>參數是陣列時，把整個陣列參數作為一個元素</td>
+</tr>
+</tbody></table>
+<h3 id="其餘參數說-你們會的我更會！"><a href="#其餘參數說-你們會的我更會！" class="headerlink" title="其餘參數說 你們會的我更會！"></a>其餘參數說 你們會的我更會！</h3><p>還有另外一種方式可以達到和<code>concat()</code>一樣效果的我們把其餘參數(rest parameter)，這個方式也很方便，效果也一樣。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> warmColor = [<span class="string">"red"</span>, <span class="string">"yellow"</span>]</span><br><span class="line"><span class="keyword">const</span> coldColor = [<span class="string">"blue"</span>, <span class="string">"gray"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 concat()</span></span><br><span class="line"><span class="keyword">const</span> allColor1 = [].concat(warmColor, coldColor);</span><br><span class="line"><span class="comment">// [ 'red', 'yellow', 'blue', 'gray' ]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以寫成</span></span><br><span class="line"><span class="keyword">const</span> allColor2 = warmColor.concat(coldColor);</span><br><span class="line"><span class="comment">// [ 'red', 'yellow', 'blue', 'gray' ]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> allColor3 = [...warmColor, ...coldColor];</span><br><span class="line"><span class="comment">// [ 'red', 'yellow', 'blue', 'gray' ]</span></span><br></pre></td></tr></table></figure>
+
+<p>但據說還是有些許不一樣，我們有機會再好好的測試。 <del>機會？鐵人賽後吧</del></p>
+<p>這三種吃小菜的方法：<code>push()</code>、<code>concat()</code>和其餘參數(rest parameter)大家喜歡哪一種？<br>希望這幾天的小菜，可以讓大家至少對如何刪除或增加陣列的方法有一個概觀，路還很長、小菜還很多樣，還請大家慢慢品嚐囉。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+
+                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/" data-id="ck48rxeyd001h18uwtdji8it1" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+  
+    <a href="../JS_ironMan20_Shallow-copy-array-slice()-method/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JS 輕鬆淺拷貝的陣列 Array 方法 slice()
+        
+      </div>
+    </a>
+  
+  
+    <a href="../JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JS 從陣列 Array 的開頭刪除元素 shift()</div>
+    </a>
+  
+</nav>
+
+            
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
+            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../JS_ironMan20_Shallow-copy-array-slice()-method/">JS 輕鬆淺拷貝的陣列 Array 方法 slice()</a>
+          </li>
+        
+          <li>
+            <a href="">JS 合併陣列 Array 的方法 concat()</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/">JS 從陣列 Array 的開頭刪除元素 shift()</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array/">JS 從陣列 Array 的開頭新增元素的 unshift()</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan17_Unshift()to-add-elements-from-the-beginning-of-the-array/">JS 從陣列 Array 的開頭新增元素 unshift()</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../react" class="mobile-nav-link">React</a>
+  
+    <a href="../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../other" class="mobile-nav-link">Other</a>
+  
+    <a href="../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../linux" class="mobile-nav-link">Linux</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
+  <script src="../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
