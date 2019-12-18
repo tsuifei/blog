@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>JS 把陣列 Array 轉成字串的 toString() | Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Day 25 我不想理你是歐洲人、美洲人、非洲人或哪國人，我就是要說中文。  常常聽到人家說 JavaScript 是弱型別語言，剛開始學程式的時候真的有點一頭霧水，進一步的了解，才知道在程式語言的分類上，有所謂強型別（Strong type）和弱型別（Weak type）語言之分，強弱是相對的，但強弱之間並沒有絕對，而是依語言對型態檢查的嚴格程度，以及型態轉換的規則是否多元而定論。 JavaSc">
+<meta name="keywords" content="JavaScript,JS_Array,Iron man 30 鐵人賽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 把陣列 Array 轉成字串的 toString()">
+<meta property="og:url" content="tsuifei.github.io/JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="Day 25 我不想理你是歐洲人、美洲人、非洲人或哪國人，我就是要說中文。  常常聽到人家說 JavaScript 是弱型別語言，剛開始學程式的時候真的有點一頭霧水，進一步的了解，才知道在程式語言的分類上，有所謂強型別（Strong type）和弱型別（Weak type）語言之分，強弱是相對的，但強弱之間並沒有絕對，而是依語言對型態檢查的嚴格程度，以及型態轉換的規則是否多元而定論。 JavaSc">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-12-18T14:33:47.221Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 把陣列 Array 轉成字串的 toString()">
+<meta name="twitter:description" content="Day 25 我不想理你是歐洲人、美洲人、非洲人或哪國人，我就是要說中文。  常常聽到人家說 JavaScript 是弱型別語言，剛開始學程式的時候真的有點一頭霧水，進一步的了解，才知道在程式語言的分類上，有所謂強型別（Strong type）和弱型別（Weak type）語言之分，強弱是相對的，但強弱之間並沒有絕對，而是依語言對型態檢查的嚴格程度，以及型態轉換的規則是否多元而定論。 JavaSc">
+  
+  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../react">React</a>
+        
+        <a class="main-nav-link" href="../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../life">Life</a>
+        
+        <a class="main-nav-link" href="../other">Other</a>
+        
+        <a class="main-nav-link" href="../html">HTML</a>
+        
+        <a class="main-nav-link" href="../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../linux">Linux</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS_ironMan25_Returns-string-representing-specified-array-and-its-elements" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="" class="article-date">
+  <time datetime="2019-11-24T20:21:14.000Z" itemprop="datePublished">2019-11-25</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 class="article-title" itemprop="name">
+      JS 把陣列 Array 轉成字串的 toString()
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-25"><a href="#Day-25" class="headerlink" title="Day 25"></a>Day 25</h6><blockquote>
+<p>我不想理你是歐洲人、美洲人、非洲人或哪國人，我就是要說中文。</p>
+</blockquote>
+<p>常常聽到人家說 JavaScript 是弱型別語言，剛開始學程式的時候真的有點一頭霧水，進一步的了解，才知道在程式語言的分類上，有所謂強型別（Strong type）和弱型別（Weak type）語言之分，強弱是相對的，但強弱之間並沒有絕對，而是依語言對型態檢查的嚴格程度，以及型態轉換的規則是否多元而定論。</p>
+<p>JavaScript 是偏向弱型別語言的，我們會發現 JavaScript 雖然有型別之分，但是常一不小心就可能踩到雷，或者是被自動轉型，這也算是 JavaScript 難掌控的原因之一吧？例如，我們可以拿字串來做運算，這很怪，但是對 JavaScript 卻是可行的。</p>
+<p>兩個 String 相減的結果變成 number 的型別。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = <span class="string">'42'</span> - <span class="string">'2'</span>;</span><br><span class="line">result; <span class="comment">// 40</span></span><br><span class="line"><span class="keyword">typeof</span>(result); <span class="comment">// number</span></span><br></pre></td></tr></table></figure>
+
+<p>也因此，JavaScript 有許多內建的轉型別方法，方便我們轉換型別 <del>轉斜為正？</del>。</p>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/toString" target="_blank" rel="noopener">Array.prototype.toString() - JavaScript | MDN</a></p>
+<p><strong>原型：</strong> Array.prototype.toString()<br><strong>功能：</strong> 將指定的陣列和元素轉成字串。<br><strong>改變：</strong> 不會改變原陣列。<br><strong>語法：</strong> arr.toString()<br><strong>回傳值：</strong> 一個表示指定的數組及其元素的字符串。<br><strong>參數：</strong> 無</p>
+<h2 id="toString-轉型別為字串"><a href="#toString-轉型別為字串" class="headerlink" title="toString() 轉型別為字串"></a>toString() 轉型別為字串</h2><p><code>toString()</code>顧名思義，可透過它將指定的陣列和元素轉成字串，然後在把這這陣列「打包」成一個字符串回傳回來。<br>原理是將每個陣列裡的元素轉成字串（必要時會呼叫元素的toString()方法），然後連同字串用逗號分隔後的輸出，輸出時並不會包含中括號或任何在陣列裡的元素界定符號也就是說，如果陣列裡面還有陣列，陣列的 [ ] 會一併消除。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].toString(); <span class="comment">// "1,2,3"</span></span><br><span class="line">[<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>].toString(); <span class="comment">// "a,b,c"</span></span><br><span class="line">[<span class="number">1</span>,[<span class="number">2</span>,<span class="string">'c'</span>]].toString(); <span class="comment">// "1,2,c"</span></span><br></pre></td></tr></table></figure>
+
+<p><code>toString()</code>在遇到其他型別的元素時會如何轉型？我們可以觀察到，很有趣的<code>null</code>, <code>undefined</code>,<code>NaN</code>和空元素都被消失了（但逗號還留著）；陣列被去中括號，而物件型別反而轉成了 ˋ[object Object]`。到底轉型的規則是什麼，還真的需要好好探究一下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="literal">null</span>, &#123;<span class="attr">a</span>:<span class="number">42</span>&#125;, <span class="number">82</span>, , <span class="literal">true</span>, <span class="literal">undefined</span>, [<span class="string">"hi"</span>,<span class="string">"hello"</span>], <span class="literal">NaN</span>].toString();</span><br><span class="line"><span class="comment">// ",[object Object],82,,true,,hi,hello,NaN"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="你們是孿生兄弟嗎？"><a href="#你們是孿生兄弟嗎？" class="headerlink" title="你們是孿生兄弟嗎？"></a>你們是孿生兄弟嗎？</h3><p><code>toString()</code>也常常被拿來和<code>join()</code>做比較，兩這到底有什麼差別呢？我們可以以同樣有各種型別的元素陣列，讓兩個方法出裡看看結果：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 toString() 轉字串</span></span><br><span class="line">[<span class="literal">null</span>, &#123;<span class="attr">a</span>:<span class="number">42</span>&#125;, <span class="number">82</span>, , <span class="literal">true</span>, <span class="literal">undefined</span>, [<span class="string">"hi"</span>,<span class="string">"hello"</span>], <span class="literal">NaN</span>].toString();</span><br><span class="line"><span class="comment">// ",[object Object],82,,true,,hi,hello,NaN"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 join() 轉字串</span></span><br><span class="line">[<span class="literal">null</span>, &#123;<span class="attr">a</span>:<span class="number">42</span>&#125;, <span class="number">82</span>, , <span class="literal">true</span>, <span class="literal">undefined</span>, [<span class="string">"hi"</span>,<span class="string">"hello"</span>], <span class="literal">NaN</span>].join();</span><br><span class="line"><span class="comment">// ",[object Object],82,,true,,hi,hello,NaN"</span></span><br></pre></td></tr></table></figure>
+
+<p>結果是一模一樣！這下真的昏頭了，看來，真需要請教前輩這兩個方法的地層運作，但如果說要有什麼不同，是<code>join()</code>可以選擇元素間的分隔符號，但toString() 卻不行。或許，如果單純想把陣列轉成字串，那麼使用<code>toString()</code>會比較純粹些。大家怎麼看呢？</p>
+<p>後續: 感謝胡大提醒，原來 spec 有寫 (請看留言)，也就是說，使用<code>toString()</code>的結果與使用內建<code>join()</code>方法時不帶參數的結果是相同的。</p>
+<p>放假日，今天到這就好～</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                            <h6 id="Day-25"><a href="#Day-25" class="headerlink" title="Day 25"></a>Day 25</h6><blockquote>
+<p>我不想理你是歐洲人、美洲人、非洲人或哪國人，我就是要說中文。</p>
+</blockquote>
+<p>常常聽到人家說 JavaScript 是弱型別語言，剛開始學程式的時候真的有點一頭霧水，進一步的了解，才知道在程式語言的分類上，有所謂強型別（Strong type）和弱型別（Weak type）語言之分，強弱是相對的，但強弱之間並沒有絕對，而是依語言對型態檢查的嚴格程度，以及型態轉換的規則是否多元而定論。</p>
+<p>JavaScript 是偏向弱型別語言的，我們會發現 JavaScript 雖然有型別之分，但是常一不小心就可能踩到雷，或者是被自動轉型，這也算是 JavaScript 難掌控的原因之一吧？例如，我們可以拿字串來做運算，這很怪，但是對 JavaScript 卻是可行的。</p>
+<p>兩個 String 相減的結果變成 number 的型別。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = <span class="string">'42'</span> - <span class="string">'2'</span>;</span><br><span class="line">result; <span class="comment">// 40</span></span><br><span class="line"><span class="keyword">typeof</span>(result); <span class="comment">// number</span></span><br></pre></td></tr></table></figure>
+
+<p>也因此，JavaScript 有許多內建的轉型別方法，方便我們轉換型別 <del>轉斜為正？</del>。</p>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/toString" target="_blank" rel="noopener">Array.prototype.toString() - JavaScript | MDN</a></p>
+<p><strong>原型：</strong> Array.prototype.toString()<br><strong>功能：</strong> 將指定的陣列和元素轉成字串。<br><strong>改變：</strong> 不會改變原陣列。<br><strong>語法：</strong> arr.toString()<br><strong>回傳值：</strong> 一個表示指定的數組及其元素的字符串。<br><strong>參數：</strong> 無</p>
+<h2 id="toString-轉型別為字串"><a href="#toString-轉型別為字串" class="headerlink" title="toString() 轉型別為字串"></a>toString() 轉型別為字串</h2><p><code>toString()</code>顧名思義，可透過它將指定的陣列和元素轉成字串，然後在把這這陣列「打包」成一個字符串回傳回來。<br>原理是將每個陣列裡的元素轉成字串（必要時會呼叫元素的toString()方法），然後連同字串用逗號分隔後的輸出，輸出時並不會包含中括號或任何在陣列裡的元素界定符號也就是說，如果陣列裡面還有陣列，陣列的 [ ] 會一併消除。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].toString(); <span class="comment">// "1,2,3"</span></span><br><span class="line">[<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>].toString(); <span class="comment">// "a,b,c"</span></span><br><span class="line">[<span class="number">1</span>,[<span class="number">2</span>,<span class="string">'c'</span>]].toString(); <span class="comment">// "1,2,c"</span></span><br></pre></td></tr></table></figure>
+
+<p><code>toString()</code>在遇到其他型別的元素時會如何轉型？我們可以觀察到，很有趣的<code>null</code>, <code>undefined</code>,<code>NaN</code>和空元素都被消失了（但逗號還留著）；陣列被去中括號，而物件型別反而轉成了 ˋ[object Object]`。到底轉型的規則是什麼，還真的需要好好探究一下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="literal">null</span>, &#123;<span class="attr">a</span>:<span class="number">42</span>&#125;, <span class="number">82</span>, , <span class="literal">true</span>, <span class="literal">undefined</span>, [<span class="string">"hi"</span>,<span class="string">"hello"</span>], <span class="literal">NaN</span>].toString();</span><br><span class="line"><span class="comment">// ",[object Object],82,,true,,hi,hello,NaN"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="你們是孿生兄弟嗎？"><a href="#你們是孿生兄弟嗎？" class="headerlink" title="你們是孿生兄弟嗎？"></a>你們是孿生兄弟嗎？</h3><p><code>toString()</code>也常常被拿來和<code>join()</code>做比較，兩這到底有什麼差別呢？我們可以以同樣有各種型別的元素陣列，讓兩個方法出裡看看結果：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 toString() 轉字串</span></span><br><span class="line">[<span class="literal">null</span>, &#123;<span class="attr">a</span>:<span class="number">42</span>&#125;, <span class="number">82</span>, , <span class="literal">true</span>, <span class="literal">undefined</span>, [<span class="string">"hi"</span>,<span class="string">"hello"</span>], <span class="literal">NaN</span>].toString();</span><br><span class="line"><span class="comment">// ",[object Object],82,,true,,hi,hello,NaN"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 join() 轉字串</span></span><br><span class="line">[<span class="literal">null</span>, &#123;<span class="attr">a</span>:<span class="number">42</span>&#125;, <span class="number">82</span>, , <span class="literal">true</span>, <span class="literal">undefined</span>, [<span class="string">"hi"</span>,<span class="string">"hello"</span>], <span class="literal">NaN</span>].join();</span><br><span class="line"><span class="comment">// ",[object Object],82,,true,,hi,hello,NaN"</span></span><br></pre></td></tr></table></figure>
+
+<p>結果是一模一樣！這下真的昏頭了，看來，真需要請教前輩這兩個方法的地層運作，但如果說要有什麼不同，是<code>join()</code>可以選擇元素間的分隔符號，但toString() 卻不行。或許，如果單純想把陣列轉成字串，那麼使用<code>toString()</code>會比較純粹些。大家怎麼看呢？</p>
+<p>後續: 感謝胡大提醒，原來 spec 有寫 (請看留言)，也就是說，使用<code>toString()</code>的結果與使用內建<code>join()</code>方法時不帶參數的結果是相同的。</p>
+<p>放假日，今天到這就好～</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+
+                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/" data-id="ck4becmfw0008bnuwdht9hzmy" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+  
+  
+    <a href="../JS_ironMan23_Reverses-an-array-in-place-reverse()-method/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JS 可讓陣列 Array 反過來的 reverse()</div>
+    </a>
+  
+</nav>
+
+            
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
+            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">JS 把陣列 Array 轉成字串的 toString()</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan23_Reverses-an-array-in-place-reverse()-method/">JS 可讓陣列 Array 反過來的 reverse()</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan22_ Sorts-the-elements-of-an-array-sort()-method/">JS 將陣列 Array 重新排列的 sort()</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan21_Changes-the-contents-of-an-array-method /">JS 隨意修、刪、改的陣列 Array 方法 splice()</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/">J</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../react" class="mobile-nav-link">React</a>
+  
+    <a href="../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../other" class="mobile-nav-link">Other</a>
+  
+    <a href="../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../linux" class="mobile-nav-link">Linux</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
+  <script src="../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

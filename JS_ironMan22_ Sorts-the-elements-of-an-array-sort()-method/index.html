@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>JS 將陣列 Array 重新排列的 sort() | Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Day 22 一堆樸克牌攤在眼前，要照花色排還是大小來排？隨你高興。   sort()是個很好用的陣列方法，凡是要把陣列裡面的元素，照我們想排列的方式重新排列都需要用到它。例如在購物網站的商品依價格排列，或是我們看文章時，依照最近的時間排列，都會用到sort()。 在做排序時，我們也會同時原地(in place)的更動到原陣列，且回傳給我們排好序的陣列。 Array.prototype.sort(">
+<meta name="keywords" content="JavaScript,JS_Array,Iron man 30 鐵人賽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 將陣列 Array 重新排列的 sort()">
+<meta property="og:url" content="tsuifei.github.io/JS_ironMan22_ Sorts-the-elements-of-an-array-sort()-method/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="Day 22 一堆樸克牌攤在眼前，要照花色排還是大小來排？隨你高興。   sort()是個很好用的陣列方法，凡是要把陣列裡面的元素，照我們想排列的方式重新排列都需要用到它。例如在購物網站的商品依價格排列，或是我們看文章時，依照最近的時間排列，都會用到sort()。 在做排序時，我們也會同時原地(in place)的更動到原陣列，且回傳給我們排好序的陣列。 Array.prototype.sort(">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-12-18T14:25:06.534Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 將陣列 Array 重新排列的 sort()">
+<meta name="twitter:description" content="Day 22 一堆樸克牌攤在眼前，要照花色排還是大小來排？隨你高興。   sort()是個很好用的陣列方法，凡是要把陣列裡面的元素，照我們想排列的方式重新排列都需要用到它。例如在購物網站的商品依價格排列，或是我們看文章時，依照最近的時間排列，都會用到sort()。 在做排序時，我們也會同時原地(in place)的更動到原陣列，且回傳給我們排好序的陣列。 Array.prototype.sort(">
+  
+  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../react">React</a>
+        
+        <a class="main-nav-link" href="../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../life">Life</a>
+        
+        <a class="main-nav-link" href="../other">Other</a>
+        
+        <a class="main-nav-link" href="../html">HTML</a>
+        
+        <a class="main-nav-link" href="../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../linux">Linux</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS_ironMan22_ Sorts-the-elements-of-an-array-sort()-method" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="" class="article-date">
+  <time datetime="2019-11-21T20:21:14.000Z" itemprop="datePublished">2019-11-22</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 class="article-title" itemprop="name">
+      JS 將陣列 Array 重新排列的 sort()
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-22"><a href="#Day-22" class="headerlink" title="Day 22"></a>Day 22</h6><blockquote>
+<p>一堆樸克牌攤在眼前，要照花色排還是大小來排？隨你高興。 </p>
+</blockquote>
+<p><code>sort()</code>是個很好用的陣列方法，凡是要把陣列裡面的元素，照我們想排列的方式重新排列都需要用到它。例如在購物網站的商品依價格排列，或是我們看文章時，依照最近的時間排列，都會用到<code>sort()</code>。</p>
+<p>在做排序時，我們也會同時原地(in place)的更動到原陣列，且回傳給我們排好序的陣列。</p>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/sort" target="_blank" rel="noopener">Array.prototype.sort() - JavaScript | MDN</a></p>
+<p><strong>原型：</strong> Array.prototype.sort()<br><strong>功能：</strong> 依據字串的 Unicode 編碼進行排序。<br><strong>改變：</strong> 會改變原本的陣列<br><strong>語法：</strong> arr.sort([compareFunction])<br><strong>回傳值：</strong> 回傳排序後的陣列<br><strong>參數：</strong> 可指定一個函式來定義排序的順序。如果省略此參數就會依據字串的 Unicode 編碼進行排序。</p>
+<h2 id="是依據什麼來排列？"><a href="#是依據什麼來排列？" class="headerlink" title="是依據什麼來排列？"></a>是依據什麼來排列？</h2><p><code>sort()</code>是如何依照我們想要的方式排序？如果我們不給<code>sort()</code>參數，它會依照預設的方式排序。我們也可以給一個函式當參數，並將條件寫在函式裡，這樣會比沒有給參數精準很多。</p>
+<h3 id="預設排序大亂入"><a href="#預設排序大亂入" class="headerlink" title="預設排序大亂入"></a>預設排序大亂入</h3><p>預設排序也就是依照我們陣列裡元素的 code UTF-16 的順序排列，什麼是 code UTF-16？ UTF-16 是 Unicode 字元的一種，我們可以直接看看<a href="https://zh.wikipedia.org/zh-tw/Unicode%E5%AD%97%E7%AC%A6%E5%88%97%E8%A1%A8" target="_blank" rel="noopener">這張 Unicode 的編碼表</a>，並且來做一些測試：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="literal">null</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="literal">undefined</span>, <span class="literal">NaN</span>, <span class="number">200</span>, <span class="string">"Hi"</span>, <span class="string">"apple"</span>, <span class="string">""</span>, <span class="string">"#"</span>, <span class="string">"!"</span>, <span class="string">"2"</span>];</span><br><span class="line">arr1.sort();</span><br><span class="line"></span><br><span class="line">arr1;</span><br><span class="line"><span class="comment">//[ '', '!', '#', '2', 2, 200, 8, 'Hi', NaN, 'apple', null, undefined ]</span></span><br></pre></td></tr></table></figure>
+
+<p>排序的結果頗讓人驚訝 <del>簡直像沒排序</del>，<code>sort()</code>會將所有元素轉成字串後，且以第一個字元為對象，再進行排序，而所有符號會被先篩選出來，接著是數字，然後是字母。也因為這樣的比較，所以連<code>200</code>都會排在<code>8</code>前面。而字母則以字母大寫為先、小寫為後來排序。</p>
+<p>需要特別注意的是，這樣的結果有可能因<code>sort()</code>執行環境 <del>也就是瀏覽器</del>的不同，而有預期之外的預設排序結果。所以一般會建議，還是以函式傳入參數來當排序條件會比較穩定。</p>
+<h3 id="用匿名函式當排序條件"><a href="#用匿名函式當排序條件" class="headerlink" title="用匿名函式當排序條件"></a>用匿名函式當排序條件</h3><p>如果希望完全依照自己給的條件排序，最好是給<code>sort()</code>一個帶有條件的匿名函式來當參數，這個匿名函數必須要有兩個參數，然後再依照這兩個參數比較回傳的值，來當排序依據。</p>
+<p><code>sort()</code>會依匿名函式的參數與回傳的值為精確的排序規則：</p>
+<ul>
+<li>當回傳值為負數時，那麼前面的數放在前面</li>
+<li>當回傳值為正整數，那麼後面的數在前面</li>
+<li>當回傳值為零，保持不動。</li>
+</ul>
+<p>這個函式會每次都先拿兩組陣列裡的元素來比較，當回傳值為正，會讓後面的數跑到前面，以上述的規則來移動元素，大家有沒覺得這種方式很眼熟，其實就是使用冒泡排序法來達到排序。</p>
+<p>我們先來看這些例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 沒有給參數的預設排序</span></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">5</span>, <span class="number">9</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">6</span>];</span><br><span class="line">arr.sort();  <span class="comment">// [1, 2, 3, 5, 6, 9]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 以匿名函式回參數做「升序」排序</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a - b; <span class="comment">// a - b &gt; 0</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// [1, 2, 3, 5, 6, 9]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果要反過來做「降序」排序</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> b - a;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// [9, 6, 5, 3, 2, 1]</span></span><br></pre></td></tr></table></figure>
+
+<p>或許大家會覺得疑惑，怎麼回傳一個 <code>a - b</code>就變升序 <code>b - a</code>就成了降序？<br>這是被精簡化的寫法 <del>聽說高手都會越寫越精簡</del> ，我們可以來看看原本的寫法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">5</span>, <span class="number">9</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">6</span>];</span><br><span class="line"><span class="comment">// 升序</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(a &gt; b)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">// 正數時，後面的數放在前面</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span> <span class="comment">// 負數時，前面的數放在前面</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 降序</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(a &lt; b)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">// 正數時，後面的數放在前面</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span> <span class="comment">// 負數時，前面的數放在前面</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 升序 另一種寫法，就會精簡到像最上面那樣！</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(a &gt; b)&#123; <span class="comment">// a &gt; b  等於 a - b &gt; 0</span></span><br><span class="line">    <span class="keyword">return</span> a - b; </span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a - b </span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>這就是程式好玩的地方，一步步的精簡到回傳<code>a - b</code>就是升、<code>b - a</code>就是降，還真是新手想不出來的境界啊！</p>
+<h3 id="可以拿-sort-來做什麼？"><a href="#可以拿-sort-來做什麼？" class="headerlink" title="可以拿 sort 來做什麼？"></a>可以拿 sort 來做什麼？</h3><p><code>sort()</code>可以運用的範圍很廣，尤其是參數的匿名函式，依照下的條件不同而達到我們想要的效果。來看看一些範例：</p>
+<h4 id="按照字串長度來排序"><a href="#按照字串長度來排序" class="headerlink" title="按照字串長度來排序"></a>按照字串長度來排序</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">"hi"</span>, <span class="string">"Hello"</span>, <span class="string">"Bonjour"</span>, <span class="string">"ciao"</span>];</span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a.length - b.length;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ["hi", "ciao", "Hello", "Bonjour"]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="對字串做不區分大小寫的排序"><a href="#對字串做不區分大小寫的排序" class="headerlink" title="對字串做不區分大小寫的排序"></a>對字串做不區分大小寫的排序</h4><p>我們在最開頭的時候有聊到，<code>sort()</code>的預設會以 Unicode 來排序，而在 Unicode 的排序裡，大寫字母又會比小寫前面，但當我們要對有大小寫混雜的字串陣列做排序時，如何做到不區分大小寫的排序？可參考下列的方式，先把字串全轉成小寫再比對，就可以得到不分大小寫的排序囉。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">arr =[<span class="string">"apple"</span>, <span class="string">"Banana"</span>, <span class="string">"coco"</span>, <span class="string">"Ege"</span>];</span><br><span class="line"><span class="comment">// 直接預設排序的結果</span></span><br><span class="line">arr.sort(); <span class="comment">//  ["Banana", "Ege", "apple", "coco"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 先將字串全轉成小寫再排序</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> a = x.toLowerCase();</span><br><span class="line">  <span class="keyword">let</span> b = y.toLowerCase();</span><br><span class="line">  <span class="keyword">if</span>(a &gt; b) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span>(a &lt; b) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// ["apple", "Banana", "coco", "Ege"]</span></span><br></pre></td></tr></table></figure>
+
+<p>今天就先介紹到這裡，其實<code>sort()</code>的學問很大，這其中牽涉到的不只是演算法，還有 JavaScript 裡的匿名函式的活用，本人才疏且學淺，好多知識都還來不及吸收，以致不敢介紹給大家，期待有朝一日的自己，可以回頭講解得更清楚些。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                            <h6 id="Day-22"><a href="#Day-22" class="headerlink" title="Day 22"></a>Day 22</h6><blockquote>
+<p>一堆樸克牌攤在眼前，要照花色排還是大小來排？隨你高興。 </p>
+</blockquote>
+<p><code>sort()</code>是個很好用的陣列方法，凡是要把陣列裡面的元素，照我們想排列的方式重新排列都需要用到它。例如在購物網站的商品依價格排列，或是我們看文章時，依照最近的時間排列，都會用到<code>sort()</code>。</p>
+<p>在做排序時，我們也會同時原地(in place)的更動到原陣列，且回傳給我們排好序的陣列。</p>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/sort" target="_blank" rel="noopener">Array.prototype.sort() - JavaScript | MDN</a></p>
+<p><strong>原型：</strong> Array.prototype.sort()<br><strong>功能：</strong> 依據字串的 Unicode 編碼進行排序。<br><strong>改變：</strong> 會改變原本的陣列<br><strong>語法：</strong> arr.sort([compareFunction])<br><strong>回傳值：</strong> 回傳排序後的陣列<br><strong>參數：</strong> 可指定一個函式來定義排序的順序。如果省略此參數就會依據字串的 Unicode 編碼進行排序。</p>
+<h2 id="是依據什麼來排列？"><a href="#是依據什麼來排列？" class="headerlink" title="是依據什麼來排列？"></a>是依據什麼來排列？</h2><p><code>sort()</code>是如何依照我們想要的方式排序？如果我們不給<code>sort()</code>參數，它會依照預設的方式排序。我們也可以給一個函式當參數，並將條件寫在函式裡，這樣會比沒有給參數精準很多。</p>
+<h3 id="預設排序大亂入"><a href="#預設排序大亂入" class="headerlink" title="預設排序大亂入"></a>預設排序大亂入</h3><p>預設排序也就是依照我們陣列裡元素的 code UTF-16 的順序排列，什麼是 code UTF-16？ UTF-16 是 Unicode 字元的一種，我們可以直接看看<a href="https://zh.wikipedia.org/zh-tw/Unicode%E5%AD%97%E7%AC%A6%E5%88%97%E8%A1%A8" target="_blank" rel="noopener">這張 Unicode 的編碼表</a>，並且來做一些測試：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="literal">null</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="literal">undefined</span>, <span class="literal">NaN</span>, <span class="number">200</span>, <span class="string">"Hi"</span>, <span class="string">"apple"</span>, <span class="string">""</span>, <span class="string">"#"</span>, <span class="string">"!"</span>, <span class="string">"2"</span>];</span><br><span class="line">arr1.sort();</span><br><span class="line"></span><br><span class="line">arr1;</span><br><span class="line"><span class="comment">//[ '', '!', '#', '2', 2, 200, 8, 'Hi', NaN, 'apple', null, undefined ]</span></span><br></pre></td></tr></table></figure>
+
+<p>排序的結果頗讓人驚訝 <del>簡直像沒排序</del>，<code>sort()</code>會將所有元素轉成字串後，且以第一個字元為對象，再進行排序，而所有符號會被先篩選出來，接著是數字，然後是字母。也因為這樣的比較，所以連<code>200</code>都會排在<code>8</code>前面。而字母則以字母大寫為先、小寫為後來排序。</p>
+<p>需要特別注意的是，這樣的結果有可能因<code>sort()</code>執行環境 <del>也就是瀏覽器</del>的不同，而有預期之外的預設排序結果。所以一般會建議，還是以函式傳入參數來當排序條件會比較穩定。</p>
+<h3 id="用匿名函式當排序條件"><a href="#用匿名函式當排序條件" class="headerlink" title="用匿名函式當排序條件"></a>用匿名函式當排序條件</h3><p>如果希望完全依照自己給的條件排序，最好是給<code>sort()</code>一個帶有條件的匿名函式來當參數，這個匿名函數必須要有兩個參數，然後再依照這兩個參數比較回傳的值，來當排序依據。</p>
+<p><code>sort()</code>會依匿名函式的參數與回傳的值為精確的排序規則：</p>
+<ul>
+<li>當回傳值為負數時，那麼前面的數放在前面</li>
+<li>當回傳值為正整數，那麼後面的數在前面</li>
+<li>當回傳值為零，保持不動。</li>
+</ul>
+<p>這個函式會每次都先拿兩組陣列裡的元素來比較，當回傳值為正，會讓後面的數跑到前面，以上述的規則來移動元素，大家有沒覺得這種方式很眼熟，其實就是使用冒泡排序法來達到排序。</p>
+<p>我們先來看這些例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 沒有給參數的預設排序</span></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">5</span>, <span class="number">9</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">6</span>];</span><br><span class="line">arr.sort();  <span class="comment">// [1, 2, 3, 5, 6, 9]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 以匿名函式回參數做「升序」排序</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a - b; <span class="comment">// a - b &gt; 0</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// [1, 2, 3, 5, 6, 9]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果要反過來做「降序」排序</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> b - a;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// [9, 6, 5, 3, 2, 1]</span></span><br></pre></td></tr></table></figure>
+
+<p>或許大家會覺得疑惑，怎麼回傳一個 <code>a - b</code>就變升序 <code>b - a</code>就成了降序？<br>這是被精簡化的寫法 <del>聽說高手都會越寫越精簡</del> ，我們可以來看看原本的寫法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">5</span>, <span class="number">9</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">6</span>];</span><br><span class="line"><span class="comment">// 升序</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(a &gt; b)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">// 正數時，後面的數放在前面</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span> <span class="comment">// 負數時，前面的數放在前面</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 降序</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(a &lt; b)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">// 正數時，後面的數放在前面</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span> <span class="comment">// 負數時，前面的數放在前面</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 升序 另一種寫法，就會精簡到像最上面那樣！</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(a &gt; b)&#123; <span class="comment">// a &gt; b  等於 a - b &gt; 0</span></span><br><span class="line">    <span class="keyword">return</span> a - b; </span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a - b </span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>這就是程式好玩的地方，一步步的精簡到回傳<code>a - b</code>就是升、<code>b - a</code>就是降，還真是新手想不出來的境界啊！</p>
+<h3 id="可以拿-sort-來做什麼？"><a href="#可以拿-sort-來做什麼？" class="headerlink" title="可以拿 sort 來做什麼？"></a>可以拿 sort 來做什麼？</h3><p><code>sort()</code>可以運用的範圍很廣，尤其是參數的匿名函式，依照下的條件不同而達到我們想要的效果。來看看一些範例：</p>
+<h4 id="按照字串長度來排序"><a href="#按照字串長度來排序" class="headerlink" title="按照字串長度來排序"></a>按照字串長度來排序</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">"hi"</span>, <span class="string">"Hello"</span>, <span class="string">"Bonjour"</span>, <span class="string">"ciao"</span>];</span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a.length - b.length;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ["hi", "ciao", "Hello", "Bonjour"]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="對字串做不區分大小寫的排序"><a href="#對字串做不區分大小寫的排序" class="headerlink" title="對字串做不區分大小寫的排序"></a>對字串做不區分大小寫的排序</h4><p>我們在最開頭的時候有聊到，<code>sort()</code>的預設會以 Unicode 來排序，而在 Unicode 的排序裡，大寫字母又會比小寫前面，但當我們要對有大小寫混雜的字串陣列做排序時，如何做到不區分大小寫的排序？可參考下列的方式，先把字串全轉成小寫再比對，就可以得到不分大小寫的排序囉。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">arr =[<span class="string">"apple"</span>, <span class="string">"Banana"</span>, <span class="string">"coco"</span>, <span class="string">"Ege"</span>];</span><br><span class="line"><span class="comment">// 直接預設排序的結果</span></span><br><span class="line">arr.sort(); <span class="comment">//  ["Banana", "Ege", "apple", "coco"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 先將字串全轉成小寫再排序</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> a = x.toLowerCase();</span><br><span class="line">  <span class="keyword">let</span> b = y.toLowerCase();</span><br><span class="line">  <span class="keyword">if</span>(a &gt; b) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span>(a &lt; b) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// ["apple", "Banana", "coco", "Ege"]</span></span><br></pre></td></tr></table></figure>
+
+<p>今天就先介紹到這裡，其實<code>sort()</code>的學問很大，這其中牽涉到的不只是演算法，還有 JavaScript 裡的匿名函式的活用，本人才疏且學淺，好多知識都還來不及吸收，以致不敢介紹給大家，期待有朝一日的自己，可以回頭講解得更清楚些。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+
+                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan22_ Sorts-the-elements-of-an-array-sort()-method/" data-id="ck4becmft0003bnuwawin0a4e" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+  
+    <a href="../JS_ironMan23_Reverses-an-array-in-place-reverse()-method/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JS 可讓陣列 Array 反過來的 reverse()
+        
+      </div>
+    </a>
+  
+  
+    <a href="../JS_ironMan21_Changes-the-contents-of-an-array-method /" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JS 隨意修、刪、改的陣列 Array 方法 splice()</div>
+    </a>
+  
+</nav>
+
+            
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
+            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/">JS 把陣列 Array 轉成字串的 toString()</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan23_Reverses-an-array-in-place-reverse()-method/">JS 可讓陣列 Array 反過來的 reverse()</a>
+          </li>
+        
+          <li>
+            <a href="">JS 將陣列 Array 重新排列的 sort()</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan21_Changes-the-contents-of-an-array-method /">JS 隨意修、刪、改的陣列 Array 方法 splice()</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/">J</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../react" class="mobile-nav-link">React</a>
+  
+    <a href="../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../other" class="mobile-nav-link">Other</a>
+  
+    <a href="../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../linux" class="mobile-nav-link">Linux</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
+  <script src="../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
