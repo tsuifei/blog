@@ -203,6 +203,98 @@ ga('send', 'pageview');
 
 
   
+    <article id="post-JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/" class="article-date">
+  <time datetime="2019-11-23T20:21:14.000Z" itemprop="datePublished">2019-11-24</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/">JS 把陣列 Array 所有元素併成字串，且可任意穿插符號的 join()</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-24"><a href="#Day-24" class="headerlink" title="Day 24"></a>Day 24</h6><blockquote>
+<p>插隊也不能插成這樣，我們之間總是可以插點花什麼的。</p>
+</blockquote>
+<p> 不知道大家有沒有吃過義大利的千層麵，一層麵皮一層蕃茄餡料，然後再一層麵皮一層蕃茄餡料，直到最後一層麵皮鋪上，撒上會拉絲的乳酪，再送進烤箱裡烤，美味的千層麵就這樣做好了。 <del>肚子也餓了</del> </p>
+<p> <code>join()</code>做的事就像是千層麵一樣，陣列裡面的元素有如番茄餡料，以字串形式包覆，還可以選擇之間要穿插什麼，如果我們不選擇，就是很單純的麵皮<br> <del>逗點</del>就是了。 </p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join" target="_blank" rel="noopener">Array.prototype.join() - JavaScript | MDN</a></p>
+<p><strong>原型：</strong> Array.prototype.join()<br><strong>功能：</strong> 會將陣列（或一個類陣列（array-like）物件）中所有的元素連接、合併成一個字串，並回傳此字串。<br><strong>改變：</strong> 不會改變原陣列。<br><strong>語法：</strong> arr.join([separator])<br><strong>回傳值：</strong> 回傳一個合併所有陣列元素的字串。假如 arr.length 為 0，將回傳空字串。<br><strong>參數：</strong> 分隔符號。</p>
+<p><code>join()</code>會將陣列裡的所有元素轉成字串，並串接起來回傳一個結果字串。我們可以指定額外的字串，用來分隔每個字串中的元素，如果我們沒有給指定的分隔符號字串，<code>join()</code>就會用預設的逗號來當分隔符號。不只如此，<code>join()</code>還會把一些無效的元素，例如空元素、undefined 或 null 當作空字串來處理，並回傳回來。</p>
+<h3 id="沒給符號也可以跟有給一樣"><a href="#沒給符號也可以跟有給一樣" class="headerlink" title="沒給符號也可以跟有給一樣"></a>沒給符號也可以跟有給一樣</h3><p>我們先來看看<code>join()</code>怎麼用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> arr2 = arr;</span><br><span class="line"><span class="keyword">const</span> arr3 = arr;</span><br><span class="line"></span><br><span class="line">arr.join(<span class="string">','</span>); <span class="comment">// "1,2,3,4,5"</span></span><br><span class="line">arr2.join() <span class="comment">// "1,2,3,4,5"</span></span><br><span class="line">arr3.join(<span class="string">''</span>) <span class="comment">// "12345"</span></span><br></pre></td></tr></table></figure>
+
+<p>大家有沒發現，其實<code>join()</code>裡沒給分隔符號，和給分隔符號<code>join(&#39;,&#39;)</code>得到的結果是ㄧ樣的。<br>因為所有的符號都屬於字串，所以記得在給參數的符號時，也必須以「字串」的形式包覆，像是<code>join(&#39;,&#39;)</code>。</p>
+<h3 id="把陣列裡的字串元素轉成一整個字串"><a href="#把陣列裡的字串元素轉成一整個字串" class="headerlink" title="把陣列裡的字串元素轉成一整個字串"></a>把陣列裡的字串元素轉成一整個字串</h3><p>將陣列元素用固定符號串成字串，但是遇到參考型別的陣列元素<code>join()</code>會如何處理？<br>結果是<code>join()</code>會把它們都放生，<del>阿不</del> 而不處理這些參考型別的元素。但也不全然是這樣，看了下面的例子，<code>join()</code>只會將 object 的物件行元素放生，但對同是參考型別的陣列卻不會。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">'jack'</span>, <span class="string">'john'</span>, <span class="string">'may'</span>, <span class="string">'su'</span>, <span class="string">'Ada'</span>];</span><br><span class="line"><span class="keyword">const</span> str = arr.join(<span class="string">'、'</span>); </span><br><span class="line">str; <span class="comment">// "jack、john、may、su、Ada"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr2 = [[<span class="number">1</span>,<span class="number">2</span>], <span class="string">'john'</span>, <span class="string">'may'</span>, &#123;<span class="attr">a</span> : <span class="number">42</span>&#125;, <span class="string">'Ada'</span>];</span><br><span class="line"><span class="keyword">const</span> str2 = arr2.join(<span class="string">' '</span>);</span><br><span class="line">str2; <span class="comment">// "1,2 john may [object Object] Ada"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="如果可以活用，還真的很好用"><a href="#如果可以活用，還真的很好用" class="headerlink" title="如果可以活用，還真的很好用"></a>如果可以活用，還真的很好用</h3><p><code>join()</code>所執行的事剛好和<code>split()</code>的方法相反，<code>split()</code>會把字串切成片段來放在陣列裡，而<code>join()</code>則是會把所有元素併成一個陣列。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">"Hello word, how a bout your ?"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用 split() 轉成陣列</span></span><br><span class="line"><span class="keyword">let</span> word = str.split(<span class="string">' '</span>);</span><br><span class="line">word; <span class="comment">// ["Hello", "word,", "how", "a", "bout", "your", "?"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 再用 join() 轉回字串</span></span><br><span class="line">word.join();</span><br><span class="line">word; <span class="comment">// "Hello,word,,how,a,bout,your,?"</span></span><br></pre></td></tr></table></figure>
+
+<p>別忘了，如果字串裡有逗號，<code>join()</code>會把它當作是元素的一部分處理。</p>
+<h3 id="join-可以怎麼寫出來？"><a href="#join-可以怎麼寫出來？" class="headerlink" title="join() 可以怎麼寫出來？"></a>join() 可以怎麼寫出來？</h3><p>我們可以試著寫出一個原生的寫法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.join2 = <span class="function"><span class="keyword">function</span> (<span class="params">separator</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="keyword">this</span>[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="keyword">this</span>.length; i++)&#123;</span><br><span class="line">    result += separator + <span class="keyword">this</span>[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 以上原生維修中，晚點再來補正確的，抱歉</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">arr.join(); <span class="comment">// "1,2,3,4"</span></span><br><span class="line">arr.join(<span class="string">'-'</span>); <span class="comment">// "1-2-3-4"</span></span><br><span class="line">arr.join(<span class="string">''</span>); <span class="comment">// "1234"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr2 = [<span class="string">"hi"</span>, <span class="string">"wow"</span>,<span class="string">"hello"</span>];</span><br><span class="line">arr2.join(); <span class="comment">// "hi,wow,hello";</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 對於無效的元素，join()會置之不理，但是還是會把逗號留下來</span></span><br><span class="line"><span class="keyword">const</span> arr3 = [<span class="literal">null</span>, <span class="number">42</span>, <span class="string">"hi"</span>, <span class="literal">undefined</span>];</span><br><span class="line">arr3.join(); <span class="comment">// ",42,hi,"</span></span><br></pre></td></tr></table></figure>
+
+<p>今天就先介紹到這裡，明天開始連假，但是鐵人賽還是會繼續喔！一起繼續鐵人吧！</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～</p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-24"><a href="#Day-24" class="headerlink" title="Day 24"></a>Day 24</h6><blockquote>
+<p>插隊也不能插成這樣，我們之間總是可以插點花什麼的。</p>
+</blockquote>
+<p> 不知道大家有沒有吃過義大利的千層麵，一層麵皮一層蕃茄餡料，然後再一層麵皮一層蕃茄餡料，直到最後一層麵皮鋪上，撒上會拉絲的乳酪，再送進烤箱裡烤，美味的千層麵就這樣做好了。 <del>肚子也餓了</del> </p>
+<p> <code>join()</code>做的事就像是千層麵一樣，陣列裡面的元素有如番茄餡料，以字串形式包覆，還可以選擇之間要穿插什麼，如果我們不選擇，就是很單純的麵皮<br> <del>逗點</del>就是了。 </p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/" data-id="ck4behsj3002lgcuw4t24fz8j" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan23_Reverses-an-array-in-place-reverse()-method" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="JS_ironMan23_Reverses-an-array-in-place-reverse()-method/" class="article-date">
@@ -478,61 +570,6 @@ ga('send', 'pageview');
 
                     <footer class="article-footer">
                         <a data-url="tsuifei.github.io/JS_ironMan21_Changes-the-contents-of-an-array-method /" data-id="ck4behsj1002fgcuwz2rmlybo" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
-    <article id="post-JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/" class="article-date">
-  <time datetime="2019-11-20T20:21:14.000Z" itemprop="datePublished">2019-11-21</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/">J</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-21"><a href="#Day-21" class="headerlink" title="Day 21"></a>Day 21</h6> -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                            <h6 id="Day-21"><a href="#Day-21" class="headerlink" title="Day 21"></a>Day 21</h6>
-                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/" data-id="ck4behsj3002lgcuw4t24fz8j" class="article-share-link">
                             Share
                         </a>
                         
@@ -1103,6 +1140,10 @@ ga('send', 'pageview');
           </li>
         
           <li>
+            <a href="JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/">JS 把陣列 Array 所有元素併成字串，且可任意穿插符號的 join()</a>
+          </li>
+        
+          <li>
             <a href="JS_ironMan23_Reverses-an-array-in-place-reverse()-method/">JS 可讓陣列 Array 反過來的 reverse()</a>
           </li>
         
@@ -1112,10 +1153,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="JS_ironMan21_Changes-the-contents-of-an-array-method /">JS 隨意修、刪、改的陣列 Array 方法 splice()</a>
-          </li>
-        
-          <li>
-            <a href="JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/">J</a>
           </li>
         
       </ul>
