@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>JS 把陣列 Array 轉成字串與本地化的 toLocaleString() | Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Day 26 我不只知道你從哪裡來，還可以知道你那裡幾點、拿什麼貨幣跟你交換！  前一篇介紹了可以把陣列轉成字串的toString()的方法，今天我們就來介紹更好用的toLocaleString()。 大家應該有發現，這個方法多了個關鍵字的 Locale ，也應該猜得出來它可以幫我們做本地化這件事吧？toLocaleString()是toString()的本地化(localized)版本，它會藉由">
+<meta name="keywords" content="JavaScript,JS_Array,Iron man 30 鐵人賽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 把陣列 Array 轉成字串與本地化的 toLocaleString()">
+<meta property="og:url" content="tsuifei.github.io/JS_ironMan26_Converts-Array-to-string-and-localized/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="Day 26 我不只知道你從哪裡來，還可以知道你那裡幾點、拿什麼貨幣跟你交換！  前一篇介紹了可以把陣列轉成字串的toString()的方法，今天我們就來介紹更好用的toLocaleString()。 大家應該有發現，這個方法多了個關鍵字的 Locale ，也應該猜得出來它可以幫我們做本地化這件事吧？toLocaleString()是toString()的本地化(localized)版本，它會藉由">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-12-19T07:44:57.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 把陣列 Array 轉成字串與本地化的 toLocaleString()">
+<meta name="twitter:description" content="Day 26 我不只知道你從哪裡來，還可以知道你那裡幾點、拿什麼貨幣跟你交換！  前一篇介紹了可以把陣列轉成字串的toString()的方法，今天我們就來介紹更好用的toLocaleString()。 大家應該有發現，這個方法多了個關鍵字的 Locale ，也應該猜得出來它可以幫我們做本地化這件事吧？toLocaleString()是toString()的本地化(localized)版本，它會藉由">
+  
+  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../react">React</a>
+        
+        <a class="main-nav-link" href="../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../life">Life</a>
+        
+        <a class="main-nav-link" href="../other">Other</a>
+        
+        <a class="main-nav-link" href="../html">HTML</a>
+        
+        <a class="main-nav-link" href="../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../linux">Linux</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS_ironMan26_Converts-Array-to-string-and-localized" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="" class="article-date">
+  <time datetime="2019-11-25T20:21:14.000Z" itemprop="datePublished">2019-11-26</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 class="article-title" itemprop="name">
+      JS 把陣列 Array 轉成字串與本地化的 toLocaleString()
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-26"><a href="#Day-26" class="headerlink" title="Day 26"></a>Day 26</h6><blockquote>
+<p>我不只知道你從哪裡來，還可以知道你那裡幾點、拿什麼貨幣跟你交換！</p>
+</blockquote>
+<p>前一篇介紹了可以把陣列轉成字串的<a href="https://ithelp.ithome.com.tw/articles/10226686" target="_blank" rel="noopener"><code>toString()</code></a>的方法，今天我們就來介紹更好用的<code>toLocaleString()</code>。</p>
+<p>大家應該有發現，這個方法多了個關鍵字的 Locale ，也應該猜得出來它可以幫我們做本地化這件事吧？<code>toLocaleString()</code>是<code>toString()</code>的本地化(localized)版本，它會藉由呼叫元素的<code>toLocaleString()</code>方法，把每個陣列元素都轉成字串，然後以區域的特性（由參數定義）來將元素轉換成當地化的版本，再串接這些結果為一個字串。</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toLocaleString" target="_blank" rel="noopener">Array.prototype.toLocaleString() - JavaScript | MDN</a></p>
+<p><strong>原型：</strong> Array.prototype.toLocaleString()<br><strong>功能：</strong> 將陣列裡的元素本地化，並轉換為字串。<br><strong>改變：</strong> 原陣列不變。<br><strong>語法：</strong> arr.toLocaleString([locales[,options]]);<br><strong>回傳值：</strong> 表示數組元素的字符串。<br><strong>參數：</strong> 依本地化語言標記轉換</p>
+<p><code>toLocaleString()</code>的參數，可依本地化的選擇給予語言標記當參數，再依照不同的「語言」與「區域標識符(區域設置)」顯示不同的輸出結果。語言標記是依<a href="https://tools.ietf.org/html/bcp47" target="_blank" rel="noopener">BCP 47 - Tags for Identifying Languages</a>為標記標準，<a href="https://www.w3schools.com/jsref/jsref_tolocalestring.asp" target="_blank" rel="noopener">w3schools</a>有提供比較清楚易懂的語言標記列表。</p>
+<h3 id="把元素的數字都變成日幣"><a href="#把元素的數字都變成日幣" class="headerlink" title="把元素的數字都變成日幣"></a>把元素的數字都變成日幣</h3><p>因為<code>toLocaleString()</code>有可根據語言和區域標識符(區域設置)顯示不同的輸出。也包括了幣值的轉換，幣值的代碼可參考<a href="https://www.cbc.gov.tw/public/Attachment/2839315671.pdf" target="_blank" rel="noopener">這裏</a></p>
+<p>例如，我們希望我們將一個陣列的數字，全部轉換成當地的貨幣格式顯示，就可直接使用<code>toLocaleString()</code>轉換，但是轉換貨幣只會對數字型別的元素有效。我們可以在<code>toLocaleString()</code>中帶入參數，並指明語言標記碼與貨幣的單位，就可帶出指定貨幣的符號與格式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 日幣</span></span><br><span class="line"><span class="keyword">let</span> prices = [<span class="string">'300'</span>, <span class="number">500</span>, <span class="number">8236</span>, <span class="number">42</span>];</span><br><span class="line">prices.toLocaleString(<span class="string">'ja-JP'</span>,&#123;<span class="attr">style</span>:<span class="string">'currency'</span>,<span class="attr">currency</span>: <span class="string">'JPY'</span>&#125;); </span><br><span class="line"><span class="comment">// "300,￥500,￥8,236,￥42"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 新台幣</span></span><br><span class="line"><span class="keyword">let</span> prices = [<span class="number">300</span>, <span class="number">500</span>, <span class="number">8236</span>, <span class="number">42</span>];</span><br><span class="line">prices.toLocaleString(<span class="string">'zh-TW'</span>,&#123;<span class="attr">style</span>:<span class="string">'currency'</span>,<span class="attr">currency</span>: <span class="string">'TWD'</span>&#125;);</span><br><span class="line"><span class="comment">// "$300.00,$500.00,$8,236.00,$42.00"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 法國歐元</span></span><br><span class="line"><span class="keyword">let</span> prices = [<span class="string">'300'</span>, <span class="number">500</span>, <span class="number">8236</span>, <span class="number">42</span>];</span><br><span class="line">prices.toLocaleString(<span class="string">'fr-FR'</span>,&#123;<span class="attr">style</span>:<span class="string">'currency'</span>,<span class="attr">currency</span>: <span class="string">'EUR'</span>&#125;);</span><br><span class="line"><span class="string">"300, 500,00 €, 8 236,00 €, 42,00 €"</span> <span class="comment">// 因為'300'是字串，所以會忽略。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="初始化數字或日期"><a href="#初始化數字或日期" class="headerlink" title="初始化數字或日期"></a>初始化數字或日期</h3><p>我們也可以用<code>toLocaleString()</code>來初始化時間與日期，使用時必須以建構式的方式創建一個日期 Date 物件，再把這物件放入陣列裡，然後選擇「區域語言標記」來當參數，即可得到當地的時間、日期顯示格式。如果沒有給參數，<code>toLocaleString()</code>會以瀏覽器端為依據。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 沒給參數 人在台灣所以是台灣時間格式</span></span><br><span class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">const</span> arr = [<span class="string">'Taiwan, Tainan'</span>, date ];</span><br><span class="line">arr.toLocaleString(); </span><br><span class="line"><span class="comment">// "Taiwan, Tainan,2019/10/11 上午4:38:08"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 台灣時間</span></span><br><span class="line"><span class="keyword">let</span> dateTw = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">const</span> arrTw = [<span class="string">'Taiwan, Tainan'</span>, dateTw];</span><br><span class="line">arrTw.toLocaleString(<span class="string">'zh-TW'</span>); </span><br><span class="line"><span class="comment">// "Taiwan, Tainan,2019/10/11 上午4:38:40"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 日本時間</span></span><br><span class="line"><span class="keyword">let</span> dateJp = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">const</span> arrJp = [<span class="string">'Japan, Osaka'</span>, dateTw];</span><br><span class="line">arrJp.toLocaleString(<span class="string">'ja-JP'</span>); </span><br><span class="line"><span class="comment">// "Japan, Osaka,2019/10/11 4:38:40"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 法國時間</span></span><br><span class="line"><span class="keyword">let</span> dateFr = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">const</span> arrFr = [<span class="string">'France, Paris'</span>, dateFr];</span><br><span class="line">arrFr.toLocaleString(<span class="string">'fr-FR'</span>);</span><br><span class="line"><span class="comment">// "France, Paris,11/10/2019 à 04:41:10"</span></span><br></pre></td></tr></table></figure>
+
+<p>有了<code>toLocaleString()</code>，要解決與貨幣和時間日期格式，應該會更輕鬆些吧！今天就介紹到此，明天是週末，我們繼續鐵人喔～</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                            <h6 id="Day-26"><a href="#Day-26" class="headerlink" title="Day 26"></a>Day 26</h6><blockquote>
+<p>我不只知道你從哪裡來，還可以知道你那裡幾點、拿什麼貨幣跟你交換！</p>
+</blockquote>
+<p>前一篇介紹了可以把陣列轉成字串的<a href="https://ithelp.ithome.com.tw/articles/10226686" target="_blank" rel="noopener"><code>toString()</code></a>的方法，今天我們就來介紹更好用的<code>toLocaleString()</code>。</p>
+<p>大家應該有發現，這個方法多了個關鍵字的 Locale ，也應該猜得出來它可以幫我們做本地化這件事吧？<code>toLocaleString()</code>是<code>toString()</code>的本地化(localized)版本，它會藉由呼叫元素的<code>toLocaleString()</code>方法，把每個陣列元素都轉成字串，然後以區域的特性（由參數定義）來將元素轉換成當地化的版本，再串接這些結果為一個字串。</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toLocaleString" target="_blank" rel="noopener">Array.prototype.toLocaleString() - JavaScript | MDN</a></p>
+<p><strong>原型：</strong> Array.prototype.toLocaleString()<br><strong>功能：</strong> 將陣列裡的元素本地化，並轉換為字串。<br><strong>改變：</strong> 原陣列不變。<br><strong>語法：</strong> arr.toLocaleString([locales[,options]]);<br><strong>回傳值：</strong> 表示數組元素的字符串。<br><strong>參數：</strong> 依本地化語言標記轉換</p>
+<p><code>toLocaleString()</code>的參數，可依本地化的選擇給予語言標記當參數，再依照不同的「語言」與「區域標識符(區域設置)」顯示不同的輸出結果。語言標記是依<a href="https://tools.ietf.org/html/bcp47" target="_blank" rel="noopener">BCP 47 - Tags for Identifying Languages</a>為標記標準，<a href="https://www.w3schools.com/jsref/jsref_tolocalestring.asp" target="_blank" rel="noopener">w3schools</a>有提供比較清楚易懂的語言標記列表。</p>
+<h3 id="把元素的數字都變成日幣"><a href="#把元素的數字都變成日幣" class="headerlink" title="把元素的數字都變成日幣"></a>把元素的數字都變成日幣</h3><p>因為<code>toLocaleString()</code>有可根據語言和區域標識符(區域設置)顯示不同的輸出。也包括了幣值的轉換，幣值的代碼可參考<a href="https://www.cbc.gov.tw/public/Attachment/2839315671.pdf" target="_blank" rel="noopener">這裏</a></p>
+<p>例如，我們希望我們將一個陣列的數字，全部轉換成當地的貨幣格式顯示，就可直接使用<code>toLocaleString()</code>轉換，但是轉換貨幣只會對數字型別的元素有效。我們可以在<code>toLocaleString()</code>中帶入參數，並指明語言標記碼與貨幣的單位，就可帶出指定貨幣的符號與格式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 日幣</span></span><br><span class="line"><span class="keyword">let</span> prices = [<span class="string">'300'</span>, <span class="number">500</span>, <span class="number">8236</span>, <span class="number">42</span>];</span><br><span class="line">prices.toLocaleString(<span class="string">'ja-JP'</span>,&#123;<span class="attr">style</span>:<span class="string">'currency'</span>,<span class="attr">currency</span>: <span class="string">'JPY'</span>&#125;); </span><br><span class="line"><span class="comment">// "300,￥500,￥8,236,￥42"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 新台幣</span></span><br><span class="line"><span class="keyword">let</span> prices = [<span class="number">300</span>, <span class="number">500</span>, <span class="number">8236</span>, <span class="number">42</span>];</span><br><span class="line">prices.toLocaleString(<span class="string">'zh-TW'</span>,&#123;<span class="attr">style</span>:<span class="string">'currency'</span>,<span class="attr">currency</span>: <span class="string">'TWD'</span>&#125;);</span><br><span class="line"><span class="comment">// "$300.00,$500.00,$8,236.00,$42.00"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 法國歐元</span></span><br><span class="line"><span class="keyword">let</span> prices = [<span class="string">'300'</span>, <span class="number">500</span>, <span class="number">8236</span>, <span class="number">42</span>];</span><br><span class="line">prices.toLocaleString(<span class="string">'fr-FR'</span>,&#123;<span class="attr">style</span>:<span class="string">'currency'</span>,<span class="attr">currency</span>: <span class="string">'EUR'</span>&#125;);</span><br><span class="line"><span class="string">"300, 500,00 €, 8 236,00 €, 42,00 €"</span> <span class="comment">// 因為'300'是字串，所以會忽略。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="初始化數字或日期"><a href="#初始化數字或日期" class="headerlink" title="初始化數字或日期"></a>初始化數字或日期</h3><p>我們也可以用<code>toLocaleString()</code>來初始化時間與日期，使用時必須以建構式的方式創建一個日期 Date 物件，再把這物件放入陣列裡，然後選擇「區域語言標記」來當參數，即可得到當地的時間、日期顯示格式。如果沒有給參數，<code>toLocaleString()</code>會以瀏覽器端為依據。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 沒給參數 人在台灣所以是台灣時間格式</span></span><br><span class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">const</span> arr = [<span class="string">'Taiwan, Tainan'</span>, date ];</span><br><span class="line">arr.toLocaleString(); </span><br><span class="line"><span class="comment">// "Taiwan, Tainan,2019/10/11 上午4:38:08"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 台灣時間</span></span><br><span class="line"><span class="keyword">let</span> dateTw = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">const</span> arrTw = [<span class="string">'Taiwan, Tainan'</span>, dateTw];</span><br><span class="line">arrTw.toLocaleString(<span class="string">'zh-TW'</span>); </span><br><span class="line"><span class="comment">// "Taiwan, Tainan,2019/10/11 上午4:38:40"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 日本時間</span></span><br><span class="line"><span class="keyword">let</span> dateJp = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">const</span> arrJp = [<span class="string">'Japan, Osaka'</span>, dateTw];</span><br><span class="line">arrJp.toLocaleString(<span class="string">'ja-JP'</span>); </span><br><span class="line"><span class="comment">// "Japan, Osaka,2019/10/11 4:38:40"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 法國時間</span></span><br><span class="line"><span class="keyword">let</span> dateFr = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">const</span> arrFr = [<span class="string">'France, Paris'</span>, dateFr];</span><br><span class="line">arrFr.toLocaleString(<span class="string">'fr-FR'</span>);</span><br><span class="line"><span class="comment">// "France, Paris,11/10/2019 à 04:41:10"</span></span><br></pre></td></tr></table></figure>
+
+<p>有了<code>toLocaleString()</code>，要解決與貨幣和時間日期格式，應該會更輕鬆些吧！今天就介紹到此，明天是週末，我們繼續鐵人喔～</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+
+                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan26_Converts-Array-to-string-and-localized/" data-id="ck4cf4z1y000581uw1a0e7061" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+  
+    <a href="../JS_ironMan27_Finding-element-index-values-in-an-array/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JS 找出元素索引值的陣列 Array 方法 indexOf()
+        
+      </div>
+    </a>
+  
+  
+    <a href="../JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JS 把陣列 Array 轉成字串的 toString()</div>
+    </a>
+  
+</nav>
+
+            
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
+            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../JS_ironMan30_Array-dinner-is-not-finished/">JS 陣列 Array 之小菜還沒出完</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan29_About-ECMAScript5s-Array-Method/">JS ECMAScript 5 的陣列 Array 方法淺析</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan28_Find-the-index-value-of-the-last-element/">JS 陣列 Array 方法，找出最後一個元素的索引值 lastIndexOf()</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan27_Finding-element-index-values-in-an-array/">JS 找出元素索引值的陣列 Array 方法 indexOf()</a>
+          </li>
+        
+          <li>
+            <a href="">JS 把陣列 Array 轉成字串與本地化的 toLocaleString()</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../react" class="mobile-nav-link">React</a>
+  
+    <a href="../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../other" class="mobile-nav-link">Other</a>
+  
+    <a href="../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../linux" class="mobile-nav-link">Linux</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
+  <script src="../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
