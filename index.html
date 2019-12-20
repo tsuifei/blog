@@ -111,10 +111,205 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/" class="article-date">
+  <time datetime="2019-12-01T16:00:00.000Z" itemprop="datePublished">2019-12-02</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/">JS 迴圈升級的陣列 Array 方法 forEach()</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-32"><a href="#Day-32" class="headerlink" title="Day 32"></a>Day 32</h6><blockquote>
+<p>如果日行一善可以持續，那鐵人應該也可以。</p>
+</blockquote>
+<p>上一篇我們講解了陣列方法的 <code>forEach()</code>，知道它可以做迭代這件事，但在 ECMAScript 5 的陣列方法中大部分的方法都是以迭代為基礎，<code>map()</code>也是。</p>
+<p><code>map()</code>算是陣列方法中最實用的方法之一，我們可以用<code>map()</code>來轉換陣列內的元素，轉換成什麼可由我們決定，以我們想要的方式轉換後，<code>map()</code>會幫我們這些轉換結果，放入另一個新的陣列，回傳回來。</p>
+<p>例如，我們有一個含有數字的物件，但只想要取出裡面的數字；或是，我們的陣列裡包含了函式 <del>是啊，陣列裡也可放函式沒忘吧？</del> 但我們需要這些函式的promise，<code>map()</code>可以幫我們把元素轉換成另一個格式傳回來。</p>
+<p>在「JavaScript 學習手冊」這本書裡有許多範例（有部分修改），我們來試著理解一下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> shoppingCart = </span><br><span class="line">[&#123;  <span class="attr">itemName</span>: <span class="string">"Book"</span>,<span class="attr">price</span> : <span class="number">220</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">itemName</span>: <span class="string">"Bag"</span>,<span class="attr">price</span> : <span class="number">350</span> &#125;];</span><br><span class="line"><span class="keyword">const</span> itemNames = shoppingCart.map(<span class="function"><span class="params">x</span> =&gt;</span> x.itemName); </span><br><span class="line"><span class="comment">// 只把 itemNames 提取出來</span></span><br><span class="line">itemNames; <span class="comment">// ["Book", "Bag"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 把 price 打七九折後提取出來</span></span><br><span class="line"><span class="keyword">const</span> discounts = shoppingCart.map(<span class="function"><span class="params">x</span> =&gt;</span> x.price * <span class="number">0.79</span>); </span><br><span class="line">discounts; <span class="comment">// [173.8, 276.5]</span></span><br></pre></td></tr></table></figure>
+
+<p>當然，用在陣列上也是ㄧ樣的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line">newArr = arr.map(<span class="function">(<span class="params">x</span>) =&gt;</span> x * x);</span><br><span class="line"></span><br><span class="line">newArr; <span class="comment">//  [1, 4, 9, 16, 25, 36]</span></span><br></pre></td></tr></table></figure>
+
+<p><a href="https://s0developer0mozilla0org.icopy.site/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank" rel="noopener">Array.prototype.map() - JavaScript | MDN</a><br><strong>原型：</strong> Array.prototype.map();<br><strong>功能：</strong> 建立一個新的陣列，其內容為原陣列的每一個元素經由回呼函式運算後所回傳的結果之集合。<br><strong>回傳值：</strong> 回傳新陣列，原陣列不改變。對陣列中的各元素進行操作，操作後的值會被寫入新的陣列中並返回。<br><strong>參數：</strong> callback 函式和<code>thisArg</code>第二參數可忽略，可參考前一篇的<a href="https://ithelp.ithome.com.tw/articles/10228571" target="_blank" rel="noopener">forEach</a>。
+<strong>改變：</strong>  不會改變原陣列。<br><strong>語法：</strong> <code>var new_array = arr.map(function callback(currentValue[, index[, array]]) {
+         // Return element for new_array
+          }[, thisArg])</code></p>
+<p>當我們提供的函式被呼叫的時候，這個函式會使用我們之前提到的 callback 函式的三個參數：元素本身、元素索引和陣列本身。陣列本身這個參數通常比較少用到，利用參數的特性，我們可以輕易地取到我們想要的值和索引：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">const</span> arr2 = arr.map(<span class="function"><span class="keyword">function</span>(<span class="params">element, index, array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> element * <span class="number">2</span>;</span><br><span class="line">&#125;);</span><br><span class="line">arr2.join(<span class="string">'、'</span>);  <span class="comment">// 2、4、6、8、10、12</span></span><br></pre></td></tr></table></figure>
+
+<p><code>map()</code>也可以做到修正陣列這件事，架設我們有一個價格的陣列，只要不超過金額 50 的商品就標示「無折扣」，那麼我們就可以利用<code>map()</code>來過濾與修改這些值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> prices = [<span class="number">42</span>, <span class="number">57</span>, <span class="number">89</span>, <span class="number">23</span>, <span class="number">78</span>, <span class="number">12</span>]</span><br><span class="line"><span class="keyword">const</span> newPrices = prices.map( <span class="function"><span class="keyword">function</span>(<span class="params">elem</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(elem &lt; <span class="number">50</span>) <span class="keyword">return</span> <span class="string">"no Discount"</span>;</span><br><span class="line"><span class="keyword">return</span> elem</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">newPrices; <span class="comment">//  ["no Discount", 57, 89, "no Discount", 78, "no Discount"]</span></span><br></pre></td></tr></table></figure>
+
+<p><code>map()</code>也有一些超級好用的用法。例如，假設我們有兩個不同的陣列，分別是產品名稱和價格，但我們想把它們結合在一起，就可以輕易的利用<code>map()</code>提取元素和索引的特性，來組合成另一組資料。：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> items = [<span class="string">"book"</span>, <span class="string">"cap"</span>, <span class="string">"bag"</span>];</span><br><span class="line"><span class="keyword">const</span> prices = [<span class="number">125</span>, <span class="number">76</span>, <span class="number">390</span>];</span><br><span class="line"><span class="keyword">const</span> listItems = items.map(<span class="function">(<span class="params">elem, index</span>) =&gt;</span> (&#123; <span class="attr">itemName</span>: elem, <span class="attr">price</span>: prices[index]&#125;));</span><br><span class="line"></span><br><span class="line">listItems;</span><br><span class="line"><span class="comment">// [&#123;itemName: "book", price: 125&#125;, </span></span><br><span class="line"><span class="comment">//  &#123;itemName: "bag", price: 390&#125;, </span></span><br><span class="line"><span class="comment">//  &#123;itemName: "bag", price: 390&#125;]</span></span><br></pre></td></tr></table></figure>
+
+<p>是不是很神奇？我們在<code>listItems</code>使用了索引的提取，為什麼需要索引？是因為我們想要把<code>items</code>與<code>prices</code>裡的元素用它們的索引連結起來。</p>
+<p><code>map()</code>本身是回傳陣列，我們希望的是物件的資料格式，所以從兩個陣列中提取我們所要的資訊，在callback 函式裡前後加上<code>{}</code>，再把我們提取的元素放入，回傳就會是物件了。</p>
+<p>需要注意的是，我們必須用<code>( )</code>將物件格式包起來，如果沒包起來，箭頭函式的寫法會將大括號視為區塊標示。</p>
+<p>今天的陣列 Array 方法 <code>map()</code>就介紹到此，接下來的陣列方法會繼續持續下去喔～</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-32"><a href="#Day-32" class="headerlink" title="Day 32"></a>Day 32</h6><blockquote>
+<p>如果日行一善可以持續，那鐵人應該也可以。</p>
+</blockquote>
+<p>上一篇我們講解了陣列方法的 <code>forEach()</code>，知道它可以做迭代這件事，但在 ECMAScript 5 的陣列方法中大部分的方法都是以迭代為基礎，<code>map()</code>也是。</p>
+<p><code>map()</code>算是陣列方法中最實用的方法之一，我們可以用<code>map()</code>來轉換陣列內的元素，轉換成什麼可由我們決定，以我們想要的方式轉換後，<code>map()</code>會幫我們這些轉換結果，放入另一個新的陣列，回傳回來。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/" data-id="ck4dz0ydr00016tuw3zrwmkb0" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-JS_ironMan31_Executes-a-provided-function-once-for-each-array-element" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/" class="article-date">
+  <time datetime="2019-11-30T20:21:14.000Z" itemprop="datePublished">2019-12-01</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/">JS 迴圈升級的陣列 Array 方法 forEach()</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-31"><a href="#Day-31" class="headerlink" title="Day 31"></a>Day 31</h6><blockquote>
+<p>別一張張的發傳單，宣傳什麼折扣吧！NewsLetters 鍵按寄出一次搞定，像迭代一樣。</p>
+</blockquote>
+<p>前幾篇我們聊到了 ECMAScript 5 的陣列方法，聊到這些方法都有迭代（iterating）的特色，也就是把我們想要執行的函式，從頭到尾逐一（iterates through）的把陣列裡的元素帶進去這個函式處理一遍，<code>forEach()</code>便是我們會常用的方法之一。</p>
+<p>我們直接看看在大犀牛裡的範例，直接以<code>forEach()</code>取陣列的值來相加：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">data.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">  sum += value;</span><br><span class="line">&#125;);</span><br><span class="line">sum; <span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
+
+<p>或是為每個陣列元素遞增，而原陣列也會因為<code>forEach()</code>所帶入的函式而改變原有的陣列。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">value, index, array</span>)</span>&#123;</span><br><span class="line">  array[index] = value + <span class="number">1</span>;</span><br><span class="line">&#125;);</span><br><span class="line">data; <span class="comment">// [2, 3, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+
+<p><a href="https://s0developer0mozilla0org.icopy.site/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach" target="_blank" rel="noopener">Array.prototype.forEach() - JavaScript | MDN</a><br><strong>原型：</strong> Array.prototype.foreach()<br><strong>功能：</strong> 對陣列的每個元素執行一次提供的函數。<br><strong>改變：</strong> 不會直接改變原陣列，但可能會依帶入的函式而改變。<br><strong>語法：</strong> arr.forEach(callback[, thisArg]);<br><strong>回傳值：</strong>  undefined。<br><strong>參數：</strong> callback 函式與 thisArg</p>
+<p>我們來看一下<code>forEach()</code>較完整的語法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">currentValue[, index[, array]]</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//your iterator</span></span><br><span class="line">&#125;[, thisArg]);</span><br></pre></td></tr></table></figure>
+
+<p><code>forEach()</code>本身可帶兩個參數，第一個是必須的 callback 函式，第二個參數thisArg 是可選擇性的。這個callback 函式會將 Array 中的每一個元素作為參數，帶進這個 callback 函式裡，每個元素各執行一次。</p>
+<p>而第一個 callback 函式則可傳入三個參數：</p>
+<ol>
+<li>currentValue 目前被處理的陣列元素值 </li>
+<li>index 目前被處理的陣列元素索引(可選)</li>
+<li>array 呼叫forEach()陣列本身(可選)</li>
+</ol>
+<p>如果我們只需要陣列的值，也可寫成只有一個參數的函式，其他的會被忽略。 </p>
+<p><code>forEach()</code>的第二個參數<code>thisArg</code>是可選擇性的，如果有這個參數，它就會被作為 callback 回呼函式每次被調用的 this 的值。需要注意的是 callback 函式，如果是箭頭函式，則在創建該函數時已按詞法綁定，因此thisArg不會起作用。</p>
+<p>我們來看一下例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">5</span>,<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>]</span><br><span class="line"><span class="comment">// 沒有第二參數 thisArg</span></span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].forEach(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  sum += x;</span><br><span class="line">&#125;); </span><br><span class="line"><span class="built_in">console</span>.log(sum); <span class="comment">// 6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 有第二參數 thisArg</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].forEach(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;, arr); <span class="comment">// this -&gt;obj</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">[ 5, 10, 20, 30 ]</span></span><br><span class="line"><span class="comment">[ 5, 10, 20, 30 ]</span></span><br><span class="line"><span class="comment">[ 5, 10, 20, 30 ]</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>因為 callback 函式的第二個參數，會改變 scop 範疇、改變 this 的值，也就是這個函式裡的<code>arr</code>，也因此會印出三次參數<code>thisArg</code>的<code>arr</code>。</p>
+<p>在真實的情境裡我們比較少用到 callback 函式的第二個參數，在「Secrets of the JavaScript Ninja」忍者這本書的第四章有更詳盡的說明。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-31"><a href="#Day-31" class="headerlink" title="Day 31"></a>Day 31</h6><blockquote>
+<p>別一張張的發傳單，宣傳什麼折扣吧！NewsLetters 鍵按寄出一次搞定，像迭代一樣。</p>
+</blockquote>
+<p>前幾篇我們聊到了 ECMAScript 5 的陣列方法，聊到這些方法都有迭代（iterating）的特色，也就是把我們想要執行的函式，從頭到尾逐一（iterates through）的把陣列裡的元素帶進去這個函式處理一遍，<code>forEach()</code>便是我們會常用的方法之一。</p>
+<p>我們直接看看在大犀牛裡的範例，直接以<code>forEach()</code>取陣列的值來相加：</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/" data-id="ck4dz0ydn00006tuwmx05i9xw" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan30_Array-dinner-is-not-finished" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="JS_ironMan30_Array-dinner-is-not-finished/" class="article-date">
-  <time datetime="2019-12-08T20:21:14.000Z" itemprop="datePublished">2019-12-09</time>
+  <time datetime="2019-11-29T20:21:14.000Z" itemprop="datePublished">2019-11-30</time>
 </a>
             
   <div class="article-category">
@@ -857,205 +1052,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-JS_ironMan22_ Sorts-the-elements-of-an-array-sort()-method" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="JS_ironMan22_ Sorts-the-elements-of-an-array-sort()-method/" class="article-date">
-  <time datetime="2019-11-21T20:21:14.000Z" itemprop="datePublished">2019-11-22</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="JS_ironMan22_ Sorts-the-elements-of-an-array-sort()-method/">JS 將陣列 Array 重新排列的 sort()</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-22"><a href="#Day-22" class="headerlink" title="Day 22"></a>Day 22</h6><blockquote>
-<p>一堆樸克牌攤在眼前，要照花色排還是大小來排？隨你高興。 </p>
-</blockquote>
-<p><code>sort()</code>是個很好用的陣列方法，凡是要把陣列裡面的元素，照我們想排列的方式重新排列都需要用到它。例如在購物網站的商品依價格排列，或是我們看文章時，依照最近的時間排列，都會用到<code>sort()</code>。</p>
-<p>在做排序時，我們也會同時原地(in place)的更動到原陣列，且回傳給我們排好序的陣列。</p>
-<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/sort" target="_blank" rel="noopener">Array.prototype.sort() - JavaScript | MDN</a></p>
-<p><strong>原型：</strong> Array.prototype.sort()<br><strong>功能：</strong> 依據字串的 Unicode 編碼進行排序。<br><strong>改變：</strong> 會改變原本的陣列<br><strong>語法：</strong> arr.sort([compareFunction])<br><strong>回傳值：</strong> 回傳排序後的陣列<br><strong>參數：</strong> 可指定一個函式來定義排序的順序。如果省略此參數就會依據字串的 Unicode 編碼進行排序。</p>
-<h2 id="是依據什麼來排列？"><a href="#是依據什麼來排列？" class="headerlink" title="是依據什麼來排列？"></a>是依據什麼來排列？</h2><p><code>sort()</code>是如何依照我們想要的方式排序？如果我們不給<code>sort()</code>參數，它會依照預設的方式排序。我們也可以給一個函式當參數，並將條件寫在函式裡，這樣會比沒有給參數精準很多。</p>
-<h3 id="預設排序大亂入"><a href="#預設排序大亂入" class="headerlink" title="預設排序大亂入"></a>預設排序大亂入</h3><p>預設排序也就是依照我們陣列裡元素的 code UTF-16 的順序排列，什麼是 code UTF-16？ UTF-16 是 Unicode 字元的一種，我們可以直接看看<a href="https://zh.wikipedia.org/zh-tw/Unicode%E5%AD%97%E7%AC%A6%E5%88%97%E8%A1%A8" target="_blank" rel="noopener">這張 Unicode 的編碼表</a>，並且來做一些測試：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="literal">null</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="literal">undefined</span>, <span class="literal">NaN</span>, <span class="number">200</span>, <span class="string">"Hi"</span>, <span class="string">"apple"</span>, <span class="string">""</span>, <span class="string">"#"</span>, <span class="string">"!"</span>, <span class="string">"2"</span>];</span><br><span class="line">arr1.sort();</span><br><span class="line"></span><br><span class="line">arr1;</span><br><span class="line"><span class="comment">//[ '', '!', '#', '2', 2, 200, 8, 'Hi', NaN, 'apple', null, undefined ]</span></span><br></pre></td></tr></table></figure>
-
-<p>排序的結果頗讓人驚訝 <del>簡直像沒排序</del>，<code>sort()</code>會將所有元素轉成字串後，且以第一個字元為對象，再進行排序，而所有符號會被先篩選出來，接著是數字，然後是字母。也因為這樣的比較，所以連<code>200</code>都會排在<code>8</code>前面。而字母則以字母大寫為先、小寫為後來排序。</p>
-<p>需要特別注意的是，這樣的結果有可能因<code>sort()</code>執行環境 <del>也就是瀏覽器</del>的不同，而有預期之外的預設排序結果。所以一般會建議，還是以函式傳入參數來當排序條件會比較穩定。</p>
-<h3 id="用匿名函式當排序條件"><a href="#用匿名函式當排序條件" class="headerlink" title="用匿名函式當排序條件"></a>用匿名函式當排序條件</h3><p>如果希望完全依照自己給的條件排序，最好是給<code>sort()</code>一個帶有條件的匿名函式來當參數，這個匿名函數必須要有兩個參數，然後再依照這兩個參數比較回傳的值，來當排序依據。</p>
-<p><code>sort()</code>會依匿名函式的參數與回傳的值為精確的排序規則：</p>
-<ul>
-<li>當回傳值為負數時，那麼前面的數放在前面</li>
-<li>當回傳值為正整數，那麼後面的數在前面</li>
-<li>當回傳值為零，保持不動。</li>
-</ul>
-<p>這個函式會每次都先拿兩組陣列裡的元素來比較，當回傳值為正，會讓後面的數跑到前面，以上述的規則來移動元素，大家有沒覺得這種方式很眼熟，其實就是使用冒泡排序法來達到排序。</p>
-<p>我們先來看這些例子：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 沒有給參數的預設排序</span></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">5</span>, <span class="number">9</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">6</span>];</span><br><span class="line">arr.sort();  <span class="comment">// [1, 2, 3, 5, 6, 9]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 以匿名函式回參數做「升序」排序</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a - b; <span class="comment">// a - b &gt; 0</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// [1, 2, 3, 5, 6, 9]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果要反過來做「降序」排序</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> b - a;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// [9, 6, 5, 3, 2, 1]</span></span><br></pre></td></tr></table></figure>
-
-<p>或許大家會覺得疑惑，怎麼回傳一個 <code>a - b</code>就變升序 <code>b - a</code>就成了降序？<br>這是被精簡化的寫法 <del>聽說高手都會越寫越精簡</del> ，我們可以來看看原本的寫法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">5</span>, <span class="number">9</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">6</span>];</span><br><span class="line"><span class="comment">// 升序</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(a &gt; b)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">// 正數時，後面的數放在前面</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span> <span class="comment">// 負數時，前面的數放在前面</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 降序</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(a &lt; b)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">// 正數時，後面的數放在前面</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span> <span class="comment">// 負數時，前面的數放在前面</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 升序 另一種寫法，就會精簡到像最上面那樣！</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(a &gt; b)&#123; <span class="comment">// a &gt; b  等於 a - b &gt; 0</span></span><br><span class="line">    <span class="keyword">return</span> a - b; </span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a - b </span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>這就是程式好玩的地方，一步步的精簡到回傳<code>a - b</code>就是升、<code>b - a</code>就是降，還真是新手想不出來的境界啊！</p>
-<h3 id="可以拿-sort-來做什麼？"><a href="#可以拿-sort-來做什麼？" class="headerlink" title="可以拿 sort 來做什麼？"></a>可以拿 sort 來做什麼？</h3><p><code>sort()</code>可以運用的範圍很廣，尤其是參數的匿名函式，依照下的條件不同而達到我們想要的效果。來看看一些範例：</p>
-<h4 id="按照字串長度來排序"><a href="#按照字串長度來排序" class="headerlink" title="按照字串長度來排序"></a>按照字串長度來排序</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">"hi"</span>, <span class="string">"Hello"</span>, <span class="string">"Bonjour"</span>, <span class="string">"ciao"</span>];</span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a.length - b.length;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ["hi", "ciao", "Hello", "Bonjour"]</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="對字串做不區分大小寫的排序"><a href="#對字串做不區分大小寫的排序" class="headerlink" title="對字串做不區分大小寫的排序"></a>對字串做不區分大小寫的排序</h4><p>我們在最開頭的時候有聊到，<code>sort()</code>的預設會以 Unicode 來排序，而在 Unicode 的排序裡，大寫字母又會比小寫前面，但當我們要對有大小寫混雜的字串陣列做排序時，如何做到不區分大小寫的排序？可參考下列的方式，先把字串全轉成小寫再比對，就可以得到不分大小寫的排序囉。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">arr =[<span class="string">"apple"</span>, <span class="string">"Banana"</span>, <span class="string">"coco"</span>, <span class="string">"Ege"</span>];</span><br><span class="line"><span class="comment">// 直接預設排序的結果</span></span><br><span class="line">arr.sort(); <span class="comment">//  ["Banana", "Ege", "apple", "coco"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 先將字串全轉成小寫再排序</span></span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> a = x.toLowerCase();</span><br><span class="line">  <span class="keyword">let</span> b = y.toLowerCase();</span><br><span class="line">  <span class="keyword">if</span>(a &gt; b) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span>(a &lt; b) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// ["apple", "Banana", "coco", "Ege"]</span></span><br></pre></td></tr></table></figure>
-
-<p>今天就先介紹到這裡，其實<code>sort()</code>的學問很大，這其中牽涉到的不只是演算法，還有 JavaScript 裡的匿名函式的活用，本人才疏且學淺，好多知識都還來不及吸收，以致不敢介紹給大家，期待有朝一日的自己，可以回頭講解得更清楚些。</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-22"><a href="#Day-22" class="headerlink" title="Day 22"></a>Day 22</h6><blockquote>
-<p>一堆樸克牌攤在眼前，要照花色排還是大小來排？隨你高興。 </p>
-</blockquote>
-<p><code>sort()</code>是個很好用的陣列方法，凡是要把陣列裡面的元素，照我們想排列的方式重新排列都需要用到它。例如在購物網站的商品依價格排列，或是我們看文章時，依照最近的時間排列，都會用到<code>sort()</code>。</p>
-<p>在做排序時，我們也會同時原地(in place)的更動到原陣列，且回傳給我們排好序的陣列。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="JS_ironMan22_ Sorts-the-elements-of-an-array-sort()-method/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan22_ Sorts-the-elements-of-an-array-sort()-method/" data-id="ck4cf99yt002jfjuwbphw54bu" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
-    <article id="post-JS_ironMan21_Changes-the-contents-of-an-array-method " class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="JS_ironMan21_Changes-the-contents-of-an-array-method /" class="article-date">
-  <time datetime="2019-11-20T20:21:14.000Z" itemprop="datePublished">2019-11-21</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="JS_ironMan21_Changes-the-contents-of-an-array-method /">JS 隨意修、刪、改的陣列 Array 方法 splice()</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-21"><a href="#Day-21" class="headerlink" title="Day 21"></a>Day 21</h6><blockquote>
-<p>這邊刪一下、那邊加一下，阿不，從後面改起！主管，可不可以不要這樣玩來玩去嗎？</p>
-</blockquote>
-<p>splice 中文為拼接。可以藉由刪除原來有的元素並／或加入新元素來改變一個陣列的內容。</p>
-<p>但其實<code>splice()</code>不只會拼接，還可以指定在哪個點刪除與增加元素，且一次還可以增加多個。剛開始使用<code>splice()</code>常記不起來三個參數的含義，我們可以用這個比喻來增加記憶：</p>
-<p>想像主管請我們做一個產品介紹的投影片，花了一整天終於把投影片做好 <del>這樣算慢嗎？</del>，拿去給主管看時，主管看了看說，啊這樣不行啦，你都沒放產品的側面和背面介紹，你從第三頁（start）那裡開始，把都是文字的那頁（deleteCount）使用說明拿掉，再把我說的側面和背面介紹兩頁（item1, item2）放進去，這樣就會更完美了。。</p>
-<p>我們也發現，<code>splice()</code>比起上一篇介紹，可<a href="https://ithelp.ithome.com.tw/articles/10224915" target="_blank" rel="noopener">淺拷貝的 slice()</a>似乎更有彈性。</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20191006/20104175tzA52W0iCV.png" alt="splice"></p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice" target="_blank" rel="noopener">Array.prototype.splice() - JavaScript | MDN</a></p>
-<p><strong>原型：</strong> Array.prototype.splice()<br><strong>功能：</strong> 可以藉由刪除既有元素並／或加入新元素來改變一個陣列的內容。<br><strong>改變：</strong> 會改變原陣列。<br><strong>語法：</strong> var arrDeletedItems = array.splice(start[, deleteCount[, item1[, item2[, …]]]])<br><strong>回傳值：</strong> 一個包含被刪除的元素陣列。如果只有一個元素被刪除，依舊是回傳包含一個元素的陣列。 倘若沒有元素被刪除，則會回傳空陣列。<br><strong>參數：</strong> start[, deleteCount[, item1[, item2[, …]]]], start是必須的。</p>
-<p>因為<code>splice()</code>的參數有點小複雜，所以我們特別來看一下。直接語意說明：<code>arr1.splice(要插入或刪除的索引位置, 要刪除的元素數量, 要插入的元素內容)</code>。我們先預設這些參數的代稱：splice(start, deleteCount, item )這樣範例會比較清楚。只是要記住，<code>splice()</code>本身所回傳回來的，會是我們刪除掉的元素陣列，而不是使用<code>splice()</code>之後原陣列的結果，如果希望得到原陣列的結果，需要指派另一個變數去接。</p>
-<p>下面的範例我們會從索引值 1 的地方刪除 2 個元素，並將<code>&quot;hi&quot;</code>這個字串放進去。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> colors1 = [<span class="string">"red"</span>, <span class="string">"yellow"</span>, <span class="string">"blue"</span>, <span class="string">"gray"</span>, <span class="string">"purple"</span>]</span><br><span class="line"><span class="keyword">const</span> colors2 = colors1.splice(<span class="number">1</span>, <span class="number">2</span>, <span class="string">"hi"</span>)</span><br><span class="line"></span><br><span class="line">colors1; <span class="comment">// ["red", "hi", "gray", "purple"]</span></span><br><span class="line">colors2; <span class="comment">// ["yellow", "blue"]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="刪了幾個，就回傳幾個刪掉的元素陣列回來"><a href="#刪了幾個，就回傳幾個刪掉的元素陣列回來" class="headerlink" title="刪了幾個，就回傳幾個刪掉的元素陣列回來"></a>刪了幾個，就回傳幾個刪掉的元素陣列回來</h3><p>在使用<code>splice()</code>的時候，如果只給<code>start</code>，而省略<code>deleteCount</code>，或是<code>start</code>的值，大於原陣列長度減掉<code>start</code>（也就是<code>deleteCount</code>大於<code>start</code>算起的剩餘元素數量），那麼<code>splice()</code>就會把所有從<code>start</code>開始到陣列到最後一個元素都刪除。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> colors1 = [<span class="string">"red"</span>, <span class="string">"yellow"</span>, <span class="string">"blue"</span>, <span class="string">"gray"</span>, <span class="string">"purple"</span>]</span><br><span class="line"><span class="keyword">const</span> colors2 = colors1.splice(<span class="number">1</span>); <span class="comment">// 從索引值 1 的點開始刪除到全部</span></span><br><span class="line">colors1; <span class="comment">//["red"]</span></span><br><span class="line">colors2; <span class="comment">//["yellow", "blue", "gray", "purple"] // 把刪除的元素通通傳回來</span></span><br></pre></td></tr></table></figure>
-
-<p>如果是<code>colors1.splice(0);</code>，那麼我們會得到一個空陣列<code>[]</code>，也就是說全部的元素都刪除掉。</p>
-<h3 id="只是想插隊一下的-deleteCount-0"><a href="#只是想插隊一下的-deleteCount-0" class="headerlink" title="只是想插隊一下的 deleteCount = 0"></a>只是想插隊一下的 deleteCount = 0</h3><p>我們可以利用<code>splice()</code>單純做到在一個陣列裡插入元素，方法很簡單，只要把<code>deleteCount</code>設為零就可以了。我們甚至可以一次插入多個元素。當然，回傳的結果會是<code>[ ]</code>空陣列，因為我們什麼都沒刪，如果<code>deleteCount</code>是負數，也會得到和 0 一樣的結果。反之<code>colors1</code>卻獲得了增加一個數字<code>42</code>的陣列。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> colors1 = [<span class="string">"red"</span>, <span class="string">"yellow"</span>, <span class="string">"blue"</span>, <span class="string">"gray"</span>, <span class="string">"purple"</span>]</span><br><span class="line"><span class="keyword">const</span> colors2 = colors1.splice(<span class="number">1</span>, <span class="number">0</span>, <span class="number">42</span>)</span><br><span class="line">colors1; <span class="comment">// ["red", 42, "yellow", "blue", "gray", "purple"]</span></span><br><span class="line">colors2;  <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="索引值也可以從後頭開始算"><a href="#索引值也可以從後頭開始算" class="headerlink" title="索引值也可以從後頭開始算"></a>索引值也可以從後頭開始算</h3><p><code>splice()</code>的<code>start</code>接受複數，當我們使用負數的索引值，也表示我們要從陣列的尾端數回來。但是請小心，雖然是 -1 但並不是從尾端直接增加元素，而是從尾端倒數第一個的那個點新增元素，所以，原本最後一個元素會被往後擠。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> colors1 = [<span class="string">"red"</span>, <span class="string">"yellow"</span>, <span class="string">"blue"</span>, <span class="string">"gray"</span>, <span class="string">"purple"</span>]</span><br><span class="line"><span class="keyword">const</span> colors2 = colors1.splice(<span class="number">-1</span>, <span class="number">0</span>, <span class="number">42</span>)</span><br><span class="line"></span><br><span class="line">colors1; <span class="comment">// ["red", "yellow", "blue", "gray", 42, "purple"]</span></span><br><span class="line">colors2; <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="常常被拿來和-slice-比較"><a href="#常常被拿來和-slice-比較" class="headerlink" title="常常被拿來和 slice 比較"></a>常常被拿來和 slice 比較</h3><p>常常會看到<code>splice()</code>和<code>slice()</code>比較的文章，但是倒底兩個方法還是有很大的不同的。<br><code>slice()</code>不會改變原陣列；<code>splice()</code>會。<br><code>slice()</code>回傳指定切下來的陣列；<code>splice()</code>會回傳被刪除的陣列。<br>如果想快速獲得一個淺拷貝的陣列，的確<code>slice()</code>顯得簡潔，但其實<code>splice()</code>也不差，還可以用另ㄧ變數指定的方式，輕易獲得新增或刪除的陣列，用哪個比較方便，就真的要看使用情境了。</p>
-<p>希望今天的小菜大家都還喜歡，其實還有許多不同的用法，礙於篇幅與時間無法一一介紹，希望鐵人賽之後，可以有時間把這些介紹做得更詳細些啊。</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-21"><a href="#Day-21" class="headerlink" title="Day 21"></a>Day 21</h6><blockquote>
-<p>這邊刪一下、那邊加一下，阿不，從後面改起！主管，可不可以不要這樣玩來玩去嗎？</p>
-</blockquote>
-<p>splice 中文為拼接。可以藉由刪除原來有的元素並／或加入新元素來改變一個陣列的內容。</p>
-<p>但其實<code>splice()</code>不只會拼接，還可以指定在哪個點刪除與增加元素，且一次還可以增加多個。剛開始使用<code>splice()</code>常記不起來三個參數的含義，我們可以用這個比喻來增加記憶：</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="JS_ironMan21_Changes-the-contents-of-an-array-method /">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan21_Changes-the-contents-of-an-array-method /" data-id="ck4cf99yr002cfjuw1696wrcl" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1104,6 +1100,14 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/">JS 迴圈升級的陣列 Array 方法 forEach()</a>
+          </li>
+        
+          <li>
+            <a href="JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/">JS 迴圈升級的陣列 Array 方法 forEach()</a>
+          </li>
+        
+          <li>
             <a href="JS_ironMan30_Array-dinner-is-not-finished/">JS 陣列 Array 之小菜還沒出完</a>
           </li>
         
@@ -1113,14 +1117,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="JS_ironMan28_Find-the-index-value-of-the-last-element/">JS 陣列 Array 方法，找出最後一個元素的索引值 lastIndexOf()</a>
-          </li>
-        
-          <li>
-            <a href="JS_ironMan27_Finding-element-index-values-in-an-array/">JS 找出元素索引值的陣列 Array 方法 indexOf()</a>
-          </li>
-        
-          <li>
-            <a href="JS_ironMan26_Converts-Array-to-string-and-localized/">JS 把陣列 Array 轉成字串與本地化的 toLocaleString()</a>
           </li>
         
       </ul>
