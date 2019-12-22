@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>把要的元素留下來的陣列 Array 方法 filter() | Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Array 33 媽媽說，蘋果要挑大顆又漂亮來拜，神明才會保佑我們。  map()和filter()常常被稱為最好用的兩個陣列方法，之所以好用，有一個原因是我們可以任意要求對每個元素所做的事，無論是運算或是篩選，不只這樣，這兩個陣列都是會回傳回來一個新的陣列，且不會更動到原來的陣列，處理陣列時，可以拿這兩位兄弟做很多事情哩！ 我們先來看看 filter()的基本資訊：原型： Array.proto">
+<meta name="keywords" content="JavaScript,JS_Array,Iron man 30 鐵人賽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="把要的元素留下來的陣列 Array 方法 filter()">
+<meta property="og:url" content="tsuifei.github.io/JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="Array 33 媽媽說，蘋果要挑大顆又漂亮來拜，神明才會保佑我們。  map()和filter()常常被稱為最好用的兩個陣列方法，之所以好用，有一個原因是我們可以任意要求對每個元素所做的事，無論是運算或是篩選，不只這樣，這兩個陣列都是會回傳回來一個新的陣列，且不會更動到原來的陣列，處理陣列時，可以拿這兩位兄弟做很多事情哩！ 我們先來看看 filter()的基本資訊：原型： Array.proto">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-12-22T20:49:02.024Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="把要的元素留下來的陣列 Array 方法 filter()">
+<meta name="twitter:description" content="Array 33 媽媽說，蘋果要挑大顆又漂亮來拜，神明才會保佑我們。  map()和filter()常常被稱為最好用的兩個陣列方法，之所以好用，有一個原因是我們可以任意要求對每個元素所做的事，無論是運算或是篩選，不只這樣，這兩個陣列都是會回傳回來一個新的陣列，且不會更動到原來的陣列，處理陣列時，可以拿這兩位兄弟做很多事情哩！ 我們先來看看 filter()的基本資訊：原型： Array.proto">
+  
+  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../react">React</a>
+        
+        <a class="main-nav-link" href="../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../life">Life</a>
+        
+        <a class="main-nav-link" href="../other">Other</a>
+        
+        <a class="main-nav-link" href="../html">HTML</a>
+        
+        <a class="main-nav-link" href="../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../linux">Linux</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="" class="article-date">
+  <time datetime="2019-12-02T16:00:00.000Z" itemprop="datePublished">2019-12-03</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 class="article-title" itemprop="name">
+      把要的元素留下來的陣列 Array 方法 filter()
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Array-33"><a href="#Array-33" class="headerlink" title="Array 33"></a>Array 33</h6><blockquote>
+<p>媽媽說，蘋果要挑大顆又漂亮來拜，神明才會保佑我們。</p>
+</blockquote>
+<p><code>map()</code>和<code>filter()</code>常常被稱為最好用的兩個陣列方法，之所以好用，有一個原因是我們可以任意要求對每個元素所做的事，無論是運算或是篩選，不只這樣，這兩個陣列都是會回傳回來一個新的陣列，且不會更動到原來的陣列，處理陣列時，可以拿這兩位兄弟做很多事情哩！</p>
+<p>我們先來看看 <code>filter()</code>的基本資訊：<br><strong>原型：</strong> Array.prototype.filter()<br><strong>功能：</strong> 將經指定的函式運算後，由原陣列中通過該函式檢驗的元素回傳一個新陣列。<br><strong>改變：</strong> 不會改變元陣列。<br><strong>語法：</strong> var newArray = arr.filter(callback(element[, index[, array]])[, thisArg])<br><strong>回傳值：</strong> 回傳新陣列，原陣列不改變<br><strong>參數：</strong> callback 函式、<code>thisArg</code>，第二參數可忽略。</p>
+<p>透過<code>filter()</code>函式的第一參數：callback 函式所指定的過濾條件，返回一個新陣列 (非常好用)。例如我們只想保留陣列裡，字串長度大於三的字串元素，可以輕易地取得。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'Jack'</span>, <span class="string">'John'</span>, <span class="string">'May'</span>, <span class="string">'Su'</span>, <span class="string">'Ada'</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value.length &gt; <span class="number">3</span>;</span><br><span class="line">&#125;);</span><br><span class="line">arr2.join(<span class="string">'、'</span>); <span class="comment">//  Jack、John</span></span><br></pre></td></tr></table></figure>
+
+<p>我們也可以用它搭配可去掉空字串的字串方法<code>trim()</code>，再將陣列沒用或空的元素刪除，就可得到一個新的、乾淨的陣列。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'Hello'</span>, <span class="string">''</span>, <span class="string">'Hi'</span>, <span class="literal">null</span>, <span class="literal">undefined</span>, <span class="string">'Ciao'</span>, <span class="string">' '</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newArr = arr.filter(<span class="function"><span class="keyword">function</span> (<span class="params">inutile</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">return</span> inutile &amp;&amp; inutile.trim(); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">newArr; <span class="comment">// ['Hello', 'Hi', 'Ciao']</span></span><br></pre></td></tr></table></figure>
+
+<p>需注意的是，在IE9(不包含IE9)以下的版本並不支援trim()方法。<br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim" target="_blank" rel="noopener">String.prototype.trim() - JavaScript | MDN</a></p>
+<p><code>filter()</code>好用的原因，除了可以產生一個新陣列，且不會更動到原本的陣列，對於沒有值的元素也不會起作用。而<code>filter()</code>和<code>splice()</code>的不同點，正是<code>filter()</code>不會更動到原陣列。</p>
+<p>在<code>filter()</code>的第一個參數所帶入的 callback 函式，可以帶入多個參數，如果我們只帶入一個參數，這個參數即表示是使用<code>filter()</code>此陣列的元素，而第二與第三個參數則代表元素的索引位置和陣列本身。例如下面這個例子，我們想要過濾出來，大於 5 的元素：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">0</span>];</span><br><span class="line"><span class="keyword">let</span> filtered = array.filter(<span class="function"><span class="keyword">function</span>(<span class="params">value, index, arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value &gt; <span class="number">5</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">filtered; <span class="comment">// [6, 7, 8, 9]</span></span><br><span class="line">array; <span class="comment">// [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]</span></span><br></pre></td></tr></table></figure>
+
+<p>利用<code>filter()</code>，我們也可以輕鬆地去除陣列裡重複的元素，可以達到這樣的效果是因為使用<code>indexOf()</code>會回傳第一個元素位置的（index），如果之後有重複元素的位置與<code>indexOf()</code>回傳的位置不相等，就會被<code>filter()</code>過濾掉。而這時的過濾結果，只會先保留第一個找到的元素，第二個重複的元素就不會被放進回傳的陣列裡了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'B'</span>, <span class="string">'A'</span>, <span class="string">'E'</span>, <span class="string">'C'</span>, <span class="string">'A'</span>, <span class="string">'F'</span>, <span class="string">'G'</span>, <span class="string">'E'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newArr = arr.filter(<span class="function"><span class="keyword">function</span> (<span class="params">element, index, self</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">return</span> self.indexOf(element) === index;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">newArr; <span class="comment">// ["B", "A", "E", "C", "F", "G"]</span></span><br></pre></td></tr></table></figure>
+
+<p>我們更可以把這些去掉重複的元素，且讓陣列的排序整齊一點的功能，包成一個函式，使用起來就方便多了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeDuplicates</span>(<span class="params">originArray</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = originArray.filter(<span class="function"><span class="keyword">function</span>(<span class="params">value, index, arrSelf</span>)</span>&#123; </span><br><span class="line">    <span class="keyword">return</span> arrSelf.indexOf(value) === index</span><br><span class="line">    &#125;);</span><br><span class="line">  <span class="keyword">return</span> result.sort();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">removeDuplicates(array); <span class="comment">// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span></span><br></pre></td></tr></table></figure>
+
+<p>今天的<code>filter()</code>就先介紹到這裡，因為自己也是初級生，想把舊語法先練熟，所以還未使用到箭頭函式，將來應該就會慢慢朝向 ES6 的寫法了。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇請告知，我會盡快修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                            <h6 id="Array-33"><a href="#Array-33" class="headerlink" title="Array 33"></a>Array 33</h6><blockquote>
+<p>媽媽說，蘋果要挑大顆又漂亮來拜，神明才會保佑我們。</p>
+</blockquote>
+<p><code>map()</code>和<code>filter()</code>常常被稱為最好用的兩個陣列方法，之所以好用，有一個原因是我們可以任意要求對每個元素所做的事，無論是運算或是篩選，不只這樣，這兩個陣列都是會回傳回來一個新的陣列，且不會更動到原來的陣列，處理陣列時，可以拿這兩位兄弟做很多事情哩！</p>
+<p>我們先來看看 <code>filter()</code>的基本資訊：<br><strong>原型：</strong> Array.prototype.filter()<br><strong>功能：</strong> 將經指定的函式運算後，由原陣列中通過該函式檢驗的元素回傳一個新陣列。<br><strong>改變：</strong> 不會改變元陣列。<br><strong>語法：</strong> var newArray = arr.filter(callback(element[, index[, array]])[, thisArg])<br><strong>回傳值：</strong> 回傳新陣列，原陣列不改變<br><strong>參數：</strong> callback 函式、<code>thisArg</code>，第二參數可忽略。</p>
+<p>透過<code>filter()</code>函式的第一參數：callback 函式所指定的過濾條件，返回一個新陣列 (非常好用)。例如我們只想保留陣列裡，字串長度大於三的字串元素，可以輕易地取得。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'Jack'</span>, <span class="string">'John'</span>, <span class="string">'May'</span>, <span class="string">'Su'</span>, <span class="string">'Ada'</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value.length &gt; <span class="number">3</span>;</span><br><span class="line">&#125;);</span><br><span class="line">arr2.join(<span class="string">'、'</span>); <span class="comment">//  Jack、John</span></span><br></pre></td></tr></table></figure>
+
+<p>我們也可以用它搭配可去掉空字串的字串方法<code>trim()</code>，再將陣列沒用或空的元素刪除，就可得到一個新的、乾淨的陣列。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'Hello'</span>, <span class="string">''</span>, <span class="string">'Hi'</span>, <span class="literal">null</span>, <span class="literal">undefined</span>, <span class="string">'Ciao'</span>, <span class="string">' '</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newArr = arr.filter(<span class="function"><span class="keyword">function</span> (<span class="params">inutile</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">return</span> inutile &amp;&amp; inutile.trim(); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">newArr; <span class="comment">// ['Hello', 'Hi', 'Ciao']</span></span><br></pre></td></tr></table></figure>
+
+<p>需注意的是，在IE9(不包含IE9)以下的版本並不支援trim()方法。<br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim" target="_blank" rel="noopener">String.prototype.trim() - JavaScript | MDN</a></p>
+<p><code>filter()</code>好用的原因，除了可以產生一個新陣列，且不會更動到原本的陣列，對於沒有值的元素也不會起作用。而<code>filter()</code>和<code>splice()</code>的不同點，正是<code>filter()</code>不會更動到原陣列。</p>
+<p>在<code>filter()</code>的第一個參數所帶入的 callback 函式，可以帶入多個參數，如果我們只帶入一個參數，這個參數即表示是使用<code>filter()</code>此陣列的元素，而第二與第三個參數則代表元素的索引位置和陣列本身。例如下面這個例子，我們想要過濾出來，大於 5 的元素：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">0</span>];</span><br><span class="line"><span class="keyword">let</span> filtered = array.filter(<span class="function"><span class="keyword">function</span>(<span class="params">value, index, arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value &gt; <span class="number">5</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">filtered; <span class="comment">// [6, 7, 8, 9]</span></span><br><span class="line">array; <span class="comment">// [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]</span></span><br></pre></td></tr></table></figure>
+
+<p>利用<code>filter()</code>，我們也可以輕鬆地去除陣列裡重複的元素，可以達到這樣的效果是因為使用<code>indexOf()</code>會回傳第一個元素位置的（index），如果之後有重複元素的位置與<code>indexOf()</code>回傳的位置不相等，就會被<code>filter()</code>過濾掉。而這時的過濾結果，只會先保留第一個找到的元素，第二個重複的元素就不會被放進回傳的陣列裡了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'B'</span>, <span class="string">'A'</span>, <span class="string">'E'</span>, <span class="string">'C'</span>, <span class="string">'A'</span>, <span class="string">'F'</span>, <span class="string">'G'</span>, <span class="string">'E'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newArr = arr.filter(<span class="function"><span class="keyword">function</span> (<span class="params">element, index, self</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">return</span> self.indexOf(element) === index;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">newArr; <span class="comment">// ["B", "A", "E", "C", "F", "G"]</span></span><br></pre></td></tr></table></figure>
+
+<p>我們更可以把這些去掉重複的元素，且讓陣列的排序整齊一點的功能，包成一個函式，使用起來就方便多了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeDuplicates</span>(<span class="params">originArray</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = originArray.filter(<span class="function"><span class="keyword">function</span>(<span class="params">value, index, arrSelf</span>)</span>&#123; </span><br><span class="line">    <span class="keyword">return</span> arrSelf.indexOf(value) === index</span><br><span class="line">    &#125;);</span><br><span class="line">  <span class="keyword">return</span> result.sort();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">removeDuplicates(array); <span class="comment">// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span></span><br></pre></td></tr></table></figure>
+
+<p>今天的<code>filter()</code>就先介紹到這裡，因為自己也是初級生，想把舊語法先練熟，所以還未使用到箭頭函式，將來應該就會慢慢朝向 ES6 的寫法了。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇請告知，我會盡快修改，感謝您～ </p>
+</blockquote>
+
+                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function/" data-id="ck4hhe0qu0000f0uw5zo6p9dl" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+  
+  
+    <a href="../JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">非常彈性好用的陣列 Array 方法 map()</div>
+    </a>
+  
+</nav>
+
+            
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
+            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">把要的元素留下來的陣列 Array 方法 filter()</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/">非常彈性好用的陣列 Array 方法 map()</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/">JS 迴圈升級的陣列 Array 方法 forEach()</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan30_Array-dinner-is-not-finished/">JS 陣列 Array 之小菜還沒出完</a>
+          </li>
+        
+          <li>
+            <a href="../JS_ironMan29_About-ECMAScript5s-Array-Method/">JS ECMAScript 5 的陣列 Array 方法淺析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../react" class="mobile-nav-link">React</a>
+  
+    <a href="../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../other" class="mobile-nav-link">Other</a>
+  
+    <a href="../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../linux" class="mobile-nav-link">Linux</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
+  <script src="../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

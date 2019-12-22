@@ -111,6 +111,95 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan23_Reverses-an-array-in-place-reverse()-method" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_ironMan23_Reverses-an-array-in-place-reverse()-method/" class="article-date">
+  <time datetime="2019-11-22T20:21:14.000Z" itemprop="datePublished">2019-11-23</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_ironMan23_Reverses-an-array-in-place-reverse()-method/">JS 可讓陣列 Array 反過來的 reverse()</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-23"><a href="#Day-23" class="headerlink" title="Day 23"></a>Day 23</h6><blockquote>
+<p>倒立一點都不稀奇，只要使用一點魔法，我也可以倒著走。</p>
+</blockquote>
+<p>今天要來講一個很輕鬆的陣列方法，它可以把陣列反轉過來，而且和上一篇介紹的<code>sort()</code>ㄧ樣，是原地（in place）的改變原陣列。</p>
+<p>記得有遇過一個習題，是要測驗某個字串是不是回文，回文就是從前面開始讀或從後面開始讀，都會是一樣的結果。像是aba、haooah都是，要驗證是不是回文，就會用到<code>reverse()</code>，把字串拆解反轉後，再和原本的字串做比較，如果兩邊相等，就表示是回文字串。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191008/201041758Q3xMUGpEt.png" alt="https://ithelp.ithome.com.tw/upload/images/20191008/201041758Q3xMUGpEt.png"></p>
+<p><strong>原型：</strong> Array.prototype.reverse()<br><strong>功能：</strong> 可以將陣列中的第一個元素變為最後一個，而最後一個元素則變成第一個。<br><strong>改變：</strong> 會就地改變原陣列<br><strong>語法：</strong> arr.reverse()<br><strong>回傳值：</strong> 反轉後的陣列。<br><strong>參數：</strong> 沒有</p>
+<p>先來看一下範例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line">arr.reverse();</span><br><span class="line">arr; <span class="comment">// [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="試著自己寫反轉"><a href="#試著自己寫反轉" class="headerlink" title="試著自己寫反轉"></a>試著自己寫反轉</h3><p>我們也可以試試看自己寫出一個讓陣列反轉的方法：<br>先建立一個空陣列變數，準備裝倒轉後的元素，以陣列長度來初始化迴圈，因為長度比索引值多ㄧ，所以在這裡我們需要減一，讓它和索引值一樣，接著條件需要設為 0，這樣我們才能從陣列的長度一個個從陣列的尾端將元素取出來，再以<code>push()</code>將取出的元素一一放入我們準備的空陣列，就可以了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.reverse2 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = []</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="keyword">this</span>.length<span class="number">-1</span>; i &gt;= <span class="number">0</span>; i-- )&#123;</span><br><span class="line">    result.push(<span class="keyword">this</span>[i])</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="string">"hi"</span>, <span class="number">42</span>, <span class="literal">NaN</span>, <span class="string">"moi"</span>, <span class="literal">undefined</span>]</span><br><span class="line">arr.reverse2(); <span class="comment">// [undefined, "moi", NaN, 42, "hi"]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="字串也可以反轉"><a href="#字串也可以反轉" class="headerlink" title="字串也可以反轉"></a>字串也可以反轉</h3><p>如果是要把一個字串反轉，就要先把字串拆解成陣列，反轉後再把陣列轉成字串就可以了。像是這樣：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseString</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> str.split(<span class="string">""</span>).reverse().join(<span class="string">""</span>);</span><br><span class="line">&#125;</span><br><span class="line">reverseString(<span class="string">"hello"</span>); <span class="comment">// "olleh"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="原生就可以辦到"><a href="#原生就可以辦到" class="headerlink" title="原生就可以辦到"></a>原生就可以辦到</h3><p>以上的效果其實也可以只用原生的 JavaScript 就可以辦到，且過程不會很複雜，只要預設一個空字串，把拆解下來的字母接起來：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseString</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="string">''</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = str.length<span class="number">-1</span>; i &gt;= <span class="number">0</span>; i-- )&#123;</span><br><span class="line">    result+= str[i]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> str2 = <span class="string">"Hello"</span>;</span><br><span class="line">reverseString (str2); <span class="comment">// "olleH"</span></span><br></pre></td></tr></table></figure>
+
+<p>看似簡單的<code>reverse()</code>，在做字串操控時還蠻常用的，希望今天的介紹大家喜歡，我們一起學習一起成長囉～</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-23"><a href="#Day-23" class="headerlink" title="Day 23"></a>Day 23</h6><blockquote>
+<p>倒立一點都不稀奇，只要使用一點魔法，我也可以倒著走。</p>
+</blockquote>
+<p>今天要來講一個很輕鬆的陣列方法，它可以把陣列反轉過來，而且和上一篇介紹的<code>sort()</code>ㄧ樣，是原地（in place）的改變原陣列。</p>
+<p>記得有遇過一個習題，是要測驗某個字串是不是回文，回文就是從前面開始讀或從後面開始讀，都會是一樣的結果。像是aba、haooah都是，要驗證是不是回文，就會用到<code>reverse()</code>，把字串拆解反轉後，再和原本的字串做比較，如果兩邊相等，就表示是回文字串。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_ironMan23_Reverses-an-array-in-place-reverse()-method/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan23_Reverses-an-array-in-place-reverse()-method/" data-id="ck4g1zxkg002rlcuwgvnktdv5" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan22_ Sorts-the-elements-of-an-array-sort()-method" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_ironMan22_ Sorts-the-elements-of-an-array-sort()-method/" class="article-date">
@@ -1008,102 +1097,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript/" class="article-date">
-  <time datetime="2019-11-12T20:21:14.000Z" itemprop="datePublished">2019-11-13</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript/">遍歷陣列的方法</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-13"><a href="#Day-13" class="headerlink" title="Day 13"></a>Day 13</h6><blockquote>
-<p>傻傻以為迴圈是唯一，那只是沙灘上的一塊小岩石。</p>
-</blockquote>
-<p>回想剛開始學程式時，看到 While 迴圈可以透過 ASCII 碼，把英文數字從 ａ 到 Z 印出來，感到好驚訝！到底是怎麼辦到的？但是，經過了幾次無限迴圈的背叛後，才知道如果迴圈不給一個「範圍」，就會出大事。 <del>電腦整個當掉要重開</del></p>
-<p>記得小時候家裡小孩多，當時的台灣經濟正在起飛 <del>馬上透露了世代</del>，家庭代工正興起。記得媽媽總是會叫我們兄弟姐妹來幫忙 <del>是滴，本人兄弟姐妹都有。</del> 當時的手工產品是要寄往北方某個遙遠國度的聖誕節飾品，也就是要掛在樹上的小型禮物盒。媽媽先是叫我們排排坐，開始解說步驟，接著就開始這條要完成「一百個」小禮物的童工生產線：</p>
-<ul>
-<li>哥哥把一張包裝紙拿起來放桌上</li>
-<li>姊姊把四方形的保麗龍放在包裝紙上</li>
-<li>我用包禮物的方法把保麗龍包起來</li>
-<li>妹妹用金線把四方形的禮物綑起來 <del>有時還要我幫她</del></li>
-<li>弟弟把印有 Mede in Taiwan 的小金貼紙貼在禮物的底部</li>
-</ul>
-<p>這樣就完成了一個小飾品。</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20190928/20104175SagETy0KNh.png" alt="圖"></p>
-<h2 id="迴圈和陣列有什麼關係？"><a href="#迴圈和陣列有什麼關係？" class="headerlink" title="迴圈和陣列有什麼關係？"></a>迴圈和陣列有什麼關係？</h2><p>以上述的情境來說，所有要做的小飾品是陣列；童工生產線是迴圈；小童工各自的工作項目，是在迴圈裡的處理步驟。而陣列的範圍是長度「一百個」這個數量。也就是說，這個迴圈要跑一百次。</p>
-<p>一般我們想要「批次處理」一堆資料就會想到用迴圈，因為迴圈可以自動化的將我們想做的事「逐ㄧ」套在各個元素上執行，而迴圈又以<code>for</code>迴圈最常被使用。</p>
-<p>那我們常聽到的「迭代(iterate)」是什麼？和「遍歷(traversal)」又有什麼不同？請教了前輩才比較清楚的理解，剛剛說的“「逐ㄧ」套在各個元素上執行”，其實就是「迭代」。而迭代是由「遍歷 + 改變」構成的，整個過程即為「迭代 = 遍歷 + 改變」。</p>
-<p>對於陣列，<code>for</code>迴圈是最常使用的遍歷方式，我們可以在這個遍歷的方法裡做許多事。例如說在迴圈裡畫星星 <del>或耍廢</del>。例如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 印出五顆星星</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> star = <span class="number">0</span>; star &lt; <span class="number">5</span>; star++) &#123;</span><br><span class="line">  <span class="comment">// 執行五次：從star為0到4</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'*'</span>); <span class="comment">// 印出星星</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>但是時代不同了，JavaScript 每次更新，都會給我們帶來許多好用的方法，該做的事都和迴圈都幫我們一起包在裡面了，尤其是<code>ECMAScript 5</code>增加了許多功能強大的迭代陣列方法，這就是 JavaScript 的內建陣列函式的巧妙之處了。有關 JavaScript 的內建陣列函式，會在接下來的篇章一一介紹。</p>
-<h2 id="遇到稀疏陣列怎麼辦？"><a href="#遇到稀疏陣列怎麼辦？" class="headerlink" title="遇到稀疏陣列怎麼辦？"></a>遇到稀疏陣列怎麼辦？</h2><p>遍歷陣列的作法，是逐一的去走訪在陣列的每一個值，看過政治人物在街頭嗎？他們看到民眾時會和民眾逐一握手，那一排的民眾是陣列；每一個民眾就像是元素；握手就是讓元素產生變化 <del>考慮看看要不要投你</del>。
-但是，如果這位政治人物在逐一握手的時候，中間卡了座石獅子，他也會跳過這隻不會握手的石獅子，繼續跟下一位民眾握手。這一排民眾就成了稀疏（spars）陣列的民眾、而這隻石獅子就是稀疏陣列裡面無效或空的元素。</p>
-<p>通常在使用迭代陣列方法，遇到是稀疏陣列的時候，我們會先把一些無效或空的元素先排除，例如<code>null</code>或<code>undefined</code>，例如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,,<span class="literal">null</span>,<span class="number">5</span>,<span class="literal">undefined</span>];</span><br><span class="line"><span class="keyword">let</span> arr2=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.length;i++ )&#123;</span><br><span class="line">  <span class="keyword">if</span>(!arr[i]) <span class="keyword">continue</span>;</span><br><span class="line">  arr2.push(arr[i]);</span><br><span class="line">&#125;</span><br><span class="line">arr2; <span class="comment">// [1,2,5]</span></span><br></pre></td></tr></table></figure>
-
-<p>我們希望回傳的是這個陣列被處理過後的結果，但如果是稀疏陣列，這些無效的值也會被一併保留，很沒意義。所以在做處理前，最好先把陣列處理成密集的陣列，這樣迭代才有意義。</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-13"><a href="#Day-13" class="headerlink" title="Day 13"></a>Day 13</h6><blockquote>
-<p>傻傻以為迴圈是唯一，那只是沙灘上的一塊小岩石。</p>
-</blockquote>
-<p>回想剛開始學程式時，看到 While 迴圈可以透過 ASCII 碼，把英文數字從 ａ 到 Z 印出來，感到好驚訝！到底是怎麼辦到的？但是，經過了幾次無限迴圈的背叛後，才知道如果迴圈不給一個「範圍」，就會出大事。 <del>電腦整個當掉要重開</del></p>
-<p>記得小時候家裡小孩多，當時的台灣經濟正在起飛 <del>馬上透露了世代</del>，家庭代工正興起。記得媽媽總是會叫我們兄弟姐妹來幫忙 <del>是滴，本人兄弟姐妹都有。</del> 當時的手工產品是要寄往北方某個遙遠國度的聖誕節飾品，也就是要掛在樹上的小型禮物盒。媽媽先是叫我們排排坐，開始解說步驟，接著就開始這條要完成「一百個」小禮物的童工生產線：</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript/" data-id="ck4g1zxk5001xlcuwllvdxx5v" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1152,6 +1145,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="../../JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function/">把要的元素留下來的陣列 Array 方法 filter()</a>
+          </li>
+        
+          <li>
             <a href="../../JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/">非常彈性好用的陣列 Array 方法 map()</a>
           </li>
         
@@ -1165,10 +1162,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="../../JS_ironMan29_About-ECMAScript5s-Array-Method/">JS ECMAScript 5 的陣列 Array 方法淺析</a>
-          </li>
-        
-          <li>
-            <a href="../../JS_ironMan28_Find-the-index-value-of-the-last-element/">JS 陣列 Array 方法，找出最後一個元素的索引值 lastIndexOf()</a>
           </li>
         
       </ul>
