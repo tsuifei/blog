@@ -111,6 +111,139 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-SASS-deployment-environment-and-fundamental" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../SASS-deployment-environment-and-fundamental/" class="article-date">
+  <time datetime="2019-07-17T19:53:46.000Z" itemprop="datePublished">2019-07-18</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/SASS/">SASS</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../SASS-deployment-environment-and-fundamental/">SASS 環境部署與基礎</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h2 id="SASS-重點"><a href="#SASS-重點" class="headerlink" title="SASS 重點"></a>SASS 重點</h2><ul>
+<li>Variables 變數</li>
+<li>Nesting 巢狀</li>
+<li>Partials / Imports</li>
+<li>Functions &amp; Mixins 函式 &amp; 巢狀</li>
+<li>Conditionace 條件式</li>
+<li>Operators &amp; Calculations 必較與計算子</li>
+<li>Color Functions 顏色函式</li>
+</ul>
+<h2 id="使用NodeJs-佈署-SASS-環境"><a href="#使用NodeJs-佈署-SASS-環境" class="headerlink" title="使用NodeJs 佈署 SASS 環境"></a>使用NodeJs 佈署 SASS 環境</h2><h3 id="在資料夾裡面安裝-SASS-編譯器：node-sass"><a href="#在資料夾裡面安裝-SASS-編譯器：node-sass" class="headerlink" title="在資料夾裡面安裝 SASS 編譯器：node sass"></a>在資料夾裡面安裝 SASS 編譯器：node sass</h3><p>1.先確認有安裝 npm<br>2.輸入 <code>npm init -y</code> 初始化並給予預設值<br>3.檔案夾裡會有一個自動生成的 package.json<br>4.在終端機安裝 node sass ：<code>npm install node-sass</code><br>5.在檔案夾裡會生成 node_modules，同時在 package.json 裡也會自動增加 node-sass 的版本號<br>6.打開它修改預設檔案生成位置，修改script，將test拿掉，改成：<br><code>&quot;sass&quot;: &quot;node-sass -w scss/ -o dist/css/ --recursive&quot;</code><br>-w 監控 scss 檔案夾，-o output 編譯輸出至dist/css這個檔案夾。<br>7.至根目錄，增加 scss 和 dist 等檔案夾，並在 scss 檔案夾裡增加 scss 檔案：<code>main.scss</code><br>8.先在終端機執行 <code>npm run sass</code> 指令，啟動 sass 監聽<br>9.在 <code>main.scss</code>寫些簡單的 sass，儲存後，會顯示編譯完成，並且在 dist 自動生成 css 檔案夾和<code>main.css</code>。
+10.想退出監聽模式可 <code>control + c</code> 結束監聽。</p>
+<p>(6)也可加入其他參數</p>
+<p>啟動監聽後，在每次更新存檔時會自動更新網頁，如有修改後網頁沒變化，可跳出 sass再重啟，通常可解決此問題。 </p>
+<h2 id="SASS-變數"><a href="#SASS-變數" class="headerlink" title="SASS 變數"></a>SASS 變數</h2><p>將變數統一整理到 <code>_variables.scss</code> 裡，並在<code>main.scss</code> 裡以<code>@import &#39;variables&#39;</code> 引入。<br>常用的變數名：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$primary-color</span></span><br><span class="line"><span class="variable">$secondary-color</span></span><br><span class="line"><span class="variable">$light-color</span></span><br><span class="line"><span class="variable">$dark-color</span></span><br><span class="line"><span class="variable">$font-stack</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="SASS-自帶的函式"><a href="#SASS-自帶的函式" class="headerlink" title="SASS 自帶的函式"></a>SASS 自帶的函式</h2><p>lighten(顏色;百分比); sass 會自動計算顏色深淺。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$primary-color</span>:<span class="number">#00cc99</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="variable">$primary-color</span>;</span><br><span class="line">  background_color:lighten(<span class="variable">$primary-color</span>, <span class="number">45%</span>); <span class="comment">/* 自動計算顏色變淺 */</span></span><br><span class="line">&#125;</span><br><span class="line">darken(<span class="variable">$primary-color</span>, 15%);</span><br><span class="line"><span class="comment">/* 自動計算顏色變深 */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="SASS-巢狀"><a href="#SASS-巢狀" class="headerlink" title="SASS 巢狀"></a>SASS 巢狀</h2><p>在 sass 的巢狀結構裡，我們可以使用更簡潔的方式來表示結構：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;section section-a&quot;&gt;</span><br><span class="line">    &lt;h2&gt;Hello Paris&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit.&lt;/p&gt;</span><br><span class="line">  &lt;/section&gt;</span><br><span class="line">  &lt;section class=&quot;section section-b&quot;&gt;</span><br><span class="line">    &lt;h2&gt;Hello taipei&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit.&lt;/p&gt;</span><br><span class="line">  &lt;/section&gt;</span><br></pre></td></tr></table></figure>
+
+<p>scss 可以用巢狀的<code>&amp;-a</code>表示是指向哪一個<code>section</code></p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.section</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2rem</span>;</span><br><span class="line">  <span class="selector-tag">h1</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>:<span class="variable">$primary-color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;-<span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$primary-color</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;-<span class="selector-tag">b</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$secondary-color</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>==要避免過度巢狀，多用在偽元素、狀態、hover…。==<br>例 : &amp;:hover { …  ;  &amp;.active { …  ;  &amp;:after { …</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">padding</span>:<span class="number">12px</span>;</span><br><span class="line">  <span class="attribute">color</span>:white;</span><br><span class="line">  backgroung-<span class="attribute">color</span>: <span class="variable">$primary-color</span>;</span><br><span class="line">  &amp;:hover &#123;</span><br><span class="line">    backgroung-<span class="attribute">color</span>:darken(<span class="variable">$primary-color</span>, <span class="number">15%</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;<span class="selector-class">.active</span> &#123;</span><br><span class="line">    backgroung-<span class="attribute">color</span>:darken(<span class="variable">$primary-color</span>, <span class="number">15%</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Mixin-精華"><a href="#Mixin-精華" class="headerlink" title="Mixin 精華"></a>Mixin 精華</h2><p>使用情境，按鈕很多想做不同色彩。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$primary-color</span> : <span class="number">#00cc99</span>;</span><br><span class="line">@<span class="keyword">mixin</span> btnColor (<span class="variable">$color</span>) &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="variable">$color</span>;</span><br><span class="line">  &amp;:hover &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: darken(<span class="variable">$color</span>, <span class="number">15%</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">padding</span>:<span class="number">1rem</span>;</span><br><span class="line">  <span class="attribute">color</span>:<span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 創見一個btn 並用傳入的顏色給予背景色 */</span></span><br><span class="line"><span class="selector-class">.btn-primary</span> &#123;</span><br><span class="line"> @<span class="keyword">include</span> btnColor(<span class="variable">$primary-color</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Extend"><a href="#Extend" class="headerlink" title="Extend"></a>Extend</h2><p>Sass 的 @extend 可以將相同的樣式整理在一起，在其他語言來說是非常帥氣的技法，但在 CSS 中請警慎使用。</p>
+<p>OOCSS 概念，在撰寫 CSS 時要盡可能符合兩個原則，==結構與樣式分離、容器與內容分離==，所以到這邊為止還是要貫徹這個概念，當使用 @extend 時如果會造成這個缺陷時，請避免使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;btn-light&quot;&gt;Read more&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;btn-dark&quot;&gt;Read more&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">%btn-read-more &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0.27rem</span> <span class="number">2rem</span>;</span><br><span class="line">  <span class="attribute">border</span>: none;</span><br><span class="line">  <span class="attribute">text-decoration</span>:none;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">1rem</span>;</span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  &amp;-light &#123;</span><br><span class="line">    @<span class="keyword">extend</span> %btn-read-more;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$dark-color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;-dark &#123;</span><br><span class="line">    @<span class="keyword">extend</span> %btn-read-more;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$dark-color</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果認為以上寫法較容易導致混亂，也可寫成這樣：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-class">.btn-light</span> &#123;</span><br><span class="line">    @<span class="keyword">extend</span> %btn-read-more;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$dark-color</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.btn-dark</span> &#123;</span><br><span class="line">    @<span class="keyword">extend</span> %btn-read-more;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$dark-color</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Mixin-amp-Extend-比較與應用"><a href="#Mixin-amp-Extend-比較與應用" class="headerlink" title="Mixin &amp; Extend 比較與應用"></a>Mixin &amp; Extend 比較與應用</h2><p>究竟Mixin與extend的使用時機該如何抉擇？基本上來說，<br>@mixin是將程式碼帶入到對應的class去，同時可帶入變數。<br>@extend則是藉由class合併，並吃到共通樣式，但==無法帶入變數==。<br><a href="https://ithelp.ithome.com.tw/articles/10128359" target="_blank" rel="noopener">30天掌握Sass語法 - (7)利用Sass「@extend」，讓你無痛合併CSS樣式</a></p>
+<h2 id="運算式："><a href="#運算式：" class="headerlink" title="運算式："></a>運算式：</h2><p>會先乘除、後加減</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$width:200px;</span><br><span class="line">$height:400px;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>:$width / <span class="number">2</span>;</span><br><span class="line">  <span class="attribute">height</span>: ($height - <span class="number">4</span>) / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Function-函式"><a href="#Function-函式" class="headerlink" title="Function 函式"></a>Function 函式</h2><p>可自創函式來處理許多繁瑣的事，例如自動辨別在深色底使用淺色字，反之，或是需要前贅詞讓瀏覽器相容的部份，也可一併用 function 處理。<br>方法：產生<code>_functions</code> 再以<code>@import</code>在主 scss 裡引入。<br>例一：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// _functions</span></span><br><span class="line"><span class="comment">// Set Text Color 自動偵測字體顏色該深or淺</span></span><br><span class="line">@function set-text-color(<span class="variable">$color</span>)&#123;</span><br><span class="line">  @<span class="keyword">if</span> (lightness(<span class="variable">$color</span>) &gt; 50)&#123;</span><br><span class="line">    @return <span class="number">#000</span>;</span><br><span class="line">  &#125; @<span class="keyword">else</span> &#123;</span><br><span class="line">    @return <span class="number">#fff</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Transform mixin 轉換小動畫</span></span><br><span class="line"><span class="comment">// 因 css transform 最好有前贅詞讓瀏覽器相容，可統一整理在這裡就不需要每次都寫</span></span><br><span class="line">@<span class="keyword">mixin</span> transform(<span class="variable">$property</span>) &#123;</span><br><span class="line">  --webkit-<span class="attribute">transform</span>: <span class="variable">$property</span>;</span><br><span class="line">  -ms-<span class="attribute">transform</span>: <span class="variable">$property</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="variable">$property</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.scss</span></span><br><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  &amp;-light &#123;</span><br><span class="line">    @<span class="keyword">extend</span> %btn-read-more;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">    <span class="attribute">color</span>: set-text-color(<span class="variable">$light-color</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// hover 動畫效果</span></span><br><span class="line">    &amp;:hover &#123;</span><br><span class="line">      @<span class="keyword">include</span> transform(rotate(-<span class="number">10deg</span>));</span><br><span class="line">      <span class="comment">// 讓背景變深或淺</span></span><br><span class="line">      <span class="attribute">background-color</span>:darken(<span class="variable">$light-color</span>, <span class="number">15%</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>HSL function 是常用到的函式，HSL 是色彩學中的色相、明度、彩度。<a href="https://color.adobe.com/create/color-wheel/" target="_blank" rel="noopener">adobe色相環</a></p>
+<h2 id="規劃Sass結構-import的用法"><a href="#規劃Sass結構-import的用法" class="headerlink" title="規劃Sass結構 @import的用法"></a>規劃Sass結構 @import的用法</h2><p>@import的的功用在於可以將CSS檔案進行切割，如果是單純要被匯入整合Sass檔，而並沒有要轉出成CSS檔案，在檔案名稱前面加個下底線『_』，例：_button.css 就不會被編譯了。</p>
+<p>基本的設計：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> mixin //放置所有Sass全域變數與<span class="keyword">Mixin</span></span><br><span class="line">@<span class="keyword">import</span> reset // reset.css</span><br><span class="line">@<span class="keyword">import</span> extnd // 拿來合併樣式，都放@<span class="keyword">extend</span>用的檔案</span><br><span class="line">@<span class="keyword">import</span> layout //共同框架</span><br><span class="line">@<span class="keyword">import</span> index //首頁</span><br><span class="line">@<span class="keyword">import</span> page //內頁 </span><br><span class="line">@<span class="keyword">import</span> xxx  //各單元CSS</span><br></pre></td></tr></table></figure>
+
+<p>@import 最前面先放全域變數與 ==mixin==，原因是因為前面@import有寫到變數的地方找不到值，所以自然系統沒辦法編譯出來。</p>
+<p>接著 ==reset== 檔案，<br>網頁排版須先將所有瀏覽器預設樣式都統一，所以用 reset 統一。放在 mixin 前或後沒有差，因 mixin 都是變數而已，可以依照自己習慣放置。但也可能會在reset裡面導入全域變數，所以放第二有它的道理。</p>
+<p>@extend與@mixin並不會實際產生code，只有呼叫才會合併與匯出</p>
+<p>第三個 ==extend== 是拿來合併css樣式用的，在設計網頁時，會發現有些樣式應可以抽出來進行合併動作，所以就會統一放在要合併的位置，就統一來放置@extend的語法。</p>
+<p>==layout== 是網頁版型的共通設計，也就是無論哪一頁都會有的樣式，如：表頭、表尾<br>接著是不同頁面性質與區塊的分割，==index== 首頁、==page== 內頁，依單元數量視情況來切割，Sass @import的主要用就是希望你可以把 CSS 進行切割，這樣在編輯 CSS 時就可以聚焦於某功能來進行瀏覽，將檔案歸類完善，找CSS相對也會方便許多。</p>
+<h3 id="國外Sass-Way-介紹的-Sass-結構"><a href="#國外Sass-Way-介紹的-Sass-結構" class="headerlink" title="國外Sass Way 介紹的 Sass 結構"></a>國外Sass Way 介紹的 Sass 結構</h3><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">stylesheets/</span><br><span class="line">|</span><br><span class="line">|-- modules/              # Common modules</span><br><span class="line">|   |-- _all.scss         # Include to get all modules 將所有 modules 引入到這裡(A) </span><br><span class="line">|   |-- _utility.scss     # Module name</span><br><span class="line">|   |-- _colors.scss      # Etc...</span><br><span class="line">|   ...</span><br><span class="line">|</span><br><span class="line">|-- partials/             # Partials</span><br><span class="line">|   |-- _base.sass        # imports for all mixins + global project variables 將所有 partials 引入到這裡(B)</span><br><span class="line">|   |-- _buttons.scss     # buttons</span><br><span class="line">|   |-- _figures.scss     # figures</span><br><span class="line">|   |-- _grids.scss       # grids</span><br><span class="line">|   |-- _typography.scss  # typography</span><br><span class="line">|   |-- _reset.scss       # reset</span><br><span class="line">|   ...</span><br><span class="line">|</span><br><span class="line">|-- vendor/               # CSS or Sass from other projects</span><br><span class="line">|   |-- _colorpicker.scss</span><br><span class="line">|   |-- _jquery.ui.core.scss</span><br><span class="line">|   ...</span><br><span class="line">|</span><br><span class="line">`-- main<span class="selector-class">.scss</span>            # primary Sass file 將(<span class="selector-tag">A</span>)、(<span class="selector-tag">B</span>) 引入這裡，與其他的partials</span><br></pre></td></tr></table></figure>
+
+<p>此份規劃的 Sass 架構還有分資料夾，將各類功能與模組分得更細：<br>==modules== 主要是放各種元素的模組，<br>== partials== 則是放置主結構的CSS，<br>== vendor==則是統一放別人寫好的Sass Framework，<br>所以 Sass 的主檔案就會這樣子去寫@import：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Modules and Variables</span></span><br><span class="line">@<span class="keyword">import</span> <span class="string">"partials/base"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Partials</span></span><br><span class="line">@<span class="keyword">import</span> <span class="string">"partials/reset"</span>;</span><br><span class="line">@<span class="keyword">import</span> <span class="string">"partials/typography"</span>;</span><br><span class="line">@<span class="keyword">import</span> <span class="string">"partials/buttons"</span>;</span><br><span class="line">@<span class="keyword">import</span> <span class="string">"partials/figures"</span>;</span><br><span class="line">@<span class="keyword">import</span> <span class="string">"partials/grids"</span>;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Third-party</span></span><br><span class="line">@<span class="keyword">import</span> <span class="string">"vendor/colorpicker"</span>;</span><br><span class="line">@<span class="keyword">import</span> <span class="string">"vendor/jquery.ui.core"</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="組件化的變數抽離"><a href="#組件化的變數抽離" class="headerlink" title="組件化的變數抽離"></a>組件化的變數抽離</h3><p>在每一個區塊的 sass 裡，雖然已經使用了引入的變數，但為了組件的可重複性，也就是說，例如 header 或 footer 可以拿去給別的專案用，就可以再把每個 sass 裡的變數提取出來，以便日後只要改最上頭的變數列表即可。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$footer_font_color</span>: lighten(<span class="variable">$dark-color</span>, <span class="number">15%</span>);</span><br><span class="line"><span class="variable">$footer_background_color</span>: darken(<span class="variable">$light-color</span>, <span class="number">15%</span>);</span><br><span class="line"><span class="variable">$footer_link_color</span>: <span class="variable">$primary-color</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">footer</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">color</span>: <span class="variable">$footer_font_color</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2rem</span> <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="variable">$footer_background_color</span>;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="variable">$font-base</span>;</span><br><span class="line">  <span class="selector-class">.link</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$footer_link_color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="參考網站"><a href="#參考網站" class="headerlink" title="參考網站"></a>參考網站</h2><p><a href="https://sass-lang.com/guide" target="_blank" rel="noopener">SASS 官網</a> | <a href="https://paper.dropbox.com/doc/Sass-Bootstrap--AepLvl6rTzh_ryoWRR5ADMXtAg-yuK4SQmHw4CzC96uX8ylZ" target="_blank" rel="noopener">六角筆記 範例</a><br><a href="https://hackmd.io/vgVp2KlzR6mYQvLu74wvgw" target="_blank" rel="noopener">Askie 筆記</a> | <a href="https://hackmd.io/ZMQqAUxBQzGLuuw0en8MBA" target="_blank" rel="noopener">初見SCSS 一天開竅起手式</a><br><a href="https://www.codecademy.com/learn/learn-sass" target="_blank" rel="noopener">線上課程</a> | <a href="https://www.kancloud.cn/kancloud/sass-guidelin/" target="_blank" rel="noopener">簡中查閱</a> | <a href="https://medium.com/@chihsuan/%E5%A6%82%E4%BD%95%E5%AF%AB%E5%87%BA%E6%9B%B4%E5%A5%BD%E7%9A%84-css-scss-%E7%A8%8B%E5%BC%8F%E7%A2%BC-bab4396b1a01" target="_blank" rel="noopener">如何寫出更好的 CSS/SCSS 程式碼？</a> | <a href="https://www.youtube.com/watch?v=mgZRZ91h5yk&t=12s" target="_blank" rel="noopener">Sass 基礎運用介紹</a><br><a href="https://www.youtube.com/watch?v=FVx8WvZQV10" target="_blank" rel="noopener">六角學院 - SASS 之 @function、@extend、@mixin</a> | <a href="https://wcc723.github.io/sass/2013/08/26/sass-hsl-funtion/" target="_blank" rel="noopener">卡斯柏 Sass HSL function</a><br><a href="https://www.udemy.com/modern-html-css-from-the-beginning/learn/lecture/13875728#overview" target="_blank" rel="noopener">Udemy Modern HTML &amp; CSS From The Beginning (Including Sass)
+</a></p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h2 id="SASS-重點"><a href="#SASS-重點" class="headerlink" title="SASS 重點"></a>SASS 重點</h2><ul>
+<li>Variables 變數</li>
+<li>Nesting 巢狀</li>
+<li>Partials / Imports</li>
+<li>Functions &amp; Mixins 函式 &amp; 巢狀</li>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../SASS-deployment-environment-and-fundamental/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/SASS-deployment-environment-and-fundamental/" data-id="ck4n4tl3x007jhguwu5vg4vrb" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/SASS/">SASS</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS-Return-in-the-loop" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS-Return-in-the-loop/" class="article-date">
@@ -1032,92 +1165,11 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" class="article-date">
-  <time datetime="2019-07-01T22:36:17.000Z" itemprop="datePublished">2019-07-02</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/IDE/">IDE</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/">VS Code 秘技 Rename Refactoring 重新命名＋Formatting重新整理程式碼</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。<br>這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。</p>
-<ul>
-<li>help -&gt; Interactive Playground -&gt; </li>
-</ul>
-<h2 id="重構工具"><a href="#重構工具" class="headerlink" title="重構工具"></a>重構工具</h2><h3 id="Rename-Refactoring-重新命名"><a href="#Rename-Refactoring-重新命名" class="headerlink" title="Rename Refactoring (重新命名)"></a>Rename Refactoring (重新命名)</h3><p>選中要修改的某一個名稱，按 fn+F2 即可重新輸入新的命名， enter 之後會發現所有用此函式名的地方，都會換成新名字。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Reference the function</span></span><br><span class="line"><span class="keyword">new</span> Book(<span class="string">"War of the Worlds"</span>, <span class="string">"H G Wells"</span>);</span><br><span class="line"><span class="keyword">new</span> Book(<span class="string">"The Martian"</span>, <span class="string">"Andy Weir"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Represents a book.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Book</span>(<span class="params">title, author</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.title = title;</span><br><span class="line">    <span class="keyword">this</span>.author = author;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Refactoring-via-Extraction-透過提取重構函式"><a href="#Refactoring-via-Extraction-透過提取重構函式" class="headerlink" title="Refactoring via Extraction (透過提取重構函式)"></a>Refactoring via Extraction (透過提取重構函式)</h3><p>可將程式中某一部分提去出來自成一函式。<br>選取要提取出來成函式的部份，按 command + . 會出現選單：<br>1.Extract to inner function in function ‘findFirstEvenNumber’(提取函式中的內部函數尋找找’findFirstEvenNumber’函式)<br>2.Extract to function in global scope(提取全局範圍內的功能)<br>3.Extract to constant in enclosing scope(在封閉範圍內提取常量)</p>
-<p>例如選2.會將選取提取出的碼轉成一函式，並需賦予函式名稱，即可成函式，輸入新函式名之後會自動替換，原題取出來的函式位置。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findFirstEvenNumber</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> el <span class="keyword">of</span> arr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> el === <span class="string">'number'</span> &amp;&amp; el % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> el;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Formatting-重新整理程式碼"><a href="#Formatting-重新整理程式碼" class="headerlink" title="Formatting (重新整理程式碼)"></a>Formatting (重新整理程式碼)</h3><p>shift + option + F 可重新整理程式碼的排列。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cars = [<span class="string">"🚗"</span>, <span class="string">"🚙"</span>, <span class="string">"🚕"</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> car <span class="keyword">of</span> cars)&#123;</span><br><span class="line">    <span class="comment">// Drive the car</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`This is the car <span class="subst">$&#123;car&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>或是開啟 sstting 預設: editor.formatOnSave = true，即可啟動存檔就會自動編排的功能。</p>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <p>在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。<br>這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。</p>
-<ul>
-<li>help -&gt; Interactive Playground -&gt; </li>
-</ul>
-<h2 id="重構工具"><a href="#重構工具" class="headerlink" title="重構工具"></a>重構工具</h2><h3 id="Rename-Refactoring-重新命名"><a href="#Rename-Refactoring-重新命名" class="headerlink" title="Rename Refactoring (重新命名)"></a>Rename Refactoring (重新命名)</h3><p>選中要修改的某一個名稱，按 fn+F2 即可重新輸入新的命名， enter 之後會發現所有用此函式名的地方，都會換成新名字。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/VS-Code-秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="ck4n4tl3d0043hguw71c3b7u8" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/IDE/">IDE</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="../4/">&laquo; Prev</a><a class="page-number" href="../../">1</a><span class="space">&hellip;</span><a class="page-number" href="../3/">3</a><a class="page-number" href="../4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="../4/">&laquo; Prev</a><a class="page-number" href="../../">1</a><span class="space">&hellip;</span><a class="page-number" href="../3/">3</a><a class="page-number" href="../4/">4</a><span class="page-number current">5</span><a class="page-number" href="../6/">6</a><a class="extend next" rel="next" href="../6/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -1148,7 +1200,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-30-Day/">JS 30 Day</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
     </div>
   </div>
 
@@ -1159,6 +1211,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="../../JS30Day-day01/">JS 30 天 - 為什麼開始？因為希望完成它</a>
+          </li>
         
           <li>
             <a href="../../JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/">JS 測試陣列是否有符合條件的元素好用方法 every() &amp; some()</a>
@@ -1176,10 +1232,6 @@ ga('send', 'pageview');
             <a href="../../JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/">非常彈性好用的陣列 Array 方法 map()</a>
           </li>
         
-          <li>
-            <a href="../../JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/">JS 迴圈升級的陣列 Array 方法 forEach()</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1189,7 +1241,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-30-Day/" style="font-size: 10px;">JS 30 Day</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 
