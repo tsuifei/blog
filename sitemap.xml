@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/JS30_01_Drum-Kit/</loc>
+    
+    <lastmod>2019-12-28T21:11:35.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS30_00_start/</loc>
+    
+    <lastmod>2019-12-28T21:07:52.951Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/JS-Return-in-the-loop/</loc>
     
     <lastmod>2019-12-27T22:12:42.374Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>tsuifei.github.io/JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/</loc>
     
     <lastmod>2019-12-27T22:12:23.180Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS30Day-day01/</loc>
-    
-    <lastmod>2019-12-27T22:11:09.110Z</lastmod>
     
   </url>
   
