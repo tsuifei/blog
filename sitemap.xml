@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/SASS-deployment-environment-and-fundamental/</loc>
+    
+    <lastmod>2020-01-02T16:01:20.711Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/JS30_01_Drum-Kit/</loc>
     
     <lastmod>2019-12-30T21:59:04.219Z</lastmod>
@@ -306,13 +313,6 @@
     <loc>tsuifei.github.io/JS-ternary-conditional-operator-and-Comparison-operator/</loc>
     
     <lastmod>2019-08-01T01:54:26.833Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/SASS-deployment-environment-and-fundamental/</loc>
-    
-    <lastmod>2019-08-01T01:54:24.752Z</lastmod>
     
   </url>
   
