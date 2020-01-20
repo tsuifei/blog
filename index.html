@@ -111,6 +111,285 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_front_test01" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="JS_front_test01/" class="article-date">
+  <time datetime="2020-01-20T01:17:36.000Z" itemprop="datePublished">2020-01-20</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="JS_front_test01/">法國 CodinGame 前端初級測驗</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <blockquote>
+<p>人總是在某種方式的評估下，才能清楚地知道自己的能耐。</p>
+</blockquote>
+<p>法國有不少人力派遣公司，因為法國聘人程序繁瑣，徵人又需投入大量資源人力，所以越來越多公司採用人力派遣所派遣過來的工程師，來開發公司的專案。</p>
+<p>此測驗是法國某大人力派遣公司，對應徵者所做的線上測驗，進入測驗網頁後，須依規定的時間作答，時間到會自動前往下一題，無法回頭修改答案。</p>
+<p>以下是本人測驗之後，重新再花時間整理出來的，包含整理時「自己認為」的正確答案，如對答案有意見，歡迎提示給予修正建議，感謝先。</p>
+<p>這個測驗總共給約55分鐘。</p>
+<h3 id="1-21"><a href="#1-21" class="headerlink" title="1/21"></a>1/21</h3><h6 id="45-seconts"><a href="#45-seconts" class="headerlink" title="45 seconts"></a>45 seconts</h6><p>Que faut-il rajouter à une élément HTML <a> pour que le lien s’ouvre dans un nouvel onglet ?<br><strong>需要在<code>&lt;a&gt;</code>標籤加上什麼屬性讓連結可以另開分頁？</strong></a></p>
+<ul>
+<li><input disabled type="checkbox"> target=”_self”</li>
+<li><input disabled type="checkbox"> href=”#”</li>
+<li><input disabled type="checkbox"> target=”_parent”</li>
+<li><input checked disabled type="checkbox"> target=”_blank”</li>
+</ul>
+<h3 id="2-21"><a href="#2-21" class="headerlink" title="2/21"></a>2/21</h3><h6 id="20-minuts"><a href="#20-minuts" class="headerlink" title="20 minuts"></a>20 minuts</h6><p>Implémentez le corps de la fonction <code>findLargest(numbers)</code>.
+<code>findLargest(numbers)</code>returne le plus grand entier du tableau <code>numbers</code>. <code>numbers</code> est un tableau d’entiers qui contient toujours au moins un élément.</p>
+<p><strong>實做<code>findLargest（numbers）</code>函式。</strong><br><strong>將回傳<code>findLargest（numbers）</code>numbers陣列中的最大整數。 <code>numbers</code>是一個整數陣列，至少包含一個元素。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findLargest</span>（<span class="title">numbers</span>）</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> max = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span> ; i &lt; arr.length; i++)&#123;</span><br><span class="line">      <span class="keyword">if</span>(max &lt; arr[i])&#123;</span><br><span class="line">        max = arr[i];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">findLargest（[<span class="number">1</span>, <span class="number">-28</span>, <span class="number">88</span>, <span class="number">200</span>, <span class="number">7</span>]）</span><br></pre></td></tr></table></figure>
+
+<p><strong>範例</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 實作 arr.max()</span></span><br><span class="line"><span class="built_in">Array</span>.prototype.max = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> max = <span class="keyword">this</span>[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">this</span>.forEach (<span class="function"><span class="keyword">function</span>(<span class="params">ele,index,arr</span>)</span>&#123;</span><br><span class="line"><span class="keyword">if</span>(ele &gt; max) &#123;</span><br><span class="line">max = ele;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">45</span>,<span class="number">23</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">234</span>,<span class="number">56</span>];</span><br><span class="line">arr.max(); <span class="comment">// 234</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*******************************/</span></span><br><span class="line"><span class="comment">// 取最大值函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">max</span> (<span class="params">arr</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> max = arr[<span class="number">0</span>];</span><br><span class="line">arr.forEach (<span class="function"><span class="keyword">function</span>(<span class="params">ele,index,arr</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(ele &gt; max) &#123;</span><br><span class="line">    max = ele;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">45</span>,<span class="number">23</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">234</span>,<span class="number">56</span>];</span><br><span class="line">max(arr); <span class="comment">// 234</span></span><br><span class="line"><span class="comment">/*******************************/</span></span><br><span class="line"><span class="comment">// 取最小值函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">min</span> (<span class="params">arr</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> min = arr[<span class="number">0</span>];</span><br><span class="line">arr.forEach (<span class="function"><span class="keyword">function</span>(<span class="params">ele,index,arr</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(ele &lt; min) &#123;</span><br><span class="line">    min = ele;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">45</span>,<span class="number">23</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">234</span>,<span class="number">56</span>];</span><br><span class="line">min(arr); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>參考出處：<a href="https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/268893/" target="_blank" rel="noopener">JavaScript學習筆記之取陣列中最大值和最小值 | 程式前沿</a></p>
+<h3 id="3-21"><a href="#3-21" class="headerlink" title="3/21"></a>3/21</h3><h6 id="30-seconts"><a href="#30-seconts" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>En Javascript, que est le résultat de l’expression suivante : <code>&quot;2&quot; === 2;</code><br><strong><code>&quot;2&quot; === 2;</code> 會回傳以下哪個？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> null</li>
+<li><input disabled type="checkbox"> true</li>
+<li><input checked disabled type="checkbox"> false</li>
+<li><input disabled type="checkbox"> undefined</li>
+</ul>
+<h3 id="4-21"><a href="#4-21" class="headerlink" title="4/21"></a>4/21</h3><h6 id="30-seconts-1"><a href="#30-seconts-1" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>En Javascript, quel événement peut être utilisé pour effectuer une action quand la page a fini de se charger?<br><strong>頁面加載完成後，可以使用哪個事件執行操作?</strong></p>
+<ul>
+<li><input disabled type="checkbox"> oncomplete</li>
+<li><input disabled type="checkbox"> onfinished</li>
+<li><input checked disabled type="checkbox"> onload</li>
+<li><input disabled type="checkbox"> onupload</li>
+<li><input disabled type="checkbox"> oninit</li>
+</ul>
+<h3 id="5-21"><a href="#5-21" class="headerlink" title="5/21"></a>5/21</h3><h6 id="30-seconts-2"><a href="#30-seconts-2" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>Quel balise HTML est utilisée pour définir une cellule d’en-tête d’un tableau<code>&lt;table&gt;</code><br><strong>哪個HTML標記用於定義表格標題單元格?</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> th</li>
+<li><input disabled type="checkbox"> tr</li>
+<li><input disabled type="checkbox"> tt</li>
+<li><input disabled type="checkbox"> td</li>
+</ul>
+<h3 id="6-21"><a href="#6-21" class="headerlink" title="6/21"></a>6/21</h3><h6 id="30-seconts-3"><a href="#30-seconts-3" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>En JavaScript, laquelle des instructions suivantes permet de sortir d’une boucle ?<br><strong>在 JavaScript 中，以下哪些語句可以退出循環？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> quit();</li>
+<li><input checked disabled type="checkbox"> break;</li>
+<li><input disabled type="checkbox"> exit;</li>
+<li><input disabled type="checkbox"> i = 99999999;</li>
+</ul>
+<h3 id="7-21"><a href="#7-21" class="headerlink" title="7/21"></a>7/21</h3><h6 id="45-seconts-1"><a href="#45-seconts-1" class="headerlink" title="45 seconts"></a>45 seconts</h6><p>En JavaScript, comment déclare-t-on une variable ?<br><strong>在 JavaScript 中，如何聲明一個變數？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> var x = 7;</li>
+<li><input disabled type="checkbox"> x := 7;</li>
+<li><input disabled type="checkbox"> int x = 7;</li>
+<li><input disabled type="checkbox"> def x = 7;</li>
+</ul>
+<h3 id="8-21"><a href="#8-21" class="headerlink" title="8/21"></a>8/21</h3><h6 id="30-seconts-4"><a href="#30-seconts-4" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>En HTML, comment devez-vous écrire le caractère &lt;(inférieur à) pour éviter qu’il soit considéré comme l’ouverture d’une balise ?<br><strong>在HTML中，應如何編寫字符&lt;（小於）以防止將其視為打開標籤？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> <code>&amp;lt</code>;</li>
+<li><input disabled type="checkbox"> <code>%60</code></li>
+<li><input disabled type="checkbox"> <code>\&lt;</code></li>
+</ul>
+<h3 id="9-21"><a href="#9-21" class="headerlink" title="9/21"></a>9/21</h3><h6 id="30-seconts-5"><a href="#30-seconts-5" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>En Css, quel symbole est utilisé en préfixe d’un sélectur par id ?<br><strong>在CSS中，選擇ID前綴是使用哪個符號？</strong><br><code>#</code></p>
+<h3 id="10-21"><a href="#10-21" class="headerlink" title="10/21"></a>10/21</h3><h6 id="30-seconts-6"><a href="#30-seconts-6" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>Quelle est la valeur de foo.length?<br><strong>哪一個是<code>foo.length</code>的值</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = [];</span><br><span class="line">foo.push(<span class="number">1</span>);</span><br><span class="line">foo.push(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><input disabled type="checkbox"> 3</li>
+<li><input checked disabled type="checkbox"> 2</li>
+<li><input disabled type="checkbox"> 1</li>
+<li><input disabled type="checkbox"> 0</li>
+<li><input disabled type="checkbox"> null</li>
+</ul>
+<h3 id="11-21"><a href="#11-21" class="headerlink" title="11/21"></a>11/21</h3><h6 id="3-minuts"><a href="#3-minuts" class="headerlink" title="3 minuts"></a>3 minuts</h6><p>Inplémentez la fonction <code>average(table)</code>.</p>
+<p>La fonction doit renvoyer la valeur moyenne du <code>table</code> donné en paramètre. <code>table</code> est toujours un tableau défini, et ne contient que des nombres.</p>
+<p><code>averge</code> doit returner <code>0</code>si<code>table</code> est vide.</p>
+<p><strong>寫出此函式，該函式必須回傳作為參數給的<code>table</code>的平均值。<code>table</code>是已定義的陣列，並且僅包含數字。</strong></p>
+<p><strong>如果<code>table</code>為空，則<code>averge</code>必須回傳<code>0</code>。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">average</span>(<span class="params">table</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span>(table.length === <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span> ; i &lt; table.length; i++)&#123;</span><br><span class="line">    sum += table[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum / table.length</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="12-21"><a href="#12-21" class="headerlink" title="12/21"></a>12/21</h3><h6 id="40-seconts"><a href="#40-seconts" class="headerlink" title="40 seconts"></a>40 seconts</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myJson = &#123;</span><br><span class="line">  <span class="string">"cities"</span> : [</span><br><span class="line">    &#123;<span class="string">"name"</span>: <span class="string">"Paris"</span>, <span class="string">"pop"</span> : <span class="number">2</span> &#125;,</span><br><span class="line">    &#123;<span class="string">"name"</span>: <span class="string">"London"</span>, <span class="string">"pop"</span> : <span class="number">8</span> &#125;,</span><br><span class="line">    &#123;<span class="string">"name"</span>: <span class="string">"New York"</span>, <span class="string">"pop"</span> : <span class="number">9</span> &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>Parmi les proposition suivantes, laquelle affiche 2 ?<br><strong>以下哪一個的結果是<code>2</code></strong></p>
+<ul>
+<li><input disabled type="checkbox"> <code>myJson -&gt; cities -&gt; Laos -&gt; pop</code></li>
+<li><input disabled type="checkbox"> <code>myJson.cities.[&#39;Paris&#39;].[pop]</code></li>
+<li><input checked disabled type="checkbox"> <code>myJson.cities[0].pop</code></li>
+<li><input disabled type="checkbox"> <code>myJson.cities.Paris.pop</code></li>
+</ul>
+<h3 id="13-21"><a href="#13-21" class="headerlink" title="13/21"></a>13/21</h3><h6 id="45-seconts-2"><a href="#45-seconts-2" class="headerlink" title="45 seconts"></a>45 seconts</h6><p>En JavaScript, quelle fonction utilisez-vous pour afficher une erreur dans la console ?<br><strong>在JavaScript中，您使用什麼函式在控制台中顯示錯誤？</strong></p>
+<p><code>consol.log();</code> ??? 不確定對不對</p>
+<h3 id="14-21"><a href="#14-21" class="headerlink" title="14/21"></a>14/21</h3><h6 id="25-seconts"><a href="#25-seconts" class="headerlink" title="25 seconts"></a>25 seconts</h6><p>En CSS, comment sélectionner tout les éléments de type <code>span</code> dans un élément de type <code>p</code> ?<br><strong>在CSS中，如何選擇在<code>&lt;p&gt;</code>的元素中所有的<code>&lt;span&gt;</code>元素？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> <code>p.span</code></li>
+<li><input disabled type="checkbox"> <code>span p</code></li>
+<li><input disabled type="checkbox"> <code>p span</code></li>
+<li><input checked disabled type="checkbox"> <code>p &gt; span</code></li>
+<li><input disabled type="checkbox"> <code>span &lt; p</code></li>
+</ul>
+<h3 id="15-21"><a href="#15-21" class="headerlink" title="15/21"></a>15/21</h3><h6 id="30-seconts-7"><a href="#30-seconts-7" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>Quelle est la valeur par défaut de la règle CSS display pour un élément HTML <code>&lt;p&gt;</code>?
+<strong>HTML <code>&lt;p&gt;</code>元素的默認CSS顯示規則是什麼？</strong><br>==哭哭，這題居然答錯了，可見我的CSS基礎還沒穩固==</p>
+<ul>
+<li><input disabled type="checkbox"> true</li>
+<li><input checked disabled type="checkbox"> inline</li>
+<li><input disabled type="checkbox"> inline-block</li>
+<li><input disabled type="checkbox"> none</li>
+<li><input disabled type="checkbox"> block</li>
+</ul>
+<h3 id="16-21"><a href="#16-21" class="headerlink" title="16/21"></a>16/21</h3><h6 id="2-minuts"><a href="#2-minuts" class="headerlink" title="2 minuts"></a>2 minuts</h6><p><code>a(i,j)</code> devrait retiurner <code>true</code> si au moins un des arguments est égal à 1 ou si leur somme est égale à 1.</p>
+<p>les deux arguments donnés seront toujours des nombres.</p>
+<p><strong>如果<code>a（i，j）</code>函式的參數至少一個等於1或<code>i,j</code>的總和等於1，回傳<code>true</code>。</strong></p>
+<p><strong>兩個參數皆為數字。</strong><br>Par exemple:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`a(1,5)`</span> <span class="keyword">return</span> <span class="string">`true`</span></span><br><span class="line"><span class="string">`a(2,3)`</span> <span class="keyword">return</span> <span class="string">`false`</span></span><br><span class="line"><span class="string">`a(-3,4)`</span> <span class="keyword">return</span> <span class="string">`true`</span></span><br><span class="line"><span class="string">``</span><span class="string">`javascript</span></span><br><span class="line"><span class="string">function a(i,j)&#123;</span></span><br><span class="line"><span class="string">  if(typeof i !== 'number' &amp;&amp; typeof j !== 'number') return false;</span></span><br><span class="line"><span class="string">  if(i == 1 || j == 1 || i+j == 1) return true</span></span><br><span class="line"><span class="string">  return false</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="17-21"><a href="#17-21" class="headerlink" title="17/21"></a>17/21</h3><h6 id="45-seconts-3"><a href="#45-seconts-3" class="headerlink" title="45 seconts"></a>45 seconts</h6><p>En JavaScript avec JQuery, quel est le meillieur sélecteur qui permet de sélectionner l’élément suivant :<br><strong>在JQuer 哪一個是以下句子的最佳選擇器？</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span> id=<span class="string">"content"</span>&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>(Une seul réponse attendue)<strong>答案只有一個</strong></p>
+<ul>
+<li><input disabled type="checkbox"> <code>$(&#39;.content&#39;);</code></li>
+<li><input checked disabled type="checkbox"> <code>$(&#39;#content&#39;);</code></li>
+<li><input disabled type="checkbox"> <code>$(&#39;box&#39;);</code></li>
+<li><input disabled type="checkbox"> <code>$(&#39;#box&#39;);</code></li>
+<li><input disabled type="checkbox"> <code>$(&#39;content&#39;);</code></li>
+<li><input disabled type="checkbox"> <code>$(&#39;.box&#39;);</code></li>
+</ul>
+<h3 id="18-21"><a href="#18-21" class="headerlink" title="18/21"></a>18/21</h3><h6 id="30-seconts-8"><a href="#30-seconts-8" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>En HTML, laquelle des réponses suivantes correspond à une hiérachie correcte d’éléments ?<br><strong>在HTML中，以下哪個答案對應於正確的元素層級結構？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> <code>&lt;div&gt; &lt;p&gt; &lt;section&gt; &lt;span&gt;</code></li>
+<li><input checked disabled type="checkbox"> <code>&lt;section&gt; &lt;div&gt; &lt;p&gt; &lt;span&gt;</code></li>
+<li><input disabled type="checkbox"> <code>&lt;div&gt; &lt;p&gt; &lt;section&gt; &lt;span&gt;</code></li>
+<li><input disabled type="checkbox"> <code>&lt;div&gt; &lt;section&gt; &lt;span&gt; &lt;p&gt;</code></li>
+</ul>
+<h3 id="19-21"><a href="#19-21" class="headerlink" title="19/21"></a>19/21</h3><h6 id="5-minuts"><a href="#5-minuts" class="headerlink" title="5 minuts"></a>5 minuts</h6><p>La fonction <code>factorial</code> suivante, écrite par votre collègue Frédéric est cassée. Réparez la afin qu’elle renvoie la factorille du nombre donné paramètre.<br><strong>你的同事把階乘這個函式寫壞了，請把它修好。</strong></p>
+<p>Rappel : <code>factorial(n) = 1 * 2 * 3 *... * n</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (n != <span class="number">1</span>) ? n * factorial(n<span class="number">-1</span>) : <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(factorial(<span class="number">5</span>))</span><br><span class="line"><span class="built_in">console</span>.log(factorial(<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 基本寫法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorialBase</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> n * factorialBase(n<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(factorialBase(<span class="number">5</span>))</span><br><span class="line"><span class="built_in">console</span>.log(factorialBase(<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+
+<p>參考：<a href="https://javascript.info/task/factorial" target="_blank" rel="noopener">Calculate factorial</a></p>
+<h3 id="20-21"><a href="#20-21" class="headerlink" title="20/21"></a>20/21</h3><h6 id="25-seconts-1"><a href="#25-seconts-1" class="headerlink" title="25 seconts"></a>25 seconts</h6><p>JavaScript est multi-threadé.<br><strong>JavaScript 是多序列語言嗎？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> Faux 錯</li>
+<li><input disabled type="checkbox"> Vrai 對</li>
+</ul>
+<h3 id="21-21"><a href="#21-21" class="headerlink" title="21/21"></a>21/21</h3><h6 id="40-minuts"><a href="#40-minuts" class="headerlink" title="40 minuts"></a>40 minuts</h6><p>Les supermarchés s’équipent de plus en plus de caisses automatiques. La plupart de ces caisses n’acceptent que le paiement par carte bancaire bien qu’une part non négligeable de consommateurs pays encore en espèces(avec des billets et des pièces).<br><strong>超市越來越配備自動收款機。 儘管大部分國家的消費者仍使用現金（包括鈔票和硬幣），但大多數收銀機僅接受銀行卡付款。</strong></p>
+<p>Une des problématiques rencontrees avec le paiement en especes est le rendu de monnaie : comment rendre une somme donnee de façon optimale, c’esta-dire avec le nombre minimal de pieces et billets ? C’est un probleme qui se pose a chacun de nous quotidiennement, à fortiori aux caisses automatiques.<br><strong>現金支付遇到的問題之一是貨幣兌換：如何以最佳方式製作給定的金額，也就是說，使用最少數量的硬幣和紙幣？ 這是我們每個人每天都會遇到的問題，更不用說在自動付款站了。</strong></p>
+<p>Dans cet exercice, on vous demande d’essayer de trouver une solution optimale pour rendre la monnaie dans un cas précis : quand une caisse automatique ne contient que des pieces de ** 2 euros<strong>, des billets de **5 euros</strong> et de <strong>10 euros</strong>.
+<strong>在本練習中，要求您嘗試找到在特定情況下進行更改的最佳解決方案：當自動提款機僅包含==2歐元硬幣==，==5歐元紙鈔== 和 ==10歐元紙鈔==。</strong></p>
+<p>Pour simplifier le problème, nous considérerons que toutes ces pièces et billets sont disponibles en <strong>quantité illimitée</strong>.
+<strong>為了簡化問題，我們將考慮所有這些硬幣和紙幣以==無限數量==提供。</strong></p>
+<p>Voici quelques exemples de rendu de monnaie :<br><strong>以下是一些變更示例：</strong></p>
+<table>
+<thead>
+<tr>
+<th>Monnaie à rendre</th>
+<th>Solutions possibles</th>
+<th>Solution optimale</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Impossible</td>
+<td>Impossible</td>
+</tr>
+<tr>
+<td>6</td>
+<td>2 + 2 + 2</td>
+<td>2 + 2 + 2</td>
+</tr>
+<tr>
+<td>10</td>
+<td>2 + 2 + 2 + 2 +</td>
+<td>10</td>
+</tr>
+<tr>
+<td></td>
+<td>5 + 5</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>10</td>
+<td></td>
+</tr>
+<tr>
+<td>9007199254740991</td>
+<td>…</td>
+<td>10 *</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>900719925474098 +</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>5 + 2 * 3</td>
+</tr>
+</tbody></table>
+<p>Le rendu de monnaisa est exprimé par un objet possédant 3 propriétés.<br><code>two</code>,<code>five</code>,<code>ten</code> qui, respectivement, stockent le nombre de pièces 2 euros, de billets de 5 euros et de billets de 10 euros.<br><strong>金額由具有3個屬性的物件表示。<br>分別存儲2歐元硬幣，5歐元鈔票和10歐元的鈔票數量，以<code>two</code>,<code>five</code>,<code>ten</code>為屬性。</strong></p>
+<p>Par exemple, si on reprend l’exemple n.2 du tableau(6 euros), on devrait obtenie l’objet:<br><strong>例如第二個例子，如果我們從表中獲取6歐元，則應獲取物件：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  two: <span class="number">3</span>,   <span class="comment">// 3 pièces de 2 euros</span></span><br><span class="line">  five: <span class="number">0</span>,  <span class="comment">// 0 pièces de 5 euros</span></span><br><span class="line">  ten: <span class="number">0</span>    <span class="comment">// 0 pièces de 10 euros</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Implémentez la méthode <code>change(cash)</code>qui retourne un objet contenant les billets dont la somme vaut <code>s</code>. S’il est impossible de rendre la monnaie (comme dans l’exemple n.1), returnez <code>null</code>.
+<strong>寫出<code>change（cash）</code>函式，該函式需回傳一個物件，其中包含總和為<code>s</code>。 如果不可能進行更改（例如第一個例子），則回傳<code>null</code>。</strong></p>
+<p>Pour obtenir un maximum de points vetre solution devra toujours rendre la monnaie quand c’est possible et avec le <strong>nombre minimal de pièces et billets</strong>.
+<strong>為了獲得最高分，您的解決方案必須盡可能使用</strong>最小面額的硬幣和紙幣<strong>。</strong><br>Données : <code>0 &lt;</code>cash<code>&lt; 9007199254740991</code><br>**數據：<code>0 &lt;</code>cash<code>&lt; 9007199254740991</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">change</span>(<span class="params">cash</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    two:<span class="number">0</span>,</span><br><span class="line">    five:<span class="number">0</span>,</span><br><span class="line">    ten:<span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">1</span>)); <span class="comment">// null</span></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">42</span>).ten); <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">42</span>).five); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">42</span>).two); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>回答：<a href="https://jsbin.com/duzefon/edit?js,console" target="_blank" rel="noopener">20/20 找錢 - JS Bin</a><br>後記：最後ㄧ題似乎還有些問題，如果把範例中最後一個拿來測試，會有問題，且無法做到優化，也就是說如果尾數是11，就可變成（5<em>1）+(2</em>3)。這部分得再好好想想才行。</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <blockquote>
+<p>人總是在某種方式的評估下，才能清楚地知道自己的能耐。</p>
+</blockquote>
+<p>法國有不少人力派遣公司，因為法國聘人程序繁瑣，徵人又需投入大量資源人力，所以越來越多公司採用人力派遣所派遣過來的工程師，來開發公司的專案。</p>
+<p>此測驗是法國某大人力派遣公司，對應徵者所做的線上測驗，進入測驗網頁後，須依規定的時間作答，時間到會自動前往下一題，無法回頭修改答案。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="JS_front_test01/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_front_test01/" data-id="ck5mxz9ds0000rzuw7a0lfr0o" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Test/">Test</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS30_01_Drum-Kit copy" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="JS30_01_Drum-Kit copy/" class="article-date">
@@ -1246,105 +1525,6 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
 
 
   
-    <article id="post-JS_ironMan28_Find-the-index-value-of-the-last-element" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="JS_ironMan28_Find-the-index-value-of-the-last-element/" class="article-date">
-  <time datetime="2019-11-27T20:21:14.000Z" itemprop="datePublished">2019-11-28</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="JS_ironMan28_Find-the-index-value-of-the-last-element/">JS 陣列 Array 方法，找出最後一個元素的索引值 lastIndexOf()</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-28"><a href="#Day-28" class="headerlink" title="Day 28"></a>Day 28</h6><blockquote>
-<p>你！就是你。那個最後一個戴黑帽黑衣的站出來！你認識那位排在前頭和你穿ㄧ樣的俠客嗎？</p>
-</blockquote>
-<p>昨天我們介紹了<code>indexOf()</code>，今天要來介紹和它算是一對的<code>lastIndexOf()</code>。
-<code>lastIndexOf()</code>會把我們指定的元素，在陣列裡查找，並將陣列裡「最後一個」找到的元素索引值 <del>其實也是第一個</del>，傳回來給我們。</p>
-<p>但這兩個方法有什麼不同？我們先來看一下範例。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"hi"</span>, <span class="string">"D"</span>, <span class="string">"hi"</span>, <span class="string">"b"</span>, <span class="string">"hi"</span>,];</span><br><span class="line"></span><br><span class="line">arr.indexOf(<span class="string">"hi"</span>); <span class="comment">// 2 第一個 "hi"</span></span><br><span class="line"></span><br><span class="line">arr.lastIndexOf(<span class="string">"hi"</span>); <span class="comment">// 6 最後一個 "hi"</span></span><br></pre></td></tr></table></figure>
-
-<p>兩個操作的方式幾乎是ㄧ樣的，只是<code>indexOf()</code>會把第一個找到元素的索引值傳回來，而<code>lastIndexOf()</code>顧名思義，就是把在陣列裡，我們指定要找元素，且是在陣列裡面最後一個的索引值傳回來。且<code>lastIndexOf()</code>在找尋元素時，會從陣列的尾端開始找。因為找尋的順序相反，所以找到的第一個元素，其實也就是從陣列看來的最後一個。</p>
-<p>如同<code>indexOf()</code>ㄧ樣，如果我們有給第二個參數（從哪裡開始找），它也會從指定參數開始往「前」找。</p>
-<p>如果<code>lastIndexOf()</code>找不到我們想找的元素，也會和<code>indexOf()</code>ㄧ樣，回傳給我們 -1。</p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf" target="_blank" rel="noopener">Array.prototype.lastIndexOf() - JavaScript | MDN</a></p>
-<p><strong>原型：</strong> Array.prototype.lastIndexOf()<br><strong>功能：</strong> 回傳指定元素在陣列中最後一個被找到的索引值。<br><strong>改變：</strong> 不會改變原陣列<br><strong>語法：</strong> arr.lastIndexOf(searchElement[, fromIndex])<br><strong>回傳值：</strong> 在陣列中找到的最後一個元素索引值；沒找到則為 -1。<br><strong>參數：</strong> 要找的元素、從哪裡開始找。</p>
-<h3 id="確定這個元素是陣列的唯一"><a href="#確定這個元素是陣列的唯一" class="headerlink" title="確定這個元素是陣列的唯一"></a>確定這個元素是陣列的唯一</h3><p>我們是不是可以利用<code>indexOf()</code>和<code>lastIndexOf()</code>的特性來確認我們找到的元素，是陣列裡的唯一？我們可以用 <code>===</code>  來比較，如果相同</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr2 = [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"hi"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>, <span class="string">"b"</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> item1 = arr2.indexOf(<span class="string">"hi"</span>); <span class="comment">// item1 回傳 2</span></span><br><span class="line"><span class="keyword">let</span> item2 = arr2.lastIndexOf(<span class="string">"hi"</span>); <span class="comment">// item2 回傳 2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testUnique</span>(<span class="params">item1, item2</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>( item1 === item2)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">testUnique(item1, item2); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="找出所有陣列裡指定的索引值"><a href="#找出所有陣列裡指定的索引值" class="headerlink" title="找出所有陣列裡指定的索引值"></a>找出所有陣列裡指定的索引值</h3><p>在上一篇<code>indexOf()</code>的介紹裡有提到，我們可透過<code>indexOf()</code>與<code>push()</code>將查找到的元素列表，以陣列的方式回傳回來，<code>lastIndexOf()</code>也可以辦到。它會尋找所有在陣列裡，我們指定查找元素的索引值，以<code>push()</code>將索引值集合在一個陣列裡。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> results = [];</span><br><span class="line"><span class="keyword">const</span> array = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'a'</span>, <span class="string">'d'</span>];</span><br><span class="line"><span class="keyword">let</span> element = <span class="string">'a'</span>;</span><br><span class="line"><span class="keyword">let</span> idx = array.lastIndexOf(element); <span class="comment">// 把找到的索引值存在變數裡</span></span><br><span class="line"><span class="keyword">while</span> (idx != <span class="number">-1</span>) &#123; <span class="comment">// 如果回傳值不是 -1 表示有找到</span></span><br><span class="line">  results.push(idx); <span class="comment">// 將索引值放入陣列</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果索引值大於 0，就回傳 找到的元素索引值，否則就回傳 -1</span></span><br><span class="line">  idx = (idx &gt; <span class="number">0</span> ? array.lastIndexOf(element, idx - <span class="number">1</span>) : <span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">results; <span class="comment">// [4, 2, 0]</span></span><br></pre></td></tr></table></figure>
-
-<p>與<code>indexOf</code>的方法不同的是，因為<code>lastIndexOf()</code>是從陣列尾端往前找，所以得到的索引值也會從大到小。</p>
-<p>今天的<code>lastIndexOf()</code>就介紹到這裏囉～</p>
-<hr>
-<p>我們在學習程式語言的時候，除了會去看一些技術文章或是影片教學外，大家是否會去看一些比較軟性的影片，如勵志或是如何規劃學習的影片？尤其對於轉職的本人來說，到底程式工程師需要有什麼樣的特質與正確的心態，甚至在職場上如何面對工作的壓力，與如何快速的進步 <del>對本人無效</del>，是需要一些技巧的。</p>
-<p>發現這個法國的 youtuber 是在兩三個月前，他稱他自己為遊牧開發人員，人住在巴釐島，除了有許多遠端的案子，還有經營 youtube 頻道、做教學影片，甚至前陣子還在巴釐島開了課，請法國人到亞洲包吃包住學程式。</p>
-<p>他的影片有許多是在討論他的觀察與想法，因為直接且真誠，所以頗受歡迎。前一陣子看到這個影片覺得頗正面，便把它記錄下來，如果有興趣，可以使用 youtube 的字幕翻譯功能觀看。</p>
-<h2 id="如果早知道，對初學者的建議"><a href="#如果早知道，對初學者的建議" class="headerlink" title="如果早知道，對初學者的建議"></a>如果早知道，對初學者的建議</h2><p>這支影片聊的主題是，一些他覺得剛開始學習程式語言的人，可以提前了解的學習面向，以下是大約的節錄：<br><a href="https://www.youtube.com/watch?v=G34p5eFg634" target="_blank" rel="noopener">CE QUE J’AURAIS AIMÉ SAVOIR QUAND J’AI DÉBUTÉ LA PROGRAMMATION - YouTube</a></p>
-<h3 id="第一"><a href="#第一" class="headerlink" title="第一"></a>第一</h3><p>不要什麼都想學，學你需要用到的技術或程式語言，專注這些就好。例如，如果你想學前端，就必須先瞭解前端需要用到什麼語言，例如 HTML, CSS, JavaScript 就先把這些學好，而不要一下子就跳到 Node 或急著想了解框架。且前端變化大，或許開始學到真正用到這段期間，還會有許多的變化產生。</p>
-<h3 id="第二"><a href="#第二" class="headerlink" title="第二"></a>第二</h3><p>剛開始學寫程式的時候，只要達到會寫與會動，可以運作就可以了，要讓它運作，需要什麼東西要先思考。初期要寫出來的程式碼完美，是不可能的，可以先試著寫出來，可以運作，再慢慢回頭重構你的碼。</p>
-<h3 id="第三"><a href="#第三" class="headerlink" title="第三"></a>第三</h3><p>把注意力集中在專案，而不是技術或新的語言。新的技術或者是語言，或許可以做更多的功能，但瀏覽者看到的是什麼？使用者看到的是什麼？看到的是具體的專案呈現。技術語言只是工具，如果學新技術，還是需要實做來呈現，也就是做專案。</p>
-<p>希望以上的分享，大家會喜歡。</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-28"><a href="#Day-28" class="headerlink" title="Day 28"></a>Day 28</h6><blockquote>
-<p>你！就是你。那個最後一個戴黑帽黑衣的站出來！你認識那位排在前頭和你穿ㄧ樣的俠客嗎？</p>
-</blockquote>
-<p>昨天我們介紹了<code>indexOf()</code>，今天要來介紹和它算是一對的<code>lastIndexOf()</code>。
-<code>lastIndexOf()</code>會把我們指定的元素，在陣列裡查找，並將陣列裡「最後一個」找到的元素索引值 <del>其實也是第一個</del>，傳回來給我們。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="JS_ironMan28_Find-the-index-value-of-the-last-element/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan28_Find-the-index-value-of-the-last-element/" data-id="ck5ikq22l005n3cuw3m927zvv" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1380,7 +1560,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/讀書會筆記/">讀書會筆記</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/讀書會筆記/">讀書會筆記</a></li></ul>
     </div>
   </div>
 
@@ -1391,6 +1571,10 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="JS_front_test01/">法國 CodinGame 前端初級測驗</a>
+          </li>
         
           <li>
             <a href="JS30_01_Drum-Kit copy/">JS 30 - 01. Drum Kit 鍵盤音樂</a>
@@ -1408,10 +1592,6 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
             <a href="JS_book-club-note-array/">JS 迴圈升級的陣列 Array 方法 forEach()</a>
           </li>
         
-          <li>
-            <a href="JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function/">把要的元素留下來的陣列 Array 方法 filter()</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1421,7 +1601,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="tags/ES6/" style="font-size: 10px;">ES6</a> <a href="tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="tags/Git/" style="font-size: 12.5px;">Git</a> <a href="tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="tags/IDE/" style="font-size: 10px;">IDE</a> <a href="tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="tags/JS101/" style="font-size: 10px;">JS101</a> <a href="tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="tags/JavaScript-30/" style="font-size: 12.5px;">JavaScript 30</a> <a href="tags/Note/" style="font-size: 10px;">Note</a> <a href="tags/Other/" style="font-size: 10px;">Other</a> <a href="tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="tags/CSS/" style="font-size: 10px;">CSS</a> <a href="tags/ES6/" style="font-size: 10px;">ES6</a> <a href="tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="tags/Git/" style="font-size: 12.5px;">Git</a> <a href="tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="tags/HTML/" style="font-size: 10px;">HTML</a> <a href="tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="tags/IDE/" style="font-size: 10px;">IDE</a> <a href="tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="tags/JS101/" style="font-size: 10px;">JS101</a> <a href="tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="tags/JavaScript-30/" style="font-size: 12.5px;">JavaScript 30</a> <a href="tags/Note/" style="font-size: 10px;">Note</a> <a href="tags/Other/" style="font-size: 10px;">Other</a> <a href="tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="tags/Test/" style="font-size: 10px;">Test</a> <a href="tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 
@@ -1430,7 +1610,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/07/">七月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/07/">七月 2019</a></li></ul>
     </div>
   </div>
 
