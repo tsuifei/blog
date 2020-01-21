@@ -129,7 +129,7 @@ ga('send', 'pageview');
                     
   
     <h1 itemprop="name">
-      <a class="article-title" href="JS_front_test01/">法國 CodinGame 前端初級測驗</a>
+      <a class="article-title" href="JS_front_test01/">法國前端初級測驗</a>
     </h1>
   
 
@@ -145,30 +145,28 @@ ga('send', 'pageview');
 <p>此測驗是法國某大人力派遣公司，對應徵者所做的線上測驗，進入測驗網頁後，須依規定的時間作答，時間到會自動前往下一題，無法回頭修改答案。</p>
 <p>以下是本人測驗之後，重新再花時間整理出來的，包含整理時「自己認為」的正確答案，如對答案有意見，歡迎提示給予修正建議，感謝先。</p>
 <p>這個測驗總共給約55分鐘。</p>
-<h3 id="1-21"><a href="#1-21" class="headerlink" title="1/21"></a>1/21</h3><h6 id="45-seconts"><a href="#45-seconts" class="headerlink" title="45 seconts"></a>45 seconts</h6><p>Que faut-il rajouter à une élément HTML <a> pour que le lien s’ouvre dans un nouvel onglet ?<br><strong>需要在<code>&lt;a&gt;</code>標籤加上什麼屬性讓連結可以另開分頁？</strong></a></p>
+<h3 id="1-21"><a href="#1-21" class="headerlink" title="1/21"></a>1/21</h3><h6 id="45-seconts"><a href="#45-seconts" class="headerlink" title="45 seconts"></a>45 seconts</h6><p><strong>需要在<code>&lt;a&gt;</code>標籤加上什麼屬性讓連結可以另開分頁？</strong></p>
 <ul>
 <li><input disabled type="checkbox"> target=”_self”</li>
 <li><input disabled type="checkbox"> href=”#”</li>
 <li><input disabled type="checkbox"> target=”_parent”</li>
 <li><input checked disabled type="checkbox"> target=”_blank”</li>
 </ul>
-<h3 id="2-21"><a href="#2-21" class="headerlink" title="2/21"></a>2/21</h3><h6 id="20-minuts"><a href="#20-minuts" class="headerlink" title="20 minuts"></a>20 minuts</h6><p>Implémentez le corps de la fonction <code>findLargest(numbers)</code>.
-<code>findLargest(numbers)</code>returne le plus grand entier du tableau <code>numbers</code>. <code>numbers</code> est un tableau d’entiers qui contient toujours au moins un élément.</p>
-<p><strong>實做<code>findLargest（numbers）</code>函式。</strong><br><strong>將回傳<code>findLargest（numbers）</code>numbers陣列中的最大整數。 <code>numbers</code>是一個整數陣列，至少包含一個元素。</strong></p>
+<h3 id="2-21"><a href="#2-21" class="headerlink" title="2/21"></a>2/21</h3><h6 id="20-minuts"><a href="#20-minuts" class="headerlink" title="20 minuts"></a>20 minuts</h6><p><strong>實做<code>findLargest（numbers）</code>函式。</strong><br><strong>將回傳<code>findLargest（numbers）</code>numbers陣列中的最大整數。 <code>numbers</code>是一個整數陣列，至少包含一個元素。</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findLargest</span>（<span class="title">numbers</span>）</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> max = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span> ; i &lt; arr.length; i++)&#123;</span><br><span class="line">      <span class="keyword">if</span>(max &lt; arr[i])&#123;</span><br><span class="line">        max = arr[i];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">findLargest（[<span class="number">1</span>, <span class="number">-28</span>, <span class="number">88</span>, <span class="number">200</span>, <span class="number">7</span>]）</span><br></pre></td></tr></table></figure>
 
 <p><strong>範例</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 實作 arr.max()</span></span><br><span class="line"><span class="built_in">Array</span>.prototype.max = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> max = <span class="keyword">this</span>[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">this</span>.forEach (<span class="function"><span class="keyword">function</span>(<span class="params">ele,index,arr</span>)</span>&#123;</span><br><span class="line"><span class="keyword">if</span>(ele &gt; max) &#123;</span><br><span class="line">max = ele;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">45</span>,<span class="number">23</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">234</span>,<span class="number">56</span>];</span><br><span class="line">arr.max(); <span class="comment">// 234</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*******************************/</span></span><br><span class="line"><span class="comment">// 取最大值函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">max</span> (<span class="params">arr</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> max = arr[<span class="number">0</span>];</span><br><span class="line">arr.forEach (<span class="function"><span class="keyword">function</span>(<span class="params">ele,index,arr</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(ele &gt; max) &#123;</span><br><span class="line">    max = ele;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">45</span>,<span class="number">23</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">234</span>,<span class="number">56</span>];</span><br><span class="line">max(arr); <span class="comment">// 234</span></span><br><span class="line"><span class="comment">/*******************************/</span></span><br><span class="line"><span class="comment">// 取最小值函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">min</span> (<span class="params">arr</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> min = arr[<span class="number">0</span>];</span><br><span class="line">arr.forEach (<span class="function"><span class="keyword">function</span>(<span class="params">ele,index,arr</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(ele &lt; min) &#123;</span><br><span class="line">    min = ele;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">45</span>,<span class="number">23</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">234</span>,<span class="number">56</span>];</span><br><span class="line">min(arr); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
 
 <p>參考出處：<a href="https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/268893/" target="_blank" rel="noopener">JavaScript學習筆記之取陣列中最大值和最小值 | 程式前沿</a></p>
-<h3 id="3-21"><a href="#3-21" class="headerlink" title="3/21"></a>3/21</h3><h6 id="30-seconts"><a href="#30-seconts" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>En Javascript, que est le résultat de l’expression suivante : <code>&quot;2&quot; === 2;</code><br><strong><code>&quot;2&quot; === 2;</code> 會回傳以下哪個？</strong></p>
+<h3 id="3-21"><a href="#3-21" class="headerlink" title="3/21"></a>3/21</h3><h6 id="30-seconts"><a href="#30-seconts" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>JavaScript <code>&quot;2&quot; === 2;</code> 會回傳以下哪個？</strong></p>
 <ul>
 <li><input disabled type="checkbox"> null</li>
 <li><input disabled type="checkbox"> true</li>
 <li><input checked disabled type="checkbox"> false</li>
 <li><input disabled type="checkbox"> undefined</li>
 </ul>
-<h3 id="4-21"><a href="#4-21" class="headerlink" title="4/21"></a>4/21</h3><h6 id="30-seconts-1"><a href="#30-seconts-1" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>En Javascript, quel événement peut être utilisé pour effectuer une action quand la page a fini de se charger?<br><strong>頁面加載完成後，可以使用哪個事件執行操作?</strong></p>
+<h3 id="4-21"><a href="#4-21" class="headerlink" title="4/21"></a>4/21</h3><h6 id="30-seconts-1"><a href="#30-seconts-1" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>Javascript 頁面加載完成後，可以使用哪個事件執行操作?</strong></p>
 <ul>
 <li><input disabled type="checkbox"> oncomplete</li>
 <li><input disabled type="checkbox"> onfinished</li>
@@ -176,35 +174,35 @@ ga('send', 'pageview');
 <li><input disabled type="checkbox"> onupload</li>
 <li><input disabled type="checkbox"> oninit</li>
 </ul>
-<h3 id="5-21"><a href="#5-21" class="headerlink" title="5/21"></a>5/21</h3><h6 id="30-seconts-2"><a href="#30-seconts-2" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>Quel balise HTML est utilisée pour définir une cellule d’en-tête d’un tableau<code>&lt;table&gt;</code><br><strong>哪個HTML標記用於定義表格標題單元格?</strong></p>
+<h3 id="5-21"><a href="#5-21" class="headerlink" title="5/21"></a>5/21</h3><h6 id="30-seconts-2"><a href="#30-seconts-2" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>哪個HTML標記用於定義<code>&lt;table&gt;</code>表格標題單元格?</strong></p>
 <ul>
 <li><input checked disabled type="checkbox"> th</li>
 <li><input disabled type="checkbox"> tr</li>
 <li><input disabled type="checkbox"> tt</li>
 <li><input disabled type="checkbox"> td</li>
 </ul>
-<h3 id="6-21"><a href="#6-21" class="headerlink" title="6/21"></a>6/21</h3><h6 id="30-seconts-3"><a href="#30-seconts-3" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>En JavaScript, laquelle des instructions suivantes permet de sortir d’une boucle ?<br><strong>在 JavaScript 中，以下哪些語句可以退出循環？</strong></p>
+<h3 id="6-21"><a href="#6-21" class="headerlink" title="6/21"></a>6/21</h3><h6 id="30-seconts-3"><a href="#30-seconts-3" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>在 JavaScript 中，以下哪些語句可以退出循環？</strong></p>
 <ul>
 <li><input disabled type="checkbox"> quit();</li>
 <li><input checked disabled type="checkbox"> break;</li>
 <li><input disabled type="checkbox"> exit;</li>
 <li><input disabled type="checkbox"> i = 99999999;</li>
 </ul>
-<h3 id="7-21"><a href="#7-21" class="headerlink" title="7/21"></a>7/21</h3><h6 id="45-seconts-1"><a href="#45-seconts-1" class="headerlink" title="45 seconts"></a>45 seconts</h6><p>En JavaScript, comment déclare-t-on une variable ?<br><strong>在 JavaScript 中，如何聲明一個變數？</strong></p>
+<h3 id="7-21"><a href="#7-21" class="headerlink" title="7/21"></a>7/21</h3><h6 id="45-seconts-1"><a href="#45-seconts-1" class="headerlink" title="45 seconts"></a>45 seconts</h6><p><strong>在 JavaScript 中，如何聲明一個變數？</strong></p>
 <ul>
 <li><input checked disabled type="checkbox"> var x = 7;</li>
 <li><input disabled type="checkbox"> x := 7;</li>
 <li><input disabled type="checkbox"> int x = 7;</li>
 <li><input disabled type="checkbox"> def x = 7;</li>
 </ul>
-<h3 id="8-21"><a href="#8-21" class="headerlink" title="8/21"></a>8/21</h3><h6 id="30-seconts-4"><a href="#30-seconts-4" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>En HTML, comment devez-vous écrire le caractère &lt;(inférieur à) pour éviter qu’il soit considéré comme l’ouverture d’une balise ?<br><strong>在HTML中，應如何編寫字符&lt;（小於）以防止將其視為打開標籤？</strong></p>
+<h3 id="8-21"><a href="#8-21" class="headerlink" title="8/21"></a>8/21</h3><h6 id="30-seconts-4"><a href="#30-seconts-4" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>在HTML中，應如何編寫字符&lt;（小於）以防止將其視為打開標籤&lt; &gt;？</strong></p>
 <ul>
 <li><input checked disabled type="checkbox"> <code>&amp;lt</code>;</li>
 <li><input disabled type="checkbox"> <code>%60</code></li>
 <li><input disabled type="checkbox"> <code>\&lt;</code></li>
 </ul>
-<h3 id="9-21"><a href="#9-21" class="headerlink" title="9/21"></a>9/21</h3><h6 id="30-seconts-5"><a href="#30-seconts-5" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>En Css, quel symbole est utilisé en préfixe d’un sélectur par id ?<br><strong>在CSS中，選擇ID前綴是使用哪個符號？</strong><br><code>#</code></p>
-<h3 id="10-21"><a href="#10-21" class="headerlink" title="10/21"></a>10/21</h3><h6 id="30-seconts-6"><a href="#30-seconts-6" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>Quelle est la valeur de foo.length?<br><strong>哪一個是<code>foo.length</code>的值</strong></p>
+<h3 id="9-21"><a href="#9-21" class="headerlink" title="9/21"></a>9/21</h3><h6 id="30-seconts-5"><a href="#30-seconts-5" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>在CSS中，選擇ID前綴是使用哪個符號？</strong><br><code>#</code></p>
+<h3 id="10-21"><a href="#10-21" class="headerlink" title="10/21"></a>10/21</h3><h6 id="30-seconts-6"><a href="#30-seconts-6" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>哪一個是<code>foo.length</code>的值</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = [];</span><br><span class="line">foo.push(<span class="number">1</span>);</span><br><span class="line">foo.push(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -214,25 +212,21 @@ ga('send', 'pageview');
 <li><input disabled type="checkbox"> 0</li>
 <li><input disabled type="checkbox"> null</li>
 </ul>
-<h3 id="11-21"><a href="#11-21" class="headerlink" title="11/21"></a>11/21</h3><h6 id="3-minuts"><a href="#3-minuts" class="headerlink" title="3 minuts"></a>3 minuts</h6><p>Inplémentez la fonction <code>average(table)</code>.</p>
-<p>La fonction doit renvoyer la valeur moyenne du <code>table</code> donné en paramètre. <code>table</code> est toujours un tableau défini, et ne contient que des nombres.</p>
-<p><code>averge</code> doit returner <code>0</code>si<code>table</code> est vide.</p>
-<p><strong>寫出此函式，該函式必須回傳作為參數給的<code>table</code>的平均值。<code>table</code>是已定義的陣列，並且僅包含數字。</strong></p>
-<p><strong>如果<code>table</code>為空，則<code>averge</code>必須回傳<code>0</code>。</strong></p>
+<h3 id="11-21"><a href="#11-21" class="headerlink" title="11/21"></a>11/21</h3><h6 id="3-minuts"><a href="#3-minuts" class="headerlink" title="3 minuts"></a>3 minuts</h6><p><strong>寫出<code>average(table)</code>函式，該函式必須回傳作為參數給的<code>table</code>的平均值。<code>table</code>是已定義的陣列，並且僅包含數字。</strong><br><strong>如果<code>table</code>為空，則<code>averge</code>必須回傳<code>0</code>。</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">average</span>(<span class="params">table</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span>(table.length === <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span> ; i &lt; table.length; i++)&#123;</span><br><span class="line">    sum += table[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum / table.length</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="12-21"><a href="#12-21" class="headerlink" title="12/21"></a>12/21</h3><h6 id="40-seconts"><a href="#40-seconts" class="headerlink" title="40 seconts"></a>40 seconts</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myJson = &#123;</span><br><span class="line">  <span class="string">"cities"</span> : [</span><br><span class="line">    &#123;<span class="string">"name"</span>: <span class="string">"Paris"</span>, <span class="string">"pop"</span> : <span class="number">2</span> &#125;,</span><br><span class="line">    &#123;<span class="string">"name"</span>: <span class="string">"London"</span>, <span class="string">"pop"</span> : <span class="number">8</span> &#125;,</span><br><span class="line">    &#123;<span class="string">"name"</span>: <span class="string">"New York"</span>, <span class="string">"pop"</span> : <span class="number">9</span> &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>Parmi les proposition suivantes, laquelle affiche 2 ?<br><strong>以下哪一個的結果是<code>2</code></strong></p>
+<p><strong>以下哪一個的結果是<code>2</code></strong></p>
 <ul>
 <li><input disabled type="checkbox"> <code>myJson -&gt; cities -&gt; Laos -&gt; pop</code></li>
 <li><input disabled type="checkbox"> <code>myJson.cities.[&#39;Paris&#39;].[pop]</code></li>
 <li><input checked disabled type="checkbox"> <code>myJson.cities[0].pop</code></li>
 <li><input disabled type="checkbox"> <code>myJson.cities.Paris.pop</code></li>
 </ul>
-<h3 id="13-21"><a href="#13-21" class="headerlink" title="13/21"></a>13/21</h3><h6 id="45-seconts-2"><a href="#45-seconts-2" class="headerlink" title="45 seconts"></a>45 seconts</h6><p>En JavaScript, quelle fonction utilisez-vous pour afficher une erreur dans la console ?<br><strong>在JavaScript中，您使用什麼函式在控制台中顯示錯誤？</strong></p>
+<h3 id="13-21"><a href="#13-21" class="headerlink" title="13/21"></a>13/21</h3><h6 id="45-seconts-2"><a href="#45-seconts-2" class="headerlink" title="45 seconts"></a>45 seconts</h6><p><strong>在JavaScript中，您使用什麼函式在控制台中顯示錯誤？</strong></p>
 <p><code>consol.log();</code> ??? 不確定對不對</p>
-<h3 id="14-21"><a href="#14-21" class="headerlink" title="14/21"></a>14/21</h3><h6 id="25-seconts"><a href="#25-seconts" class="headerlink" title="25 seconts"></a>25 seconts</h6><p>En CSS, comment sélectionner tout les éléments de type <code>span</code> dans un élément de type <code>p</code> ?<br><strong>在CSS中，如何選擇在<code>&lt;p&gt;</code>的元素中所有的<code>&lt;span&gt;</code>元素？</strong></p>
+<h3 id="14-21"><a href="#14-21" class="headerlink" title="14/21"></a>14/21</h3><h6 id="25-seconts"><a href="#25-seconts" class="headerlink" title="25 seconts"></a>25 seconts</h6><p><strong>在CSS中，如何選擇在<code>&lt;p&gt;</code>的元素中所有的<code>&lt;span&gt;</code>元素？</strong></p>
 <ul>
 <li><input disabled type="checkbox"> <code>p.span</code></li>
 <li><input disabled type="checkbox"> <code>span p</code></li>
@@ -240,8 +234,7 @@ ga('send', 'pageview');
 <li><input checked disabled type="checkbox"> <code>p &gt; span</code></li>
 <li><input disabled type="checkbox"> <code>span &lt; p</code></li>
 </ul>
-<h3 id="15-21"><a href="#15-21" class="headerlink" title="15/21"></a>15/21</h3><h6 id="30-seconts-7"><a href="#30-seconts-7" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>Quelle est la valeur par défaut de la règle CSS display pour un élément HTML <code>&lt;p&gt;</code>?
-<strong>HTML <code>&lt;p&gt;</code>元素的默認CSS顯示規則是什麼？</strong><br>==哭哭，這題居然答錯了，可見我的CSS基礎還沒穩固==</p>
+<h3 id="15-21"><a href="#15-21" class="headerlink" title="15/21"></a>15/21</h3><h6 id="30-seconts-7"><a href="#30-seconts-7" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>HTML <code>&lt;p&gt;</code>在CSS默認下屬於什麼元素？</strong></p>
 <ul>
 <li><input disabled type="checkbox"> true</li>
 <li><input checked disabled type="checkbox"> inline</li>
@@ -249,16 +242,12 @@ ga('send', 'pageview');
 <li><input disabled type="checkbox"> none</li>
 <li><input disabled type="checkbox"> block</li>
 </ul>
-<h3 id="16-21"><a href="#16-21" class="headerlink" title="16/21"></a>16/21</h3><h6 id="2-minuts"><a href="#2-minuts" class="headerlink" title="2 minuts"></a>2 minuts</h6><p><code>a(i,j)</code> devrait retiurner <code>true</code> si au moins un des arguments est égal à 1 ou si leur somme est égale à 1.</p>
-<p>les deux arguments donnés seront toujours des nombres.</p>
-<p><strong>如果<code>a（i，j）</code>函式的參數至少一個等於1或<code>i,j</code>的總和等於1，回傳<code>true</code>。</strong></p>
-<p><strong>兩個參數皆為數字。</strong><br>Par exemple:</p>
+<h3 id="16-21"><a href="#16-21" class="headerlink" title="16/21"></a>16/21</h3><h6 id="2-minuts"><a href="#2-minuts" class="headerlink" title="2 minuts"></a>2 minuts</h6><p><strong>請寫出此函式，如果<code>a（i，j）</code>函式的參數至少一個等於1或<code>i,j</code>的總和等於1，回傳<code>true</code>。</strong><br><strong>兩個參數皆為數字。</strong><br>Par exemple:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`a(1,5)`</span> <span class="keyword">return</span> <span class="string">`true`</span></span><br><span class="line"><span class="string">`a(2,3)`</span> <span class="keyword">return</span> <span class="string">`false`</span></span><br><span class="line"><span class="string">`a(-3,4)`</span> <span class="keyword">return</span> <span class="string">`true`</span></span><br><span class="line"><span class="string">``</span><span class="string">`javascript</span></span><br><span class="line"><span class="string">function a(i,j)&#123;</span></span><br><span class="line"><span class="string">  if(typeof i !== 'number' &amp;&amp; typeof j !== 'number') return false;</span></span><br><span class="line"><span class="string">  if(i == 1 || j == 1 || i+j == 1) return true</span></span><br><span class="line"><span class="string">  return false</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="17-21"><a href="#17-21" class="headerlink" title="17/21"></a>17/21</h3><h6 id="45-seconts-3"><a href="#45-seconts-3" class="headerlink" title="45 seconts"></a>45 seconts</h6><p>En JavaScript avec JQuery, quel est le meillieur sélecteur qui permet de sélectionner l’élément suivant :<br><strong>在JQuer 哪一個是以下句子的最佳選擇器？</strong></p>
+<h3 id="17-21"><a href="#17-21" class="headerlink" title="17/21"></a>17/21</h3><h6 id="45-seconts-3"><a href="#45-seconts-3" class="headerlink" title="45 seconts"></a>45 seconts</h6><p><strong>在以下範例，哪一個是 JQuer 的最佳選擇器？</strong><br><strong>答案只有一個</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span> id=<span class="string">"content"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 
-<p>(Une seul réponse attendue)<strong>答案只有一個</strong></p>
 <ul>
 <li><input disabled type="checkbox"> <code>$(&#39;.content&#39;);</code></li>
 <li><input checked disabled type="checkbox"> <code>$(&#39;#content&#39;);</code></li>
@@ -267,42 +256,36 @@ ga('send', 'pageview');
 <li><input disabled type="checkbox"> <code>$(&#39;content&#39;);</code></li>
 <li><input disabled type="checkbox"> <code>$(&#39;.box&#39;);</code></li>
 </ul>
-<h3 id="18-21"><a href="#18-21" class="headerlink" title="18/21"></a>18/21</h3><h6 id="30-seconts-8"><a href="#30-seconts-8" class="headerlink" title="30 seconts"></a>30 seconts</h6><p>En HTML, laquelle des réponses suivantes correspond à une hiérachie correcte d’éléments ?<br><strong>在HTML中，以下哪個答案對應於正確的元素層級結構？</strong></p>
+<h3 id="18-21"><a href="#18-21" class="headerlink" title="18/21"></a>18/21</h3><h6 id="30-seconts-8"><a href="#30-seconts-8" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>在 HTML 中，以下哪個答案對應於正確的元素層級結構？</strong></p>
 <ul>
 <li><input disabled type="checkbox"> <code>&lt;div&gt; &lt;p&gt; &lt;section&gt; &lt;span&gt;</code></li>
 <li><input checked disabled type="checkbox"> <code>&lt;section&gt; &lt;div&gt; &lt;p&gt; &lt;span&gt;</code></li>
 <li><input disabled type="checkbox"> <code>&lt;div&gt; &lt;p&gt; &lt;section&gt; &lt;span&gt;</code></li>
 <li><input disabled type="checkbox"> <code>&lt;div&gt; &lt;section&gt; &lt;span&gt; &lt;p&gt;</code></li>
 </ul>
-<h3 id="19-21"><a href="#19-21" class="headerlink" title="19/21"></a>19/21</h3><h6 id="5-minuts"><a href="#5-minuts" class="headerlink" title="5 minuts"></a>5 minuts</h6><p>La fonction <code>factorial</code> suivante, écrite par votre collègue Frédéric est cassée. Réparez la afin qu’elle renvoie la factorille du nombre donné paramètre.<br><strong>你的同事把階乘這個函式寫壞了，請把它修好。</strong></p>
+<h3 id="19-21"><a href="#19-21" class="headerlink" title="19/21"></a>19/21</h3><h6 id="5-minuts"><a href="#5-minuts" class="headerlink" title="5 minuts"></a>5 minuts</h6><p><strong>你的同事把階乘<code>factorial</code>這個函式寫壞了，請把它修好。</strong></p>
 <p>Rappel : <code>factorial(n) = 1 * 2 * 3 *... * n</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (n != <span class="number">1</span>) ? n * factorial(n<span class="number">-1</span>) : <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(factorial(<span class="number">5</span>))</span><br><span class="line"><span class="built_in">console</span>.log(factorial(<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 基本寫法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorialBase</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> n * factorialBase(n<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(factorialBase(<span class="number">5</span>))</span><br><span class="line"><span class="built_in">console</span>.log(factorialBase(<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
 
 <p>參考：<a href="https://javascript.info/task/factorial" target="_blank" rel="noopener">Calculate factorial</a></p>
-<h3 id="20-21"><a href="#20-21" class="headerlink" title="20/21"></a>20/21</h3><h6 id="25-seconts-1"><a href="#25-seconts-1" class="headerlink" title="25 seconts"></a>25 seconts</h6><p>JavaScript est multi-threadé.<br><strong>JavaScript 是多序列語言嗎？</strong></p>
+<h3 id="20-21"><a href="#20-21" class="headerlink" title="20/21"></a>20/21</h3><h6 id="25-seconts-1"><a href="#25-seconts-1" class="headerlink" title="25 seconts"></a>25 seconts</h6><p><strong>JavaScript 是多序列語言嗎？</strong></p>
 <ul>
 <li><input checked disabled type="checkbox"> Faux 錯</li>
 <li><input disabled type="checkbox"> Vrai 對</li>
 </ul>
-<h3 id="21-21"><a href="#21-21" class="headerlink" title="21/21"></a>21/21</h3><h6 id="40-minuts"><a href="#40-minuts" class="headerlink" title="40 minuts"></a>40 minuts</h6><p>Les supermarchés s’équipent de plus en plus de caisses automatiques. La plupart de ces caisses n’acceptent que le paiement par carte bancaire bien qu’une part non négligeable de consommateurs pays encore en espèces(avec des billets et des pièces).<br><strong>超市越來越配備自動收款機。 儘管大部分國家的消費者仍使用現金（包括鈔票和硬幣），但大多數收銀機僅接受銀行卡付款。</strong></p>
-<p>Une des problématiques rencontrees avec le paiement en especes est le rendu de monnaie : comment rendre une somme donnee de façon optimale, c’esta-dire avec le nombre minimal de pieces et billets ? C’est un probleme qui se pose a chacun de nous quotidiennement, à fortiori aux caisses automatiques.<br><strong>現金支付遇到的問題之一是貨幣兌換：如何以最佳方式製作給定的金額，也就是說，使用最少數量的硬幣和紙幣？ 這是我們每個人每天都會遇到的問題，更不用說在自動付款站了。</strong></p>
-<p>Dans cet exercice, on vous demande d’essayer de trouver une solution optimale pour rendre la monnaie dans un cas précis : quand une caisse automatique ne contient que des pieces de ** 2 euros<strong>, des billets de **5 euros</strong> et de <strong>10 euros</strong>.
-<strong>在本練習中，要求您嘗試找到在特定情況下進行更改的最佳解決方案：當自動提款機僅包含==2歐元硬幣==，==5歐元紙鈔== 和 ==10歐元紙鈔==。</strong></p>
-<p>Pour simplifier le problème, nous considérerons que toutes ces pièces et billets sont disponibles en <strong>quantité illimitée</strong>.
-<strong>為了簡化問題，我們將考慮所有這些硬幣和紙幣以==無限數量==提供。</strong></p>
-<p>Voici quelques exemples de rendu de monnaie :<br><strong>以下是一些變更示例：</strong></p>
+<h3 id="21-21"><a href="#21-21" class="headerlink" title="21/21"></a>21/21</h3><h6 id="40-minuts"><a href="#40-minuts" class="headerlink" title="40 minuts"></a>40 minuts</h6><p><strong>超市越來越配備自動收款機。 儘管大部分國家的消費者仍使用現金（包括鈔票和硬幣），但大多數收銀機僅接受銀行卡付款。</strong><br><strong>現金支付遇到的問題之一是貨幣兌換：如何以最佳方式製作給定的金額，也就是說，使用最少數量的硬幣和紙幣？ 這是我們每個人每天都會遇到的問題，更不用說在自動付款站了。</strong><br><strong>在本練習中，請嘗試找到在特定情況下進行更改的最佳解決方案：當自動提款機僅包含==2歐元硬幣==，==5歐元紙鈔== 和 ==10歐元紙鈔==。</strong><br><strong>為了簡化問題，我們將考慮所有這些硬幣和紙幣以==無限數量==提供。</strong><br><strong>以下是一些示範：</strong></p>
 <table>
 <thead>
 <tr>
-<th>Monnaie à rendre</th>
-<th>Solutions possibles</th>
-<th>Solution optimale</th>
+<th>要退回的貨幣</th>
+<th>可能的解決方式</th>
+<th>優化後的解決方式</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>1</td>
-<td>Impossible</td>
-<td>Impossible</td>
+<td>無解</td>
+<td>無解</td>
 </tr>
 <tr>
 <td>6</td>
@@ -340,14 +323,12 @@ ga('send', 'pageview');
 <td>5 + 2 * 3</td>
 </tr>
 </tbody></table>
-<p>Le rendu de monnaisa est exprimé par un objet possédant 3 propriétés.<br><code>two</code>,<code>five</code>,<code>ten</code> qui, respectivement, stockent le nombre de pièces 2 euros, de billets de 5 euros et de billets de 10 euros.<br><strong>金額由具有3個屬性的物件表示。<br>分別存儲2歐元硬幣，5歐元鈔票和10歐元的鈔票數量，以<code>two</code>,<code>five</code>,<code>ten</code>為屬性。</strong></p>
-<p>Par exemple, si on reprend l’exemple n.2 du tableau(6 euros), on devrait obtenie l’objet:<br><strong>例如第二個例子，如果我們從表中獲取6歐元，則應獲取物件：</strong></p>
+<p><strong>金額由具有3個屬性的物件表示。<br>分別存儲2歐元硬幣，5歐元鈔票和10歐元的鈔票數量，以<code>two</code>,<code>five</code>,<code>ten</code>為屬性。</strong></p>
+<p><strong>例如第二個例子，如果我們從表中獲取6歐元，則應獲取物件：</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  two: <span class="number">3</span>,   <span class="comment">// 3 pièces de 2 euros</span></span><br><span class="line">  five: <span class="number">0</span>,  <span class="comment">// 0 pièces de 5 euros</span></span><br><span class="line">  ten: <span class="number">0</span>    <span class="comment">// 0 pièces de 10 euros</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Implémentez la méthode <code>change(cash)</code>qui retourne un objet contenant les billets dont la somme vaut <code>s</code>. S’il est impossible de rendre la monnaie (comme dans l’exemple n.1), returnez <code>null</code>.
-<strong>寫出<code>change（cash）</code>函式，該函式需回傳一個物件，其中包含總和為<code>s</code>。 如果不可能進行更改（例如第一個例子），則回傳<code>null</code>。</strong></p>
-<p>Pour obtenir un maximum de points vetre solution devra toujours rendre la monnaie quand c’est possible et avec le <strong>nombre minimal de pièces et billets</strong>.
-<strong>為了獲得最高分，您的解決方案必須盡可能使用</strong>最小面額的硬幣和紙幣<strong>。</strong><br>Données : <code>0 &lt;</code>cash<code>&lt; 9007199254740991</code><br>**數據：<code>0 &lt;</code>cash<code>&lt; 9007199254740991</code></p>
+<p><strong>寫出<code>change（cash）</code>函式，該函式需回傳一個物件，其中包含總和為<code>s</code>。 如果不可能進行更改（例如第一個例子），則回傳<code>null</code>。</strong><br><strong>為了獲得最高分，您的解決方案必須盡可能使用「最小面額的硬幣和紙幣」</strong>。
+<strong>數據：<code>0 &lt;</code>cash<code>&lt; 9007199254740991</code></strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">change</span>(<span class="params">cash</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    two:<span class="number">0</span>,</span><br><span class="line">    five:<span class="number">0</span>,</span><br><span class="line">    ten:<span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">1</span>)); <span class="comment">// null</span></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">42</span>).ten); <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">42</span>).five); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">42</span>).two); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
 
 <p>回答：<a href="https://jsbin.com/duzefon/edit?js,console" target="_blank" rel="noopener">20/20 找錢 - JS Bin</a><br>後記：最後ㄧ題似乎還有些問題，如果把範例中最後一個拿來測試，會有問題，且無法做到優化，也就是說如果尾數是11，就可變成（5<em>1）+(2</em>3)。這部分得再好好想想才行。</p>
@@ -376,7 +357,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_front_test01/" data-id="ck5my1ust007pxluw24b9pvp6" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_front_test01/" data-id="ck5now39q0084j7uweg5f7man" class="article-share-link">
                             Share
                         </a>
                         
@@ -508,7 +489,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS30_01_Drum-Kit copy/" data-id="ck5my1uqv000nxluwve9sfkj1" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS30_01_Drum-Kit copy/" data-id="ck5now37k0008j7uweunhe1jb" class="article-share-link">
                             Share
                         </a>
                         
@@ -583,7 +564,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS30_00_start/" data-id="ck5my1uqr000exluwty1yq04w" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS30_00_start/" data-id="ck5now37i0006j7uws15437av" class="article-share-link">
                             Share
                         </a>
                         
@@ -677,7 +658,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/" data-id="ck5my1us40045xluwvws0h2jm" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/" data-id="ck5now38v003tj7uw5w59glbe" class="article-share-link">
                             Share
                         </a>
                         
@@ -1028,7 +1009,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_book-club-note-array/" data-id="ck5my1uss007oxluwa9rqa26g" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_book-club-note-array/" data-id="ck5now39r0085j7uwetft6lsq" class="article-share-link">
                             Share
                         </a>
                         
@@ -1120,7 +1101,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function/" data-id="ck5my1us30041xluwth50wg8s" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function/" data-id="ck5now38u003pj7uwv4nc29xb" class="article-share-link">
                             Share
                         </a>
                         
@@ -1218,7 +1199,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/" data-id="ck5my1us2003yxluwx4fyod9h" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/" data-id="ck5now38t003mj7uwxozs3u88" class="article-share-link">
                             Share
                         </a>
                         
@@ -1315,7 +1296,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/" data-id="ck5my1us1003uxluwrpj9271y" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/" data-id="ck5now38s003ij7uwyccsr6iw" class="article-share-link">
                             Share
                         </a>
                         
@@ -1399,7 +1380,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan30_Array-dinner-is-not-finished/" data-id="ck5my1us0003rxluwba2p0wqf" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan30_Array-dinner-is-not-finished/" data-id="ck5now38r003fj7uw6qime383" class="article-share-link">
                             Share
                         </a>
                         
@@ -1511,7 +1492,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan29_About-ECMAScript5s-Array-Method/" data-id="ck5my1urz003nxluwwggbpfkb" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan29_About-ECMAScript5s-Array-Method/" data-id="ck5now38n003bj7uwdzeipdgx" class="article-share-link">
                             Share
                         </a>
                         
@@ -1573,7 +1554,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
       <ul>
         
           <li>
-            <a href="JS_front_test01/">法國 CodinGame 前端初級測驗</a>
+            <a href="JS_front_test01/">法國前端初級測驗</a>
           </li>
         
           <li>
