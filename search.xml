@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>ReactJS 環境佈署</title>
+      <link href="/tsuifei.github.io/React-deploy_01/"/>
+      <url>/tsuifei.github.io/React-deploy_01/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>有完善的開發環境，開發起來才順手之起手式</p></blockquote><h2 id="ReactJS部署開發環境"><a href="#ReactJS部署開發環境" class="headerlink" title="ReactJS部署開發環境"></a>ReactJS部署開發環境</h2><h3 id="安裝開發套件懶人法"><a href="#安裝開發套件懶人法" class="headerlink" title="安裝開發套件懶人法"></a>安裝開發套件懶人法</h3><p>可先安裝<code>create-react-app</code>套件在 global 環境中，使用終端機指令：<code>sudo npm install -g create-react-app</code>，可以先試試把<code>sudo</code>拿掉，看是否有權限安裝，不行再加。</p><p>安裝了這個套件，在要開新專案時使用，會自動佈署所需要的檔案與套件，整個檔案約296MB。先以<code>cd</code>前往要安裝的位置。<br><code>create-react-app [專案檔案夾名稱ex.test]</code>即會在所在的路徑增加一個名為 [專案檔案夾名稱ex.test] 的 test檔案夾。<br>顯示以下訊息表示安裝完成</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[fsevents] Success: &quot;/Users/tsuifei/Apprendre/JS/ReactJS/test/node_modules/fsevents/lib/binding/Release/node-v64-darwin-x64/fse.node&quot; already installed</span><br><span class="line">Pass --update-binary to reinstall or --build-from-source to recompile</span><br><span class="line">+ react@16.5.2</span><br><span class="line">+ react-scripts@2.0.5</span><br><span class="line">+ react-dom@16.5.2</span><br><span class="line">added 1746 packages from 670 contributors and audited 31992 packages in 147.652s</span><br><span class="line">found 0 vulnerabilities</span><br><span class="line"></span><br><span class="line">Initialized a git repository.</span><br><span class="line"></span><br><span class="line">Success! Created test at /Users/tsuifei/Apprendre/JS/ReactJS/test</span><br><span class="line">Inside that directory, you can run several commands:</span><br><span class="line"></span><br><span class="line">  npm start // 開啟開發伺服器，並會自動啟動預設瀏覽器，並以port 3000開啟顯示結果。</span><br><span class="line">    Starts the development server. 由port 3000開啟至瀏覽器</span><br><span class="line"></span><br><span class="line">  npm run build // 生成可用的網頁</span><br><span class="line">    Bundles the app into static files for production.</span><br><span class="line"></span><br><span class="line">  npm test</span><br><span class="line">    Starts the test runner. </span><br><span class="line"></span><br><span class="line">  npm run eject</span><br><span class="line">    Removes this tool and copies build dependencies, configuration files</span><br><span class="line">    and scripts into the app directory. If you do this, you can’t go back!</span><br><span class="line"></span><br><span class="line">We suggest that you begin by typing:</span><br></pre></td></tr></table></figure><h2 id="進入專案檔案夾"><a href="#進入專案檔案夾" class="headerlink" title="進入專案檔案夾"></a>進入專案檔案夾</h2><p>安裝完後先進去專案，以範例來說專案名稱為<code>test</code>：  <code>cd test</code><br>啟動並開始開發<br>  <code>npm start</code></p><p>Happy hacking!</p><h2 id="create-react-app-所自動產生的檔案說明"><a href="#create-react-app-所自動產生的檔案說明" class="headerlink" title="create-react-app 所自動產生的檔案說明"></a>create-react-app 所自動產生的檔案說明</h2><p>.├── README.md<br>├── package.json<br>├── public –&gt; 編譯後產生的前端檔<br>│   ├── favicon.ico<br>│   ├── index.html<br>│   └── manifest.json<br>├── src –&gt; 開發檔案<br>│   ├── App.css<br>│   ├── App.js 組件<br>│   ├── App.test.js<br>│   ├── index.css<br>│   ├── index.js 入口<br>│   ├── logo.svg<br>│   └── registerServiceWorker.js<br>└── yarn.lock</p><p>安裝完畢後執行 <code>npm start</code> 指令，可直接在瀏覽器上看編譯結果，<br>跳出編譯器則是<code>control + c</code></p><p>==指令==<br>利用create-react-app套件, 快速產生 webpack 的設定檔<br><code>npm install --global create-react-app</code></p><p>重點[使用方法]：</p><ol><li><p>新增react開發模板<br><code>create-react-app [YOUR_APP_NAME]</code></p></li><li><p>啟動server<br><code>npm start</code> 會自動在瀏覽器開啟 localhost:3000</p></li><li><p>src資料夾即react的模板</p></li><li><p>用webpack build你的網頁，執行之後在<code>build</code>裡的檔案即是可發佈的檔案。<br><code>npm run build</code></p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> JavaScript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> React </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>法國前端初級測驗</title>
       <link href="/tsuifei.github.io/JS_front_test01/"/>
       <url>/tsuifei.github.io/JS_front_test01/</url>

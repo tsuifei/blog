@@ -111,6 +111,118 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan29_About-ECMAScript5s-Array-Method" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_ironMan29_About-ECMAScript5s-Array-Method/" class="article-date">
+  <time datetime="2019-11-28T20:21:14.000Z" itemprop="datePublished">2019-11-29</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_ironMan29_About-ECMAScript5s-Array-Method/">JS ECMAScript 5 的陣列 Array 方法淺析</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-29"><a href="#Day-29" class="headerlink" title="Day 29"></a>Day 29</h6><blockquote>
+<p>生活要簡約，寫程式也是。但是，可能嗎？</p>
+</blockquote>
+<p>ECMAScript 5 的陣列方法，除了前兩篇介紹的<code>indexOf()</code>和<code>lastIndexOf()</code>外，還有許多非常好用的方法，這些方法包含了對陣列做迭代（iterating）、對映（mapping）、過濾（filtering）、測試（testing）、約簡（reducing）<del>這是什麼？！</del> 和搜尋(search)的功能。</p>
+<p>剛開始接觸這些「動詞」時，實在有點不知所措，我們先來了解一下這些詞的意義。因為這些詞用在不同的領域會有不太相同的解釋，所以我們以 JavaScript 的解釋為主。中文翻譯部分也會以「JavaScript 大全中文版」為主。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191014/20104175XLumawbfhE.png" alt="https://ithelp.ithome.com.tw/upload/images/20191014/20104175XLumawbfhE.png"></p>
+<h3 id="迭代（iterating）"><a href="#迭代（iterating）" class="headerlink" title="迭代（iterating）"></a>迭代（iterating）</h3><ul>
+<li>forEach()</li>
+</ul>
+<p>Iterate 的中文是「重複」，在程式裡指的是反覆運算，如果我們希望程式重複的做一件事，最常想到的是迴圈，重複執行一項指令。而迭代也和迴圈相似，反覆的運算直到不符合我們給的條件而停止。迭代也常被拿來和「遞迴」（Recursively）一起討論，遞迴算是迭代的升級版，和迭代最大的不同是，遞迴會把我們運算出來的結果，當作下一次重複的初始值，直到找到符合我們要的值與到達終止的條件。<br>參考：<a href="https://zh.wikipedia.org/zh-tw/%E8%BF%AD%E4%BB%A3" target="_blank" rel="noopener">疊代 - 維基百科，自由的百科全書</a></p>
+<h3 id="對映（mapping）"><a href="#對映（mapping）" class="headerlink" title="對映（mapping）"></a>對映（mapping）</h3><ul>
+<li>map()</li>
+</ul>
+<p>有些書上也會把 mapping 翻譯成鏡射或是映射。較容易理解的解釋是我們對每一個陣列上的元素做一些「加工」，然後加工後的結果，再依原本的陣列順序「存放」在另一個新的陣列裡。例如，我們希望對每個陣列裡的數字做「同樣」的運算，然後再把這些運算完的結果，照順序放到另一個陣列裡。<br>參考：<a href="https://en.wikipedia.org/wiki/Mapping" target="_blank" rel="noopener">Mapping - Wikipedia</a></p>
+<h3 id="過濾（filtering）"><a href="#過濾（filtering）" class="headerlink" title="過濾（filtering）"></a>過濾（filtering）</h3><ul>
+<li>filter()</li>
+</ul>
+<p>相較於其他，過濾很容易懂。顧名思義就像是過濾器，很像我們常用的 if 語句，只把我們想要的（符合條件）留下來，集合起來成另一個陣列。</p>
+<h3 id="測試（testing）"><a href="#測試（testing）" class="headerlink" title="測試（testing）"></a>測試（testing）</h3><ul>
+<li>every()</li>
+<li>some()</li>
+</ul>
+<p>測試這個詞大家都懂，但是本人覺得這裡的測試，比較像是「是非題」，檢查陣列元素時，如果有一個符合我們給的條件，就會回傳 true，全部都不符合條件就會回傳 false。感覺這樣的運作方式很像 JavaScript 裡的邏輯運算子的 AND <code>&amp;&amp;</code>和 OR<code>||</code>，如果是<code>||</code>，只要有一個是<code>true</code>就算其他的都是<code>false</code>也會回傳<code>true</code>。 </p>
+<h3 id="約簡（reducing）"><a href="#約簡（reducing）" class="headerlink" title="約簡（reducing）"></a>約簡（reducing）</h3><ul>
+<li>reduce()</li>
+<li>reduceRight()</li>
+</ul>
+<p>Reducer 的中文是「減速器」<del>是在簡約什麼？</del>，這聽起來有點古怪，被稱為 reduce 的原因是因為，我們通常會用它來將陣列精簡成一個值，例如加總或計算陣列的平均值。也就是說，依據我們指定的函式，結合陣列的元素而產生一個值。這樣的方式常被拿來用在程式中的運算，所以也會被成為注入（inject）或折疊（fold）。</p>
+<h3 id="搜尋-searching"><a href="#搜尋-searching" class="headerlink" title="搜尋(searching)"></a>搜尋(searching)</h3><ul>
+<li>indexOf()</li>
+<li>lastIndexOf()</li>
+</ul>
+<p>search 相信大家都知道，這個詞就是搜尋和查找的意思，這些方法會依照我們給的值，去陣列裡查找，並將找到的這個值的位置回傳給我們。這兩個搜尋的方法，是少數不以函式當參數的陣列方法。</p>
+<h3 id="ECMAScript-5-的陣列方法共同的特徵"><a href="#ECMAScript-5-的陣列方法共同的特徵" class="headerlink" title="ECMAScript 5 的陣列方法共同的特徵"></a>ECMAScript 5 的陣列方法共同的特徵</h3><p>以上就是 ECMAScript 5 的陣列方法的淺略解析，基本上這些方法都有一些共同的特徵：</p>
+<ol>
+<li>這些方法的基礎都是使用「迭代」，對陣列元素重複做同一件事。</li>
+<li>這些方法的參數大多是函式，以呼叫(callback)函式的方法，來當此方法的參數，且會對陣列裡的元素執行一次此函式。</li>
+<li>如果陣列是稀疏的，指定使用的函式不會在這些稀疏陣列上起作用。</li>
+<li>陣列方法的參數函式會用三個引數來調用：陣列的元素值、陣列的索引值以及陣列本身。通常只需引數的第一個，可忽略第二、三個引數。</li>
+<li>陣列方法的參數函式也可接受額外的第二引數（如語法的[, thisArg]），如果有此第二引數，那麼傳入的參數函式會被當作第二引數的方法來調用，等同於我們傳入的第二引數會變成傳入的參數函式內的<code>this</code>關鍵字的值。這部分是不是感覺有點混亂？ <del>我也是</del>我們之後有更詳細的說明。</li>
+</ol>
+<p>如果能了解上面的特性與規則，相信碰上 ECMAScript 5 的陣列方法，用起來就會更得心應手了。</p>
+<p>原本是想要今天開始進入 ECMAScript 5 陣列方法的重心的 <del>進入內心戲</del>，但是看來應該是要在鐵人賽之後了，明天是鐵人賽的最後一天，總是要聊一下參賽感言，感言講完了，我們再好好的來聊聊這幾個 ECMAScript 5 非常重要的陣列方法囉！<del>沒錯！我想繼續鐵人！</del></p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-29"><a href="#Day-29" class="headerlink" title="Day 29"></a>Day 29</h6><blockquote>
+<p>生活要簡約，寫程式也是。但是，可能嗎？</p>
+</blockquote>
+<p>ECMAScript 5 的陣列方法，除了前兩篇介紹的<code>indexOf()</code>和<code>lastIndexOf()</code>外，還有許多非常好用的方法，這些方法包含了對陣列做迭代（iterating）、對映（mapping）、過濾（filtering）、測試（testing）、約簡（reducing）<del>這是什麼？！</del> 和搜尋(search)的功能。</p>
+<p>剛開始接觸這些「動詞」時，實在有點不知所措，我們先來了解一下這些詞的意義。因為這些詞用在不同的領域會有不太相同的解釋，所以我們以 JavaScript 的解釋為主。中文翻譯部分也會以「JavaScript 大全中文版」為主。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_ironMan29_About-ECMAScript5s-Array-Method/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan29_About-ECMAScript5s-Array-Method/" data-id="ck5o2ahes003nibuwyvetxdkw" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan28_Find-the-index-value-of-the-last-element" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_ironMan28_Find-the-index-value-of-the-last-element/" class="article-date">
@@ -196,7 +308,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan28_Find-the-index-value-of-the-last-element/" data-id="ck5o27wf4003fdmuwz1r3dhex" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan28_Find-the-index-value-of-the-last-element/" data-id="ck5o2aher003kibuwqdgpd87q" class="article-share-link">
                             Share
                         </a>
                         
@@ -289,7 +401,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan27_Finding-element-index-values-in-an-array/" data-id="ck5o27wf5003jdmuw1iohpa71" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan27_Finding-element-index-values-in-an-array/" data-id="ck5o2ahen003gibuwnih6gwpv" class="article-share-link">
                             Share
                         </a>
                         
@@ -374,7 +486,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan26_Converts-Array-to-string-and-localized/" data-id="ck5o27wf00038dmuwqie7m6cu" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan26_Converts-Array-to-string-and-localized/" data-id="ck5o2ahem003dibuwyz8tv4iq" class="article-share-link">
                             Share
                         </a>
                         
@@ -466,7 +578,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/" data-id="ck5o27wex0031dmuwefe0wkp5" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/" data-id="ck5o2ahel0039ibuwsloes302" class="article-share-link">
                             Share
                         </a>
                         
@@ -558,7 +670,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/" data-id="ck5o27wf2003cdmuwevy29rjl" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/" data-id="ck5o2ahek0036ibuw2bcbqchr" class="article-share-link">
                             Share
                         </a>
                         
@@ -647,7 +759,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan23_Reverses-an-array-in-place-reverse()-method/" data-id="ck5o27wez0035dmuwazzyy5du" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan23_Reverses-an-array-in-place-reverse()-method/" data-id="ck5o2ahej0032ibuwsc5scr1e" class="article-share-link">
                             Share
                         </a>
                         
@@ -751,7 +863,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan22_ Sorts-the-elements-of-an-array-sort()-method/" data-id="ck5o27wev002udmuwkuqzk5eh" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan22_ Sorts-the-elements-of-an-array-sort()-method/" data-id="ck5o2aheh002zibuw867o8zd0" class="article-share-link">
                             Share
                         </a>
                         
@@ -846,7 +958,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan21_Changes-the-contents-of-an-array-method /" data-id="ck5o27wew002ydmuwme65qv3z" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan21_Changes-the-contents-of-an-array-method /" data-id="ck5o2aheg002vibuwpinpbj1p" class="article-share-link">
                             Share
                         </a>
                         
@@ -940,120 +1052,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan20_Shallow-copy-array-slice()-method/" data-id="ck5o27weu002rdmuw0uzb1a88" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
-    <article id="post-JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/" class="article-date">
-  <time datetime="2019-11-18T20:21:14.000Z" itemprop="datePublished">2019-11-19</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/">JS 合併陣列 Array 的方法 concat()</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-19"><a href="#Day-19" class="headerlink" title="Day 19"></a>Day 19</h6><blockquote>
-<p>人生像是一列火車，旅程中總是會搭載著不同貨物，走得越遠掛載的越多，包括肥肉。</p>
-</blockquote>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20191004/201041759bPpG8rNEQ.png" alt="https://ithelp.ithome.com.tw/upload/images/20191004/201041759bPpG8rNEQ.png"></p>
-<h6 id="圖片來源：www-unsplash-com-Dibyendu-Sekhar-Das"><a href="#圖片來源：www-unsplash-com-Dibyendu-Sekhar-Das" class="headerlink" title="圖片來源：www.unsplash.com / Dibyendu Sekhar Das"></a>圖片來源：<a href="http://www.unsplash.com" target="_blank" rel="noopener">www.unsplash.com</a> / Dibyendu Sekhar Das</h6><p>在法國搭高速火車時，曾經收到朋友的告誡：千萬不要自己亂換車廂，尤其是火車停在某一站的時候。</p>
-<p>原本不以為意，但聽到以下的故事就頓時聽話了：<br>某人在火車停靠在某一站時，因為肚子痛急著想上廁所，但自己座位的那節車廂廁所卻有人，於是到隔壁的車廂去上，拉肚子總是不好解決，花了許多時間，等到舒緩之後，突然意會到怎麼火車還沒開，於是走回去原車廂時，驚！發現原本坐的那節車廂不見了！完全被<code>shift()</code>掉了！</p>
-<p>這是真實的故事，因為法國很大，火車從巴黎出發，一路往南開會經過好幾個城市，為了節省資源，會特意在訂票時就把到達同城市的旅客集中在固定的幾節車廂，這樣一來只要到達某站，就會把指定的那幾節車廂拆卸下來（切斷），然後其餘的車廂繼續開往其他城市。反過來想，這列火車也是可以陸續和其他的車廂合併，一起開往巴黎。</p>
-<p>火車的車廂就像是陣列，一節節的車廂合併串起來就是<code>concat()</code>了。 <del>轉大人成功了</del></p>
-<h2 id="concat-一列到達許多城市的火車"><a href="#concat-一列到達許多城市的火車" class="headerlink" title="concat() 一列到達許多城市的火車"></a>concat() 一列到達許多城市的火車</h2><p>concat() 可以在陣列中與其他多個陣列合併，並回傳新的陣列。原陣列不會被改變。我們可以將要合併的陣列或元素，多個或單個，以引數的方式，讓原陣列與這些要併入的陣列或元素合併在一起。</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20191004/20104175qI0DGY793E.png" alt="https://ithelp.ithome.com.tw/upload/images/20191004/20104175qI0DGY793E.png"></p>
-<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/concat" target="_blank" rel="noopener">Array.prototype.concat() - JavaScript | MDN</a><br>concat() 方法<br><strong>原型：</strong> Array.prototype.concat()<br><strong>功能：</strong> 用來合併兩個或多個陣列或元素。concat()不會改變原有的陣列，回傳一個包含呼叫陣列本身的值，作為代替的是回傳一個新陣列。<br><strong>改變：</strong> 不會改變原有的陣列<br><strong>語法：</strong> var new_array = old_array.concat(value1[, value2[, …[, valueN]]])<br><strong>回傳值：</strong> 一個新的陣列實體。<br><strong>參數：</strong> valueN 陣列以及／或者值，用來合併成一個新的陣列。</p>
-<h2 id="只要放在-裡都吃-不偏食"><a href="#只要放在-裡都吃-不偏食" class="headerlink" title="只要放在( )裡都吃 不偏食"></a>只要放在( )裡都吃 不偏食</h2><p>我們以參數傳入的方式，把要合併的陣列或元素放在( )裡，這部分<code>concat()</code>非常彈性，要多個、單個、或陣列與物件的方式都可以，幾乎是給什麼吃什麼。 <del>好雜食啊</del></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="string">"Hi"</span>, <span class="string">"Wow"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果將陣列以參數傳入concat()，它會拆開這些陣列，並將元素加入原本的陣列。</span></span><br><span class="line"><span class="keyword">const</span> arr2 = arr1.concat([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line"><span class="keyword">const</span> arr3 = arr2.concat(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line"><span class="keyword">const</span> arr4 = arr3.concat(&#123; <span class="attr">a</span>: <span class="number">42</span> &#125;);</span><br><span class="line"></span><br><span class="line">arr1; <span class="comment">// [ 'Hi', 'Wow' ]</span></span><br><span class="line">arr2; <span class="comment">// [ 'Hi', 'Wow', 1, 2, 3 ]</span></span><br><span class="line">arr3; <span class="comment">// [ 'Hi', 'Wow', 1, 2, 3, 4, 5, 6 ]</span></span><br><span class="line">arr4; <span class="comment">// [ 'Hi', 'Wow', 1, 2, 3, 4, 5, 6, &#123; a: 42 &#125; ]</span></span><br></pre></td></tr></table></figure>
-
-<p>既然是多個，我們也可以一次就把要合併的元素或物件合併上去。像這樣：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="string">"Hi"</span>, <span class="string">"Wow"</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr2 = arr1.concat([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, &#123; <span class="attr">a</span>: <span class="number">42</span> &#125;);</span><br><span class="line"></span><br><span class="line">arr1; <span class="comment">// [ 'Hi', 'Wow' ]</span></span><br><span class="line">arr2; <span class="comment">// [ 'Hi', 'Wow', 1, 2, 3, 4, 5, 6, &#123; a: 42 &#125; ]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 字串也可以</span></span><br><span class="line"><span class="keyword">const</span> colorName = <span class="string">"purple"</span></span><br><span class="line"><span class="keyword">const</span> allColor4 = [...warmColor, ...coldColor, colorName];</span><br><span class="line"></span><br><span class="line">allColor4; <span class="comment">// [ 'red', 'yellow', 'blue', 'gray', 'purple' ]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="雖彈性也不要以為可以隨便"><a href="#雖彈性也不要以為可以隨便" class="headerlink" title="雖彈性也不要以為可以隨便"></a>雖彈性也不要以為可以隨便</h3><p>雖然我們可以將陣列以參數傳入<code>concat()</code>，它會自動拆開這些陣列，但並不表示多層的陣列就可行，要注意的是，<code>concat()</code>只會拆開提供給它的第一層陣列，而不會拆開第二層陣列(陣列中的陣列)。也就是說<code>concat()</code> 不會以遞迴(recursively)的方式，把多層的陣列攤平。 <del>想得美</del></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.concat([<span class="number">4</span>, <span class="number">5</span>], <span class="number">6</span>); <span class="comment">// [1,2,3,4,5,6]; </span></span><br><span class="line">arr.concat([<span class="number">7</span>, [<span class="number">8</span>, <span class="number">9</span>]]); <span class="comment">// [ 1, 2, 3, 7, [ 8, 9 ] ]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="拷貝拷的沒那麼深的-concat"><a href="#拷貝拷的沒那麼深的-concat" class="headerlink" title="拷貝拷的沒那麼深的 concat()"></a>拷貝拷的沒那麼深的 concat()</h3><p>看到網路上討論到，使用<code>concat()</code>時，如果沒有給參數，就相當是原陣列與一個空陣列拼接，返回的原陣列，就算是原陣列的深拷貝。<br>但是利用<code>concat()</code>來複製陣列，只限用在結構較簡單的陣列上，如果運用在比較複雜與多層的物件上，這個方法就行不通了。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">"hi"</span>,<span class="string">"wow"</span>,[<span class="string">"O"</span>,<span class="string">"X"</span>]]</span><br><span class="line"><span class="keyword">let</span> arr2 = arr.concat();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 試著修改第一層和第二層的陣列元素</span></span><br><span class="line">arr[<span class="number">2</span>][<span class="number">0</span>]=<span class="string">"OOO"</span></span><br><span class="line">arr[<span class="number">0</span>] = <span class="string">"Hello"</span></span><br><span class="line"></span><br><span class="line">arr; <span class="comment">// ["Hello", "wow", ["OOO", "X"]]</span></span><br><span class="line">arr2; <span class="comment">//["hi", "wow", ["OOO", "X"]]</span></span><br></pre></td></tr></table></figure>
-
-<p>我們可以觀察到，如果修改第一層的<code>arr[0]</code>這個元素為<code>&quot;Hello&quot;</code>，<code>arr2[0]</code>並沒有被修改到，但是當我們修改<code>arr[2][0]</code>為<code>&quot;OOO&quot;</code>的時候，<code>arr2[2][0]</code>也會跟著改成<code>&quot;OOO&quot;</code>。如果要拿<code>concat()</code>來複製物件型態的資料時，還是要特別注意這點。</p>
-<h3 id="push-說-你會的我也會，且比你更會！"><a href="#push-說-你會的我也會，且比你更會！" class="headerlink" title="push() 說 你會的我也會，且比你更會！"></a>push() 說 你會的我也會，且比你更會！</h3><p>還記得我們前幾篇有介紹，從陣列尾端來「新增」元素的<code>push()</code>方法嗎？看起來<code>push()</code>做的事和<code>concat()</code>很像，都是從陣列的尾端加東西，不同之處在哪裡？</p>
-<table>
-<thead>
-<tr>
-<th>concat()</th>
-<th>從原陣列複製一個新的陣列，在新陣列上進行操作，不會改變原陣列的值。</th>
-<th>會拆開參數，把元素加進去</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>push()</td>
-<td>在原陣列上修改，執行push()原陣列的值也會變</td>
-<td>參數是陣列時，把整個陣列參數作為一個元素</td>
-</tr>
-</tbody></table>
-<h3 id="其餘參數說-你們會的我更會！"><a href="#其餘參數說-你們會的我更會！" class="headerlink" title="其餘參數說 你們會的我更會！"></a>其餘參數說 你們會的我更會！</h3><p>還有另外一種方式可以達到和<code>concat()</code>一樣效果的我們把其餘參數(rest parameter)，這個方式也很方便，效果也一樣。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> warmColor = [<span class="string">"red"</span>, <span class="string">"yellow"</span>]</span><br><span class="line"><span class="keyword">const</span> coldColor = [<span class="string">"blue"</span>, <span class="string">"gray"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 concat()</span></span><br><span class="line"><span class="keyword">const</span> allColor1 = [].concat(warmColor, coldColor);</span><br><span class="line"><span class="comment">// [ 'red', 'yellow', 'blue', 'gray' ]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以寫成</span></span><br><span class="line"><span class="keyword">const</span> allColor2 = warmColor.concat(coldColor);</span><br><span class="line"><span class="comment">// [ 'red', 'yellow', 'blue', 'gray' ]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> allColor3 = [...warmColor, ...coldColor];</span><br><span class="line"><span class="comment">// [ 'red', 'yellow', 'blue', 'gray' ]</span></span><br></pre></td></tr></table></figure>
-
-<p>但據說還是有些許不一樣，我們有機會再好好的測試。 <del>機會？鐵人賽後吧</del></p>
-<p>這三種吃小菜的方法：<code>push()</code>、<code>concat()</code>和其餘參數(rest parameter)大家喜歡哪一種？<br>希望這幾天的小菜，可以讓大家至少對如何刪除或增加陣列的方法有一個概觀，路還很長、小菜還很多樣，還請大家慢慢品嚐囉。</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-19"><a href="#Day-19" class="headerlink" title="Day 19"></a>Day 19</h6><blockquote>
-<p>人生像是一列火車，旅程中總是會搭載著不同貨物，走得越遠掛載的越多，包括肥肉。</p>
-</blockquote>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20191004/201041759bPpG8rNEQ.png" alt="https://ithelp.ithome.com.tw/upload/images/20191004/201041759bPpG8rNEQ.png"></p>
-<h6 id="圖片來源：www-unsplash-com-Dibyendu-Sekhar-Das"><a href="#圖片來源：www-unsplash-com-Dibyendu-Sekhar-Das" class="headerlink" title="圖片來源：www.unsplash.com / Dibyendu Sekhar Das"></a>圖片來源：<a href="http://www.unsplash.com" target="_blank" rel="noopener">www.unsplash.com</a> / Dibyendu Sekhar Das</h6><p>在法國搭高速火車時，曾經收到朋友的告誡：千萬不要自己亂換車廂，尤其是火車停在某一站的時候。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/" data-id="ck5o27wes002ndmuw7jgttkb4" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan20_Shallow-copy-array-slice()-method/" data-id="ck5o2ahee002sibuwlaptrwvm" class="article-share-link">
                             Share
                         </a>
                         
@@ -1102,7 +1101,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
     </div>
   </div>
 
@@ -1113,6 +1112,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="../../React-deploy_01/">ReactJS 環境佈署</a>
+          </li>
         
           <li>
             <a href="../../JS_front_test01/">法國前端初級測驗</a>
@@ -1130,10 +1133,6 @@ ga('send', 'pageview');
             <a href="../../JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/">JS 測試陣列是否有符合條件的元素好用方法 every() &amp; some()</a>
           </li>
         
-          <li>
-            <a href="../../JS_book-club-note-array/">JS 迴圈升級的陣列 Array 方法 forEach()</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1143,7 +1142,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12.5px;">JavaScript 30</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12.5px;">JavaScript 30</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 10px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 
@@ -1152,7 +1151,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/07/">七月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/07/">七月 2019</a></li></ul>
     </div>
   </div>
 
