@@ -159,13 +159,13 @@ ga('send', 'pageview');
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或是 此種比較常用</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="定義render-方法：-2"><a href="#定義render-方法：-2" class="headerlink" title="定義render ()方法：(2.)"></a>定義<code>render ()</code>方法：(2.)</h3><p><code>render()</code>方法是渲染頁面最重要的函式，利用<code>render()</code>將顯示內容以回傳<code>return()</code>物件的方式回傳，<code>return(JSX動態 or HTML靜態)</code>需用()包起來。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !&lt;il/&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !<span class="xml"><span class="tag">&lt;<span class="name">il</span>/&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="輸出組件-3"><a href="#輸出組件-3" class="headerlink" title="輸出組件(3.)"></a>輸出組件(3.)</h3><p>將組件以<code>export default [組件名];</code>形式輸出，以供其他組件使用。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Item;</span><br></pre></td></tr></table></figure>
 
 <h2 id="實作組件"><a href="#實作組件" class="headerlink" title="實作組件"></a>實作組件</h2><p>兩個組件實作，在 List(ol)組件裡引入幾個Item(li)組件。<br><strong>檔案名：Item.JS</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; </span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !&lt;il/&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Item;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; </span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !<span class="xml"><span class="tag">&lt;<span class="name">il</span>/&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Item;</span><br></pre></td></tr></table></figure>
 
 <p>在另一個組件裡把 Item 這個組件安插進來。<br><strong>檔案名：List.js</strong><br>記得需引入<code>Item.js</code>，置入組件時須以 self close tag 的型態插入，如<code>&lt;Item /&gt;&gt;</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Item <span class="keyword">from</span> <span class="string">'Item'</span>; <span class="comment">// 引入檔名可以不寫.js</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; </span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;ol&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">      &lt;ol/&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> List;</span><br></pre></td></tr></table></figure>
@@ -179,7 +179,7 @@ ga('send', 'pageview');
 <p><strong>檔名：index.js</strong><br><code>render()</code>函式有兩參數:</p>
 <ol>
 <li><code>react element</code> 元素,型態是物件。ex.<code>&lt;List/&gt;</code></li>
-<li><code>DOM contener</code> 裝 DOM 的容器。ex.<code>document.getElementById(&#39;root&#39;)</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> List <span class="keyword">from</span> <span class="string">'./List'</span>; <span class="comment">// 引入組件</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;List/&gt;, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)); </span><br><span class="line"><span class="comment">// 把 list 放到 root 裡面</span></span><br></pre></td></tr></table></figure>
+<li><code>DOM contener</code> 裝 DOM 的容器。ex.<code>document.getElementById(&#39;root&#39;)</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> List <span class="keyword">from</span> <span class="string">'./List'</span>; <span class="comment">// 引入組件</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">List</span>/&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)); </span><br><span class="line"><span class="comment">// 把 list 放到 root 裡面</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -208,7 +208,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/React-component-JSX/" data-id="ck5prkb3w0000ncuwnu6xqw49" class="article-share-link">
+                        <a data-url="tsuifei.github.io/React-component-JSX/" data-id="ck5prmv38004lpluw8apnbpcq" class="article-share-link">
                             Share
                         </a>
                         
@@ -299,7 +299,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/React-deploy_01/" data-id="ck5o2lyt8004htvuwpy4lhi1e" class="article-share-link">
+                        <a data-url="tsuifei.github.io/React-deploy_01/" data-id="ck5prmv3b004tpluwe0q3axih" class="article-share-link">
                             Share
                         </a>
                         
@@ -559,7 +559,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_front_test01/" data-id="ck5o2lytw0080tvuwhowx46ay" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_front_test01/" data-id="ck5prmv3u0085pluwf44qu7hd" class="article-share-link">
                             Share
                         </a>
                         
@@ -691,7 +691,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS30_01_Drum-Kit copy/" data-id="ck5o2lyrv000ftvuw92k7noat" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS30_01_Drum-Kit copy/" data-id="ck5prmv1m0008pluwzgihcbnq" class="article-share-link">
                             Share
                         </a>
                         
@@ -766,7 +766,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS30_00_start/" data-id="ck5o2lyrs000atvuwoy9i59ij" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS30_00_start/" data-id="ck5prmv1t000hpluw15dug78l" class="article-share-link">
                             Share
                         </a>
                         
@@ -860,7 +860,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/" data-id="ck5o2lyt3003ztvuwhe6clybv" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/" data-id="ck5prmv35004dpluw1qqi1nnk" class="article-share-link">
                             Share
                         </a>
                         
@@ -1211,7 +1211,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_book-club-note-array/" data-id="ck5o2lytu007ztvuw3ozpp7jc" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_book-club-note-array/" data-id="ck5prmv3t0084pluw0btfwkth" class="article-share-link">
                             Share
                         </a>
                         
@@ -1303,7 +1303,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function/" data-id="ck5o2lyt2003wtvuw8fem6hij" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function/" data-id="ck5prmv30003spluwbhiuo5v5" class="article-share-link">
                             Share
                         </a>
                         
@@ -1401,7 +1401,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/" data-id="ck5o2lyt1003stvuw2axbhlyt" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/" data-id="ck5prmv2z003ppluwimy5nrpu" class="article-share-link">
                             Share
                         </a>
                         
@@ -1498,7 +1498,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/" data-id="ck5o2lyt1003ptvuwqgndogtw" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/" data-id="ck5prmv2y003lpluw1uqwjjko" class="article-share-link">
                             Share
                         </a>
                         
