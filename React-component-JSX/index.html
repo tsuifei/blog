@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>React 組件 Component 和 JSX 語法 | Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="要從哪裡開始學，或許先看看 React 的組件結構比較容易懂？  在開始學習 React 的時候，或許先從觀察開始，看看應有的組件檔案裡，需要有什麼塊狀結構，就像學 HTML ㄧ樣，也會有&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;和&amp;lt;body&amp;gt; 。除了我們認識的 HTML、CSS 和 JavaScript外，React 也有屬於自己的語言標記，但嚴格說起來不能說是語言，而應該說">
+<meta name="keywords" content="JavaScript,React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React 組件 Component 和 JSX 語法">
+<meta property="og:url" content="tsuifei.github.io/React-component-JSX/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="要從哪裡開始學，或許先看看 React 的組件結構比較容易懂？  在開始學習 React 的時候，或許先從觀察開始，看看應有的組件檔案裡，需要有什麼塊狀結構，就像學 HTML ㄧ樣，也會有&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;和&amp;lt;body&amp;gt; 。除了我們認識的 HTML、CSS 和 JavaScript外，React 也有屬於自己的語言標記，但嚴格說起來不能說是語言，而應該說">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2020-01-22T20:32:14.173Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React 組件 Component 和 JSX 語法">
+<meta name="twitter:description" content="要從哪裡開始學，或許先看看 React 的組件結構比較容易懂？  在開始學習 React 的時候，或許先從觀察開始，看看應有的組件檔案裡，需要有什麼塊狀結構，就像學 HTML ㄧ樣，也會有&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;和&amp;lt;body&amp;gt; 。除了我們認識的 HTML、CSS 和 JavaScript外，React 也有屬於自己的語言標記，但嚴格說起來不能說是語言，而應該說">
+  
+  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../react">React</a>
+        
+        <a class="main-nav-link" href="../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../life">Life</a>
+        
+        <a class="main-nav-link" href="../other">Other</a>
+        
+        <a class="main-nav-link" href="../html">HTML</a>
+        
+        <a class="main-nav-link" href="../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../linux">Linux</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-React-component-JSX" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="" class="article-date">
+  <time datetime="2020-02-21T16:42:24.000Z" itemprop="datePublished">2020-02-22</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 class="article-title" itemprop="name">
+      React 組件 Component 和 JSX 語法
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <blockquote>
+<p>要從哪裡開始學，或許先看看 React 的組件結構比較容易懂？</p>
+</blockquote>
+<p>在開始學習 React 的時候，或許先從觀察開始，看看應有的組件檔案裡，需要有什麼塊狀結構，就像學 HTML ㄧ樣，也會有<code>&lt;html&gt;&lt;head&gt;</code>和<code>&lt;body&gt;</code> 。<br>除了我們認識的 HTML、CSS 和 JavaScript外，React 也有屬於自己的語言標記，但嚴格說起來不能說是語言，而應該說是語法糖，什麼是語法糖？算是介於 HTML 和JavaScript 之間的一種標籤語法，主要是要讓 JSX 來描述使用者界面的外觀，如官網<a href="https://zh-hant.reactjs.org/docs/introducing-jsx.html" target="_blank" rel="noopener">JSX – React</a>的介紹。</p>
+<h2 id="JSX-與-HTML-不同的地方"><a href="#JSX-與-HTML-不同的地方" class="headerlink" title="JSX 與 HTML 不同的地方"></a>JSX 與 HTML 不同的地方</h2><ol>
+<li>JSX 標籤語法一定要有 close tag。ex.<code>&lt;a&gt; &lt;/a&gt;</code></li>
+<li>所有的 JSX 標籤語法一定可以自動閉合 self close tag。ex.<code>&lt;input /&gt;</code></li>
+<li>tag 內的 class 屬性需改為<code>className</code> ; <code>label</code> 內的 <code>for</code> 則改為<code>htmlFor</code>，其他 CSS 屬性為兩個字的如 <code>font-size</code>也要改成<code>fontSize</code>也就是轉換成駝峰式命名法的方式。</li>
+<li>原本事件監聽觸發的事件名稱<code>onclick</code>也需要改成是駝峰式命名的<code>onClick</code>。</li>
+<li>使用大括號<code>{}</code>括著一個值或表達式<code>{this.onClick}</code> 表示是這個組件的<code>onClick()</code>函式。</li>
+</ol>
+<h2 id="創建一個新組件"><a href="#創建一個新組件" class="headerlink" title="創建一個新組件"></a>創建一個新組件</h2><p>所有我們設計的組件，都要繼承於<code>Component</code>，而組件內必須要有一個 <code>render ()</code>函式會回傳<code>return</code> 一個<code>JSX</code>的物件。<br>在書寫新組件(Component)的檔案時，需要至少有三個結構：</p>
+<ol>
+<li>引入所需。ex. <code>import</code> - <code>from</code></li>
+<li>組件本身。ex. <code>class [組件名] extends [組件名]</code></li>
+<li>輸出組件。ex. <code>export default</code></li>
+</ol>
+<h3 id="引入所需文件-1"><a href="#引入所需文件-1" class="headerlink" title="引入所需文件:(1.)"></a>引入所需文件:(1.)</h3><p>先引進必須要有的 React 的 Component，引入有兩種寫法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或是 此種比較常用</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定義render-方法：-2"><a href="#定義render-方法：-2" class="headerlink" title="定義render ()方法：(2.)"></a>定義<code>render ()</code>方法：(2.)</h3><p><code>render()</code>方法是渲染頁面最重要的函式，利用<code>render()</code>將顯示內容以回傳<code>return()</code>物件的方式回傳，<code>return(JSX動態 or HTML靜態)</code>需用()包起來。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !&lt;il/&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="輸出組件-3"><a href="#輸出組件-3" class="headerlink" title="輸出組件(3.)"></a>輸出組件(3.)</h3><p>將組件以<code>export default [組件名];</code>形式輸出，以供其他組件使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Item;</span><br></pre></td></tr></table></figure>
+
+<h2 id="實作組件"><a href="#實作組件" class="headerlink" title="實作組件"></a>實作組件</h2><p>兩個組件實作，在 List(ol)組件裡引入幾個Item(li)組件。<br><strong>檔案名：Item.JS</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; </span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !&lt;il/&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Item;</span><br></pre></td></tr></table></figure>
+
+<p>在另一個組件裡把 Item 這個組件安插進來。<br><strong>檔案名：List.js</strong><br>記得需引入<code>Item.js</code>，置入組件時須以 self close tag 的型態插入，如<code>&lt;Item /&gt;&gt;</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Item <span class="keyword">from</span> <span class="string">'Item'</span>; <span class="comment">// 引入檔名可以不寫.js</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; </span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;ol&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">      &lt;ol/&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> List;</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何渲染到畫面"><a href="#如何渲染到畫面" class="headerlink" title="如何渲染到畫面"></a>如何渲染到畫面</h2><p>組件都完成後，就可以再引入主要頁面的<code>index.js</code>並且告知要放在哪一個 DOM 元素的位置。</p>
+<ul>
+<li>在專案裡<code>src/index.js</code>，是 react 預設的程式進入點。</li>
+<li><code>react</code>是核心。<code>react-dom</code>是把 react 掛載到 dom上面的必需組件。</li>
+<li><code>src/index.js</code>裡面宣告的<code>ReactDom.render(&lt;List /&gt;,documentgetElementById(&#39;root&#39;));</code>元件，會自動 bind 綁定到<code>public/index.html裡面的</code>&lt;div id=”root&gt;`位置。</li>
+</ul>
+<p><strong>檔名：index.js</strong><br><code>render()</code>函式有兩參數:</p>
+<ol>
+<li><code>react element</code> 元素,型態是物件。ex.<code>&lt;List/&gt;</code></li>
+<li><code>DOM contener</code> 裝 DOM 的容器。ex.<code>document.getElementById(&#39;root&#39;)</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> List <span class="keyword">from</span> <span class="string">'./List'</span>; <span class="comment">// 引入組件</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;List/&gt;, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)); </span><br><span class="line"><span class="comment">// 把 list 放到 root 裡面</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                            <blockquote>
+<p>要從哪裡開始學，或許先看看 React 的組件結構比較容易懂？</p>
+</blockquote>
+<p>在開始學習 React 的時候，或許先從觀察開始，看看應有的組件檔案裡，需要有什麼塊狀結構，就像學 HTML ㄧ樣，也會有<code>&lt;html&gt;&lt;head&gt;</code>和<code>&lt;body&gt;</code> 。<br>除了我們認識的 HTML、CSS 和 JavaScript外，React 也有屬於自己的語言標記，但嚴格說起來不能說是語言，而應該說是語法糖，什麼是語法糖？算是介於 HTML 和JavaScript 之間的一種標籤語法，主要是要讓 JSX 來描述使用者界面的外觀，如官網<a href="https://zh-hant.reactjs.org/docs/introducing-jsx.html" target="_blank" rel="noopener">JSX – React</a>的介紹。</p>
+<h2 id="JSX-與-HTML-不同的地方"><a href="#JSX-與-HTML-不同的地方" class="headerlink" title="JSX 與 HTML 不同的地方"></a>JSX 與 HTML 不同的地方</h2><ol>
+<li>JSX 標籤語法一定要有 close tag。ex.<code>&lt;a&gt; &lt;/a&gt;</code></li>
+<li>所有的 JSX 標籤語法一定可以自動閉合 self close tag。ex.<code>&lt;input /&gt;</code></li>
+<li>tag 內的 class 屬性需改為<code>className</code> ; <code>label</code> 內的 <code>for</code> 則改為<code>htmlFor</code>，其他 CSS 屬性為兩個字的如 <code>font-size</code>也要改成<code>fontSize</code>也就是轉換成駝峰式命名法的方式。</li>
+<li>原本事件監聽觸發的事件名稱<code>onclick</code>也需要改成是駝峰式命名的<code>onClick</code>。</li>
+<li>使用大括號<code>{}</code>括著一個值或表達式<code>{this.onClick}</code> 表示是這個組件的<code>onClick()</code>函式。</li>
+</ol>
+<h2 id="創建一個新組件"><a href="#創建一個新組件" class="headerlink" title="創建一個新組件"></a>創建一個新組件</h2><p>所有我們設計的組件，都要繼承於<code>Component</code>，而組件內必須要有一個 <code>render ()</code>函式會回傳<code>return</code> 一個<code>JSX</code>的物件。<br>在書寫新組件(Component)的檔案時，需要至少有三個結構：</p>
+<ol>
+<li>引入所需。ex. <code>import</code> - <code>from</code></li>
+<li>組件本身。ex. <code>class [組件名] extends [組件名]</code></li>
+<li>輸出組件。ex. <code>export default</code></li>
+</ol>
+<h3 id="引入所需文件-1"><a href="#引入所需文件-1" class="headerlink" title="引入所需文件:(1.)"></a>引入所需文件:(1.)</h3><p>先引進必須要有的 React 的 Component，引入有兩種寫法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或是 此種比較常用</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定義render-方法：-2"><a href="#定義render-方法：-2" class="headerlink" title="定義render ()方法：(2.)"></a>定義<code>render ()</code>方法：(2.)</h3><p><code>render()</code>方法是渲染頁面最重要的函式，利用<code>render()</code>將顯示內容以回傳<code>return()</code>物件的方式回傳，<code>return(JSX動態 or HTML靜態)</code>需用()包起來。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !&lt;il/&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="輸出組件-3"><a href="#輸出組件-3" class="headerlink" title="輸出組件(3.)"></a>輸出組件(3.)</h3><p>將組件以<code>export default [組件名];</code>形式輸出，以供其他組件使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Item;</span><br></pre></td></tr></table></figure>
+
+<h2 id="實作組件"><a href="#實作組件" class="headerlink" title="實作組件"></a>實作組件</h2><p>兩個組件實作，在 List(ol)組件裡引入幾個Item(li)組件。<br><strong>檔案名：Item.JS</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; </span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !&lt;il/&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Item;</span><br></pre></td></tr></table></figure>
+
+<p>在另一個組件裡把 Item 這個組件安插進來。<br><strong>檔案名：List.js</strong><br>記得需引入<code>Item.js</code>，置入組件時須以 self close tag 的型態插入，如<code>&lt;Item /&gt;&gt;</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Item <span class="keyword">from</span> <span class="string">'Item'</span>; <span class="comment">// 引入檔名可以不寫.js</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; </span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;ol&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">      &lt;ol/&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> List;</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何渲染到畫面"><a href="#如何渲染到畫面" class="headerlink" title="如何渲染到畫面"></a>如何渲染到畫面</h2><p>組件都完成後，就可以再引入主要頁面的<code>index.js</code>並且告知要放在哪一個 DOM 元素的位置。</p>
+<ul>
+<li>在專案裡<code>src/index.js</code>，是 react 預設的程式進入點。</li>
+<li><code>react</code>是核心。<code>react-dom</code>是把 react 掛載到 dom上面的必需組件。</li>
+<li><code>src/index.js</code>裡面宣告的<code>ReactDom.render(&lt;List /&gt;,documentgetElementById(&#39;root&#39;));</code>元件，會自動 bind 綁定到<code>public/index.html裡面的</code>&lt;div id=”root&gt;`位置。</li>
+</ul>
+<p><strong>檔名：index.js</strong><br><code>render()</code>函式有兩參數:</p>
+<ol>
+<li><code>react element</code> 元素,型態是物件。ex.<code>&lt;List/&gt;</code></li>
+<li><code>DOM contener</code> 裝 DOM 的容器。ex.<code>document.getElementById(&#39;root&#39;)</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> List <span class="keyword">from</span> <span class="string">'./List'</span>; <span class="comment">// 引入組件</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;List/&gt;, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)); </span><br><span class="line"><span class="comment">// 把 list 放到 root 裡面</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/React-component-JSX/" data-id="ck5prkb3w0000ncuwnu6xqw49" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/React/">React</a></li></ul>
+
+                    </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+  
+  
+    <a href="../React-deploy_01/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ReactJS 環境佈署</div>
+    </a>
+  
+</nav>
+
+            
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
+            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/讀書會筆記/">讀書會筆記</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">React 組件 Component 和 JSX 語法</a>
+          </li>
+        
+          <li>
+            <a href="../React-deploy_01/">ReactJS 環境佈署</a>
+          </li>
+        
+          <li>
+            <a href="../JS_front_test01/">法國前端初級測驗</a>
+          </li>
+        
+          <li>
+            <a href="../JS30_01_Drum-Kit copy/">JS 30 - 01. Drum Kit 鍵盤音樂</a>
+          </li>
+        
+          <li>
+            <a href="../JS30_00_start/">JS 30 - 00. 為什麼開始？因為希望完成</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/JavaScript-30/" style="font-size: 12.5px;">JavaScript 30</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/React/" style="font-size: 12.5px;">React</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../tags/Test/" style="font-size: 10px;">Test</a> <a href="../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../react" class="mobile-nav-link">React</a>
+  
+    <a href="../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../other" class="mobile-nav-link">Other</a>
+  
+    <a href="../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../linux" class="mobile-nav-link">Linux</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
+  <script src="../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -111,6 +111,100 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan20_Shallow-copy-array-slice()-method" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_ironMan20_Shallow-copy-array-slice()-method/" class="article-date">
+  <time datetime="2019-11-19T20:21:14.000Z" itemprop="datePublished">2019-11-20</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_ironMan20_Shallow-copy-array-slice()-method/">JS 輕鬆淺拷貝的陣列 Array 方法 slice()</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-20"><a href="#Day-20" class="headerlink" title="Day 20"></a>Day 20</h6><blockquote>
+<p>老闆，幫我切一段香腸，從第三節到第六節，你手握著的那節不要。謝謝！</p>
+</blockquote>
+<p>slice 的英文是切片或擷取，我們生活中常用的像是：「slice of life」生活的小片段、「slice of bread」一片麵包都是在表示一部分或「片狀」。但在陣列使用<code>slice()</code>的情境，比較像是「切一段」，因為可以指定從某個元素切到某一個元素 <del>的前一個</del>。 切下來的部份是以複製的型態產生，所以也不會影響原本的陣列。</p>
+<h3 id="要哪段給哪段的-slice"><a href="#要哪段給哪段的-slice" class="headerlink" title="要哪段給哪段的 slice()"></a>要哪段給哪段的 slice()</h3><p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" target="_blank" rel="noopener">Array.prototype.slice() | MDN</a></p>
+<p><strong>原型：</strong> Array.prototype.slice()<br><strong>功能：</strong> 回傳一個新陣列物件，為原陣列選擇的 begin 至 end（不含 end）部分的淺拷貝（shallow copy）。<br><strong>改變：</strong> 原本的陣列將不會被修改。<br><strong>語法：</strong> arr.slice([begin[, end]])<br><strong>回傳值：</strong> 傳新陣列<br><strong>參數：</strong> begin 自此索引（起始為 0）開始提取拷貝。 end 至此索引值之前停止提取</p>
+<p><code>slice()</code>有兩個預設參數，第一個參數是要從哪個索引值開始切，第二個參數是要在哪一個索引值結束，第二個參數常會讓人會錯意，因為第二個參數如果是三，<code>slice()</code>其實只會取到索引值為二就停止。比較好記的方法是把第二個參數減一，那會比較符合我們平常對「從這裡切到那裡」的認知。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191005/20104175upSsl1vmpz.png" alt="https://ithelp.ithome.com.tw/upload/images/20191005/20104175upSsl1vmpz.png"></p>
+<h2 id="只給一個參數的時候"><a href="#只給一個參數的時候" class="headerlink" title="只給一個參數的時候"></a>只給一個參數的時候</h2><h3 id="不給參數就什麼都給你"><a href="#不給參數就什麼都給你" class="headerlink" title="不給參數就什麼都給你"></a>不給參數就什麼都給你</h3><p>在使用<code>slice()</code>的時候，如果不給參數，或只給零，那麼<code>slice()</code>就會把陣列從頭到尾複製一份給我們，也因此，許多人拿<code>slice()</code>來做陣列的淺拷貝，簡潔又方便。 <del>就淺淺的拷貝喔</del></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> colors1 = [<span class="string">"red"</span>, <span class="string">"yellow"</span>, <span class="string">"blue"</span>, <span class="string">"gray"</span>, <span class="string">"purple"</span>]</span><br><span class="line"><span class="keyword">const</span> colors2 = colors1.slice();</span><br><span class="line"><span class="keyword">const</span> colors3 = colors1.slice(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">colors2; <span class="comment">// [ 'red', 'yellow', 'blue', 'gray', 'purple' ]</span></span><br><span class="line">colors3; <span class="comment">// [ 'red', 'yellow', 'blue', 'gray', 'purple' ]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="給我負數我就倒立給你看"><a href="#給我負數我就倒立給你看" class="headerlink" title="給我負數我就倒立給你看"></a>給我負數我就倒立給你看</h3><p>如果我們給的參數是負數，又會發生什麼事？就像<code>length-1</code>ㄧ樣，<code>slice()</code>會從陣列的尾端開始數，如果是<code>-1</code>，就會從陣列尾端取一個，如果這個負數超過陣列的長度，<code>slice()</code>就會把所有能給我們都給出來。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> colors1 = [<span class="string">"red"</span>, <span class="string">"yellow"</span>, <span class="string">"blue"</span>, <span class="string">"gray"</span>, <span class="string">"purple"</span>]</span><br><span class="line"><span class="keyword">const</span> colors2 = colors1.slice(<span class="number">-1</span>);</span><br><span class="line"><span class="keyword">const</span> colors3 = colors1.slice(<span class="number">-6</span>);</span><br><span class="line"></span><br><span class="line">colors2; <span class="comment">// [ 'purple' ]</span></span><br><span class="line">colors3; <span class="comment">// [ 'red', 'yellow', 'blue', 'gray', 'purple' ]</span></span><br></pre></td></tr></table></figure>
+
+<p>我們可以發現，當我們參數是<code>-1</code>時，就好像是使用<code>pop()</code>，只是<code>pop()</code>回傳給我們的被刪掉值的索引值，但是<code>slice(-1)</code>卻會回傳陣列最後一個元素。</p>
+<h3 id="遇到多維的深拷貝就失效"><a href="#遇到多維的深拷貝就失效" class="headerlink" title="遇到多維的深拷貝就失效"></a>遇到多維的深拷貝就失效</h3><p>雖然拿<code>slice()</code>來複製陣列很方便，但如果遇到多維陣列，<code>slice()</code>的複製就會失效。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 多維陣列，slice() 深拷貝失效</span></span><br><span class="line"><span class="keyword">const</span> arr1 = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],[<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]] </span><br><span class="line"><span class="keyword">const</span> arr2 = arr1.slice(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">arr2; <span class="comment">// [ [ 1, 2, 3 ], [ 4, 5, 6 ] ]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改原陣列</span></span><br><span class="line">arr1[<span class="number">0</span>][<span class="number">0</span>] = <span class="string">"Hi"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 兩個陣列都被修改了</span></span><br><span class="line">arr1; <span class="comment">// [ [ 'Hi', 2, 3 ], [ 4, 5, 6 ] ]</span></span><br><span class="line">arr2; <span class="comment">// [ [ 'Hi', 2, 3 ], [ 4, 5, 6 ] ]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="兩個參數給好給滿"><a href="#兩個參數給好給滿" class="headerlink" title="兩個參數給好給滿"></a>兩個參數給好給滿</h2><p><code>slice()</code>的第二個參數頗曖昧我們都知道，明明是要擷取至索引值 4 卻只會擷取到 3，在記<code>slice()</code>第二個參數的時候，只要把刪除的索引值再 +1 會比較好記 <del>或是相反</del>。
+我們來看有第二個參數時的變化：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> friends1 = [<span class="string">'Ayda'</span>, <span class="string">'Phi'</span>, <span class="string">'Alex'</span>, <span class="string">'Chris'</span>, <span class="string">'Tracy'</span>, <span class="string">'Thomas'</span>, <span class="string">'Jean'</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 從索引值 1 擷取 至 2 (2+1=3) </span></span><br><span class="line"><span class="keyword">const</span> friends2 = friends1.slice(<span class="number">1</span>, <span class="number">3</span>);</span><br><span class="line">friends2; <span class="comment">// [ 'Phi', 'Alex' ]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 只要第二個參數是 0 就會回傳空陣列</span></span><br><span class="line"><span class="keyword">const</span> friends3 = friends1.slice(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">friends3; <span class="comment">// []</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// -2 是從尾端開始數回來</span></span><br><span class="line"><span class="keyword">const</span> friends4 = friends1.slice(<span class="number">2</span>, <span class="number">-2</span>);</span><br><span class="line">friends4; <span class="comment">// [ 'Alex', 'Chris', 'Tracy' ]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> friends5 = friends1.slice(<span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line">friends5; <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+
+<p>如果第二個參數是負數，表示從陣列的尾端算回來。<br>如果第二個參數比原陣列的長度長，那麼<code>slice()</code>就會擷取到陣列的最後一個元素。<br>如果第二個參數和第一個參數一樣，<code>slice()</code>會回傳空陣列，因為第二個參數會 -1 也就把第一個參數給減掉了。</p>
+<p><code>slice()</code>雖然是簡單的陣列方法，但是如果能夠靈活運用，相信對陣列的操控會更加方便。</p>
+<p>這邊有篇以可愛的土司做示範的<code>slice()</code>介紹文，也很直得參考喔～<br><a href="https://dev.to/tvanblargan/arrays-any-way-you-slice-it-1lfl" target="_blank" rel="noopener">Arrays, any way you slice it</a></p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-20"><a href="#Day-20" class="headerlink" title="Day 20"></a>Day 20</h6><blockquote>
+<p>老闆，幫我切一段香腸，從第三節到第六節，你手握著的那節不要。謝謝！</p>
+</blockquote>
+<p>slice 的英文是切片或擷取，我們生活中常用的像是：「slice of life」生活的小片段、「slice of bread」一片麵包都是在表示一部分或「片狀」。但在陣列使用<code>slice()</code>的情境，比較像是「切一段」，因為可以指定從某個元素切到某一個元素 <del>的前一個</del>。 切下來的部份是以複製的型態產生，所以也不會影響原本的陣列。</p>
+<h3 id="要哪段給哪段的-slice"><a href="#要哪段給哪段的-slice" class="headerlink" title="要哪段給哪段的 slice()"></a>要哪段給哪段的 slice()</h3><p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" target="_blank" rel="noopener">Array.prototype.slice() | MDN</a></p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_ironMan20_Shallow-copy-array-slice()-method/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan20_Shallow-copy-array-slice()-method/" data-id="ck5o2lysl002mtvuw6ftvcopm" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/" class="article-date">
@@ -1051,112 +1145,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-JS_ironMan10_Remove-empty-or-delete-array-elements" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_ironMan10_Remove-empty-or-delete-array-elements/" class="article-date">
-  <time datetime="2019-11-05T20:21:14.000Z" itemprop="datePublished">2019-11-06</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_ironMan10_Remove-empty-or-delete-array-elements/">如何把陣列或元素清空和刪除</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-10"><a href="#Day-10" class="headerlink" title="Day 10"></a>Day 10</h6><blockquote>
-<p>好好的吃頓飯也是一種優雅。刪除也是。</p>
-</blockquote>
-<p>「如何把陣列或元素清空」也要寫一篇？ <del>妳當牛肉麵在寫嗎？</del><br>自從有了這本「JavaScript 大全」<del>當枕頭，阿不是</del>，才發現自己真是懵懂無知，但求知識不嫌遲，只能盡量腦補，讓自己盡量處於知道 JavaScript 到底做了什麼的狀態～結論是：路，還很長。</p>
-<p>原本以為 Javascript 像某些語言ㄧ樣，可以控制記憶體或把某部分的記憶體釋放出來，就在網路上開始找如何刪除變數的文章，結果搜尋結果清一色是在講，如何「刪除陣列裡的元素」這件事，才發現 JavaScript 似乎沒有完全把變數刪除這件事，我們也看不見記憶體的存取或清空的狀態，只能用一些機制來驗證。結論是對陣列 Array 來說，沒有把陣列刪除變數這件事，似乎就只能把陣列清空，而不能刪除變數。 <del>自己無法作主的人生</del></p>
-<h3 id="用-Delete-刪除陣列可以嗎？"><a href="#用-Delete-刪除陣列可以嗎？" class="headerlink" title="用 Delete 刪除陣列可以嗎？"></a>用 Delete 刪除陣列可以嗎？</h3><p>在「JavaScript 大全」裡 <del>p55</del> 有說明：<br>1.如果用<code>let</code> 來宣告變數，創立的特性會是<code>nonconfigurable</code>也就是不可配置的，這個變數是不可用<code>delete</code>這個運算子刪除。<br>2.如果不是在<code>strict</code>模式底下，將值指定給一個為宣告的變數，JavaScript 會自動為我們創建一個全域變數，用這種方式創建的變數具有<code>configurable</code>特性，也就是可以被<code>delete</code>運算子刪除。</p>
-<p>第一點說的宣告，其實也包括了用<code>let</code>和<code>const</code>來宣告變數，我們可以可以用簡單的方式來測試一下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">delete</span> a; <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 42</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">delete</span> b; <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// 42</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> c = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">delete</span> c; <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(c); <span class="comment">// 42</span></span><br><span class="line"></span><br><span class="line">d = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">delete</span> d; <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(d) <span class="comment">// Uncaught ReferenceError: d is not defined</span></span><br></pre></td></tr></table></figure>
-
-<p>變數 <code>d</code> 就真的這樣被刪除掉了！</p>
-<p>那麼其他不是透過<code>Delete</code>刪除的變數，是怎麼被全域環境清除掉的？<br>JavaScript 有一種清理 <del>廚餘</del>的機制，是一種垃圾收集器(garbage collector)，它會在變數不再被使用的時候出現，並釋放掉不再使用的記憶體，當然，變數也就這樣真的刪除掉了。</p>
-<p>終於要進入今天的主題了：刪除陣列元素 <del>在拖什麼啊</del> </p>
-<h2 id="完全清空陣列"><a href="#完全清空陣列" class="headerlink" title="完全清空陣列"></a>完全清空陣列</h2><h3 id="第一種方法-全部掏掉"><a href="#第一種方法-全部掏掉" class="headerlink" title="第一種方法 全部掏掉"></a>第一種方法 全部掏掉</h3><p>將空陣列[]直接指派給要清除的 Array，這種方式其實不算清空，比較像是我們拿另一塊空的記憶體，重新指派給這個變數。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr1; </span><br><span class="line">arr1 = [];</span><br><span class="line">arr1; <span class="comment">// []</span></span><br><span class="line">arr2; <span class="comment">//  [1, 2, 3, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
-
-<p>可以確定的是，如果我們複製了一份，複製的那份將不會受到原陣列的影響。<br>這一種方式和底下幾種清除陣列元素的方式，有一個很大的不同，就是使用重新指派的方式清空陣列，如<code>arr1 =[]</code>，因為重新指派，所以即使在這之前有做陣列複製如<code>arr2 = arr1</code>，兩個陣列也不會互相影響。<br><img src="https://ithelp.ithome.com.tw/upload/images/20190925/201041758t4T0hQuop.png" alt="記憶體配置圖"></p>
-<h3 id="第二種方法-將長度歸零就沒事？"><a href="#第二種方法-將長度歸零就沒事？" class="headerlink" title="第二種方法 將長度歸零就沒事？"></a>第二種方法 將長度歸零就沒事？</h3><p>直接將陣列的長度<code>length</code>歸<code>0</code>，這種方式效能會比較好。但是，恩湯恩湯。因為複製於這個陣列的其他陣列，也會被改變。也就是說是以參考同一個記憶體位置<code>by Reference</code>的方式進行複製。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr1;</span><br><span class="line">arr1.length = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">arr1; <span class="comment">// []</span></span><br><span class="line">arr2; <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="第三種-用-splice-就比較好？"><a href="#第三種-用-splice-就比較好？" class="headerlink" title="第三種 用 splice 就比較好？"></a>第三種 用 splice 就比較好？</h3><p>splice()通常是拿來刪除陣列裡的某個元素，當然也可以拿來刪除元素，但是splice()本身並不會複製一份新陣列，而是會指向原陣列的位址，所以原陣列被刪除的元素，複製過來的陣列元素也同時會被刪除。<br>splice()的用法在後面的篇章會有更詳盡的介紹。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr1;</span><br><span class="line">arr1; <span class="comment">// [1, 2, 3, 4, 5, 6]</span></span><br><span class="line">arr1.splice(<span class="number">0</span>, arr1.length);</span><br><span class="line"></span><br><span class="line">arr1; <span class="comment">// []</span></span><br><span class="line">arr2; <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="第四種-趕盡殺絕的清"><a href="#第四種-趕盡殺絕的清" class="headerlink" title="第四種 趕盡殺絕的清"></a>第四種 趕盡殺絕的清</h3><p>利用<code>while</code> 迴圈與陣列長度，使用<code>pop()</code>從尾端刪除陣列元素的功能遍歷陣列，一一從尾端清除陣列元素，<code>pop()</code>同樣是就地改變的方法，所以也會同時改動到被複製出來的陣列。我們在前幾章有講到<a href="https://ithelp.ithome.com.tw/articles/10218138" target="_blank" rel="noopener">控制陣列長度的特有屬性：Length</a>，有興趣的可以參考一下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr1;</span><br><span class="line">arr1; <span class="comment">// [1, 2, 3, 4, 5, 6]</span></span><br><span class="line"><span class="keyword">while</span> (arr1.length) &#123;</span><br><span class="line">    arr1.pop();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">arr1; <span class="comment">// []</span></span><br><span class="line">arr2; <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
-
-<p>以上三種方法，都是在複製陣列時，以參考同一個記憶體位置<code>by Reference</code>的方式進行複製，所以使用<code>arr1.length = 0</code>的方式清空陣列，則所複製出來的陣列<code>arr2 = arr1</code> 的<code>arr2</code>會受原來的<code>arr1</code>影響，同時被清空，所以將<code>arr1.length = 0</code>也等於將<code>arr2</code>清空。</p>
-<h2 id="Delete-的另一種用法：將陣列某一元素清除"><a href="#Delete-的另一種用法：將陣列某一元素清除" class="headerlink" title="Delete 的另一種用法：將陣列某一元素清除"></a>Delete 的另一種用法：將陣列某一元素清除</h2><h3 id="Delete-的假清除-洞還在"><a href="#Delete-的假清除-洞還在" class="headerlink" title="Delete 的假清除 洞還在"></a>Delete 的假清除 洞還在</h3><p>在文章最初，我們介紹了用<code>delete</code>運算子來刪除整個陣列，但其實它比較常被拿來清除陣列的某一元素。直接清除陣列元素的方法<code>delete</code>，個人覺得這也不算真的清除，只是把這個元素回歸為空的狀態，也就是 empty(undefined)。我們可以以<code>length</code>來驗證陣列元素並不會因為使用<code>delete</code>而改變長度。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">arr1.length; <span class="comment">// 5 -&gt; arr1 陣列的長度</span></span><br><span class="line"><span class="keyword">delete</span> arr1[<span class="number">1</span>]; <span class="comment">// true -&gt; 刪除索引值為1的元素</span></span><br><span class="line">arr1; <span class="comment">// [1, empty, 3, 4, 5] -&gt; 被刪除的元素變成 empty 空的了。</span></span><br><span class="line">arr1.length; <span class="comment">// 5 -&gt; arr1 陣列的長度仍是5</span></span><br><span class="line"><span class="number">1</span> <span class="keyword">in</span> arr1; <span class="comment">// false -&gt; 確認索引值 1 在 arr1 陣列裡有沒有值</span></span><br><span class="line">arr1[<span class="number">1</span>] = <span class="number">2</span>; <span class="comment">// 將 2 指定給剛剛刪除的索引值 1</span></span><br></pre></td></tr></table></figure>
-
-<p>刪除陣列的元素，類似將<code>undefined</code>指定給該元素，但仍和<code>empty</code>會有些微差距嘛？這點還需要驗證。要特別注意的是，用<code>delete</code>刪元素並不會改變陣列的長度，且此陣列就成為一個「稀疏」的陣列。</p>
-<p>使用「稀疏」陣列會造成什麼影響？有時候我們希望用一些方法來處理陣列，然後把處理完的結果回傳回來，如果陣列裡有稀疏的狀態，那麼當我麼用方法去遍歷陣列元素時，就會回傳 <code>undefined</code>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">delete</span> arr1[<span class="number">1</span>]; <span class="comment">// 刪除某一元素陣列後的陣列 -&gt; [1, empty, 3, 4, 5]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr2 = arr1.map(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;); <span class="comment">// 用 map() 遍歷每個元素將其 * 2</span></span><br><span class="line">arr2; <span class="comment">// 回傳結果 -&gt; [2, empty, 6, 8, 10]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="把無所事事的傢伙通通踢出去"><a href="#把無所事事的傢伙通通踢出去" class="headerlink" title="把無所事事的傢伙通通踢出去"></a>把無所事事的傢伙通通踢出去</h3><p>有時候我們會拿到有許多無效 <del>被搞爛</del>的元素在陣列裡，如何刪除陣列裡這些無所事事的<code>undefined</code>、<code>null</code>、<code>0</code>或其他的元素？讓處理陣列資料時更順利？我們可以利用 JavaScript 的<code>while</code>迴圈，來遍歷陣列內容，一一來把我們過濾過後，要保留的元素留在陣列中。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter_array</span>(<span class="params">testArray</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> index = <span class="number">-1</span>,</span><br><span class="line">        arrLength = testArray ? testArray.length : <span class="number">0</span>,</span><br><span class="line">        resIndex = <span class="number">-1</span>,</span><br><span class="line">        result = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (++index &lt; arrLength) &#123;</span><br><span class="line">        <span class="keyword">let</span> value = testArray[index];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (value != <span class="literal">null</span> &amp;&amp; value !== <span class="string">''</span> &amp;&amp; value !== <span class="literal">undefined</span> &amp;&amp; !<span class="built_in">isNaN</span>(value)  &amp;&amp; value !== <span class="literal">false</span> &amp;&amp; value !== <span class="number">0</span>) &#123;</span><br><span class="line">            result[++resIndex] = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line">filter_array([<span class="literal">NaN</span>, <span class="number">0</span>, <span class="number">15</span>, <span class="literal">false</span>, <span class="number">-22</span>, <span class="string">''</span>,<span class="literal">undefined</span>, <span class="number">47</span>, <span class="literal">null</span>]); <span class="comment">// [15, -22, 47]</span></span><br></pre></td></tr></table></figure>
-
-<p>相信大家在看完這一篇之後，會對於刪除陣列或元素有更加深的認識。老實說，真心覺得鐵人賽最大的收穫，是在寫文章的時候，找到的資料有吸收，且發現原來這麼多方法與面向，真的是一件很有趣的事啊！ 且前幾天收到一些大大的回饋，無論是指定或提問，都讓本人雀躍不已，在每一次的交流中，更可以加深自己對 JavaScript 的理解，實在感謝！</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-10"><a href="#Day-10" class="headerlink" title="Day 10"></a>Day 10</h6><blockquote>
-<p>好好的吃頓飯也是一種優雅。刪除也是。</p>
-</blockquote>
-<p>「如何把陣列或元素清空」也要寫一篇？ <del>妳當牛肉麵在寫嗎？</del><br>自從有了這本「JavaScript 大全」<del>當枕頭，阿不是</del>，才發現自己真是懵懂無知，但求知識不嫌遲，只能盡量腦補，讓自己盡量處於知道 JavaScript 到底做了什麼的狀態～結論是：路，還很長。</p>
-<p>原本以為 Javascript 像某些語言ㄧ樣，可以控制記憶體或把某部分的記憶體釋放出來，就在網路上開始找如何刪除變數的文章，結果搜尋結果清一色是在講，如何「刪除陣列裡的元素」這件事，才發現 JavaScript 似乎沒有完全把變數刪除這件事，我們也看不見記憶體的存取或清空的狀態，只能用一些機制來驗證。結論是對陣列 Array 來說，沒有把陣列刪除變數這件事，似乎就只能把陣列清空，而不能刪除變數。 <del>自己無法作主的人生</del></p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_ironMan10_Remove-empty-or-delete-array-elements/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan10_Remove-empty-or-delete-array-elements/" data-id="ck5o2lyty0083tvuwe9ym385p" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1205,6 +1193,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="../../React-component-JSX/">React 組件 Component 和 JSX 語法</a>
+          </li>
+        
+          <li>
             <a href="../../React-deploy_01/">ReactJS 環境佈署</a>
           </li>
         
@@ -1220,10 +1212,6 @@ ga('send', 'pageview');
             <a href="../../JS30_00_start/">JS 30 - 00. 為什麼開始？因為希望完成</a>
           </li>
         
-          <li>
-            <a href="../../JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/">JS 測試陣列是否有符合條件的元素好用方法 every() &amp; some()</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1233,7 +1221,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12.5px;">JavaScript 30</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 10px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12.5px;">JavaScript 30</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 12.5px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 

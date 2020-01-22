@@ -111,6 +111,112 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan10_Remove-empty-or-delete-array-elements" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_ironMan10_Remove-empty-or-delete-array-elements/" class="article-date">
+  <time datetime="2019-11-05T20:21:14.000Z" itemprop="datePublished">2019-11-06</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_ironMan10_Remove-empty-or-delete-array-elements/">如何把陣列或元素清空和刪除</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-10"><a href="#Day-10" class="headerlink" title="Day 10"></a>Day 10</h6><blockquote>
+<p>好好的吃頓飯也是一種優雅。刪除也是。</p>
+</blockquote>
+<p>「如何把陣列或元素清空」也要寫一篇？ <del>妳當牛肉麵在寫嗎？</del><br>自從有了這本「JavaScript 大全」<del>當枕頭，阿不是</del>，才發現自己真是懵懂無知，但求知識不嫌遲，只能盡量腦補，讓自己盡量處於知道 JavaScript 到底做了什麼的狀態～結論是：路，還很長。</p>
+<p>原本以為 Javascript 像某些語言ㄧ樣，可以控制記憶體或把某部分的記憶體釋放出來，就在網路上開始找如何刪除變數的文章，結果搜尋結果清一色是在講，如何「刪除陣列裡的元素」這件事，才發現 JavaScript 似乎沒有完全把變數刪除這件事，我們也看不見記憶體的存取或清空的狀態，只能用一些機制來驗證。結論是對陣列 Array 來說，沒有把陣列刪除變數這件事，似乎就只能把陣列清空，而不能刪除變數。 <del>自己無法作主的人生</del></p>
+<h3 id="用-Delete-刪除陣列可以嗎？"><a href="#用-Delete-刪除陣列可以嗎？" class="headerlink" title="用 Delete 刪除陣列可以嗎？"></a>用 Delete 刪除陣列可以嗎？</h3><p>在「JavaScript 大全」裡 <del>p55</del> 有說明：<br>1.如果用<code>let</code> 來宣告變數，創立的特性會是<code>nonconfigurable</code>也就是不可配置的，這個變數是不可用<code>delete</code>這個運算子刪除。<br>2.如果不是在<code>strict</code>模式底下，將值指定給一個為宣告的變數，JavaScript 會自動為我們創建一個全域變數，用這種方式創建的變數具有<code>configurable</code>特性，也就是可以被<code>delete</code>運算子刪除。</p>
+<p>第一點說的宣告，其實也包括了用<code>let</code>和<code>const</code>來宣告變數，我們可以可以用簡單的方式來測試一下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">delete</span> a; <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 42</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">delete</span> b; <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// 42</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> c = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">delete</span> c; <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(c); <span class="comment">// 42</span></span><br><span class="line"></span><br><span class="line">d = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">delete</span> d; <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(d) <span class="comment">// Uncaught ReferenceError: d is not defined</span></span><br></pre></td></tr></table></figure>
+
+<p>變數 <code>d</code> 就真的這樣被刪除掉了！</p>
+<p>那麼其他不是透過<code>Delete</code>刪除的變數，是怎麼被全域環境清除掉的？<br>JavaScript 有一種清理 <del>廚餘</del>的機制，是一種垃圾收集器(garbage collector)，它會在變數不再被使用的時候出現，並釋放掉不再使用的記憶體，當然，變數也就這樣真的刪除掉了。</p>
+<p>終於要進入今天的主題了：刪除陣列元素 <del>在拖什麼啊</del> </p>
+<h2 id="完全清空陣列"><a href="#完全清空陣列" class="headerlink" title="完全清空陣列"></a>完全清空陣列</h2><h3 id="第一種方法-全部掏掉"><a href="#第一種方法-全部掏掉" class="headerlink" title="第一種方法 全部掏掉"></a>第一種方法 全部掏掉</h3><p>將空陣列[]直接指派給要清除的 Array，這種方式其實不算清空，比較像是我們拿另一塊空的記憶體，重新指派給這個變數。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr1; </span><br><span class="line">arr1 = [];</span><br><span class="line">arr1; <span class="comment">// []</span></span><br><span class="line">arr2; <span class="comment">//  [1, 2, 3, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+
+<p>可以確定的是，如果我們複製了一份，複製的那份將不會受到原陣列的影響。<br>這一種方式和底下幾種清除陣列元素的方式，有一個很大的不同，就是使用重新指派的方式清空陣列，如<code>arr1 =[]</code>，因為重新指派，所以即使在這之前有做陣列複製如<code>arr2 = arr1</code>，兩個陣列也不會互相影響。<br><img src="https://ithelp.ithome.com.tw/upload/images/20190925/201041758t4T0hQuop.png" alt="記憶體配置圖"></p>
+<h3 id="第二種方法-將長度歸零就沒事？"><a href="#第二種方法-將長度歸零就沒事？" class="headerlink" title="第二種方法 將長度歸零就沒事？"></a>第二種方法 將長度歸零就沒事？</h3><p>直接將陣列的長度<code>length</code>歸<code>0</code>，這種方式效能會比較好。但是，恩湯恩湯。因為複製於這個陣列的其他陣列，也會被改變。也就是說是以參考同一個記憶體位置<code>by Reference</code>的方式進行複製。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr1;</span><br><span class="line">arr1.length = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">arr1; <span class="comment">// []</span></span><br><span class="line">arr2; <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第三種-用-splice-就比較好？"><a href="#第三種-用-splice-就比較好？" class="headerlink" title="第三種 用 splice 就比較好？"></a>第三種 用 splice 就比較好？</h3><p>splice()通常是拿來刪除陣列裡的某個元素，當然也可以拿來刪除元素，但是splice()本身並不會複製一份新陣列，而是會指向原陣列的位址，所以原陣列被刪除的元素，複製過來的陣列元素也同時會被刪除。<br>splice()的用法在後面的篇章會有更詳盡的介紹。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr1;</span><br><span class="line">arr1; <span class="comment">// [1, 2, 3, 4, 5, 6]</span></span><br><span class="line">arr1.splice(<span class="number">0</span>, arr1.length);</span><br><span class="line"></span><br><span class="line">arr1; <span class="comment">// []</span></span><br><span class="line">arr2; <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第四種-趕盡殺絕的清"><a href="#第四種-趕盡殺絕的清" class="headerlink" title="第四種 趕盡殺絕的清"></a>第四種 趕盡殺絕的清</h3><p>利用<code>while</code> 迴圈與陣列長度，使用<code>pop()</code>從尾端刪除陣列元素的功能遍歷陣列，一一從尾端清除陣列元素，<code>pop()</code>同樣是就地改變的方法，所以也會同時改動到被複製出來的陣列。我們在前幾章有講到<a href="https://ithelp.ithome.com.tw/articles/10218138" target="_blank" rel="noopener">控制陣列長度的特有屬性：Length</a>，有興趣的可以參考一下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr1;</span><br><span class="line">arr1; <span class="comment">// [1, 2, 3, 4, 5, 6]</span></span><br><span class="line"><span class="keyword">while</span> (arr1.length) &#123;</span><br><span class="line">    arr1.pop();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">arr1; <span class="comment">// []</span></span><br><span class="line">arr2; <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+
+<p>以上三種方法，都是在複製陣列時，以參考同一個記憶體位置<code>by Reference</code>的方式進行複製，所以使用<code>arr1.length = 0</code>的方式清空陣列，則所複製出來的陣列<code>arr2 = arr1</code> 的<code>arr2</code>會受原來的<code>arr1</code>影響，同時被清空，所以將<code>arr1.length = 0</code>也等於將<code>arr2</code>清空。</p>
+<h2 id="Delete-的另一種用法：將陣列某一元素清除"><a href="#Delete-的另一種用法：將陣列某一元素清除" class="headerlink" title="Delete 的另一種用法：將陣列某一元素清除"></a>Delete 的另一種用法：將陣列某一元素清除</h2><h3 id="Delete-的假清除-洞還在"><a href="#Delete-的假清除-洞還在" class="headerlink" title="Delete 的假清除 洞還在"></a>Delete 的假清除 洞還在</h3><p>在文章最初，我們介紹了用<code>delete</code>運算子來刪除整個陣列，但其實它比較常被拿來清除陣列的某一元素。直接清除陣列元素的方法<code>delete</code>，個人覺得這也不算真的清除，只是把這個元素回歸為空的狀態，也就是 empty(undefined)。我們可以以<code>length</code>來驗證陣列元素並不會因為使用<code>delete</code>而改變長度。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">arr1.length; <span class="comment">// 5 -&gt; arr1 陣列的長度</span></span><br><span class="line"><span class="keyword">delete</span> arr1[<span class="number">1</span>]; <span class="comment">// true -&gt; 刪除索引值為1的元素</span></span><br><span class="line">arr1; <span class="comment">// [1, empty, 3, 4, 5] -&gt; 被刪除的元素變成 empty 空的了。</span></span><br><span class="line">arr1.length; <span class="comment">// 5 -&gt; arr1 陣列的長度仍是5</span></span><br><span class="line"><span class="number">1</span> <span class="keyword">in</span> arr1; <span class="comment">// false -&gt; 確認索引值 1 在 arr1 陣列裡有沒有值</span></span><br><span class="line">arr1[<span class="number">1</span>] = <span class="number">2</span>; <span class="comment">// 將 2 指定給剛剛刪除的索引值 1</span></span><br></pre></td></tr></table></figure>
+
+<p>刪除陣列的元素，類似將<code>undefined</code>指定給該元素，但仍和<code>empty</code>會有些微差距嘛？這點還需要驗證。要特別注意的是，用<code>delete</code>刪元素並不會改變陣列的長度，且此陣列就成為一個「稀疏」的陣列。</p>
+<p>使用「稀疏」陣列會造成什麼影響？有時候我們希望用一些方法來處理陣列，然後把處理完的結果回傳回來，如果陣列裡有稀疏的狀態，那麼當我麼用方法去遍歷陣列元素時，就會回傳 <code>undefined</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">delete</span> arr1[<span class="number">1</span>]; <span class="comment">// 刪除某一元素陣列後的陣列 -&gt; [1, empty, 3, 4, 5]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr2 = arr1.map(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;); <span class="comment">// 用 map() 遍歷每個元素將其 * 2</span></span><br><span class="line">arr2; <span class="comment">// 回傳結果 -&gt; [2, empty, 6, 8, 10]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="把無所事事的傢伙通通踢出去"><a href="#把無所事事的傢伙通通踢出去" class="headerlink" title="把無所事事的傢伙通通踢出去"></a>把無所事事的傢伙通通踢出去</h3><p>有時候我們會拿到有許多無效 <del>被搞爛</del>的元素在陣列裡，如何刪除陣列裡這些無所事事的<code>undefined</code>、<code>null</code>、<code>0</code>或其他的元素？讓處理陣列資料時更順利？我們可以利用 JavaScript 的<code>while</code>迴圈，來遍歷陣列內容，一一來把我們過濾過後，要保留的元素留在陣列中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter_array</span>(<span class="params">testArray</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> index = <span class="number">-1</span>,</span><br><span class="line">        arrLength = testArray ? testArray.length : <span class="number">0</span>,</span><br><span class="line">        resIndex = <span class="number">-1</span>,</span><br><span class="line">        result = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (++index &lt; arrLength) &#123;</span><br><span class="line">        <span class="keyword">let</span> value = testArray[index];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (value != <span class="literal">null</span> &amp;&amp; value !== <span class="string">''</span> &amp;&amp; value !== <span class="literal">undefined</span> &amp;&amp; !<span class="built_in">isNaN</span>(value)  &amp;&amp; value !== <span class="literal">false</span> &amp;&amp; value !== <span class="number">0</span>) &#123;</span><br><span class="line">            result[++resIndex] = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line">filter_array([<span class="literal">NaN</span>, <span class="number">0</span>, <span class="number">15</span>, <span class="literal">false</span>, <span class="number">-22</span>, <span class="string">''</span>,<span class="literal">undefined</span>, <span class="number">47</span>, <span class="literal">null</span>]); <span class="comment">// [15, -22, 47]</span></span><br></pre></td></tr></table></figure>
+
+<p>相信大家在看完這一篇之後，會對於刪除陣列或元素有更加深的認識。老實說，真心覺得鐵人賽最大的收穫，是在寫文章的時候，找到的資料有吸收，且發現原來這麼多方法與面向，真的是一件很有趣的事啊！ 且前幾天收到一些大大的回饋，無論是指定或提問，都讓本人雀躍不已，在每一次的交流中，更可以加深自己對 JavaScript 的理解，實在感謝！</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-10"><a href="#Day-10" class="headerlink" title="Day 10"></a>Day 10</h6><blockquote>
+<p>好好的吃頓飯也是一種優雅。刪除也是。</p>
+</blockquote>
+<p>「如何把陣列或元素清空」也要寫一篇？ <del>妳當牛肉麵在寫嗎？</del><br>自從有了這本「JavaScript 大全」<del>當枕頭，阿不是</del>，才發現自己真是懵懂無知，但求知識不嫌遲，只能盡量腦補，讓自己盡量處於知道 JavaScript 到底做了什麼的狀態～結論是：路，還很長。</p>
+<p>原本以為 Javascript 像某些語言ㄧ樣，可以控制記憶體或把某部分的記憶體釋放出來，就在網路上開始找如何刪除變數的文章，結果搜尋結果清一色是在講，如何「刪除陣列裡的元素」這件事，才發現 JavaScript 似乎沒有完全把變數刪除這件事，我們也看不見記憶體的存取或清空的狀態，只能用一些機制來驗證。結論是對陣列 Array 來說，沒有把陣列刪除變數這件事，似乎就只能把陣列清空，而不能刪除變數。 <del>自己無法作主的人生</del></p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_ironMan10_Remove-empty-or-delete-array-elements/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan10_Remove-empty-or-delete-array-elements/" data-id="ck5o2lyty0083tvuwe9ym385p" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan09_How-to-convert-to-Array-in-JavaScript" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_ironMan09_How-to-convert-to-Array-in-JavaScript/" class="article-date">
@@ -1089,94 +1195,6 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
 
 
   
-    <article id="post-JSstrange_call-function-execution-stack" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JSstrange_call-function-execution-stack/" class="article-date">
-  <time datetime="2019-09-02T19:04:21.000Z" itemprop="datePublished">2019-09-03</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>►<a class="article-category-link" href="../../categories/JavaScript/Strange-JS/">Strange JS</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JSstrange_call-function-execution-stack/">JS 奇怪的部分:函數呼叫與執行堆</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。<br>JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？<br>了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。</p>
-<p>我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行的。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b();</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
-
-<p>當我們呼叫<code>a()</code>函數時，第一個被創造的是全域執行環境(Global Execution)。語法解析器會分析程式，然後編譯程式，接著創造全域執行環境與全域變數 <code>this</code>。如果是在瀏覽器，就會創造<code>windows</code>這個物件，然後將這些函數放進記憶體中。這裡的<code>this</code> 等同全域物件或瀏覽器裡的window。</p>
-<p>在創造的第一個階段，是把<code>a()</code>和<code>b()</code>都先放在記憶體裡，然後程式碼會逐行被執行。雖然是先放在記憶體裡，但 JS 不會執行函數中的程式，因為它們還沒被呼叫。</p>
-<p>當編譯器遇到最下面這個<code>a()</code>時，<code>a()</code>函數被呼叫了，這時候<code>a()</code>會被放進執行堆（execution stack）中。這個執行堆會一個一個疊起來，誰在最上面的就是正在執行的東西。</p>
-<p>所以每此 JavaScript 呼叫函數，就會創造一個新的執行環境，然後被放進執行堆中，一個新的執行環境被創造，就像全域執行環境一樣，會有它自己的記憶體空間給變數和函數。</p>
-<p>這個過程會歷經創造階段，然後逐行執行函數中的程式。但是一但我們呼叫另一個函數，它就會停止執行程式，然後，再創造另一個執行環境，然後繼續執行。</p>
-<p>如果函式裡沒有程式需要被執行，如<code>b()</code>，JavaScript 仍會創造一個執行環境，然後如上述般，逐行執行程式。</p>
-<p>當<code>b()</code>結束後，因為它在執行堆的最上面，所以它會離開執行堆，然後是<code>a()</code>，最後回到最下面的全域執行環境。<br><img src="/images/js_stack01.jpg" alt></p>
-<p>程式執行中實際排列的順序並不重要，在函數中剩下的程式碼順序也不會影響執行先後<br>，假設我們把<code>a()</code>放到<code>b()</code>前面，然後在函數裡多了一些程式（如下），這並不會影響執行，因為雖然<code>a()</code>看起來在<code>b()</code>前面，但這些函數在創造階段就已經在記憶體中了，也就是在全域執行環境被初始化時就在了。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b();</span><br><span class="line">    <span class="keyword">var</span> c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> d;</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br><span class="line"><span class="keyword">var</span> d;</span><br></pre></td></tr></table></figure>
-
-<p>我們所看到下面被函數呼叫的<code>var c</code>和<code>var d</code>也都在記憶體中了。</p>
-<p>他們的執行順序是，首先<code>a()</code>函數會被呼叫，因此<code>a()</code>會被放入執行堆，同時進入<code>a()</code>的執行環境。接著，它會變成目前執行的程式，而最後一行的 <code>var d</code> 在 <code>a ()</code>下面所以不會被呼叫。</p>
-<p>因為 JavaScript 是同步且一次執行一行，現在執行的程式就是目前的執行環境，也就是執行堆最上面的那個。所以當<code>a()</code>在最上面時 它會進入函式逐行執行，在a函式中呼叫<code>b()</code>函數，<code>b()</code>會創造出自己的執行環境，然後進入執行堆最上面，再逐行執行它裡面的程式，等執行完最後一行之後，再跳回去繼續執行<code>a()</code>函數裡的其他程式。</p>
-<p>為什麼？ 因為當我們結束<code>b()</code>函數後，<code>b()</code>的執行環境就會離開執行堆，所以現在在最上面的是誰？是<code>a()</code>。然後繼續執行剛剛在<code>b()</code>後面的<code>var c</code></p>
-<p>當<code>a()</code>執行完畢後a()會離開執行堆，接著下一行還沒被執行的程式，也就是在全域執行環境中，最後的<code>var d</code></p>
-<p>這就是 JavaScript 執行的順序。每當函數被呼叫，一個新的執行環境就被創造給函數，同時，<code>this</code> 變數被創造給這個函數，而裡面的變數在創造階段就已經建立了，<br>然後程式碼會被逐行的執行。但每當函數被呼叫，即使是被自己呼叫，一個新的執行環境就會進入執行堆，然後當執行完畢後，離開執行堆。所以無論最上面是什麼，那個就是正在執行的程式。–&gt;正在執行的永遠在執行堆的最上面。</p>
-<p>逐行的、同步的這個觀念是非常重要，了解程式執行的逐一步驟，才會預防一些不知名的問題。</p>
-<h6 id="單字"><a href="#單字" class="headerlink" title="單字"></a>單字</h6><p>invoke the function 或是 function invocation, 意思是執行這個函數</p>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <p>這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。<br>JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？<br>了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。</p>
-<p>我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行的。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b();</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
-
-<p>當我們呼叫<code>a()</code>函數時，第一個被創造的是全域執行環境(Global Execution)。語法解析器會分析程式，然後編譯程式，接著創造全域執行環境與全域變數 <code>this</code>。如果是在瀏覽器，就會創造<code>windows</code>這個物件，然後將這些函數放進記憶體中。這裡的<code>this</code> 等同全域物件或瀏覽器裡的window。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JSstrange_call-function-execution-stack/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JSstrange_call-function-execution-stack/" data-id="ck5o2lyt7004dtvuwylyklz89" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1225,6 +1243,10 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
       <ul>
         
           <li>
+            <a href="../../React-component-JSX/">React 組件 Component 和 JSX 語法</a>
+          </li>
+        
+          <li>
             <a href="../../React-deploy_01/">ReactJS 環境佈署</a>
           </li>
         
@@ -1240,10 +1262,6 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
             <a href="../../JS30_00_start/">JS 30 - 00. 為什麼開始？因為希望完成</a>
           </li>
         
-          <li>
-            <a href="../../JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/">JS 測試陣列是否有符合條件的元素好用方法 every() &amp; some()</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1253,7 +1271,7 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12.5px;">JavaScript 30</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 10px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12.5px;">JavaScript 30</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 12.5px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 
