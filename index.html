@@ -111,6 +111,120 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_Base_type" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="JS_Base_type/" class="article-date">
+  <time datetime="2020-02-23T16:42:24.000Z" itemprop="datePublished">2020-02-24</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="JS_Base_type/">JavaScript 基礎 型別篇</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <blockquote>
+<p>我們很容易忘記，我們曾學過的東西裡，仍有許多細微的小細節。</p>
+</blockquote>
+<p>知道自己是個健忘的人，所以偶爾會翻些基礎的知識來看看，才發現其實有許多自己忘，或根本沒有去注意到的小細節。<br>這次來記錄一下自己之前學的時候沒注意到的點。</p>
+<h2 id="JavaScript-的資料類型"><a href="#JavaScript-的資料類型" class="headerlink" title="JavaScript 的資料類型"></a>JavaScript 的資料類型</h2><p>JavaScript的資料類型分為兩種：</p>
+<ol>
+<li>基本(值)類型<ul>
+<li>String</li>
+<li>number</li>
+<li>boolean</li>
+<li>undefined</li>
+<li>null</li>
+</ul>
+</li>
+<li>物件(引用)類型 Object <ul>
+<li>Array：有索引/有序</li>
+<li>function：可執行</li>
+<li>object ：任意物件</li>
+</ul>
+</li>
+</ol>
+<h3 id="判斷資料類型的方式"><a href="#判斷資料類型的方式" class="headerlink" title="判斷資料類型的方式"></a>判斷資料類型的方式</h3><ol>
+<li><p>typeof : 可判斷 undefined/數值/字串/布林/function; 不能判斷 null 和 Object / Object 和 Array<br> typeof回傳時的資料類型是以字串表達，所以會有雙引號’number’，且都以小寫表示。</p>
+</li>
+<li><p>Instanceof : 判斷物件具體的類型<br> ex.物件是陣列還是函式等，instance of 的意思是實例。<br> 所以（a Instanceof b）即為 a 是不是 b 的實例。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123;</span><br><span class="line">  b : [<span class="number">1</span>, <span class="string">"hi"</span>, <span class="built_in">console</span>.log],</span><br><span class="line">  c : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Hello'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a <span class="keyword">instanceof</span> <span class="built_in">Object</span>, a <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true false 型別以第一字母為大寫。</span></span><br><span class="line"><span class="built_in">console</span>.log(a.b <span class="keyword">instanceof</span> <span class="built_in">Object</span>, a.b <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true true</span></span><br><span class="line"><span class="built_in">console</span>.log(a.c <span class="keyword">instanceof</span> <span class="built_in">Object</span>, a.c <span class="keyword">instanceof</span> <span class="built_in">Function</span>); <span class="comment">// true true 是物件也是函式的物件</span></span><br><span class="line"></span><br><span class="line">consol.log(<span class="keyword">typeof</span> a.b) <span class="comment">// object 無法知道是array</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用typeof時，比較時應該用字串型態</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a.c === <span class="string">'function'</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// console.log 是什麼資料型態？</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a.b[<span class="number">2</span>] === <span class="string">'function'</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">a.b[<span class="number">2</span>](<span class="number">4</span>); <span class="comment">//4 ,a.b[2] 在這裏等同console.log()</span></span><br><span class="line">a.c(); <span class="comment">// 等同 a 物件裡的 function() &#123; return 'Hello';&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>=== 全等：比較運算子，可判斷 undefine 和 null</p>
+</li>
+</ol>
+<h2 id="為什麼-null-是資料型態是-‘object’"><a href="#為什麼-null-是資料型態是-‘object’" class="headerlink" title="為什麼 null 是資料型態是 ‘object’ ?"></a>為什麼 null 是資料型態是 ‘object’ ?</h2><p>覺得這樣的解釋還蠻有道理的，也就是說，當我們宣告一個物件或是字串形態的變數，他原本是個物件或陣列，型別皆為物件，但是如果我想要把這個變數整個在記憶體清掉，那麼我們就可以將<code>null</code>指向這個變數，這樣這個物件也會被清空。以這個方向來想，就不難理解為什麼  <code>null</code>的資料型態是<code>&#39;object&#39;</code>了。</p>
+<h2 id="undefined-和-null-的區別？"><a href="#undefined-和-null-的區別？" class="headerlink" title="undefined 和 null 的區別？"></a>undefined 和 null 的區別？</h2><p>undefined 為宣告(定義)了變數，但還沒賦值。<br>null 宣告了，並已賦值，只是值是 null。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a</span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// undefined 宣告(定義)了但還沒賦值</span></span><br><span class="line">a = <span class="literal">null</span> </span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// null </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="literal">null</span> <span class="comment">// 初始賦值為 null，表示將要賦值的物件 object</span></span><br><span class="line">b = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>] <span class="comment">// 確定對物件 object 賦值</span></span><br><span class="line">b = <span class="literal">null</span> <span class="comment">// 這個 object 被清空</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="何時會需要將null指向變數？"><a href="#何時會需要將null指向變數？" class="headerlink" title="何時會需要將null指向變數？"></a>何時會需要將null指向變數？</h2><p>在初始變數時，將要賦值給變數的資料是物件 Object，但還沒有資料。<br>還有就是在結束前希望指向變數能成為回收物件。<br>簡單來說，回收就是釋放記憶體的意思，且在瀏覽器的環境下。<br>想知道更多的「回收物件」可看<a href="https://zhuanlan.zhihu.com/p/23992332" target="_blank" rel="noopener">JavaScript 中的垃圾回收 - 知乎</a></p>
+<h2 id="嚴格區別變數型別與資料型別"><a href="#嚴格區別變數型別與資料型別" class="headerlink" title="嚴格區別變數型別與資料型別"></a>嚴格區別變數型別與資料型別</h2><p>資料類型：基本型別和物件型別</p>
+<ul>
+<li>基本型別 </li>
+<li>物件型別 -&gt; 參考()型別</li>
+</ul>
+<p>變數型別：基本型別和參考型別</p>
+<ul>
+<li>基本型別 : 保存的是基本型別的資料(值)</li>
+<li>參考型別 : 保存的是資料的記憶體位址<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> c = &#123;&#125; <span class="comment">// c 指向的是記憶體位置</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>(待續…)</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <blockquote>
+<p>我們很容易忘記，我們曾學過的東西裡，仍有許多細微的小細節。</p>
+</blockquote>
+<p>知道自己是個健忘的人，所以偶爾會翻些基礎的知識來看看，才發現其實有許多自己忘，或根本沒有去注意到的小細節。<br>這次來記錄一下自己之前學的時候沒注意到的點。</p>
+<h2 id="JavaScript-的資料類型"><a href="#JavaScript-的資料類型" class="headerlink" title="JavaScript 的資料類型"></a>JavaScript 的資料類型</h2><p>JavaScript的資料類型分為兩種：</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="JS_Base_type/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_Base_type/" data-id="ck5v5ruqy0000qtuw5sl6d2nz" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Base/">Base</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-React-component-JSX" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="React-component-JSX/" class="article-date">
@@ -1415,103 +1529,6 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
 
 
   
-    <article id="post-JS_ironMan31_Executes-a-provided-function-once-for-each-array-element" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/" class="article-date">
-  <time datetime="2019-11-30T20:21:14.000Z" itemprop="datePublished">2019-12-01</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/">JS 迴圈升級的陣列 Array 方法 forEach()</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-31"><a href="#Day-31" class="headerlink" title="Day 31"></a>Day 31</h6><blockquote>
-<p>別一張張的發傳單，宣傳什麼折扣吧！NewsLetters 鍵按寄出一次搞定，像迭代一樣。</p>
-</blockquote>
-<p>前幾篇我們聊到了 ECMAScript 5 的陣列方法，聊到這些方法都有迭代（iterating）的特色，也就是把我們想要執行的函式，從頭到尾逐一（iterates through）的把陣列裡的元素帶進去這個函式處理一遍，<code>forEach()</code>便是我們會常用的方法之一。</p>
-<p>我們直接看看在大犀牛裡的範例，直接以<code>forEach()</code>取陣列的值來相加：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">data.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">  sum += value;</span><br><span class="line">&#125;);</span><br><span class="line">sum; <span class="comment">// 15</span></span><br></pre></td></tr></table></figure>
-
-<p>或是為每個陣列元素遞增，而原陣列也會因為<code>forEach()</code>所帶入的函式而改變原有的陣列。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">value, index, array</span>)</span>&#123;</span><br><span class="line">  array[index] = value + <span class="number">1</span>;</span><br><span class="line">&#125;);</span><br><span class="line">data; <span class="comment">// [2, 3, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
-
-<p><a href="https://s0developer0mozilla0org.icopy.site/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach" target="_blank" rel="noopener">Array.prototype.forEach() - JavaScript | MDN</a><br><strong>原型：</strong> Array.prototype.foreach()<br><strong>功能：</strong> 對陣列的每個元素執行一次提供的函數。<br><strong>改變：</strong> 不會直接改變原陣列，但可能會依帶入的函式而改變。<br><strong>語法：</strong> arr.forEach(callback[, thisArg]);<br><strong>回傳值：</strong>  undefined。<br><strong>參數：</strong> callback 函式與 thisArg</p>
-<p>我們來看一下<code>forEach()</code>較完整的語法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">currentValue[, index[, array]]</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//your iterator</span></span><br><span class="line">&#125;[, thisArg]);</span><br></pre></td></tr></table></figure>
-
-<p><code>forEach()</code>本身可帶兩個參數，第一個是必須的 callback 函式，第二個參數thisArg 是可選擇性的。這個callback 函式會將 Array 中的每一個元素作為參數，帶進這個 callback 函式裡，每個元素各執行一次。</p>
-<p>而第一個 callback 函式則可傳入三個參數：</p>
-<ol>
-<li>currentValue 目前被處理的陣列元素值 </li>
-<li>index 目前被處理的陣列元素索引(可選)</li>
-<li>array 呼叫forEach()陣列本身(可選)</li>
-</ol>
-<p>如果我們只需要陣列的值，也可寫成只有一個參數的函式，其他的會被忽略。 </p>
-<p><code>forEach()</code>的第二個參數<code>thisArg</code>是可選擇性的，如果有這個參數，它就會被作為 callback 回呼函式每次被調用的 this 的值。需要注意的是 callback 函式，如果是箭頭函式，則在創建該函數時已按詞法綁定，因此thisArg不會起作用。</p>
-<p>我們來看一下例子：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">5</span>,<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>]</span><br><span class="line"><span class="comment">// 沒有第二參數 thisArg</span></span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].forEach(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  sum += x;</span><br><span class="line">&#125;); </span><br><span class="line"><span class="built_in">console</span>.log(sum); <span class="comment">// 6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 有第二參數 thisArg</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].forEach(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;, arr); <span class="comment">// this -&gt;obj</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">[ 5, 10, 20, 30 ]</span></span><br><span class="line"><span class="comment">[ 5, 10, 20, 30 ]</span></span><br><span class="line"><span class="comment">[ 5, 10, 20, 30 ]</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<p>因為 callback 函式的第二個參數，會改變 scop 範疇、改變 this 的值，也就是這個函式裡的<code>arr</code>，也因此會印出三次參數<code>thisArg</code>的<code>arr</code>。</p>
-<p>在真實的情境裡我們比較少用到 callback 函式的第二個參數，在「Secrets of the JavaScript Ninja」忍者這本書的第四章有更詳盡的說明。</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-31"><a href="#Day-31" class="headerlink" title="Day 31"></a>Day 31</h6><blockquote>
-<p>別一張張的發傳單，宣傳什麼折扣吧！NewsLetters 鍵按寄出一次搞定，像迭代一樣。</p>
-</blockquote>
-<p>前幾篇我們聊到了 ECMAScript 5 的陣列方法，聊到這些方法都有迭代（iterating）的特色，也就是把我們想要執行的函式，從頭到尾逐一（iterates through）的把陣列裡的元素帶進去這個函式處理一遍，<code>forEach()</code>便是我們會常用的方法之一。</p>
-<p>我們直接看看在大犀牛裡的範例，直接以<code>forEach()</code>取陣列的值來相加：</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/" data-id="ck5prmv2y003lpluw1uqwjjko" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1547,7 +1564,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/讀書會筆記/">讀書會筆記</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="tags/Base/">Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/讀書會筆記/">讀書會筆記</a></li></ul>
     </div>
   </div>
 
@@ -1558,6 +1575,10 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="JS_Base_type/">JavaScript 基礎 型別篇</a>
+          </li>
         
           <li>
             <a href="React-component-JSX/">React 組件 Component 和 JSX 語法</a>
@@ -1575,10 +1596,6 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
             <a href="JS30_01_Drum-Kit copy/">JS 30 - 01. Drum Kit 鍵盤音樂</a>
           </li>
         
-          <li>
-            <a href="JS30_00_start/">JS 30 - 00. 為什麼開始？因為希望完成</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1588,7 +1605,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="tags/CSS/" style="font-size: 10px;">CSS</a> <a href="tags/ES6/" style="font-size: 10px;">ES6</a> <a href="tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="tags/Git/" style="font-size: 12.5px;">Git</a> <a href="tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="tags/HTML/" style="font-size: 10px;">HTML</a> <a href="tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="tags/IDE/" style="font-size: 10px;">IDE</a> <a href="tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="tags/JS101/" style="font-size: 10px;">JS101</a> <a href="tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="tags/JavaScript-30/" style="font-size: 12.5px;">JavaScript 30</a> <a href="tags/Note/" style="font-size: 10px;">Note</a> <a href="tags/Other/" style="font-size: 10px;">Other</a> <a href="tags/React/" style="font-size: 12.5px;">React</a> <a href="tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="tags/Test/" style="font-size: 10px;">Test</a> <a href="tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="tags/Base/" style="font-size: 10px;">Base</a> <a href="tags/CSS/" style="font-size: 10px;">CSS</a> <a href="tags/ES6/" style="font-size: 10px;">ES6</a> <a href="tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="tags/Git/" style="font-size: 12.5px;">Git</a> <a href="tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="tags/HTML/" style="font-size: 10px;">HTML</a> <a href="tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="tags/IDE/" style="font-size: 10px;">IDE</a> <a href="tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="tags/JS101/" style="font-size: 10px;">JS101</a> <a href="tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="tags/JavaScript-30/" style="font-size: 12.5px;">JavaScript 30</a> <a href="tags/Note/" style="font-size: 10px;">Note</a> <a href="tags/Other/" style="font-size: 10px;">Other</a> <a href="tags/React/" style="font-size: 12.5px;">React</a> <a href="tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="tags/Test/" style="font-size: 10px;">Test</a> <a href="tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 

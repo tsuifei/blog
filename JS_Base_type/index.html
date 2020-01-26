@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>JavaScript 基礎 型別篇 | Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="我們很容易忘記，我們曾學過的東西裡，仍有許多細微的小細節。  知道自己是個健忘的人，所以偶爾會翻些基礎的知識來看看，才發現其實有許多自己忘，或根本沒有去注意到的小細節。這次來記錄一下自己之前學的時候沒注意到的點。 JavaScript 的資料類型JavaScript的資料類型分為兩種：  基本(值)類型 String number boolean undefined null   物件(引用)類">
+<meta name="keywords" content="JavaScript,Base">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript 基礎 型別篇">
+<meta property="og:url" content="tsuifei.github.io/JS_Base_type/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="我們很容易忘記，我們曾學過的東西裡，仍有許多細微的小細節。  知道自己是個健忘的人，所以偶爾會翻些基礎的知識來看看，才發現其實有許多自己忘，或根本沒有去注意到的小細節。這次來記錄一下自己之前學的時候沒注意到的點。 JavaScript 的資料類型JavaScript的資料類型分為兩種：  基本(值)類型 String number boolean undefined null   物件(引用)類">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2020-01-26T15:08:54.313Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript 基礎 型別篇">
+<meta name="twitter:description" content="我們很容易忘記，我們曾學過的東西裡，仍有許多細微的小細節。  知道自己是個健忘的人，所以偶爾會翻些基礎的知識來看看，才發現其實有許多自己忘，或根本沒有去注意到的小細節。這次來記錄一下自己之前學的時候沒注意到的點。 JavaScript 的資料類型JavaScript的資料類型分為兩種：  基本(值)類型 String number boolean undefined null   物件(引用)類">
+  
+  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../react">React</a>
+        
+        <a class="main-nav-link" href="../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../life">Life</a>
+        
+        <a class="main-nav-link" href="../other">Other</a>
+        
+        <a class="main-nav-link" href="../html">HTML</a>
+        
+        <a class="main-nav-link" href="../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../linux">Linux</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS_Base_type" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="" class="article-date">
+  <time datetime="2020-02-23T16:42:24.000Z" itemprop="datePublished">2020-02-24</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript 基礎 型別篇
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <blockquote>
+<p>我們很容易忘記，我們曾學過的東西裡，仍有許多細微的小細節。</p>
+</blockquote>
+<p>知道自己是個健忘的人，所以偶爾會翻些基礎的知識來看看，才發現其實有許多自己忘，或根本沒有去注意到的小細節。<br>這次來記錄一下自己之前學的時候沒注意到的點。</p>
+<h2 id="JavaScript-的資料類型"><a href="#JavaScript-的資料類型" class="headerlink" title="JavaScript 的資料類型"></a>JavaScript 的資料類型</h2><p>JavaScript的資料類型分為兩種：</p>
+<ol>
+<li>基本(值)類型<ul>
+<li>String</li>
+<li>number</li>
+<li>boolean</li>
+<li>undefined</li>
+<li>null</li>
+</ul>
+</li>
+<li>物件(引用)類型 Object <ul>
+<li>Array：有索引/有序</li>
+<li>function：可執行</li>
+<li>object ：任意物件</li>
+</ul>
+</li>
+</ol>
+<h3 id="判斷資料類型的方式"><a href="#判斷資料類型的方式" class="headerlink" title="判斷資料類型的方式"></a>判斷資料類型的方式</h3><ol>
+<li><p>typeof : 可判斷 undefined/數值/字串/布林/function; 不能判斷 null 和 Object / Object 和 Array<br> typeof回傳時的資料類型是以字串表達，所以會有雙引號’number’，且都以小寫表示。</p>
+</li>
+<li><p>Instanceof : 判斷物件具體的類型<br> ex.物件是陣列還是函式等，instance of 的意思是實例。<br> 所以（a Instanceof b）即為 a 是不是 b 的實例。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123;</span><br><span class="line">  b : [<span class="number">1</span>, <span class="string">"hi"</span>, <span class="built_in">console</span>.log],</span><br><span class="line">  c : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Hello'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a <span class="keyword">instanceof</span> <span class="built_in">Object</span>, a <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true false 型別以第一字母為大寫。</span></span><br><span class="line"><span class="built_in">console</span>.log(a.b <span class="keyword">instanceof</span> <span class="built_in">Object</span>, a.b <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true true</span></span><br><span class="line"><span class="built_in">console</span>.log(a.c <span class="keyword">instanceof</span> <span class="built_in">Object</span>, a.c <span class="keyword">instanceof</span> <span class="built_in">Function</span>); <span class="comment">// true true 是物件也是函式的物件</span></span><br><span class="line"></span><br><span class="line">consol.log(<span class="keyword">typeof</span> a.b) <span class="comment">// object 無法知道是array</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用typeof時，比較時應該用字串型態</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a.c === <span class="string">'function'</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// console.log 是什麼資料型態？</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a.b[<span class="number">2</span>] === <span class="string">'function'</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">a.b[<span class="number">2</span>](<span class="number">4</span>); <span class="comment">//4 ,a.b[2] 在這裏等同console.log()</span></span><br><span class="line">a.c(); <span class="comment">// 等同 a 物件裡的 function() &#123; return 'Hello';&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>=== 全等：比較運算子，可判斷 undefine 和 null</p>
+</li>
+</ol>
+<h2 id="為什麼-null-是資料型態是-‘object’"><a href="#為什麼-null-是資料型態是-‘object’" class="headerlink" title="為什麼 null 是資料型態是 ‘object’ ?"></a>為什麼 null 是資料型態是 ‘object’ ?</h2><p>覺得這樣的解釋還蠻有道理的，也就是說，當我們宣告一個物件或是字串形態的變數，他原本是個物件或陣列，型別皆為物件，但是如果我想要把這個變數整個在記憶體清掉，那麼我們就可以將<code>null</code>指向這個變數，這樣這個物件也會被清空。以這個方向來想，就不難理解為什麼  <code>null</code>的資料型態是<code>&#39;object&#39;</code>了。</p>
+<h2 id="undefined-和-null-的區別？"><a href="#undefined-和-null-的區別？" class="headerlink" title="undefined 和 null 的區別？"></a>undefined 和 null 的區別？</h2><p>undefined 為宣告(定義)了變數，但還沒賦值。<br>null 宣告了，並已賦值，只是值是 null。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a</span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// undefined 宣告(定義)了但還沒賦值</span></span><br><span class="line">a = <span class="literal">null</span> </span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// null </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="literal">null</span> <span class="comment">// 初始賦值為 null，表示將要賦值的物件 object</span></span><br><span class="line">b = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>] <span class="comment">// 確定對物件 object 賦值</span></span><br><span class="line">b = <span class="literal">null</span> <span class="comment">// 這個 object 被清空</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="何時會需要將null指向變數？"><a href="#何時會需要將null指向變數？" class="headerlink" title="何時會需要將null指向變數？"></a>何時會需要將null指向變數？</h2><p>在初始變數時，將要賦值給變數的資料是物件 Object，但還沒有資料。<br>還有就是在結束前希望指向變數能成為回收物件。<br>簡單來說，回收就是釋放記憶體的意思，且在瀏覽器的環境下。<br>想知道更多的「回收物件」可看<a href="https://zhuanlan.zhihu.com/p/23992332" target="_blank" rel="noopener">JavaScript 中的垃圾回收 - 知乎</a></p>
+<h2 id="嚴格區別變數型別與資料型別"><a href="#嚴格區別變數型別與資料型別" class="headerlink" title="嚴格區別變數型別與資料型別"></a>嚴格區別變數型別與資料型別</h2><p>資料類型：基本型別和物件型別</p>
+<ul>
+<li>基本型別 </li>
+<li>物件型別 -&gt; 參考()型別</li>
+</ul>
+<p>變數型別：基本型別和參考型別</p>
+<ul>
+<li>基本型別 : 保存的是基本型別的資料(值)</li>
+<li>參考型別 : 保存的是資料的記憶體位址<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> c = &#123;&#125; <span class="comment">// c 指向的是記憶體位置</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>(待續…)</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                            <blockquote>
+<p>我們很容易忘記，我們曾學過的東西裡，仍有許多細微的小細節。</p>
+</blockquote>
+<p>知道自己是個健忘的人，所以偶爾會翻些基礎的知識來看看，才發現其實有許多自己忘，或根本沒有去注意到的小細節。<br>這次來記錄一下自己之前學的時候沒注意到的點。</p>
+<h2 id="JavaScript-的資料類型"><a href="#JavaScript-的資料類型" class="headerlink" title="JavaScript 的資料類型"></a>JavaScript 的資料類型</h2><p>JavaScript的資料類型分為兩種：</p>
+<ol>
+<li>基本(值)類型<ul>
+<li>String</li>
+<li>number</li>
+<li>boolean</li>
+<li>undefined</li>
+<li>null</li>
+</ul>
+</li>
+<li>物件(引用)類型 Object <ul>
+<li>Array：有索引/有序</li>
+<li>function：可執行</li>
+<li>object ：任意物件</li>
+</ul>
+</li>
+</ol>
+<h3 id="判斷資料類型的方式"><a href="#判斷資料類型的方式" class="headerlink" title="判斷資料類型的方式"></a>判斷資料類型的方式</h3><ol>
+<li><p>typeof : 可判斷 undefined/數值/字串/布林/function; 不能判斷 null 和 Object / Object 和 Array<br> typeof回傳時的資料類型是以字串表達，所以會有雙引號’number’，且都以小寫表示。</p>
+</li>
+<li><p>Instanceof : 判斷物件具體的類型<br> ex.物件是陣列還是函式等，instance of 的意思是實例。<br> 所以（a Instanceof b）即為 a 是不是 b 的實例。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123;</span><br><span class="line">  b : [<span class="number">1</span>, <span class="string">"hi"</span>, <span class="built_in">console</span>.log],</span><br><span class="line">  c : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Hello'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a <span class="keyword">instanceof</span> <span class="built_in">Object</span>, a <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true false 型別以第一字母為大寫。</span></span><br><span class="line"><span class="built_in">console</span>.log(a.b <span class="keyword">instanceof</span> <span class="built_in">Object</span>, a.b <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true true</span></span><br><span class="line"><span class="built_in">console</span>.log(a.c <span class="keyword">instanceof</span> <span class="built_in">Object</span>, a.c <span class="keyword">instanceof</span> <span class="built_in">Function</span>); <span class="comment">// true true 是物件也是函式的物件</span></span><br><span class="line"></span><br><span class="line">consol.log(<span class="keyword">typeof</span> a.b) <span class="comment">// object 無法知道是array</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用typeof時，比較時應該用字串型態</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a.c === <span class="string">'function'</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// console.log 是什麼資料型態？</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a.b[<span class="number">2</span>] === <span class="string">'function'</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">a.b[<span class="number">2</span>](<span class="number">4</span>); <span class="comment">//4 ,a.b[2] 在這裏等同console.log()</span></span><br><span class="line">a.c(); <span class="comment">// 等同 a 物件裡的 function() &#123; return 'Hello';&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>=== 全等：比較運算子，可判斷 undefine 和 null</p>
+</li>
+</ol>
+<h2 id="為什麼-null-是資料型態是-‘object’"><a href="#為什麼-null-是資料型態是-‘object’" class="headerlink" title="為什麼 null 是資料型態是 ‘object’ ?"></a>為什麼 null 是資料型態是 ‘object’ ?</h2><p>覺得這樣的解釋還蠻有道理的，也就是說，當我們宣告一個物件或是字串形態的變數，他原本是個物件或陣列，型別皆為物件，但是如果我想要把這個變數整個在記憶體清掉，那麼我們就可以將<code>null</code>指向這個變數，這樣這個物件也會被清空。以這個方向來想，就不難理解為什麼  <code>null</code>的資料型態是<code>&#39;object&#39;</code>了。</p>
+<h2 id="undefined-和-null-的區別？"><a href="#undefined-和-null-的區別？" class="headerlink" title="undefined 和 null 的區別？"></a>undefined 和 null 的區別？</h2><p>undefined 為宣告(定義)了變數，但還沒賦值。<br>null 宣告了，並已賦值，只是值是 null。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a</span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// undefined 宣告(定義)了但還沒賦值</span></span><br><span class="line">a = <span class="literal">null</span> </span><br><span class="line"><span class="built_in">console</span>.log(a) <span class="comment">// null </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="literal">null</span> <span class="comment">// 初始賦值為 null，表示將要賦值的物件 object</span></span><br><span class="line">b = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>] <span class="comment">// 確定對物件 object 賦值</span></span><br><span class="line">b = <span class="literal">null</span> <span class="comment">// 這個 object 被清空</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="何時會需要將null指向變數？"><a href="#何時會需要將null指向變數？" class="headerlink" title="何時會需要將null指向變數？"></a>何時會需要將null指向變數？</h2><p>在初始變數時，將要賦值給變數的資料是物件 Object，但還沒有資料。<br>還有就是在結束前希望指向變數能成為回收物件。<br>簡單來說，回收就是釋放記憶體的意思，且在瀏覽器的環境下。<br>想知道更多的「回收物件」可看<a href="https://zhuanlan.zhihu.com/p/23992332" target="_blank" rel="noopener">JavaScript 中的垃圾回收 - 知乎</a></p>
+<h2 id="嚴格區別變數型別與資料型別"><a href="#嚴格區別變數型別與資料型別" class="headerlink" title="嚴格區別變數型別與資料型別"></a>嚴格區別變數型別與資料型別</h2><p>資料類型：基本型別和物件型別</p>
+<ul>
+<li>基本型別 </li>
+<li>物件型別 -&gt; 參考()型別</li>
+</ul>
+<p>變數型別：基本型別和參考型別</p>
+<ul>
+<li>基本型別 : 保存的是基本型別的資料(值)</li>
+<li>參考型別 : 保存的是資料的記憶體位址<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> c = &#123;&#125; <span class="comment">// c 指向的是記憶體位置</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>(待續…)</p>
+
+                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_Base_type/" data-id="ck5v5ruqy0000qtuw5sl6d2nz" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Base/">Base</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+  
+  
+    <a href="../React-component-JSX/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">React 組件 Component 和 JSX 語法</div>
+    </a>
+  
+</nav>
+
+            
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
+            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/Base/">Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/讀書會筆記/">讀書會筆記</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">JavaScript 基礎 型別篇</a>
+          </li>
+        
+          <li>
+            <a href="../React-component-JSX/">React 組件 Component 和 JSX 語法</a>
+          </li>
+        
+          <li>
+            <a href="../React-deploy_01/">ReactJS 環境佈署</a>
+          </li>
+        
+          <li>
+            <a href="../JS_front_test01/">法國前端初級測驗</a>
+          </li>
+        
+          <li>
+            <a href="../JS30_01_Drum-Kit copy/">JS 30 - 01. Drum Kit 鍵盤音樂</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../tags/Base/" style="font-size: 10px;">Base</a> <a href="../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/JavaScript-30/" style="font-size: 12.5px;">JavaScript 30</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/React/" style="font-size: 12.5px;">React</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../tags/Test/" style="font-size: 10px;">Test</a> <a href="../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../react" class="mobile-nav-link">React</a>
+  
+    <a href="../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../other" class="mobile-nav-link">Other</a>
+  
+    <a href="../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../linux" class="mobile-nav-link">Linux</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
+  <script src="../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
