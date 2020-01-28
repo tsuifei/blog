@@ -111,6 +111,114 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-React_virtual_DOM" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="React_virtual_DOM/" class="article-date">
+  <time datetime="2020-02-26T16:42:24.000Z" itemprop="datePublished">2020-02-27</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="React_virtual_DOM/">React 裡的虛擬 DOM</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <blockquote>
+<p>這世界上有很多虛擬的東東，這些欺騙感情的虛擬物，有時也可以拿來療癒。</p>
+</blockquote>
+<p>先來理解一下什麼是虛擬 DOM 為什麼我們需要用它。這篇文章解釋得頗清楚的：<a href="https://segmentfault.com/a/1190000018891454" target="_blank" rel="noopener">虛擬 DOM的渲染原理和特性</a></p>
+<p>但是還是來整理一下重點：<br>原本我們寫原生的 JavaScript 時，我們會直接對 DOM 進行監聽和修改，然後這個 DOM 元素也會透過我們的監聽的事件所執行的，讓頁面產生互動。</p>
+<p>React 則是會把我們寫的監聽這部份，轉成一個<strong>物件</strong>，再將這個物件轉換成真實的 DOM，這個由 React 轉成的物件就是所謂的虛擬 DOM。</p>
+<p>假如說我們有一個用 HTML 寫成的樹狀 DOM 結構：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"title"</span>&gt;</span><br><span class="line">      &lt;span&gt;Mes amies&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">      &lt;ul&gt;</span></span><br><span class="line"><span class="regexp">        &lt;li&gt;Ayda&lt;/</span>li&gt;</span><br><span class="line">        &lt;li&gt;Tracy&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/u</span>l&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>React 可能會用這樣的物件格式來儲存這個 DOM:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> VitrualDom = &#123;</span><br><span class="line">  type: <span class="string">'div'</span>,</span><br><span class="line">  props: &#123; <span class="attr">class</span>: <span class="string">'title'</span> &#125;,</span><br><span class="line">  children: [</span><br><span class="line">    &#123;</span><br><span class="line">      type: <span class="string">'span'</span>,</span><br><span class="line">      children: <span class="string">'Mes amies'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      type: <span class="string">'ul'</span>,</span><br><span class="line">      children: [</span><br><span class="line">        &#123; <span class="attr">type</span>: <span class="string">'li'</span>, <span class="attr">children</span>: <span class="string">'Ayda'</span> &#125;,</span><br><span class="line">        &#123; <span class="attr">type</span>: <span class="string">'li'</span>, <span class="attr">children</span>: <span class="string">'Tracy'</span> &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="虛擬-DOM-物件最終都會被-React-轉化成真實的-DOM"><a href="#虛擬-DOM-物件最終都會被-React-轉化成真實的-DOM" class="headerlink" title="虛擬 DOM 物件最終都會被 React 轉化成真實的 DOM"></a>虛擬 DOM 物件最終都會被 React 轉化成真實的 DOM</h3><p>在我們需要新增或更新元素時，React 會先將這個<code>VitrualDom</code>物件進行新增和更改，然後再將這個虛擬的 DOM 物件渲染成一個真實的DOM。</p>
+<p>同樣的，如果我們需要對 DOM 進行監聽事件時，也會先對<code>VitrualDom</code>物件進行事件監聽，虛擬的DOM物件會代替原生的 DOM 事件做出反應與互動。</p>
+<p>當我們需要對DOM進行事件監聽時，首先對VitrualDom進行事件監聽，VitrualDom會代理原生的DOM事件從而做出響應。</p>
+<p>重點整理：</p>
+<ol>
+<li>React 提供了一些 API 來新增特別的 JS 物件。一個簡單的虛擬 DOM 物件：<code>const elememt = React.createElement(&#39;h1標籤名&#39;,{id:&#39;myTitle&#39;標籤屬性}, &#39;hello變數&#39;)</code></li>
+<li>虛擬 DOM 物件最終都會被 React 轉化成真實的 DOM</li>
+<li>基本上只需要操作 react的虛擬 DOM 的相關資料, react會轉換為真實的 DOM 變化，而更新介面。</li>
+</ol>
+<h2 id="新增虛擬DOM的兩種方式"><a href="#新增虛擬DOM的兩種方式" class="headerlink" title="新增虛擬DOM的兩種方式"></a>新增虛擬DOM的兩種方式</h2><ol>
+<li>原生JS(一般不用)：<code>React.createElement(&#39;h2&#39;,{id:myId},msg)</code></li>
+<li>JSX 語法：<code>&lt;h3 id={myId}&gt; {msg} &lt;/h3&gt;</code></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"test1"</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">id</span>=<span class="string">"test2"</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>第一種原生 JS 方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> msg = <span class="string">'I like you'</span></span><br><span class="line"><span class="keyword">const</span> myId = <span class="string">'Tracy'</span></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="comment">// 1.新增虛擬DOM</span></span><br><span class="line"><span class="keyword">const</span> vDom1 =  React.createElement(<span class="string">'h2'</span>,&#123;<span class="attr">id</span>:myId.toLowerCase()&#125;,msg.toUpperCase())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.渲染虛擬DOM</span></span><br><span class="line">ReactDom.render(vDom1, <span class="built_in">document</span>.getElementById(<span class="string">'test1'</span>))</span><br></pre></td></tr></table></figure>
+
+<p>第二種方式，使用babel <code>&lt;script type=&quot;text/babel&quot;&gt;&lt;/script&gt;</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.新增虛擬DOM 直接寫入html 結構</span></span><br><span class="line"><span class="keyword">const</span> vDom2 =  <span class="xml"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">id</span>=<span class="string">&#123;myId.toUpperCase()&#125;</span>&gt;</span> &#123;msg.toUpperCase()&#125; <span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.渲染虛擬DOM</span></span><br><span class="line">ReactDom.render(vDom2, <span class="built_in">document</span>.getElementById(<span class="string">'test2'</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="渲染虛擬DOM-元素-的語法"><a href="#渲染虛擬DOM-元素-的語法" class="headerlink" title="渲染虛擬DOM(元素)的語法"></a>渲染虛擬DOM(元素)的語法</h2><ol>
+<li>語法：<code>ReactDom.render(virtualDOM, containerDOM)</code> </li>
+<li>作用：將虛擬DOM元素渲染到頁面中真實的DOM元素中顯示。</li>
+<li>參數說明：<ul>
+<li>參數一：純JS或JSX新增的虛擬DOM物件</li>
+<li>參數二：用來包含虛擬 DOM 元素的真實 DOM 元素物件(通常是個<div>)</div></li>
+</ul>
+</li>
+</ol>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <blockquote>
+<p>這世界上有很多虛擬的東東，這些欺騙感情的虛擬物，有時也可以拿來療癒。</p>
+</blockquote>
+<p>先來理解一下什麼是虛擬 DOM 為什麼我們需要用它。這篇文章解釋得頗清楚的：<a href="https://segmentfault.com/a/1190000018891454" target="_blank" rel="noopener">虛擬 DOM的渲染原理和特性</a></p>
+<p>但是還是來整理一下重點：<br>原本我們寫原生的 JavaScript 時，我們會直接對 DOM 進行監聽和修改，然後這個 DOM 元素也會透過我們的監聽的事件所執行的，讓頁面產生互動。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="React_virtual_DOM/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/React_virtual_DOM/" data-id="ck5xt5xft000085uw0kqu0ix9" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/React/">React</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_Base_type" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="JS_Base_type/" class="article-date">
@@ -263,7 +371,7 @@ ga('send', 'pageview');
 <li>原本事件監聽觸發的事件名稱<code>onclick</code>也需要改成是駝峰式命名的<code>onClick</code>。</li>
 <li>使用大括號<code>{}</code>括著一個值或表達式<code>{this.onClick}</code> 表示是這個組件的<code>onClick()</code>函式。</li>
 </ol>
-<h2 id="創建一個新組件"><a href="#創建一個新組件" class="headerlink" title="創建一個新組件"></a>創建一個新組件</h2><p>所有我們設計的組件，都要繼承於<code>Component</code>，而組件內必須要有一個 <code>render ()</code>函式會回傳<code>return</code> 一個<code>JSX</code>的物件。<br>在書寫新組件(Component)的檔案時，需要至少有三個結構：</p>
+<h2 id="新增一個新組件"><a href="#新增一個新組件" class="headerlink" title="新增一個新組件"></a>新增一個新組件</h2><p>所有我們設計的組件，都要繼承於<code>Component</code>，而組件內必須要有一個 <code>render ()</code>函式會回傳<code>return</code> 一個<code>JSX</code>的物件。<br>在書寫新組件(Component)的檔案時，需要至少有三個結構：</p>
 <ol>
 <li>引入所需。ex. <code>import</code> - <code>from</code></li>
 <li>組件本身。ex. <code>class [組件名] extends [組件名]</code></li>
@@ -273,18 +381,18 @@ ga('send', 'pageview');
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或是 此種比較常用</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="定義render-方法：-2"><a href="#定義render-方法：-2" class="headerlink" title="定義render ()方法：(2.)"></a>定義<code>render ()</code>方法：(2.)</h3><p><code>render()</code>方法是渲染頁面最重要的函式，利用<code>render()</code>將顯示內容以回傳<code>return()</code>物件的方式回傳，<code>return(JSX動態 or HTML靜態)</code>需用()包起來。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !<span class="xml"><span class="tag">&lt;<span class="name">il</span>/&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !&lt;il/&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="輸出組件-3"><a href="#輸出組件-3" class="headerlink" title="輸出組件(3.)"></a>輸出組件(3.)</h3><p>將組件以<code>export default [組件名];</code>形式輸出，以供其他組件使用。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Item;</span><br></pre></td></tr></table></figure>
 
 <h2 id="實作組件"><a href="#實作組件" class="headerlink" title="實作組件"></a>實作組件</h2><p>兩個組件實作，在 List(ol)組件裡引入幾個Item(li)組件。<br><strong>檔案名：Item.JS</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; </span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !<span class="xml"><span class="tag">&lt;<span class="name">il</span>/&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Item;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; </span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !&lt;il/&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Item;</span><br></pre></td></tr></table></figure>
 
 <p>在另一個組件裡把 Item 這個組件安插進來。<br><strong>檔案名：List.js</strong><br>記得需引入<code>Item.js</code>，置入組件時須以 self close tag 的型態插入，如<code>&lt;Item /&gt;&gt;</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Item <span class="keyword">from</span> <span class="string">'Item'</span>; <span class="comment">// 引入檔名可以不寫.js</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; </span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;ol&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">      &lt;ol/&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> List;</span><br></pre></td></tr></table></figure>
 
-<h2 id="如何渲染到畫面"><a href="#如何渲染到畫面" class="headerlink" title="如何渲染到畫面"></a>如何渲染到畫面</h2><p>組件都完成後，就可以再引入主要頁面的<code>index.js</code>並且告知要放在哪一個 DOM 元素的位置。</p>
+<h2 id="如何渲染到畫面"><a href="#如何渲染到畫面" class="headerlink" title="如何渲染到畫面"></a>如何渲染到畫面</h2><p>組件都完成後，就可以在引入主要頁面的<code>index.js</code>並且告知要放在哪一個 DOM 元素的位置。</p>
 <ul>
 <li>在專案裡<code>src/index.js</code>，是 react 預設的程式進入點。</li>
 <li><code>react</code>是核心。<code>react-dom</code>是把 react 掛載到 dom上面的必需組件。</li>
@@ -293,7 +401,7 @@ ga('send', 'pageview');
 <p><strong>檔名：index.js</strong><br><code>render()</code>函式有兩參數:</p>
 <ol>
 <li><code>react element</code> 元素,型態是物件。ex.<code>&lt;List/&gt;</code></li>
-<li><code>DOM contener</code> 裝 DOM 的容器。ex.<code>document.getElementById(&#39;root&#39;)</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> List <span class="keyword">from</span> <span class="string">'./List'</span>; <span class="comment">// 引入組件</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">List</span>/&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)); </span><br><span class="line"><span class="comment">// 把 list 放到 root 裡面</span></span><br></pre></td></tr></table></figure>
+<li><code>DOM contener</code> 裝 DOM 的容器。ex.<code>document.getElementById(&#39;root&#39;)</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> List <span class="keyword">from</span> <span class="string">'./List'</span>; <span class="comment">// 引入組件</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;List/&gt;, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)); </span><br><span class="line"><span class="comment">// 把 list 放到 root 裡面</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -1431,104 +1539,6 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
 
 
   
-    <article id="post-JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/" class="article-date">
-  <time datetime="2019-12-01T16:00:00.000Z" itemprop="datePublished">2019-12-02</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/">非常彈性好用的陣列 Array 方法 map()</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-32"><a href="#Day-32" class="headerlink" title="Day 32"></a>Day 32</h6><blockquote>
-<p>如果日行一善可以持續，那鐵人應該也可以。</p>
-</blockquote>
-<p>上一篇我們講解了陣列方法的 <code>forEach()</code>，知道它可以做迭代這件事，但在 ECMAScript 5 的陣列方法中大部分的方法都是以迭代為基礎，<code>map()</code>也是。</p>
-<p><code>map()</code>算是陣列方法中最實用的方法之一，我們可以用<code>map()</code>來轉換陣列內的元素，轉換成什麼可由我們決定，以我們想要的方式轉換後，<code>map()</code>會幫我們這些轉換結果，放入另一個新的陣列，回傳回來。</p>
-<p>例如，我們有一個含有數字的物件，但只想要取出裡面的數字；或是，我們的陣列裡包含了函式 <del>是啊，陣列裡也可放函式沒忘吧？</del> 但我們需要這些函式的promise，<code>map()</code>可以幫我們把元素轉換成另一個格式傳回來。</p>
-<p>在「JavaScript 學習手冊」這本書裡有許多範例（有部分修改），我們來試著理解一下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> shoppingCart = </span><br><span class="line">[&#123;  <span class="attr">itemName</span>: <span class="string">"Book"</span>,<span class="attr">price</span> : <span class="number">220</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">itemName</span>: <span class="string">"Bag"</span>,<span class="attr">price</span> : <span class="number">350</span> &#125;];</span><br><span class="line"><span class="keyword">const</span> itemNames = shoppingCart.map(<span class="function"><span class="params">x</span> =&gt;</span> x.itemName); </span><br><span class="line"><span class="comment">// 只把 itemNames 提取出來</span></span><br><span class="line">itemNames; <span class="comment">// ["Book", "Bag"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 把 price 打七九折後提取出來</span></span><br><span class="line"><span class="keyword">const</span> discounts = shoppingCart.map(<span class="function"><span class="params">x</span> =&gt;</span> x.price * <span class="number">0.79</span>); </span><br><span class="line">discounts; <span class="comment">// [173.8, 276.5]</span></span><br></pre></td></tr></table></figure>
-
-<p>當然，用在陣列上也是ㄧ樣的方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line">newArr = arr.map(<span class="function">(<span class="params">x</span>) =&gt;</span> x * x);</span><br><span class="line"></span><br><span class="line">newArr; <span class="comment">//  [1, 4, 9, 16, 25, 36]</span></span><br></pre></td></tr></table></figure>
-
-<p><a href="https://s0developer0mozilla0org.icopy.site/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank" rel="noopener">Array.prototype.map() - JavaScript | MDN</a><br><strong>原型：</strong> Array.prototype.map();<br><strong>功能：</strong> 建立一個新的陣列，其內容為原陣列的每一個元素經由回呼函式運算後所回傳的結果之集合。<br><strong>回傳值：</strong> 回傳新陣列，原陣列不改變。對陣列中的各元素進行操作，操作後的值會被寫入新的陣列中並返回。<br><strong>參數：</strong> callback 函式和<code>thisArg</code>第二參數可忽略，可參考前一篇的<a href="https://ithelp.ithome.com.tw/articles/10228571" target="_blank" rel="noopener">forEach</a>。
-<strong>改變：</strong>  不會改變原陣列。<br><strong>語法：</strong> <code>var new_array = arr.map(function callback(currentValue[, index[, array]]) {
-         // Return element for new_array
-          }[, thisArg])</code></p>
-<p>當我們提供的函式被呼叫的時候，這個函式會使用我們之前提到的 callback 函式的三個參數：元素本身、元素索引和陣列本身。陣列本身這個參數通常比較少用到，利用參數的特性，我們可以輕易地取到我們想要的值和索引：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line"><span class="keyword">const</span> arr2 = arr.map(<span class="function"><span class="keyword">function</span>(<span class="params">element, index, array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> element * <span class="number">2</span>;</span><br><span class="line">&#125;);</span><br><span class="line">arr2.join(<span class="string">'、'</span>);  <span class="comment">// 2、4、6、8、10、12</span></span><br></pre></td></tr></table></figure>
-
-<p><code>map()</code>也可以做到修正陣列這件事，架設我們有一個價格的陣列，只要不超過金額 50 的商品就標示「無折扣」，那麼我們就可以利用<code>map()</code>來過濾與修改這些值。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> prices = [<span class="number">42</span>, <span class="number">57</span>, <span class="number">89</span>, <span class="number">23</span>, <span class="number">78</span>, <span class="number">12</span>]</span><br><span class="line"><span class="keyword">const</span> newPrices = prices.map( <span class="function"><span class="keyword">function</span>(<span class="params">elem</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(elem &lt; <span class="number">50</span>) <span class="keyword">return</span> <span class="string">"no Discount"</span>;</span><br><span class="line"><span class="keyword">return</span> elem</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">newPrices; <span class="comment">//  ["no Discount", 57, 89, "no Discount", 78, "no Discount"]</span></span><br></pre></td></tr></table></figure>
-
-<p><code>map()</code>也有一些超級好用的用法。例如，假設我們有兩個不同的陣列，分別是產品名稱和價格，但我們想把它們結合在一起，就可以輕易的利用<code>map()</code>提取元素和索引的特性，來組合成另一組資料。：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> items = [<span class="string">"book"</span>, <span class="string">"cap"</span>, <span class="string">"bag"</span>];</span><br><span class="line"><span class="keyword">const</span> prices = [<span class="number">125</span>, <span class="number">76</span>, <span class="number">390</span>];</span><br><span class="line"><span class="keyword">const</span> listItems = items.map(<span class="function">(<span class="params">elem, index</span>) =&gt;</span> (&#123; <span class="attr">itemName</span>: elem, <span class="attr">price</span>: prices[index]&#125;));</span><br><span class="line"></span><br><span class="line">listItems;</span><br><span class="line"><span class="comment">// [&#123;itemName: "book", price: 125&#125;, </span></span><br><span class="line"><span class="comment">//  &#123;itemName: "bag", price: 390&#125;, </span></span><br><span class="line"><span class="comment">//  &#123;itemName: "bag", price: 390&#125;]</span></span><br></pre></td></tr></table></figure>
-
-<p>是不是很神奇？我們在<code>listItems</code>使用了索引的提取，為什麼需要索引？是因為我們想要把<code>items</code>與<code>prices</code>裡的元素用它們的索引連結起來。</p>
-<p><code>map()</code>本身是回傳陣列，我們希望的是物件的資料格式，所以從兩個陣列中提取我們所要的資訊，在callback 函式裡前後加上<code>{}</code>，再把我們提取的元素放入，回傳就會是物件了。</p>
-<p>需要注意的是，我們必須用<code>( )</code>將物件格式包起來，如果沒包起來，箭頭函式的寫法會將大括號視為區塊標示。</p>
-<p>今天的陣列 Array 方法 <code>map()</code>就介紹到此，接下來的陣列方法會繼續持續下去喔～</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-32"><a href="#Day-32" class="headerlink" title="Day 32"></a>Day 32</h6><blockquote>
-<p>如果日行一善可以持續，那鐵人應該也可以。</p>
-</blockquote>
-<p>上一篇我們講解了陣列方法的 <code>forEach()</code>，知道它可以做迭代這件事，但在 ECMAScript 5 的陣列方法中大部分的方法都是以迭代為基礎，<code>map()</code>也是。</p>
-<p><code>map()</code>算是陣列方法中最實用的方法之一，我們可以用<code>map()</code>來轉換陣列內的元素，轉換成什麼可由我們決定，以我們想要的方式轉換後，<code>map()</code>會幫我們這些轉換結果，放入另一個新的陣列，回傳回來。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/" data-id="ck5v5safh003wsyuw6by3zejo" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1577,6 +1587,10 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
       <ul>
         
           <li>
+            <a href="React_virtual_DOM/">React 裡的虛擬 DOM</a>
+          </li>
+        
+          <li>
             <a href="JS_Base_type/">JavaScript 基礎 型別篇</a>
           </li>
         
@@ -1592,10 +1606,6 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
             <a href="JS_front_test01/">法國前端初級測驗</a>
           </li>
         
-          <li>
-            <a href="JS30_01_Drum-Kit copy/">JS 30 - 01. Drum Kit 鍵盤音樂</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1605,7 +1615,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="tags/Base/" style="font-size: 10px;">Base</a> <a href="tags/CSS/" style="font-size: 10px;">CSS</a> <a href="tags/ES6/" style="font-size: 10px;">ES6</a> <a href="tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="tags/Git/" style="font-size: 12.5px;">Git</a> <a href="tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="tags/HTML/" style="font-size: 10px;">HTML</a> <a href="tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="tags/IDE/" style="font-size: 10px;">IDE</a> <a href="tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="tags/JS101/" style="font-size: 10px;">JS101</a> <a href="tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="tags/JavaScript-30/" style="font-size: 12.5px;">JavaScript 30</a> <a href="tags/Note/" style="font-size: 10px;">Note</a> <a href="tags/Other/" style="font-size: 10px;">Other</a> <a href="tags/React/" style="font-size: 12.5px;">React</a> <a href="tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="tags/Test/" style="font-size: 10px;">Test</a> <a href="tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="tags/Base/" style="font-size: 10px;">Base</a> <a href="tags/CSS/" style="font-size: 10px;">CSS</a> <a href="tags/ES6/" style="font-size: 10px;">ES6</a> <a href="tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="tags/Git/" style="font-size: 12px;">Git</a> <a href="tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="tags/HTML/" style="font-size: 10px;">HTML</a> <a href="tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="tags/IDE/" style="font-size: 10px;">IDE</a> <a href="tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="tags/JS101/" style="font-size: 10px;">JS101</a> <a href="tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="tags/Note/" style="font-size: 10px;">Note</a> <a href="tags/Other/" style="font-size: 10px;">Other</a> <a href="tags/React/" style="font-size: 14px;">React</a> <a href="tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="tags/Test/" style="font-size: 10px;">Test</a> <a href="tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 

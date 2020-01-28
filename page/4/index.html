@@ -111,6 +111,132 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/" class="article-date">
+  <time datetime="2019-11-11T20:21:14.000Z" itemprop="datePublished">2019-11-12</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/">以陣列 Array 的複製談型別（下）</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-12"><a href="#Day-12" class="headerlink" title="Day 12"></a>Day 12</h6><blockquote>
+<p>拿到它，先看它是什麼？拿它來做什麼? 再決定。</p>
+</blockquote>
+<p>在複製陣列之前，先理解了 JavaScript 會依資料型別 Primitive type（基本型別）和Non-primitive type（非基本型別）而有不同的運作方式，我們就可以進一步的來了解，我們常聽到的深拷貝（DeepCopy)和淺拷貝(shallow) 是什麼、在什麼情境下要選擇哪一種複製方法、如何實作出這些深拷貝和淺拷貝。</p>
+<h2 id="什麼是拷貝？"><a href="#什麼是拷貝？" class="headerlink" title="什麼是拷貝？"></a>什麼是拷貝？</h2><p>在生活中我們最常做的拷貝就是影印，假如我有一份筆記，朋友跟我借去拷貝，當他拿著我的筆記，到影印機前，按下拷貝鍵的那一刻，複製的筆記從機器跑出來，這時「拷貝」這件事就算完成，「我的筆記」和「他影印的筆記」是各自獨立的筆記，之後他要在這份影印的筆記上塗鴉也好、修改也好，也不會影響我的筆記。</p>
+<p>但是在 JavaScript 裡，當我們新建立一個變數<code>a</code>，賦予這個變數一個值，然後再建立一個新變數<code>b</code>，接著以<code>=</code>指定運算子來把<code>a</code> 指定給<code>b</code>，這樣就算拷貝嗎？雖然我們<code>a</code>、<code>b</code>叫出來看都是ˋ42ˋ，但是這真的是拷貝嗎。？是或不是？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">let</span> b = a;</span><br><span class="line">a; <span class="comment">// 42</span></span><br><span class="line">b; <span class="comment">// 42</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="被複製的資料型別是重點"><a href="#被複製的資料型別是重點" class="headerlink" title="被複製的資料型別是重點"></a>被複製的資料型別是重點</h3><p>事實上，這得要看我們要複製什麼東西，才能知道我們是否可以「輕易」的複製，且「真正」的把複製和被複製的徹底分離。<br>更確切的說，如果我們要複製的變數值型態，是屬於Primitive data types（基本資料型別），也就是以下的資料型態：</p>
+<ul>
+<li>Number (數字)，例如 <code>42</code></li>
+<li>String (字串)，例如 <code>&quot;Hi&quot;</code> </li>
+<li>Boolean (布林值)，例如 <code>true</code></li>
+<li>undefined</li>
+<li>null</li>
+</ul>
+<p>那麼我們就可以放心的以上述的方式複製。</p>
+<p>還記得前一篇提到的 Call by value（呼叫變數的值）嗎？這些資料型別在 JavaScript 裡是屬於 Immutable (不可變)的基本型別，以值的方式複製可以得到真正的、獨立的複製。</p>
+<h3 id="你以為你複製了，但是並。沒。有。"><a href="#你以為你複製了，但是並。沒。有。" class="headerlink" title="你以為你複製了，但是並。沒。有。"></a>你以為你複製了，但是並。沒。有。</h3><p>但是，如果今天要被複製的資料型態是 Non Primitive data types（非基本資料型別），也就是 Object (物件型別)，那就無法完全複製。例如：</p>
+<ul>
+<li>Array (陣列)，例如 <code>[1, 2, 3, 4, 5]</code></li>
+<li>Object (物件)，例如 <code>{ name : &quot;Tsuifei&quot;}</code></li>
+</ul>
+<p>因為陣列和物件是屬於 Call by reference（呼叫變數的記憶體位址），也就是說當我們複製這類型的資料，只是複製了這個變數的記憶體位置，所以當我們呼叫複製和被複製的變數時，都會指向同一個記憶體位置，當然，裡面的值也是同一個值，改任何一個，都會動到兩個變數的值。<br>我們再來複習一下前一篇的範例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// by reference(參考值)</span></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Tracy"</span>,</span><br><span class="line">    city: <span class="string">"Tainan"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person2 = person; </span><br><span class="line">person2.name = <span class="string">"Ayda"</span></span><br><span class="line"></span><br><span class="line">person; <span class="comment">// name: "Ayda"</span></span><br><span class="line">person2; <span class="comment">// name: "Ayda"</span></span><br></pre></td></tr></table></figure>
+
+<p>我們可以看到，在我們修改從<code>person</code>複製出來的<code>person2</code>時，<code>person</code>也被修改了。</p>
+<h2 id="物件專用的深拷貝和淺拷貝"><a href="#物件專用的深拷貝和淺拷貝" class="headerlink" title="物件專用的深拷貝和淺拷貝"></a>物件專用的深拷貝和淺拷貝</h2><p>終於，我們要進入 <del>深眠和淺眠</del> 這個正題了。<br>不知大家有沒發現，在討論這個深淺拷貝的範例時，清一色都是用物件來示範？原來，「深拷貝」和「淺拷貝」是針對物件的資料型別複製時，所產生的現象而來的啊！</p>
+<p>但是要如何在 JavaScript 中區分深拷貝和淺拷貝？何時該用「深拷貝」或「淺拷貝」，用最簡單的方式是取決於我們想要複製的資料<code>[元素]</code>是什麼型別。 <del>結束。</del></p>
+<h3 id="淺拷貝-只要一層都好說"><a href="#淺拷貝-只要一層都好說" class="headerlink" title="淺拷貝 [ ] 只要一層都好說"></a>淺拷貝 [ ] 只要一層都好說</h3><p>完全的複製 Array 而不受原陣列影響，即使修改複製過來的物件裡的值，也不會改變複製來源，這個物件裡面的「元素」可以是任何一種資料型態，反著說，就是這個物件裡面的元素，不能是物件。如果遇到這樣的資料，就可以用淺拷貝的方法複製。</p>
+<p>有哪幾種方法可以做淺拷貝？最常被拿來用的是 JavaScript 內建的陣列方法<code>slice()</code>。 <del>它的詳細解說會在後幾章才會介紹到。</del> <code>slice()</code>通常拿來做從陣列中切取我們需要的元素出來，在這裡我們使用<code>slice(0)</code>表示我們要從頭到尾都切下來。 <del>切切切</del></p>
+<p>在下面第一個範例，「淺拷貝」是可行的，因為<code>arr1</code>陣列裡的元素是基本資料型別<code>Number</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr1.slice(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">arr2[<span class="number">0</span>] = <span class="number">42</span>;</span><br><span class="line">arr1; <span class="comment">// [1, 2, 3]</span></span><br><span class="line">arr2; <span class="comment">// [42, 2, 3]</span></span><br></pre></td></tr></table></figure>
+
+<p>但是以下這個範例，<code>arr1</code>陣列裡的「元素」是「物件型別」的陣列，淺拷貝對於原物件裡面的元素值是物件型態就是不行！ <del>噠美噠美</del></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 淺拷貝 []</span></span><br><span class="line"><span class="keyword">let</span> arr1 = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr1.slice(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">arr2[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">42</span>;</span><br><span class="line">arr1; </span><br><span class="line"><span class="comment">// 0: (3) [42, 2, 3]</span></span><br><span class="line"><span class="comment">// 1: (3) [4, 5, 6]</span></span><br><span class="line">arr2; </span><br><span class="line"><span class="comment">// 0: (3) [42, 2, 3]</span></span><br><span class="line"><span class="comment">// 1: (3) [4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+
+<p>網路上能找到的大多是淺拷貝的例子，雖然淺 <del>可別因此就鄙視它</del>，只要確認要複製的來源物件，裡面的元素不是物件型別，還是非常好用的。<br>礙於篇幅，這裡只介紹一種淺拷貝的方式，有興趣的朋友可查找網路上其他的方法，例如用解構式、迴圈或使用<code>map()</code>都可達到淺拷貝的效果。</p>
+<h3 id="深拷貝-–-gt-DNA被複製，桃莉羊出現了"><a href="#深拷貝-–-gt-DNA被複製，桃莉羊出現了" class="headerlink" title="深拷貝 [ [ ],[ ] ] –&gt; DNA被複製，桃莉羊出現了"></a>深拷貝 [ [ ],[ ] ] –&gt; DNA被複製，桃莉羊出現了</h3><p>何時使用深拷貝？當我們想要完全複製一份「物件」裡面的元素也是「物件」，就可以使用深拷貝，這種情境就是我們在本文開頭所說的，用影印機複製筆記ㄧ樣，複製完就是兩個獨立的個體了。</p>
+<p>做深拷貝的方法並不多，大部分都是靠外來的函式庫來撐腰，例如 lodash 和 jQuery 的第三方主流函式庫，如果使用原生的 JavaScript 來做深拷貝，似乎只能使用<code>JSON.stringify()</code>和<code>JSON.parse()</code>的交互作用，達到深拷貝的效果。</p>
+<p>來看一下 MDN 對這兩個函式的解釋： <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" target="_blank" rel="noopener">JSON.stringify()| MDN</a> ｜ <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse" target="_blank" rel="noopener">JSON.parse() | MDN</a></p>
+<blockquote>
+<p><code>JSON.stringify()</code>方法是將一個 JavaScript 的值(物件或陣列)轉換為一個<code>JSON</code>的字串。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]];</span><br><span class="line">arr = <span class="built_in">JSON</span>.stringify(arr); <span class="comment">// "[[1,2,3],[4,5,6]]"</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>JSON.parse()</code>方法用來解析<code>JSON</code>的字串，構造由字串描述的JavaScript值或物件。</p>
+</blockquote>
+<p>這時的<code>arr</code>已經變成JSON的字串格式：<code>&quot;[[1,2,3],[4,5,6]]&quot;</code>。
+接下來再轉回陣列的型態：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = <span class="built_in">JSON</span>.parse(arr); <span class="comment">// [[1,2,3],[4,5,6]]</span></span><br></pre></td></tr></table></figure>
+
+<p>把原本的物件值轉成字串，然後再轉回來物件的型態，兩個函式手牽手處理下來，就等於複製了一份<code>arr1</code>到<code>arr2</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jsonDeepClone</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(obj));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr1 = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]];</span><br><span class="line"><span class="keyword">let</span> arr2 = jsonDeepClone(arr1);</span><br><span class="line"></span><br><span class="line">arr2[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">42</span>;</span><br><span class="line">arr1;</span><br><span class="line"><span class="comment">// 0: (3) [1, 2, 3]</span></span><br><span class="line"><span class="comment">// 1: (3) [4, 5, 6]</span></span><br><span class="line">arr2;</span><br><span class="line"><span class="comment">// 0: (3) [42, 2, 3]</span></span><br><span class="line"><span class="comment">// 1: (3) [4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+
+<p>這樣的一個拷貝過程與結果就是深拷貝（DeepCopy）了。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-12"><a href="#Day-12" class="headerlink" title="Day 12"></a>Day 12</h6><blockquote>
+<p>拿到它，先看它是什麼？拿它來做什麼? 再決定。</p>
+</blockquote>
+<p>在複製陣列之前，先理解了 JavaScript 會依資料型別 Primitive type（基本型別）和Non-primitive type（非基本型別）而有不同的運作方式，我們就可以進一步的來了解，我們常聽到的深拷貝（DeepCopy)和淺拷貝(shallow) 是什麼、在什麼情境下要選擇哪一種複製方法、如何實作出這些深拷貝和淺拷貝。</p>
+<h2 id="什麼是拷貝？"><a href="#什麼是拷貝？" class="headerlink" title="什麼是拷貝？"></a>什麼是拷貝？</h2><p>在生活中我們最常做的拷貝就是影印，假如我有一份筆記，朋友跟我借去拷貝，當他拿著我的筆記，到影印機前，按下拷貝鍵的那一刻，複製的筆記從機器跑出來，這時「拷貝」這件事就算完成，「我的筆記」和「他影印的筆記」是各自獨立的筆記，之後他要在這份影印的筆記上塗鴉也好、修改也好，也不會影響我的筆記。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/" data-id="ck5v5saev0021syuwlyyt14t8" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan11_How-to-copy-an-Array-in-JavaScript-part1" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_ironMan11_How-to-copy-an-Array-in-JavaScript-part1/" class="article-date">
@@ -1135,103 +1261,6 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
 
 
   
-    <article id="post-JS_ironMan02_What-is-the-array" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_ironMan02_What-is-the-array/" class="article-date">
-  <time datetime="2019-09-18T19:53:22.000Z" itemprop="datePublished">2019-09-19</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_ironMan02_What-is-the-array/">Array 陣列是什麼</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-02"><a href="#Day-02" class="headerlink" title="Day 02"></a>Day 02</h6><blockquote>
-<p>C’est quoi un Array</p>
-</blockquote>
-<h5 id="測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。"><a href="#測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。" class="headerlink" title="測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。"></a>測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。</h5><p>在討論陣列之前，可以先來想像一下，如果今天天氣超級好，我們洗了很多衣服，曬乾之後的衣服充滿陽光的氣息，我們把這些衣服整包的丟到床上，一邊開著電視，一邊開始折衣服，再將所有的上衣折好放成一疊、長褲折好一疊、襪子捲好放成一堆，再一一放入衣櫃裡，我們分門別類地把這些衣服摺好時，這一疊的衣服就有陣列的概念了。</p>
-<p>一般來說，陣列在程式語言裡的定義是：陣列(Array)是一組相同型態的連續變數，它們使用同一個變數名稱，而另外用一個索引值來指定使用第幾個變數。且陣列本質上是有序的，索引是從零開始計算的。</p>
-<p>在<a href="https://zh.wikipedia.org/zh-tw/%E6%95%B0%E7%BB%84" target="_blank" rel="noopener">維基百科</a>裡，對於陣列的說明是：</p>
-<blockquote>
-<p>在電腦科學中，陣列資料結構（英語：array data structure），簡稱陣列（英語：Array），是由相同類型的元素（element）的集合所組成的資料結構，分配一塊連續的記憶體來儲存。利用元素的索引（index）可以計算出該元素對應的儲存位址。</p>
-</blockquote>
-<h3 id="簡單的說，陣列就是一個「有序」、「有索引」、「有值」的一個「集合」。"><a href="#簡單的說，陣列就是一個「有序」、「有索引」、「有值」的一個「集合」。" class="headerlink" title="簡單的說，陣列就是一個「有序」、「有索引」、「有值」的一個「集合」。"></a>簡單的說，陣列就是一個「有序」、「有索引」、「有值」的一個「集合」。</h3><p>但在 JavaScript ，我們如何定義它？依據 <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="noopener">NDM</a> 的解釋：</p>
-<blockquote>
-<p>陣列的值的有序序列。有別於其他的語言，JavaScript 並沒有明確的陣列資料類型。取而代之，提供了 Array 物件，可以直接實體化或使用陣列的字面表達記法。</p>
-</blockquote>
-<p>JavaScript 果然是個很奇特的語言，不只沒限制放在陣列裡的資料型別，也就是說在陣列裡，要放數字、字串、陣列甚至是物件都可以，簡直是百寶箱了。不只這樣，JavaScript 還幫我們做好了陣列 Array 的物件供我們應用，以及許多陣列的方法，讓我們可以輕易的操控陣列，這些方法將在後續一一來介紹。</p>
-<h2 id="陣列-Array-的真面目"><a href="#陣列-Array-的真面目" class="headerlink" title="陣列 Array 的真面目"></a>陣列 Array 的真面目</h2><p>JavaScript 的資料型別有數字(Number)、字串(String)、布林(Boolean)、空(null)、未定義(undefined)、符號(Symbol)、陣列(Array)、物件(Object)。雖然字面上 JavaScript 的型別有這麼多種，但是其實骨子裡 JavaScript 在這些型別裡又分組，甚至，有些還喬裝成別組，是不是很錯亂？</p>
-<p>想要各型別現出原形，得用 JavaScript 裡的關鍵運算子 typeof 來照妖，猜猜陣列 Array 的真面目是什麼？</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">typeof</span> arr; <span class="comment">// "object" 是物件</span></span><br></pre></td></tr></table></figure>
-
-<p>怎麼回事？居然是”object”物件！關於陣列或 JavaScript 的各型別，我們在之後也會陸續提到。</p>
-<h2 id="陣列長什麼樣子"><a href="#陣列長什麼樣子" class="headerlink" title="陣列長什麼樣子"></a>陣列長什麼樣子</h2><p>JavaScript 陣列的基本長相為下圖，是由一對中括號 [ ] 組成， [ ] 裡面為陣列元素，每個元素以逗號分開，通常我們會將一組陣列，賦值給一個變數。再以這個變數來做各種處理。</p>
-<img src="https://lh3.google.com/u/0/d/1nGDgv3Yig9uGJRuuXZyes5ijhNCP7Pp0=w1434-h1624-iv1" width="70%" height="70%">
-
-<p>以下是幾個陣列的範例</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 變數 = [ 元素, 元素, 元素, ]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arrDeux = [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>],</span><br><span class="line">    [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>]</span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arrObj = [<span class="number">1</span>, <span class="number">2</span>, &#123; <span class="attr">name</span>: <span class="string">"Ayda"</span>, <span class="attr">city</span>: <span class="string">"Paris"</span>,<span class="attr">luckyNumbers</span> :[<span class="number">24</span>,<span class="number">42</span>,<span class="number">15</span>]&#125;]</span><br></pre></td></tr></table></figure>
-
-<p>有沒有被陣列能裝載的東西嚇到，看得出最後一個陣列像什麼嗎？有沒有覺得似曾相似？似乎，陣列不像我們想像的那樣單純，明天我們再繼續了解囉。</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
-</blockquote>
-<h4 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h4><p> <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Obsolete_Pages/Obsolete_Pages/Obsolete_Pages/%E9%99%A3%E5%88%97%E7%9A%84%E9%81%8B%E7%94%A8" target="_blank" rel="noopener">陣列的運用 - JavaScript | MDN</a> </p>
-<p> <a href="https://zh.wikipedia.org/zh-tw/%E6%95%B0%E7%BB%84" target="_blank" rel="noopener">陣列 - 維基百科，自由的百科全書</a></p>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-02"><a href="#Day-02" class="headerlink" title="Day 02"></a>Day 02</h6><blockquote>
-<p>C’est quoi un Array</p>
-</blockquote>
-<h5 id="測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。"><a href="#測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。" class="headerlink" title="測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。"></a>測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。</h5><p>在討論陣列之前，可以先來想像一下，如果今天天氣超級好，我們洗了很多衣服，曬乾之後的衣服充滿陽光的氣息，我們把這些衣服整包的丟到床上，一邊開著電視，一邊開始折衣服，再將所有的上衣折好放成一疊、長褲折好一疊、襪子捲好放成一堆，再一一放入衣櫃裡，我們分門別類地把這些衣服摺好時，這一疊的衣服就有陣列的概念了。</p>
-<p>一般來說，陣列在程式語言裡的定義是：陣列(Array)是一組相同型態的連續變數，它們使用同一個變數名稱，而另外用一個索引值來指定使用第幾個變數。且陣列本質上是有序的，索引是從零開始計算的。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_ironMan02_What-is-the-array/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan02_What-is-the-array/" data-id="ck5v5saem001bsyuwghw4a7yt" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1280,6 +1309,10 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
       <ul>
         
           <li>
+            <a href="../../React_virtual_DOM/">React 裡的虛擬 DOM</a>
+          </li>
+        
+          <li>
             <a href="../../JS_Base_type/">JavaScript 基礎 型別篇</a>
           </li>
         
@@ -1295,10 +1328,6 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
             <a href="../../JS_front_test01/">法國前端初級測驗</a>
           </li>
         
-          <li>
-            <a href="../../JS30_01_Drum-Kit copy/">JS 30 - 01. Drum Kit 鍵盤音樂</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1308,7 +1337,7 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/Base/" style="font-size: 10px;">Base</a> <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12.5px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12.5px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 15px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 17.5px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12.5px;">JavaScript 30</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 12.5px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="../../tags/Base/" style="font-size: 10px;">Base</a> <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 
