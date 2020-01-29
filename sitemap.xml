@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/React_module_component/</loc>
+    
+    <lastmod>2020-01-29T15:59:33.742Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/React_virtual_DOM/</loc>
     
     <lastmod>2020-01-29T15:27:41.027Z</lastmod>

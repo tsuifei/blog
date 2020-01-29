@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>React 的 模塊 Module 與組件 component</title>
+      <link href="/tsuifei.github.io/React_module_component/"/>
+      <url>/tsuifei.github.io/React_module_component/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>模塊與組件 模塊化與組件化 好繞舌</p></blockquote><h2 id="模塊與組件的關係"><a href="#模塊與組件的關係" class="headerlink" title="模塊與組件的關係"></a>模塊與組件的關係</h2><h3 id="模塊-Module"><a href="#模塊-Module" class="headerlink" title="模塊 Module"></a>模塊 Module</h3><p>理解：向外提供特定功能的JS應用，一般就是以<code>.js</code>的檔案為單位。<br>為什麼：因為 JS 程式碼會越多，會越來越複雜。<br>作用：可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p><h3 id="組件-Component"><a href="#組件-Component" class="headerlink" title="組件 Component"></a>組件 Component</h3><p>一個局部的介面功能模塊，介面所需元素的集合包含 HTML,CSS,JS,image。可用來做資料、變數與函式操作與儲存資料的操作。</p><p>理解：用來實現特定（局部）功能效果的程式碼集合(HTML, CSS)。<br>為什麼：一個介面的功能很複雜，所以最好能拆分成多個組件會較清楚。<br>作用： 可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p><h3 id="模塊化-Modular"><a href="#模塊化-Modular" class="headerlink" title="模塊化 Modular"></a>模塊化 Modular</h3><p>當應用程式的 JS 都是以模塊的方式書寫，這個程式就是一個模塊化的應用程式。</p><h3 id="組件化-Componentization"><a href="#組件化-Componentization" class="headerlink" title="組件化 Componentization"></a>組件化 Componentization</h3><p>當應用程式的 JS 都是以多個組件的方式編寫，這個應用程式就是一個組件化的應用程式。</p><h2 id="物件導向的組件構成"><a href="#物件導向的組件構成" class="headerlink" title="物件導向的組件構成"></a>物件導向的組件構成</h2><h3 id="基本的理解和使用"><a href="#基本的理解和使用" class="headerlink" title="基本的理解和使用"></a>基本的理解和使用</h3><p>物件導向的物件 -&gt; 物件導向的模塊 -&gt; 物件導向的組件。</p><p><code>&lt;MyComponent/&gt;</code>稱為組件標籤，組件名可任意，但第一個字母需大寫，且標籤需關閉<code>&lt;組件名/&gt;</code>。</p><p>新增組件的步驟：</p><ol><li>定義組件有兩種方式：工廠模式組件(簡單組件)、ES6 類別組件(複雜組件)</li><li>渲染組件標籤</li></ol><h3 id="工廠模式組件-簡單組件：沒有狀態的組件"><a href="#工廠模式組件-簡單組件：沒有狀態的組件" class="headerlink" title="工廠模式組件(簡單組件：沒有狀態的組件)"></a>工廠模式組件(簡單組件：沒有狀態的組件)</h3><p>工廠模式組件的效率會比類別組件好，但是只能在組件沒有「狀態」的情況下使用它，也就是說如果只是靜態顯示資料，就可考慮用工廠模式。</p><p>工廠模式的寫法很像一般函式的寫法，且一定要有回傳，而回傳內容通常就包含了 HTML 標籤。</p><p>重點：一定要有回傳<code>return</code>，只要組件有<code>state</code>狀態，就不能用工廠模式。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponent</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>工廠模式組件(簡單組件) <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 渲染組件標籤</span></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MyComponent</span> /&gt;</span>, document.getElementById('example1'))</span></span><br></pre></td></tr></table></figure><p>組件標籤的另一種寫法，如果需要內容物在組件標籤之間，就可用這種寫法。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;MyComponent&gt; </span><br><span class="line">  &lt;h2&gt;工廠模式組件(簡單組件) &lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>MyComponent&gt;</span><br></pre></td></tr></table></figure><h3 id="ES6-類別組件-複雜組件"><a href="#ES6-類別組件-複雜組件" class="headerlink" title="ES6 類別組件(複雜組件)"></a>ES6 類別組件(複雜組件)</h3><p>ES6 類別組件寫法是以物件導向的類別方式來攥寫，包在裡面的會有建構式、綁定自定義函式、狀態和渲染或者是事件監聽。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2. ES6 類別組件(複雜組件)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent2</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">    <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>ES6 類別組件(複雜組件)<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">  ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MyComponent2</span> /&gt;</span>, document.getElementById('example2'))</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> JavaScript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> React </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>React 裡的虛擬 DOM</title>
       <link href="/tsuifei.github.io/React_virtual_DOM/"/>
       <url>/tsuifei.github.io/React_virtual_DOM/</url>

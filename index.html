@@ -111,6 +111,98 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-React_module_component" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="React_module_component/" class="article-date">
+  <time datetime="2020-02-27T16:42:24.000Z" itemprop="datePublished">2020-02-28</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="React_module_component/">React 的 模塊 Module 與組件 component</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <blockquote>
+<p>模塊與組件 模塊化與組件化 好繞舌</p>
+</blockquote>
+<h2 id="模塊與組件的關係"><a href="#模塊與組件的關係" class="headerlink" title="模塊與組件的關係"></a>模塊與組件的關係</h2><h3 id="模塊-Module"><a href="#模塊-Module" class="headerlink" title="模塊 Module"></a>模塊 Module</h3><p>理解：向外提供特定功能的JS應用，一般就是以<code>.js</code>的檔案為單位。<br>為什麼：因為 JS 程式碼會越多，會越來越複雜。<br>作用：可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p>
+<h3 id="組件-Component"><a href="#組件-Component" class="headerlink" title="組件 Component"></a>組件 Component</h3><p>一個局部的介面功能模塊，介面所需元素的集合包含 HTML,CSS,JS,image。可用來做資料、變數與函式操作與儲存資料的操作。</p>
+<p>理解：用來實現特定（局部）功能效果的程式碼集合(HTML, CSS)。<br>為什麼：一個介面的功能很複雜，所以最好能拆分成多個組件會較清楚。<br>作用： 可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p>
+<h3 id="模塊化-Modular"><a href="#模塊化-Modular" class="headerlink" title="模塊化 Modular"></a>模塊化 Modular</h3><p>當應用程式的 JS 都是以模塊的方式書寫，這個程式就是一個模塊化的應用程式。</p>
+<h3 id="組件化-Componentization"><a href="#組件化-Componentization" class="headerlink" title="組件化 Componentization"></a>組件化 Componentization</h3><p>當應用程式的 JS 都是以多個組件的方式編寫，這個應用程式就是一個組件化的應用程式。</p>
+<h2 id="物件導向的組件構成"><a href="#物件導向的組件構成" class="headerlink" title="物件導向的組件構成"></a>物件導向的組件構成</h2><h3 id="基本的理解和使用"><a href="#基本的理解和使用" class="headerlink" title="基本的理解和使用"></a>基本的理解和使用</h3><p>物件導向的物件 -&gt; 物件導向的模塊 -&gt; 物件導向的組件。</p>
+<p><code>&lt;MyComponent/&gt;</code>稱為組件標籤，組件名可任意，但第一個字母需大寫，且標籤需關閉<code>&lt;組件名/&gt;</code>。</p>
+<p>新增組件的步驟：</p>
+<ol>
+<li>定義組件有兩種方式：工廠模式組件(簡單組件)、ES6 類別組件(複雜組件)</li>
+<li>渲染組件標籤</li>
+</ol>
+<h3 id="工廠模式組件-簡單組件：沒有狀態的組件"><a href="#工廠模式組件-簡單組件：沒有狀態的組件" class="headerlink" title="工廠模式組件(簡單組件：沒有狀態的組件)"></a>工廠模式組件(簡單組件：沒有狀態的組件)</h3><p>工廠模式組件的效率會比類別組件好，但是只能在組件沒有「狀態」的情況下使用它，也就是說如果只是靜態顯示資料，就可考慮用工廠模式。</p>
+<p>工廠模式的寫法很像一般函式的寫法，且一定要有回傳，而回傳內容通常就包含了 HTML 標籤。</p>
+<p>重點：一定要有回傳<code>return</code>，只要組件有<code>state</code>狀態，就不能用工廠模式。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponent</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>工廠模式組件(簡單組件) <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 渲染組件標籤</span></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MyComponent</span> /&gt;</span>, document.getElementById('example1'))</span></span><br></pre></td></tr></table></figure>
+
+<p>組件標籤的另一種寫法，如果需要內容物在組件標籤之間，就可用這種寫法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;MyComponent&gt; </span><br><span class="line">  &lt;h2&gt;工廠模式組件(簡單組件) &lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>MyComponent&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ES6-類別組件-複雜組件"><a href="#ES6-類別組件-複雜組件" class="headerlink" title="ES6 類別組件(複雜組件)"></a>ES6 類別組件(複雜組件)</h3><p>ES6 類別組件寫法是以物件導向的類別方式來攥寫，包在裡面的會有建構式、綁定自定義函式、狀態和渲染或者是事件監聽。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2. ES6 類別組件(複雜組件)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent2</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">    <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>ES6 類別組件(複雜組件)<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">  ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MyComponent2</span> /&gt;</span>, document.getElementById('example2'))</span></span><br></pre></td></tr></table></figure> -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <blockquote>
+<p>模塊與組件 模塊化與組件化 好繞舌</p>
+</blockquote>
+<h2 id="模塊與組件的關係"><a href="#模塊與組件的關係" class="headerlink" title="模塊與組件的關係"></a>模塊與組件的關係</h2><h3 id="模塊-Module"><a href="#模塊-Module" class="headerlink" title="模塊 Module"></a>模塊 Module</h3><p>理解：向外提供特定功能的JS應用，一般就是以<code>.js</code>的檔案為單位。<br>為什麼：因為 JS 程式碼會越多，會越來越複雜。<br>作用：可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p>
+<h3 id="組件-Component"><a href="#組件-Component" class="headerlink" title="組件 Component"></a>組件 Component</h3><p>一個局部的介面功能模塊，介面所需元素的集合包含 HTML,CSS,JS,image。可用來做資料、變數與函式操作與儲存資料的操作。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="React_module_component/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/React_module_component/" data-id="ck5zhwitz0000mtuwstmhphmi" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/React/">React</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-React_virtual_DOM" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="React_virtual_DOM/" class="article-date">
@@ -1446,98 +1538,6 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
 
 
   
-    <article id="post-JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function/" class="article-date">
-  <time datetime="2019-12-02T16:00:00.000Z" itemprop="datePublished">2019-12-03</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function/">把要的元素留下來的陣列 Array 方法 filter()</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Array-33"><a href="#Array-33" class="headerlink" title="Array 33"></a>Array 33</h6><blockquote>
-<p>媽媽說，蘋果要挑大顆又漂亮來拜，神明才會保佑我們。</p>
-</blockquote>
-<p><code>map()</code>和<code>filter()</code>常常被稱為最好用的兩個陣列方法，之所以好用，有一個原因是我們可以任意要求對每個元素所做的事，無論是運算或是篩選，不只這樣，這兩個陣列都是會回傳回來一個新的陣列，且不會更動到原來的陣列，處理陣列時，可以拿這兩位兄弟做很多事情哩！</p>
-<p>我們先來看看 <code>filter()</code>的基本資訊：<br><strong>原型：</strong> Array.prototype.filter()<br><strong>功能：</strong> 將經指定的函式運算後，由原陣列中通過該函式檢驗的元素回傳一個新陣列。<br><strong>改變：</strong> 不會改變元陣列。<br><strong>語法：</strong> var newArray = arr.filter(callback(element[, index[, array]])[, thisArg])<br><strong>回傳值：</strong> 回傳新陣列，原陣列不改變<br><strong>參數：</strong> callback 函式、<code>thisArg</code>，第二參數可忽略。</p>
-<p>透過<code>filter()</code>函式的第一參數：callback 函式所指定的過濾條件，返回一個新陣列 (非常好用)。例如我們只想保留陣列裡，字串長度大於三的字串元素，可以輕易地取得。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'Jack'</span>, <span class="string">'John'</span>, <span class="string">'May'</span>, <span class="string">'Su'</span>, <span class="string">'Ada'</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value.length &gt; <span class="number">3</span>;</span><br><span class="line">&#125;);</span><br><span class="line">arr2.join(<span class="string">'、'</span>); <span class="comment">//  Jack、John</span></span><br></pre></td></tr></table></figure>
-
-<p>我們也可以用它搭配可去掉空字串的字串方法<code>trim()</code>，再將陣列沒用或空的元素刪除，就可得到一個新的、乾淨的陣列。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'Hello'</span>, <span class="string">''</span>, <span class="string">'Hi'</span>, <span class="literal">null</span>, <span class="literal">undefined</span>, <span class="string">'Ciao'</span>, <span class="string">' '</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newArr = arr.filter(<span class="function"><span class="keyword">function</span> (<span class="params">inutile</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">return</span> inutile &amp;&amp; inutile.trim(); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">newArr; <span class="comment">// ['Hello', 'Hi', 'Ciao']</span></span><br></pre></td></tr></table></figure>
-
-<p>需注意的是，在IE9(不包含IE9)以下的版本並不支援trim()方法。<br><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim" target="_blank" rel="noopener">String.prototype.trim() - JavaScript | MDN</a></p>
-<p><code>filter()</code>好用的原因，除了可以產生一個新陣列，且不會更動到原本的陣列，對於沒有值的元素也不會起作用。而<code>filter()</code>和<code>splice()</code>的不同點，正是<code>filter()</code>不會更動到原陣列。</p>
-<p>在<code>filter()</code>的第一個參數所帶入的 callback 函式，可以帶入多個參數，如果我們只帶入一個參數，這個參數即表示是使用<code>filter()</code>此陣列的元素，而第二與第三個參數則代表元素的索引位置和陣列本身。例如下面這個例子，我們想要過濾出來，大於 5 的元素：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">0</span>];</span><br><span class="line"><span class="keyword">let</span> filtered = array.filter(<span class="function"><span class="keyword">function</span>(<span class="params">value, index, arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value &gt; <span class="number">5</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">filtered; <span class="comment">// [6, 7, 8, 9]</span></span><br><span class="line">array; <span class="comment">// [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]</span></span><br></pre></td></tr></table></figure>
-
-<p>利用<code>filter()</code>，我們也可以輕鬆地去除陣列裡重複的元素，可以達到這樣的效果是因為使用<code>indexOf()</code>會回傳第一個元素位置的（index），如果之後有重複元素的位置與<code>indexOf()</code>回傳的位置不相等，就會被<code>filter()</code>過濾掉。而這時的過濾結果，只會先保留第一個找到的元素，第二個重複的元素就不會被放進回傳的陣列裡了。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'B'</span>, <span class="string">'A'</span>, <span class="string">'E'</span>, <span class="string">'C'</span>, <span class="string">'A'</span>, <span class="string">'F'</span>, <span class="string">'G'</span>, <span class="string">'E'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> newArr = arr.filter(<span class="function"><span class="keyword">function</span> (<span class="params">element, index, self</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">return</span> self.indexOf(element) === index;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">newArr; <span class="comment">// ["B", "A", "E", "C", "F", "G"]</span></span><br></pre></td></tr></table></figure>
-
-<p>我們更可以把這些去掉重複的元素，且讓陣列的排序整齊一點的功能，包成一個函式，使用起來就方便多了。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeDuplicates</span>(<span class="params">originArray</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = originArray.filter(<span class="function"><span class="keyword">function</span>(<span class="params">value, index, arrSelf</span>)</span>&#123; </span><br><span class="line">    <span class="keyword">return</span> arrSelf.indexOf(value) === index</span><br><span class="line">    &#125;);</span><br><span class="line">  <span class="keyword">return</span> result.sort();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">removeDuplicates(array); <span class="comment">// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span></span><br></pre></td></tr></table></figure>
-
-<p>今天的<code>filter()</code>就先介紹到這裡，因為自己也是初級生，想把舊語法先練熟，所以還未使用到箭頭函式，將來應該就會慢慢朝向 ES6 的寫法了。</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇請告知，我會盡快修改，感謝您～ </p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Array-33"><a href="#Array-33" class="headerlink" title="Array 33"></a>Array 33</h6><blockquote>
-<p>媽媽說，蘋果要挑大顆又漂亮來拜，神明才會保佑我們。</p>
-</blockquote>
-<p><code>map()</code>和<code>filter()</code>常常被稱為最好用的兩個陣列方法，之所以好用，有一個原因是我們可以任意要求對每個元素所做的事，無論是運算或是篩選，不只這樣，這兩個陣列都是會回傳回來一個新的陣列，且不會更動到原來的陣列，處理陣列時，可以拿這兩位兄弟做很多事情哩！</p>
-<p>我們先來看看 <code>filter()</code>的基本資訊：<br><strong>原型：</strong> Array.prototype.filter()<br><strong>功能：</strong> 將經指定的函式運算後，由原陣列中通過該函式檢驗的元素回傳一個新陣列。<br><strong>改變：</strong> 不會改變元陣列。<br><strong>語法：</strong> var newArray = arr.filter(callback(element[, index[, array]])[, thisArg])<br><strong>回傳值：</strong> 回傳新陣列，原陣列不改變<br><strong>參數：</strong> callback 函式、<code>thisArg</code>，第二參數可忽略。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function/" data-id="ck5zgry2t003wajuw35varvf8" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1586,6 +1586,10 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
       <ul>
         
           <li>
+            <a href="React_module_component/">React 的 模塊 Module 與組件 component</a>
+          </li>
+        
+          <li>
             <a href="React_virtual_DOM/">React 裡的虛擬 DOM</a>
           </li>
         
@@ -1599,10 +1603,6 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
         
           <li>
             <a href="React-deploy_01/">ReactJS 環境佈署</a>
-          </li>
-        
-          <li>
-            <a href="JS_front_test01/">法國前端初級測驗</a>
           </li>
         
       </ul>
