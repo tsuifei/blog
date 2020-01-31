@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/JS_Base_type/</loc>
+    
+    <lastmod>2020-01-31T15:18:06.574Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/React_module_component/</loc>
     
     <lastmod>2020-01-31T15:16:32.578Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>tsuifei.github.io/Vue_Test_QA/</loc>
     
     <lastmod>2020-01-31T15:14:25.760Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_Base_type/</loc>
-    
-    <lastmod>2020-01-26T15:08:54.313Z</lastmod>
     
   </url>
   
