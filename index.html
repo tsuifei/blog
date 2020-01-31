@@ -111,205 +111,6 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
-    <article id="post-React_module_component" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="React_module_component/" class="article-date">
-  <time datetime="2020-02-27T16:42:24.000Z" itemprop="datePublished">2020-02-28</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="React_module_component/">React 的 模塊 Module 與組件 component</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <blockquote>
-<p>模塊與組件 模塊化與組件化 好繞舌</p>
-</blockquote>
-<h2 id="模塊與組件的關係"><a href="#模塊與組件的關係" class="headerlink" title="模塊與組件的關係"></a>模塊與組件的關係</h2><h3 id="模塊-Module"><a href="#模塊-Module" class="headerlink" title="模塊 Module"></a>模塊 Module</h3><p>理解：向外提供特定功能的JS應用，一般就是以<code>.js</code>的檔案為單位。<br>為什麼：因為 JS 程式碼會越多，會越來越複雜。<br>作用：可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p>
-<h3 id="組件-Component"><a href="#組件-Component" class="headerlink" title="組件 Component"></a>組件 Component</h3><p>一個局部的介面功能模塊，介面所需元素的集合包含 HTML,CSS,JS,image。可用來做資料、變數與函式操作與儲存資料的操作。</p>
-<p>理解：用來實現特定（局部）功能效果的程式碼集合(HTML, CSS)。<br>為什麼：一個介面的功能很複雜，所以最好能拆分成多個組件會較清楚。<br>作用： 可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p>
-<h3 id="模塊化-Modular"><a href="#模塊化-Modular" class="headerlink" title="模塊化 Modular"></a>模塊化 Modular</h3><p>當應用程式的 JS 都是以模塊的方式書寫，這個程式就是一個模塊化的應用程式。</p>
-<h3 id="組件化-Componentization"><a href="#組件化-Componentization" class="headerlink" title="組件化 Componentization"></a>組件化 Componentization</h3><p>當應用程式的 JS 都是以多個組件的方式編寫，這個應用程式就是一個組件化的應用程式。</p>
-<h2 id="物件導向的組件構成"><a href="#物件導向的組件構成" class="headerlink" title="物件導向的組件構成"></a>物件導向的組件構成</h2><h3 id="基本的理解和使用"><a href="#基本的理解和使用" class="headerlink" title="基本的理解和使用"></a>基本的理解和使用</h3><p>物件導向的物件 -&gt; 物件導向的模塊 -&gt; 物件導向的組件。</p>
-<p><code>&lt;MyComponent/&gt;</code>稱為組件標籤，組件名可任意，但第一個字母需大寫，且標籤需關閉<code>&lt;組件名/&gt;</code>。</p>
-<p>新增組件的步驟：</p>
-<ol>
-<li>定義組件有兩種方式：工廠模式組件(簡單組件)、ES6 類別組件(複雜組件)</li>
-<li>渲染組件標籤</li>
-</ol>
-<h3 id="工廠模式組件-簡單組件：沒有狀態的組件"><a href="#工廠模式組件-簡單組件：沒有狀態的組件" class="headerlink" title="工廠模式組件(簡單組件：沒有狀態的組件)"></a>工廠模式組件(簡單組件：沒有狀態的組件)</h3><p>工廠模式組件的效率會比類別組件好，但是只能在組件沒有「狀態」的情況下使用它，也就是說如果只是靜態顯示資料，就可考慮用工廠模式。</p>
-<p>工廠模式的寫法很像一般函式的寫法，且一定要有回傳，而回傳內容通常就包含了 HTML 標籤。</p>
-<p>重點：一定要有回傳<code>return</code>，只要組件有<code>state</code>狀態，就不能用工廠模式。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponent</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>工廠模式組件(簡單組件) <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 渲染組件標籤</span></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MyComponent</span> /&gt;</span>, document.getElementById('example1'))</span></span><br></pre></td></tr></table></figure>
-
-<p>組件標籤的另一種寫法，如果需要內容物在組件標籤之間，就可用這種寫法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;MyComponent&gt; </span><br><span class="line">  &lt;h2&gt;工廠模式組件(簡單組件) &lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>MyComponent&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="ES6-類別組件-複雜組件"><a href="#ES6-類別組件-複雜組件" class="headerlink" title="ES6 類別組件(複雜組件)"></a>ES6 類別組件(複雜組件)</h3><p>ES6 類別組件寫法是以物件導向的類別方式來攥寫，包在裡面的會有建構式、綁定自定義函式、狀態和渲染或者是事件監聽。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2. ES6 類別組件(複雜組件)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent2</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">    <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>ES6 類別組件(複雜組件)<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">  ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MyComponent2</span> /&gt;</span>, document.getElementById('example2'))</span></span><br></pre></td></tr></table></figure> -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <blockquote>
-<p>模塊與組件 模塊化與組件化 好繞舌</p>
-</blockquote>
-<h2 id="模塊與組件的關係"><a href="#模塊與組件的關係" class="headerlink" title="模塊與組件的關係"></a>模塊與組件的關係</h2><h3 id="模塊-Module"><a href="#模塊-Module" class="headerlink" title="模塊 Module"></a>模塊 Module</h3><p>理解：向外提供特定功能的JS應用，一般就是以<code>.js</code>的檔案為單位。<br>為什麼：因為 JS 程式碼會越多，會越來越複雜。<br>作用：可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p>
-<h3 id="組件-Component"><a href="#組件-Component" class="headerlink" title="組件 Component"></a>組件 Component</h3><p>一個局部的介面功能模塊，介面所需元素的集合包含 HTML,CSS,JS,image。可用來做資料、變數與函式操作與儲存資料的操作。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="React_module_component/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/React_module_component/" data-id="ck62b6rtw004px9uwqmwpgptq" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/React/">React</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
-    <article id="post-React_virtual_DOM" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="React_virtual_DOM/" class="article-date">
-  <time datetime="2020-02-26T16:42:24.000Z" itemprop="datePublished">2020-02-27</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="React_virtual_DOM/">React 裡的虛擬 DOM</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <blockquote>
-<p>這世界上有很多虛擬的東東，這些欺騙感情的虛擬物，有時也可以拿來療癒。</p>
-</blockquote>
-<p>先來理解一下什麼是虛擬 DOM : 為什麼我們需要用它?<br>這篇文章解釋得頗清楚的：<a href="https://segmentfault.com/a/1190000018891454" target="_blank" rel="noopener">虛擬 DOM的渲染原理和特性</a></p>
-<p>但是還是來整理一下重點：<br>原本我們寫原生的 JavaScript 時，我們會直接對 DOM 進行監聽和修改，然後這個 DOM 元素也會透過我們的監聽的事件所執行的，讓頁面產生互動。</p>
-<p>React 則是會把我們寫的監聽這部份，轉成一個<strong>物件</strong>，再將這個物件轉換成真實的 DOM，這個由 React 轉成的物件就是所謂的虛擬 DOM。</p>
-<p>假如說我們有一個用 HTML 寫成的樹狀 DOM 結構：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>Mes amies<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Ayda<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Tracy<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>React 可能會用這樣的物件格式來儲存這個 DOM:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const VitrualDom = &#123;</span><br><span class="line">  type: &apos;div&apos;,</span><br><span class="line">  props: &#123; class: &apos;title&apos; &#125;,</span><br><span class="line">  children: [</span><br><span class="line">    &#123;</span><br><span class="line">      type: &apos;span&apos;,</span><br><span class="line">      children: &apos;Mes amies&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      type: &apos;ul&apos;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123; type: &apos;li&apos;, children: &apos;Ayda&apos; &#125;,</span><br><span class="line">        &#123; type: &apos;li&apos;, children: &apos;Tracy&apos; &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="虛擬-DOM-物件最終都會被-React-轉化成真實的-DOM"><a href="#虛擬-DOM-物件最終都會被-React-轉化成真實的-DOM" class="headerlink" title="虛擬 DOM 物件最終都會被 React 轉化成真實的 DOM"></a>虛擬 DOM 物件最終都會被 React 轉化成真實的 DOM</h3><p>在我們需要新增或更新元素時，React 會先將這個 <code>VitrualDom</code> 物件進行新增和更改，然後再將這個虛擬的 DOM 物件渲染成一個真實的DOM。</p>
-<p>同樣的，如果我們需要對 DOM 進行監聽事件時，也會先對 <code>VitrualDom</code> 物件進行事件監聽，虛擬的 DOM 物件會代替原生的 DOM 事件做出反應與互動。</p>
-<p>當我們需要對DOM進行事件監聽時，首先對 <code>VitrualDom</code> 進行事件監聽， <code>VitrualDom</code> 會代理原生的 DOM 事件從而做出反應。</p>
-<h3 id="虛擬-DOM-和-JSX-語法"><a href="#虛擬-DOM-和-JSX-語法" class="headerlink" title="虛擬 DOM 和 JSX 語法"></a>虛擬 DOM 和 JSX 語法</h3><ol>
-<li>React 提供了一些 API 來新增特別的 JS 物件。一個簡單的虛擬 DOM 物件：<code>const elememt = React.createElement(&#39;h1標籤名&#39;,{id:&#39;myTitle&#39;標籤屬性}, &#39;hello變數&#39;)</code></li>
-<li>虛擬 DOM 物件最終都會被 React 轉化成真實的 DOM</li>
-<li>基本上只需要操作 React 的虛擬 DOM 的相關資料, React 會轉換為真實的 DOM 變化，而更新介面。</li>
-</ol>
-<h2 id="新增虛擬DOM的兩種方式"><a href="#新增虛擬DOM的兩種方式" class="headerlink" title="新增虛擬DOM的兩種方式"></a>新增虛擬DOM的兩種方式</h2><ol>
-<li>原生 JS(一般不用)：<code>React.createElement(&#39;h2&#39;,{id:myId},msg)</code></li>
-<li>JSX 語法：<code>&lt;h3 id={myId}&gt; {msg} &lt;/h3&gt;</code></li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"test1"</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">id</span>=<span class="string">"test2"</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>第一種原生 JS 方式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> msg = <span class="string">'I like you'</span></span><br><span class="line"><span class="keyword">const</span> myId = <span class="string">'Tracy'</span></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="comment">// 1.新增虛擬 DOM</span></span><br><span class="line"><span class="keyword">const</span> vDom1 =  React.createElement(<span class="string">'h2'</span>,&#123;<span class="attr">id</span>:myId.toLowerCase()&#125;,msg.toUpperCase())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.渲染虛擬 DOM</span></span><br><span class="line">ReactDom.render(vDom1, <span class="built_in">document</span>.getElementById(<span class="string">'test1'</span>))</span><br></pre></td></tr></table></figure>
-
-<p>第二種方式，使用 babel： <code>&lt;script type=&quot;text/babel&quot;&gt;&lt;/script&gt;</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.新增虛擬 DOM 直接寫入 html 結構</span></span><br><span class="line"><span class="keyword">const</span> vDom2 =  <span class="xml"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">id</span>=<span class="string">&#123;myId.toUpperCase()&#125;</span>&gt;</span> &#123;msg.toUpperCase()&#125; <span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.渲染虛擬 DOM</span></span><br><span class="line">ReactDom.render(vDom2, <span class="built_in">document</span>.getElementById(<span class="string">'test2'</span>))</span><br></pre></td></tr></table></figure>
-
-<h2 id="渲染虛擬-DOM-元素-的語法"><a href="#渲染虛擬-DOM-元素-的語法" class="headerlink" title="渲染虛擬 DOM (元素)的語法"></a>渲染虛擬 DOM (元素)的語法</h2><ol>
-<li>語法：<code>ReactDom.render(virtualDOM, containerDOM)</code> </li>
-<li>作用：將虛擬 DOM 元素渲染到頁面中真實的DOM元素中顯示。</li>
-<li>參數說明：<ul>
-<li>參數一：純 JS 或 JSX 新增的虛擬 DOM 物件</li>
-<li>參數二：用來包含虛擬 DOM 元素的真實 DOM 元素物件(通常是個<code>&lt;div&gt;</code>)</li>
-</ul>
-</li>
-</ol>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <blockquote>
-<p>這世界上有很多虛擬的東東，這些欺騙感情的虛擬物，有時也可以拿來療癒。</p>
-</blockquote>
-<p>先來理解一下什麼是虛擬 DOM : 為什麼我們需要用它?<br>這篇文章解釋得頗清楚的：<a href="https://segmentfault.com/a/1190000018891454" target="_blank" rel="noopener">虛擬 DOM的渲染原理和特性</a></p>
-<p>但是還是來整理一下重點：<br>原本我們寫原生的 JavaScript 時，我們會直接對 DOM 進行監聽和修改，然後這個 DOM 元素也會透過我們的監聽的事件所執行的，讓頁面產生互動。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="React_virtual_DOM/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/React_virtual_DOM/" data-id="ck62b6rtx004tx9uwmji2v5dh" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/React/">React</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
     <article id="post-JS_Base_type" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="JS_Base_type/" class="article-date">
@@ -416,208 +217,6 @@ ga('send', 'pageview');
                         
                                 
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Base/">Base</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
-    <article id="post-React-component-JSX" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="React-component-JSX/" class="article-date">
-  <time datetime="2020-02-21T16:42:24.000Z" itemprop="datePublished">2020-02-22</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="React-component-JSX/">React 組件 Component 和 JSX 語法</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <blockquote>
-<p>要從哪裡開始學，或許先看看 React 的組件結構比較容易懂？</p>
-</blockquote>
-<p>在開始學習 React 的時候，或許先從觀察開始，看看應有的組件檔案裡，需要有什麼塊狀結構，就像學 HTML ㄧ樣，也會有<code>&lt;html&gt;&lt;head&gt;</code>和<code>&lt;body&gt;</code> 。<br>除了我們認識的 HTML、CSS 和 JavaScript外，React 也有屬於自己的語言標記，但嚴格說起來不能說是語言，而應該說是語法糖，什麼是語法糖？算是介於 HTML 和JavaScript 之間的一種標籤語法，主要是要讓 JSX 來描述使用者界面的外觀，如官網<a href="https://zh-hant.reactjs.org/docs/introducing-jsx.html" target="_blank" rel="noopener">JSX – React</a>的介紹。</p>
-<h2 id="JSX-與-HTML-不同的地方"><a href="#JSX-與-HTML-不同的地方" class="headerlink" title="JSX 與 HTML 不同的地方"></a>JSX 與 HTML 不同的地方</h2><ol>
-<li>JSX 標籤語法一定要有 close tag。ex.<code>&lt;a&gt; &lt;/a&gt;</code></li>
-<li>所有的 JSX 標籤語法一定可以自動閉合 self close tag。ex.<code>&lt;input /&gt;</code></li>
-<li>tag 內的 class 屬性需改為<code>className</code> ; <code>label</code> 內的 <code>for</code> 則改為<code>htmlFor</code>，其他 CSS 屬性為兩個字的如 <code>font-size</code>也要改成<code>fontSize</code>也就是轉換成駝峰式命名法的方式。</li>
-<li>原本事件監聽觸發的事件名稱<code>onclick</code>也需要改成是駝峰式命名的<code>onClick</code>。</li>
-<li>使用大括號<code>{}</code>括著一個值或表達式<code>{this.onClick}</code> 表示是這個組件的<code>onClick()</code>函式。</li>
-</ol>
-<h2 id="新增一個新組件"><a href="#新增一個新組件" class="headerlink" title="新增一個新組件"></a>新增一個新組件</h2><p>所有我們設計的組件，都要繼承於<code>Component</code>，而組件內必須要有一個 <code>render ()</code>函式會回傳<code>return</code> 一個<code>JSX</code>的物件。<br>在書寫新組件(Component)的檔案時，需要至少有三個結構：</p>
-<ol>
-<li>引入所需。ex. <code>import</code> - <code>from</code></li>
-<li>組件本身。ex. <code>class [組件名] extends [組件名]</code></li>
-<li>輸出組件。ex. <code>export default</code></li>
-</ol>
-<h3 id="引入所需文件-1"><a href="#引入所需文件-1" class="headerlink" title="引入所需文件:(1.)"></a>引入所需文件:(1.)</h3><p>先引進必須要有的 React 的 Component，引入有兩種寫法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或是 此種比較常用</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="定義render-方法：-2"><a href="#定義render-方法：-2" class="headerlink" title="定義render ()方法：(2.)"></a>定義<code>render ()</code>方法：(2.)</h3><p><code>render()</code>方法是渲染頁面最重要的函式，利用<code>render()</code>將顯示內容以回傳<code>return()</code>物件的方式回傳，<code>return(JSX動態 or HTML靜態)</code>需用()包起來。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !<span class="xml"><span class="tag">&lt;<span class="name">il</span>/&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="輸出組件-3"><a href="#輸出組件-3" class="headerlink" title="輸出組件(3.)"></a>輸出組件(3.)</h3><p>將組件以<code>export default [組件名];</code>形式輸出，以供其他組件使用。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Item;</span><br></pre></td></tr></table></figure>
-
-<h2 id="實作組件"><a href="#實作組件" class="headerlink" title="實作組件"></a>實作組件</h2><p>兩個組件實作，在 List(ol)組件裡引入幾個Item(li)組件。<br><strong>檔案名：Item.JS</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; </span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !<span class="xml"><span class="tag">&lt;<span class="name">il</span>/&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Item;</span><br></pre></td></tr></table></figure>
-
-<p>在另一個組件裡把 Item 這個組件安插進來。<br><strong>檔案名：List.js</strong><br>記得需引入<code>Item.js</code>，置入組件時須以 self close tag 的型態插入，如<code>&lt;Item /&gt;&gt;</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Item <span class="keyword">from</span> <span class="string">'Item'</span>; <span class="comment">// 引入檔名可以不寫.js</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; </span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;ol&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">      &lt;ol/&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> List;</span><br></pre></td></tr></table></figure>
-
-<h2 id="如何渲染到畫面"><a href="#如何渲染到畫面" class="headerlink" title="如何渲染到畫面"></a>如何渲染到畫面</h2><p>組件都完成後，就可以在引入主要頁面的<code>index.js</code>並且告知要放在哪一個 DOM 元素的位置。</p>
-<ul>
-<li>在專案裡<code>src/index.js</code>，是 react 預設的程式進入點。</li>
-<li><code>react</code>是核心。<code>react-dom</code>是把 react 掛載到 dom上面的必需組件。</li>
-<li><code>src/index.js</code>裡面宣告的<code>ReactDom.render(&lt;List /&gt;,documentgetElementById(&#39;root&#39;));</code>元件，會自動 bind 綁定到<code>public/index.html裡面的</code>&lt;div id=”root&gt;`位置。</li>
-</ul>
-<p><strong>檔名：index.js</strong><br><code>render()</code>函式有兩參數:</p>
-<ol>
-<li><code>react element</code> 元素,型態是物件。ex.<code>&lt;List/&gt;</code></li>
-<li><code>DOM contener</code> 裝 DOM 的容器。ex.<code>document.getElementById(&#39;root&#39;)</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> List <span class="keyword">from</span> <span class="string">'./List'</span>; <span class="comment">// 引入組件</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">List</span>/&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)); </span><br><span class="line"><span class="comment">// 把 list 放到 root 裡面</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <blockquote>
-<p>要從哪裡開始學，或許先看看 React 的組件結構比較容易懂？</p>
-</blockquote>
-<p>在開始學習 React 的時候，或許先從觀察開始，看看應有的組件檔案裡，需要有什麼塊狀結構，就像學 HTML ㄧ樣，也會有<code>&lt;html&gt;&lt;head&gt;</code>和<code>&lt;body&gt;</code> 。<br>除了我們認識的 HTML、CSS 和 JavaScript外，React 也有屬於自己的語言標記，但嚴格說起來不能說是語言，而應該說是語法糖，什麼是語法糖？算是介於 HTML 和JavaScript 之間的一種標籤語法，主要是要讓 JSX 來描述使用者界面的外觀，如官網<a href="https://zh-hant.reactjs.org/docs/introducing-jsx.html" target="_blank" rel="noopener">JSX – React</a>的介紹。</p>
-<h2 id="JSX-與-HTML-不同的地方"><a href="#JSX-與-HTML-不同的地方" class="headerlink" title="JSX 與 HTML 不同的地方"></a>JSX 與 HTML 不同的地方</h2><ol>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="React-component-JSX/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/React-component-JSX/" data-id="ck62b6rtu004hx9uwds8uwgw7" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/React/">React</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
-    <article id="post-React-deploy_01" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="React-deploy_01/" class="article-date">
-  <time datetime="2020-02-20T16:42:24.000Z" itemprop="datePublished">2020-02-21</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="React-deploy_01/">ReactJS 環境佈署</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <blockquote>
-<p>有完善的開發環境，開發起來才順手之起手式</p>
-</blockquote>
-<h2 id="ReactJS部署開發環境"><a href="#ReactJS部署開發環境" class="headerlink" title="ReactJS部署開發環境"></a>ReactJS部署開發環境</h2><h3 id="安裝開發套件懶人法"><a href="#安裝開發套件懶人法" class="headerlink" title="安裝開發套件懶人法"></a>安裝開發套件懶人法</h3><p>可先安裝<code>create-react-app</code>套件在 global 環境中，使用終端機指令：<code>sudo npm install -g create-react-app</code>，可以先試試把<code>sudo</code>拿掉，看是否有權限安裝，不行再加。</p>
-<p>安裝了這個套件，在要開新專案時使用，會自動佈署所需要的檔案與套件，整個檔案約296MB。先以<code>cd</code>前往要安裝的位置。<br><code>create-react-app [專案檔案夾名稱ex.test]</code>即會在所在的路徑增加一個名為 [專案檔案夾名稱ex.test] 的 test檔案夾。<br>顯示以下訊息表示安裝完成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[fsevents] Success: &quot;/Users/tsuifei/Apprendre/JS/ReactJS/test/node_modules/fsevents/lib/binding/Release/node-v64-darwin-x64/fse.node&quot; already installed</span><br><span class="line">Pass --update-binary to reinstall or --build-from-source to recompile</span><br><span class="line">+ react@16.5.2</span><br><span class="line">+ react-scripts@2.0.5</span><br><span class="line">+ react-dom@16.5.2</span><br><span class="line">added 1746 packages from 670 contributors and audited 31992 packages in 147.652s</span><br><span class="line">found 0 vulnerabilities</span><br><span class="line"></span><br><span class="line">Initialized a git repository.</span><br><span class="line"></span><br><span class="line">Success! Created test at /Users/tsuifei/Apprendre/JS/ReactJS/test</span><br><span class="line">Inside that directory, you can run several commands:</span><br><span class="line"></span><br><span class="line">  npm start // 開啟開發伺服器，並會自動啟動預設瀏覽器，並以port 3000開啟顯示結果。</span><br><span class="line">    Starts the development server. 由port 3000開啟至瀏覽器</span><br><span class="line"></span><br><span class="line">  npm run build // 生成可用的網頁</span><br><span class="line">    Bundles the app into static files for production.</span><br><span class="line"></span><br><span class="line">  npm test</span><br><span class="line">    Starts the test runner. </span><br><span class="line"></span><br><span class="line">  npm run eject</span><br><span class="line">    Removes this tool and copies build dependencies, configuration files</span><br><span class="line">    and scripts into the app directory. If you do this, you can’t go back!</span><br><span class="line"></span><br><span class="line">We suggest that you begin by typing:</span><br></pre></td></tr></table></figure>
-
-<h2 id="進入專案檔案夾"><a href="#進入專案檔案夾" class="headerlink" title="進入專案檔案夾"></a>進入專案檔案夾</h2><p>安裝完後先進去專案，以範例來說專案名稱為<code>test</code>：
-  <code>cd test</code><br>啟動並開始開發<br>  <code>npm start</code></p>
-<p>Happy hacking!</p>
-<h2 id="create-react-app-所自動產生的檔案說明"><a href="#create-react-app-所自動產生的檔案說明" class="headerlink" title="create-react-app 所自動產生的檔案說明"></a>create-react-app 所自動產生的檔案說明</h2><p>.
-├── README.md<br>├── package.json<br>├── public –&gt; 編譯後產生的前端檔<br>│   ├── favicon.ico<br>│   ├── index.html<br>│   └── manifest.json<br>├── src –&gt; 開發檔案<br>│   ├── App.css<br>│   ├── App.js 組件<br>│   ├── App.test.js<br>│   ├── index.css<br>│   ├── index.js 入口<br>│   ├── logo.svg<br>│   └── registerServiceWorker.js<br>└── yarn.lock</p>
-<p>安裝完畢後執行 <code>npm start</code> 指令，可直接在瀏覽器上看編譯結果，<br>跳出編譯器則是<code>control + c</code></p>
-<p>==指令==<br>利用create-react-app套件, 快速產生 webpack 的設定檔<br><code>npm install --global create-react-app</code></p>
-<p>重點[使用方法]：</p>
-<ol>
-<li><p>新增react開發模板<br><code>create-react-app [YOUR_APP_NAME]</code></p>
-</li>
-<li><p>啟動server<br><code>npm start</code> 會自動在瀏覽器開啟 localhost:3000</p>
-</li>
-<li><p>src資料夾即react的模板</p>
-</li>
-<li><p>用webpack build你的網頁，執行之後在<code>build</code>裡的檔案即是可發佈的檔案。<br><code>npm run build</code></p>
-</li>
-</ol>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <blockquote>
-<p>有完善的開發環境，開發起來才順手之起手式</p>
-</blockquote>
-<h2 id="ReactJS部署開發環境"><a href="#ReactJS部署開發環境" class="headerlink" title="ReactJS部署開發環境"></a>ReactJS部署開發環境</h2><h3 id="安裝開發套件懶人法"><a href="#安裝開發套件懶人法" class="headerlink" title="安裝開發套件懶人法"></a>安裝開發套件懶人法</h3><p>可先安裝<code>create-react-app</code>套件在 global 環境中，使用終端機指令：<code>sudo npm install -g create-react-app</code>，可以先試試把<code>sudo</code>拿掉，看是否有權限安裝，不行再加。</p>
-<p>安裝了這個套件，在要開新專案時使用，會自動佈署所需要的檔案與套件，整個檔案約296MB。先以<code>cd</code>前往要安裝的位置。<br><code>create-react-app [專案檔案夾名稱ex.test]</code>即會在所在的路徑增加一個名為 [專案檔案夾名稱ex.test] 的 test檔案夾。<br>顯示以下訊息表示安裝完成</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="React-deploy_01/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/React-deploy_01/" data-id="ck62b6rtv004mx9uw8yn5d5ds" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/React/">React</a></li></ul>
 
                     </footer>
     </div>
@@ -1048,6 +647,407 @@ ga('send', 'pageview');
                         
                                 
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Vue/">Vue</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-React_module_component" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="React_module_component/" class="article-date">
+  <time datetime="2020-01-27T16:42:24.000Z" itemprop="datePublished">2020-01-28</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="React_module_component/">React 的 模塊 Module 與組件 component</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <blockquote>
+<p>模塊與組件 模塊化與組件化 好繞舌</p>
+</blockquote>
+<h2 id="模塊與組件的關係"><a href="#模塊與組件的關係" class="headerlink" title="模塊與組件的關係"></a>模塊與組件的關係</h2><h3 id="模塊-Module"><a href="#模塊-Module" class="headerlink" title="模塊 Module"></a>模塊 Module</h3><p>理解：向外提供特定功能的JS應用，一般就是以<code>.js</code>的檔案為單位。<br>為什麼：因為 JS 程式碼會越多，會越來越複雜。<br>作用：可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p>
+<h3 id="組件-Component"><a href="#組件-Component" class="headerlink" title="組件 Component"></a>組件 Component</h3><p>一個局部的介面功能模塊，介面所需元素的集合包含 HTML,CSS,JS,image。可用來做資料、變數與函式操作與儲存資料的操作。</p>
+<p>理解：用來實現特定（局部）功能效果的程式碼集合(HTML, CSS)。<br>為什麼：一個介面的功能很複雜，所以最好能拆分成多個組件會較清楚。<br>作用： 可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p>
+<h3 id="模塊化-Modular"><a href="#模塊化-Modular" class="headerlink" title="模塊化 Modular"></a>模塊化 Modular</h3><p>當應用程式的 JS 都是以模塊的方式書寫，這個程式就是一個模塊化的應用程式。</p>
+<h3 id="組件化-Componentization"><a href="#組件化-Componentization" class="headerlink" title="組件化 Componentization"></a>組件化 Componentization</h3><p>當應用程式的 JS 都是以多個組件的方式編寫，這個應用程式就是一個組件化的應用程式。</p>
+<h2 id="物件導向的組件構成"><a href="#物件導向的組件構成" class="headerlink" title="物件導向的組件構成"></a>物件導向的組件構成</h2><h3 id="基本的理解和使用"><a href="#基本的理解和使用" class="headerlink" title="基本的理解和使用"></a>基本的理解和使用</h3><p>物件導向的物件 -&gt; 物件導向的模塊 -&gt; 物件導向的組件。</p>
+<p><code>&lt;MyComponent/&gt;</code>稱為組件標籤，組件名可任意，但第一個字母需大寫，且標籤需關閉<code>&lt;組件名/&gt;</code>。</p>
+<p>新增組件的步驟：</p>
+<ol>
+<li>定義組件有兩種方式：工廠模式組件(簡單組件)、ES6 類別組件(複雜組件)</li>
+<li>渲染組件標籤</li>
+</ol>
+<h3 id="工廠模式組件-簡單組件：沒有狀態的組件"><a href="#工廠模式組件-簡單組件：沒有狀態的組件" class="headerlink" title="工廠模式組件(簡單組件：沒有狀態的組件)"></a>工廠模式組件(簡單組件：沒有狀態的組件)</h3><p>工廠模式組件的效率會比類別組件好，但是只能在組件沒有「狀態」的情況下使用它，也就是說如果只是靜態顯示資料，就可考慮用工廠模式。</p>
+<p>工廠模式的寫法很像一般函式的寫法，且一定要有回傳，而回傳內容通常就包含了 HTML 標籤。</p>
+<p>重點：一定要有回傳<code>return</code>，只要組件有<code>state</code>狀態，就不能用工廠模式。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponent</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>工廠模式組件(簡單組件) <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 渲染組件標籤</span></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MyComponent</span> /&gt;</span>, document.getElementById('example1'))</span></span><br></pre></td></tr></table></figure>
+
+<p>組件標籤的另一種寫法，如果需要內容物在組件標籤之間，就可用這種寫法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;MyComponent&gt; </span><br><span class="line">  &lt;h2&gt;工廠模式組件(簡單組件) &lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>MyComponent&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ES6-類別組件-複雜組件"><a href="#ES6-類別組件-複雜組件" class="headerlink" title="ES6 類別組件(複雜組件)"></a>ES6 類別組件(複雜組件)</h3><p>ES6 類別組件寫法是以物件導向的類別方式來攥寫，包在裡面的會有建構式、綁定自定義函式、狀態和渲染或者是事件監聽。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2. ES6 類別組件(複雜組件)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent2</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">    <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>ES6 類別組件(複雜組件)<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">  ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MyComponent2</span> /&gt;</span>, document.getElementById('example2'))</span></span><br></pre></td></tr></table></figure> -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <blockquote>
+<p>模塊與組件 模塊化與組件化 好繞舌</p>
+</blockquote>
+<h2 id="模塊與組件的關係"><a href="#模塊與組件的關係" class="headerlink" title="模塊與組件的關係"></a>模塊與組件的關係</h2><h3 id="模塊-Module"><a href="#模塊-Module" class="headerlink" title="模塊 Module"></a>模塊 Module</h3><p>理解：向外提供特定功能的JS應用，一般就是以<code>.js</code>的檔案為單位。<br>為什麼：因為 JS 程式碼會越多，會越來越複雜。<br>作用：可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p>
+<h3 id="組件-Component"><a href="#組件-Component" class="headerlink" title="組件 Component"></a>組件 Component</h3><p>一個局部的介面功能模塊，介面所需元素的集合包含 HTML,CSS,JS,image。可用來做資料、變數與函式操作與儲存資料的操作。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="React_module_component/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/React_module_component/" data-id="ck62b6rtw004px9uwqmwpgptq" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/React/">React</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-React_virtual_DOM" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="React_virtual_DOM/" class="article-date">
+  <time datetime="2020-01-26T16:42:24.000Z" itemprop="datePublished">2020-01-27</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="React_virtual_DOM/">React 裡的虛擬 DOM</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <blockquote>
+<p>這世界上有很多虛擬的東東，這些欺騙感情的虛擬物，有時也可以拿來療癒。</p>
+</blockquote>
+<p>先來理解一下什麼是虛擬 DOM : 為什麼我們需要用它?<br>這篇文章解釋得頗清楚的：<a href="https://segmentfault.com/a/1190000018891454" target="_blank" rel="noopener">虛擬 DOM的渲染原理和特性</a></p>
+<p>但是還是來整理一下重點：<br>原本我們寫原生的 JavaScript 時，我們會直接對 DOM 進行監聽和修改，然後這個 DOM 元素也會透過我們的監聽的事件所執行的，讓頁面產生互動。</p>
+<p>React 則是會把我們寫的監聽這部份，轉成一個<strong>物件</strong>，再將這個物件轉換成真實的 DOM，這個由 React 轉成的物件就是所謂的虛擬 DOM。</p>
+<p>假如說我們有一個用 HTML 寫成的樹狀 DOM 結構：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>Mes amies<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Ayda<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Tracy<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>React 可能會用這樣的物件格式來儲存這個 DOM:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const VitrualDom = &#123;</span><br><span class="line">  type: &apos;div&apos;,</span><br><span class="line">  props: &#123; class: &apos;title&apos; &#125;,</span><br><span class="line">  children: [</span><br><span class="line">    &#123;</span><br><span class="line">      type: &apos;span&apos;,</span><br><span class="line">      children: &apos;Mes amies&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      type: &apos;ul&apos;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123; type: &apos;li&apos;, children: &apos;Ayda&apos; &#125;,</span><br><span class="line">        &#123; type: &apos;li&apos;, children: &apos;Tracy&apos; &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="虛擬-DOM-物件最終都會被-React-轉化成真實的-DOM"><a href="#虛擬-DOM-物件最終都會被-React-轉化成真實的-DOM" class="headerlink" title="虛擬 DOM 物件最終都會被 React 轉化成真實的 DOM"></a>虛擬 DOM 物件最終都會被 React 轉化成真實的 DOM</h3><p>在我們需要新增或更新元素時，React 會先將這個 <code>VitrualDom</code> 物件進行新增和更改，然後再將這個虛擬的 DOM 物件渲染成一個真實的DOM。</p>
+<p>同樣的，如果我們需要對 DOM 進行監聽事件時，也會先對 <code>VitrualDom</code> 物件進行事件監聽，虛擬的 DOM 物件會代替原生的 DOM 事件做出反應與互動。</p>
+<p>當我們需要對DOM進行事件監聽時，首先對 <code>VitrualDom</code> 進行事件監聽， <code>VitrualDom</code> 會代理原生的 DOM 事件從而做出反應。</p>
+<h3 id="虛擬-DOM-和-JSX-語法"><a href="#虛擬-DOM-和-JSX-語法" class="headerlink" title="虛擬 DOM 和 JSX 語法"></a>虛擬 DOM 和 JSX 語法</h3><ol>
+<li>React 提供了一些 API 來新增特別的 JS 物件。一個簡單的虛擬 DOM 物件：<code>const elememt = React.createElement(&#39;h1標籤名&#39;,{id:&#39;myTitle&#39;標籤屬性}, &#39;hello變數&#39;)</code></li>
+<li>虛擬 DOM 物件最終都會被 React 轉化成真實的 DOM</li>
+<li>基本上只需要操作 React 的虛擬 DOM 的相關資料, React 會轉換為真實的 DOM 變化，而更新介面。</li>
+</ol>
+<h2 id="新增虛擬DOM的兩種方式"><a href="#新增虛擬DOM的兩種方式" class="headerlink" title="新增虛擬DOM的兩種方式"></a>新增虛擬DOM的兩種方式</h2><ol>
+<li>原生 JS(一般不用)：<code>React.createElement(&#39;h2&#39;,{id:myId},msg)</code></li>
+<li>JSX 語法：<code>&lt;h3 id={myId}&gt; {msg} &lt;/h3&gt;</code></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"test1"</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">id</span>=<span class="string">"test2"</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>第一種原生 JS 方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> msg = <span class="string">'I like you'</span></span><br><span class="line"><span class="keyword">const</span> myId = <span class="string">'Tracy'</span></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="comment">// 1.新增虛擬 DOM</span></span><br><span class="line"><span class="keyword">const</span> vDom1 =  React.createElement(<span class="string">'h2'</span>,&#123;<span class="attr">id</span>:myId.toLowerCase()&#125;,msg.toUpperCase())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.渲染虛擬 DOM</span></span><br><span class="line">ReactDom.render(vDom1, <span class="built_in">document</span>.getElementById(<span class="string">'test1'</span>))</span><br></pre></td></tr></table></figure>
+
+<p>第二種方式，使用 babel： <code>&lt;script type=&quot;text/babel&quot;&gt;&lt;/script&gt;</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.新增虛擬 DOM 直接寫入 html 結構</span></span><br><span class="line"><span class="keyword">const</span> vDom2 =  <span class="xml"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">id</span>=<span class="string">&#123;myId.toUpperCase()&#125;</span>&gt;</span> &#123;msg.toUpperCase()&#125; <span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.渲染虛擬 DOM</span></span><br><span class="line">ReactDom.render(vDom2, <span class="built_in">document</span>.getElementById(<span class="string">'test2'</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="渲染虛擬-DOM-元素-的語法"><a href="#渲染虛擬-DOM-元素-的語法" class="headerlink" title="渲染虛擬 DOM (元素)的語法"></a>渲染虛擬 DOM (元素)的語法</h2><ol>
+<li>語法：<code>ReactDom.render(virtualDOM, containerDOM)</code> </li>
+<li>作用：將虛擬 DOM 元素渲染到頁面中真實的DOM元素中顯示。</li>
+<li>參數說明：<ul>
+<li>參數一：純 JS 或 JSX 新增的虛擬 DOM 物件</li>
+<li>參數二：用來包含虛擬 DOM 元素的真實 DOM 元素物件(通常是個<code>&lt;div&gt;</code>)</li>
+</ul>
+</li>
+</ol>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <blockquote>
+<p>這世界上有很多虛擬的東東，這些欺騙感情的虛擬物，有時也可以拿來療癒。</p>
+</blockquote>
+<p>先來理解一下什麼是虛擬 DOM : 為什麼我們需要用它?<br>這篇文章解釋得頗清楚的：<a href="https://segmentfault.com/a/1190000018891454" target="_blank" rel="noopener">虛擬 DOM的渲染原理和特性</a></p>
+<p>但是還是來整理一下重點：<br>原本我們寫原生的 JavaScript 時，我們會直接對 DOM 進行監聽和修改，然後這個 DOM 元素也會透過我們的監聽的事件所執行的，讓頁面產生互動。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="React_virtual_DOM/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/React_virtual_DOM/" data-id="ck62b6rtx004tx9uwmji2v5dh" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/React/">React</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-React-component-JSX" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="React-component-JSX/" class="article-date">
+  <time datetime="2020-01-21T16:42:24.000Z" itemprop="datePublished">2020-01-22</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="React-component-JSX/">React 組件 Component 和 JSX 語法</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <blockquote>
+<p>要從哪裡開始學，或許先看看 React 的組件結構比較容易懂？</p>
+</blockquote>
+<p>在開始學習 React 的時候，或許先從觀察開始，看看應有的組件檔案裡，需要有什麼塊狀結構，就像學 HTML ㄧ樣，也會有<code>&lt;html&gt;&lt;head&gt;</code>和<code>&lt;body&gt;</code> 。<br>除了我們認識的 HTML、CSS 和 JavaScript外，React 也有屬於自己的語言標記，但嚴格說起來不能說是語言，而應該說是語法糖，什麼是語法糖？算是介於 HTML 和JavaScript 之間的一種標籤語法，主要是要讓 JSX 來描述使用者界面的外觀，如官網<a href="https://zh-hant.reactjs.org/docs/introducing-jsx.html" target="_blank" rel="noopener">JSX – React</a>的介紹。</p>
+<h2 id="JSX-與-HTML-不同的地方"><a href="#JSX-與-HTML-不同的地方" class="headerlink" title="JSX 與 HTML 不同的地方"></a>JSX 與 HTML 不同的地方</h2><ol>
+<li>JSX 標籤語法一定要有 close tag。ex.<code>&lt;a&gt; &lt;/a&gt;</code></li>
+<li>所有的 JSX 標籤語法一定可以自動閉合 self close tag。ex.<code>&lt;input /&gt;</code></li>
+<li>tag 內的 class 屬性需改為<code>className</code> ; <code>label</code> 內的 <code>for</code> 則改為<code>htmlFor</code>，其他 CSS 屬性為兩個字的如 <code>font-size</code>也要改成<code>fontSize</code>也就是轉換成駝峰式命名法的方式。</li>
+<li>原本事件監聽觸發的事件名稱<code>onclick</code>也需要改成是駝峰式命名的<code>onClick</code>。</li>
+<li>使用大括號<code>{}</code>括著一個值或表達式<code>{this.onClick}</code> 表示是這個組件的<code>onClick()</code>函式。</li>
+</ol>
+<h2 id="新增一個新組件"><a href="#新增一個新組件" class="headerlink" title="新增一個新組件"></a>新增一個新組件</h2><p>所有我們設計的組件，都要繼承於<code>Component</code>，而組件內必須要有一個 <code>render ()</code>函式會回傳<code>return</code> 一個<code>JSX</code>的物件。<br>在書寫新組件(Component)的檔案時，需要至少有三個結構：</p>
+<ol>
+<li>引入所需。ex. <code>import</code> - <code>from</code></li>
+<li>組件本身。ex. <code>class [組件名] extends [組件名]</code></li>
+<li>輸出組件。ex. <code>export default</code></li>
+</ol>
+<h3 id="引入所需文件-1"><a href="#引入所需文件-1" class="headerlink" title="引入所需文件:(1.)"></a>引入所需文件:(1.)</h3><p>先引進必須要有的 React 的 Component，引入有兩種寫法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或是 此種比較常用</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定義render-方法：-2"><a href="#定義render-方法：-2" class="headerlink" title="定義render ()方法：(2.)"></a>定義<code>render ()</code>方法：(2.)</h3><p><code>render()</code>方法是渲染頁面最重要的函式，利用<code>render()</code>將顯示內容以回傳<code>return()</code>物件的方式回傳，<code>return(JSX動態 or HTML靜態)</code>需用()包起來。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !&lt;il/&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="輸出組件-3"><a href="#輸出組件-3" class="headerlink" title="輸出組件(3.)"></a>輸出組件(3.)</h3><p>將組件以<code>export default [組件名];</code>形式輸出，以供其他組件使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Item;</span><br></pre></td></tr></table></figure>
+
+<h2 id="實作組件"><a href="#實作組件" class="headerlink" title="實作組件"></a>實作組件</h2><p>兩個組件實作，在 List(ol)組件裡引入幾個Item(li)組件。<br><strong>檔案名：Item.JS</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; </span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !&lt;il/&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Item;</span><br></pre></td></tr></table></figure>
+
+<p>在另一個組件裡把 Item 這個組件安插進來。<br><strong>檔案名：List.js</strong><br>記得需引入<code>Item.js</code>，置入組件時須以 self close tag 的型態插入，如<code>&lt;Item /&gt;&gt;</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Item <span class="keyword">from</span> <span class="string">'Item'</span>; <span class="comment">// 引入檔名可以不寫.js</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; </span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;ol&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">      &lt;ol/&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> List;</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何渲染到畫面"><a href="#如何渲染到畫面" class="headerlink" title="如何渲染到畫面"></a>如何渲染到畫面</h2><p>組件都完成後，就可以在引入主要頁面的<code>index.js</code>並且告知要放在哪一個 DOM 元素的位置。</p>
+<ul>
+<li>在專案裡<code>src/index.js</code>，是 react 預設的程式進入點。</li>
+<li><code>react</code>是核心。<code>react-dom</code>是把 react 掛載到 dom上面的必需組件。</li>
+<li><code>src/index.js</code>裡面宣告的<code>ReactDom.render(&lt;List /&gt;,documentgetElementById(&#39;root&#39;));</code>元件，會自動 bind 綁定到<code>public/index.html裡面的</code>&lt;div id=”root&gt;`位置。</li>
+</ul>
+<p><strong>檔名：index.js</strong><br><code>render()</code>函式有兩參數:</p>
+<ol>
+<li><code>react element</code> 元素,型態是物件。ex.<code>&lt;List/&gt;</code></li>
+<li><code>DOM contener</code> 裝 DOM 的容器。ex.<code>document.getElementById(&#39;root&#39;)</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> List <span class="keyword">from</span> <span class="string">'./List'</span>; <span class="comment">// 引入組件</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;List/&gt;, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)); </span><br><span class="line"><span class="comment">// 把 list 放到 root 裡面</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <blockquote>
+<p>要從哪裡開始學，或許先看看 React 的組件結構比較容易懂？</p>
+</blockquote>
+<p>在開始學習 React 的時候，或許先從觀察開始，看看應有的組件檔案裡，需要有什麼塊狀結構，就像學 HTML ㄧ樣，也會有<code>&lt;html&gt;&lt;head&gt;</code>和<code>&lt;body&gt;</code> 。<br>除了我們認識的 HTML、CSS 和 JavaScript外，React 也有屬於自己的語言標記，但嚴格說起來不能說是語言，而應該說是語法糖，什麼是語法糖？算是介於 HTML 和JavaScript 之間的一種標籤語法，主要是要讓 JSX 來描述使用者界面的外觀，如官網<a href="https://zh-hant.reactjs.org/docs/introducing-jsx.html" target="_blank" rel="noopener">JSX – React</a>的介紹。</p>
+<h2 id="JSX-與-HTML-不同的地方"><a href="#JSX-與-HTML-不同的地方" class="headerlink" title="JSX 與 HTML 不同的地方"></a>JSX 與 HTML 不同的地方</h2><ol>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="React-component-JSX/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/React-component-JSX/" data-id="ck62b6rtu004hx9uwds8uwgw7" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/React/">React</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-React-deploy_01" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="React-deploy_01/" class="article-date">
+  <time datetime="2020-01-20T16:42:24.000Z" itemprop="datePublished">2020-01-21</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="React-deploy_01/">ReactJS 環境佈署</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <blockquote>
+<p>有完善的開發環境，開發起來才順手之起手式</p>
+</blockquote>
+<h2 id="ReactJS部署開發環境"><a href="#ReactJS部署開發環境" class="headerlink" title="ReactJS部署開發環境"></a>ReactJS部署開發環境</h2><h3 id="安裝開發套件懶人法"><a href="#安裝開發套件懶人法" class="headerlink" title="安裝開發套件懶人法"></a>安裝開發套件懶人法</h3><p>可先安裝<code>create-react-app</code>套件在 global 環境中，使用終端機指令：<code>sudo npm install -g create-react-app</code>，可以先試試把<code>sudo</code>拿掉，看是否有權限安裝，不行再加。</p>
+<p>安裝了這個套件，在要開新專案時使用，會自動佈署所需要的檔案與套件，整個檔案約296MB。先以<code>cd</code>前往要安裝的位置。<br><code>create-react-app [專案檔案夾名稱ex.test]</code>即會在所在的路徑增加一個名為 [專案檔案夾名稱ex.test] 的 test檔案夾。<br>顯示以下訊息表示安裝完成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[fsevents] Success: &quot;/Users/tsuifei/Apprendre/JS/ReactJS/test/node_modules/fsevents/lib/binding/Release/node-v64-darwin-x64/fse.node&quot; already installed</span><br><span class="line">Pass --update-binary to reinstall or --build-from-source to recompile</span><br><span class="line">+ react@16.5.2</span><br><span class="line">+ react-scripts@2.0.5</span><br><span class="line">+ react-dom@16.5.2</span><br><span class="line">added 1746 packages from 670 contributors and audited 31992 packages in 147.652s</span><br><span class="line">found 0 vulnerabilities</span><br><span class="line"></span><br><span class="line">Initialized a git repository.</span><br><span class="line"></span><br><span class="line">Success! Created test at /Users/tsuifei/Apprendre/JS/ReactJS/test</span><br><span class="line">Inside that directory, you can run several commands:</span><br><span class="line"></span><br><span class="line">  npm start // 開啟開發伺服器，並會自動啟動預設瀏覽器，並以port 3000開啟顯示結果。</span><br><span class="line">    Starts the development server. 由port 3000開啟至瀏覽器</span><br><span class="line"></span><br><span class="line">  npm run build // 生成可用的網頁</span><br><span class="line">    Bundles the app into static files for production.</span><br><span class="line"></span><br><span class="line">  npm test</span><br><span class="line">    Starts the test runner. </span><br><span class="line"></span><br><span class="line">  npm run eject</span><br><span class="line">    Removes this tool and copies build dependencies, configuration files</span><br><span class="line">    and scripts into the app directory. If you do this, you can’t go back!</span><br><span class="line"></span><br><span class="line">We suggest that you begin by typing:</span><br></pre></td></tr></table></figure>
+
+<h2 id="進入專案檔案夾"><a href="#進入專案檔案夾" class="headerlink" title="進入專案檔案夾"></a>進入專案檔案夾</h2><p>安裝完後先進去專案，以範例來說專案名稱為<code>test</code>：
+  <code>cd test</code><br>啟動並開始開發<br>  <code>npm start</code></p>
+<p>Happy hacking!</p>
+<h2 id="create-react-app-所自動產生的檔案說明"><a href="#create-react-app-所自動產生的檔案說明" class="headerlink" title="create-react-app 所自動產生的檔案說明"></a>create-react-app 所自動產生的檔案說明</h2><p>.
+├── README.md<br>├── package.json<br>├── public –&gt; 編譯後產生的前端檔<br>│   ├── favicon.ico<br>│   ├── index.html<br>│   └── manifest.json<br>├── src –&gt; 開發檔案<br>│   ├── App.css<br>│   ├── App.js 組件<br>│   ├── App.test.js<br>│   ├── index.css<br>│   ├── index.js 入口<br>│   ├── logo.svg<br>│   └── registerServiceWorker.js<br>└── yarn.lock</p>
+<p>安裝完畢後執行 <code>npm start</code> 指令，可直接在瀏覽器上看編譯結果，<br>跳出編譯器則是<code>control + c</code></p>
+<p>==指令==<br>利用create-react-app套件, 快速產生 webpack 的設定檔<br><code>npm install --global create-react-app</code></p>
+<p>重點[使用方法]：</p>
+<ol>
+<li><p>新增react開發模板<br><code>create-react-app [YOUR_APP_NAME]</code></p>
+</li>
+<li><p>啟動server<br><code>npm start</code> 會自動在瀏覽器開啟 localhost:3000</p>
+</li>
+<li><p>src資料夾即react的模板</p>
+</li>
+<li><p>用webpack build你的網頁，執行之後在<code>build</code>裡的檔案即是可發佈的檔案。<br><code>npm run build</code></p>
+</li>
+</ol>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <blockquote>
+<p>有完善的開發環境，開發起來才順手之起手式</p>
+</blockquote>
+<h2 id="ReactJS部署開發環境"><a href="#ReactJS部署開發環境" class="headerlink" title="ReactJS部署開發環境"></a>ReactJS部署開發環境</h2><h3 id="安裝開發套件懶人法"><a href="#安裝開發套件懶人法" class="headerlink" title="安裝開發套件懶人法"></a>安裝開發套件懶人法</h3><p>可先安裝<code>create-react-app</code>套件在 global 環境中，使用終端機指令：<code>sudo npm install -g create-react-app</code>，可以先試試把<code>sudo</code>拿掉，看是否有權限安裝，不行再加。</p>
+<p>安裝了這個套件，在要開新專案時使用，會自動佈署所需要的檔案與套件，整個檔案約296MB。先以<code>cd</code>前往要安裝的位置。<br><code>create-react-app [專案檔案夾名稱ex.test]</code>即會在所在的路徑增加一個名為 [專案檔案夾名稱ex.test] 的 test檔案夾。<br>顯示以下訊息表示安裝完成</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="React-deploy_01/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/React-deploy_01/" data-id="ck62b6rtv004mx9uw8yn5d5ds" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/React/">React</a></li></ul>
 
                     </footer>
     </div>
@@ -1665,6 +1665,14 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
       <ul>
         
           <li>
+            <a href="JS_Base_type/">JavaScript 基礎 型別篇</a>
+          </li>
+        
+          <li>
+            <a href="Vue_Test_QA/">Vuejs 線上問答題</a>
+          </li>
+        
+          <li>
             <a href="React_module_component/">React 的 模塊 Module 與組件 component</a>
           </li>
         
@@ -1673,15 +1681,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
           </li>
         
           <li>
-            <a href="JS_Base_type/">JavaScript 基礎 型別篇</a>
-          </li>
-        
-          <li>
             <a href="React-component-JSX/">React 組件 Component 和 JSX 語法</a>
-          </li>
-        
-          <li>
-            <a href="React-deploy_01/">ReactJS 環境佈署</a>
           </li>
         
       </ul>
