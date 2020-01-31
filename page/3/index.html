@@ -111,6 +111,98 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/" class="article-date">
+  <time datetime="2019-11-23T20:21:14.000Z" itemprop="datePublished">2019-11-24</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/">JS 把陣列 Array 所有元素併成字串，且可任意穿插符號的 join()</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-24"><a href="#Day-24" class="headerlink" title="Day 24"></a>Day 24</h6><blockquote>
+<p>插隊也不能插成這樣，我們之間總是可以插點花什麼的。</p>
+</blockquote>
+<p> 不知道大家有沒有吃過義大利的千層麵，一層麵皮一層蕃茄餡料，然後再一層麵皮一層蕃茄餡料，直到最後一層麵皮鋪上，撒上會拉絲的乳酪，再送進烤箱裡烤，美味的千層麵就這樣做好了。 <del>肚子也餓了</del> </p>
+<p> <code>join()</code>做的事就像是千層麵一樣，陣列裡面的元素有如番茄餡料，以字串形式包覆，還可以選擇之間要穿插什麼，如果我們不選擇，就是很單純的麵皮<br> <del>逗點</del>就是了。 </p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join" target="_blank" rel="noopener">Array.prototype.join() - JavaScript | MDN</a></p>
+<p><strong>原型：</strong> Array.prototype.join()<br><strong>功能：</strong> 會將陣列（或一個類陣列（array-like）物件）中所有的元素連接、合併成一個字串，並回傳此字串。<br><strong>改變：</strong> 不會改變原陣列。<br><strong>語法：</strong> arr.join([separator])<br><strong>回傳值：</strong> 回傳一個合併所有陣列元素的字串。假如 arr.length 為 0，將回傳空字串。<br><strong>參數：</strong> 分隔符號。</p>
+<p><code>join()</code>會將陣列裡的所有元素轉成字串，並串接起來回傳一個結果字串。我們可以指定額外的字串，用來分隔每個字串中的元素，如果我們沒有給指定的分隔符號字串，<code>join()</code>就會用預設的逗號來當分隔符號。不只如此，<code>join()</code>還會把一些無效的元素，例如空元素、undefined 或 null 當作空字串來處理，並回傳回來。</p>
+<h3 id="沒給符號也可以跟有給一樣"><a href="#沒給符號也可以跟有給一樣" class="headerlink" title="沒給符號也可以跟有給一樣"></a>沒給符號也可以跟有給一樣</h3><p>我們先來看看<code>join()</code>怎麼用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> arr2 = arr;</span><br><span class="line"><span class="keyword">const</span> arr3 = arr;</span><br><span class="line"></span><br><span class="line">arr.join(<span class="string">','</span>); <span class="comment">// "1,2,3,4,5"</span></span><br><span class="line">arr2.join() <span class="comment">// "1,2,3,4,5"</span></span><br><span class="line">arr3.join(<span class="string">''</span>) <span class="comment">// "12345"</span></span><br></pre></td></tr></table></figure>
+
+<p>大家有沒發現，其實<code>join()</code>裡沒給分隔符號，和給分隔符號<code>join(&#39;,&#39;)</code>得到的結果是ㄧ樣的。<br>因為所有的符號都屬於字串，所以記得在給參數的符號時，也必須以「字串」的形式包覆，像是<code>join(&#39;,&#39;)</code>。</p>
+<h3 id="把陣列裡的字串元素轉成一整個字串"><a href="#把陣列裡的字串元素轉成一整個字串" class="headerlink" title="把陣列裡的字串元素轉成一整個字串"></a>把陣列裡的字串元素轉成一整個字串</h3><p>將陣列元素用固定符號串成字串，但是遇到參考型別的陣列元素<code>join()</code>會如何處理？<br>結果是<code>join()</code>會把它們都放生，<del>阿不</del> 而不處理這些參考型別的元素。但也不全然是這樣，看了下面的例子，<code>join()</code>只會將 object 的物件行元素放生，但對同是參考型別的陣列卻不會。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">'jack'</span>, <span class="string">'john'</span>, <span class="string">'may'</span>, <span class="string">'su'</span>, <span class="string">'Ada'</span>];</span><br><span class="line"><span class="keyword">const</span> str = arr.join(<span class="string">'、'</span>); </span><br><span class="line">str; <span class="comment">// "jack、john、may、su、Ada"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr2 = [[<span class="number">1</span>,<span class="number">2</span>], <span class="string">'john'</span>, <span class="string">'may'</span>, &#123;<span class="attr">a</span> : <span class="number">42</span>&#125;, <span class="string">'Ada'</span>];</span><br><span class="line"><span class="keyword">const</span> str2 = arr2.join(<span class="string">' '</span>);</span><br><span class="line">str2; <span class="comment">// "1,2 john may [object Object] Ada"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="如果可以活用，還真的很好用"><a href="#如果可以活用，還真的很好用" class="headerlink" title="如果可以活用，還真的很好用"></a>如果可以活用，還真的很好用</h3><p><code>join()</code>所執行的事剛好和<code>split()</code>的方法相反，<code>split()</code>會把字串切成片段來放在陣列裡，而<code>join()</code>則是會把所有元素併成一個陣列。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">"Hello word, how a bout your ?"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用 split() 轉成陣列</span></span><br><span class="line"><span class="keyword">let</span> word = str.split(<span class="string">' '</span>);</span><br><span class="line">word; <span class="comment">// ["Hello", "word,", "how", "a", "bout", "your", "?"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 再用 join() 轉回字串</span></span><br><span class="line">word.join();</span><br><span class="line">word; <span class="comment">// "Hello,word,,how,a,bout,your,?"</span></span><br></pre></td></tr></table></figure>
+
+<p>別忘了，如果字串裡有逗號，<code>join()</code>會把它當作是元素的一部分處理。</p>
+<h3 id="join-可以怎麼寫出來？"><a href="#join-可以怎麼寫出來？" class="headerlink" title="join() 可以怎麼寫出來？"></a>join() 可以怎麼寫出來？</h3><p>我們可以試著寫出一個原生的寫法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.join2 = <span class="function"><span class="keyword">function</span> (<span class="params">separator</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="keyword">this</span>[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="keyword">this</span>.length; i++)&#123;</span><br><span class="line">    result += separator + <span class="keyword">this</span>[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 以上原生維修中，晚點再來補正確的，抱歉</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">arr.join(); <span class="comment">// "1,2,3,4"</span></span><br><span class="line">arr.join(<span class="string">'-'</span>); <span class="comment">// "1-2-3-4"</span></span><br><span class="line">arr.join(<span class="string">''</span>); <span class="comment">// "1234"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr2 = [<span class="string">"hi"</span>, <span class="string">"wow"</span>,<span class="string">"hello"</span>];</span><br><span class="line">arr2.join(); <span class="comment">// "hi,wow,hello";</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 對於無效的元素，join()會置之不理，但是還是會把逗號留下來</span></span><br><span class="line"><span class="keyword">const</span> arr3 = [<span class="literal">null</span>, <span class="number">42</span>, <span class="string">"hi"</span>, <span class="literal">undefined</span>];</span><br><span class="line">arr3.join(); <span class="comment">// ",42,hi,"</span></span><br></pre></td></tr></table></figure>
+
+<p>今天就先介紹到這裡，明天開始連假，但是鐵人賽還是會繼續喔！一起繼續鐵人吧！</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～</p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-24"><a href="#Day-24" class="headerlink" title="Day 24"></a>Day 24</h6><blockquote>
+<p>插隊也不能插成這樣，我們之間總是可以插點花什麼的。</p>
+</blockquote>
+<p> 不知道大家有沒有吃過義大利的千層麵，一層麵皮一層蕃茄餡料，然後再一層麵皮一層蕃茄餡料，直到最後一層麵皮鋪上，撒上會拉絲的乳酪，再送進烤箱裡烤，美味的千層麵就這樣做好了。 <del>肚子也餓了</del> </p>
+<p> <code>join()</code>做的事就像是千層麵一樣，陣列裡面的元素有如番茄餡料，以字串形式包覆，還可以選擇之間要穿插什麼，如果我們不選擇，就是很單純的麵皮<br> <del>逗點</del>就是了。 </p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/" data-id="ck5zhx12f0034p5uwm2ruma34" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan23_Reverses-an-array-in-place-reverse()-method" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_ironMan23_Reverses-an-array-in-place-reverse()-method/" class="article-date">
@@ -1004,99 +1096,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-JS_ironMan14_About-JavaScript-Array-Methods" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_ironMan14_About-JavaScript-Array-Methods/" class="article-date">
-  <time datetime="2019-11-13T20:21:14.000Z" itemprop="datePublished">2019-11-14</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_ironMan14_About-JavaScript-Array-Methods/">陣列 Array 方法概觀</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-14"><a href="#Day-14" class="headerlink" title="Day 14"></a>Day 14</h6><blockquote>
-<p>知道怎麼做，但是如果有好工具會更得心應手。</p>
-</blockquote>
-<p>JavaScript一直在演化，也因此因不同時期推出的新方法好像是給我們補充能量，原本需要複雜的程序寫出來的函式，現在大多可用內建的方法處理 <del>for 被放生了</del>，不但直接且經過優化，以往使用<code>For</code>迴圈來遍歷陣列，現在只要用內建方法就可以，簡單又好用。</p>
-<p>如果有用 javascript 來操作處理 JSON 的經驗，會發現陣列方法實在是非常好用，無論是在陣列上的資料過濾、排序、儲存、組合都超級方便！我們可以想像一下，如果我們想要做出好看又好吃的甜點，是不是需要一些必須的工具，例如刮刀、擠花袋、打蛋器（電動的更好、量匙、電子秤等等，如果沒有這些，即使有上好的材料與器材如烤箱，要做甜點勢必困難重重，而這些陣列 Array 的方法正如這些工具，幫我們快速又精準的把甜點做出來。 <del>寫著寫著就餓了</del></p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20190929/20104175xe6gdKuhHZ.png" alt="dessert"></p>
-<h3 id="好工具永遠不嫌多"><a href="#好工具永遠不嫌多" class="headerlink" title="好工具永遠不嫌多"></a>好工具永遠不嫌多</h3><p>這些好用的陣列工具（功能），是<a href="https://zh.wikipedia.org/wiki/JavaScript" target="_blank" rel="noopener">什麼時候被增加</a>到 javascript 裡呢？javascript 發展至今，最主要的版本為 ECMAScript 3/5/6/7/10 ，在 ES3.0 的時期，推出了基本的新增、刪除與切割字串的方法; ES5 又推出了許多查詢與迭代，功能強大的方法。到了 ES6（2015年發布)，又推出了一些更強大的陣列方法，如迭代器、尋找、替代等相關陣列方法。</p>
-<p>ES3.0是最標準的，許多方法都是在3.0的時候推出來的，這個時期推出的方法，是現今使用的方法中最重要的部分。ES6 因為更新的部分頗多，所以許多人都把 ES6 當成一個檻，有了它可以更加速的開發專案，也因此成為前端工程師的標準技能之一。</p>
-<p>接下來的版本，我們就都知道了，越受歡迎的語言，更新的速度也會越頻繁 <del>看Python就知道了</del>。等到 ES7、ES10 出來了，但各家的瀏覽器卻不一定有支援這些新方法，就像年輕人發明的新詞彙、新說法，中年大嬸（瀏覽器）怎麼可能聽得懂？總要一些時間之後，才能讓大嬸聽懂年輕人說的話。</p>
-<p>但是，大嬸也是有愛追流行和傳統婦女之分，跟上潮流的大嬸(瀏覽器)就聽得懂年輕人的詞彙，<del>那些傳統婦女我們就放生吧！</del></p>
-<p>但是每次年輕人（新版JS）說什麼，讓大部分的大嬸（瀏覽器）都聽不太懂也頗煩惱，會產生代溝啊！所以就有一位在年輕人之間走跳的壯年人（Babel）出來協調翻譯，讓大嬸都聽得懂年輕人的話，讓鴻溝化為無痕……<del>實在好難掰</del></p>
-<h2 id="以功能性來區分的陣列方法"><a href="#以功能性來區分的陣列方法" class="headerlink" title="以功能性來區分的陣列方法"></a>以功能性來區分的陣列方法</h2><p>我們可以發現許多人在介紹陣列方法時，都是以方法是否可以複製、回傳值來分，這也是一種不錯的記憶方法，畢竟方法那麼多，沒記好要用這些方法總是會卡卡的。先來看看以功能分類的陣列方法列表：</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20190929/20104175PsptgttSeB.png" alt="dessert"></p>
-<h2 id="JavaScript-的三巨頭"><a href="#JavaScript-的三巨頭" class="headerlink" title="JavaScript 的三巨頭"></a>JavaScript 的三巨頭</h2><p>上面說了大嬸和年輕人的故事，其實應該說說 JavaScript 的源頭的，在 JavaScript 裡主要構成的成分有：</p>
-<ul>
-<li>ES3/5/6/7/10(ECMAScript) 規範</li>
-<li>DOM (Document Object Model) 文件物件模型 </li>
-<li>BOM (Browser Object Model) 瀏覽器物件模型</li>
-</ul>
-<p>ECMAScript 是 JavaScript 所擬出來的規範，而 DOM 和 BOM 是以參與形式增加了許多使用上的規則，透過 DON 以 JavaScript 來操控 HTML 也就是Windows; 而 BOM 則是透過 JavaScript 來操控瀏覽器。ECMAScript 給出 DOM 和 BOM 的標準，由各個瀏覽器來補充與支援這些方法，讓這些新功能可以在最新的瀏覽器上被讀取與使用。</p>
-<p>瀏覽器執行 JavaScript 的環境，是由不同的瀏覽器廠商，結合 ECMAScript 固定的規範而產生出來執行的環境，也因此，各個瀏覽器讀取 DOM 和 BOM 會有些許差異，才造成相同的程式碼在不同的瀏覽器解析下會有不同的結果。尤其是 BOM 是操作瀏覽器的規則，各家瀏覽器都以自己的標準為標準 <del>好任性</del>，自然呈現的差異性會比較大。</p>
-<p>接下來將介紹陣列方法的篇章，會以 Chrome 最新版的瀏覽器為主 <del>其他放生</del>，如何知道 Chrome 有支援哪些新的方法？只要我們打開 Chrome 的開發工具，選擇<code>console</code>分頁，輸入<code>Array.prototype</code>按<code>entre</code>之後就會出現在這個瀏覽器版本可以執行方法和屬性。</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20190929/20104175O7rB8LpoRb.png" alt="prototype"></p>
-<p>希望大家在學習 JavaScript 時可以多去了解 JavaScript 歷史與演化，這或許會對掌控這個語言的特性更有幫助。明天我們正式進入陣列方法的介紹囉～</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～</p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-14"><a href="#Day-14" class="headerlink" title="Day 14"></a>Day 14</h6><blockquote>
-<p>知道怎麼做，但是如果有好工具會更得心應手。</p>
-</blockquote>
-<p>JavaScript一直在演化，也因此因不同時期推出的新方法好像是給我們補充能量，原本需要複雜的程序寫出來的函式，現在大多可用內建的方法處理 <del>for 被放生了</del>，不但直接且經過優化，以往使用<code>For</code>迴圈來遍歷陣列，現在只要用內建方法就可以，簡單又好用。</p>
-<p>如果有用 javascript 來操作處理 JSON 的經驗，會發現陣列方法實在是非常好用，無論是在陣列上的資料過濾、排序、儲存、組合都超級方便！我們可以想像一下，如果我們想要做出好看又好吃的甜點，是不是需要一些必須的工具，例如刮刀、擠花袋、打蛋器（電動的更好、量匙、電子秤等等，如果沒有這些，即使有上好的材料與器材如烤箱，要做甜點勢必困難重重，而這些陣列 Array 的方法正如這些工具，幫我們快速又精準的把甜點做出來。 <del>寫著寫著就餓了</del></p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_ironMan14_About-JavaScript-Array-Methods/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan14_About-JavaScript-Array-Methods/" data-id="ck5zhx1250027p5uwxz9ikwqo" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1132,7 +1131,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Base/">Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Base/">Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
     </div>
   </div>
 
@@ -1173,7 +1172,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/Base/" style="font-size: 10px;">Base</a> <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="../../tags/Base/" style="font-size: 10px;">Base</a> <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/Vue/" style="font-size: 10px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 

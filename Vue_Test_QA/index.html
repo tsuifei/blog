@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Vuejs 線上問答題 | Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="只要你的考試成績好，就可以得到入門票一張  在法國，應徵前端工程師的職位通常需要下列幾個程序：第一關：人資的電話面試，在電話裡需要大約介紹一下自己的背景，以及自己的工作經歷，接著就是對方的發問，為什麼想應徵這份工作，或是對公司有疑惑也可提問等等。第二關：技術執行長的電話面試，會詢問較多細節，對技術的看法，與團隊合作的細節，介紹公司負責部門的規模和人員、工作分配，當然我們也可以發問。第二關：技術測">
+<meta name="keywords" content="JavaScript,Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuejs 線上問答題">
+<meta property="og:url" content="tsuifei.github.io/Vue_Test_QA/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="只要你的考試成績好，就可以得到入門票一張  在法國，應徵前端工程師的職位通常需要下列幾個程序：第一關：人資的電話面試，在電話裡需要大約介紹一下自己的背景，以及自己的工作經歷，接著就是對方的發問，為什麼想應徵這份工作，或是對公司有疑惑也可提問等等。第二關：技術執行長的電話面試，會詢問較多細節，對技術的看法，與團隊合作的細節，介紹公司負責部門的規模和人員、工作分配，當然我們也可以發問。第二關：技術測">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2020-01-31T15:14:25.760Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vuejs 線上問答題">
+<meta name="twitter:description" content="只要你的考試成績好，就可以得到入門票一張  在法國，應徵前端工程師的職位通常需要下列幾個程序：第一關：人資的電話面試，在電話裡需要大約介紹一下自己的背景，以及自己的工作經歷，接著就是對方的發問，為什麼想應徵這份工作，或是對公司有疑惑也可提問等等。第二關：技術執行長的電話面試，會詢問較多細節，對技術的看法，與團隊合作的細節，介紹公司負責部門的規模和人員、工作分配，當然我們也可以發問。第二關：技術測">
+  
+  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../react">React</a>
+        
+        <a class="main-nav-link" href="../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../life">Life</a>
+        
+        <a class="main-nav-link" href="../other">Other</a>
+        
+        <a class="main-nav-link" href="../html">HTML</a>
+        
+        <a class="main-nav-link" href="../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../linux">Linux</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Vue_Test_QA" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="" class="article-date">
+  <time datetime="2020-01-30T16:42:24.000Z" itemprop="datePublished">2020-01-31</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 class="article-title" itemprop="name">
+      Vuejs 線上問答題
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <blockquote>
+<p>只要你的考試成績好，就可以得到入門票一張</p>
+</blockquote>
+<p>在法國，應徵前端工程師的職位通常需要下列幾個程序：<br>第一關：人資的電話面試，在電話裡需要大約介紹一下自己的背景，以及自己的工作經歷，接著就是對方的發問，為什麼想應徵這份工作，或是對公司有疑惑也可提問等等。<br>第二關：技術執行長的電話面試，會詢問較多細節，對技術的看法，與團隊合作的細節，介紹公司負責部門的規模和人員、工作分配，當然我們也可以發問。<br>第二關：技術測驗，這有可能是面對面的測驗，寫白板、寫函式、線上測驗都有，但有時也很有可能寄給你連結，請線上直接作答。<br>第四關：直接來公司，最後一次面試，有可能是將來的主管和同事一起面試你。</p>
+<p>以下是網路上的一些技術問題，平常多做做，也可測驗自己對某一主題的熟悉度。<br>自己翻譯了一下這些題目，用法文讀起來有時還是卡卡的，翻譯成中文希望還算順暢，感謝 Chris 的中文題目修正。<br>我會先把正確答案放在最底下，可以先試著作答在看答案喔。</p>
+<h2 id="Quiz-Vue-js-基礎"><a href="#Quiz-Vue-js-基礎" class="headerlink" title="Quiz Vue.js 基礎"></a>Quiz Vue.js 基礎</h2><p><strong>是誰創造了VueJs ?</strong></p>
+<ul>
+<li><input disabled type="checkbox"> Robert Vue</li>
+<li><input disabled type="checkbox"> Evan You</li>
+<li><input disabled type="checkbox"> Mark Zuckerberg</li>
+<li><input disabled type="checkbox"> Nicolas Cage</li>
+</ul>
+<hr>
+<p><strong>定義 Vue Component 的3個部分是什麼？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> script, template, methods</li>
+<li><input disabled type="checkbox"> template, style, script</li>
+<li><input disabled type="checkbox"> script, template, css</li>
+</ul>
+<hr>
+<p><strong>我們如何將資料從父層 Component 傳遞到子層 Component ？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 透過 鏈接屬性</li>
+<li><input disabled type="checkbox"> 透過 callback</li>
+<li><input disabled type="checkbox"> 透過 屬性 data-</li>
+<li><input disabled type="checkbox"> 透過 prop</li>
+</ul>
+<hr>
+<p><strong>我們能否不靠 Babel 編譯的情況，單獨使用 Vue (script src)？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 可</li>
+<li><input disabled type="checkbox"> 不可</li>
+<li><input disabled type="checkbox"> 使用 jQuery 的情況下</li>
+</ul>
+<hr>
+<p><strong>用動態傳值語法，將<code>kiwi</code>給<code>prop</code>的寫法？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> v-bind:kiwi=”kiwi”</li>
+<li><input disabled type="checkbox"> v-key:kiwi=”kiwi”</li>
+<li><input disabled type="checkbox"> v-model=”kiwi”</li>
+</ul>
+<hr>
+<p><strong>Vue 的哪個套件可以在所有 component 之間共享資料？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> ShareData</li>
+<li><input disabled type="checkbox"> Vuex</li>
+<li><input disabled type="checkbox"> DataLoader</li>
+<li><input disabled type="checkbox"> DataStore</li>
+</ul>
+<hr>
+<p><strong>使用<code>v-for</code> 建立 loop 時，必要的屬性是什麼？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> v-id</li>
+<li><input disabled type="checkbox"> v-key</li>
+<li><input disabled type="checkbox"> v-loop</li>
+<li><input disabled type="checkbox"> v-while</li>
+</ul>
+<hr>
+<p><strong>哪一個語法可以 route 到另一個 vue component？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> this.$router.push(url)</li>
+<li><input disabled type="checkbox"> this.$router.go(url)</li>
+<li><input disabled type="checkbox"> this.$router.change(url)</li>
+</ul>
+<hr>
+<p><strong>我們如何在資料的變化的同時觸發一個動作？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 使用 MutationObserver</li>
+<li><input disabled type="checkbox"> 在 methods 使用 setInterval</li>
+<li><input disabled type="checkbox"> 使用 watch</li>
+</ul>
+<hr>
+<p><strong>哪一個 directive (vue 的指令，ex: <code>v-for</code>, <code>v-model</code>) 將輸入欄位和 component 的 data 關聯在一起？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> v-model</li>
+<li><input disabled type="checkbox"> v-bind</li>
+<li><input disabled type="checkbox"> v-store</li>
+<li><input disabled type="checkbox"> v-input</li>
+</ul>
+<hr>
+<h2 id="Quiz-Vue-js-中等程度"><a href="#Quiz-Vue-js-中等程度" class="headerlink" title="Quiz Vue.js 中等程度"></a>Quiz Vue.js 中等程度</h2><p><strong>哪個 method 可以確保 dom 已完成更新才執行？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> Vue.sync</li>
+<li><input disabled type="checkbox"> Vue.nextTick</li>
+<li><input disabled type="checkbox"> Vue.refresh</li>
+<li><input disabled type="checkbox"> Vue.await</li>
+</ul>
+<hr>
+<p><strong>如何使用<code>Vue</code>方法（ component 的功能）訪問本機DOM的元素？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 透過 v-node et un callback</li>
+<li><input disabled type="checkbox"> 透過 id 屬性與 document.getElementById</li>
+<li><input disabled type="checkbox"> 透過 v-ref</li>
+</ul>
+<hr>
+<p><strong>我們如何從由<code>“document /：id”</code>路由解釋的URL獲取<code>“id”</code>參數？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> this.$route.params.id</li>
+<li><input disabled type="checkbox"> this.$route.vars[‘id’]</li>
+<li><input disabled type="checkbox"> this.$route.query.id</li>
+<li><input disabled type="checkbox"> this.$route.document.id</li>
+</ul>
+<hr>
+<p><strong>哪些指令不應混在同一元素或 component 上？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> v-if et v-bind</li>
+<li><input disabled type="checkbox"> v-text et v-on</li>
+<li><input disabled type="checkbox"> v-show et v-model</li>
+<li><input disabled type="checkbox"> v-for et v-if</li>
+</ul>
+<hr>
+<p><strong>將事件發送到不相關 Component 的技術是什麼？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> Event Dispatch</li>
+<li><input disabled type="checkbox"> Event Bus</li>
+<li><input disabled type="checkbox"> Global Events</li>
+<li><input disabled type="checkbox"> 透過 store</li>
+</ul>
+<hr>
+<p><strong>哪個特殊變量包含<code>v-on</code>捕獲的本機事件？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> $event</li>
+<li><input disabled type="checkbox"> nativeEvent</li>
+<li><input disabled type="checkbox"> e</li>
+<li><input disabled type="checkbox"> e.native</li>
+</ul>
+<hr>
+<p><strong><code>Vuex</code>存儲上的哪些操作是異步的？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> getter</li>
+<li><input disabled type="checkbox"> mutation</li>
+<li><input disabled type="checkbox"> action</li>
+</ul>
+<hr>
+<p><strong>這些 component 掛鉤的正確執行順序是什麼？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> created, beforeMount, mounted, updated</li>
+<li><input disabled type="checkbox"> mounted, beforeCreate, created, destroyed</li>
+<li><input disabled type="checkbox"> created, beforeUpdate, update, mounted</li>
+</ul>
+<hr>
+<p><strong>為什麼 component 的<code>data</code>屬性應該是返回新對象的函數？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 在處理大型表格時，為了讓效能更好 </li>
+<li><input disabled type="checkbox"> 強制複製並避免 component 之間資料衝突</li>
+<li><input disabled type="checkbox"> 為避免內存洩漏</li>
+</ul>
+<hr>
+<p><strong>通過<code>v-show</code>“隱藏”圖像時，瀏覽器是否會加載圖像？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 是</li>
+<li><input disabled type="checkbox"> 不是</li>
+<li><input disabled type="checkbox"> Seulement si c’est un gif animé de Jean-Claude Van Damme</li>
+</ul>
+<hr>
+<h2 id="Quiz-Vue-js-深度問題"><a href="#Quiz-Vue-js-深度問題" class="headerlink" title="Quiz Vue.js 深度問題"></a>Quiz Vue.js 深度問題</h2><p><strong>我們如何將事件廣播到不相關的多個 component ？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> Vue.broadcast</li>
+<li><input disabled type="checkbox"> 使用 Event Bus</li>
+<li><input disabled type="checkbox"> Vue.$globalEmit</li>
+</ul>
+<hr>
+<p><strong>使<code>&quot;computed&quot;</code>可修改的技術是什麼？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 切成兩個方法集並使用 set 和 get</li>
+<li><input disabled type="checkbox"> 將其與<code>v-sync</code>指令做關聯</li>
+<li><input disabled type="checkbox"> 必須將其放置在 component 的”data”屬性中</li>
+</ul>
+<hr>
+<p><strong>哪條指令允許您將樣式範圍限制為 component 本身</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 將<code>scoped</code>屬性放在<code>styles</code>中</li>
+<li><input disabled type="checkbox"> 指令 <code>v-scope</code></li>
+<li><input disabled type="checkbox"> 將屬性設定為<code>scoping:true</code></li>
+</ul>
+<hr>
+<p><strong>如果事件來自 component 本身，我們可以在<code>v-on</code>指令上使用什麼修飾符來觸發？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> v-on:click.once</li>
+<li><input disabled type="checkbox"> v-on:click.self</li>
+<li><input disabled type="checkbox"> v-on:click.this</li>
+</ul>
+<hr>
+<p><strong>哪條語句使 component 及其不活動的資料保持高速緩存？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> <code>&lt;keep-alive&gt;</code></li>
+<li><input disabled type="checkbox"> <code>&lt;template cache&gt;</code></li>
+<li><input disabled type="checkbox"> <code>&lt;slot&gt;</code></li>
+</ul>
+<hr>
+<p><strong>哪條指令可用於創建內容位置，以用一個或多個其他 component 甚至HTML代碼填充 component ？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> v-inject</li>
+<li><input disabled type="checkbox"> v-slot</li>
+<li><input disabled type="checkbox"> v-inside</li>
+<li><input disabled type="checkbox"> v-html</li>
+</ul>
+<hr>
+<p><strong>哪條指令可以使“反應性”的 component 資料成為可能，而不是事先沒有？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> Vue.react</li>
+<li><input disabled type="checkbox"> Vue.initData</li>
+<li><input disabled type="checkbox"> Vue.mount</li>
+<li><input disabled type="checkbox"> Vue.set</li>
+</ul>
+<hr>
+<p><strong>我們如何按需生成名稱為<code>“component”</code>的 component 存儲在變量中？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> <code>&lt;render template=&quot;composant&quot;&gt;</code></li>
+<li><input disabled type="checkbox"> <code>&lt;component render=&quot;composant()&quot;&gt;</code></li>
+<li><input disabled type="checkbox"> <code>&lt;component :is=&quot;composant&quot;&gt;</code></li>
+</ul>
+<hr>
+<p><strong>如何在 component 之間共享通用代碼段？（資料，掛鉤，方法）</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 透過繼承</li>
+<li><input disabled type="checkbox"> 透過 extends</li>
+<li><input disabled type="checkbox"> 透過 mixin</li>
+</ul>
+<hr>
+<p><strong>如何強制刷新 component ？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 透過 this.$update();</li>
+<li><input checked disabled type="checkbox"> 透過 :key 指示變數的變化</li>
+<li><input disabled type="checkbox"> 透過 this.$router.push(‘#’) juste après un appel à this.nextTick</li>
+</ul>
+<p>出處：<a href="https://www.alsacreations.com/" target="_blank" rel="noopener">https://www.alsacreations.com/</a></p>
+<h3 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h3><p>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.</p>
+<h3 id="Quiz-Vue-js-基礎-1"><a href="#Quiz-Vue-js-基礎-1" class="headerlink" title="Quiz Vue.js 基礎"></a>Quiz Vue.js 基礎</h3><p><strong>是誰創造了VueJs ?</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> Evan You</li>
+</ul>
+<p><strong>定義 Vue Component 的3個部分是什麼？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> template, style, script</li>
+</ul>
+<p><strong>我們如何將資料從父層 Component 傳遞到子層 Component ？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 透過 prop</li>
+</ul>
+<p><strong>我們能否不靠 Babel 編譯的情況，單獨使用 Vue (script src)？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 可</li>
+</ul>
+<p><strong>用動態傳值語法，將<code>kiwi</code>給<code>prop</code>的寫法？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> v-bind:kiwi=”kiwi”</li>
+</ul>
+<p><strong>Vue 的哪個套件可以在所有 component 之間共享資料？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> Vuex</li>
+</ul>
+<p><strong>使用<code>v-for</code> 建立 loop 時，必要的屬性是什麼？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> v-key</li>
+</ul>
+<p><strong>哪一個語法可以 route 到另一個 vue component？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> this.$router.push(url)</li>
+</ul>
+<p><strong>我們如何在資料的變化的同時觸發一個動作？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 使用 watch</li>
+</ul>
+<p><strong>哪一個 directive (vue 的指令，ex: <code>v-for</code>, <code>v-model</code>) 將輸入欄位和 component 的 data 關聯在一起？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> v-model</li>
+</ul>
+<h3 id="Quiz-Vue-js-中等程度-1"><a href="#Quiz-Vue-js-中等程度-1" class="headerlink" title="Quiz Vue.js 中等程度"></a>Quiz Vue.js 中等程度</h3><p><strong>哪個 method 可以確保 dom 已完成更新才執行？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> Vue.nextTick</li>
+</ul>
+<p><strong>如何使用<code>Vue</code>方法（ component 的功能）訪問本機DOM的元素？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 透過 v-ref</li>
+</ul>
+<p><strong>我們如何從由<code>“document /：id”</code>路由解釋的URL獲取<code>“id”</code>參數？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> this.$route.params.id</li>
+</ul>
+<p><strong>哪些指令不應混在同一元素或 component 上？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> v-for et v-if</li>
+</ul>
+<p><strong>將事件發送到不相關 Component 的技術是什麼？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> Event Bus</li>
+</ul>
+<p><strong>哪個特殊變量包含<code>v-on</code>捕獲的本機事件？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> $event</li>
+</ul>
+<p><strong><code>Vuex</code>存儲上的哪些操作是異步的？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> action</li>
+</ul>
+<p><strong>這些 component 掛鉤的正確執行順序是什麼？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> created, beforeMount, mounted, updated</li>
+</ul>
+<p><strong>為什麼 component 的<code>data</code>屬性應該是返回新對象的函數？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 強制複製並避免 component 之間資料衝突</li>
+</ul>
+<p><strong>通過<code>v-show</code>“隱藏”圖像時，瀏覽器是否會加載圖像？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 是</li>
+</ul>
+<h3 id="Quiz-Vue-js-深度問題-1"><a href="#Quiz-Vue-js-深度問題-1" class="headerlink" title="Quiz Vue.js 深度問題"></a>Quiz Vue.js 深度問題</h3><p><strong>我們如何將事件廣播到不相關的多個 component ？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 使用 Event Bus</li>
+</ul>
+<p><strong>使<code>&quot;computed&quot;</code>可修改的技術是什麼？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 切成兩個方法集並使用 set 和 get</li>
+</ul>
+<p><strong>哪條指令允許您將樣式範圍限制為 component 本身</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 將<code>scoped</code>屬性放在<code>styles</code>中</li>
+</ul>
+<p><strong>如果事件來自 component 本身，我們可以在<code>v-on</code>指令上使用什麼修飾符來觸發？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> v-on:click.self</li>
+</ul>
+<p><strong>哪條語句使 component 及其不活動的資料保持高速緩存？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> <code>&lt;keep-alive&gt;</code></li>
+</ul>
+<p><strong>哪條指令可用於創建內容位置，以用一個或多個其他 component 甚至HTML代碼填充 component ？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> v-slot</li>
+</ul>
+<p><strong>哪條指令可以使“反應性”的 component 資料成為可能，而不是事先沒有？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> Vue.set</li>
+</ul>
+<p><strong>我們如何按需生成名稱為<code>“component”</code>的 component 存儲在變量中？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> <component :is="composant">
+
+</component></li>
+</ul>
+<p><strong>如何在 component 之間共享通用代碼段？（資料，掛鉤，方法）</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 透過 mixin</li>
+</ul>
+<p><strong>如何強制刷新 component ？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 透過 <code>:key</code> 指示變數的變化</li>
+</ul>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                            <blockquote>
+<p>只要你的考試成績好，就可以得到入門票一張</p>
+</blockquote>
+<p>在法國，應徵前端工程師的職位通常需要下列幾個程序：<br>第一關：人資的電話面試，在電話裡需要大約介紹一下自己的背景，以及自己的工作經歷，接著就是對方的發問，為什麼想應徵這份工作，或是對公司有疑惑也可提問等等。<br>第二關：技術執行長的電話面試，會詢問較多細節，對技術的看法，與團隊合作的細節，介紹公司負責部門的規模和人員、工作分配，當然我們也可以發問。<br>第二關：技術測驗，這有可能是面對面的測驗，寫白板、寫函式、線上測驗都有，但有時也很有可能寄給你連結，請線上直接作答。<br>第四關：直接來公司，最後一次面試，有可能是將來的主管和同事一起面試你。</p>
+<p>以下是網路上的一些技術問題，平常多做做，也可測驗自己對某一主題的熟悉度。<br>自己翻譯了一下這些題目，用法文讀起來有時還是卡卡的，翻譯成中文希望還算順暢，感謝 Chris 的中文題目修正。<br>我會先把正確答案放在最底下，可以先試著作答在看答案喔。</p>
+<h2 id="Quiz-Vue-js-基礎"><a href="#Quiz-Vue-js-基礎" class="headerlink" title="Quiz Vue.js 基礎"></a>Quiz Vue.js 基礎</h2><p><strong>是誰創造了VueJs ?</strong></p>
+<ul>
+<li><input disabled type="checkbox"> Robert Vue</li>
+<li><input disabled type="checkbox"> Evan You</li>
+<li><input disabled type="checkbox"> Mark Zuckerberg</li>
+<li><input disabled type="checkbox"> Nicolas Cage</li>
+</ul>
+<hr>
+<p><strong>定義 Vue Component 的3個部分是什麼？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> script, template, methods</li>
+<li><input disabled type="checkbox"> template, style, script</li>
+<li><input disabled type="checkbox"> script, template, css</li>
+</ul>
+<hr>
+<p><strong>我們如何將資料從父層 Component 傳遞到子層 Component ？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 透過 鏈接屬性</li>
+<li><input disabled type="checkbox"> 透過 callback</li>
+<li><input disabled type="checkbox"> 透過 屬性 data-</li>
+<li><input disabled type="checkbox"> 透過 prop</li>
+</ul>
+<hr>
+<p><strong>我們能否不靠 Babel 編譯的情況，單獨使用 Vue (script src)？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 可</li>
+<li><input disabled type="checkbox"> 不可</li>
+<li><input disabled type="checkbox"> 使用 jQuery 的情況下</li>
+</ul>
+<hr>
+<p><strong>用動態傳值語法，將<code>kiwi</code>給<code>prop</code>的寫法？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> v-bind:kiwi=”kiwi”</li>
+<li><input disabled type="checkbox"> v-key:kiwi=”kiwi”</li>
+<li><input disabled type="checkbox"> v-model=”kiwi”</li>
+</ul>
+<hr>
+<p><strong>Vue 的哪個套件可以在所有 component 之間共享資料？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> ShareData</li>
+<li><input disabled type="checkbox"> Vuex</li>
+<li><input disabled type="checkbox"> DataLoader</li>
+<li><input disabled type="checkbox"> DataStore</li>
+</ul>
+<hr>
+<p><strong>使用<code>v-for</code> 建立 loop 時，必要的屬性是什麼？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> v-id</li>
+<li><input disabled type="checkbox"> v-key</li>
+<li><input disabled type="checkbox"> v-loop</li>
+<li><input disabled type="checkbox"> v-while</li>
+</ul>
+<hr>
+<p><strong>哪一個語法可以 route 到另一個 vue component？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> this.$router.push(url)</li>
+<li><input disabled type="checkbox"> this.$router.go(url)</li>
+<li><input disabled type="checkbox"> this.$router.change(url)</li>
+</ul>
+<hr>
+<p><strong>我們如何在資料的變化的同時觸發一個動作？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 使用 MutationObserver</li>
+<li><input disabled type="checkbox"> 在 methods 使用 setInterval</li>
+<li><input disabled type="checkbox"> 使用 watch</li>
+</ul>
+<hr>
+<p><strong>哪一個 directive (vue 的指令，ex: <code>v-for</code>, <code>v-model</code>) 將輸入欄位和 component 的 data 關聯在一起？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> v-model</li>
+<li><input disabled type="checkbox"> v-bind</li>
+<li><input disabled type="checkbox"> v-store</li>
+<li><input disabled type="checkbox"> v-input</li>
+</ul>
+<hr>
+<h2 id="Quiz-Vue-js-中等程度"><a href="#Quiz-Vue-js-中等程度" class="headerlink" title="Quiz Vue.js 中等程度"></a>Quiz Vue.js 中等程度</h2><p><strong>哪個 method 可以確保 dom 已完成更新才執行？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> Vue.sync</li>
+<li><input disabled type="checkbox"> Vue.nextTick</li>
+<li><input disabled type="checkbox"> Vue.refresh</li>
+<li><input disabled type="checkbox"> Vue.await</li>
+</ul>
+<hr>
+<p><strong>如何使用<code>Vue</code>方法（ component 的功能）訪問本機DOM的元素？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 透過 v-node et un callback</li>
+<li><input disabled type="checkbox"> 透過 id 屬性與 document.getElementById</li>
+<li><input disabled type="checkbox"> 透過 v-ref</li>
+</ul>
+<hr>
+<p><strong>我們如何從由<code>“document /：id”</code>路由解釋的URL獲取<code>“id”</code>參數？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> this.$route.params.id</li>
+<li><input disabled type="checkbox"> this.$route.vars[‘id’]</li>
+<li><input disabled type="checkbox"> this.$route.query.id</li>
+<li><input disabled type="checkbox"> this.$route.document.id</li>
+</ul>
+<hr>
+<p><strong>哪些指令不應混在同一元素或 component 上？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> v-if et v-bind</li>
+<li><input disabled type="checkbox"> v-text et v-on</li>
+<li><input disabled type="checkbox"> v-show et v-model</li>
+<li><input disabled type="checkbox"> v-for et v-if</li>
+</ul>
+<hr>
+<p><strong>將事件發送到不相關 Component 的技術是什麼？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> Event Dispatch</li>
+<li><input disabled type="checkbox"> Event Bus</li>
+<li><input disabled type="checkbox"> Global Events</li>
+<li><input disabled type="checkbox"> 透過 store</li>
+</ul>
+<hr>
+<p><strong>哪個特殊變量包含<code>v-on</code>捕獲的本機事件？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> $event</li>
+<li><input disabled type="checkbox"> nativeEvent</li>
+<li><input disabled type="checkbox"> e</li>
+<li><input disabled type="checkbox"> e.native</li>
+</ul>
+<hr>
+<p><strong><code>Vuex</code>存儲上的哪些操作是異步的？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> getter</li>
+<li><input disabled type="checkbox"> mutation</li>
+<li><input disabled type="checkbox"> action</li>
+</ul>
+<hr>
+<p><strong>這些 component 掛鉤的正確執行順序是什麼？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> created, beforeMount, mounted, updated</li>
+<li><input disabled type="checkbox"> mounted, beforeCreate, created, destroyed</li>
+<li><input disabled type="checkbox"> created, beforeUpdate, update, mounted</li>
+</ul>
+<hr>
+<p><strong>為什麼 component 的<code>data</code>屬性應該是返回新對象的函數？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 在處理大型表格時，為了讓效能更好 </li>
+<li><input disabled type="checkbox"> 強制複製並避免 component 之間資料衝突</li>
+<li><input disabled type="checkbox"> 為避免內存洩漏</li>
+</ul>
+<hr>
+<p><strong>通過<code>v-show</code>“隱藏”圖像時，瀏覽器是否會加載圖像？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 是</li>
+<li><input disabled type="checkbox"> 不是</li>
+<li><input disabled type="checkbox"> Seulement si c’est un gif animé de Jean-Claude Van Damme</li>
+</ul>
+<hr>
+<h2 id="Quiz-Vue-js-深度問題"><a href="#Quiz-Vue-js-深度問題" class="headerlink" title="Quiz Vue.js 深度問題"></a>Quiz Vue.js 深度問題</h2><p><strong>我們如何將事件廣播到不相關的多個 component ？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> Vue.broadcast</li>
+<li><input disabled type="checkbox"> 使用 Event Bus</li>
+<li><input disabled type="checkbox"> Vue.$globalEmit</li>
+</ul>
+<hr>
+<p><strong>使<code>&quot;computed&quot;</code>可修改的技術是什麼？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 切成兩個方法集並使用 set 和 get</li>
+<li><input disabled type="checkbox"> 將其與<code>v-sync</code>指令做關聯</li>
+<li><input disabled type="checkbox"> 必須將其放置在 component 的”data”屬性中</li>
+</ul>
+<hr>
+<p><strong>哪條指令允許您將樣式範圍限制為 component 本身</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 將<code>scoped</code>屬性放在<code>styles</code>中</li>
+<li><input disabled type="checkbox"> 指令 <code>v-scope</code></li>
+<li><input disabled type="checkbox"> 將屬性設定為<code>scoping:true</code></li>
+</ul>
+<hr>
+<p><strong>如果事件來自 component 本身，我們可以在<code>v-on</code>指令上使用什麼修飾符來觸發？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> v-on:click.once</li>
+<li><input disabled type="checkbox"> v-on:click.self</li>
+<li><input disabled type="checkbox"> v-on:click.this</li>
+</ul>
+<hr>
+<p><strong>哪條語句使 component 及其不活動的資料保持高速緩存？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> <code>&lt;keep-alive&gt;</code></li>
+<li><input disabled type="checkbox"> <code>&lt;template cache&gt;</code></li>
+<li><input disabled type="checkbox"> <code>&lt;slot&gt;</code></li>
+</ul>
+<hr>
+<p><strong>哪條指令可用於創建內容位置，以用一個或多個其他 component 甚至HTML代碼填充 component ？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> v-inject</li>
+<li><input disabled type="checkbox"> v-slot</li>
+<li><input disabled type="checkbox"> v-inside</li>
+<li><input disabled type="checkbox"> v-html</li>
+</ul>
+<hr>
+<p><strong>哪條指令可以使“反應性”的 component 資料成為可能，而不是事先沒有？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> Vue.react</li>
+<li><input disabled type="checkbox"> Vue.initData</li>
+<li><input disabled type="checkbox"> Vue.mount</li>
+<li><input disabled type="checkbox"> Vue.set</li>
+</ul>
+<hr>
+<p><strong>我們如何按需生成名稱為<code>“component”</code>的 component 存儲在變量中？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> <code>&lt;render template=&quot;composant&quot;&gt;</code></li>
+<li><input disabled type="checkbox"> <code>&lt;component render=&quot;composant()&quot;&gt;</code></li>
+<li><input disabled type="checkbox"> <code>&lt;component :is=&quot;composant&quot;&gt;</code></li>
+</ul>
+<hr>
+<p><strong>如何在 component 之間共享通用代碼段？（資料，掛鉤，方法）</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 透過繼承</li>
+<li><input disabled type="checkbox"> 透過 extends</li>
+<li><input disabled type="checkbox"> 透過 mixin</li>
+</ul>
+<hr>
+<p><strong>如何強制刷新 component ？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> 透過 this.$update();</li>
+<li><input checked disabled type="checkbox"> 透過 :key 指示變數的變化</li>
+<li><input disabled type="checkbox"> 透過 this.$router.push(‘#’) juste après un appel à this.nextTick</li>
+</ul>
+<p>出處：<a href="https://www.alsacreations.com/" target="_blank" rel="noopener">https://www.alsacreations.com/</a></p>
+<h3 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h3><p>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.<br>.
+.</p>
+<h3 id="Quiz-Vue-js-基礎-1"><a href="#Quiz-Vue-js-基礎-1" class="headerlink" title="Quiz Vue.js 基礎"></a>Quiz Vue.js 基礎</h3><p><strong>是誰創造了VueJs ?</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> Evan You</li>
+</ul>
+<p><strong>定義 Vue Component 的3個部分是什麼？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> template, style, script</li>
+</ul>
+<p><strong>我們如何將資料從父層 Component 傳遞到子層 Component ？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 透過 prop</li>
+</ul>
+<p><strong>我們能否不靠 Babel 編譯的情況，單獨使用 Vue (script src)？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 可</li>
+</ul>
+<p><strong>用動態傳值語法，將<code>kiwi</code>給<code>prop</code>的寫法？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> v-bind:kiwi=”kiwi”</li>
+</ul>
+<p><strong>Vue 的哪個套件可以在所有 component 之間共享資料？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> Vuex</li>
+</ul>
+<p><strong>使用<code>v-for</code> 建立 loop 時，必要的屬性是什麼？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> v-key</li>
+</ul>
+<p><strong>哪一個語法可以 route 到另一個 vue component？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> this.$router.push(url)</li>
+</ul>
+<p><strong>我們如何在資料的變化的同時觸發一個動作？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 使用 watch</li>
+</ul>
+<p><strong>哪一個 directive (vue 的指令，ex: <code>v-for</code>, <code>v-model</code>) 將輸入欄位和 component 的 data 關聯在一起？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> v-model</li>
+</ul>
+<h3 id="Quiz-Vue-js-中等程度-1"><a href="#Quiz-Vue-js-中等程度-1" class="headerlink" title="Quiz Vue.js 中等程度"></a>Quiz Vue.js 中等程度</h3><p><strong>哪個 method 可以確保 dom 已完成更新才執行？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> Vue.nextTick</li>
+</ul>
+<p><strong>如何使用<code>Vue</code>方法（ component 的功能）訪問本機DOM的元素？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 透過 v-ref</li>
+</ul>
+<p><strong>我們如何從由<code>“document /：id”</code>路由解釋的URL獲取<code>“id”</code>參數？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> this.$route.params.id</li>
+</ul>
+<p><strong>哪些指令不應混在同一元素或 component 上？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> v-for et v-if</li>
+</ul>
+<p><strong>將事件發送到不相關 Component 的技術是什麼？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> Event Bus</li>
+</ul>
+<p><strong>哪個特殊變量包含<code>v-on</code>捕獲的本機事件？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> $event</li>
+</ul>
+<p><strong><code>Vuex</code>存儲上的哪些操作是異步的？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> action</li>
+</ul>
+<p><strong>這些 component 掛鉤的正確執行順序是什麼？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> created, beforeMount, mounted, updated</li>
+</ul>
+<p><strong>為什麼 component 的<code>data</code>屬性應該是返回新對象的函數？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 強制複製並避免 component 之間資料衝突</li>
+</ul>
+<p><strong>通過<code>v-show</code>“隱藏”圖像時，瀏覽器是否會加載圖像？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 是</li>
+</ul>
+<h3 id="Quiz-Vue-js-深度問題-1"><a href="#Quiz-Vue-js-深度問題-1" class="headerlink" title="Quiz Vue.js 深度問題"></a>Quiz Vue.js 深度問題</h3><p><strong>我們如何將事件廣播到不相關的多個 component ？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 使用 Event Bus</li>
+</ul>
+<p><strong>使<code>&quot;computed&quot;</code>可修改的技術是什麼？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 切成兩個方法集並使用 set 和 get</li>
+</ul>
+<p><strong>哪條指令允許您將樣式範圍限制為 component 本身</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 將<code>scoped</code>屬性放在<code>styles</code>中</li>
+</ul>
+<p><strong>如果事件來自 component 本身，我們可以在<code>v-on</code>指令上使用什麼修飾符來觸發？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> v-on:click.self</li>
+</ul>
+<p><strong>哪條語句使 component 及其不活動的資料保持高速緩存？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> <code>&lt;keep-alive&gt;</code></li>
+</ul>
+<p><strong>哪條指令可用於創建內容位置，以用一個或多個其他 component 甚至HTML代碼填充 component ？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> v-slot</li>
+</ul>
+<p><strong>哪條指令可以使“反應性”的 component 資料成為可能，而不是事先沒有？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> Vue.set</li>
+</ul>
+<p><strong>我們如何按需生成名稱為<code>“component”</code>的 component 存儲在變量中？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> <component :is="composant">
+
+</component></li>
+</ul>
+<p><strong>如何在 component 之間共享通用代碼段？（資料，掛鉤，方法）</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 透過 mixin</li>
+</ul>
+<p><strong>如何強制刷新 component ？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> 透過 <code>:key</code> 指示變數的變化</li>
+</ul>
+
+                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/Vue_Test_QA/" data-id="ck62b693x0000v5uw05v75ril" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Vue/">Vue</a></li></ul>
+
+                    </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+  
+    <a href="../React-deploy_01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ReactJS 環境佈署
+        
+      </div>
+    </a>
+  
+  
+    <a href="../JS_front_test01/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">法國前端初級測驗</div>
+    </a>
+  
+</nav>
+
+            
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
+            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/IDE/">IDE</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/Base/">Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/讀書會筆記/">讀書會筆記</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../React_module_component/">React 的 模塊 Module 與組件 component</a>
+          </li>
+        
+          <li>
+            <a href="../React_virtual_DOM/">React 裡的虛擬 DOM</a>
+          </li>
+        
+          <li>
+            <a href="../JS_Base_type/">JavaScript 基礎 型別篇</a>
+          </li>
+        
+          <li>
+            <a href="../React-component-JSX/">React 組件 Component 和 JSX 語法</a>
+          </li>
+        
+          <li>
+            <a href="../React-deploy_01/">ReactJS 環境佈署</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../tags/Base/" style="font-size: 10px;">Base</a> <a href="../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 12px;">Git</a> <a href="../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/React/" style="font-size: 14px;">React</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../tags/Test/" style="font-size: 10px;">Test</a> <a href="../tags/Vue/" style="font-size: 10px;">Vue</a> <a href="../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../react" class="mobile-nav-link">React</a>
+  
+    <a href="../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../other" class="mobile-nav-link">Other</a>
+  
+    <a href="../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../linux" class="mobile-nav-link">Linux</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
+  <script src="../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

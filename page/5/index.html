@@ -111,6 +111,120 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan04_create-and-declare-arrays" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_ironMan04_create-and-declare-arrays/" class="article-date">
+  <time datetime="2019-09-21T19:29:42.000Z" itemprop="datePublished">2019-09-22</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_ironMan04_create-and-declare-arrays/">創建與宣告陣列 Array</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-04"><a href="#Day-04" class="headerlink" title="Day 04"></a>Day 04</h6><p>這次的鐵人賽，參考書籍有可拿來當枕頭的大犀牛「Javascript 大全」和「你所不知道的JS」系列為主要參考，學習前端以來深深覺得有些書，程度不到來讀，真的很吃力，本人就是如此。但既然知道這些書都是許多大神推薦的書，那麼就試著了解，不懂的地方透過實作和請教前輩得到答案，也是頗好的學習方式，但本人不才，如有解釋錯誤的地方，還請各位海函啊。</p>
+<p>前一篇我們有提到陣列可以做什麼，是不是對陣列有個比較清楚的概念？有些參考書籍會把陣列形容成有很多個格子的抽屜或盒子，這樣去解釋陣列也是頗具體的，但要記得一般來說，每個格子都會有連續的編號，也就是前幾篇提到的索引值(index)是「有序」的這件事情。但到底有序是不是絕對呢？記得曾經看過，把陣列的索引值改成字串的數字作法，例如：let arr = []; arr[“5”] = 42 會有什麼結果呢？我們先賣個關子。</p>
+<p>當我們宣告一個陣列時，也同時在創建一個陣列，如果沒有考慮後續的處理問題，創建陣列是非常簡單的，但如果要讓陣列在後續可以很順利地被處理與運用，就不得不謹慎的考慮陣列裡的元素是什麼型別的問題了。</p>
+<h2 id="字面值宣告陣列"><a href="#字面值宣告陣列" class="headerlink" title="字面值宣告陣列"></a>字面值宣告陣列</h2><p>最簡單的創建陣列方式是使用陣列的字面值(array literal)，也就是用一對中括號 []，把值放在[]中，並以逗號區隔陣列中的值(元素)，再指定給一個變數。</p>
+<h3 id="空陣列"><a href="#空陣列" class="headerlink" title="空陣列"></a>空陣列</h3><p>什麼都沒放，當然也可以。通常是先設一個空陣列，再將要放進去的值已不同的方法放入，列如 push();。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> emptyArray =[];</span><br></pre></td></tr></table></figure>
+
+<h3 id="同型陣列"><a href="#同型陣列" class="headerlink" title="同型陣列"></a>同型陣列</h3><p>陣列裡面的值都是同類型的資料，這種陣列最好做後續的處理，處理過後的結果也最穩定。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrNumber = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">24</span>,<span class="number">42</span>];</span><br></pre></td></tr></table></figure>
+
+<h3 id="非同型陣列"><a href="#非同型陣列" class="headerlink" title="非同型陣列"></a>非同型陣列</h3><p>什麼資料型別都有的陣列， <del>不知道是什麼意圖</del> 或許可以用物件來裝會比較清楚一些，不然只有你知道每個元素的意義。有沒發現陣列的結尾也有一個逗點，在JavaScript 裡是被允許的，但並不會因為有這個逗點，而讓陣列的長度變長，或者是多一個空值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrMixValue = [<span class="string">"Hi"</span>, <span class="number">4.2</span>, <span class="literal">true</span>, <span class="string">"24"</span>,]</span><br></pre></td></tr></table></figure>
+
+<h3 id="包含運算式的陣列"><a href="#包含運算式的陣列" class="headerlink" title="包含運算式的陣列"></a>包含運算式的陣列</h3><p>陣列裡的值不一定是要常數，陣列裡面的元素也可以是任意的運算式，例如，某一個商品的定價是42，我們想知道這個商品打七折、八折、九折的價錢，並把它放在陣列裡， <del>或許</del>就可以用這個方法，但是，有時會有些意想不到的結果，這部分可以另外去查看 JavaScript 是如何處理運算子與數字的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> unit = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">let</span> rebateList = [unit, unit*<span class="number">0.7</span>, unit*<span class="number">0.8</span>, unit*<span class="number">0.9</span>] </span><br><span class="line"><span class="comment">//  [42, 29.4, 33.6, 37.800000000000004]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="逗點造成的稀疏陣列"><a href="#逗點造成的稀疏陣列" class="headerlink" title="逗點造成的稀疏陣列"></a>逗點造成的稀疏陣列</h3><p>如果在宣告陣列時，夾雜了多個分隔的痘點，逗號和逗號之間沒有值，都會被視為是 undefined。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrNumber = [<span class="number">2</span>,<span class="number">4</span>, ,<span class="number">24</span>,,<span class="number">42</span>];</span><br></pre></td></tr></table></figure>
+
+<h3 id="含有-undefined-的陣列"><a href="#含有-undefined-的陣列" class="headerlink" title="含有 undefined 的陣列"></a>含有 undefined 的陣列</h3><p>如果宣告陣列時，介於兩個逗號之間沒有值或空的，這個陣列就會成為稀疏陣列，這些空的元素會被填入 undefined，變成所謂的空插槽(empty slots)，這些空的位置看似被填入了 undefined，但是在瀏覽器的開發工具 Console 使用同樣的語法，填入的卻是 Empty 而不是 undefined。在「你所不知道的JS - 導讀，型別語文法」裡也有寫到這樣的現象，說明了在這裡產生的 undefined 和 arr[1] = undefined 不同，使用方法的結果也較不穩定，需要特別注意。</p>
+<h3 id="包含物件和陣列的陣列"><a href="#包含物件和陣列的陣列" class="headerlink" title="包含物件和陣列的陣列"></a>包含物件和陣列的陣列</h3><p>在大全裡，有一個範例是陣列被宣告時，陣列裡的值如下，加好多料，有陣列也有物件，這真的超過本人的理解範圍，也真的不建議這麼寫。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> vrayMix = [[<span class="number">0</span>,&#123;<span class="attr">a</span>:<span class="number">1</span>,<span class="attr">b</span>:<span class="number">2</span>&#125;], [<span class="number">1</span>, &#123;<span class="attr">a</span>:<span class="number">3</span>, <span class="attr">b</span>:<span class="number">4</span> &#125;]];</span><br></pre></td></tr></table></figure>
+
+<h2 id="建構式宣告"><a href="#建構式宣告" class="headerlink" title="建構式宣告"></a>建構式宣告</h2><p>另一種創建陣列的方式是使用 JavaScript 內建的建構式 Array() ，把建構式直接指定給變數，就成了陣列。<br>創建陣列有三種方法：</p>
+<h3 id="不帶引數就是空陣列"><a href="#不帶引數就是空陣列" class="headerlink" title="不帶引數就是空陣列"></a>不帶引數就是空陣列</h3><p>1.不帶引數的呼叫，這裡的引數指的是 new Array()括號內所放的值，結果同等於空陣列。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(); <span class="comment">// -&gt; []</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="給長度仍然是空的"><a href="#給長度仍然是空的" class="headerlink" title="給長度仍然是空的"></a>給長度仍然是空的</h3><p>2.在內建的建構式 Array() 裡帶一個值數值，而這個值也會成為這個陣列的長度，且裡面的值都會是空值 undefined。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">5</span>); <span class="comment">// -&gt; [empty × 5]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="陣列內容就在括弧裡"><a href="#陣列內容就在括弧裡" class="headerlink" title="陣列內容就在括弧裡"></a>陣列內容就在括弧裡</h3><p>3.把要宣告的陣列內容，直接以引數的方式帶入建構式，感覺建構式的括號裡可以包山包海，放不同的型別資料也可以。但是放入時記得要把陣列的中括號[]拿掉。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr3 = <span class="keyword">new</span> <span class="built_in">Array</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],<span class="string">"hi"</span>,<span class="number">42</span>); <span class="comment">// -&gt;  [Array(3), "hi", 42]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="總結：要用哪一種？"><a href="#總結：要用哪一種？" class="headerlink" title="總結：要用哪一種？"></a>總結：要用哪一種？</h2><p>看了「Javascript 大全」和「你所不知道的JS」系列，都是建議盡量少用建構式的方式去宣告或創建陣列，原因不是很清楚，但比較下來「字面值」宣告陣列的方式明顯比「建構式」宣告來的直覺與簡單。</p>
+<p>建構式的陣列宣告與一般的陣列宣告本質上是相同的，唯一一點不同的是，如果宣告時我們只給一個參數，那麼字面值會把第一個參數當作是陣列裡第一個元素值，而建構式則會把第一個參數當作是陣列的長度，且只能給整數不能給小數點，不然會報錯，這點不可不注意。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">8</span>]; <span class="comment">// [8]  length: 1</span></span><br><span class="line"><span class="keyword">let</span> arr2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">8</span>); <span class="comment">// [empty x 8] length: 1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="JS-很奇怪捏"><a href="#JS-很奇怪捏" class="headerlink" title="JS 很奇怪捏"></a>JS 很奇怪捏</h3><p>在文章的開頭，有提到把陣列的索引值改成字串的數字作法，例如：let arr = []; arr[“5”] = 42 會有什麼結果呢？答案是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = []; </span><br><span class="line">arr[<span class="string">"5"</span>] = <span class="number">42</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr) <span class="comment">// (6) [empty × 5, 42]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.length) <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+<p>當我們這樣宣告時，JavaScript 並不會報錯，而直接把字串的數字轉成陣列長度，然後加上我們把 42 指定給它，JavaScript 直接把42放進陣列，長度因此變成 6，有猜對嗎？</p>
+<p>但這只有字串的數字會有這種現象，如果是純字串，那麼字串就會被轉換成key，而指定的值則會轉換成為 key:value 的形式。<br>因為 Javascript 的陣列不能用字串作為索引值。 當一個 Javascript 陣列是只能以數字作為索引值的，所以當我們設定以字串作為索引值的時候，實際上是在設置物件的屬性。 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = []; </span><br><span class="line">arr[<span class="string">"Hi"</span>] = <span class="number">42</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr) <span class="comment">// [Hi: 42]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.length) <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+
+<p>介紹了四天的陣列，有沒覺得膩？小菜才吃了四碟，明天我們就來介紹陣列唯一的屬性 length 與其他較輕鬆的話題吧！</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-04"><a href="#Day-04" class="headerlink" title="Day 04"></a>Day 04</h6><p>這次的鐵人賽，參考書籍有可拿來當枕頭的大犀牛「Javascript 大全」和「你所不知道的JS」系列為主要參考，學習前端以來深深覺得有些書，程度不到來讀，真的很吃力，本人就是如此。但既然知道這些書都是許多大神推薦的書，那麼就試著了解，不懂的地方透過實作和請教前輩得到答案，也是頗好的學習方式，但本人不才，如有解釋錯誤的地方，還請各位海函啊。</p>
+<p>前一篇我們有提到陣列可以做什麼，是不是對陣列有個比較清楚的概念？有些參考書籍會把陣列形容成有很多個格子的抽屜或盒子，這樣去解釋陣列也是頗具體的，但要記得一般來說，每個格子都會有連續的編號，也就是前幾篇提到的索引值(index)是「有序」的這件事情。但到底有序是不是絕對呢？記得曾經看過，把陣列的索引值改成字串的數字作法，例如：let arr = []; arr[“5”] = 42 會有什麼結果呢？我們先賣個關子。</p>
+<p>當我們宣告一個陣列時，也同時在創建一個陣列，如果沒有考慮後續的處理問題，創建陣列是非常簡單的，但如果要讓陣列在後續可以很順利地被處理與運用，就不得不謹慎的考慮陣列裡的元素是什麼型別的問題了。</p>
+<h2 id="字面值宣告陣列"><a href="#字面值宣告陣列" class="headerlink" title="字面值宣告陣列"></a>字面值宣告陣列</h2><p>最簡單的創建陣列方式是使用陣列的字面值(array literal)，也就是用一對中括號 []，把值放在[]中，並以逗號區隔陣列中的值(元素)，再指定給一個變數。</p>
+<h3 id="空陣列"><a href="#空陣列" class="headerlink" title="空陣列"></a>空陣列</h3><p>什麼都沒放，當然也可以。通常是先設一個空陣列，再將要放進去的值已不同的方法放入，列如 push();。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_ironMan04_create-and-declare-arrays/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan04_create-and-declare-arrays/" data-id="ck5zhx11x001hp5uwrb8mtv3w" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan03_What-can-the-array-do" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_ironMan03_What-can-the-array-do/" class="article-date">
@@ -906,98 +1020,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-JS_複製By-reference與By-value的不同" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_複製By-reference與By-value的不同/" class="article-date">
-  <time datetime="2019-07-10T01:07:30.000Z" itemprop="datePublished">2019-07-10</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_複製By-reference與By-value的不同/">JS 複製 By reference 與 By value 的不同</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>在實作時常會聽到 call by reference 還是 call by value，這兩個有什麼不同？最簡易的解釋方法是：<br>call by reference : 呼叫變數的記憶體位置<br>call by value : 呼叫變數的值</p>
-<p>事實上除了這兩種，還有一種叫 call by Sharing，在傳遞參數時會用到，之後再來介紹。</p>
-<h3 id="Object-物件-Object-Array"><a href="#Object-物件-Object-Array" class="headerlink" title="Object(物件): Object, Array"></a>Object(物件): Object, Array</h3><p>Objet 和 Array 在 Javascript 屬於複合型(composite)或參考型(reference)的原始資料類型，<br>在呼叫、複製或傳參數的時候，是參考記憶體的位置而不是值，這點要特別注意。</p>
-<h3 id="複製資料的時候"><a href="#複製資料的時候" class="headerlink" title="複製資料的時候"></a>複製資料的時候</h3><p>複製資料的時候 是用 By valur 或是 By reference 呢？</p>
-<h4 id="By-valur"><a href="#By-valur" class="headerlink" title="By valur"></a>By valur</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"something"</span>;</span><br><span class="line"><span class="keyword">var</span> b = a; <span class="comment">// 這時 b 應該是 something</span></span><br><span class="line">b = <span class="string">"somebody"</span>; <span class="comment">// 再次將其他值賦予給 b </span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// something</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// somebody</span></span><br></pre></td></tr></table></figure>
-
-<p>a 和 b 如期的印出我們賦予的值。我們可成功無誤的修改 b 的值。</p>
-<p>Primitive type(基本型別)：Number, String, Boolean, Null, Undefined</p>
-<h4 id="By-reference-參考值"><a href="#By-reference-參考值" class="headerlink" title="By reference(參考值)"></a>By reference(參考值)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Tracy"</span>,</span><br><span class="line">    city: <span class="string">"Tainan"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person2 = person; </span><br><span class="line">person2.name = <span class="string">"Philippe"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// name: "Philippe"</span></span><br><span class="line"><span class="built_in">console</span>.log(person2); <span class="comment">// name: "Philippe"</span></span><br></pre></td></tr></table></figure>
-
-<p>上面的範例在修改 person2 這個 object 裡的name屬性時，也會同時改到原來參考的person的name屬性，是不是很恐怖？</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 陣列</span></span><br><span class="line"><span class="keyword">var</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = arr1;</span><br><span class="line">arr2[<span class="number">3</span>] = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">// [1, 2, 3, 4]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr2); <span class="comment">// [1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
-
-<p>因為 Array 也是參考型(reference)的原始資料類型所以也會像 Object 一樣，在修改時也會更改到原始參考值 by reference。</p>
-<p>如何複製一個物件而不要更動到參考值？以下是方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Jacques"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="方法一-使用-assign：先給一個空-來裝複製過來的物件"><a href="#方法一-使用-assign：先給一個空-來裝複製過來的物件" class="headerlink" title="方法一 使用 assign：先給一個空{} 來裝複製過來的物件"></a>方法一 使用 assign：先給一個空{} 來裝複製過來的物件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person2 = <span class="built_in">Object</span>.saaign(&#123;&#125;, person);</span><br></pre></td></tr></table></figure>
-
-<h3 id="方法二-使用JSON文字化"><a href="#方法二-使用JSON文字化" class="headerlink" title="方法二 使用JSON文字化"></a>方法二 使用JSON文字化</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person2 = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(person)); </span><br><span class="line"><span class="comment">// 這時兩筆資料已無關連</span></span><br><span class="line">person2.name = <span class="string">"Gisèle"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// &#123;name:"Jacques"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(person2); <span class="comment">// &#123;name:"Gisèle"&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>JSON.stringify(); 是文字化、JSON.parse(); 是解析文字，兩函式處理下來等於複製了一份 person 到 person2</p>
-<h3 id="使用-Object-assign-處理-object-的缺點"><a href="#使用-Object-assign-處理-object-的缺點" class="headerlink" title="使用 Object.assign()處理 object 的缺點"></a>使用 Object.assign()處理 object 的缺點</h3><p>如果遇上多層結構的 Object，就無法使用 assign()來處理，因為它只能處理一層的結構而無法處理兩層，也就是說這種方法只能用在 Array 上。在第二層裡的原始資料仍然會被更動到。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Ayda"</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        id: <span class="number">24</span>,</span><br><span class="line">        city: <span class="string">"Paris"</span>,</span><br><span class="line">        job: <span class="string">"artist"</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person2 = <span class="built_in">Object</span>.assign(&#123;&#125;, person);</span><br><span class="line">person2.data.id = <span class="number">42</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// 42</span></span><br><span class="line"><span class="built_in">console</span>.log(person2); <span class="comment">// 42</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 改成用第二種方法</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person3 = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(person));</span><br><span class="line">person3.data.id = <span class="number">66</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// 42,原本 24 被Object.assign()改成 42</span></span><br><span class="line"><span class="built_in">console</span>.log(person3); <span class="comment">// 66</span></span><br></pre></td></tr></table></figure>
-
-<p>function 也是一種特殊的 Object 資料型別。<br>參考：<a href="https://hackmd.io/m0alSWZBQ4aKROtyQVeejw?view" target="_blank" rel="noopener">小龜前輩：參數傳遞方式</a></p>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <p>在實作時常會聽到 call by reference 還是 call by value，這兩個有什麼不同？最簡易的解釋方法是：<br>call by reference : 呼叫變數的記憶體位置<br>call by value : 呼叫變數的值</p>
-<p>事實上除了這兩種，還有一種叫 call by Sharing，在傳遞參數時會用到，之後再來介紹。</p>
-<h3 id="Object-物件-Object-Array"><a href="#Object-物件-Object-Array" class="headerlink" title="Object(物件): Object, Array"></a>Object(物件): Object, Array</h3><p>Objet 和 Array 在 Javascript 屬於複合型(composite)或參考型(reference)的原始資料類型，<br>在呼叫、複製或傳參數的時候，是參考記憶體的位置而不是值，這點要特別注意。</p>
-<h3 id="複製資料的時候"><a href="#複製資料的時候" class="headerlink" title="複製資料的時候"></a>複製資料的時候</h3><p>複製資料的時候 是用 By valur 或是 By reference 呢？</p>
-<h4 id="By-valur"><a href="#By-valur" class="headerlink" title="By valur"></a>By valur</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"something"</span>;</span><br><span class="line"><span class="keyword">var</span> b = a; <span class="comment">// 這時 b 應該是 something</span></span><br><span class="line">b = <span class="string">"somebody"</span>; <span class="comment">// 再次將其他值賦予給 b </span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// something</span></span><br><span class="line"><span class="built_in">console</span>.log(b); <span class="comment">// somebody</span></span><br></pre></td></tr></table></figure>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_複製By-reference與By-value的不同/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_複製By-reference與By-value的不同/" data-id="ck5zhx12v004dp5uwojv0ismx" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1033,7 +1055,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Base/">Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Base/">Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
     </div>
   </div>
 
@@ -1074,7 +1096,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/Base/" style="font-size: 10px;">Base</a> <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="../../tags/Base/" style="font-size: 10px;">Base</a> <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/Vue/" style="font-size: 10px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 
