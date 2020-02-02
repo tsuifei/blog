@@ -111,6 +111,156 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan05_The-array-property-length" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_ironMan05_The-array-property-length/" class="article-date">
+  <time datetime="2019-11-01T06:09:08.000Z" itemprop="datePublished">2019-11-01</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_ironMan05_The-array-property-length/">陣列屬性 length 的真面貌 </a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-05"><a href="#Day-05" class="headerlink" title="Day 05"></a>Day 05</h6><blockquote>
+<p>一列隊伍有長度，也有各式各樣不同的物種，這才有趣嘛！</p>
+</blockquote>
+<p>length 這個屬性應該算是我們在學 Javascript 的初期，最早開始用的一個屬性，我們常常來用它來當作是跑字串或陣列的迴圈條件，但是，作為 Array 的唯一屬性 length 真的有這麼單純嗎？</p>
+<p>我們可以從 Chrome 的開發工具的 console 裡，輸入<code>window.Array.prototype</code> 可以找到它。並試著了解他多一點。<br><img src="0_images/day05_array.png" alt></p>
+<p>先看一下 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/length" target="_blank" rel="noopener">NDM</a> 對它的定義：<br>作為 Array 類型的實例物件的 length 屬性，設置或回傳該陣列中的元素數。 該值是一個無符號的32位整數，其數值總是大於陣列中的最高索引。</p>
+<p>嗯，解釋得很清楚，但好像單薄了點。果然，查找了「JavaScript 大全」的解釋，把 length 解釋得較為詳細，且還講到了密集陣列(dense)和稀疏陣列(sparse)，其中更強調了無論是以上哪種型態的陣列，length 的長度不會等於或小於陣列的最大索引值，也就是說 length 會比陣列最大的索引值多 1。但有個例外，就是空陣列。 <del>廢話</del></p>
+<p>這個其實不難理解，在許多程式語言裡，陣列的索引值都是從 0 開始算起，當然 JavaScript 也不例外。JavaScript 的 length 是從 1 開始，從下面這張圖片可以看出為什麼長度總比索引值大的原因。</p>
+<p><img src="0_images/day05.png" alt></p>
+<h2 id="怎麼使用-length"><a href="#怎麼使用-length" class="headerlink" title="怎麼使用 length ?"></a>怎麼使用 length ?</h2><p>別看 length 這個屬性，好像只能知道陣列的長度，但是如果知道怎麼活用它，會發現他的功用還不少。接下來介紹是幾種 length 的用法：</p>
+<h3 id="求陣列的長度"><a href="#求陣列的長度" class="headerlink" title="求陣列的長度"></a>求陣列的長度</h3><ul>
+<li><p>只要在我們想知道的陣列變數，以方法的方式加上<code>.length</code>。回傳回來的就是這個陣列的長度。</p>
+</li>
+<li><p>不管是密集或稀疏陣列，長度(length)永遠大於索引值(index)。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">"hi"</span>,<span class="string">"ho"</span>,<span class="string">"woops"</span>,<span class="string">"ciao"</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr.length); <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果重新指定長度，<code>.length</code>，原本有的會被刪除，沒有的會以空的補上而成為稀疏陣列。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">arr <span class="comment">// [1, 2, 3, 4, 5]</span></span><br><span class="line">arr.length = <span class="number">10</span></span><br><span class="line">arr <span class="comment">// [1, 2, 3, empty × 7]</span></span><br><span class="line">arr.length = <span class="number">3</span></span><br><span class="line">arr <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="把陣列清空-第一種"><a href="#把陣列清空-第一種" class="headerlink" title="把陣列清空 第一種"></a>把陣列清空 第一種</h3><p>這的確是個快速清空的方法，但是陣列在 JavaScript 裡，骨子裡是物件，也就是在記憶體裡，當我們宣告它時，也同時記錄了它在記憶體的位置（call by reference），而如果我們複製了這個陣列，然後用 length 這個屬性去操控它，嗯，恩湯喔，很危險，同時會指向來源陣列，所以也會修改來源陣列。<br><a href="https://codepen.io/tsuifei/pen/zYOMRKa?editors=0012" target="_blank" rel="noopener">這個codepen 有更詳細的範例說明</a>，記得只觀察比對 JS 和 console(在左下角)的部分。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> say = [<span class="string">"hi"</span>,<span class="string">"ho"</span>,<span class="string">"woops"</span>,<span class="string">"ciao"</span>];</span><br><span class="line">say.length = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">console</span>.log(say) <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="把陣列清空-第二種"><a href="#把陣列清空-第二種" class="headerlink" title="把陣列清空 第二種"></a>把陣列清空 第二種</h3><p>和第一種一樣，都會更動到來源陣列，請慎用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> say = [<span class="string">"hi"</span>,<span class="string">"ho"</span>,<span class="string">"woops"</span>,<span class="string">"ciao"</span>];</span><br><span class="line">say.length = [];</span><br><span class="line"><span class="built_in">console</span>.log(say) <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="把陣列最後一個元素抓出來"><a href="#把陣列最後一個元素抓出來" class="headerlink" title="把陣列最後一個元素抓出來"></a>把陣列最後一個元素抓出來</h3><p>除了可以用 JavaScript 的內建函式 <code>pop();</code>去提取陣列的最後一個元素外，還可以用下面這種方法。找到陣列中最後一個值， 把 length 的長度減掉 1 再把它對應到索引值，就是陣列的最後一個了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> say = [<span class="string">"hi"</span>,<span class="string">"ho"</span>,<span class="string">"woops"</span>,<span class="string">"ciao"</span>];</span><br><span class="line"><span class="keyword">let</span> lastSay = say[say.length<span class="number">-1</span>];</span><br><span class="line"><span class="built_in">console</span>.log(lastSay) <span class="comment">// ciao</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="刪除陣列的最後一個元素"><a href="#刪除陣列的最後一個元素" class="headerlink" title="刪除陣列的最後一個元素"></a>刪除陣列的最後一個元素</h3><p>直接把原本的陣列長度，用指派的方式減掉最後一個陣列元素。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> say = [<span class="string">"hi"</span>,<span class="string">"ho"</span>,<span class="string">"woops"</span>,<span class="string">"ciao"</span>];</span><br><span class="line">say.length = say.length<span class="number">-1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(say) <span class="comment">// ["hi", "ho", "woops"]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="從陣列尾部增加一個元素"><a href="#從陣列尾部增加一個元素" class="headerlink" title="從陣列尾部增加一個元素"></a>從陣列尾部增加一個元素</h3><p>如果要在陣列尾部增加一個元素，除了可以用 JavaScript 的內建函式 <code>push();</code>去增加外，還可以用這種方法增加，真的很奇妙！</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> say = [<span class="string">"hi"</span>,<span class="string">"ho"</span>,<span class="string">"woops"</span>,<span class="string">"ciao"</span>];</span><br><span class="line">say[say.length] = <span class="string">"haha"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(say) <span class="comment">// ["hi", "ho", "woops", "ciao", "haha"]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="當作是迴圈的停止條件"><a href="#當作是迴圈的停止條件" class="headerlink" title="當作是迴圈的停止條件"></a>當作是迴圈的停止條件</h3><p>這是我們常用的方法，把迴圈限制在陣列的長度範圍內，跑完陣列的長度自動停止，真的很方便。以下的範例就是計算陣列裡面元素的總和。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> nbr = [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>];</span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nbr.length; i++) &#123;</span><br><span class="line">    sum = sum + nbr[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(sum) <span class="comment">// 20</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="服用-length-注意事項"><a href="#服用-length-注意事項" class="headerlink" title="服用 length 注意事項"></a>服用 length 注意事項</h3><p>雖然 length 可以這樣用，但並不表示就是好的方法，因為 length 是陣列的屬性，陣列在 JavaScript 是屬於非原始型別(Non-Primitive)也就是物件型別(Object type)與傳址(Pass by referance)， <del>別緊張，這幾個名詞都是指同一件事情。</del> 所以不可不慎用，一改動是會同時更動複製的原陣列的。</p>
+<h2 id="小總結"><a href="#小總結" class="headerlink" title="小總結"></a>小總結</h2><p>不知道這篇 length 的介紹，有沒有讓大家對它有另一種看法，程式的變化實在是太精采，但知道活用或許比知道原本的功能更重要吧？</p>
+<p>透過鐵人賽寫文來查找資料，實在是個不錯的方法，人家說「當爸爸之後才學著怎麼當爸爸」，本人雖然無法當爸爸，但對這句話的涵義也頗有感觸，期望在這樣查找與發現的狀態下，多練些腦肌肉也是好的。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+<hr>
+<p>==要補充==</p>
+<h1 id="陣列裡的length-屬性"><a href="#陣列裡的length-屬性" class="headerlink" title="陣列裡的length 屬性"></a>陣列裡的length 屬性</h1><p>對稀疏陣列來說，如果.length 屬性比元素的數目還大，length 會比陣列索引還大，也就是說，陣列永遠不會有元素的索引大於或等於陣列的<code>.length</code>長度。為了要為持這個不變式(invariant)，陣列會有兩個特殊行為：<br>1.如果我們指定一個值給索引 i，而 i 大於或等於陣列目前的 length 長度，那麼length 的屬性就會被設為 i+1。<br>2.如果我們將 length 屬性設為小於目前陣列值的非負整數 n，那麼，任何索引值大於或等於 n 的陣列元素都會因此從陣列中被刪除。<br>==記住：<code>.length</code>長度永遠會比<code>index[]</code>大1，因為<code>index</code>從 0 開始計算。==</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]; <span class="comment">// 創建一個有五個元素的陣列</span></span><br><span class="line">a.length = <span class="number">3</span>; <span class="comment">// a 現在變成 [1,2,3]</span></span><br><span class="line">a.length = <span class="number">0</span>; <span class="comment">// 將長度指定成 0 等於刪除所有元素，所以現在陣列變成 []</span></span><br><span class="line">a.length = <span class="number">5</span>; <span class="comment">// 將長度指定成 5，但是沒有元素，所以會如 new Array(5) a 變成 [empty × 5]</span></span><br></pre></td></tr></table></figure>
+
+<p>我們也可將長度射設成比現在更大的長度，但並不會因此新增任何的陣列元素，而是會在陣列尾部創建一塊稀疏的區域。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.length = <span class="number">15</span>; <span class="comment">// a 變成 [empty × 15]</span></span><br></pre></td></tr></table></figure>
+
+<p>可以把 length設為唯讀，鎖死陣列長度嗎？可以。在ECMAScript，我們可以使用 Object.defineProperty()把陣列 length設為唯讀，這樣不只無法更改長度，也無法增加長度與刪除。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]; <span class="comment">//</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(a, <span class="string">"length"</span>,&#123;<span class="attr">writable</span>:<span class="literal">false</span>&#125;); <span class="comment">// 設為唯讀</span></span><br><span class="line">a.length = <span class="number">0</span>; <span class="comment">// a 不變。 a 仍然是 [1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+
+<p>節錄「JavaScript 大全」的說明：</p>
+<ul>
+<li>陣列(Array)是動態的(dynamic)：陣列的長度可以根據需求變長或變短，沒有必要在創建陣列時，宣告陣列的長度，或是在長短改變時重新配置(reallocate)。</li>
+<li>每個陣列都有一個控制或偵測的屬性：length 特性，對非稀疏陣列(nonsparse)來說，length 代表陣列中所包含的元素數量<br>對稀疏陣列(sparse)而言，length 比陣列中所有元素的索引值還要大，原因不難理解，因為索引值是從0開始計算，而length是從1開始。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 陣列常値</span></span><br><span class="line"><span class="keyword">const</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]; <span class="comment">// 數字陣列</span></span><br><span class="line"><span class="keyword">const</span> arr2 = [<span class="string">"one"</span>, <span class="number">2</span>, <span class="string">"three"</span>]; <span class="comment">// 非同型陣列</span></span><br><span class="line"><span class="keyword">const</span> arr3 = [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">    [<span class="string">"one"</span>, <span class="number">2</span>, <span class="string">"three"</span>]</span><br><span class="line">]; <span class="comment">// 陣列裡有陣列</span></span><br><span class="line"><span class="keyword">const</span> arr4 = [</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">"Tsuifei"</span>, <span class="attr">type</span>: <span class="string">"object"</span>, <span class="attr">luckyNumber</span> : [<span class="number">5</span>, <span class="number">7</span>, <span class="number">13</span>, <span class="number">42</span>] &#125;, <span class="comment">// 非同型陣列</span></span><br><span class="line">    [</span><br><span class="line">        &#123; <span class="attr">name</span>: <span class="string">"Philippe"</span>, <span class="attr">type</span>: <span class="string">"object"</span> &#125;,</span><br><span class="line">        &#123; <span class="attr">name</span>: <span class="string">"Ayda"</span>, <span class="attr">type</span>: <span class="string">"object"</span> &#125;,</span><br><span class="line">    ],</span><br><span class="line">    <span class="number">1</span>,</span><br><span class="line">    <span class="string">"three"</span>,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">"array can contain function too"</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 陣列長度</span></span><br><span class="line">arr1.length; <span class="comment">// 1</span></span><br><span class="line">arr4.length; <span class="comment">// 5</span></span><br><span class="line">arr4[<span class="number">1</span>].length; <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 增加陣列長度</span></span><br><span class="line">arr1[<span class="number">4</span>] = <span class="number">5</span>;</span><br><span class="line">arr1; <span class="comment">// [1,2,3,undefined,5] 直接指定，中間無值所以undefined</span></span><br><span class="line">arr1.length; <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+
+<p>length的妙用<br>數組的length不是只讀的。所以我們可以通過length完成<br>【1】從數組末尾移除項<br>【2】在數組末尾添加新項<br>【3】清空數組</p>
+<p>/***
+     * 從數組末尾移除項<br>     * **/<br>    var colors = [“red”, “blue”, “green”]; // 創建一個包含3個字符串的數組<br>    colors.length = 2;<br>    alert(colors[2]); // undefined</p>
+<pre><code>/***
+ * 在數組末尾添加新項
+ * **/
+var colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;]; // 創建一個包含3個字符串的數組
+colors[colors.length] = &quot;black&quot;; // (在位置3)添加一種顏色
+colors[colors.length] = &quot;brown&quot;; // (在位置4)再添加一種顏色
+
+/***
+ * 清空數組
+ * **/
+var colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;]; // 創建一個包含3個字符串的數組
+colors.length = 0;
+console.log(colors); // []
+
+圖篇來源：
+https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><a href="#真清除-尾巴斷了" class="headerlink" title="真清除 尾巴斷了"></a>真清除 尾巴斷了</h4><p>length 除了可以拿來查看陣列的長短，還可以拿來刪除陣列尾部的元素。只要直接指定想要的長度，截至想保留的長度，就可以輕鬆刪掉尾部的元素了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</span><br><span class="line"></span><br><span class="line">a.length <span class="comment">// 9</span></span><br><span class="line">a.length = <span class="number">5</span></span><br><span class="line">a <span class="comment">// [1, 2, 3, 4, 5]</span></span><br><span class="line">a.length <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-05"><a href="#Day-05" class="headerlink" title="Day 05"></a>Day 05</h6><blockquote>
+<p>一列隊伍有長度，也有各式各樣不同的物種，這才有趣嘛！</p>
+</blockquote>
+<p>length 這個屬性應該算是我們在學 Javascript 的初期，最早開始用的一個屬性，我們常常來用它來當作是跑字串或陣列的迴圈條件，但是，作為 Array 的唯一屬性 length 真的有這麼單純嗎？</p>
+<p>我們可以從 Chrome 的開發工具的 console 裡，輸入<code>window.Array.prototype</code> 可以找到它。並試著了解他多一點。<br><img src="0_images/day05_array.png" alt></p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_ironMan05_The-array-property-length/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan05_The-array-property-length/" data-id="ck62bbbwl008r9fuwog8tmnzh" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan04_create-and-declare-arrays" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_ironMan04_create-and-declare-arrays/" class="article-date">
@@ -917,109 +1067,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-JS_ternary-conditional-operator-and-Comparison-operator" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_ternary-conditional-operator-and-Comparison-operator/" class="article-date">
-  <time datetime="2019-07-11T06:22:41.000Z" itemprop="datePublished">2019-07-11</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_ternary-conditional-operator-and-Comparison-operator/">JavaScript 三元運算符(ternary conditional operator)與比較運算符(Comparison operator)</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h2 id="相等比較運算-與-的不同"><a href="#相等比較運算-與-的不同" class="headerlink" title="相等比較運算 == 與 === 的不同"></a>相等比較運算 == 與 === 的不同</h2><p>兩個等號通常是拿來比較兩邊的==值==是否不同<br>三個等號除了判斷==值==是否相同，也會判斷==型別==是否相同。</p>
-<p>兩個等於會引發諸多問題的原因是 JS 常會暗地裡幫我們將資料轉型別，所以常常莫名的就通過判斷。以至於很容易就會出現誤判型別而導致出現錯誤。在使用判斷比較時盡量或只使用三個等於會比較精確與安全。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下的結果都是true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">"0"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">""</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> == <span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> == <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log([] == <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-
-<p>產生 1 == true 的原因是在 Boolean 時，1 即表示 true，也就是 Boolean(1)理所當然 JS 就會把它視為相同。相反地Boolean(0) 等於 false.</p>
-<p>如果將 false 轉成數字型 Number(false) // 0 ，也可得到 0。</p>
-<p>空字串也是如此，當我們把空字串轉成數字時 Number([]) // 0 也會得到 0。</p>
-<p>將所有上述比較全換成三個等號，結果全都成了 false：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下的結果都是 false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="string">"0"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> === <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="string">""</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> === <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> === <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> === <span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> === <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log([] === <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-
-<p>由此可見，用三個等號來判斷兩變得值，還是比較準確與保險。看圖表來表示更清楚！三個等號比兩個等號規律多了，除非可以全背下兩個等號的變化，不然還是用三個等號來判斷比較保險。</p>
-<p><img src="https://i.imgur.com/f0T10zg.png" alt></p>
-<p><img src="https://i.imgur.com/6eGZaB8.png" alt></p>
-<p><img src="https://i.imgur.com/b2Iyiqw.png" alt></p>
-<h3 id="唯一特例-NaN不是NaN"><a href="#唯一特例-NaN不是NaN" class="headerlink" title="唯一特例 NaN不是NaN"></a>唯一特例 NaN不是NaN</h3><p>在 JavaScript 裡如果左右兩邊都是一樣且用三個等號來比較，結果通常是 True 但是 Nan 和自己相比，無論使用兩個或三個等號都是 false。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> === <span class="literal">NaN</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> !== <span class="literal">NaN</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> lettre = <span class="string">"abc"</span></span><br><span class="line">lettre / <span class="number">10</span> <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
-
-<p>NaN -&gt; 不是數字。何時會用到 NaN ?<br>如果把數字和不是數字做運算，便會返回 NaN 。</p>
-<p>如果想知道一個變數是不是 NaN 可使用 <code>isNaN()</code> 來判斷是不是NaN。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isNaN</span>(<span class="literal">NaN</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<p>但是<code>isNaN()</code>也會悄悄幫你改型別。 明明 a 就不是數字…。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"a"</span></span><br><span class="line"><span class="built_in">isNaN</span>(a); <span class="comment">// true </span></span><br><span class="line"><span class="built_in">Number</span>(a); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<p>如果用 typeof 來看 NaN 會得到 number，也就是說，當我們用 isNaN() ，其實這個函式會先將()裡面用Number()轉換。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isNaN</span>(<span class="built_in">Number</span>(<span class="literal">NaN</span>)) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<p>圖表出處：<a href="https://dorey.github.io/JavaScript-Equality-Table/" target="_blank" rel="noopener">一目了然的比較表</a></p>
-<h2 id="JS-三元運算子"><a href="#JS-三元運算子" class="headerlink" title="JS 三元運算子"></a>JS 三元運算子</h2><p>「三元運算子」 又稱為「條件運算子」，也就是拿來處理條件判斷用的。<br>條件成立(true)-&gt; 回傳第一個, 條件不成立(false)-&gt;回傳第二個</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果 true 這個條件成立，就返回 100，否則就回傳 50</span></span><br><span class="line"><span class="keyword">var</span> result = <span class="number">100</span> &lt; <span class="number">1000</span> ? <span class="number">100</span> : <span class="number">50</span>;</span><br><span class="line"><span class="comment">// 100 小於 1000 嗎？ 是 (true) -&gt; 回傳 100</span></span><br></pre></td></tr></table></figure>
-
-<p>如何將一般的 if else 轉成三元運算子</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age = <span class="number">16</span>;</span><br><span class="line"><span class="keyword">var</span> title;</span><br><span class="line"><span class="keyword">if</span> (age &gt;= <span class="number">18</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (age &gt;= <span class="number">45</span>) &#123;</span><br><span class="line">            title = <span class="string">"Middle-aged"</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            title = <span class="string">"Adult"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        title = <span class="string">"Minor"</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="built_in">console</span>.log(title);</span><br></pre></td></tr></table></figure>
-
-<p>三元運算子較簡短，但可讀性不高，應避免使用可讀性不高的寫法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title = age &gt;= <span class="number">18</span> ? age &gt;= <span class="number">45</span> ? <span class="string">"Middle-aged"</span> : <span class="string">"Adult"</span> : <span class="string">"Minor"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(title);</span><br></pre></td></tr></table></figure>
-
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h2 id="相等比較運算-與-的不同"><a href="#相等比較運算-與-的不同" class="headerlink" title="相等比較運算 == 與 === 的不同"></a>相等比較運算 == 與 === 的不同</h2><p>兩個等號通常是拿來比較兩邊的==值==是否不同<br>三個等號除了判斷==值==是否相同，也會判斷==型別==是否相同。</p>
-<p>兩個等於會引發諸多問題的原因是 JS 常會暗地裡幫我們將資料轉型別，所以常常莫名的就通過判斷。以至於很容易就會出現誤判型別而導致出現錯誤。在使用判斷比較時盡量或只使用三個等於會比較精確與安全。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下的結果都是true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">"0"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="string">""</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"0"</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">0</span> == <span class="literal">false</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> == <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> == <span class="literal">true</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> == <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log([] == <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-
-<p>產生 1 == true 的原因是在 Boolean 時，1 即表示 true，也就是 Boolean(1)理所當然 JS 就會把它視為相同。相反地Boolean(0) 等於 false.</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_ternary-conditional-operator-and-Comparison-operator/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ternary-conditional-operator-and-Comparison-operator/" data-id="ck62bbbvo00439fuwoufqr35q" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1055,7 +1102,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Base/">Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Base/">Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
     </div>
   </div>
 
@@ -1066,6 +1113,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="../../VSCode_ESLint_Setup/">在 VSCode 裡使用 ESLint, Prettier &amp; Airbnb Style Guide</a>
+          </li>
         
           <li>
             <a href="../../Vue_Test_QA/">Vuejs 線上問答題</a>
@@ -1083,10 +1134,6 @@ ga('send', 'pageview');
             <a href="../../JS_Base_type/">JavaScript 基礎 型別篇</a>
           </li>
         
-          <li>
-            <a href="../../React-component-JSX/">React 組件 Component 和 JSX 語法</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1096,7 +1143,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/Base/" style="font-size: 10px;">Base</a> <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/Vue/" style="font-size: 10px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="../../tags/Base/" style="font-size: 10px;">Base</a> <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/IDE/" style="font-size: 10px;">IDE</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 10px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 10px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 
@@ -1105,7 +1152,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/07/">七月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2019/07/">七月 2019</a></li></ul>
     </div>
   </div>
 

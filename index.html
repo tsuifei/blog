@@ -111,6 +111,127 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-VSCode_ESLint_Setup" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="VSCode_ESLint_Setup/" class="article-date">
+  <time datetime="2020-02-01T18:02:02.000Z" itemprop="datePublished">2020-02-02</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="VSCode_ESLint_Setup/">在 VSCode 裡使用 ESLint, Prettier &amp; Airbnb Style Guide</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <blockquote>
+<p>想要矯正儀容端正，看來也沒那麼簡單。</p>
+</blockquote>
+<p>前陣子面試時，有被問到有沒有用 ESLint 來讓自己的寫碼風格統一些，被問了才想到，在舊電腦時還有用這個在 VSCode 裡的外掛，換了電腦就幾乎忘記它了，再加上將來開發專案時，也希望自己在寫碼的統一風格上做改善，所以想說也應該再來重新部署一次，可以以 Airbnb 的寫作風格為榜樣的規則，訓練自己養成專業開發人員應有的寫作習慣。</p>
+<p>這次的部署主要參考很喜歡的老師 Traversy 所放在 Youtube 的影片，再參考其他大神的文章當輔助，試著了解每一個步驟或指令背後的意義，這樣應該比較可以理解原理，將來遇到問題比較有可能解決。</p>
+<p><a href="https://www.youtube.com/watch?v=SydnKbGc7W8" target="_blank" rel="noopener">VSCode ESLint, Prettier &amp; Airbnb Style Guide Setup</a></p>
+<p>使用 ESLint 主要目的是確保將來自己寫的程式能夠較為統一風格與簡潔，請跟著以下的步驟來設定，需要注意的是，這次的設定並沒有考慮到實用其他框架時所需要的套件，如果到時候以框架開發，也應該把需要的套件安裝好。</p>
+<h3 id="第一部，先去暸解要安裝的套件以及規則"><a href="#第一部，先去暸解要安裝的套件以及規則" class="headerlink" title="第一部，先去暸解要安裝的套件以及規則"></a>第一部，先去暸解要安裝的套件以及規則</h3><p>ESLint 官網：<a href="https://eslint.org/" target="_blank" rel="noopener">ESLint - Pluggable JavaScript linter</a><br>ESLint 中文：<a href="https://cn.eslint.org/docs/user-guide/configuring" target="_blank" rel="noopener">Configuring ESLint - ESLint 中文</a><br>ESLint 規則：<a href="https://eslint.org/docs/rules/" target="_blank" rel="noopener">List of available rules - ESLint - Pluggable JavaScript linter</a></p>
+<p>Airbnb 的寫作規範：<a href="https://github.com/airbnb/javascript" target="_blank" rel="noopener">airbnb/javascript: JavaScript Style Guide</a></p>
+<p>安裝 npm 的 Airbnb 設置套件：<a href="https://www.npmjs.com/package/eslint-config-airbnb" target="_blank" rel="noopener">eslint-config-airbnb - npm</a>將遵循 Airbnb 這個套件的規則，再依自定義配置文件調整。</p>
+<p>在 VSCode 安裝 prettier 外掛<br><a href="https://prettier.io/" target="_blank" rel="noopener">Prettier · Opinionated Code Formatter</a></p>
+<h4 id="如何查找資料？"><a href="#如何查找資料？" class="headerlink" title="如何查找資料？"></a>如何查找資料？</h4><p>例如看 no-empty 這條<a href="https://eslint.org/docs/rules/no-empty" target="_blank" rel="noopener">no-empty - Rules - ESLint - Pluggable JavaScript linter</a><br>會告訴我們如何修正不當的寫法，在這裡可找得到每條規則的範例，可看出什麼寫法是允許的，什麼是不允許的。如果要練習，也可以在部署完成之後，直接把錯誤的範例貼到自己的檔案上來一一修正，相信會更清楚寫作的規則。</p>
+<h3 id="第二步去-VSCODE-設置"><a href="#第二步去-VSCODE-設置" class="headerlink" title="第二步去 VSCODE 設置"></a>第二步去 VSCODE 設置</h3><ol>
+<li>先確定是否有安裝這兩個套件</li>
+</ol>
+<ul>
+<li>ESLint (by Dirk Baeumer)</li>
+<li>Prettier - Code formatter (by Esben Petersen)</li>
+</ul>
+<ol start="2">
+<li><p>接下來是全局的設置，以<code>command + ,</code>叫出 VSCode 的設定，輸入<code>format on save</code> 並將這項打勾。也就是說如果我儲存檔案時，如果忘記打分號，VSCode 會自動幫我補上去。</p>
+</li>
+<li><p>在 VSCode 的設定尋找<code>Prettier</code>再找到<code>Prettier: Single Quote</code>打勾，表示如果我設定單引號，VSCode 在儲存時會幫我們自動更正; 尋找<code>Prettier: Semi</code> 打勾。</p>
+</li>
+</ol>
+<h3 id="第三步-安裝相關套件-4-23"><a href="#第三步-安裝相關套件-4-23" class="headerlink" title="第三步 安裝相關套件(4:23)"></a>第三步 安裝相關套件(4:23)</h3><p>1.<code>npm init -y</code> 會自動增加一個<code>package.json</code>配置檔案。</p>
+<p>2.把需要的套件都先安裝好，指令：<code>npm i -D eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-node eslint-config-node</code>執行後等待這些套件安裝完畢。</p>
+<p>在安裝這些套件時，最好也可以試著了解每個指令的意義，請參閱：<a href="http://dreamerslab.com/blog/tw/npm-basic-commands/" target="_blank" rel="noopener">npm 基本指令</a></p>
+<h3 id="第四步-安裝-Airbnb-風格指南"><a href="#第四步-安裝-Airbnb-風格指南" class="headerlink" title="第四步 安裝 Airbnb 風格指南"></a>第四步 安裝 Airbnb 風格指南</h3><p>Airbnb 的寫作風格一直是大家推崇的，就連命名規則據說也很清楚，應該是值得來好好看看。我們先至 Airbnb 的 <a href="https://www.npmjs.com/package/eslint-config-airbnb" target="_blank" rel="noopener">eslint-config-airbnb - npm</a> 上面找到安裝指令：<code>npx install-peerdeps --dev eslint-config-airbnb</code>，再到終端機去執行安裝它。</p>
+<h3 id="第五步-手動創建並設置-Prettier、eslint"><a href="#第五步-手動創建並設置-Prettier、eslint" class="headerlink" title="第五步 手動創建並設置 Prettier、eslint"></a>第五步 手動創建並設置 Prettier、eslint</h3><p>手動建立兩個文件<code>.eslintrc</code> 與 <code>.prettierrc</code> 的設定檔到專案的根目錄。內容如下，最好是先建立好，之後每個專案直接拷貝即可。如果不用手動設置，也可以用自動的方式生成（在第六步）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// .prettierrc</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"singleQuote"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">"trailingComma"</span>: <span class="string">"es5"</span>,</span><br><span class="line">  <span class="string">"semi"</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ”字串使用單引號”、“物件字面定義統一加上最後逗號”、“不使用分號作為語句結尾”</span></span><br></pre></td></tr></table></figure>
+
+<p>可以去<a href="https://prettier.io/docs/en/options.html" target="_blank" rel="noopener">Options · Prettier</a>找更多的設置，並依自己的需求去<code>.prettierrc</code>訂定規則。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.eslintrc</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"env"</span>: &#123;</span><br><span class="line">    <span class="string">"node"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"browser"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"es6"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"jest"</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"extends"</span>: <span class="string">"react-app"</span>,</span><br><span class="line">  <span class="string">"parser"</span>: <span class="string">"babel-eslint"</span>,</span><br><span class="line">  <span class="string">"plugins"</span>: [<span class="string">"prettier"</span>],</span><br><span class="line">  <span class="string">"rules"</span>: &#123;</span><br><span class="line">    <span class="string">"prettier/prettier"</span>: <span class="string">"error"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="第六步-安裝-eslint-與初始化配置"><a href="#第六步-安裝-eslint-與初始化配置" class="headerlink" title="第六步 安裝 eslint 與初始化配置"></a>第六步 安裝 eslint 與初始化配置</h3><p><strong>安裝套件的方式自動生成設定檔</strong>如果用這方式就會需要全局 Global 最高權限去設定它（不建議）。指令：<code>sudo npm i -g eslint</code>。如果是安裝到<strong>Global</strong>，完成就可以直接以初始化的方式去自動產生設定檔。<br>指令：<code>eslint --init</code>。輸入後回答一連串的設定問題後，就會自動產生一個<code>eslintrc.json</code>的設定檔了。</p>
+<p>如果只想要安裝在開發的專案中就選擇<code>npm install eslint --save-dev</code><br>如果是在<strong>專案</strong>裡，可以執行 <code>./node_modules/.bin/eslint --init</code>去初始化專案的 ESLint。</p>
+<h4 id="初始化的選項"><a href="#初始化的選項" class="headerlink" title="初始化的選項"></a>初始化的選項</h4><p>在初始化時，ESLint 會以詢問方式請我們選擇，再將這些我們選擇的設定彙整到<code>eslintrc.json</code>去。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">How would you like to use ESLint? <span class="comment">// 你想使用 ESLint 來做什麼？</span></span><br><span class="line">- To check syntax, find problems, and enforce code style <span class="comment">//檢查語法、找出問題和強制執行編碼風格。</span></span><br><span class="line"></span><br><span class="line">What type <span class="keyword">of</span> modules does your project use? <span class="comment">// 該專案是用什麼方式導入模組？</span></span><br><span class="line">- JavaScript modules (<span class="keyword">import</span>/<span class="keyword">export</span>) <span class="comment">// 使用 import/export</span></span><br><span class="line"></span><br><span class="line">Which framework does your project use? <span class="comment">// 在專案裡用了哪個框架？</span></span><br><span class="line">- React <span class="comment">//</span></span><br><span class="line"></span><br><span class="line">Does your project use TypeScript? No <span class="comment">// 該專案有使用 TypeScript 嗎？</span></span><br><span class="line">- No</span><br><span class="line"></span><br><span class="line">Where does your code run? <span class="comment">// 想在哪個執行環境下使用？</span></span><br><span class="line">- Browser</span><br><span class="line"></span><br><span class="line">How would you like to define a style <span class="keyword">for</span> your project? <span class="comment">// 該如何定義專案中的編碼風格？</span></span><br><span class="line">- Use a popular style guide</span><br><span class="line">- Airbnb: https:<span class="comment">//github.com/airbnb/javascript</span></span><br><span class="line"></span><br><span class="line">What format <span class="keyword">do</span> you want your config file to be <span class="keyword">in</span>? <span class="comment">// 用什麼檔案格式設置？</span></span><br><span class="line">- <span class="built_in">JSON</span> <span class="comment">// 下次可選 Javascript 格式</span></span><br><span class="line"></span><br><span class="line">What style <span class="keyword">of</span> indentation <span class="keyword">do</span> you use? <span class="comment">// 使用哪種縮進樣式？</span></span><br><span class="line">- Tabs</span><br><span class="line"></span><br><span class="line">What quotes <span class="keyword">do</span> you use <span class="keyword">for</span> strings? <span class="comment">// 字符串使用什麼引號？</span></span><br><span class="line">- Double <span class="comment">//雙</span></span><br><span class="line"></span><br><span class="line">What line endings <span class="keyword">do</span> you use? <span class="comment">// 使用什麼行尾？</span></span><br><span class="line">- Unix</span><br><span class="line"></span><br><span class="line">Do you <span class="built_in">require</span> semicolons? <span class="comment">// 結尾使用分號嗎？</span></span><br><span class="line">- No</span><br><span class="line"></span><br><span class="line">Checking peerDependencies <span class="keyword">of</span> eslint-config-airbnb@latest <span class="comment">// 確認是否有這幾個設定檔</span></span><br><span class="line">Would you like to install them now <span class="keyword">with</span> npm? <span class="comment">// 要立即使用npm安裝它們嗎？</span></span><br><span class="line">- Y</span><br></pre></td></tr></table></figure>
+
+<p>設定完成後，會自動生成剛剛選的設置格式<code>json</code>而產生<code>.eslintrc.json</code></p>
+<h3 id="第七步-配置完成使用方式"><a href="#第七步-配置完成使用方式" class="headerlink" title="第七步 配置完成使用方式"></a>第七步 配置完成使用方式</h3><p>配置完成後，在終端機旁的分頁會多一個<code>PROBLEMS 問題</code>，在所有這個檔案夾裡的文件就會依循 ESLint 給的規則而來給予提示，顯示在問題分頁裡了。<br>如果有看不懂的錯誤訊息，可以再回頭去<a href="https://eslint.org/docs/rules/" target="_blank" rel="noopener">ESLint</a>以關鍵字搜尋方式，搜尋到說明、參照範例，會比較清楚需要修正的部分。</p>
+<h3 id="不想使用-Airbnb-的風格該如何設置？（10-22）"><a href="#不想使用-Airbnb-的風格該如何設置？（10-22）" class="headerlink" title="不想使用 Airbnb 的風格該如何設置？（10:22）"></a>不想使用 Airbnb 的風格該如何設置？（10:22）</h3><p>如果不想以 Airbnb 的風格修正功能，可以打開第六步自動部署 ESLint 所自動產生<code>eslintrc.json</code>來調整設置。<br>將<code>eslintrc.json</code>的內容改成大概是這樣：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"extends"</span>: [</span><br><span class="line">        <span class="string">"airbnb"</span>,</span><br><span class="line">        <span class="string">"prettier"</span></span><br><span class="line">    ],</span><br><span class="line">   <span class="string">"plugins"</span>: [</span><br><span class="line">        <span class="string">"prettier"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"rules"</span>: &#123;</span><br><span class="line">        <span class="string">"prettier/prettier"</span>: <span class="string">"error"</span>,</span><br><span class="line">        <span class="string">"No-unused-vars"</span>: <span class="string">"warn"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="引入-express-套件"><a href="#引入-express-套件" class="headerlink" title="引入 express 套件"></a>引入 express 套件</h3><p>在開發如 React 或 Node 專案時，常需要引入不同的函式庫，就需要 Express 套件。<br>指令<code>npm i express</code></p>
+<h3 id="可針客製化調整規則-12-37"><a href="#可針客製化調整規則-12-37" class="headerlink" title="可針客製化調整規則(12:37)"></a>可針客製化調整規則(12:37)</h3><p>如果不希望 ESLint 一直是顯示錯誤，也可以針對某個錯誤標籤設定顯示的方式，在這裏我們把原本沒有宣告變數的「錯誤」提示改成「警告」級別。<br>可在<code>eslintrc.json</code>將 rules 修改為</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"rules"</span>: &#123;</span><br><span class="line">        <span class="string">"No-unused-vars"</span>: <span class="string">"warn"</span> <span class="comment">// 不使用的變數</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>我們在程式裡使用<code>console.log()</code>通常是來除錯，但是 ESLint 卻會警告我們不要用它，我們也可以在<code>eslintrc.json</code>修改規則，在<code>rules</code>增加<code>&quot;no-console&quot;:&quot;off&quot;</code>即可使用<code>console.log()</code>而不出現警告提示。</p>
+<p>如果希望 ESLint 提醒我們，使用我們想要的字串用單括號包覆，也可在<code>eslintrc.json</code>的<code>rules</code>增加<code>&quot;prettier/prettier&quot;: &quot;error&quot;,</code>這樣如果我們用雙括號包字串就會出現[錯誤]提示。</p>
+<p>ESLint 會提示我們要給函式命名，但當我們使用箭頭函式，沒有函式名時，ESLint 就會提示，所以可以在<code>rules</code>加上增加<code>&quot;func-names&quot;:&quot;off&quot;</code>就可使用箭頭函式了。</p>
+<p>還有許多可調整的部分，在此不一一說明，可依 ESLint 出現的提示做更細部的修改，如<code>&quot;no-process&quot;:&quot;off&quot;</code>、<code>&quot;object-shorthand&quot;:&quot;off&quot;</code>、<code>&quot;class-methods-use-this&quot;:&quot;off&quot;</code>，可以修正到自己滿意的狀態，開發會變得更順暢些。</p>
+<p>剛開始使用時勢必會出現義大堆的錯誤或警告提示，但只要慢慢修正、慢慢將好習慣養成，相信將來寫作起來也會越來越簡潔有風格呢～</p>
+<p>在安裝時難免產生疑惑，參考了以下這幾篇文章<br>參考：<br><a href="https://wcc723.github.io/tool/2017/11/09/coding-style/" target="_blank" rel="noopener">在 VSCode 啟用程式碼規範工具 (ESLint)</a><br><a href="https://eddychang.me/react-native-eslint-prettier/" target="_blank" rel="noopener">在 VSCode 中的 React Native 專案設定 ESLint 與 Prettier</a><br><a href="https://ithelp.ithome.com.tw/articles/10215259" target="_blank" rel="noopener">整齊的程式，讓看的人長命百歲，給我用 ESLint</a></p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <blockquote>
+<p>想要矯正儀容端正，看來也沒那麼簡單。</p>
+</blockquote>
+<p>前陣子面試時，有被問到有沒有用 ESLint 來讓自己的寫碼風格統一些，被問了才想到，在舊電腦時還有用這個在 VSCode 裡的外掛，換了電腦就幾乎忘記它了，再加上將來開發專案時，也希望自己在寫碼的統一風格上做改善，所以想說也應該再來重新部署一次，可以以 Airbnb 的寫作風格為榜樣的規則，訓練自己養成專業開發人員應有的寫作習慣。</p>
+<p>這次的部署主要參考很喜歡的老師 Traversy 所放在 Youtube 的影片，再參考其他大神的文章當輔助，試著了解每一個步驟或指令背後的意義，這樣應該比較可以理解原理，將來遇到問題比較有可能解決。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="VSCode_ESLint_Setup/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/VSCode_ESLint_Setup/" data-id="ck65j0zlt0000jmuwt82palnn" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/ESLint/">ESLint</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/VSCode/">VSCode</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-Vue_Test_QA" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="Vue_Test_QA/" class="article-date">
@@ -1523,100 +1644,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/" class="article-date">
-  <time datetime="2019-12-23T16:00:00.000Z" itemprop="datePublished">2019-12-24</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/">JS 測試陣列是否有符合條件的元素好用方法 every() &amp; some()</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Array-34"><a href="#Array-34" class="headerlink" title="Array 34"></a>Array 34</h6><blockquote>
-<p>一顆小螺絲釘立大功，一粒屎壞一鍋粥猜兩個迭代函式。</p>
-</blockquote>
-<p>在ECMAScript 5的迭代方法中有兩個好用的迭代方法，這兩個方法主要拿來檢查陣列裡的元素值是否符我們給的條件：<code>some()</code>與<code>every</code>。而這兩個方法的回傳值皆為布林值。</p>
-<p>如果用字面上來解釋，就很容易分辨兩個的不同：<br>some() -&gt; some 某一個：<strong>有一個</strong>元素符合條件就回傳<code>true</code>。
-every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回傳<code>true</code>。</p>
-<p><code>some()</code>可以用來檢查陣列中是否有「某一個」元素符合條件。如果「其中一個」元素符合條件就回傳 true。</p>
-<p><code>every</code>剛好和<code>some()</code><strong>相反</strong>，我們拿它來檢查陣列中是否「全部」都符合條件，如果「每一個」都符合條件，才會回傳 true ，否則會回傳 false。</p>
-<p><code>every</code>和<code>some()</code>也很像邏輯運算子的 OR <code>||</code>和 AND <code>&amp;&amp;</code>的關係， <code>||</code>只要一邊有符合條件就是 true ，而<code>&amp;&amp;</code>則是相反，需要兩邊都符合才會得到 true。</p>
-<p>我們先來看一下這兩個方法的基本資料：</p>
-<h2 id="every"><a href="#every" class="headerlink" title="every()"></a>every()</h2><p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/every" target="_blank" rel="noopener">Array.prototype.every() - JavaScript | MDN</a><br><strong>原型：</strong> Array.prototype.every()<br><strong>功能：</strong> 測試陣列中的所有元素是否都通過了所給的條件。<br><strong>改變：</strong> 不會改變原陣列<br><strong>語法：</strong> arr.every(callback[, thisArg])<br><strong>回傳值：</strong> 傳回布林值，若回呼函式在處理每一個陣列元素時皆得到 truthy 值，則回傳 true。否則，回傳值為 false。<br><strong>參數：</strong> callback 函式與 thisArg</p>
-<p>例如，我們想要知道陣列中的字串是否都有兩個字母以上，希望得到的值是 true，所以使用<code>every()</code>，但因為其中一個字串<code>su</code>只有兩個字母，所以回傳 false。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'jack'</span>, <span class="string">'john'</span>, <span class="string">'may'</span>, <span class="string">'su'</span>, <span class="string">'Ada'</span>];</span><br><span class="line"><span class="keyword">let</span> friendName = arr.every(<span class="function"><span class="keyword">function</span>(<span class="params">value, index, array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value.length &gt; <span class="number">2</span>;</span><br><span class="line">&#125;);</span><br><span class="line">friendName; <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-<p>另外一個例子，我們想檢查陣列裡的元素值是否「都」大於 10，我們也可以換個方式這樣寫較為清楚：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先把條件寫好</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isBigEnough</span>(<span class="params">element, index, array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (element &gt;= <span class="number">10</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 只要一個不符合，就回傳 false</span></span><br><span class="line"><span class="keyword">var</span> passed = [<span class="number">15</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">168</span>, <span class="number">42</span>].every(isBigEnough);</span><br><span class="line">passed; <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果條件都符合，就回傳 true</span></span><br><span class="line">passed = [<span class="number">15</span>, <span class="number">54</span>, <span class="number">18</span>, <span class="number">168</span>, <span class="number">42</span>].every(isBigEnough);</span><br><span class="line">passed; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="some"><a href="#some" class="headerlink" title="some()"></a>some()</h2><p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/some" target="_blank" rel="noopener">Array.prototype.some() - JavaScript | MDN</a><br><strong>原型：</strong> Array.prototype.some()<br><strong>功能：</strong> 測試陣列中是否至少有一個元素通過了所給的條件。<br><strong>改變：</strong> 不會改變原陣列<br><strong>語法：</strong> arr.every(callback[, thisArg])<br><strong>回傳值：</strong> 傳回布林值，若回呼函式在處理陣列元素時有一個元素得到 truthy 值，則回傳 true。否則，回傳值為 false。<br><strong>參數：</strong> callback 函式與 thisArg</p>
-<p>我們可以拿它來測試陣列元素的數值是否存在，用以下的方法可以達到和 ECMAScript 7 的<code>include（)</code>方法的效果。<br>如果元素存在於陣列中，這個自定義函數就會返回true：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> friends = [<span class="string">'Ayda'</span>, <span class="string">'Chris'</span>, <span class="string">'Kira'</span>, <span class="string">'Philippe'</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkAvailability</span>(<span class="params">arr, val</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> arr.some(<span class="function"><span class="keyword">function</span>(<span class="params">arrVal</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> val === arrVal;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">checkAvailability(friends, <span class="string">'Kira'</span>);   <span class="comment">// true</span></span><br><span class="line">checkAvailability(friends, <span class="string">'Tracy'</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-<p>因缺乏實際應用的經驗，和朋友討論後，朋友提供了一個使用<code>some()</code>的情境：<br>例如，用<code>some()</code>來檢查使用者上傳的檔案格式是否符合條件，只要符合 checkTypeArray 中的任一格式時，就可以往下繼續執行。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可自訂檢查的檔案格式</span></span><br><span class="line"><span class="keyword">const</span> checkTypeArray = [<span class="string">'xls'</span>, <span class="string">'xlsx'</span>, <span class="string">'pdf'</span>, <span class="string">'csv'</span>];</span><br><span class="line"><span class="comment">// fileType 為使用者選取得到的檔案格式</span></span><br><span class="line"><span class="keyword">const</span> checkType = checkTypeArray.some(<span class="function"><span class="params">file</span> =&gt;</span> fileType === file);</span><br><span class="line"><span class="keyword">if</span>(checkType)</span><br><span class="line"><span class="comment">// do anything you want to do.</span></span><br></pre></td></tr></table></figure>
-
-<p>ECMAScript 5 的迭代方法就剩<code>reduce()</code>和<code>reduceRight()</code>還沒介紹，雖然還沒有辦法很多實際的情境，但相信多詳細了解這些方法的細節，總是會多一些印象，對於有著金魚腦的我，以後多少都有印象吧！</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇請告知，我會盡快修改，感謝您～ </p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Array-34"><a href="#Array-34" class="headerlink" title="Array 34"></a>Array 34</h6><blockquote>
-<p>一顆小螺絲釘立大功，一粒屎壞一鍋粥猜兩個迭代函式。</p>
-</blockquote>
-<p>在ECMAScript 5的迭代方法中有兩個好用的迭代方法，這兩個方法主要拿來檢查陣列裡的元素值是否符我們給的條件：<code>some()</code>與<code>every</code>。而這兩個方法的回傳值皆為布林值。</p>
-<p>如果用字面上來解釋，就很容易分辨兩個的不同：<br>some() -&gt; some 某一個：<strong>有一個</strong>元素符合條件就回傳<code>true</code>。
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/" data-id="ck62bbbvm00409fuw6gxnkhsh" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1652,7 +1679,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="tags/Base/">Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/讀書會筆記/">讀書會筆記</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="tags/Base/">Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/IDE/">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="tags/讀書會筆記/">讀書會筆記</a></li></ul>
     </div>
   </div>
 
@@ -1663,6 +1690,10 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="VSCode_ESLint_Setup/">在 VSCode 裡使用 ESLint, Prettier &amp; Airbnb Style Guide</a>
+          </li>
         
           <li>
             <a href="Vue_Test_QA/">Vuejs 線上問答題</a>
@@ -1680,10 +1711,6 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
             <a href="JS_Base_type/">JavaScript 基礎 型別篇</a>
           </li>
         
-          <li>
-            <a href="React-component-JSX/">React 組件 Component 和 JSX 語法</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1693,7 +1720,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="tags/Base/" style="font-size: 10px;">Base</a> <a href="tags/CSS/" style="font-size: 10px;">CSS</a> <a href="tags/ES6/" style="font-size: 10px;">ES6</a> <a href="tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="tags/Git/" style="font-size: 12px;">Git</a> <a href="tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="tags/HTML/" style="font-size: 10px;">HTML</a> <a href="tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="tags/IDE/" style="font-size: 10px;">IDE</a> <a href="tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="tags/JS101/" style="font-size: 10px;">JS101</a> <a href="tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="tags/Note/" style="font-size: 10px;">Note</a> <a href="tags/Other/" style="font-size: 10px;">Other</a> <a href="tags/React/" style="font-size: 14px;">React</a> <a href="tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="tags/Test/" style="font-size: 10px;">Test</a> <a href="tags/Vue/" style="font-size: 10px;">Vue</a> <a href="tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="tags/Base/" style="font-size: 10px;">Base</a> <a href="tags/CSS/" style="font-size: 10px;">CSS</a> <a href="tags/ES6/" style="font-size: 10px;">ES6</a> <a href="tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="tags/Git/" style="font-size: 12px;">Git</a> <a href="tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="tags/HTML/" style="font-size: 10px;">HTML</a> <a href="tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="tags/IDE/" style="font-size: 10px;">IDE</a> <a href="tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="tags/JS101/" style="font-size: 10px;">JS101</a> <a href="tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="tags/Note/" style="font-size: 10px;">Note</a> <a href="tags/Other/" style="font-size: 10px;">Other</a> <a href="tags/React/" style="font-size: 14px;">React</a> <a href="tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="tags/Test/" style="font-size: 10px;">Test</a> <a href="tags/VSCode/" style="font-size: 10px;">VSCode</a> <a href="tags/Vue/" style="font-size: 10px;">Vue</a> <a href="tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 
@@ -1702,7 +1729,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/07/">七月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2019/07/">七月 2019</a></li></ul>
     </div>
   </div>
 
