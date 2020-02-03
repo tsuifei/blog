@@ -111,6 +111,91 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan26_Converts-Array-to-string-and-localized" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_ironMan26_Converts-Array-to-string-and-localized/" class="article-date">
+  <time datetime="2019-11-25T20:21:14.000Z" itemprop="datePublished">2019-11-26</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_ironMan26_Converts-Array-to-string-and-localized/">JS 把陣列 Array 轉成字串與本地化的 toLocaleString()</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-26"><a href="#Day-26" class="headerlink" title="Day 26"></a>Day 26</h6><blockquote>
+<p>我不只知道你從哪裡來，還可以知道你那裡幾點、拿什麼貨幣跟你交換！</p>
+</blockquote>
+<p>前一篇介紹了可以把陣列轉成字串的<a href="https://ithelp.ithome.com.tw/articles/10226686" target="_blank" rel="noopener"><code>toString()</code></a>的方法，今天我們就來介紹更好用的<code>toLocaleString()</code>。</p>
+<p>大家應該有發現，這個方法多了個關鍵字的 Locale ，也應該猜得出來它可以幫我們做本地化這件事吧？<code>toLocaleString()</code>是<code>toString()</code>的本地化(localized)版本，它會藉由呼叫元素的<code>toLocaleString()</code>方法，把每個陣列元素都轉成字串，然後以區域的特性（由參數定義）來將元素轉換成當地化的版本，再串接這些結果為一個字串。</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toLocaleString" target="_blank" rel="noopener">Array.prototype.toLocaleString() - JavaScript | MDN</a></p>
+<p><strong>原型：</strong> Array.prototype.toLocaleString()<br><strong>功能：</strong> 將陣列裡的元素本地化，並轉換為字串。<br><strong>改變：</strong> 原陣列不變。<br><strong>語法：</strong> arr.toLocaleString([locales[,options]]);<br><strong>回傳值：</strong> 表示數組元素的字符串。<br><strong>參數：</strong> 依本地化語言標記轉換</p>
+<p><code>toLocaleString()</code>的參數，可依本地化的選擇給予語言標記當參數，再依照不同的「語言」與「區域標識符(區域設置)」顯示不同的輸出結果。語言標記是依<a href="https://tools.ietf.org/html/bcp47" target="_blank" rel="noopener">BCP 47 - Tags for Identifying Languages</a>為標記標準，<a href="https://www.w3schools.com/jsref/jsref_tolocalestring.asp" target="_blank" rel="noopener">w3schools</a>有提供比較清楚易懂的語言標記列表。</p>
+<h3 id="把元素的數字都變成日幣"><a href="#把元素的數字都變成日幣" class="headerlink" title="把元素的數字都變成日幣"></a>把元素的數字都變成日幣</h3><p>因為<code>toLocaleString()</code>有可根據語言和區域標識符(區域設置)顯示不同的輸出。也包括了幣值的轉換，幣值的代碼可參考<a href="https://www.cbc.gov.tw/public/Attachment/2839315671.pdf" target="_blank" rel="noopener">這裏</a></p>
+<p>例如，我們希望我們將一個陣列的數字，全部轉換成當地的貨幣格式顯示，就可直接使用<code>toLocaleString()</code>轉換，但是轉換貨幣只會對數字型別的元素有效。我們可以在<code>toLocaleString()</code>中帶入參數，並指明語言標記碼與貨幣的單位，就可帶出指定貨幣的符號與格式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 日幣</span></span><br><span class="line"><span class="keyword">let</span> prices = [<span class="string">'300'</span>, <span class="number">500</span>, <span class="number">8236</span>, <span class="number">42</span>];</span><br><span class="line">prices.toLocaleString(<span class="string">'ja-JP'</span>,&#123;<span class="attr">style</span>:<span class="string">'currency'</span>,<span class="attr">currency</span>: <span class="string">'JPY'</span>&#125;); </span><br><span class="line"><span class="comment">// "300,￥500,￥8,236,￥42"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 新台幣</span></span><br><span class="line"><span class="keyword">let</span> prices = [<span class="number">300</span>, <span class="number">500</span>, <span class="number">8236</span>, <span class="number">42</span>];</span><br><span class="line">prices.toLocaleString(<span class="string">'zh-TW'</span>,&#123;<span class="attr">style</span>:<span class="string">'currency'</span>,<span class="attr">currency</span>: <span class="string">'TWD'</span>&#125;);</span><br><span class="line"><span class="comment">// "$300.00,$500.00,$8,236.00,$42.00"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 法國歐元</span></span><br><span class="line"><span class="keyword">let</span> prices = [<span class="string">'300'</span>, <span class="number">500</span>, <span class="number">8236</span>, <span class="number">42</span>];</span><br><span class="line">prices.toLocaleString(<span class="string">'fr-FR'</span>,&#123;<span class="attr">style</span>:<span class="string">'currency'</span>,<span class="attr">currency</span>: <span class="string">'EUR'</span>&#125;);</span><br><span class="line"><span class="string">"300, 500,00 €, 8 236,00 €, 42,00 €"</span> <span class="comment">// 因為'300'是字串，所以會忽略。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="初始化數字或日期"><a href="#初始化數字或日期" class="headerlink" title="初始化數字或日期"></a>初始化數字或日期</h3><p>我們也可以用<code>toLocaleString()</code>來初始化時間與日期，使用時必須以建構式的方式創建一個日期 Date 物件，再把這物件放入陣列裡，然後選擇「區域語言標記」來當參數，即可得到當地的時間、日期顯示格式。如果沒有給參數，<code>toLocaleString()</code>會以瀏覽器端為依據。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 沒給參數 人在台灣所以是台灣時間格式</span></span><br><span class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">const</span> arr = [<span class="string">'Taiwan, Tainan'</span>, date ];</span><br><span class="line">arr.toLocaleString(); </span><br><span class="line"><span class="comment">// "Taiwan, Tainan,2019/10/11 上午4:38:08"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 台灣時間</span></span><br><span class="line"><span class="keyword">let</span> dateTw = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">const</span> arrTw = [<span class="string">'Taiwan, Tainan'</span>, dateTw];</span><br><span class="line">arrTw.toLocaleString(<span class="string">'zh-TW'</span>); </span><br><span class="line"><span class="comment">// "Taiwan, Tainan,2019/10/11 上午4:38:40"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 日本時間</span></span><br><span class="line"><span class="keyword">let</span> dateJp = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">const</span> arrJp = [<span class="string">'Japan, Osaka'</span>, dateTw];</span><br><span class="line">arrJp.toLocaleString(<span class="string">'ja-JP'</span>); </span><br><span class="line"><span class="comment">// "Japan, Osaka,2019/10/11 4:38:40"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 法國時間</span></span><br><span class="line"><span class="keyword">let</span> dateFr = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">const</span> arrFr = [<span class="string">'France, Paris'</span>, dateFr];</span><br><span class="line">arrFr.toLocaleString(<span class="string">'fr-FR'</span>);</span><br><span class="line"><span class="comment">// "France, Paris,11/10/2019 à 04:41:10"</span></span><br></pre></td></tr></table></figure>
+
+<p>有了<code>toLocaleString()</code>，要解決與貨幣和時間日期格式，應該會更輕鬆些吧！今天就介紹到此，明天是週末，我們繼續鐵人喔～</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-26"><a href="#Day-26" class="headerlink" title="Day 26"></a>Day 26</h6><blockquote>
+<p>我不只知道你從哪裡來，還可以知道你那裡幾點、拿什麼貨幣跟你交換！</p>
+</blockquote>
+<p>前一篇介紹了可以把陣列轉成字串的<a href="https://ithelp.ithome.com.tw/articles/10226686" target="_blank" rel="noopener"><code>toString()</code></a>的方法，今天我們就來介紹更好用的<code>toLocaleString()</code>。</p>
+<p>大家應該有發現，這個方法多了個關鍵字的 Locale ，也應該猜得出來它可以幫我們做本地化這件事吧？<code>toLocaleString()</code>是<code>toString()</code>的本地化(localized)版本，它會藉由呼叫元素的<code>toLocaleString()</code>方法，把每個陣列元素都轉成字串，然後以區域的特性（由參數定義）來將元素轉換成當地化的版本，再串接這些結果為一個字串。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_ironMan26_Converts-Array-to-string-and-localized/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan26_Converts-Array-to-string-and-localized/" data-id="ck65jsafq002zujuw9lojbqsn" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan25_Returns-string-representing-specified-array-and-its-elements" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/" class="article-date">
@@ -993,101 +1078,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-JS_ironMan16_JavaScript-Array-pop()-Method" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_ironMan16_JavaScript-Array-pop()-Method/" class="article-date">
-  <time datetime="2019-11-15T20:21:14.000Z" itemprop="datePublished">2019-11-16</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_ironMan16_JavaScript-Array-pop()-Method/">JS 從陣列 Array 尾端刪除元素的 pop()</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-16"><a href="#Day-16" class="headerlink" title="Day 16"></a>Day 16</h6><blockquote>
-<p>既然都要被刪掉了，那就跟他告別吧！誰叫他要吊車尾。</p>
-</blockquote>
-<p>在 javascript 裡，我們常常會把 push( )、pop( )、unshift( )、shift( )這四個陣列方法一起討論，因為push( )、pop( )一組、unshift( )、shift( )一組，正代表著兩種不同的資料結構和演算法，它們分別是堆疊（Stack）和佇列(Queue)，但它們又分別代表什麼呢？我們先來看一下這張圖：</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20191001/20104175Lq4qae4nP9.png" alt="https://ithelp.ithome.com.tw/upload/images/20191001/20104175Lq4qae4nP9.png"></p>
-<p>在寫程式的路上，常常聽前輩說電腦科學的基礎很重要，也就是我們常聽到的Computer Science，但是電腦科學又包含了什麼呢？對於程式設計的領域來說，有資料結構（Data Structure）與演算法（Algorithm）是影響效能的重要關鍵。尤其是資料結構，善用不同的資料結構特性，可達到較好的效能，但是對於初學者而言，要入門並不是那麼親和，但多知道這方面的知識或概念總是好的，或許哪一天會有機會用到也說不定。</p>
-<h3 id="堆疊（Stack）像一疊盤子一樣-剛放上去的先拿"><a href="#堆疊（Stack）像一疊盤子一樣-剛放上去的先拿" class="headerlink" title="堆疊（Stack）像一疊盤子一樣 剛放上去的先拿"></a>堆疊（Stack）像一疊盤子一樣 剛放上去的先拿</h3><p>堆疊是一種依循「後進先出（Last In First Out，LIFO）的有序集合」。說到堆疊，我們常拿疊盤子的例子來說明最清楚。因為是堆疊，我們會從底下一一的疊上來，但是當我們要用盤子時，並不會傻到把整疊盤子拿起來，再把放第一個盤子拿出來用對吧？不會，我們通常會先從最上面的那個盤子開始拿，這樣後進先出（後放先取）的行為模式，就是記憶體裡的堆疊（Stack）。</p>
-<h3 id="佇列-Queue-像排隊一樣-第一個優先-後來的等等"><a href="#佇列-Queue-像排隊一樣-第一個優先-後來的等等" class="headerlink" title="佇列(Queue) 像排隊一樣 第一個優先 後來的等等"></a>佇列(Queue) 像排隊一樣 第一個優先 後來的等等</h3><p>佇列（Queue）依循的則是「先進先出（First In First Out, FIFO）的有序串列」，最常拿來譬喻的就是排隊買門票， <del>排隊上廁所也可以</del> 。先排隊的人先買票，後來的就從後面排隊等候，等到前面的人買完票，才會被輪到。這樣的資料結構最常應用在要列印檔案的時候，先下指令要列印的會先印，之後發出指令要列印時，也只能在前面被列印出來才輪的到。這樣的行為模式就是佇列。</p>
-<p>如果去翻閱和資料結構有關的書籍，會發現在程式語言中，許多運算式的轉換或是方法的呼叫都用得上，真的應該找機會來學學如何應用。</p>
-<p>接下來就要進入陣列方式的介紹，今天要介紹的和前一篇介紹的<code>push()</code>成雙成對的<code>pop()</code>。<code>push()</code>負責從陣列尾端加上新的元素，而<code>pop()</code>則是從陣列的後方，一次只能一個的拿掉元素。</p>
-<h2 id="pop-請斷我尾巴吧！"><a href="#pop-請斷我尾巴吧！" class="headerlink" title="pop() 請斷我尾巴吧！"></a>pop() 請斷我尾巴吧！</h2><p><code>pop()</code> 方法會從陣列的尾端一次移除一個陣列元素，並回傳被移除掉的那個元素的<code>index</code>值。<br>使用<code>pop()</code> 方法並不需要給參數，並且在執行完之後，會改變原陣列的長度與元素內容。</p>
-<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/pop" target="_blank" rel="noopener">Array.prototype.pop() - JavaScript | MDN</a></p>
-<p><strong>原型：</strong> Array.prototype.pop()<br><strong>功能：</strong> 移除並回傳陣列的最後一個元素。<br><strong>改變：</strong> 此方法會改變原陣列的長度和內容。<br><strong>語法：</strong> arr.pop()<br><strong>回傳值：</strong> 自陣列中移除的元素；若陣列為空，則為 undefined。<br><strong>參數：</strong> 無</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20191002/20104175mdzx0csS8N.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/20104175mdzx0csS8N.png"></p>
-<p>我們看範例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line">arr.pop(); <span class="comment">// 5</span></span><br><span class="line">arr; <span class="comment">// [1,2,3,4]</span></span><br></pre></td></tr></table></figure>
-
-<p>接下來看一下原生可能的寫法，為了避免覆蓋到原生的<code>pop()</code>方法，我們把這個方法另外取名為<code>pop2()</code>，並將它放到瀏覽器的開發者工具來測試。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先建立一個陣列變數</span></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 實作 pop2()</span></span><br><span class="line"><span class="built_in">Array</span>.prototype.pop2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.splice(<span class="keyword">this</span>.length - <span class="number">1</span>, <span class="number">1</span>)[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 測試</span></span><br><span class="line">arr.pop2();  <span class="comment">// 5 表示刪除位於 index[5]的元素</span></span><br><span class="line"><span class="comment">// 觀察 arr</span></span><br><span class="line">arr; <span class="comment">// [1,2,3,4]</span></span><br></pre></td></tr></table></figure>
-
-<p>我們可以試著了解上述的寫法，以上述的<code>arr</code>的例子來說：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// arr 的內容 [1,2,3,4,5] 即是 this</span></span><br><span class="line"><span class="comment">// 而 pop2() 的回傳的 this.splice(this.length - 1, 1)[0]; </span></span><br><span class="line"><span class="comment">// =&gt; [1,2,3,4,5].splice(從 5 開始取, 取一個)[的位於index 0 位置的元素]; </span></span><br><span class="line"><span class="comment">// length - 1 指的是陣列長度的最後一個 5</span></span><br></pre></td></tr></table></figure>
-
-<p>鐵人賽已經進行到一半了，據說，這才是鐵人賽 <del>地獄</del> 真正的開始。的確，如果沒有大量積稿，能夠一天把一篇寫出來，實在是很吃力的事，尤其有許多東西還在學習，有許多資料要看，雖然有壓力，但或許也是讓自己成長的好方法，讓我們一起加油吧～</p>
-<h4 id="延伸閱讀："><a href="#延伸閱讀：" class="headerlink" title="延伸閱讀："></a>延伸閱讀：</h4><p><a href="https://blog.techbridge.cc/2016/06/24/javascript-data-structure-algorithm-stack/" target="_blank" rel="noopener">用 JavaScript 學習資料結構和演算法：堆疊（Stack）篇</a></p>
-<p><a href="https://blog.techbridge.cc/2016/12/10/javascript-data-structure-algorithm-queue/" target="_blank" rel="noopener">用 JavaScript 學習資料結構和演算法：佇列（Queue）篇</a></p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-16"><a href="#Day-16" class="headerlink" title="Day 16"></a>Day 16</h6><blockquote>
-<p>既然都要被刪掉了，那就跟他告別吧！誰叫他要吊車尾。</p>
-</blockquote>
-<p>在 javascript 裡，我們常常會把 push( )、pop( )、unshift( )、shift( )這四個陣列方法一起討論，因為push( )、pop( )一組、unshift( )、shift( )一組，正代表著兩種不同的資料結構和演算法，它們分別是堆疊（Stack）和佇列(Queue)，但它們又分別代表什麼呢？我們先來看一下這張圖：</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20191001/20104175Lq4qae4nP9.png" alt="https://ithelp.ithome.com.tw/upload/images/20191001/20104175Lq4qae4nP9.png"></p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_ironMan16_JavaScript-Array-pop()-Method/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan16_JavaScript-Array-pop()-Method/" data-id="ck65jsafg0027ujuwx5cep4br" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1113,7 +1103,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/VSCode/">VSCode</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/VSCode/">VSCode</a></li></ul>
     </div>
   </div>
 
@@ -1123,7 +1113,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Base/">Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Base/">Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
     </div>
   </div>
 
@@ -1134,6 +1124,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="../../Mac_for_my_new_MacBookPro/">MacBook Pro 入手安裝紀錄</a>
+          </li>
         
           <li>
             <a href="../../VSCode_ESLint_Setup/">在 VSCode 裡使用 ESLint, Prettier &amp; Airbnb Style Guide</a>
@@ -1151,10 +1145,6 @@ ga('send', 'pageview');
             <a href="../../React_virtual_DOM/">React 裡的虛擬 DOM</a>
           </li>
         
-          <li>
-            <a href="../../JS_Base_type/">JavaScript 基礎 型別篇</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1164,7 +1154,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/Base/" style="font-size: 10px;">Base</a> <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 12px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 10px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="../../tags/Base/" style="font-size: 10px;">Base</a> <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 12px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 10px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 

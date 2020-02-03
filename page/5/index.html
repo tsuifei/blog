@@ -111,6 +111,119 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan06_What-are-the-types-of-Array" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_ironMan06_What-are-the-types-of-Array/" class="article-date">
+  <time datetime="2019-11-02T07:02:55.000Z" itemprop="datePublished">2019-11-02</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_ironMan06_What-are-the-types-of-Array/">陣列 Array 有哪幾種型態 ?</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-06"><a href="#Day-06" class="headerlink" title="Day 06"></a>Day 06</h6><blockquote>
+<p>JavaScript 一定是個女人，有個性、特立獨行、難以理解，還可以ㄧ次做很多事。</p>
+</blockquote>
+<p>有時候思索著，在學習程式的時候，到底是不是應該把我們所知道的知識，更有系統的整理出來？但是當我們在整理我們所學的知識時，要如何知道我們所整理的資料正確性？ <del>有時有理解障礙</del> 尤其程式這東西，在學習時常感到很抽象，很多時候讀了幾遍書上寫的，照著範例實做了，卻還是無法理解真正的含義，這或許和學外語很相似，學習一個新的外國語言，會聽、會寫、會講都會有好幾個階段，也需要時間去消化與沈澱，持續的學習與練習是必要的，直到有一天，當我們突然發現自己聽得懂外國人在說什麼，那種喜悅應該是很難形容的吧？</p>
+<p>小小感想，只因今天是週六？鐵人賽已經來到了第六天，我的陣列小菜今天比較清淡喔～來聊聊陣列有幾種。</p>
+<p>要分哪幾種？一定要分嗎？好吧。第一種：空陣列 <code>arr = []</code> <del>不要打我</del> ，如果這個也要算，那是不是只有數字為元素的也要算一種？不同型別的也要算一種？不行，這樣也太膚淺了，感覺很沒誠意。</p>
+<p>如果真要分，本人認為 <del>本人而已喔</del> 應該只能算三種：</p>
+<ul>
+<li>密集陣列 (dense)</li>
+<li>稀疏陣列 (sparse)</li>
+<li>類陣列 (array-like)</li>
+</ul>
+<h3 id="密集陣列-dense-坐滿做好"><a href="#密集陣列-dense-坐滿做好" class="headerlink" title="密集陣列 (dense) 坐滿做好"></a>密集陣列 (dense) 坐滿做好</h3><p>陣列裡的元素沒有空值，也沒有 <code>undefined</code>，一般在宣告或創建陣列時沒有空隙。像這樣：<br><img src="https://ithelp.ithome.com.tw/upload/images/20190921/20104175Rio5A1NMVE.jpg" alt="https://ithelp.ithome.com.tw/upload/images/20190921/20104175Rio5A1NMVE.jpg"></p>
+<h3 id="稀疏陣列-sparse-稀稀落落"><a href="#稀疏陣列-sparse-稀稀落落" class="headerlink" title="稀疏陣列 (sparse) 稀稀落落"></a>稀疏陣列 (sparse) 稀稀落落</h3><p>一般的陣列裡的元素是連續的索引值，元素之間有缺口(gaps)，是稀疏陣列。<br>我們可以從.length得知陣列的長度。但是如果是稀疏陣列，length屬性的值也會大於陣列內元素的數目。<br>如果在指定或創建陣列時，省略某個值不寫、逗號間沒有值，產生的陣列就會是稀疏陣列，值被省略的陣列元素並不存在，這些缺口會顯示 <code>undefined</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrSparse = [<span class="string">'a'</span>,<span class="string">'b'</span>, , <span class="string">'e'</span>, , <span class="string">'g'</span>]; <span class="comment">// 元素之間有缺口</span></span><br><span class="line"><span class="keyword">var</span> arr1 = [,]; <span class="comment">// [empty]  a1 沒有元素，a1.length 卻是1</span></span><br><span class="line"><span class="keyword">var</span> arr2 = [<span class="literal">undefined</span>]; <span class="comment">// a2 陣列有一個元素為 undefined ，a2.length 也是1</span></span><br><span class="line"><span class="number">0</span> <span class="keyword">in</span> arr1; <span class="comment">// -&gt; false a1 沒有索引值0 所以回傳 false </span></span><br><span class="line"><span class="number">0</span> <span class="keyword">in</span> arr2; <span class="comment">// -&gt; true  a2 在索引值0的位置有undefined 所以回傳 true</span></span><br></pre></td></tr></table></figure>
+
+<p>理解稀疏陣列是理解Javascript陣列真實本質的重要步驟，雖然實務上會遇到稀疏陣列的機會很少，但是如果真的遇到了，也會把它們視為有<code>undefined</code>元素的非稀疏陣列來操作。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20190921/20104175Tr0q5xcqR0.jpg" alt="https://ithelp.ithome.com.tw/upload/images/20190921/20104175Tr0q5xcqR0.jpg"></p>
+<h3 id="類陣列-array-like-半牛半馬"><a href="#類陣列-array-like-半牛半馬" class="headerlink" title="類陣列 (array-like) 半牛半馬"></a>類陣列 (array-like) 半牛半馬</h3><p>當初在「大全」裡看到這句時，實在摸不著頭緒，「不是所有的陣列都可以用陣列的方法」 <del>是歧視嗎？</del> 大全上這樣寫著。更貼切的來說，是類陣列不能直接使用 JavaScript 內建 Array 的方法，在大全裡介紹類陣列的標題寫著「類陣列物件」，又是陣列又是物件的，實在是很讓人混淆，到底是陣列還是物件？JavaScript 也有這麼曖昧的東西啊？</p>
+<p>以 <code>typeof</code> 來查看陣列，會得到物件 <code>object</code>，但到底陣列和其他物件有什麼不同？最大的不同是陣列有：</p>
+<ul>
+<li><code>length</code>這個特殊屬性</li>
+<li>從<code>Array.prototype</code>繼承過來的許多實用的方法</li>
+<li>陣列的<code>class</code>屬性值為<code>Array</code>這幾點吧。</li>
+</ul>
+<p>但是所謂的「類陣列」(Array-like) 也是如此嗎？並不是喔。</p>
+<p>先來看看類陣列長什麼樣子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    <span class="number">0</span>: <span class="string">'a'</span>,</span><br><span class="line">    <span class="number">1</span>: <span class="string">'b'</span>,</span><br><span class="line">    <span class="number">2</span>: <span class="string">'c'</span>,</span><br><span class="line">    length: <span class="number">3</span>,</span><br><span class="line">    push: <span class="built_in">Array</span>.prototype.push,</span><br><span class="line">    splice: <span class="built_in">Array</span>.prototype.splice</span><br><span class="line">&#125;</span><br><span class="line">obj.push(<span class="string">'d'</span>);</span><br><span class="line">obj; <span class="comment">// &#123;0: "a", 1: "b", 2: "c", 3: "d", length: 4, push: ƒ&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20190921/201041752EQ2YNsI0a.png" alt="https://ithelp.ithome.com.tw/upload/images/20190921/201041752EQ2YNsI0a.png"></p>
+<p>講直白一點，類陣列是物件，可以當成陣列來用 <del>或是是陣列，可以當成物件用</del>。
+我們可以看到<code>obj</code>的元素是用花括號 {}，是物件的做法。但是物件裡又有<code>length: 3</code>這個陣列的屬性。這就對了，任合物件只要具有數值<code>length</code>屬性，且數值不是負整數，就可以說是類陣列(Array-like)。</p>
+<h3 id="函數引數所形成的陣列，取得不定個數的引數"><a href="#函數引數所形成的陣列，取得不定個數的引數" class="headerlink" title="函數引數所形成的陣列，取得不定個數的引數"></a>函數引數所形成的陣列，取得不定個數的引數</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> arr = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>); <span class="comment">// (1)</span></span><br><span class="line">    <span class="built_in">console</span>.log(arr); <span class="comment">// (2)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> testList = foo(<span class="string">'hello'</span>, <span class="string">'world'</span>, <span class="string">'bar'</span>, <span class="string">'baz'</span>); <span class="comment">// -&gt;類陣列</span></span><br><span class="line"><span class="keyword">let</span> testList1 = foo(<span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>); <span class="comment">// -&gt;類陣列</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="物件裡有-length-屬性"><a href="#物件裡有-length-屬性" class="headerlink" title="物件裡有 length 屬性"></a>物件裡有 length 屬性</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> objArr1 <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">5</span>);</span><br><span class="line">objArr1.length;</span><br><span class="line"><span class="comment">//objArr1;  -&gt; [empty x 5]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 或是</span></span><br><span class="line"><span class="keyword">let</span> objArr2 = <span class="built_in">Array</span>.from(&#123; <span class="attr">length</span>: <span class="number">5</span> &#125;);</span><br><span class="line"><span class="comment">// objArr2;  -&gt; [undefined, undefined, undefined, undefined, undefined]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="如何辨別一個陣列是類陣列"><a href="#如何辨別一個陣列是類陣列" class="headerlink" title="如何辨別一個陣列是類陣列"></a>如何辨別一個陣列是類陣列</h3><p>在大全裡有提供如何測試是否為類陣列的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArrayLike</span>(<span class="params">testArr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (testArr &amp;&amp;</span><br><span class="line">        <span class="keyword">typeof</span> testArr === <span class="string">"object"</span> &amp;&amp;</span><br><span class="line">        <span class="built_in">isFinite</span>(testArr.length) &amp;&amp;</span><br><span class="line">        testArr.length &gt;= <span class="number">0</span> &amp;&amp;</span><br><span class="line">        testArr.length === <span class="built_in">Math</span>.floor(testArr.length) &amp;&amp;</span><br><span class="line">        testArr.length &lt; <span class="number">4294967296</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再用上述的函式測試前面兩個類陣列，回傳的都是 <code>true</code>，表示都是類陣列物件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(isArrayLike(objArr1)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(isArrayLike(objArr2)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>有沒有被類陣列弄得頭很痛？如果是類陣列就無法使用大部分的陣列內建方法，是不是很可惜？下次有機會再來介紹把類陣列轉成一般的陣列的方法吧！</p>
+<p>最後附上一張讓人想放空的圖片送給大家，記得週末要放空一下喔！週末愉快～<br><img src="https://ithelp.ithome.com.tw/upload/images/20190921/20104175z4MbV0ywi8.jpg" alt="https://ithelp.ithome.com.tw/upload/images/20190921/20104175z4MbV0ywi8.jpg"></p>
+<h6 id="All圖片來源：https-unsplash-com"><a href="#All圖片來源：https-unsplash-com" class="headerlink" title="All圖片來源：https://unsplash.com"></a>All圖片來源：<a href="https://unsplash.com" target="_blank" rel="noopener">https://unsplash.com</a></h6><blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-06"><a href="#Day-06" class="headerlink" title="Day 06"></a>Day 06</h6><blockquote>
+<p>JavaScript 一定是個女人，有個性、特立獨行、難以理解，還可以ㄧ次做很多事。</p>
+</blockquote>
+<p>有時候思索著，在學習程式的時候，到底是不是應該把我們所知道的知識，更有系統的整理出來？但是當我們在整理我們所學的知識時，要如何知道我們所整理的資料正確性？ <del>有時有理解障礙</del> 尤其程式這東西，在學習時常感到很抽象，很多時候讀了幾遍書上寫的，照著範例實做了，卻還是無法理解真正的含義，這或許和學外語很相似，學習一個新的外國語言，會聽、會寫、會講都會有好幾個階段，也需要時間去消化與沈澱，持續的學習與練習是必要的，直到有一天，當我們突然發現自己聽得懂外國人在說什麼，那種喜悅應該是很難形容的吧？</p>
+<p>小小感想，只因今天是週六？鐵人賽已經來到了第六天，我的陣列小菜今天比較清淡喔～來聊聊陣列有幾種。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_ironMan06_What-are-the-types-of-Array/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan06_What-are-the-types-of-Array/" data-id="ck65jsaf9001iujuwdm7ytf95" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan05_The-array-property-length" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_ironMan05_The-array-property-length/" class="article-date">
@@ -981,92 +1094,6 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
 
 
   
-    <article id="post-JS_Return-in-the-loop" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_Return-in-the-loop/" class="article-date">
-  <time datetime="2019-07-16T21:51:44.000Z" itemprop="datePublished">2019-07-17</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_Return-in-the-loop/">JS 迴圈 Loop 裡的 return</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>可能在 42 學 C 的時候，學校規定只能用 while 迴圈，所以已經習慣 While 一行行跑的步驟，自從開始用 for 之後，雖然碼比較簡潔，但自己千萬沒想到對它的誤解這磨深…..。以為是只要條件符合就直接 i++ 了，但其實並不是！！是如果條件符合，會先去跑我們要叫它做的事，然後再 i++ 。視覺上看是條件符合後就 i++ 是個大雷，切記。<br>==也就是說只要條件符合＋return，就會跳出 loop==</p>
-<p>[ 第一題 ]</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">return</span> i</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(test1()) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
-
-<p>而while迴圈的寫法，真的就一行行跑，i &lt;= 10 條件符合再去做該做的事，做完該做的事再 i++ ，但當我們回傳時就會終止程式，當然也就不會跑下一行 i++ </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt;= <span class="number">10</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> i</span><br><span class="line">        i++</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(test2()) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
-
-<p>==很重要，所以再說一次==</p>
-<h3 id="注意一旦-return-程式就會因-return-而終止跳出程式"><a href="#注意一旦-return-程式就會因-return-而終止跳出程式" class="headerlink" title="注意一旦 return 程式就會因 return 而終止跳出程式"></a>注意一旦 return 程式就會因 return 而終止跳出程式</h3><p>這題的結果是回傳 123 便終止結束<br>[ 第二題 ]</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">123</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">return</span> i</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>==很重要，所以再說一次==</p>
-<h3 id="一旦-return-程式就會因此終止跳出程式，if-也是"><a href="#一旦-return-程式就會因此終止跳出程式，if-也是" class="headerlink" title="一旦 return 程式就會因此終止跳出程式，if 也是"></a>一旦 return 程式就會因此終止跳出程式，if 也是</h3><p>[ 第三題 ]</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">debugger</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">3</span> === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> i</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(test())</span><br></pre></td></tr></table></figure>
-
-<p>這題回傳是 3 ，即使條件是 i &lt;= 10 ，但遇到( i % 3 === 0 ) 3 除 3 無餘數就回傳 i ，程式因此終止。<br>第1圈 i=1除3= 有餘數 no return i++ = i=2<br>第2圈 i=2除3= 有餘數 no return i++ = i=3<br>第3圈 i=3除3= 無餘數 return i = 3  結束</p>
-<p>[ 第四題 ]<br>經過上三題的觀念釐清，這題總算試著用腦袋跟著程式跑而猜出會跑出 6 了</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt; <span class="number">5</span> &amp;&amp; i % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> i</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(test())</span><br></pre></td></tr></table></figure>
-
-<p>huli大好用心，這幾題就是要釐清 return 扮演的角色：回傳值後 離開！</p>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>可能在 42 學 C 的時候，學校規定只能用 while 迴圈，所以已經習慣 While 一行行跑的步驟，自從開始用 for 之後，雖然碼比較簡潔，但自己千萬沒想到對它的誤解這磨深…..。以為是只要條件符合就直接 i++ 了，但其實並不是！！是如果條件符合，會先去跑我們要叫它做的事，然後再 i++ 。視覺上看是條件符合後就 i++ 是個大雷，切記。<br>==也就是說只要條件符合＋return，就會跳出 loop==</p>
-<p>[ 第一題 ]</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">return</span> i</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(test1()) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
-
-<p>而while迴圈的寫法，真的就一行行跑，i &lt;= 10 條件符合再去做該做的事，做完該做的事再 i++ ，但當我們回傳時就會終止程式，當然也就不會跑下一行 i++ </p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_Return-in-the-loop/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_Return-in-the-loop/" data-id="ck65jsaf40010ujuwmq2ranlz" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1092,7 +1119,7 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/VSCode/">VSCode</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/VSCode/">VSCode</a></li></ul>
     </div>
   </div>
 
@@ -1102,7 +1129,7 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Base/">Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Base/">Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
     </div>
   </div>
 
@@ -1113,6 +1140,10 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="../../Mac_for_my_new_MacBookPro/">MacBook Pro 入手安裝紀錄</a>
+          </li>
         
           <li>
             <a href="../../VSCode_ESLint_Setup/">在 VSCode 裡使用 ESLint, Prettier &amp; Airbnb Style Guide</a>
@@ -1130,10 +1161,6 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
             <a href="../../React_virtual_DOM/">React 裡的虛擬 DOM</a>
           </li>
         
-          <li>
-            <a href="../../JS_Base_type/">JavaScript 基礎 型別篇</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1143,7 +1170,7 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/Base/" style="font-size: 10px;">Base</a> <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 12px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 10px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="../../tags/Base/" style="font-size: 10px;">Base</a> <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 12px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 10px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 
