@@ -111,6 +111,108 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan07_How-to-read-and-write-array-elements" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_ironMan07_How-to-read-and-write-array-elements/" class="article-date">
+  <time datetime="2019-11-02T20:25:35.000Z" itemprop="datePublished">2019-11-03</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_ironMan07_How-to-read-and-write-array-elements/">如何讀取和寫入陣列 Array 元素</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-07"><a href="#Day-07" class="headerlink" title="Day 07"></a>Day 07</h6><blockquote>
+<p>只要有資料，都會有 CRUD ，那陣列呢？</p>
+</blockquote>
+<p>CRUD 是什麼？ <del>能吃嗎？？</del> CRUD 分別代表：建立 Create, 讀取 Read, 更新 Update 和刪除 delete 。 如果資料只能讀不能取，那會很悲慘，就像逛到一間好吃的甜點店，裡面擺滿了好吃的法式甜點，我們無法吃到，也無法買到，那不是很失落？ <del>其實掏錢就可以了。</del></p>
+<h2 id="這一排的第-個位子坐著誰？"><a href="#這一排的第-個位子坐著誰？" class="headerlink" title="這一排的第[ ]個位子坐著誰？"></a>這一排的第[ ]個位子坐著誰？</h2><p>要讀取或寫入陣列這件事情，並不是那麼困難，因為陣列是物件的另一種特殊形式，只要使用方括號 [ ]，即可指定某個元素，如果陣列裡有物件型態的元素也一樣用這種方式取得。記得方括號是元素的位置，也就是這個元素的所在索引值(index)。</p>
+<p>如果想讀取的元素不存在，例如陣列只有 5 個元素，我們卻想要讀取第 7 個，Javascrupt 並不會因此報錯，而直接回應 <code>undefined</code>給我們。我們來看看如何取值吧！</p>
+<h4 id="arrayName-index-陣列名-索引值"><a href="#arrayName-index-陣列名-索引值" class="headerlink" title="arrayName[index]  / 陣列名[索引值]"></a>arrayName[index]  / 陣列名[索引值]</h4><p>以下有許多不同型態的陣列：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 陣列常値 // 數字陣列</span></span><br><span class="line"><span class="keyword">const</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 非同型陣列</span></span><br><span class="line"><span class="keyword">const</span> arr2 = [<span class="string">"one"</span>, <span class="number">2</span>, <span class="string">"three"</span>]; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 陣列裡有陣列</span></span><br><span class="line"><span class="keyword">const</span> arr3 = [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">    [<span class="string">"one"</span>, <span class="number">2</span>, <span class="string">"three"</span>]</span><br><span class="line">]; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 非同型陣列</span></span><br><span class="line"><span class="keyword">const</span> arr4 = [</span><br><span class="line">    &#123; <span class="attr">name</span> : <span class="string">"Tsuifei"</span>, </span><br><span class="line">    type : <span class="string">"object"</span>, </span><br><span class="line">    luckyNumber : [<span class="number">5</span>, <span class="number">7</span>, <span class="number">13</span>, <span class="number">42</span>] </span><br><span class="line">    &#125;, </span><br><span class="line">    [</span><br><span class="line">        &#123; <span class="attr">name</span>: <span class="string">"Philippe"</span>, <span class="attr">type</span>: <span class="string">"object"</span> &#125;,</span><br><span class="line">        &#123; <span class="attr">name</span>: <span class="string">"Ayda"</span>, <span class="attr">type</span>: <span class="string">"object"</span> &#125;,</span><br><span class="line">    ],</span><br><span class="line">    <span class="number">1</span>,</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">too</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">"array can contain function too"</span> &#125;,</span><br><span class="line">    <span class="string">"three"</span>,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>如果想要取出某個陣列，只要照<code>arrayName[index]</code>這個規則取就可以了:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr1[<span class="number">1</span>]; <span class="comment">// 2</span></span><br><span class="line">arr2[<span class="number">0</span>]; <span class="comment">// "one"</span></span><br><span class="line">arr3[<span class="number">1</span>]; <span class="comment">//(3) ["one", 2, "three"]</span></span><br><span class="line">arr4[<span class="number">3</span>]; <span class="comment">// ƒ too() &#123; return "array can contain function too" &#125;</span></span><br><span class="line">arr3[<span class="number">2</span>]; <span class="comment">// undefined, arr3 並沒有這個元素</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="取陣列的最後一個元素"><a href="#取陣列的最後一個元素" class="headerlink" title="取陣列的最後一個元素"></a>取陣列的最後一個元素</h3><p>也可以利用陣列長度屬性 <code>length-1</code> 的特性，輕鬆取到最後一個元素。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr4[arr4.length<span class="number">-1</span>]; <span class="comment">// "three"</span></span><br><span class="line">arr3[arr3.length<span class="number">-1</span>]; <span class="comment">// (3) ["one", 2, "three"]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="取陣列中的陣列-一層層找"><a href="#取陣列中的陣列-一層層找" class="headerlink" title="取陣列中的陣列 一層層找"></a>取陣列中的陣列 一層層找</h3><p>如果遇到陣列中還有陣列，可以利用多層的中括號<code>[ ][ ]</code>取到值。但只限於陣列裡的陣列，如果是非同型資料的陣列資料，就無法用這個方式取了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr3[<span class="number">1</span>][<span class="number">2</span>]; <span class="comment">// "three"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="座位沒人-undefined"><a href="#座位沒人-undefined" class="headerlink" title="座位沒人 undefined"></a>座位沒人 undefined</h3><p>如果陣列是稀疏陣列，那麼當然是找不到，而會丟個<code>undefined</code>回來。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr5 = [[<span class="number">1</span>,<span class="number">2</span>, , ,<span class="number">5</span>],[<span class="string">"a"</span>,,<span class="string">"c"</span>]]</span><br><span class="line">arr5[<span class="number">1</span>][<span class="number">1</span>]; <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="取物件型態資料的方法"><a href="#取物件型態資料的方法" class="headerlink" title="取物件型態資料的方法"></a>取物件型態資料的方法</h3><p>如果是陣列裡面有物件型態的資料，就無法用陣列的方括號<code>[]</code>來取，而要用點 <code>.</code>加上<code>key</code>來取值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr4[<span class="number">0</span>].luckyNumber; <span class="comment">// (4) [5, 7, 13, 42]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ES6-的好物"><a href="#ES6-的好物" class="headerlink" title="ES6 的好物"></a>ES6 的好物</h3><p>在 ES6 新增加的功能中，有一個很好用的方法叫解構賦值，它可以把陣列或物件中的資料取出成一個獨立變數，也算是讀取的一種方法，但有礙篇幅，有機會我們再來討論吧。</p>
+<h2 id="寫入即是更新-update"><a href="#寫入即是更新-update" class="headerlink" title="寫入即是更新 update"></a>寫入即是更新 update</h2><p>當我們是某一個網站的會員，我們都可以找到可以修改我們個人資料的頁面，我們把新的資料更新，其實也是在「覆蓋」我們之前填的資料。</p>
+<p>陣列讀入資料的方式基本上和取出的方式ㄧ樣，都是依照陣列的位置來進行覆蓋，以單個元素或整個陣列為單位的方式都可行。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr5 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">arr5[<span class="number">2</span>]= <span class="number">42</span>; <span class="comment">// [1, 2, 42, 4, 5]</span></span><br><span class="line"></span><br><span class="line">arr5[<span class="number">5</span>] = &#123; <span class="attr">say</span>: <span class="string">"hi"</span>, <span class="attr">name</span>:<span class="string">"Tsuifei"</span>, <span class="attr">city</span>:<span class="string">"Tainan"</span>&#125;;</span><br><span class="line"><span class="comment">// [1, 2, 42, 4, 5, &#123;say: "hi", name:"Tsuifei", city:"Tainan"&#125;]</span></span><br><span class="line"></span><br><span class="line">arr5[<span class="number">5</span>].say = <span class="string">"Hello"</span>;</span><br><span class="line">arr5[<span class="number">5</span>]; <span class="comment">// &#123;say: "hi", name:"Tsuifei", city:"Tainan"&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="不小心成為稀疏陣列"><a href="#不小心成為稀疏陣列" class="headerlink" title="不小心成為稀疏陣列"></a>不小心成為稀疏陣列</h3><p>如果陣列長度是 5 ，但我們指定讀入的位置比陣列長度大，那麼就會造成陣列成為稀疏陣列，JavaScript 也會以<code>undefined</code>來填補這些空隙，並將長度延展至指定讀入的長度。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr6 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">arr6[<span class="number">8</span>] = <span class="number">42</span>; <span class="comment">// (9) [1, 2, 3, 4, 5, empty × 3, 42]</span></span><br></pre></td></tr></table></figure>
+
+<p>今天就介紹到這裡，相信今天的小菜口味不是很重，且很好消化，如果熟悉這些讀取規則，相信在將來學到物件<code>Object</code>或<code>JSON</code>格式的資料，應該會更好瞭解才是。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-07"><a href="#Day-07" class="headerlink" title="Day 07"></a>Day 07</h6><blockquote>
+<p>只要有資料，都會有 CRUD ，那陣列呢？</p>
+</blockquote>
+<p>CRUD 是什麼？ <del>能吃嗎？？</del> CRUD 分別代表：建立 Create, 讀取 Read, 更新 Update 和刪除 delete 。 如果資料只能讀不能取，那會很悲慘，就像逛到一間好吃的甜點店，裡面擺滿了好吃的法式甜點，我們無法吃到，也無法買到，那不是很失落？ <del>其實掏錢就可以了。</del></p>
+<h2 id="這一排的第-個位子坐著誰？"><a href="#這一排的第-個位子坐著誰？" class="headerlink" title="這一排的第[ ]個位子坐著誰？"></a>這一排的第[ ]個位子坐著誰？</h2><p>要讀取或寫入陣列這件事情，並不是那麼困難，因為陣列是物件的另一種特殊形式，只要使用方括號 [ ]，即可指定某個元素，如果陣列裡有物件型態的元素也一樣用這種方式取得。記得方括號是元素的位置，也就是這個元素的所在索引值(index)。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_ironMan07_How-to-read-and-write-array-elements/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan07_How-to-read-and-write-array-elements/" data-id="ck69tubh1001r6fuw0qlo9zcl" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan06_What-are-the-types-of-Array" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_ironMan06_What-are-the-types-of-Array/" class="article-date">
@@ -1023,82 +1125,11 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
 
 
   
-    <article id="post-JS_JS101-Exercise" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_JS101-Exercise/" class="article-date">
-  <time datetime="2019-07-18T20:26:59.000Z" itemprop="datePublished">2019-07-19</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_JS101-Exercise/">JS-[JS101] 練習</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h2 id="判斷條件練習"><a href="#判斷條件練習" class="headerlink" title="判斷條件練習"></a>判斷條件練習</h2><h3 id="練習一：判斷是否及格"><a href="#練習一：判斷是否及格" class="headerlink" title="練習一：判斷是否及格"></a>練習一：判斷是否及格</h3><p>請你自己寫出一段程式碼，是判斷一個叫做 score 的變數是否及格（超過或剛好 60 分），如果及格的話就輸出 pass，否則輸出 fail。<br>進階練習：<br>除了判斷是否及格以外，也請你對滿分做出特別判斷，如果是 100 分的話就輸出 you are no1!</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pass</span>(<span class="params">score</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (score &lt; <span class="number">60</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'不及格，但沒關係，再接再厲！'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (score === <span class="number">100</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'你真是好棒棒！'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (score &gt; <span class="number">100</span> || score &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'咦，沒這樣的分數耶'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span>(score) !== <span class="built_in">Number</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'輸入的不是數字型態'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'恭喜，及格了'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">pass(<span class="number">100</span>)  <span class="comment">// 程式內是用 console.log，所以呼叫函式時就不需用 console.log</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="練習二：BMI-計算"><a href="#練習二：BMI-計算" class="headerlink" title="練習二：BMI 計算"></a>練習二：BMI 計算</h3><p>假設體重是 70，身高是 180(1.8m)，BMI 就是 70/(1.8*1.8) = 21。<br>現在請你寫出一個簡單的 BMI 計算器，用兩個變數代表體重跟身高，算出 BMI 之後判斷 BMI 是落在哪個範圍內並輸出相對應的字串。<br>體重過輕：BMI &lt; 18.5<br>正常範圍：18.5 &lt;= BMI &lt; 24<br>過重：24 &lt;= BMI &lt; 27<br>輕度肥胖：27 &lt;= BMI &lt; 30<br>中度肥胖：30 &lt;= BMI &lt; 35<br>重度肥胖：35 &lt;= BMI </p>
-<p>這題原本做時一直多一個 undefined ，後來請教hu大才理解，console.log() 是印出，return 是回傳，印出是印出、回傳是回傳。如果在程式裡使用 console.log()，那麼呼叫程式時就不需用 console.log()，如果程式內是用return 那麼呼叫函式時就要用console.log() 來印出在螢幕上。<br>一般建議用 return ，function 裡面不要出現 console.log 讓程式保持乾淨。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testBMI2</span>(<span class="params">weight, height</span>) </span>&#123;</span><br><span class="line">    height = height * <span class="number">0.01</span></span><br><span class="line">    <span class="keyword">var</span> bmi = weight / (height * height)</span><br><span class="line">    bmi = <span class="built_in">parseFloat</span>(bmi).toFixed(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (bmi &lt; <span class="number">18.5</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重過輕'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bmi &gt;= <span class="number">18.5</span> &amp;&amp; bmi &lt; <span class="number">24</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重正常'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bmi &gt;= <span class="number">24</span> &amp;&amp; bmi &lt; <span class="number">27</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重過重'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bmi &gt;= <span class="number">27</span> &amp;&amp; bmi &lt; <span class="number">30</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重為輕度肥胖'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bmi &gt;= <span class="number">30</span> &amp;&amp; bmi &lt; <span class="number">35</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重過輕為中度肥胖'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bmi &gt;= <span class="number">35</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重過輕為重度肥胖'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'輸入資料不正確'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(testBMI2(<span class="string">'s'</span>, <span class="number">162</span>))</span><br></pre></td></tr></table></figure> -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h2 id="判斷條件練習"><a href="#判斷條件練習" class="headerlink" title="判斷條件練習"></a>判斷條件練習</h2><h3 id="練習一：判斷是否及格"><a href="#練習一：判斷是否及格" class="headerlink" title="練習一：判斷是否及格"></a>練習一：判斷是否及格</h3><p>請你自己寫出一段程式碼，是判斷一個叫做 score 的變數是否及格（超過或剛好 60 分），如果及格的話就輸出 pass，否則輸出 fail。<br>進階練習：<br>除了判斷是否及格以外，也請你對滿分做出特別判斷，如果是 100 分的話就輸出 you are no1!</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pass</span>(<span class="params">score</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (score &lt; <span class="number">60</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'不及格，但沒關係，再接再厲！'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (score === <span class="number">100</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'你真是好棒棒！'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (score &gt; <span class="number">100</span> || score &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'咦，沒這樣的分數耶'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span>(score) !== <span class="built_in">Number</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'輸入的不是數字型態'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'恭喜，及格了'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">pass(<span class="number">100</span>)  <span class="comment">// 程式內是用 console.log，所以呼叫函式時就不需用 console.log</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="練習二：BMI-計算"><a href="#練習二：BMI-計算" class="headerlink" title="練習二：BMI 計算"></a>練習二：BMI 計算</h3><p>假設體重是 70，身高是 180(1.8m)，BMI 就是 70/(1.8*1.8) = 21。<br>現在請你寫出一個簡單的 BMI 計算器，用兩個變數代表體重跟身高，算出 BMI 之後判斷 BMI 是落在哪個範圍內並輸出相對應的字串。<br>體重過輕：BMI &lt; 18.5<br>正常範圍：18.5 &lt;= BMI &lt; 24<br>過重：24 &lt;= BMI &lt; 27<br>輕度肥胖：27 &lt;= BMI &lt; 30<br>中度肥胖：30 &lt;= BMI &lt; 35<br>重度肥胖：35 &lt;= BMI </p>
-<p>這題原本做時一直多一個 undefined ，後來請教hu大才理解，console.log() 是印出，return 是回傳，印出是印出、回傳是回傳。如果在程式裡使用 console.log()，那麼呼叫程式時就不需用 console.log()，如果程式內是用return 那麼呼叫函式時就要用console.log() 來印出在螢幕上。<br>一般建議用 return ，function 裡面不要出現 console.log 讓程式保持乾淨。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_JS101-Exercise/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_JS101-Exercise/" data-id="ck69tubgr000w6fuw0h8ledf9" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="../4/">&laquo; Prev</a><a class="page-number" href="../../">1</a><span class="space">&hellip;</span><a class="page-number" href="../3/">3</a><a class="page-number" href="../4/">4</a><span class="page-number current">5</span><a class="page-number" href="../6/">6</a><a class="extend next" rel="next" href="../6/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="../4/">&laquo; Prev</a><a class="page-number" href="../../">1</a><span class="space">&hellip;</span><a class="page-number" href="../3/">3</a><a class="page-number" href="../4/">4</a><span class="page-number current">5</span><a class="page-number" href="../6/">6</a><a class="page-number" href="../7/">7</a><a class="extend next" rel="next" href="../6/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -1142,6 +1173,10 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
       <ul>
         
           <li>
+            <a href="../../JS_Base_Object/">JavaScript 基礎 物件篇</a>
+          </li>
+        
+          <li>
             <a href="../../Mac_for_my_new_MacBookPro/">MacBook Pro 入手安裝紀錄</a>
           </li>
         
@@ -1157,10 +1192,6 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
             <a href="../../React_module_component/">React 的 模塊 Module 與組件 component</a>
           </li>
         
-          <li>
-            <a href="../../React_virtual_DOM/">React 裡的虛擬 DOM</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1170,7 +1201,7 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Base/" style="font-size: 10px;">JS Base</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 12px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 10px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Base/" style="font-size: 12px;">JS Base</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 12px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 10px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 

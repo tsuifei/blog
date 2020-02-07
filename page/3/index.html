@@ -111,6 +111,99 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan27_Finding-element-index-values-in-an-array" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_ironMan27_Finding-element-index-values-in-an-array/" class="article-date">
+  <time datetime="2019-11-26T20:21:14.000Z" itemprop="datePublished">2019-11-27</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_ironMan27_Finding-element-index-values-in-an-array/">JS 找出元素索引值的陣列 Array 方法 indexOf()</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-27"><a href="#Day-27" class="headerlink" title="Day 27"></a>Day 27</h6><blockquote>
+<p>那一排，都是穿黑衣戴口罩的，去幫我找出搗亂的。抱歉，我只能給你 -1 因為連我們偶爾都會穿黑衣戴口罩。</p>
+</blockquote>
+<p>終於，我們要進入ECMAScript 5 的陣列方法了！<br>ECMAScript 5 定義了許多很重要的陣列方法，包括了過濾、檢測、遍歷、搜索和鏡射的方法，讓我們能更輕易的操控陣列與陣列元素。</p>
+<p>但是今天是週末，我們先來介紹相對比較沒那麼複雜的<code>indexOf()</code>。</p>
+<p><code>indexOf()</code>方法像是一個會通風報信的吹哨人，請它去幫忙找出陣列裡面的某個指定元素，它就會 <del>明查暗訪</del> 幫我們把這個元素找出來，並告訴我們這個元素在哪個位置（索引值），它只會給我們「第一個」找到的位置 <del>表示有交差</del>，如果沒有找到，<code>indexOf()</code>就會回傳給我們 -1 表示在陣列裡找不到這個元素。</p>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf" target="_blank" rel="noopener">Array.prototype.indexOf() - JavaScript | MDN</a></p>
+<h1 id="陣列處理方法集合"><a href="#陣列處理方法集合" class="headerlink" title="陣列處理方法集合"></a>陣列處理方法集合</h1><p><strong>原型：</strong> Array.prototype.indexOf()<br><strong>功能：</strong> 搜尋陣列中指定的值。<br><strong>改變：</strong> 不會改變原陣列。<br><strong>語法：</strong> arr.indexOf(searchElement[, fromIndex])<br><strong>回傳值：</strong> 在陣列中找到的第一個元素索引值；沒找到則為 -1。<br><strong>參數：</strong> 要找的元素、從哪裡開始找。</p>
+<p>為了不混淆，我們以字串元素來示範</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"D"</span>, <span class="string">"C"</span>, <span class="string">"b"</span>, <span class="string">"a"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 沒給參數，不知道我們要找的元素是什麼，回傳 -1 很合理。</span></span><br><span class="line">arr.indexOf(); <span class="comment">// -1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 找到的 "c" 在索引值 2 的位置</span></span><br><span class="line">arr.indexOf(<span class="string">"c"</span>); <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 從索引值 2 的位置開始找，所以找到第二個 "b"</span></span><br><span class="line">arr.indexOf(<span class="string">"b"</span>, <span class="number">2</span>); <span class="comment">// 5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 從索引值 3 的位置開始找，會區分大小寫，找不到 "c" 回傳 -1</span></span><br><span class="line">arr.indexOf(<span class="string">"c"</span>, <span class="number">3</span>); <span class="comment">// -1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二參數預設就是 0 ，這裡有寫沒寫都ㄧ樣</span></span><br><span class="line">arr.indexOf(<span class="string">"c"</span>, <span class="number">0</span>); <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二參數 -5 表示從後面數過來 -5 的位置開始找，所以找得到 "c"</span></span><br><span class="line">arr.indexOf(<span class="string">"c"</span>, <span class="number">-5</span>); <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 但是從 -5 開始找就找不到"c" 所以回傳 -1</span></span><br><span class="line">arr.indexOf(<span class="string">"c"</span>, <span class="number">-4</span>); <span class="comment">// -1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="參數的規則很直覺"><a href="#參數的規則很直覺" class="headerlink" title="參數的規則很直覺"></a>參數的規則很直覺</h3><p><code>indexOf()</code>可帶兩個參數，第一個參數<code>searchElement</code>是指定要找尋的元素，第二個參數<code>fromIndex</code>索引值，不是必須，表示要從哪一個位置開始搜尋。如果這個索引值大於或等於陣列的長度，會直接回傳 -1，因為要開始搜尋的元素都已經超過陣列長度，自然搜尋就起不了作用。</p>
+<p>如果給的<code>fromIndex</code>索引值是一個負數，就會從陣列的最後一個往回算，等同最後一個的索引值是 -1，以此類推。</p>
+<p>雖然表示往回算，但<code>indexOf()</code>的搜尋順序依然會從陣列的左往右一一搜尋。如果負數索引值在回頭計算之後仍然小於 0，則會從左往右全部搜尋。</p>
+<p>這個參數的預設值為 0（即搜尋整個陣列）。還有，<code>indexOf()</code>並不像其他大部分的ECMAScript 5 陣列方法一樣，參數可以帶函式，帶函式參數對<code>indexOf()</code>是無效的。</p>
+<h3 id="找出所有陣列裡指定的索引值"><a href="#找出所有陣列裡指定的索引值" class="headerlink" title="找出所有陣列裡指定的索引值"></a>找出所有陣列裡指定的索引值</h3><p>雖然<code>indexOf()</code>只會回傳給我們第一個找到的元素位置，但是我們可以使用迴圈，將陣列裡面所有符合搜尋條件元素的索引值，放在一個陣列裡：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findAll</span>(<span class="params">arr,element</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> results = [];</span><br><span class="line">  <span class="keyword">let</span> len = arr.length;</span><br><span class="line">  <span class="keyword">let</span> fromIndex = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span>(fromIndex &lt; len)&#123;</span><br><span class="line">    fromIndex = arr.indexOf(element, fromIndex);</span><br><span class="line">    <span class="keyword">if</span>(fromIndex === <span class="number">-1</span>) <span class="keyword">break</span>; <span class="comment">// 沒找到完成搜尋</span></span><br><span class="line">    results.push(fromIndex); <span class="comment">// 將找到的索引值放入陣列</span></span><br><span class="line">    fromIndex = fromIndex + <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> results;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = findAll(arr,<span class="string">"b"</span>)</span><br><span class="line">result; <span class="comment">// [1, 5]</span></span><br></pre></td></tr></table></figure>
+
+<p>如果可以將找到的索引位置的值，集中放入陣列裡是不是更方便？<code>indexOf()</code>雖然無法直接做到，但是有其他方法可以做到這些，例如 ECMAScript 5 的<code>filter</code>或 ECMAScript 6 的<code>find()</code>都可以輕易辦到。</p>
+<h3 id="參考型別的元素找法"><a href="#參考型別的元素找法" class="headerlink" title="參考型別的元素找法"></a>參考型別的元素找法</h3><p>和某些部分陣列的方法ㄧ樣，<code>indexOf()</code>是無法直接查找參考型別的元素，像是陣列、物件，需要將這些元素指定給一個變數，這個變數在陣列裡，就可使用<code>indexOf()</code>到。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr2 = [<span class="string">"a"</span>, &#123;<span class="attr">a</span>:<span class="number">42</span>&#125; ]</span><br><span class="line"></span><br><span class="line">arr2.indexOf(<span class="string">"a"</span>); <span class="comment">// 0 找得到</span></span><br><span class="line">arr2.indexOf(&#123;<span class="attr">a</span>:<span class="number">42</span>&#125;); <span class="comment">// -1 找不到</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 將元素指定給變數</span></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> arr3 = [<span class="number">42</span>, arr ]</span><br><span class="line">arr3.indexOf(arr); <span class="comment">// 1 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = &#123;<span class="attr">a</span>:<span class="number">42</span>&#125;</span><br><span class="line"><span class="keyword">const</span> arr4 = [<span class="string">"a"</span>, obj, <span class="number">12</span>]</span><br><span class="line">arr4.indexOf(obj); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>其實，還有另一個<code>indexOf()</code>的孿生陣列方法<code>lastIndexOf()</code>功能和<code>indexOf()</code>差不多 <del>簡直ㄧ樣</del>，我們明天可以來聊聊，順便穿插一些輕鬆題外話～敬請期待囉～</p>
+<p>才剛要介紹 ECMAScript 5 的陣列方法，鐵人賽就快要結束了，那 ECMAScript 6 呢？ <del>不長進的留到明年寫嗎？</del> 參加鐵人賽所獲得的，也不只是介紹這些方法而已。因鐵人賽讓本人開始了解查找資料的樂趣 <del>大嬸瘋了</del> 所以，應該會繼續不定期寫下去喔～</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+<h6 id="開頭的那句開場白，寫的時候有點心驚驚，會不會太敏感、會不會太表明立場？所謂民主，應該是不需要懼怕這些的，所謂民主，應該是可以讓人們自由的發表言論而不被壓抑，民主的另一種姿態是勇敢，勇敢捍衛這些得來不易的自由。-這些絕對不是要湊字數XD"><a href="#開頭的那句開場白，寫的時候有點心驚驚，會不會太敏感、會不會太表明立場？所謂民主，應該是不需要懼怕這些的，所謂民主，應該是可以讓人們自由的發表言論而不被壓抑，民主的另一種姿態是勇敢，勇敢捍衛這些得來不易的自由。-這些絕對不是要湊字數XD" class="headerlink" title="開頭的那句開場白，寫的時候有點心驚驚，會不會太敏感、會不會太表明立場？所謂民主，應該是不需要懼怕這些的，所謂民主，應該是可以讓人們自由的發表言論而不被壓抑，民主的另一種姿態是勇敢，勇敢捍衛這些得來不易的自由。 這些絕對不是要湊字數XD"></a>開頭的那句開場白，寫的時候有點心驚驚，會不會太敏感、會不會太表明立場？所謂民主，應該是不需要懼怕這些的，所謂民主，應該是可以讓人們自由的發表言論而不被壓抑，民主的另一種姿態是勇敢，勇敢捍衛這些得來不易的自由。 <del>這些絕對不是要湊字數XD</del></h6> -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-27"><a href="#Day-27" class="headerlink" title="Day 27"></a>Day 27</h6><blockquote>
+<p>那一排，都是穿黑衣戴口罩的，去幫我找出搗亂的。抱歉，我只能給你 -1 因為連我們偶爾都會穿黑衣戴口罩。</p>
+</blockquote>
+<p>終於，我們要進入ECMAScript 5 的陣列方法了！<br>ECMAScript 5 定義了許多很重要的陣列方法，包括了過濾、檢測、遍歷、搜索和鏡射的方法，讓我們能更輕易的操控陣列與陣列元素。</p>
+<p>但是今天是週末，我們先來介紹相對比較沒那麼複雜的<code>indexOf()</code>。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_ironMan27_Finding-element-index-values-in-an-array/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan27_Finding-element-index-values-in-an-array/" data-id="ck69tubhq003o6fuw156acmv2" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan26_Converts-Array-to-string-and-localized" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_ironMan26_Converts-Array-to-string-and-localized/" class="article-date">
@@ -976,113 +1069,11 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array/" class="article-date">
-  <time datetime="2019-11-16T20:21:14.000Z" itemprop="datePublished">2019-11-17</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array/">JS 從陣列 Array 的開頭新增元素的 unshift()</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-17"><a href="#Day-17" class="headerlink" title="Day 17"></a>Day 17</h6><blockquote>
-<p>頭和腳的關係如此微妙，一個思考一個執行，但對程式的陣列來說，都只是陣列的一部分而已，很公平。</p>
-</blockquote>
-<p>接下來我們會分兩天，聊聊從陣列的開頭（前面）新增或刪除陣列元素的方法。</p>
-<p><code>unshift()</code>和<code>shift()</code>這一對，說穿了和<code>push()</code>、<code>pop()</code>ㄧ樣，只是一個從陣列的前頭增加與刪除元素，另一個則是從陣列的尾端操作。<br><img src="https://ithelp.ithome.com.tw/upload/images/20191002/20104175DIqBdswLxB.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/20104175DIqBdswLxB.png"></p>
-<p>這是我們從操作面來看的不同，要再探討深一點，就必須了解這兩對寶，在記憶體的操作方式也就是資料結構還是有很大的不同。前一篇我們有介紹到<a href="https://ithelp.ithome.com.tw/articles/10223356" target="_blank" rel="noopener">資料結構的堆疊（Stack）和佇列（Queue）</a>，從尾部增加和刪除元素的<code>push()</code>、<code>pop()</code>是以堆疊（Stack）「後進先出 LIFO」的方式記憶，而從陣列前頭的<code>unshift()</code>和<code>shift()</code>的儲存則是採用佇列(Queue)「先進先出 FIFO」的資料結構。<br>我們再來以此圖複習一下：</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20191002/2010417512XaDyfODV.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/2010417512XaDyfODV.png"></p>
-<h2 id="unshift-頭上頂著好幾塊餅的非洲婦女"><a href="#unshift-頭上頂著好幾塊餅的非洲婦女" class="headerlink" title="unshift() 頭上頂著好幾塊餅的非洲婦女"></a>unshift() 頭上頂著好幾塊餅的非洲婦女</h2><p>使用<code>unshift()</code>陣列方法，可將一個或多個一組的元素，從陣列的前端加入。也因為是從開端加入元素，連帶也會變動到所有元素的索引值（index），最後被加入陣列的元素索引值，永遠都是<code>index[0]</code>，如果是以多個元素一組的方式加入，則是第一個元素的索引值是 0 。</p>
-<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift" target="_blank" rel="noopener">Array.prototype.unshift() - JavaScript | MDN</a></p>
-<p><strong>原型：</strong> Array.prototype.unshift()<br><strong>功能：</strong> 會添加一個或多個元素至陣列的開頭，並且回傳陣列的新長度。<br><strong>改變：</strong> 原陣列會改變<br><strong>語法：</strong> <code>arr.unshift(element1[, ...[, elementN]])</code><br><strong>回傳值：</strong> 呼叫此方法之物件的新 length 屬性值。<br><strong>參數：</strong> elementN 欲添加至陣列開頭的元素。</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20191002/20104175rxy2OArQNk.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/20104175rxy2OArQNk.png"></p>
-<p>我們先來看一下操作方式：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">arr.unshift(<span class="number">0</span>); <span class="comment">// 6</span></span><br><span class="line">arr; <span class="comment">// [0, 1, 2, 3, 4, 5]</span></span><br><span class="line"></span><br><span class="line">arr.unshift(<span class="number">-1</span>,<span class="number">0</span>); <span class="comment">// 8</span></span><br><span class="line">arr; <span class="comment">// [-1, 0, 0, 1, 2, 3, 4, 5]</span></span><br><span class="line"></span><br><span class="line">arr.unshift([<span class="string">'Hello'</span>,<span class="string">'Wow'</span>]); <span class="comment">// 9</span></span><br><span class="line">arr; <span class="comment">// [Array(2), -1, 0, 0, 1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
-
-<p>當我們查閱<code>arr</code>時會，我們可以觀察到，一整個陣列被當作是一個元素加入。</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20191002/20104175HbWEcAZu28.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/20104175HbWEcAZu28.png"></p>
-<p>如果想要一次加入多個元素，都要以逗號做區隔，索引值也會以逗號分隔的數量來增加。</p>
-<p>需要注意的是<code>unshift()</code>會將我們所放在<code>unshift()</code>裡的引數列（argument list）<code>unshift(引數列)</code>，以「一次性的」加入陣列的前端，而不會「一個個」的多次放入陣列裡，所以需要注意放入後的順序問題。假如元素是「逐次」的放入陣列前端，那麼這些加入的元素順序就會是倒過來的。</p>
-<h2 id="unshift-是怎麼被寫出來的？"><a href="#unshift-是怎麼被寫出來的？" class="headerlink" title="unshift() 是怎麼被寫出來的？"></a>unshift() 是怎麼被寫出來的？</h2><p>前面有提到<code>unshift()</code>可以ㄧ次或多個元素一起新增至陣列中，所以比較方便的是也把這些引數放在一個陣列裡處理。<br>我們可以使用其餘參數（rest parameter）的功能，其餘參數會將一個不確定數量的參數，集合在一個陣列中。且<code>unshift()</code>的回傳值是返回處理過的陣列長度，這點只要使用陣列的屬性<code>length</code>就可拿到，接下來怎麼把引數的內容一一放到陣列前頭呢？</p>
-<p>我們先來直接看一下 code:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.unshift2 = <span class="function"><span class="keyword">function</span> (<span class="params"> ...elements </span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">let</span> i = <span class="keyword">this</span>.length + ( elements.length - <span class="number">1</span> ); i &gt;= <span class="number">0</span>; i-- ) &#123;</span><br><span class="line">    <span class="keyword">this</span>[ i ] = <span class="keyword">this</span>[ i - ( elements.length ) ];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; elements.length; i++ ) &#123;</span><br><span class="line">        <span class="keyword">this</span>[ i ] = elements[ i ];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr =[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.unshift2(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br></pre></td></tr></table></figure>
-
-<p>第一個迴圈，我們把<code>i</code>設為原陣列的長度＋引數長度-1，條件為<code>i &gt;= 0;</code>，每跑一次<code>i</code>就減 1。<br>用此方式去偵測原陣列和引數 elements 的長度，再把引數長度先空出來。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">也就是指定引數的索引值，給空出來的原陣列索引值。</span><br><span class="line">整理一下：this -&gt; let arr = [1, 2, 3];</span><br><span class="line">第一個 for(i=3+2 -&gt; 5; i &gt;= 0; i--)</span><br><span class="line">第一圈 this[5] = this[5-(3)=2] 5--  -&gt; i = 4</span><br><span class="line">第二圈 this[4] = this[4-(3)=1] 4--  -&gt; i = 3</span><br><span class="line">第三圈 this[3] = this[3-(3)=0] 3--  -&gt; i = 2</span><br><span class="line">第四圈 this[2] = this[2-(3)=-1] 2--  -&gt; i = 1</span><br><span class="line">第五圈 this[1] = this[1-(3)=-2] 1--  -&gt; i = 0</span><br><span class="line">第六圈 this[0] = this[0-(3)=-3] 0--  -&gt; i = 0   &gt;=0 終止</span><br></pre></td></tr></table></figure>
-
-<p>這時的 this -&gt; <code>[undefined, undefined, undefined, 1, 2, 3]</code>。</p>
-<p>第二個迴圈負責把要增加的元素（引數），一一指定給第一個迴圈先空下來的引數數量空隙。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第二個 for(i=0; i &lt; 3; i++)</span><br><span class="line">第一圈 this[0] = elements[0]</span><br><span class="line">第二圈 this[1] = elements[1]</span><br><span class="line">第三圈 this[2] = elements[2]</span><br></pre></td></tr></table></figure>
-
-<p>這個迴圈主要是把引數陣列裡的index 對應到第一個迴圈空出來的index裡，只要對應到 index 也表示會對應到值。 </p>
-<p>最後，再把整個陣列長度回傳出來。就完成了！</p>
-<p>本人實在不太會解說整個程式的流程 <del>弱到趴糞</del>，所以把迴圈的部份寫出來，這也是我們在觀察其他人寫的程式碼的方法之一。<br>希望有幫助到大家 <del>自己也受益</del> ！</p>
-<p>明天就來點單純的<code>shift()</code>小菜囉～</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-17"><a href="#Day-17" class="headerlink" title="Day 17"></a>Day 17</h6><blockquote>
-<p>頭和腳的關係如此微妙，一個思考一個執行，但對程式的陣列來說，都只是陣列的一部分而已，很公平。</p>
-</blockquote>
-<p>接下來我們會分兩天，聊聊從陣列的開頭（前面）新增或刪除陣列元素的方法。</p>
-<p><code>unshift()</code>和<code>shift()</code>這一對，說穿了和<code>push()</code>、<code>pop()</code>ㄧ樣，只是一個從陣列的前頭增加與刪除元素，另一個則是從陣列的尾端操作。<br><img src="https://ithelp.ithome.com.tw/upload/images/20191002/20104175DIqBdswLxB.png" alt="https://ithelp.ithome.com.tw/upload/images/20191002/20104175DIqBdswLxB.png"></p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array/" data-id="ck69tubhc002k6fuwxhx8fp71" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="../2/">&laquo; Prev</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><span class="page-number current">3</span><a class="page-number" href="../4/">4</a><a class="page-number" href="../5/">5</a><a class="page-number" href="../6/">6</a><a class="extend next" rel="next" href="../4/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="../2/">&laquo; Prev</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><span class="page-number current">3</span><a class="page-number" href="../4/">4</a><a class="page-number" href="../5/">5</a><span class="space">&hellip;</span><a class="page-number" href="../7/">7</a><a class="extend next" rel="next" href="../4/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -1126,6 +1117,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="../../JS_Base_Object/">JavaScript 基礎 物件篇</a>
+          </li>
+        
+          <li>
             <a href="../../Mac_for_my_new_MacBookPro/">MacBook Pro 入手安裝紀錄</a>
           </li>
         
@@ -1141,10 +1136,6 @@ ga('send', 'pageview');
             <a href="../../React_module_component/">React 的 模塊 Module 與組件 component</a>
           </li>
         
-          <li>
-            <a href="../../React_virtual_DOM/">React 裡的虛擬 DOM</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1154,7 +1145,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Base/" style="font-size: 10px;">JS Base</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 12px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 10px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Base/" style="font-size: 12px;">JS Base</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 12px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 10px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 
