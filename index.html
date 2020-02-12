@@ -142,7 +142,7 @@ ga('send', 'pageview');
 <p>這裡記錄一些學習上的筆記和用法，以便將來腦殘可回來補腦。</p>
 <p>我們先以 CDN 的方式將 Vue.js 引入就可以用了，記得也要先創建一個 Vue 的實例來用，裡面會有所有控制與資料的部分。<br>接著，在 HTML 裡將要控制的部分以一個<code>&lt;div&gt;</code>包住，並給予 ID <code>&lt;div id=&quot;app&quot;&gt;</code>這個 <code>#app</code>就可以以標籤綁定資料的方式，和 Vue 的實例裡的資料做溝通。</p>
 <h3 id="資料綁定"><a href="#資料綁定" class="headerlink" title="資料綁定 "></a>資料綁定 </h3><p>資料綁定最常用的是雙大括號，裡面的變數就是聯繫實例裡面<code>Data</code>物件裡的屬性資料。<br>我們可以如何使用它：</p>
-<p>可以以 HTML 的形式來綁定如 </p><p v-html="msg"></p> (顯示 html 格式)<br>用 text 的形式來綁定如 <p v-text="msg"></p>(顯示純文字)<br>雙花括號不可直接用在 html 的屬性上，在需要用的情況下，可以用<code>v-bind</code>的方式如<p></p>
+<p>可以以 HTML 的形式來綁定如<code>&lt;p v-html=&quot;msg&quot;&gt;&lt;/p&gt;</code> (顯示 html 格式)<br>用 text 的形式來綁定如<code>&lt;p v-text=&quot;msg&quot;&gt;&lt;/p&gt;</code>(顯示純文字)<br>雙花括號不可直接用在 html 的屬性上，在需要用的情況下，可以用<code>v-bind</code>的方式如</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-bind:disabled</span>=<span class="string">"isDisabled"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>直接使用 JS 表達式，在雙大括號裡可以直接些三元運算子，甚至是直接用 JS 的內建函式。</p>
@@ -169,6 +169,9 @@ ga('send', 'pageview');
 <p>另一種增加監視的方式:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vm.\$watch(<span class="string">'xxx'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;&#125;);</span><br></pre></td></tr></table></figure>
 
+<p>今天先寫到這裡，一定要堅持下去喔！</p>
+<p>題外話，近日武漢肺肺炎的關係，開始關注一些中國的現狀，和中國朋友閒聊時，才知道真的是水深火熱的環境。<br>另如，我不解為何中國朋友都不太敢對自己的國家有所批評，台灣說的「批評求進步」簡直是讓自己陷入危險。上次看法國報導，記者試著採訪中國遊客，關於看到法輪功的感想，一團幾十個，沒有一個願意開口。後來朋友跟我說，如果從中國第一次出國，就要參加一種叫行前教育的活動，需要政府部門批准他們出去，那時工作人員會告誡他們不要把外面的信息帶回來。這可能也是很多海外華人不像多評論政治的原因。他去台灣的第一次是這麼要求，他的父母也是。</p>
+<p>想想，生活在台灣真的還是件蠻幸福的事。</p>
  -->
                                             <!-- Table of Contents -->
                                             
@@ -179,7 +182,7 @@ ga('send', 'pageview');
 <p>這裡記錄一些學習上的筆記和用法，以便將來腦殘可回來補腦。</p>
 <p>我們先以 CDN 的方式將 Vue.js 引入就可以用了，記得也要先創建一個 Vue 的實例來用，裡面會有所有控制與資料的部分。<br>接著，在 HTML 裡將要控制的部分以一個<code>&lt;div&gt;</code>包住，並給予 ID <code>&lt;div id=&quot;app&quot;&gt;</code>這個 <code>#app</code>就可以以標籤綁定資料的方式，和 Vue 的實例裡的資料做溝通。</p>
 <h3 id="資料綁定"><a href="#資料綁定" class="headerlink" title="資料綁定 "></a>資料綁定 </h3><p>資料綁定最常用的是雙大括號，裡面的變數就是聯繫實例裡面<code>Data</code>物件裡的屬性資料。<br>我們可以如何使用它：</p>
-<p>可以以 HTML 的形式來綁定如 </p><p v-html="msg"></p> (顯示 html 格式)<br>用 text 的形式來綁定如 <p v-text="msg"></p>(顯示純文字)<br>雙花括號不可直接用在 html 的屬性上，在需要用的情況下，可以用<code>v-bind</code>的方式如<p></p>
+<p>可以以 HTML 的形式來綁定如<code>&lt;p v-html=&quot;msg&quot;&gt;&lt;/p&gt;</code> (顯示 html 格式)<br>用 text 的形式來綁定如<code>&lt;p v-text=&quot;msg&quot;&gt;&lt;/p&gt;</code>(顯示純文字)<br>雙花括號不可直接用在 html 的屬性上，在需要用的情況下，可以用<code>v-bind</code>的方式如</p>
                                                                         
                                                                             <p class="article-more-link">
                                                                                 <a href="Vue_Template_Syntax/">
