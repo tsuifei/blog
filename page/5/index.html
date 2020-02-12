@@ -111,6 +111,107 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan08_How-to-determine-if-it-is-an-array" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_ironMan08_How-to-determine-if-it-is-an-array/" class="article-date">
+  <time datetime="2019-11-03T20:21:14.000Z" itemprop="datePublished">2019-11-04</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_ironMan08_How-to-determine-if-it-is-an-array/">判別是否為陣列 Array</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-08"><a href="#Day-08" class="headerlink" title="Day 08"></a>Day 08</h6><blockquote>
+<p>如果你不是台灣的國民，就不能在台灣投票</p>
+</blockquote>
+<p>Javascript 是弱型別語言，也因為這個特性，在處理資料時 JavaScript 很可能的很好心，一不小心就把資料自動轉型成另一個資料型態了，所以為了避免在使用陣列內建方法或處理陣列時出現錯誤，常常會使用許多方法來判別是否為陣列。如果元素不是陣列，就無法使用陣列專用的函式或做些陣列的處理，因此才會有確認某元素的原型是陣列的需要。</p>
+<p>陣列 Array 在 JavaScript 裡的型別是<code>object</code>，這點可以透過 typeof 這個運算符回傳的資訊，來確認某一資料是否為陣列。但是，在物件裡的某一元素是否為陣列，又該怎麼判別？ 以下有幾種方法：</p>
+<h2 id="判別變數是否為陣列"><a href="#判別變數是否為陣列" class="headerlink" title="判別變數是否為陣列"></a>判別變數是否為陣列</h2><p>這邊有四個同是陣列，但不同形態內容的元素，還有一個非陣列的物件變數，我們可以拿它們來測試。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 陣列常値 // 數字陣列</span></span><br><span class="line"><span class="keyword">const</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 非同型陣列</span></span><br><span class="line"><span class="keyword">const</span> arr2 = [<span class="string">"one"</span>, <span class="number">2</span>, <span class="string">"three"</span>]; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 陣列裡有陣列</span></span><br><span class="line"><span class="keyword">const</span> arr3 = [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">    [<span class="string">"one"</span>, <span class="number">2</span>, <span class="string">"three"</span>]</span><br><span class="line">]; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 非同型陣列</span></span><br><span class="line"><span class="keyword">const</span> arr4 = [</span><br><span class="line">    &#123; <span class="attr">name</span> : <span class="string">"Tsuifei"</span>, </span><br><span class="line">    type : <span class="string">"object"</span>, </span><br><span class="line">    luckyNumber : [<span class="number">5</span>, <span class="number">7</span>, <span class="number">13</span>, <span class="number">42</span>] </span><br><span class="line">    &#125;, </span><br><span class="line">    [</span><br><span class="line">        &#123; <span class="attr">name</span>: <span class="string">"Philippe"</span>, <span class="attr">type</span>: <span class="string">"object"</span> &#125;,</span><br><span class="line">        &#123; <span class="attr">name</span>: <span class="string">"Ayda"</span>, <span class="attr">type</span>: <span class="string">"object"</span> &#125;,</span><br><span class="line">    ],</span><br><span class="line">    <span class="number">1</span>,</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">too</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">"array can contain function too"</span> &#125;,</span><br><span class="line">    <span class="string">"three"</span>,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 物件</span></span><br><span class="line"><span class="keyword">const</span> me = &#123; <span class="attr">name</span> : <span class="string">"Tsuifei"</span>, </span><br><span class="line">    type : <span class="string">"object"</span>, </span><br><span class="line">    luckyNumber : [<span class="number">5</span>, <span class="number">7</span>, <span class="number">13</span>, <span class="number">42</span>] </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="isArray-小而美"><a href="#isArray-小而美" class="headerlink" title="isArray 小而美"></a>isArray 小而美</h3><p>最簡單的陣列判斷語法 isArray，用的是內建Array物件中的isArray，是個ES5的標準方法:<br><code>Array.isArray(variable)</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.isArray(arr1); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(arr2); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(arr3); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Array</span>.isArray(arr4); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.isArray(me); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="constructor-Array-輕而巧"><a href="#constructor-Array-輕而巧" class="headerlink" title="constructor === Array 輕而巧"></a>constructor === Array 輕而巧</h3><p>使用<code>constructor</code>，這個是在Chrome瀏覽器中效能最佳的判斷方法，它是直接用物件的建構式來判斷:<br><code>variable.constructor === Array</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr1.constructor === <span class="built_in">Array</span>; <span class="comment">// true</span></span><br><span class="line">arr2.constructor === <span class="built_in">Array</span>; <span class="comment">// true</span></span><br><span class="line">arr3.constructor === <span class="built_in">Array</span>; <span class="comment">// true</span></span><br><span class="line">arr4.constructor === <span class="built_in">Array</span>; <span class="comment">// true</span></span><br><span class="line">me.constructor === <span class="built_in">Array</span>; <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="判別物件中的陣列"><a href="#判別物件中的陣列" class="headerlink" title="判別物件中的陣列"></a>判別物件中的陣列</h2><h3 id="constructor-Array"><a href="#constructor-Array" class="headerlink" title="constructor === Array"></a>constructor === Array</h3><p>與上方一個相同，只是針對物件中的陣列來使用，如果要判別物件中的其中屬性是否為陣列，可以先判斷這個屬性是否存在，再繼續判斷這個值是否為陣列，我們以物件型態的變數來測驗，如下:<br><code>variable.value &amp;&amp; variable.value.constructor === Array</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> me =  &#123; </span><br><span class="line">  name : <span class="string">"Tsuifei"</span>, </span><br><span class="line">  type : <span class="string">"object"</span>, </span><br><span class="line">  luckyNumber : [<span class="number">5</span>, <span class="number">7</span>, <span class="number">13</span>, <span class="number">42</span>]  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">me.name &amp;&amp; me.name.constructor === <span class="built_in">Array</span> <span class="comment">// false</span></span><br><span class="line">me.type &amp;&amp; me.type.constructor === <span class="built_in">Array</span> <span class="comment">// false</span></span><br><span class="line">me.luckyNumber &amp;&amp; me.luckyNumber.constructor === <span class="built_in">Array</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="instanceof-物件的實例"><a href="#instanceof-物件的實例" class="headerlink" title="instanceof 物件的實例"></a>instanceof 物件的實例</h3><p>先來看看MDN怎麼解釋：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof" target="_blank" rel="noopener">MDN instanceof</a><br><code>instanceof</code> 運算符用於測試建構式函式的prototype屬性，是否出現在物件的原型鏈中的任何位置，也就是說<code>instanceof</code> 運算符是用於判斷是否為某個建構式<code>new</code>的實例，優點為語法簡潔清楚。</p>
+<p>但是缺點還是有的，雖然只要是在原型鏈上面的類別，都會回傳<code>true</code>，但是建構是有可能因為某些原因而被修改，改變之後的值很有可能不存在於原型鏈上，這時判別回傳得到的值就會成為<code>false</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fnuc</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">let</span> testF = <span class="keyword">new</span> fnuc;</span><br><span class="line">testF <span class="keyword">instanceof</span> <span class="built_in">Array</span>; </span><br><span class="line"><span class="comment">// false testF 不是一個陣列,它是一個建構式宣告出來的實例(物件)</span></span><br></pre></td></tr></table></figure>
+
+<p><code>instanceof</code>不只可以判別陣列，也可以拿來判別其他的型別，如<code>string</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr5 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]; </span><br><span class="line">arr5 <span class="keyword">instanceof</span> <span class="built_in">Array</span>; <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arrObj = <span class="keyword">new</span> <span class="built_in">Array</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]); </span><br><span class="line">arrObj <span class="keyword">instanceof</span> <span class="built_in">Array</span>;   <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 也適用於其他型別的判別</span></span><br><span class="line"><span class="keyword">var</span> arrObj = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"hello world"</span>); </span><br><span class="line">arrObj <span class="keyword">instanceof</span> <span class="built_in">String</span>;   <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p><code>instanceof</code>有個缺點，就是處理的<code>window</code>或<code>iframe</code>時的變數會失效，詳細的解說在<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof#instanceof%E5%92%8C%E5%A4%9A%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1%E5%A4%9A%E4%B8%AAframe%E6%88%96%E5%A4%9A%E4%B8%AAwindow%E4%B9%8B%E9%97%B4%E7%9A%84%E4%BA%A4%E4%BA%92" target="_blank" rel="noopener">MDN</a>有較詳細的說明。</p>
+<h3 id="toString-call"><a href="#toString-call" class="headerlink" title="toString.call"></a>toString.call</h3><p>==推薦使用==<br>網路上推薦這種方式判別的頗多，原因應該是這種方式是所有情況都可以正確判別的一種，且可適用各種狀況，也可以判斷陣列以外的其他特別物件，唯一缺點是效率最差。<br>在JavaScript: The Definitive Guide, 6th Edition 書中有提到，Array.isArray其實就是用這個方式實作的。<br><code>Object.prototype.toString.call(variable) === &#39;[object Array]&#39;</code></p>
+<p>網路上也有人寫成一支判斷陣列終極解決方案，先用<code>typeof</code>判別，再確認瀏覽器支不支援這個判別方法，如果不支援，就用另一種方式判別。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr6 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]; </span><br><span class="line"><span class="keyword">const</span> arr7 = <span class="number">42</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArrayFn</span>(<span class="params">obj</span>)</span>&#123;  <span class="comment">// 包成函式</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Array</span>.isArray === <span class="string">"function"</span>) &#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.isArray(obj); <span class="comment">// 如果瀏覽器支援就用 isArray() 方法</span></span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;  <span class="comment">// 否則就使用 toString 方法</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">"[object Array]"</span>; </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line">isArrayFn(arr6) <span class="comment">// true</span></span><br><span class="line">isArrayFn(arr7) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="用哪一種？"><a href="#用哪一種？" class="headerlink" title="用哪一種？"></a>用哪一種？</h3><p>這幾個方式的選擇，網路上的前輩建議是==只要學最後一種==就行了(就是最後一種)，可以正確判斷並應用在各種情況為首要條件，有時候正確性比效能快更為重要，更何況它其實是萬用的，除了陣列之外也可以用於其它的判斷情況。雖然它的語法對初學者來說，可能無法在此時完全理解 <del>在說我嗎？</del>，不過就先知道要這樣用就行了。</p>
+<hr>
+<p>寫完才發現<a href="https://segmentfault.com/a/1190000006150186" target="_blank" rel="noopener">這篇更詳細的介紹</a>，有興趣的可以轉台過去看，真的很詳細，推～</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-08"><a href="#Day-08" class="headerlink" title="Day 08"></a>Day 08</h6><blockquote>
+<p>如果你不是台灣的國民，就不能在台灣投票</p>
+</blockquote>
+<p>Javascript 是弱型別語言，也因為這個特性，在處理資料時 JavaScript 很可能的很好心，一不小心就把資料自動轉型成另一個資料型態了，所以為了避免在使用陣列內建方法或處理陣列時出現錯誤，常常會使用許多方法來判別是否為陣列。如果元素不是陣列，就無法使用陣列專用的函式或做些陣列的處理，因此才會有確認某元素的原型是陣列的需要。</p>
+<p>陣列 Array 在 JavaScript 裡的型別是<code>object</code>，這點可以透過 typeof 這個運算符回傳的資訊，來確認某一資料是否為陣列。但是，在物件裡的某一元素是否為陣列，又該怎麼判別？ 以下有幾種方法：</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_ironMan08_How-to-determine-if-it-is-an-array/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan08_How-to-determine-if-it-is-an-array/" data-id="ck6jmw1hg00236vuww675t176" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan07_How-to-read-and-write-array-elements" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_ironMan07_How-to-read-and-write-array-elements/" class="article-date">
@@ -199,7 +300,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan07_How-to-read-and-write-array-elements/" data-id="ck6h0isah001wtcuw4gqayext" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan07_How-to-read-and-write-array-elements/" data-id="ck6jmw1hf001z6vuw04b7c9ds" class="article-share-link">
                             Share
                         </a>
                         
@@ -312,7 +413,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan06_What-are-the-types-of-Array/" data-id="ck6h0isaf001utcuw5hd54frd" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan06_What-are-the-types-of-Array/" data-id="ck6jmw1he001w6vuwrqtwlluz" class="article-share-link">
                             Share
                         </a>
                         
@@ -462,7 +563,7 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan05_The-array-property-length/" data-id="ck6h0isd50097tcuw2nxhhtnv" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan05_The-array-property-length/" data-id="ck6jmw1ja00926vuwdhpjtj64" class="article-share-link">
                             Share
                         </a>
                         
@@ -576,7 +677,7 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan04_create-and-declare-arrays/" data-id="ck6h0isae001stcuw1itttsuz" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan04_create-and-declare-arrays/" data-id="ck6jmw1hd001s6vuwppsqznag" class="article-share-link">
                             Share
                         </a>
                         
@@ -681,7 +782,7 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan03_What-can-the-array-do/" data-id="ck6h0isad001otcuwvpt589gl" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan03_What-can-the-array-do/" data-id="ck6jmw1hb001p6vuwksmgnx0b" class="article-share-link">
                             Share
                         </a>
                         
@@ -778,7 +879,7 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan02_What-is-the-array/" data-id="ck6h0isac001ltcuwu8slroy5" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan02_What-is-the-array/" data-id="ck6jmw1ha001m6vuw31pfj0s4" class="article-share-link">
                             Share
                         </a>
                         
@@ -855,7 +956,7 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan01_foreword/" data-id="ck6h0isaa001htcuw9kcfjcg5" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan01_foreword/" data-id="ck6jmw1h9001i6vuwcl669om2" class="article-share-link">
                             Share
                         </a>
                         
@@ -943,7 +1044,7 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JSstrange_call-function-execution-stack/" data-id="ck6h0isbt004qtcuwahlcouqq" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JSstrange_call-function-execution-stack/" data-id="ck6jmw1ig004w6vuwq1jyvcdk" class="article-share-link">
                             Share
                         </a>
                         
@@ -1032,91 +1133,12 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS-Confirm-whether-is-Array/" data-id="ck6h0is9r000ctcuwfilrdnrg" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS-Confirm-whether-is-Array/" data-id="ck6jmw1gx000e6vuwxeuexp0u" class="article-share-link">
                             Share
                         </a>
                         
                                 
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
-    <article id="post-JS_Array-Slice" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_Array-Slice/" class="article-date">
-  <time datetime="2019-07-29T19:44:18.000Z" itemprop="datePublished">2019-07-30</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_Array-Slice/">JS Array Slice</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>slice() 中文直譯為切片，即是從陣列複製一份出來。<br>有時我們想要處理陣列資料，又不想動到原始資料，因為一但動到原始資料就無法回復原本的樣子，甚至要比對都無從比對，這時slice()就常派上用場。<br>這點感覺有點像 git，先把資料pull一份下來的動作一樣。</p>
-<h5 id="語法：arr-slice-begin-end-，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個"><a href="#語法：arr-slice-begin-end-，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個" class="headerlink" title="語法：arr.slice([begin[, end]]) ，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個"></a>語法：arr.slice([begin[, end]]) ，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個</h5><p>MDN:<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" target="_blank" rel="noopener">slice();</a></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis = [<span class="string">'Ayda'</span>, <span class="string">'Phi'</span>, <span class="string">'Alex'</span>, <span class="string">'Chris'</span>, <span class="string">'Tracy'</span>, <span class="string">'Thomas'</span>, <span class="string">'Jean'</span>];</span><br></pre></td></tr></table></figure>
-
-<h4 id="沒給參數和參數零的結果是一樣的"><a href="#沒給參數和參數零的結果是一樣的" class="headerlink" title="沒給參數和參數零的結果是一樣的"></a>沒給參數和參數零的結果是一樣的</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis2 = amis.slice();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'沒參數： '</span> + amis2) <span class="comment">// Ayda,Phi,Alex,Chris,Tracy,Thomas,Jean</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> amis3 = amis.slice(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'參數0： '</span> + amis3) <span class="comment">// Ayda,Phi,Alex,Chris,Tracy,Thomas,Jean</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="只給一個參數，會從給的index開始切"><a href="#只給一個參數，會從給的index開始切" class="headerlink" title="只給一個參數，會從給的index開始切"></a>只給一個參數，會從給的index開始切</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis4 = amis.slice(<span class="number">2</span>); </span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'只給一個參數： '</span> + amis4) <span class="comment">// Alex,Chris,Tracy,Thomas,Jean</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="給負數參數，會從最後面開始取"><a href="#給負數參數，會從最後面開始取" class="headerlink" title="給負數參數，會從最後面開始取"></a>給負數參數，會從最後面開始取</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis5 = amis.slice(<span class="number">-2</span>); </span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'給負數參數： '</span> + amis5) <span class="comment">// Thomas,Jean</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="給兩個參數，"><a href="#給兩個參數，" class="headerlink" title="給兩個參數，"></a>給兩個參數，</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis6 = amis.slice(<span class="number">2</span>, <span class="number">-2</span>); </span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'給兩個參數： '</span> + amis6) <span class="comment">// Alex,Chris,Tracy</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二參數的索引值為指定的前一個</span></span><br><span class="line"><span class="keyword">var</span> amis7 = amis.slice(<span class="number">2</span>, <span class="number">4</span>); </span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'給兩個參數： '</span> + amis7) <span class="comment">// Alex,Chris </span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'原始陣列不變： '</span> + amis) <span class="comment">// Ayda,Phi,Alex,Chris,Tracy,Thomas,Jean</span></span><br></pre></td></tr></table></figure>
-
-<p>在使用 slice() 的時候並不需要再用另一個變數去接結果，因為使用slice()時，就會自動的在新的記憶體位址產生。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(amis.slice(<span class="number">2</span>, <span class="number">4</span>)); <span class="comment">// Alex,Chris</span></span><br></pre></td></tr></table></figure> -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <p>slice() 中文直譯為切片，即是從陣列複製一份出來。<br>有時我們想要處理陣列資料，又不想動到原始資料，因為一但動到原始資料就無法回復原本的樣子，甚至要比對都無從比對，這時slice()就常派上用場。<br>這點感覺有點像 git，先把資料pull一份下來的動作一樣。</p>
-<h5 id="語法：arr-slice-begin-end-，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個"><a href="#語法：arr-slice-begin-end-，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個" class="headerlink" title="語法：arr.slice([begin[, end]]) ，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個"></a>語法：arr.slice([begin[, end]]) ，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個</h5><p>MDN:<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" target="_blank" rel="noopener">slice();</a></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis = [<span class="string">'Ayda'</span>, <span class="string">'Phi'</span>, <span class="string">'Alex'</span>, <span class="string">'Chris'</span>, <span class="string">'Tracy'</span>, <span class="string">'Thomas'</span>, <span class="string">'Jean'</span>];</span><br></pre></td></tr></table></figure>
-
-<h4 id="沒給參數和參數零的結果是一樣的"><a href="#沒給參數和參數零的結果是一樣的" class="headerlink" title="沒給參數和參數零的結果是一樣的"></a>沒給參數和參數零的結果是一樣的</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis2 = amis.slice();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'沒參數： '</span> + amis2) <span class="comment">// Ayda,Phi,Alex,Chris,Tracy,Thomas,Jean</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> amis3 = amis.slice(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'參數0： '</span> + amis3) <span class="comment">// Ayda,Phi,Alex,Chris,Tracy,Thomas,Jean</span></span><br></pre></td></tr></table></figure>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_Array-Slice/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_Array-Slice/" data-id="ck6h0is9z000ptcuw66qclm9z" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
 
                     </footer>
     </div>
@@ -1150,7 +1172,7 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/VSCode/">VSCode</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/SASS/">SASS</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/VSCode/">VSCode</a></li></ul>
     </div>
   </div>
 
@@ -1160,7 +1182,7 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Base/">JS Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Base/">JS Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
     </div>
   </div>
 
@@ -1171,6 +1193,10 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="../../Vue_Template_Syntax/">Vue.js Template Syntax 模板語法</a>
+          </li>
         
           <li>
             <a href="../../JS_Base_Object/">JavaScript 基礎 物件篇</a>
@@ -1188,10 +1214,6 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
             <a href="../../Vue_Test_QA/">Vuejs 線上問答題</a>
           </li>
         
-          <li>
-            <a href="../../React_module_component/">React 的 模塊 Module 與組件 component</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1201,7 +1223,7 @@ https://unsplash.com/s/photos/seat</code></pre><h4 id="真清除-尾巴斷了"><
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Base/" style="font-size: 12px;">JS Base</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 12px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 10px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="../../tags/CSS/" style="font-size: 12px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Base/" style="font-size: 12px;">JS Base</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 12px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 12px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 

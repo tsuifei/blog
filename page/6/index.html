@@ -111,6 +111,169 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_Array-Slice" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_Array-Slice/" class="article-date">
+  <time datetime="2019-07-29T19:44:18.000Z" itemprop="datePublished">2019-07-30</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_Array-Slice/">JS Array Slice</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>slice() 中文直譯為切片，即是從陣列複製一份出來。<br>有時我們想要處理陣列資料，又不想動到原始資料，因為一但動到原始資料就無法回復原本的樣子，甚至要比對都無從比對，這時slice()就常派上用場。<br>這點感覺有點像 git，先把資料pull一份下來的動作一樣。</p>
+<h5 id="語法：arr-slice-begin-end-，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個"><a href="#語法：arr-slice-begin-end-，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個" class="headerlink" title="語法：arr.slice([begin[, end]]) ，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個"></a>語法：arr.slice([begin[, end]]) ，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個</h5><p>MDN:<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" target="_blank" rel="noopener">slice();</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis = [<span class="string">'Ayda'</span>, <span class="string">'Phi'</span>, <span class="string">'Alex'</span>, <span class="string">'Chris'</span>, <span class="string">'Tracy'</span>, <span class="string">'Thomas'</span>, <span class="string">'Jean'</span>];</span><br></pre></td></tr></table></figure>
+
+<h4 id="沒給參數和參數零的結果是一樣的"><a href="#沒給參數和參數零的結果是一樣的" class="headerlink" title="沒給參數和參數零的結果是一樣的"></a>沒給參數和參數零的結果是一樣的</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis2 = amis.slice();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'沒參數： '</span> + amis2) <span class="comment">// Ayda,Phi,Alex,Chris,Tracy,Thomas,Jean</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> amis3 = amis.slice(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'參數0： '</span> + amis3) <span class="comment">// Ayda,Phi,Alex,Chris,Tracy,Thomas,Jean</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="只給一個參數，會從給的index開始切"><a href="#只給一個參數，會從給的index開始切" class="headerlink" title="只給一個參數，會從給的index開始切"></a>只給一個參數，會從給的index開始切</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis4 = amis.slice(<span class="number">2</span>); </span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'只給一個參數： '</span> + amis4) <span class="comment">// Alex,Chris,Tracy,Thomas,Jean</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="給負數參數，會從最後面開始取"><a href="#給負數參數，會從最後面開始取" class="headerlink" title="給負數參數，會從最後面開始取"></a>給負數參數，會從最後面開始取</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis5 = amis.slice(<span class="number">-2</span>); </span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'給負數參數： '</span> + amis5) <span class="comment">// Thomas,Jean</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="給兩個參數，"><a href="#給兩個參數，" class="headerlink" title="給兩個參數，"></a>給兩個參數，</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis6 = amis.slice(<span class="number">2</span>, <span class="number">-2</span>); </span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'給兩個參數： '</span> + amis6) <span class="comment">// Alex,Chris,Tracy</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二參數的索引值為指定的前一個</span></span><br><span class="line"><span class="keyword">var</span> amis7 = amis.slice(<span class="number">2</span>, <span class="number">4</span>); </span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'給兩個參數： '</span> + amis7) <span class="comment">// Alex,Chris </span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'原始陣列不變： '</span> + amis) <span class="comment">// Ayda,Phi,Alex,Chris,Tracy,Thomas,Jean</span></span><br></pre></td></tr></table></figure>
+
+<p>在使用 slice() 的時候並不需要再用另一個變數去接結果，因為使用slice()時，就會自動的在新的記憶體位址產生。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(amis.slice(<span class="number">2</span>, <span class="number">4</span>)); <span class="comment">// Alex,Chris</span></span><br></pre></td></tr></table></figure> -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>slice() 中文直譯為切片，即是從陣列複製一份出來。<br>有時我們想要處理陣列資料，又不想動到原始資料，因為一但動到原始資料就無法回復原本的樣子，甚至要比對都無從比對，這時slice()就常派上用場。<br>這點感覺有點像 git，先把資料pull一份下來的動作一樣。</p>
+<h5 id="語法：arr-slice-begin-end-，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個"><a href="#語法：arr-slice-begin-end-，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個" class="headerlink" title="語法：arr.slice([begin[, end]]) ，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個"></a>語法：arr.slice([begin[, end]]) ，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個</h5><p>MDN:<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" target="_blank" rel="noopener">slice();</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis = [<span class="string">'Ayda'</span>, <span class="string">'Phi'</span>, <span class="string">'Alex'</span>, <span class="string">'Chris'</span>, <span class="string">'Tracy'</span>, <span class="string">'Thomas'</span>, <span class="string">'Jean'</span>];</span><br></pre></td></tr></table></figure>
+
+<h4 id="沒給參數和參數零的結果是一樣的"><a href="#沒給參數和參數零的結果是一樣的" class="headerlink" title="沒給參數和參數零的結果是一樣的"></a>沒給參數和參數零的結果是一樣的</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis2 = amis.slice();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'沒參數： '</span> + amis2) <span class="comment">// Ayda,Phi,Alex,Chris,Tracy,Thomas,Jean</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> amis3 = amis.slice(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'參數0： '</span> + amis3) <span class="comment">// Ayda,Phi,Alex,Chris,Tracy,Thomas,Jean</span></span><br></pre></td></tr></table></figure>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_Array-Slice/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_Array-Slice/" data-id="ck6jmw1h2000o6vuwtjymdnsu" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-JS_Converting-strings-to-numbers" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_Converting-strings-to-numbers/" class="article-date">
+  <time datetime="2019-07-24T04:03:26.000Z" itemprop="datePublished">2019-07-24</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_Converting-strings-to-numbers/">JavaScript 三種字串轉數字的方法</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h5 id="Converting-strings-to-numbers-with-vanilla-JavaScript"><a href="#Converting-strings-to-numbers-with-vanilla-JavaScript" class="headerlink" title="Converting strings to numbers with vanilla JavaScript"></a>Converting strings to numbers with vanilla JavaScript</h5><p>透過瀏覽器輸入的內容，要拿來做運算用的時候，必須先轉成數字，否則運算出來結果一定會讓人出乎意料。列如要使用者輸入兩個數字，然後將其相加，再將結果顯示於畫面，如果不做轉型，則會 1 + 1 = 11, 4 + 2 = 42,而不是我們想要的 2 和 6。</p>
+<h2 id="字串轉數字"><a href="#字串轉數字" class="headerlink" title="字串轉數字"></a>字串轉數字</h2><p>42 和 ‘42’ 都是數字，但對 JS 來說卻是不同的。<br>我們可以以嚴格模式的比較運算子，透過以下的方式得知，兩者的不同。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num1 = <span class="string">'42'</span>;</span><br><span class="line"><span class="keyword">var</span> num2 = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">if</span> (num1 === num2) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>以下有幾個方式將字串轉成數字，但不同的方式有不同的特色與優缺點。</p>
+<h3 id="parseInt"><a href="#parseInt" class="headerlink" title="parseInt()"></a>parseInt()</h3><p>將字串轉數字，回傳整數(whole number)。第一參數為字串，第二參數(進位)，如不給第二參數，則會以預設十進位轉數字。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> text = <span class="string">'42px'</span>;</span><br><span class="line"><span class="keyword">var</span> integer = <span class="built_in">parseInt</span>(num1, <span class="number">10</span>);</span><br><span class="line"><span class="built_in">console</span>.log(integer); <span class="comment">// 42</span></span><br></pre></td></tr></table></figure>
+
+<p>比較有趣的是，如果把開頭是數字，之後接字母的字串丟入處理，parseInt 也會回傳數字的部份。如果字串開頭沒有數字，則會回傳 NaN。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'42px'</span>); <span class="comment">// 42</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'Hello paris'</span>); <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'px42'</span>, <span class="number">10</span>); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="parseFloat"><a href="#parseFloat" class="headerlink" title="parseFloat()"></a>parseFloat()</h3><p>可以將放入的字串，回傳成帶有小數點(point number)的數字，如果有遇到非數字，則會只取數字，如果無法轉成數字，則會返回 NaN。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> text = <span class="string">'4.2isInFrance'</span>;</span><br><span class="line"><span class="keyword">var</span> pointNumber = <span class="built_in">parseFloat</span>(text);</span><br><span class="line"><span class="built_in">console</span>.log(pointNumber);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 其他例子</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">'234.234des'</span>); <span class="comment">// 234.234</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">'234.f234fff'</span>); <span class="comment">// 234</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">'f234.f234fff'</span>); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Number"><a href="#Number" class="headerlink" title="Number()"></a>Number()</h3><p>放入字串就會回傳數字，但是不容許混雜數字以外的字元，可以是小數點。屬於較嚴僅的字串轉數字的方式，只要字串裡有數字以外的字元都會傳回 NaN。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>(<span class="string">'42'</span>); <span class="comment">// 42</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'24.42'</span>); <span class="comment">// 24.42</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'-24.42'</span>); <span class="comment">// -24.42</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'-0'</span>); <span class="comment">// -0</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'is42'</span>); <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'24.42isASchool'</span>); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+
+<p>透過以上幾個字串轉數字的方式比較，以後就知道，用哪個方式轉成數字比較保險了。</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h5 id="Converting-strings-to-numbers-with-vanilla-JavaScript"><a href="#Converting-strings-to-numbers-with-vanilla-JavaScript" class="headerlink" title="Converting strings to numbers with vanilla JavaScript"></a>Converting strings to numbers with vanilla JavaScript</h5><p>透過瀏覽器輸入的內容，要拿來做運算用的時候，必須先轉成數字，否則運算出來結果一定會讓人出乎意料。列如要使用者輸入兩個數字，然後將其相加，再將結果顯示於畫面，如果不做轉型，則會 1 + 1 = 11, 4 + 2 = 42,而不是我們想要的 2 和 6。</p>
+<h2 id="字串轉數字"><a href="#字串轉數字" class="headerlink" title="字串轉數字"></a>字串轉數字</h2><p>42 和 ‘42’ 都是數字，但對 JS 來說卻是不同的。<br>我們可以以嚴格模式的比較運算子，透過以下的方式得知，兩者的不同。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num1 = <span class="string">'42'</span>;</span><br><span class="line"><span class="keyword">var</span> num2 = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">if</span> (num1 === num2) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>以下有幾個方式將字串轉成數字，但不同的方式有不同的特色與優缺點。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_Converting-strings-to-numbers/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_Converting-strings-to-numbers/" data-id="ck6jmw1h500106vuwo64wyjap" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_JS101-Exercise" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_JS101-Exercise/" class="article-date">
@@ -168,12 +331,144 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_JS101-Exercise/" data-id="ck6h0isa50016tcuw3lwgmuec" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_JS101-Exercise/" data-id="ck6jmw1h700176vuw347grjp3" class="article-share-link">
                             Share
                         </a>
                         
                                 
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-SASS_deployment-environment-and-fundamental" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../SASS_deployment-environment-and-fundamental/" class="article-date">
+  <time datetime="2019-07-17T19:53:46.000Z" itemprop="datePublished">2019-07-18</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/SASS/">SASS</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../SASS_deployment-environment-and-fundamental/">SASS 環境部署與基礎</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h2 id="SASS-重點"><a href="#SASS-重點" class="headerlink" title="SASS 重點"></a>SASS 重點</h2><ul>
+<li>Variables 變數</li>
+<li>Nesting 巢狀</li>
+<li>Partials / Imports</li>
+<li>Functions &amp; Mixins 函式 &amp; 巢狀</li>
+<li>Conditionale 條件式</li>
+<li>Operators &amp; Calculations 必較與計算子</li>
+<li>Color Functions 顏色函式</li>
+</ul>
+<h2 id="使用-NodeJs-佈署-SASS-環境"><a href="#使用-NodeJs-佈署-SASS-環境" class="headerlink" title="使用 NodeJs 佈署 SASS 環境"></a>使用 NodeJs 佈署 SASS 環境</h2><h3 id="在資料夾裡面安裝-SASS-編譯器：node-sass"><a href="#在資料夾裡面安裝-SASS-編譯器：node-sass" class="headerlink" title="在資料夾裡面安裝 SASS 編譯器：node sass"></a>在資料夾裡面安裝 SASS 編譯器：node sass</h3><p>1.先確認有安裝 npm 2.輸入 <code>npm init -y</code> 初始化並給予預設值 3.檔案夾裡會有一個自動生成的 package.json 4.在終端機安裝 node sass ：<code>npm install node-sass</code> 5.在檔案夾裡會生成 node_modules，同時在 package.json 裡也會自動增加 node-sass 的版本號 6.打開它修改預設檔案生成位置，修改 script，將 test 拿掉，改成：<br><code>&quot;sass&quot;: &quot;node-sass -w scss/ -o dist/css/ --recursive&quot;</code><br>-w 監控 scss 檔案夾，-o output 編譯輸出至 dist/css 這個檔案夾。 7.至根目錄，增加 scss 和 dist 等檔案夾，並在 scss 檔案夾裡增加 scss 檔案：<code>main.scss</code> 8.先在終端機執行 <code>npm run sass</code> 指令，啟動 sass 監聽 9.在 <code>main.scss</code>寫些簡單的 sass，儲存後，會顯示編譯完成，並且在 dist 自動生成 css 檔案夾和<code>main.css</code>。 10.想退出監聽模式可 <code>control + c</code> 結束監聽。</p>
+<p>(6)也可加入其他參數</p>
+<p>啟動監聽後，在每次更新存檔時會自動更新網頁，如有修改後網頁沒變化，可跳出 sass 再重啟，通常可解決此問題。</p>
+<h2 id="SASS-變數"><a href="#SASS-變數" class="headerlink" title="SASS 變數"></a>SASS 變數</h2><p>將變數統一整理到 <code>_variables.scss</code> 裡，並在<code>main.scss</code> 裡以<code>@import &#39;variables&#39;</code> 引入。<br>常用的變數名：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$primary-color</span></span><br><span class="line"><span class="variable">$secondary-color</span></span><br><span class="line"><span class="variable">$light-color</span></span><br><span class="line"><span class="variable">$dark-color</span></span><br><span class="line"><span class="variable">$font-stack</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="SASS-自帶的函式"><a href="#SASS-自帶的函式" class="headerlink" title="SASS 自帶的函式"></a>SASS 自帶的函式</h2><p>lighten(顏色;百分比); sass 會自動計算顏色深淺。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$primary-color</span>:<span class="number">#00cc99</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="variable">$primary-color</span>;</span><br><span class="line">  background_color:lighten(<span class="variable">$primary-color</span>, <span class="number">45%</span>); <span class="comment">/* 自動計算顏色變淺 */</span></span><br><span class="line">&#125;</span><br><span class="line">darken(<span class="variable">$primary-color</span>, 15%);</span><br><span class="line"><span class="comment">/* 自動計算顏色變深 */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="SASS-巢狀"><a href="#SASS-巢狀" class="headerlink" title="SASS 巢狀"></a>SASS 巢狀</h2><p>在 sass 的巢狀結構裡，我們可以使用更簡潔的方式來表示結構：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;section section-a&quot;&gt;</span><br><span class="line">    &lt;h2&gt;Hello Paris&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit.&lt;/p&gt;</span><br><span class="line">  &lt;/section&gt;</span><br><span class="line">  &lt;section class=&quot;section section-b&quot;&gt;</span><br><span class="line">    &lt;h2&gt;Hello taipei&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit.&lt;/p&gt;</span><br><span class="line">  &lt;/section&gt;</span><br></pre></td></tr></table></figure>
+
+<p>scss 可以用巢狀的<code>&amp;-a</code>表示是指向哪一個<code>section</code></p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.section</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2rem</span>;</span><br><span class="line">  <span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$primary-color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;-<span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$primary-color</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;-<span class="selector-tag">b</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$secondary-color</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>==要避免過度巢狀，多用在偽元素、狀態、hover…。==<br>例 : &amp;:hover { … ; &amp;.active { … ; &amp;:after { …</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">12px</span>;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  backgroung-<span class="attribute">color</span>: <span class="variable">$primary-color</span>;</span><br><span class="line">  &amp;:hover &#123;</span><br><span class="line">    backgroung-<span class="attribute">color</span>: darken(<span class="variable">$primary-color</span>, <span class="number">15%</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;<span class="selector-class">.active</span> &#123;</span><br><span class="line">    backgroung-<span class="attribute">color</span>: darken(<span class="variable">$primary-color</span>, <span class="number">15%</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Mixin-精華"><a href="#Mixin-精華" class="headerlink" title="Mixin 精華"></a>Mixin 精華</h2><p>使用情境，按鈕很多想做不同色彩。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$primary-color</span>: <span class="number">#00cc99</span>;</span><br><span class="line">@<span class="keyword">mixin</span> btnColor(<span class="variable">$color</span>) &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="variable">$color</span>;</span><br><span class="line">  &amp;:hover &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: darken(<span class="variable">$color</span>, <span class="number">15%</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">1rem</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 創見一個btn 並用傳入的顏色給予背景色 */</span></span><br><span class="line"><span class="selector-class">.btn-primary</span> &#123;</span><br><span class="line">  @<span class="keyword">include</span> btnColor(<span class="variable">$primary-color</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Extend"><a href="#Extend" class="headerlink" title="Extend"></a>Extend</h2><p>Sass 的 @extend 可以將相同的樣式整理在一起，在其他語言來說是非常帥氣的技法，但在 CSS 中請警慎使用。</p>
+<p>OOCSS 概念，在撰寫 CSS 時要盡可能符合兩個原則，==結構與樣式分離、容器與內容分離==，所以到這邊為止還是要貫徹這個概念，當使用 @extend 時如果會造成這個缺陷時，請避免使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;btn-light&quot;&gt;Read more&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;btn-dark&quot;&gt;Read more&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">%btn-read-more &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0.27rem</span> <span class="number">2rem</span>;</span><br><span class="line">  <span class="attribute">border</span>: none;</span><br><span class="line">  <span class="attribute">text-decoration</span>: none;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">1rem</span>;</span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  &amp;-light &#123;</span><br><span class="line">    @<span class="keyword">extend</span> %btn-read-more;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$dark-color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;-dark &#123;</span><br><span class="line">    @<span class="keyword">extend</span> %btn-read-more;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$dark-color</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果認為以上寫法較容易導致混亂，也可寫成這樣：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn-light</span> &#123;</span><br><span class="line">  @<span class="keyword">extend</span> %btn-read-more;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="variable">$dark-color</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.btn-dark</span> &#123;</span><br><span class="line">  @<span class="keyword">extend</span> %btn-read-more;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="variable">$dark-color</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Mixin-amp-Extend-比較與應用"><a href="#Mixin-amp-Extend-比較與應用" class="headerlink" title="Mixin &amp; Extend 比較與應用"></a>Mixin &amp; Extend 比較與應用</h2><p>究竟 Mixin 與 extend 的使用時機該如何抉擇？基本上來說，<br>@mixin 是將程式碼帶入到對應的 class 去，同時可帶入變數。<br>@extend 則是藉由 class 合併，並吃到共通樣式，但==無法帶入變數==。<br><a href="https://ithelp.ithome.com.tw/articles/10128359" target="_blank" rel="noopener">30 天掌握 Sass 語法 - (7)利用 Sass「@extend」，讓你無痛合併 CSS 樣式</a></p>
+<h2 id="運算式："><a href="#運算式：" class="headerlink" title="運算式："></a>運算式：</h2><p>會先乘除、後加減</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$width: 200px;</span><br><span class="line">$height: 400px;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: $width / <span class="number">2</span>;</span><br><span class="line">  <span class="attribute">height</span>: ($height - <span class="number">4</span>) / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Function-函式"><a href="#Function-函式" class="headerlink" title="Function 函式"></a>Function 函式</h2><p>可自創函式來處理許多繁瑣的事，例如自動辨別在深色底使用淺色字，反之，或是需要前贅詞讓瀏覽器相容的部份，也可一併用 function 處理。<br>方法：產生<code>_functions</code> 再以<code>@import</code>在主 scss 裡引入。<br>例一：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// _functions</span></span><br><span class="line"><span class="comment">// Set Text Color 自動偵測字體顏色該深or淺</span></span><br><span class="line">@function set-text-color(<span class="variable">$color</span>) &#123;</span><br><span class="line">  @<span class="keyword">if</span> (lightness(<span class="variable">$color</span>) &gt; 50) &#123;</span><br><span class="line">    @return <span class="number">#000</span>;</span><br><span class="line">  &#125; @<span class="keyword">else</span> &#123;</span><br><span class="line">    @return <span class="number">#fff</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Transform mixin 轉換小動畫</span></span><br><span class="line"><span class="comment">// 因 css transform 最好有前贅詞讓瀏覽器相容，可統一整理在這裡就不需要每次都寫</span></span><br><span class="line">@<span class="keyword">mixin</span> transform(<span class="variable">$property</span>) &#123;</span><br><span class="line">  --webkit-<span class="attribute">transform</span>: <span class="variable">$property</span>;</span><br><span class="line">  -ms-<span class="attribute">transform</span>: <span class="variable">$property</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="variable">$property</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.scss</span></span><br><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  &amp;-light &#123;</span><br><span class="line">    @<span class="keyword">extend</span> %btn-read-more;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">    <span class="attribute">color</span>: set-text-color(<span class="variable">$light-color</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// hover 動畫效果</span></span><br><span class="line">    &amp;:hover &#123;</span><br><span class="line">      @<span class="keyword">include</span> transform(rotate(-<span class="number">10deg</span>));</span><br><span class="line">      <span class="comment">// 讓背景變深或淺</span></span><br><span class="line">      <span class="attribute">background-color</span>: darken(<span class="variable">$light-color</span>, <span class="number">15%</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>HSL function 是常用到的函式，HSL 是色彩學中的色相、明度、彩度。<a href="https://color.adobe.com/create/color-wheel/" target="_blank" rel="noopener">adobe 色相環</a></p>
+<h2 id="規劃-Sass-結構-import-的用法"><a href="#規劃-Sass-結構-import-的用法" class="headerlink" title="規劃 Sass 結構 @import 的用法"></a>規劃 Sass 結構 @import 的用法</h2><p>@import 的的功用在於可以將 CSS 檔案進行切割，如果是單純要被匯入整合 Sass 檔，而並沒有要轉出成 CSS 檔案，在檔案名稱前面加個下底線『_』，例：_button.css 就不會被編譯了。</p>
+<p>基本的設計：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> mixin //放置所有Sass全域變數與<span class="keyword">Mixin</span></span><br><span class="line">  @<span class="keyword">import</span> reset // reset.css</span><br><span class="line">  @<span class="keyword">import</span> extnd // 拿來合併樣式，都放@<span class="keyword">extend</span>用的檔案</span><br><span class="line">  @<span class="keyword">import</span> layout //共同框架</span><br><span class="line">  @<span class="keyword">import</span> index //首頁</span><br><span class="line">  @<span class="keyword">import</span> page //內頁</span><br><span class="line">  @<span class="keyword">import</span> xxx;</span><br></pre></td></tr></table></figure>
+
+<p>@import 最前面先放全域變數與 ==mixin==，原因是因為前面@import 有寫到變數的地方找不到值，所以自然系統沒辦法編譯出來。</p>
+<p>接著 ==reset== 檔案，<br>網頁排版須先將所有瀏覽器預設樣式都統一，所以用 reset 統一。放在 mixin 前或後沒有差，因 mixin 都是變數而已，可以依照自己習慣放置。但也可能會在 reset 裡面導入全域變數，所以放第二有它的道理。</p>
+<p>@extend 與@mixin 並不會實際產生 code，只有呼叫才會合併與匯出</p>
+<p>第三個 ==extend== 是拿來合併 css 樣式用的，在設計網頁時，會發現有些樣式應可以抽出來進行合併動作，所以就會統一放在要合併的位置，就統一來放置@extend 的語法。</p>
+<p>==layout== 是網頁版型的共通設計，也就是無論哪一頁都會有的樣式，如：表頭、表尾<br>接著是不同頁面性質與區塊的分割，==index== 首頁、==page== 內頁，依單元數量視情況來切割，Sass @import 的主要用就是希望你可以把 CSS 進行切割，這樣在編輯 CSS 時就可以聚焦於某功能來進行瀏覽，將檔案歸類完善，找 CSS 相對也會方便許多。</p>
+<h3 id="國外-Sass-Way-介紹的-Sass-結構"><a href="#國外-Sass-Way-介紹的-Sass-結構" class="headerlink" title="國外 Sass Way 介紹的 Sass 結構"></a>國外 Sass Way 介紹的 Sass 結構</h3><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">stylesheets/</span><br><span class="line">|</span><br><span class="line">|-- modules/              # Common modules</span><br><span class="line">|   |-- _all.scss         # Include to get all modules 將所有 modules 引入到這裡(A)</span><br><span class="line">|   |-- _utility.scss     # Module name</span><br><span class="line">|   |-- _colors.scss      # Etc...</span><br><span class="line">|   ...</span><br><span class="line">|</span><br><span class="line">|-- partials/             # Partials</span><br><span class="line">|   |-- _base.sass        # imports for all mixins + global project variables 將所有 partials 引入到這裡(B)</span><br><span class="line">|   |-- _buttons.scss     # buttons</span><br><span class="line">|   |-- _figures.scss     # figures</span><br><span class="line">|   |-- _grids.scss       # grids</span><br><span class="line">|   |-- _typography.scss  # typography</span><br><span class="line">|   |-- _reset.scss       # reset</span><br><span class="line">|   ...</span><br><span class="line">|</span><br><span class="line">|-- vendor/               # CSS or Sass from other projects</span><br><span class="line">|   |-- _colorpicker.scss</span><br><span class="line">|   |-- _jquery.ui.core.scss</span><br><span class="line">|   ...</span><br><span class="line">|</span><br><span class="line">`-- main<span class="selector-class">.scss</span>            # primary Sass file 將(<span class="selector-tag">A</span>)、(<span class="selector-tag">B</span>) 引入這裡，與其他的partials</span><br></pre></td></tr></table></figure>
+
+<p>此份規劃的 Sass 架構還有分資料夾，將各類功能與模組分得更細：<br>==modules== 主要是放各種元素的模組，<br>== partials== 則是放置主結構的 CSS，<br>== vendor==則是統一放別人寫好的 Sass Framework，<br>所以 Sass 的主檔案就會這樣子去寫@import：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Modules and Variables</span></span><br><span class="line">@<span class="keyword">import</span> <span class="string">'partials/base'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Partials</span></span><br><span class="line">@<span class="keyword">import</span> <span class="string">'partials/reset'</span>;</span><br><span class="line">@<span class="keyword">import</span> <span class="string">'partials/typography'</span>;</span><br><span class="line">@<span class="keyword">import</span> <span class="string">'partials/buttons'</span>;</span><br><span class="line">@<span class="keyword">import</span> <span class="string">'partials/figures'</span>;</span><br><span class="line">@<span class="keyword">import</span> <span class="string">'partials/grids'</span>;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Third-party</span></span><br><span class="line">@<span class="keyword">import</span> <span class="string">'vendor/colorpicker'</span>;</span><br><span class="line">@<span class="keyword">import</span> <span class="string">'vendor/jquery.ui.core'</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="組件化的變數抽離"><a href="#組件化的變數抽離" class="headerlink" title="組件化的變數抽離"></a>組件化的變數抽離</h3><p>在每一個區塊的 sass 裡，雖然已經使用了引入的變數，但為了組件的可重複性，也就是說，例如 header 或 footer 可以拿去給別的專案用，就可以再把每個 sass 裡的變數提取出來，以便日後只要改最上頭的變數列表即可。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$footer_font_color</span>: lighten(<span class="variable">$dark-color</span>, <span class="number">15%</span>);</span><br><span class="line"><span class="variable">$footer_background_color</span>: darken(<span class="variable">$light-color</span>, <span class="number">15%</span>);</span><br><span class="line"><span class="variable">$footer_link_color</span>: <span class="variable">$primary-color</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">footer</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">color</span>: <span class="variable">$footer_font_color</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2rem</span> <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="variable">$footer_background_color</span>;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="variable">$font-base</span>;</span><br><span class="line">  <span class="selector-class">.link</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$footer_link_color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="參考網站"><a href="#參考網站" class="headerlink" title="參考網站"></a>參考網站</h2><p><a href="https://sass-lang.com/guide" target="_blank" rel="noopener">SASS 官網</a> | <a href="https://paper.dropbox.com/doc/Sass-Bootstrap--AepLvl6rTzh_ryoWRR5ADMXtAg-yuK4SQmHw4CzC96uX8ylZ" target="_blank" rel="noopener">六角筆記 範例</a><br><a href="https://dwatow.github.io/2018/03-12-node-sass/" target="_blank" rel="noopener">node-sass 初探 - 《Chris 技術筆記》</a><br><a href="https://hackmd.io/vgVp2KlzR6mYQvLu74wvgw" target="_blank" rel="noopener">Askie 筆記</a> | <a href="https://hackmd.io/ZMQqAUxBQzGLuuw0en8MBA" target="_blank" rel="noopener">初見 SCSS 一天開竅起手式</a><br><a href="https://www.codecademy.com/learn/learn-sass" target="_blank" rel="noopener">線上課程</a> | <a href="https://www.kancloud.cn/kancloud/sass-guidelin/" target="_blank" rel="noopener">簡中查閱</a> | <a href="https://medium.com/@chihsuan/%E5%A6%82%E4%BD%95%E5%AF%AB%E5%87%BA%E6%9B%B4%E5%A5%BD%E7%9A%84-css-scss-%E7%A8%8B%E5%BC%8F%E7%A2%BC-bab4396b1a01" target="_blank" rel="noopener">如何寫出更好的 CSS/SCSS 程式碼？</a> | <a href="https://www.youtube.com/watch?v=mgZRZ91h5yk&t=12s" target="_blank" rel="noopener">Sass 基礎運用介紹</a><br><a href="https://www.youtube.com/watch?v=FVx8WvZQV10" target="_blank" rel="noopener">六角學院 - SASS 之 @function、@extend、@mixin</a> | <a href="https://wcc723.github.io/sass/2013/08/26/sass-hsl-funtion/" target="_blank" rel="noopener">卡斯柏 Sass HSL function</a><br><a href="https://www.udemy.com/modern-html-css-from-the-beginning/learn/lecture/13875728#overview" target="_blank" rel="noopener">Udemy Modern HTML &amp; CSS From The Beginning (Including Sass)
+</a></p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h2 id="SASS-重點"><a href="#SASS-重點" class="headerlink" title="SASS 重點"></a>SASS 重點</h2><ul>
+<li>Variables 變數</li>
+<li>Nesting 巢狀</li>
+<li>Partials / Imports</li>
+<li>Functions &amp; Mixins 函式 &amp; 巢狀</li>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../SASS_deployment-environment-and-fundamental/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/SASS_deployment-environment-and-fundamental/" data-id="ck6jmw1jc00966vuwa5sfevxf" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/SASS/">SASS</a></li></ul>
 
                     </footer>
     </div>
@@ -254,7 +549,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_Return-in-the-loop/" data-id="ck6h0isa9001etcuwhy2mxhkt" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_Return-in-the-loop/" data-id="ck6jmw1h9001f6vuwtdpyo14z" class="article-share-link">
                             Share
                         </a>
                         
@@ -357,7 +652,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ternary-conditional-operator-and-Comparison-operator/" data-id="ck6h0isbp004ftcuw0xwvu238" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ternary-conditional-operator-and-Comparison-operator/" data-id="ck6jmw1ic004l6vuwokwwctld" class="article-share-link">
                             Share
                         </a>
                         
@@ -449,7 +744,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_複製By-reference與By-value的不同/" data-id="ck6h0isbr004mtcuw2rjpjc0j" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_複製By-reference與By-value的不同/" data-id="ck6jmw1if004s6vuwp9c0rm3f" class="article-share-link">
                             Share
                         </a>
                         
@@ -601,7 +896,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/Git-GitHub-實際操作/" data-id="ck6h0is9o000atcuwyy06he1n" class="article-share-link">
+                        <a data-url="tsuifei.github.io/Git-GitHub-實際操作/" data-id="ck6jmw1h1000l6vuw6go63j3t" class="article-share-link">
                             Share
                         </a>
                         
@@ -686,7 +981,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/git-github練習心得/" data-id="ck6h0isc2005gtcuw1rtmg1a6" class="article-share-link">
+                        <a data-url="tsuifei.github.io/git-github練習心得/" data-id="ck6jmw1in005q6vuw3zbz3xh7" class="article-share-link">
                             Share
                         </a>
                         
@@ -769,332 +1064,12 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="ck6h0isbq004jtcuw6it8er4l" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="ck6jmw1id004p6vuwg8mb2gaw" class="article-share-link">
                             Share
                         </a>
                         
                                 
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
-    <article id="post-JS_What-is-an-IIFE-in-JavaScript" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_What-is-an-IIFE-in-JavaScript/" class="article-date">
-  <time datetime="2019-07-04T06:25:44.000Z" itemprop="datePublished">2019-07-04</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_What-is-an-IIFE-in-JavaScript/">JavaScript IIFE 立即呼叫函式</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。<br>IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。</p>
-<h2 id="IIFE語法"><a href="#IIFE語法" class="headerlink" title="IIFE語法"></a>IIFE語法</h2><p>將一個正常的函式包在()裡，後面加個()就成了匿名函式。<br>後面的()表示立即執行，也可帶參數。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<p>IIFE函式前面一定要有; 不然會有錯誤<br>範例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="string">'foo'</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">bar</span>) </span>&#123;</span><br><span class="line">    Console.log(bar)</span><br><span class="line">&#125;)(foo)</span><br></pre></td></tr></table></figure>
-
-<p>匿名函數的參數(foo)就是 var foo 的這個變數，如果匿名函數有兩個參數， 後面的() 也可帶兩個參數</p>
-<p>一般呼叫函式的方式可以是：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">doSomething(<span class="number">123</span>);</span><br><span class="line"><span class="comment">// 匿名函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">doSomething</span> (<span class="params">i</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;)(<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
-
-<p>使用匿名函式即是馬上使用，也就是宣告他的同時也呼叫它，自然就不需要給名字了。所以就成了以下不需名字的函式。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">i</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;)(<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
-
-<p>在回圈內呼叫 function 會需要用 IIFE 來把參數的值保留起來，如果有看過 jQuery 的原始碼，會發現有這段：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> window, undefined</span>)</span>&#123;</span><br><span class="line"> <span class="comment">// ....</span></span><br><span class="line">&#125;)(<span class="built_in">window</span>);</span><br></pre></td></tr></table></figure>
-
-<p>jQuery 也用了相同的手法將 window 和 indefined 保留起來。<br>ES6 以後新增了 let 與 const 的變數型態，且改以 { } 作為它的 Scope。換句話說，將範例中的 for 的 var 改為以 let 宣告就可以做到保留 i 在執行迴圈當下的「值」的效果：</p>
-<h4 id="經典迴圈非同步問題"><a href="#經典迴圈非同步問題" class="headerlink" title="經典迴圈非同步問題"></a>經典迴圈非同步問題</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i)</span><br><span class="line">    &#125;, i * <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>目的：每一秒列出一個 i<br>但會列印出１０個１０，因為當進入列印迴圈時，i已經跑到１０了<br>解決如何因非同步而無法印出１－１０的方法：使用IIFE和閉包<br>使用IIFE</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>) </span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(j)</span><br><span class="line">        &#125;, j * <span class="number">1000</span>)</span><br><span class="line">    &#125;)(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>參考：<a href="https://ithelp.ithome.com.tw/articles/10192739" target="_blank" rel="noopener">立即被呼叫的函式 (Immediately Invoked Function Expression, IIFE)</a></p>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <p>IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。<br>IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。</p>
-<h2 id="IIFE語法"><a href="#IIFE語法" class="headerlink" title="IIFE語法"></a>IIFE語法</h2><p>將一個正常的函式包在()裡，後面加個()就成了匿名函式。<br>後面的()表示立即執行，也可帶參數。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<p>IIFE函式前面一定要有; 不然會有錯誤<br>範例：</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_What-is-an-IIFE-in-JavaScript/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_What-is-an-IIFE-in-JavaScript/" data-id="ck6h0isa70019tcuwh7jr2q1r" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
-    <article id="post-在-Github-上安裝-Hexo-記錄" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../在-Github-上安裝-Hexo-記錄/" class="article-date">
-  <time datetime="2019-07-03T02:07:02.000Z" itemprop="datePublished">2019-07-03</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/Other/">Other</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../在-Github-上安裝-Hexo-記錄/">在 Github 上安裝 Hexo 記錄</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>在學員的鼓勵下，決定試試安裝輕量級 blog Hexo。隨然玩 Wordpress 已經很久了，但 WP 的架構越來越龐大更新速度快，整個檔案也越來越龐大了，且 WP 需要資料庫的配合。但 Hexo 不但不需要，且還可以部屬在 Github 上，超方便的！雖然設定與修改比較繁瑣，但也有它的樂趣，且既然是與程式有關的文章和內容，那何不把他們放在一起。</p>
-<p>將 Hexo 自動生成的靜態頁面、搭配 github 的 page 功能，推上 github 後就可達到輕量 blog 的基本功能，如果想要一些功能如搜尋、留言，則要自行設定或安裝外掛，比較方便的是找個完善的主題，就不需這些繁複的設置，但最好對 Hexo 架構有一定的了解，否則一有問題仍須花很多時間查詢。</p>
-<p>這裡使用的佈景主題是 Hexo 的預設主題：landscape，希望慢慢修改成自己喜歡的樣子即可，功能仍不是很完善，期待自己慢慢把它做的更完整一點。</p>
-<h2 id="Hexo-建立文章的方式"><a href="#Hexo-建立文章的方式" class="headerlink" title="Hexo 建立文章的方式"></a>Hexo 建立文章的方式</h2><p>一般我們都會使用hexo new <title>來建立新文章，這種方法會將新文章建立在source/_posts目錄下，當使用hexo generate 編譯markdown文件時，就會將其 HTML 結果編譯在 public 目錄下，之後 hexo deploy 再將把public目錄下所有文章一起部署到GitHub，這是我們熟悉的Hexo流程。</title></p>
-<p>這種建立文章方式的缺點是：如果同時編輯多篇文章，只要其中一篇文章尚未編輯完成，也會隨著 hexo deploy 通通一起部署到 GitHub，也就是 GitHub 可能會看到我們尚未完成的文章。以下會介紹先將文章存成草稿的步驟。</p>
-<h2 id="如何安裝"><a href="#如何安裝" class="headerlink" title="如何安裝"></a>如何安裝</h2><p>條件：node.js 環境 ＋ git<br><a href="https://hexo.io/zh-tw/docs/" target="_blank" rel="noopener">官網文件</a></p>
-<p>先在本地端安裝好需要檔案，安裝後檔案夾內會有</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
-
-<p><code>_config.yml</code> :<br>網站<a href="https://hexo.io/zh-tw/docs/configuration" target="_blank" rel="noopener">配置</a>檔案，可以在此配置大部分的設定。</p>
-<p><code>package.json</code> :<br>應用程式資料。EJS, Stylus 和 Markdown renderer 已預設安裝，可以稍後移除。</p>
-<p><code>scaffolds</code> :<br>鷹架 資料夾。當建立新文章時，Hexo 會根據 scaffold 來建立檔案。</p>
-<p><code>source</code> :<br>原始檔案資料夾是放置內容的地方。檔案 / 資料夾名稱開頭為 _ (底線) 和隱藏檔案會被忽略，除了 _posts 資料夾以外。Markdown 和 HTML 檔案會被處理並放到 public 資料夾，而其他檔案會被拷貝過去。</p>
-<p><code>themes</code> :<br>主題 資料夾。Hexo 會根據主題來產生靜態檔案。</p>
-<h2 id="Hexo-指令"><a href="#Hexo-指令" class="headerlink" title="Hexo 指令"></a>Hexo 指令</h2><p><a href="https://hexo.io/zh-tw/docs/commands" target="_blank" rel="noopener">指令明細</a><br><code>$ hexo init [folder]</code><br>建立一個新的網站。如果沒有設定 folder 的話，Hexo 會在目前的資料夾建立網站。</p>
-<h2 id="如何產生文章"><a href="#如何產生文章" class="headerlink" title="如何產生文章"></a>如何產生文章</h2><h3 id="建立文章-hexo-new-layout-lt-title-gt"><a href="#建立文章-hexo-new-layout-lt-title-gt" class="headerlink" title="建立文章 : hexo new [layout] &lt;title&gt;"></a>建立文章 : <code>hexo new [layout] &lt;title&gt;</code></h3><p><code>$ hexo new [layout] &lt;title&gt;</code><br>Hexo 的 layout 有三種：草稿 draft、頁面 page 和文章 post。也可以自定義 layout.<br>如果沒有設定 layout 的話，則會使用 <code>_config.yml</code> 中的 <code>default_layout</code> 設定代替，原始預設為 post。<br>檔案名稱可以中文，如果標題包含空格的話，請使用引號括起來。<br>建立文章後 hexo 會在 source 裡的 _posts 生成新的 .md。</p>
-<h3 id="產生靜態文章-hexo-g"><a href="#產生靜態文章-hexo-g" class="headerlink" title="產生靜態文章 : hexo g"></a>產生靜態文章 : <code>hexo g</code></h3><p><code>$ hexo generate</code><br>產生靜態檔案。<br>|選項    | 描述 |<br>| ——– | ——– |<br>| -g, –generate    | 部署網站前先產生靜態檔案 |</p>
-<h3 id="本地伺服器-hexo-s"><a href="#本地伺服器-hexo-s" class="headerlink" title="本地伺服器 : hexo s"></a>本地伺服器 : <code>hexo s</code></h3><p><code>$ hexo server</code><br>啟動伺服器，預設是 <a href="http://localhost:4000/。" target="_blank" rel="noopener">http://localhost:4000/。</a><br>| 選項|    描述|<br>| ——– | ——– |<br>| -p, –port    | 覆蓋連接埠設定 |<br>| -s, –static    | 只使用靜態檔案 |<br>| -l, –log    | 啟動記錄器，或覆蓋記錄格式 |</p>
-<h3 id="部署到-github-hexo-d"><a href="#部署到-github-hexo-d" class="headerlink" title="部署到 github : hexo d"></a>部署到 github : <code>hexo d</code></h3><p><code>$ hexo deploy</code><br>部署網站。<br>| 選項 | 描述 |<br>| ——– | ——– |<br>| -d, –deploy    | 產生完成即部署網站     |<br>| -w, –watch | 產生完成即部署網站 |</p>
-<p><code>$ hexo render &lt;file&gt; [file2] ...</code><br>渲染檔案。</p>
-<table>
-<thead>
-<tr>
-<th>選項</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-o, –output</td>
-<td>輸出位置</td>
-</tr>
-</tbody></table>
-<p><a href="https://hexo.io/zh-tw/docs/commands" target="_blank" rel="noopener">其他指令</a> ｜ <a href="https://hexo.io/zh-tw/docs/migration" target="_blank" rel="noopener">侯塞雷還可以轉移！</a></p>
-<p>==注意==<br>如果有使用部分搜尋外掛，會使用 xml 格式搜尋，丟文章上去時先檢查是否有正確規格化為XML格式，以免出錯查不出來，所以可先去<a href="https://tool.oschina.net/codeformat/xml" target="_blank" rel="noopener">此網站檢查</a></p>
-<h2 id="常用-Hexo-指令"><a href="#常用-Hexo-指令" class="headerlink" title="常用 Hexo 指令"></a>常用 Hexo 指令</h2><p>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d<br>hexo clean ：清除快取檔案 (db.json) 和已產生的靜態檔案 (public)。</p>
-<h3 id="可一起使用：hexo-g-amp-amp-hexo-s-amp-amp-hexo-d-amp-amp-hexo-new-文章名稱"><a href="#可一起使用：hexo-g-amp-amp-hexo-s-amp-amp-hexo-d-amp-amp-hexo-new-文章名稱" class="headerlink" title="可一起使用：hexo g &amp;&amp; hexo s &amp;&amp; hexo d &amp;&amp; hexo new [文章名稱]"></a>可一起使用：<code>hexo g &amp;&amp; hexo s &amp;&amp; hexo d &amp;&amp; hexo new [文章名稱]</code></h3><h2 id="如何更換主題"><a href="#如何更換主題" class="headerlink" title="如何更換主題"></a>如何更換主題</h2><p>可上<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="noopener">Hexo 官網 Themes</a>直接找自己喜歡的主題，進入主題後，找到<code>install</code>這項，複製git clone的網址如，以Themes 名為 light 為例：<br><code>git clone https://github.com/hexojs/hexo-theme-light.git themes/light</code></p>
-<p>Clon 完畢後，到根目錄的 <code>_config.yml</code> 去設定對應的 Themes 主題名稱： <code>theme: light</code></p>
-<h2 id="如何自動備份"><a href="#如何自動備份" class="headerlink" title="如何自動備份"></a>如何自動備份</h2><p>可以在同一專案上再開一條 Git 分支，專門儲存原始檔案，或是使用 <a href="https://askiebaby.github.io/macos-command-backup-update-hexo-blog/" target="_blank" rel="noopener">Askie 推薦的一鍵備份</a>，但須另開專案。</p>
-<h2 id="如何文章分類"><a href="#如何文章分類" class="headerlink" title="如何文章分類"></a>如何文章分類</h2><h3 id="第一種方法：手動加入"><a href="#第一種方法：手動加入" class="headerlink" title="第一種方法：手動加入"></a>第一種方法：手動加入</h3><p>使用 <code>$ hexo n &lt;name&gt;</code>新建頁面，打開此默認頁面是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: name</span><br><span class="line">date: 2019-08-05 11:15:00 </span><br><span class="line">tags: </span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<p>但裡面並沒有分類的資訊，可直接在 <code>tags:</code>上加 <code>categories:</code> 存檔後，重新執行 <code>hexo n &#39;name&#39;</code>，重新打開頁面裡頭就有分類了。</p>
-<h3 id="第二種方法："><a href="#第二種方法：" class="headerlink" title="第二種方法："></a>第二種方法：</h3><p>scaffolds目錄下，是新建頁面的模板，執行新建命令時，是根據這裡的模板頁來完成的，所以可在這裡根據自己的需求增加一些默認的分類值。<br>在寫文章時，如果我們的分類是程式，那麼在也面裡的分類就會是<code>categories:程式</code>，它的訪問路徑即是：<code>*/categories/程式</code></p>
-<p>如果想把路徑明和分類明分別設置，可打開根目錄的<code>_config.yml</code>，找到以下位置或增加以下這段做修改：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Category &amp; Tag</span><br><span class="line">default_category: uncategorized</span><br><span class="line">category_map:</span><br><span class="line">	程式: programming</span><br><span class="line">	生活: life</span><br><span class="line">	其他: other</span><br><span class="line">tag_map:</span><br></pre></td></tr></table></figure>
-
-<p><code>category_map:</code>是設置分類的地方，每行一個分類，冒號前面是分類名稱，後面是訪問路徑。可以提前在這裡設置好一些分類，當編輯的文章填寫了對應的分類名時，就會自動的按照對應的路徑來訪問。</p>
-<h3 id="設定分類標籤在頁面裡"><a href="#設定分類標籤在頁面裡" class="headerlink" title="設定分類標籤在頁面裡"></a>設定分類標籤在頁面裡</h3><p>在編輯文章的時候，tags:後面是設置標籤的地方，如果有多個標籤的話，可以用下面兩種辦法來設置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">tages: </span><br><span class="line">-標籤1</span><br><span class="line">-標籤2</span><br><span class="line">...</span><br><span class="line">- 標籤n</span><br><span class="line"></span><br><span class="line">// 或是</span><br><span class="line">tages: </span><br><span class="line">-標籤1</span><br><span class="line">-標籤2</span><br><span class="line">...</span><br><span class="line">- 標籤n</span><br></pre></td></tr></table></figure>
-
-<h2 id="如何設定分類-menu"><a href="#如何設定分類-menu" class="headerlink" title="如何設定分類 menu"></a>如何設定分類 menu</h2><p>在 Hexo 默認菜單只有 Home 和 Archives 兩項，如何增加新的項目到 menu 裡？<br>打開themes裡主題的配置文件：<code>_config.yml</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">menu :</span><br><span class="line">  Home: /</span><br><span class="line">  Archives: /archives</span><br><span class="line">  About: / about</span><br></pre></td></tr></table></figure>
-
-<p><code>menu :</code> 表示 Nav，在底下加上的 <code>About: /about</code> 表示顯示的 Nav 項目/路徑。Nav 項目可為中文，路徑也可設置其他url。<br>記得建立一個 nav 的項目就要執行建立 Nav 項目的指令：<br><code>hexo n page &#39;about&#39;</code> hexo 就會自動生成這個分類的分類頁，在 source 目錄裡會生成一個對應的目錄，此目錄裡的<code>index.md</code> 就是顯示這個分類列表的頁面。</p>
-<p>參考：<a href="http://ijiaober.github.io/2014/08/05/hexo/hexo-04/" target="_blank" rel="noopener">Hexo使用攻略：（四）Hexo的分类和标签设置</a></p>
-<h2 id="如何增加站內搜尋功能"><a href="#如何增加站內搜尋功能" class="headerlink" title="如何增加站內搜尋功能"></a>如何增加站內搜尋功能</h2><p>以<a href="https://app.swiftype.com/" target="_blank" rel="noopener">swiftype.com</a>服務來設定站內服務，<br>先至 swiftype 申請帳號，再把生成的碼丟入網頁中。<br><a href="https://juejin.im/post/5bbdc8d8e51d450e5e0cb269" target="_blank" rel="noopener">參考教學 使用 Swiftype 给 Hexo 搭建的博客添加站内搜索功能</a></p>
-<h2 id="如何將文章存成草稿-draft"><a href="#如何將文章存成草稿-draft" class="headerlink" title="如何將文章存成草稿 draft"></a>如何將文章存成草稿 draft</h2><p>必須先在 source/ 底下建立一個 _drafts 目錄，以存放草稿。</p>
-<h3 id="建立文章草稿"><a href="#建立文章草稿" class="headerlink" title="建立文章草稿"></a>建立文章草稿</h3><p><code>$ hexo new draft &lt;title&gt;</code><br>Hexo另外提供 draft 機制，原理是將新文章將建立在source/_drafts目錄下，因此 hexo generate 並不會將其編譯到 public 目錄下，所以 hexo deploy 也不會將其部署到 GitHub。</p>
-<h3 id="本機預覽草稿"><a href="#本機預覽草稿" class="headerlink" title="本機預覽草稿"></a>本機預覽草稿</h3><p><code>$ hexo S --draft</code><br>雖然 hexo generate 不會編譯 source/_drafts 目錄下的文章，但 Hexo 的 Hexo server 另外提供<code>--draft</code>的參數，這讓我們只要搭配<code>hexo-browsersyncplugins</code>，就可以做到一邊編輯 markdown 文章，一邊使用瀏覽器預覽的目的。</p>
-<h3 id="將草稿發佈為正式文章"><a href="#將草稿發佈為正式文章" class="headerlink" title="將草稿發佈為正式文章"></a>將草稿發佈為正式文章</h3><p><code>$ hexo P &lt;filename&gt;</code><br>其中<code>&lt;filename&gt;</code>為不包含md後綴的文章名稱。它的原理只是將文章從source/_drafts移動到source/_posts而已。</p>
-<h3 id="將正式文章發佈為草稿"><a href="#將正式文章發佈為草稿" class="headerlink" title="將正式文章發佈為草稿"></a>將正式文章發佈為草稿</h3><p>之後的 hexo generate 與 hexo deploy 的用法就完全一樣了。<br>若日後想將正式文章轉為為草稿，只需手動將文章從source/_posts目錄移動到source/_drafts目錄即可。</p>
-<p>向 Google 申請 Blog Search: <a href="https://search.google.com/search-console/welcome" target="_blank" rel="noopener">Google Search Console</a></p>
-<h2 id="增加邊欄"><a href="#增加邊欄" class="headerlink" title="增加邊欄"></a>增加邊欄</h2><p>進入themes\layout_widget目錄中，建立 about.ejs 文件，模仿其他文件中的模版，輸入以下內容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (site.tags.length)&#123; %&gt;</span><br><span class="line">  &lt;div class=&quot;widget-wrap&quot;&gt;</span><br><span class="line">    &lt;h3 class=&quot;widget-title&quot;&gt;About&lt;/h3&gt;</span><br><span class="line">    &lt;div class=&quot;widget&quot;&gt;</span><br><span class="line">      Email：xxx@xxx.com&lt;br /&gt;</span><br><span class="line">      Site：www.</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
-
-<p>打開themes_config.yml，找到#Sidebar，在最後面添加- about。刷新頁面。<br>Ref:<a href="https://wizardforcel.gitbooks.io/markdown-simple-world/hexo-tutor-4.html" target="_blank" rel="noopener">Hexo 入門指南</a></p>
-<h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p><a href="https://hexo.io/zh-tw/docs/configuration.html" target="_blank" rel="noopener">Hexo 檔案配置</a><br><a href="https://coffee0127.github.io/blog/2016/08/09/hexo-configuration/" target="_blank" rel="noopener">在 landscape 主題安裝一些功能</a></p>
-<p><a href="https://kennyliblog.nctu.me/2019/06/24/Google-search-Hexo-Blog/" target="_blank" rel="noopener">讓 Google 能搜尋到自己的 Hexo Blog</a></p>
-<p><a href="http://kuangqi.me/tricks/enable-table-of-contents-on-hexo/" target="_blank" rel="noopener">为Hexo博客添加目录</a></p>
-<p>發現 Hexo 新貼文後，GitHub 的首頁綠點卻沒出現，於是依照此篇重新設定 ssh，已重新更新。<br><a href="https://lizhijun.site/2018/02/04/Hexo+Github%E6%90%AD%E5%BB%BAyilia%E4%B8%BB%E9%A2%98%E7%9A%84%E5%8D%9A%E5%AE%A2/" target="_blank" rel="noopener">Hexo+Github搭建yilia主題的博客</a></p>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <p>在學員的鼓勵下，決定試試安裝輕量級 blog Hexo。隨然玩 Wordpress 已經很久了，但 WP 的架構越來越龐大更新速度快，整個檔案也越來越龐大了，且 WP 需要資料庫的配合。但 Hexo 不但不需要，且還可以部屬在 Github 上，超方便的！雖然設定與修改比較繁瑣，但也有它的樂趣，且既然是與程式有關的文章和內容，那何不把他們放在一起。</p>
-<p>將 Hexo 自動生成的靜態頁面、搭配 github 的 page 功能，推上 github 後就可達到輕量 blog 的基本功能，如果想要一些功能如搜尋、留言，則要自行設定或安裝外掛，比較方便的是找個完善的主題，就不需這些繁複的設置，但最好對 Hexo 架構有一定的了解，否則一有問題仍須花很多時間查詢。</p>
-<p>這裡使用的佈景主題是 Hexo 的預設主題：landscape，希望慢慢修改成自己喜歡的樣子即可，功能仍不是很完善，期待自己慢慢把它做的更完整一點。</p>
-<h2 id="Hexo-建立文章的方式"><a href="#Hexo-建立文章的方式" class="headerlink" title="Hexo 建立文章的方式"></a>Hexo 建立文章的方式</h2><p>一般我們都會使用hexo new <title>來建立新文章，這種方法會將新文章建立在source/_posts目錄下，當使用hexo generate 編譯markdown文件時，就會將其 HTML 結果編譯在 public 目錄下，之後 hexo deploy 再將把public目錄下所有文章一起部署到GitHub，這是我們熟悉的Hexo流程。</title></p>
-<p>這種建立文章方式的缺點是：如果同時編輯多篇文章，只要其中一篇文章尚未編輯完成，也會隨著 hexo deploy 通通一起部署到 GitHub，也就是 GitHub 可能會看到我們尚未完成的文章。以下會介紹先將文章存成草稿的步驟。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../在-Github-上安裝-Hexo-記錄/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/在-Github-上安裝-Hexo-記錄/" data-id="ck6h0isdc009itcuwr80ntquy" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Other/">Other</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
-    <article id="post-JS_ES6-箭頭函式-Arrow-function" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_ES6-箭頭函式-Arrow-function/" class="article-date">
-  <time datetime="2019-07-02T01:17:36.000Z" itemprop="datePublished">2019-07-02</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>►<a class="article-category-link" href="../../categories/JavaScript/ES6/">ES6</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_ES6-箭頭函式-Arrow-function/">JavaScript ES6 箭頭函式 Arrow function</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>箭頭函式是 ES6 的新語法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原本的寫法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">double</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或是 </span></span><br><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 語法</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function">(<span class="params">x</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="箭頭函式的簡寫規則"><a href="#箭頭函式的簡寫規則" class="headerlink" title="箭頭函式的簡寫規則"></a>箭頭函式的簡寫規則</h3><p>1.如果參數只有一個，可省略參數的括號(x)=&gt; x，0或多個都不可省略。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">x</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.函式本體如果只有一行，且只有 return 一個值，可省略大花括號和 return，直接把本體接在=&gt;後面 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="This-是什麼？和箭頭函式的關係"><a href="#This-是什麼？和箭頭函式的關係" class="headerlink" title="This 是什麼？和箭頭函式的關係"></a>This 是什麼？和箭頭函式的關係</h3><p>this 指的是函式的情境(context)，某人去101大樓往下跳，但跳下去沒事，因為在爬樓梯，他只有跳一格的樓梯，當然沒事，但是跳這個動作很明確，就像是函式的定義一樣。<br>但是你在什麼樣的情境下跳，會影響他的結果，這個情境就是 Context 。<br>例如：一個跳的函式，裡面內容是固定的，但裡面的this就要看他執行時的情境而定。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jump</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>javascript 裡函式的執行基本上可分為三種：<br>1.直接執行： 函式裡的 this 是 window (global)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jump();</span><br><span class="line"><span class="comment">// window 物件</span></span><br></pre></td></tr></table></figure>
-
-<p>2.作為一個物件的方法來執行:裡面的 this 就是物件。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123;&#125;</span><br><span class="line">a.jump = jump;</span><br><span class="line">a.jump();</span><br><span class="line"><span class="comment">// 執行結果是物件 &#123;jump:f..&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>3.假設頁面上有一個button，點它就會執行 jump()，<br>如果一個函式以 Dom 監聽函式來執行，函式裡面的this就會指向所監聽的元素 Dom。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=&quot;btn&quot;&gt;</span><br><span class="line">btn</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jump</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">btn.sddEventListener(<span class="string">'click'</span>, jump);</span><br><span class="line"><span class="comment">// button DOM</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="用箭頭-This-會改變"><a href="#用箭頭-This-會改變" class="headerlink" title="用箭頭 This 會改變"></a>用箭頭 This 會改變</h3><p>如果以箭頭函式攥寫 Dom 的監聽函式，This就會改變成指向 window。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> jump = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">btn.sddEventListener(<span class="string">'click'</span>, jump);</span><br><span class="line"><span class="comment">// window</span></span><br><span class="line"><span class="keyword">const</span> a = &#123;&#125;</span><br><span class="line">a.jump = jump; <span class="comment">// window</span></span><br><span class="line">a.jump(); <span class="comment">// window</span></span><br></pre></td></tr></table></figure>
-
-<p>只要是箭頭函式，無論如何執行它，裡面的 this 都會指向 window，這就是箭頭函式的特性，它沒有自己的情境(Context)，它的內部 context 就等於它宣告的時候，它外面的this。</p>
-<p>React 會大量的用到 This 所以一定要弄懂。</p>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <p>箭頭函式是 ES6 的新語法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原本的寫法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">double</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或是 </span></span><br><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 語法</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function">(<span class="params">x</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="箭頭函式的簡寫規則"><a href="#箭頭函式的簡寫規則" class="headerlink" title="箭頭函式的簡寫規則"></a>箭頭函式的簡寫規則</h3><p>1.如果參數只有一個，可省略參數的括號(x)=&gt; x，0或多個都不可省略。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">x</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_ES6-箭頭函式-Arrow-function/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ES6-箭頭函式-Arrow-function/" data-id="ck6h0isa40012tcuwqed2lb8p" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
 
                     </footer>
     </div>
@@ -1128,7 +1103,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/VSCode/">VSCode</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/SASS/">SASS</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/VSCode/">VSCode</a></li></ul>
     </div>
   </div>
 
@@ -1138,7 +1113,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Base/">JS Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Base/">JS Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
     </div>
   </div>
 
@@ -1149,6 +1124,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="../../Vue_Template_Syntax/">Vue.js Template Syntax 模板語法</a>
+          </li>
         
           <li>
             <a href="../../JS_Base_Object/">JavaScript 基礎 物件篇</a>
@@ -1166,10 +1145,6 @@ ga('send', 'pageview');
             <a href="../../Vue_Test_QA/">Vuejs 線上問答題</a>
           </li>
         
-          <li>
-            <a href="../../React_module_component/">React 的 模塊 Module 與組件 component</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1179,7 +1154,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Base/" style="font-size: 12px;">JS Base</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 12px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 10px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="../../tags/CSS/" style="font-size: 12px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Base/" style="font-size: 12px;">JS Base</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 12px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 12px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 

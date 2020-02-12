@@ -111,6 +111,105 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan28_Find-the-index-value-of-the-last-element" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_ironMan28_Find-the-index-value-of-the-last-element/" class="article-date">
+  <time datetime="2019-11-27T20:21:14.000Z" itemprop="datePublished">2019-11-28</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_ironMan28_Find-the-index-value-of-the-last-element/">JS 陣列 Array 方法，找出最後一個元素的索引值 lastIndexOf()</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-28"><a href="#Day-28" class="headerlink" title="Day 28"></a>Day 28</h6><blockquote>
+<p>你！就是你。那個最後一個戴黑帽黑衣的站出來！你認識那位排在前頭和你穿ㄧ樣的俠客嗎？</p>
+</blockquote>
+<p>昨天我們介紹了<code>indexOf()</code>，今天要來介紹和它算是一對的<code>lastIndexOf()</code>。
+<code>lastIndexOf()</code>會把我們指定的元素，在陣列裡查找，並將陣列裡「最後一個」找到的元素索引值 <del>其實也是第一個</del>，傳回來給我們。</p>
+<p>但這兩個方法有什麼不同？我們先來看一下範例。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"hi"</span>, <span class="string">"D"</span>, <span class="string">"hi"</span>, <span class="string">"b"</span>, <span class="string">"hi"</span>,];</span><br><span class="line"></span><br><span class="line">arr.indexOf(<span class="string">"hi"</span>); <span class="comment">// 2 第一個 "hi"</span></span><br><span class="line"></span><br><span class="line">arr.lastIndexOf(<span class="string">"hi"</span>); <span class="comment">// 6 最後一個 "hi"</span></span><br></pre></td></tr></table></figure>
+
+<p>兩個操作的方式幾乎是ㄧ樣的，只是<code>indexOf()</code>會把第一個找到元素的索引值傳回來，而<code>lastIndexOf()</code>顧名思義，就是把在陣列裡，我們指定要找元素，且是在陣列裡面最後一個的索引值傳回來。且<code>lastIndexOf()</code>在找尋元素時，會從陣列的尾端開始找。因為找尋的順序相反，所以找到的第一個元素，其實也就是從陣列看來的最後一個。</p>
+<p>如同<code>indexOf()</code>ㄧ樣，如果我們有給第二個參數（從哪裡開始找），它也會從指定參數開始往「前」找。</p>
+<p>如果<code>lastIndexOf()</code>找不到我們想找的元素，也會和<code>indexOf()</code>ㄧ樣，回傳給我們 -1。</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf" target="_blank" rel="noopener">Array.prototype.lastIndexOf() - JavaScript | MDN</a></p>
+<p><strong>原型：</strong> Array.prototype.lastIndexOf()<br><strong>功能：</strong> 回傳指定元素在陣列中最後一個被找到的索引值。<br><strong>改變：</strong> 不會改變原陣列<br><strong>語法：</strong> arr.lastIndexOf(searchElement[, fromIndex])<br><strong>回傳值：</strong> 在陣列中找到的最後一個元素索引值；沒找到則為 -1。<br><strong>參數：</strong> 要找的元素、從哪裡開始找。</p>
+<h3 id="確定這個元素是陣列的唯一"><a href="#確定這個元素是陣列的唯一" class="headerlink" title="確定這個元素是陣列的唯一"></a>確定這個元素是陣列的唯一</h3><p>我們是不是可以利用<code>indexOf()</code>和<code>lastIndexOf()</code>的特性來確認我們找到的元素，是陣列裡的唯一？我們可以用 <code>===</code>  來比較，如果相同</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr2 = [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"hi"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>, <span class="string">"b"</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> item1 = arr2.indexOf(<span class="string">"hi"</span>); <span class="comment">// item1 回傳 2</span></span><br><span class="line"><span class="keyword">let</span> item2 = arr2.lastIndexOf(<span class="string">"hi"</span>); <span class="comment">// item2 回傳 2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testUnique</span>(<span class="params">item1, item2</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>( item1 === item2)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">testUnique(item1, item2); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="找出所有陣列裡指定的索引值"><a href="#找出所有陣列裡指定的索引值" class="headerlink" title="找出所有陣列裡指定的索引值"></a>找出所有陣列裡指定的索引值</h3><p>在上一篇<code>indexOf()</code>的介紹裡有提到，我們可透過<code>indexOf()</code>與<code>push()</code>將查找到的元素列表，以陣列的方式回傳回來，<code>lastIndexOf()</code>也可以辦到。它會尋找所有在陣列裡，我們指定查找元素的索引值，以<code>push()</code>將索引值集合在一個陣列裡。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> results = [];</span><br><span class="line"><span class="keyword">const</span> array = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'a'</span>, <span class="string">'c'</span>, <span class="string">'a'</span>, <span class="string">'d'</span>];</span><br><span class="line"><span class="keyword">let</span> element = <span class="string">'a'</span>;</span><br><span class="line"><span class="keyword">let</span> idx = array.lastIndexOf(element); <span class="comment">// 把找到的索引值存在變數裡</span></span><br><span class="line"><span class="keyword">while</span> (idx != <span class="number">-1</span>) &#123; <span class="comment">// 如果回傳值不是 -1 表示有找到</span></span><br><span class="line">  results.push(idx); <span class="comment">// 將索引值放入陣列</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果索引值大於 0，就回傳 找到的元素索引值，否則就回傳 -1</span></span><br><span class="line">  idx = (idx &gt; <span class="number">0</span> ? array.lastIndexOf(element, idx - <span class="number">1</span>) : <span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">results; <span class="comment">// [4, 2, 0]</span></span><br></pre></td></tr></table></figure>
+
+<p>與<code>indexOf</code>的方法不同的是，因為<code>lastIndexOf()</code>是從陣列尾端往前找，所以得到的索引值也會從大到小。</p>
+<p>今天的<code>lastIndexOf()</code>就介紹到這裏囉～</p>
+<hr>
+<p>我們在學習程式語言的時候，除了會去看一些技術文章或是影片教學外，大家是否會去看一些比較軟性的影片，如勵志或是如何規劃學習的影片？尤其對於轉職的本人來說，到底程式工程師需要有什麼樣的特質與正確的心態，甚至在職場上如何面對工作的壓力，與如何快速的進步 <del>對本人無效</del>，是需要一些技巧的。</p>
+<p>發現這個法國的 youtuber 是在兩三個月前，他稱他自己為遊牧開發人員，人住在巴釐島，除了有許多遠端的案子，還有經營 youtube 頻道、做教學影片，甚至前陣子還在巴釐島開了課，請法國人到亞洲包吃包住學程式。</p>
+<p>他的影片有許多是在討論他的觀察與想法，因為直接且真誠，所以頗受歡迎。前一陣子看到這個影片覺得頗正面，便把它記錄下來，如果有興趣，可以使用 youtube 的字幕翻譯功能觀看。</p>
+<h2 id="如果早知道，對初學者的建議"><a href="#如果早知道，對初學者的建議" class="headerlink" title="如果早知道，對初學者的建議"></a>如果早知道，對初學者的建議</h2><p>這支影片聊的主題是，一些他覺得剛開始學習程式語言的人，可以提前了解的學習面向，以下是大約的節錄：<br><a href="https://www.youtube.com/watch?v=G34p5eFg634" target="_blank" rel="noopener">CE QUE J’AURAIS AIMÉ SAVOIR QUAND J’AI DÉBUTÉ LA PROGRAMMATION - YouTube</a></p>
+<h3 id="第一"><a href="#第一" class="headerlink" title="第一"></a>第一</h3><p>不要什麼都想學，學你需要用到的技術或程式語言，專注這些就好。例如，如果你想學前端，就必須先瞭解前端需要用到什麼語言，例如 HTML, CSS, JavaScript 就先把這些學好，而不要一下子就跳到 Node 或急著想了解框架。且前端變化大，或許開始學到真正用到這段期間，還會有許多的變化產生。</p>
+<h3 id="第二"><a href="#第二" class="headerlink" title="第二"></a>第二</h3><p>剛開始學寫程式的時候，只要達到會寫與會動，可以運作就可以了，要讓它運作，需要什麼東西要先思考。初期要寫出來的程式碼完美，是不可能的，可以先試著寫出來，可以運作，再慢慢回頭重構你的碼。</p>
+<h3 id="第三"><a href="#第三" class="headerlink" title="第三"></a>第三</h3><p>把注意力集中在專案，而不是技術或新的語言。新的技術或者是語言，或許可以做更多的功能，但瀏覽者看到的是什麼？使用者看到的是什麼？看到的是具體的專案呈現。技術語言只是工具，如果學新技術，還是需要實做來呈現，也就是做專案。</p>
+<p>希望以上的分享，大家會喜歡。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-28"><a href="#Day-28" class="headerlink" title="Day 28"></a>Day 28</h6><blockquote>
+<p>你！就是你。那個最後一個戴黑帽黑衣的站出來！你認識那位排在前頭和你穿ㄧ樣的俠客嗎？</p>
+</blockquote>
+<p>昨天我們介紹了<code>indexOf()</code>，今天要來介紹和它算是一對的<code>lastIndexOf()</code>。
+<code>lastIndexOf()</code>會把我們指定的元素，在陣列裡查找，並將陣列裡「最後一個」找到的元素索引值 <del>其實也是第一個</del>，傳回來給我們。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_ironMan28_Find-the-index-value-of-the-last-element/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan28_Find-the-index-value-of-the-last-element/" data-id="ck6jmw1i2003x6vuwebquo7rc" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan27_Finding-element-index-values-in-an-array" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_ironMan27_Finding-element-index-values-in-an-array/" class="article-date">
@@ -190,7 +289,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan27_Finding-element-index-values-in-an-array/" data-id="ck6h0isb9003ntcuw35asrytl" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan27_Finding-element-index-values-in-an-array/" data-id="ck6jmw1i0003t6vuwnbbt9199" class="article-share-link">
                             Share
                         </a>
                         
@@ -275,7 +374,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan26_Converts-Array-to-string-and-localized/" data-id="ck6h0isb7003gtcuwg8kn8gpd" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan26_Converts-Array-to-string-and-localized/" data-id="ck6jmw1hz003q6vuw4yn1zukx" class="article-share-link">
                             Share
                         </a>
                         
@@ -367,7 +466,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/" data-id="ck6h0isb8003ktcuwkdfyc39c" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/" data-id="ck6jmw1hy003m6vuwcfxsjxdg" class="article-share-link">
                             Share
                         </a>
                         
@@ -459,7 +558,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/" data-id="ck6h0isb5003dtcuw8puv97kz" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/" data-id="ck6jmw1hv003f6vuw21wdittz" class="article-share-link">
                             Share
                         </a>
                         
@@ -548,7 +647,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan23_Reverses-an-array-in-place-reverse()-method/" data-id="ck6h0isb30039tcuwqty7x50h" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan23_Reverses-an-array-in-place-reverse()-method/" data-id="ck6jmw1hx003j6vuw0zuaowm2" class="article-share-link">
                             Share
                         </a>
                         
@@ -652,7 +751,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan22_ Sorts-the-elements-of-an-array-sort()-method/" data-id="ck6h0isb20036tcuwd1w9zfnz" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan22_ Sorts-the-elements-of-an-array-sort()-method/" data-id="ck6jmw1ht00386vuwb1o07uu6" class="article-share-link">
                             Share
                         </a>
                         
@@ -747,7 +846,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan21_Changes-the-contents-of-an-array-method /" data-id="ck6h0isb10032tcuw59aaallt" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan21_Changes-the-contents-of-an-array-method /" data-id="ck6jmw1hv003c6vuwv9g6okcz" class="article-share-link">
                             Share
                         </a>
                         
@@ -841,7 +940,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan20_Shallow-copy-array-slice()-method/" data-id="ck6h0isb00030tcuwailje1mj" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan20_Shallow-copy-array-slice()-method/" data-id="ck6jmw1hs00356vuwtdj9v9lz" class="article-share-link">
                             Share
                         </a>
                         
@@ -954,108 +1053,7 @@ ga('send', 'pageview');
                     </div>
 
                     <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/" data-id="ck6h0isaz002ytcuwjnpw3ta0" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
-    <article id="post-JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/" class="article-date">
-  <time datetime="2019-11-17T20:21:14.000Z" itemprop="datePublished">2019-11-18</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/">JS 從陣列 Array 的開頭刪除元素 shift()</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-18"><a href="#Day-18" class="headerlink" title="Day 18"></a>Day 18</h6><blockquote>
-<p>別把我頭上的角取下來，這樣我就被 Shift 了。不過也好，這樣我看起來會比較正常。</p>
-</blockquote>
-<p>前一篇我們認識了從陣列的頭部加上一個或多個元素的<code>unshift()</code>，今天要介紹的是從陣列的開端刪除元素的<code>shift()</code>，這一對陣列方法，都屬於佇列(Queue)「先進先出 FIFO」的資料結構。</p>
-<p>我們再來以此圖複習一下：<br><img src="https://ithelp.ithome.com.tw/upload/images/20191002/20104175DIqBdswLxB.png" alt="資料結構"></p>
-<h2 id="shift-幫我把頭拿下來"><a href="#shift-幫我把頭拿下來" class="headerlink" title="shift() 幫我把頭拿下來"></a>shift() 幫我把頭拿下來</h2><p>使用<code>shift()</code>方法，會移除陣列的第一個元素，也就是索引值為零的元素，並把這個元素的值回傳回來。也就是說，它會永遠回傳原陣列的第一個元素。</p>
-<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/shift" target="_blank" rel="noopener">Array.prototype.shift() - JavaScript | MDN</a></p>
-<p><strong>原型：</strong> Array.prototype.shift()<br><strong>功能：</strong> 會移除並回傳陣列的第一個元素。<br><strong>改變：</strong> 此方法會改變原陣列的長度和內容。<br><strong>語法：</strong> arr.shift()<br><strong>回傳值：</strong> 自陣列中移除的元素；若陣列為空，則會回傳 undefined。<br><strong>參數：</strong> 無</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20191217/20104175Y17sjkGr8Y.png" alt="shift()"></p>
-<p>我們先來看一下用法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">arr.shift(); <span class="comment">// 1 回傳第一個被刪掉的元素值</span></span><br><span class="line">arr; <span class="comment">// [2, 3, 4, 5] 陣列已經去掉第一個元素</span></span><br></pre></td></tr></table></figure>
-
-<p>陣列中索引值為零的元素，就是第一個元素 <del>廢話</del>，執行之後，<code>shift()</code>會將隨後的其他元素的索引值減一（往前移一位）。假如陣列已經被清空，也就是 length 屬性的值是 0，<code>shift()</code>就會回傳 undefined 給我們。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,];</span><br><span class="line">arr.shift(); <span class="comment">// 1</span></span><br><span class="line">arr.shift(); <span class="comment">// 2</span></span><br><span class="line">arr.shift(); <span class="comment">// undefined</span></span><br><span class="line">arr; <span class="comment">//[]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="如果第一個元素是物件類型的資料"><a href="#如果第一個元素是物件類型的資料" class="headerlink" title="如果第一個元素是物件類型的資料?"></a>如果第一個元素是物件類型的資料?</h3><p>即使想要處理的陣列裡，有包含物件類型的元素，如陣列或物件，<code>shift()</code>也會乖乖的把它傳回來，字串也是如此。 <del>實在是好聽話</del></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [&#123;<span class="attr">a</span>:<span class="number">42</span>&#125;, <span class="string">"Hi"</span>, <span class="number">24</span>]</span><br><span class="line">arr.shift(); <span class="comment">// &#123;a: 42&#125;</span></span><br><span class="line">arr.shift(); <span class="comment">// "Hi"</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="如果陣列裡的元素包含無效的資料"><a href="#如果陣列裡的元素包含無效的資料" class="headerlink" title="如果陣列裡的元素包含無效的資料?"></a>如果陣列裡的元素包含無效的資料?</h3><p>如果陣列裡頭包含了<code>undefined</code>、<code>null</code>或者是<code>NaN</code>，在使用<code>shift()</code>時會回傳什麼呢？ <del>它還是很聽話</del><code>shift()</code>還是會把這些無效的值回傳給我們。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr3 = [<span class="literal">undefined</span>, <span class="literal">null</span>, <span class="literal">NaN</span>];</span><br><span class="line">arr3.shift(); <span class="comment">// undefined</span></span><br><span class="line">arr3.shift(); <span class="comment">// null</span></span><br><span class="line">arr3.shift(); <span class="comment">// NaN</span></span><br><span class="line">arr3.shift(); <span class="comment">// undefined 因為陣列空了，所以還是回傳 undefined</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="多此一舉的徒勞"><a href="#多此一舉的徒勞" class="headerlink" title="多此一舉的徒勞"></a>多此一舉的徒勞</h3><p>使用<code>shift()</code>是不需要給參數的，所以，即使我們給它一些奇怪的參數，它也會無動於衷，做它該做的事，而且還不會報錯。<code>shift()</code>只會完全忽略這些參數。 <del>終於有個性了起來</del>不過，會這樣做存粹是實驗，了解<code>shift()</code>就不會這樣玩弄它。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">arr.shift([<span class="string">"hi"</span>]); <span class="comment">// 1</span></span><br><span class="line">arr.shift(<span class="literal">null</span>); <span class="comment">// 2</span></span><br><span class="line">arr.shift(<span class="number">42</span>); <span class="comment">// 3</span></span><br><span class="line">arr.shift(<span class="number">-42</span>); <span class="comment">// 4</span></span><br><span class="line">arr.shift(<span class="string">''</span>); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="shift-是如何辦到刪除第一個元素的？"><a href="#shift-是如何辦到刪除第一個元素的？" class="headerlink" title="shift() 是如何辦到刪除第一個元素的？"></a>shift() 是如何辦到刪除第一個元素的？</h3><p>接下來我們來看看 <code>shift()</code>可能是這樣被寫出來的程式碼：<br>先把第一個元素，也就是索引值是零的元素抓出來，接下來利用<code>for</code>迴圈把剩下的值做索引值的位移。然後，再把位移後的結果去掉最後一個元素，再回傳最開始抓到的第一個值。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 這裡的 this 是原要處理的陣列 </span></span><br><span class="line"><span class="built_in">Array</span>.prototype.shift2 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> firstItem = <span class="keyword">this</span>[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++ ) &#123;</span><br><span class="line">            arr[i] = arr[i+<span class="number">1</span>]; <span class="comment">// 以 往前位移一位的方式，把每個元素往前移一個位置。</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 移位完成之後，陣列的尾端會是原本的陣列最後一個，這樣就重複了，所以使用length減 1 把最後面的元素刪除。</span></span><br><span class="line">        arr.length--;    </span><br><span class="line">        <span class="keyword">return</span> firstItem;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr2 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">arr2.shift2(); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
-
-<p>以下為<code>shift2</code>裡的<code>for</code>迴圈運作步驟：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">以上面的例子 this 長度是 5</span><br><span class="line">this[i] = this[i + 1]</span><br><span class="line">第一圈 this[0] = this[1]  i = 1</span><br><span class="line">第二圈 this[1] = this[2]  i = 2</span><br><span class="line">第三圈 this[2] = this[3]  i = 3</span><br><span class="line">第四圈 this[3] = this[4]  i = 4</span><br><span class="line">第四圈 this[4] = this[5]  i = 5</span><br></pre></td></tr></table></figure>
-
-<p>今天的<code>shift()</code>就介紹到這裡，希望看完這篇會更清楚<code>shift()</code>的運作原理。另外，今天是本人鐵人賽的第 18 天，但是還有一拖車的陣列方法要介紹啊！</p>
-<p>這次的鐵人賽絕對是無法介紹完的，但是本人會默默地、不定期的繼續把陣列方法介紹下去。因為，鐵人結束後，本人是不可能變鐵人的，所以還是要繼續學習才是，對吧？</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-18"><a href="#Day-18" class="headerlink" title="Day 18"></a>Day 18</h6><blockquote>
-<p>別把我頭上的角取下來，這樣我就被 Shift 了。不過也好，這樣我看起來會比較正常。</p>
-</blockquote>
-<p>前一篇我們認識了從陣列的頭部加上一個或多個元素的<code>unshift()</code>，今天要介紹的是從陣列的開端刪除元素的<code>shift()</code>，這一對陣列方法，都屬於佇列(Queue)「先進先出 FIFO」的資料結構。</p>
-<p>我們再來以此圖複習一下：<br><img src="https://ithelp.ithome.com.tw/upload/images/20191002/20104175DIqBdswLxB.png" alt="資料結構"></p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/" data-id="ck6h0isay002utcuwe176q19p" class="article-share-link">
+                        <a data-url="tsuifei.github.io/JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/" data-id="ck6jmw1hr00316vuwvjuigrfe" class="article-share-link">
                             Share
                         </a>
                         
@@ -1094,7 +1092,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/VSCode/">VSCode</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/SASS/">SASS</a></li><li class="category-list-item"><a class="category-list-link" href="../../categories/VSCode/">VSCode</a></li></ul>
     </div>
   </div>
 
@@ -1104,7 +1102,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Base/">JS Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Base/">JS Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
     </div>
   </div>
 
@@ -1115,6 +1113,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="../../Vue_Template_Syntax/">Vue.js Template Syntax 模板語法</a>
+          </li>
         
           <li>
             <a href="../../JS_Base_Object/">JavaScript 基礎 物件篇</a>
@@ -1132,10 +1134,6 @@ ga('send', 'pageview');
             <a href="../../Vue_Test_QA/">Vuejs 線上問答題</a>
           </li>
         
-          <li>
-            <a href="../../React_module_component/">React 的 模塊 Module 與組件 component</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1145,7 +1143,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/CSS/" style="font-size: 10px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Base/" style="font-size: 12px;">JS Base</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 12px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 10px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="../../tags/CSS/" style="font-size: 12px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Base/" style="font-size: 12px;">JS Base</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 12px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 12px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 
