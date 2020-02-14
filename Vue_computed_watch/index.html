@@ -29,7 +29,7 @@ ga('send', 'pageview');
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="昨天介紹了 VueJs 裡常用的模板語法，今天就來介紹在我們 new Vue({ })裡面會用到到的 computed(計算屬性)和 watch(監視器) 我們可以先來看一下範例：去 codepen 看看效果 同樣的以 cdn 的方式先引入vue.js。 前兩個是「姓」和「名」的輸入框inputFirst Name 和 Last Name，先在實例裡的data初始化他們的值之後，就可以在各別的in">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-02-14T12:14:04.143Z">
+<meta property="og:updated_time" content="2020-02-14T12:15:44.068Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue.js computed &amp; watch 計算屬性與監視器">
 <meta name="twitter:description" content="昨天介紹了 VueJs 裡常用的模板語法，今天就來介紹在我們 new Vue({ })裡面會用到到的 computed(計算屬性)和 watch(監視器) 我們可以先來看一下範例：去 codepen 看看效果 同樣的以 cdn 的方式先引入vue.js。 前兩個是「姓」和「名」的輸入框inputFirst Name 和 Last Name，先在實例裡的data初始化他們的值之後，就可以在各別的in">
@@ -151,7 +151,7 @@ ga('send', 'pageview');
 <li>自定義方法，一般情況下，相當是一個只能讀取的屬性，可利用 set/get 方法來實現屬性資料的計算讀取, 同時監視屬性資料的變化</li>
 </ol>
 <p>如何給物件定義 <code>get/set</code> 屬性 ?<br>在建立物件時指定:<code>·get name () {return xxx} / set name (value) {}</code><br>物件建立之後指定: <code>Object.defineProperty(obj, age, {get(){}, set(value){}})</code></p>
-<p>在頁面中使用<code></code>來顯示計算的結果。</p>
+<p>在頁面中使用雙大括號，將「方法名」包起來顯示計算的結果。</p>
 <h3 id="使用-computed-計算屬性的-get-set-方法雙向顯示和監視"><a href="#使用-computed-計算屬性的-get-set-方法雙向顯示和監視" class="headerlink" title="使用 computed 計算屬性的 get / set 方法雙向顯示和監視"></a>使用 computed 計算屬性的 get / set 方法雙向顯示和監視</h3><p>剛剛說的 Full Name3 可達到互相牽動的效果，就是用 computed 計算屬性裡的兩個 callback 函式 getter/setter 來做到。<br><code>get()</code>我們需要讀取當前屬性時呼叫。然後根據相關的資料計算並傳回當前屬性的值。<br><code>set(value)</code> 並不像字面上的意思，而是當屬性值發生變化呼叫 set callback 函式，然後去更新相關的屬性資料。在這裏<code>value</code>即代表 Full Name3 最新的屬性值。</p>
 <p>如果是以 computed 來計算屬性產生值，就不需要在<code>data</code>裡初始化值。所以我們也不需要在<code>data</code>裡初始化 Full Name3 的值。<br>計算屬性 computed 有個特性，它會在第一次計算時就將結果存在快取裡, 多次讀取也只執行一次 getter 計算，以節省效能。</p>
 <h3 id="watch-監視器"><a href="#watch-監視器" class="headerlink" title="watch 監視器"></a>watch 監視器</h3><p>監視器的寫法有兩種：</p>
@@ -187,7 +187,7 @@ ga('send', 'pageview');
 <li>自定義方法，一般情況下，相當是一個只能讀取的屬性，可利用 set/get 方法來實現屬性資料的計算讀取, 同時監視屬性資料的變化</li>
 </ol>
 <p>如何給物件定義 <code>get/set</code> 屬性 ?<br>在建立物件時指定:<code>·get name () {return xxx} / set name (value) {}</code><br>物件建立之後指定: <code>Object.defineProperty(obj, age, {get(){}, set(value){}})</code></p>
-<p>在頁面中使用<code></code>來顯示計算的結果。</p>
+<p>在頁面中使用雙大括號，將「方法名」包起來顯示計算的結果。</p>
 <h3 id="使用-computed-計算屬性的-get-set-方法雙向顯示和監視"><a href="#使用-computed-計算屬性的-get-set-方法雙向顯示和監視" class="headerlink" title="使用 computed 計算屬性的 get / set 方法雙向顯示和監視"></a>使用 computed 計算屬性的 get / set 方法雙向顯示和監視</h3><p>剛剛說的 Full Name3 可達到互相牽動的效果，就是用 computed 計算屬性裡的兩個 callback 函式 getter/setter 來做到。<br><code>get()</code>我們需要讀取當前屬性時呼叫。然後根據相關的資料計算並傳回當前屬性的值。<br><code>set(value)</code> 並不像字面上的意思，而是當屬性值發生變化呼叫 set callback 函式，然後去更新相關的屬性資料。在這裏<code>value</code>即代表 Full Name3 最新的屬性值。</p>
 <p>如果是以 computed 來計算屬性產生值，就不需要在<code>data</code>裡初始化值。所以我們也不需要在<code>data</code>裡初始化 Full Name3 的值。<br>計算屬性 computed 有個特性，它會在第一次計算時就將結果存在快取裡, 多次讀取也只執行一次 getter 計算，以節省效能。</p>
 <h3 id="watch-監視器"><a href="#watch-監視器" class="headerlink" title="watch 監視器"></a>watch 監視器</h3><p>監視器的寫法有兩種：</p>
