@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>Vue.js Class &amp; Style Bindings 樣式的綁定 | Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="當我們在瀏覽網頁時，透過使用者的輸入或互動，最容易會有變動的就是資料（透過輸入或修改）和樣式（透過互動或事件）的更動，而 VueJs 的樣式部分就是用 class 和 style 的綁定就是專門用來與互動產生動態的樣式而來的。 去 codepen 看看效果 Binding HTML Classes / 綁定 HTML 裡 Class 的方法在 DOM 的節點上使用:class=&amp;#39;xxx&amp;#">
+<meta name="keywords" content="JavaScript,Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue.js Class &amp; Style Bindings 樣式的綁定">
+<meta property="og:url" content="tsuifei.github.io/Vue_class_style/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="當我們在瀏覽網頁時，透過使用者的輸入或互動，最容易會有變動的就是資料（透過輸入或修改）和樣式（透過互動或事件）的更動，而 VueJs 的樣式部分就是用 class 和 style 的綁定就是專門用來與互動產生動態的樣式而來的。 去 codepen 看看效果 Binding HTML Classes / 綁定 HTML 裡 Class 的方法在 DOM 的節點上使用:class=&amp;#39;xxx&amp;#">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2020-02-14T20:15:57.928Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue.js Class &amp; Style Bindings 樣式的綁定">
+<meta name="twitter:description" content="當我們在瀏覽網頁時，透過使用者的輸入或互動，最容易會有變動的就是資料（透過輸入或修改）和樣式（透過互動或事件）的更動，而 VueJs 的樣式部分就是用 class 和 style 的綁定就是專門用來與互動產生動態的樣式而來的。 去 codepen 看看效果 Binding HTML Classes / 綁定 HTML 裡 Class 的方法在 DOM 的節點上使用:class=&amp;#39;xxx&amp;#">
+  
+  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../react">React</a>
+        
+        <a class="main-nav-link" href="../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../life">Life</a>
+        
+        <a class="main-nav-link" href="../other">Other</a>
+        
+        <a class="main-nav-link" href="../html">HTML</a>
+        
+        <a class="main-nav-link" href="../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../linux">Linux</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Vue_class_style" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="" class="article-date">
+  <time datetime="2020-02-13T16:42:24.000Z" itemprop="datePublished">2020-02-14</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 class="article-title" itemprop="name">
+      Vue.js Class &amp; Style Bindings 樣式的綁定
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>當我們在瀏覽網頁時，透過使用者的輸入或互動，最容易會有變動的就是資料（透過輸入或修改）和樣式（透過互動或事件）的更動，而 VueJs 的樣式部分就是用 class 和 style 的綁定就是專門用來與互動產生動態的樣式而來的。</p>
+<p><a href="https://codepen.io/tsuifei/pen/yLNewLm" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
+<h2 id="Binding-HTML-Classes-綁定-HTML-裡-Class-的方法"><a href="#Binding-HTML-Classes-綁定-HTML-裡-Class-的方法" class="headerlink" title="Binding HTML Classes / 綁定 HTML 裡 Class 的方法"></a>Binding HTML Classes / 綁定 HTML 裡 Class 的方法</h2><p>在 DOM 的節點上使用<code>:class=&#39;xxx&#39;</code> xxx 可以是字串、物件或者是陣列型態。<br>這裡我們先設置了三個樣式分別為<code>ClassA</code>、<code>ClassB</code>、<code>ClassC</code>，我們在「xxx 是字元串」這個段落先給它一個基礎樣式<code>ClassC</code>，再綁定<code>myClass</code>，這會對應到 vm 實例裡<code>data</code>的<code>ClassA</code>，所以在這一段會有兩個樣式分別是<code>ClassA</code>＋<code>ClassC</code>。</p>
+<p>CSS 的部分：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.ClassA</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.ClassB</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: blue;</span><br><span class="line">  <span class="attribute">background</span>: yellow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.ClassC</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">30px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在「xxx 是物件」這個段落，我們以物件的方式綁定樣式，<code>:class=&quot;{classA:isActive, classB:!isActive}&quot;</code>，記得以物件綁定的話可以給多組樣式，但是一定要是以<code>key:value</code>的方式寫，這裏我們以<code>classB:!isActive</code>把<code>classB</code>設為非 isActive，這個樣式就不會被顯示。</p>
+<p>另一段「xxx 是陣列」的段落是以陣列的方式綁定，既然是陣列就可以給多個值，但這種方式比較不常用，以物件的方式還是比較靈活。</p>
+<h2 id="Binding-Inline-Styles-綁定行內-style-的方法"><a href="#Binding-Inline-Styles-綁定行內-style-的方法" class="headerlink" title="Binding Inline Styles / 綁定行內 style 的方法"></a>Binding Inline Styles / 綁定行內 style 的方法</h2><p>使用 Style 綁定的方法也很方便，我們先創建一個叫<code>Update</code>的按鍵，使用<code>v-on:click</code>等同<code>@click=&quot;Update&quot;</code>去呼叫實例中<code>methods</code>的<code>Update</code>的方法，並指定這個事件被觸發時，某些屬性的值會跟著改變。<br>我們在這個段落初始的樣式以物件型態給值，初始化的顏色為<code>{activeColor: &#39;gray&#39;,fontSize:20px}</code>，按下按鍵時呼叫<code>Update</code>的方法後<code>activeColor</code>和<code>fontSize</code>的值會被變更為<code>Update</code>方法裡的設定：<code>pink</code>和<code>30px</code>。</p>
+<p>HTML 的部分：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>class綁定: :class='xxx'<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"classC"</span> <span class="attr">:class</span>=<span class="string">"myClass"</span>&gt;</span>xxx是字元串<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">:class</span>=<span class="string">"&#123;classA:isActive, classB:!isActive&#125;"</span>&gt;</span>xxx是物件<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">:class</span>=<span class="string">"[myClass,hasClass ]"</span>&gt;</span>xxx是陣列<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 比較少用 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"Update"</span>&gt;</span>Update<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>style綁定<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">:style</span>=<span class="string">"&#123;color: activeColor, fontSize: fontSize + 'px'&#125;"</span>&gt;</span></span><br><span class="line">    color: activeColor, fontSize: fontSize + 'px'</span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- activeColor 和 fontSize 需要去 data 初始化 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>VueJs 的部分</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    myClass: <span class="string">'classA'</span>,</span><br><span class="line">    hasClass: <span class="string">'classB'</span>,</span><br><span class="line">    isActive: <span class="literal">false</span>,</span><br><span class="line">    activeColor: <span class="string">'gray'</span>,</span><br><span class="line">    fontSize: <span class="number">20</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    Update() &#123;</span><br><span class="line">      <span class="keyword">this</span>.myClass = <span class="keyword">this</span>.hasClass;</span><br><span class="line">      <span class="keyword">this</span>.isActive = <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">this</span>.activeColor = <span class="string">'pink'</span>;</span><br><span class="line">      <span class="keyword">this</span>.fontSize = <span class="number">30</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Class 和 Style 的綁定對於控制樣式或狀態切換來說是很方便的，在處理許多互動狀態的設計上應該會蠻常用到的。</p>
+<p>今天是情人節，無論有沒有情人，我們都要愛自己，才會有能力愛人或是吸引其他人來愛你。<br>十幾年前曾經聽過一句頗浪漫的情人節話語：「如果我的生活是 HTML，你(妳)就是我的 CSS。」當時 JavaScript 還沒那麼重要，不過以現在的發展狀況而言，JavaScript，它是我的精神伴侶。<br>情人節快樂！</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                            <p>當我們在瀏覽網頁時，透過使用者的輸入或互動，最容易會有變動的就是資料（透過輸入或修改）和樣式（透過互動或事件）的更動，而 VueJs 的樣式部分就是用 class 和 style 的綁定就是專門用來與互動產生動態的樣式而來的。</p>
+<p><a href="https://codepen.io/tsuifei/pen/yLNewLm" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
+<h2 id="Binding-HTML-Classes-綁定-HTML-裡-Class-的方法"><a href="#Binding-HTML-Classes-綁定-HTML-裡-Class-的方法" class="headerlink" title="Binding HTML Classes / 綁定 HTML 裡 Class 的方法"></a>Binding HTML Classes / 綁定 HTML 裡 Class 的方法</h2><p>在 DOM 的節點上使用<code>:class=&#39;xxx&#39;</code> xxx 可以是字串、物件或者是陣列型態。<br>這裡我們先設置了三個樣式分別為<code>ClassA</code>、<code>ClassB</code>、<code>ClassC</code>，我們在「xxx 是字元串」這個段落先給它一個基礎樣式<code>ClassC</code>，再綁定<code>myClass</code>，這會對應到 vm 實例裡<code>data</code>的<code>ClassA</code>，所以在這一段會有兩個樣式分別是<code>ClassA</code>＋<code>ClassC</code>。</p>
+<p>CSS 的部分：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.ClassA</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.ClassB</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: blue;</span><br><span class="line">  <span class="attribute">background</span>: yellow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.ClassC</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">30px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在「xxx 是物件」這個段落，我們以物件的方式綁定樣式，<code>:class=&quot;{classA:isActive, classB:!isActive}&quot;</code>，記得以物件綁定的話可以給多組樣式，但是一定要是以<code>key:value</code>的方式寫，這裏我們以<code>classB:!isActive</code>把<code>classB</code>設為非 isActive，這個樣式就不會被顯示。</p>
+<p>另一段「xxx 是陣列」的段落是以陣列的方式綁定，既然是陣列就可以給多個值，但這種方式比較不常用，以物件的方式還是比較靈活。</p>
+<h2 id="Binding-Inline-Styles-綁定行內-style-的方法"><a href="#Binding-Inline-Styles-綁定行內-style-的方法" class="headerlink" title="Binding Inline Styles / 綁定行內 style 的方法"></a>Binding Inline Styles / 綁定行內 style 的方法</h2><p>使用 Style 綁定的方法也很方便，我們先創建一個叫<code>Update</code>的按鍵，使用<code>v-on:click</code>等同<code>@click=&quot;Update&quot;</code>去呼叫實例中<code>methods</code>的<code>Update</code>的方法，並指定這個事件被觸發時，某些屬性的值會跟著改變。<br>我們在這個段落初始的樣式以物件型態給值，初始化的顏色為<code>{activeColor: &#39;gray&#39;,fontSize:20px}</code>，按下按鍵時呼叫<code>Update</code>的方法後<code>activeColor</code>和<code>fontSize</code>的值會被變更為<code>Update</code>方法裡的設定：<code>pink</code>和<code>30px</code>。</p>
+<p>HTML 的部分：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>class綁定: :class='xxx'<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"classC"</span> <span class="attr">:class</span>=<span class="string">"myClass"</span>&gt;</span>xxx是字元串<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">:class</span>=<span class="string">"&#123;classA:isActive, classB:!isActive&#125;"</span>&gt;</span>xxx是物件<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">:class</span>=<span class="string">"[myClass,hasClass ]"</span>&gt;</span>xxx是陣列<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 比較少用 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"Update"</span>&gt;</span>Update<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>style綁定<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">:style</span>=<span class="string">"&#123;color: activeColor, fontSize: fontSize + 'px'&#125;"</span>&gt;</span></span><br><span class="line">    color: activeColor, fontSize: fontSize + 'px'</span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- activeColor 和 fontSize 需要去 data 初始化 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>VueJs 的部分</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    myClass: <span class="string">'classA'</span>,</span><br><span class="line">    hasClass: <span class="string">'classB'</span>,</span><br><span class="line">    isActive: <span class="literal">false</span>,</span><br><span class="line">    activeColor: <span class="string">'gray'</span>,</span><br><span class="line">    fontSize: <span class="number">20</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    Update() &#123;</span><br><span class="line">      <span class="keyword">this</span>.myClass = <span class="keyword">this</span>.hasClass;</span><br><span class="line">      <span class="keyword">this</span>.isActive = <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">this</span>.activeColor = <span class="string">'pink'</span>;</span><br><span class="line">      <span class="keyword">this</span>.fontSize = <span class="number">30</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Class 和 Style 的綁定對於控制樣式或狀態切換來說是很方便的，在處理許多互動狀態的設計上應該會蠻常用到的。</p>
+<p>今天是情人節，無論有沒有情人，我們都要愛自己，才會有能力愛人或是吸引其他人來愛你。<br>十幾年前曾經聽過一句頗浪漫的情人節話語：「如果我的生活是 HTML，你(妳)就是我的 CSS。」當時 JavaScript 還沒那麼重要，不過以現在的發展狀況而言，JavaScript，它是我的精神伴侶。<br>情人節快樂！</p>
+
+                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/Vue_class_style/" data-id="ck6mm3yxu0000zauw68cp359d" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Vue/">Vue</a></li></ul>
+
+                    </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+  
+  
+    <a href="../Vue_computed_watch/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue.js computed &amp; watch 計算屬性與監視器</div>
+    </a>
+  
+</nav>
+
+            
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
+            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/VSCode/">VSCode</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Base/">JS Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/讀書會筆記/">讀書會筆記</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">Vue.js Class &amp; Style Bindings 樣式的綁定</a>
+          </li>
+        
+          <li>
+            <a href="../Vue_computed_watch/">Vue.js computed &amp; watch 計算屬性與監視器</a>
+          </li>
+        
+          <li>
+            <a href="../Vue_Template_Syntax/">Vue.js Template Syntax 模板語法</a>
+          </li>
+        
+          <li>
+            <a href="../JS_Base_Object/">JavaScript 基礎 物件篇</a>
+          </li>
+        
+          <li>
+            <a href="../Mac_for_my_new_MacBookPro/">MacBook Pro 入手安裝紀錄</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../tags/CSS/" style="font-size: 12px;">CSS</a> <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 12px;">Git</a> <a href="../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Base/" style="font-size: 12px;">JS Base</a> <a href="../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/React/" style="font-size: 14px;">React</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../tags/Test/" style="font-size: 10px;">Test</a> <a href="../tags/VSCode/" style="font-size: 12px;">VSCode</a> <a href="../tags/Vue/" style="font-size: 14px;">Vue</a> <a href="../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../react" class="mobile-nav-link">React</a>
+  
+    <a href="../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../other" class="mobile-nav-link">Other</a>
+  
+    <a href="../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../linux" class="mobile-nav-link">Linux</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
+  <script src="../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

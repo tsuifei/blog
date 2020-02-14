@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/Vue_class_style/</loc>
+    
+    <lastmod>2020-02-14T20:15:57.928Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/Vue_computed_watch/</loc>
     
     <lastmod>2020-02-14T12:15:44.068Z</lastmod>

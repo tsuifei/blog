@@ -111,6 +111,117 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-React-component-JSX" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../React-component-JSX/" class="article-date">
+  <time datetime="2020-01-21T16:42:24.000Z" itemprop="datePublished">2020-01-22</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../React-component-JSX/">React 組件 Component 和 JSX 語法</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <blockquote>
+<p>要從哪裡開始學，或許先看看 React 的組件結構比較容易懂？</p>
+</blockquote>
+<p>在開始學習 React 的時候，或許先從觀察開始，看看應有的組件檔案裡，需要有什麼塊狀結構，就像學 HTML ㄧ樣，也會有<code>&lt;html&gt;&lt;head&gt;</code>和<code>&lt;body&gt;</code> 。<br>除了我們認識的 HTML、CSS 和 JavaScript外，React 也有屬於自己的語言標記，但嚴格說起來不能說是語言，而應該說是語法糖，什麼是語法糖？算是介於 HTML 和JavaScript 之間的一種標籤語法，主要是要讓 JSX 來描述使用者界面的外觀，如官網<a href="https://zh-hant.reactjs.org/docs/introducing-jsx.html" target="_blank" rel="noopener">JSX – React</a>的介紹。</p>
+<h2 id="JSX-與-HTML-不同的地方"><a href="#JSX-與-HTML-不同的地方" class="headerlink" title="JSX 與 HTML 不同的地方"></a>JSX 與 HTML 不同的地方</h2><ol>
+<li>JSX 標籤語法一定要有 close tag。ex.<code>&lt;a&gt; &lt;/a&gt;</code></li>
+<li>所有的 JSX 標籤語法一定可以自動閉合 self close tag。ex.<code>&lt;input /&gt;</code></li>
+<li>tag 內的 class 屬性需改為<code>className</code> ; <code>label</code> 內的 <code>for</code> 則改為<code>htmlFor</code>，其他 CSS 屬性為兩個字的如 <code>font-size</code>也要改成<code>fontSize</code>也就是轉換成駝峰式命名法的方式。</li>
+<li>原本事件監聽觸發的事件名稱<code>onclick</code>也需要改成是駝峰式命名的<code>onClick</code>。</li>
+<li>使用大括號<code>{}</code>括著一個值或表達式<code>{this.onClick}</code> 表示是這個組件的<code>onClick()</code>函式。</li>
+</ol>
+<h2 id="新增一個新組件"><a href="#新增一個新組件" class="headerlink" title="新增一個新組件"></a>新增一個新組件</h2><p>所有我們設計的組件，都要繼承於<code>Component</code>，而組件內必須要有一個 <code>render ()</code>函式會回傳<code>return</code> 一個<code>JSX</code>的物件。<br>在書寫新組件(Component)的檔案時，需要至少有三個結構：</p>
+<ol>
+<li>引入所需。ex. <code>import</code> - <code>from</code></li>
+<li>組件本身。ex. <code>class [組件名] extends [組件名]</code></li>
+<li>輸出組件。ex. <code>export default</code></li>
+</ol>
+<h3 id="引入所需文件-1"><a href="#引入所需文件-1" class="headerlink" title="引入所需文件:(1.)"></a>引入所需文件:(1.)</h3><p>先引進必須要有的 React 的 Component，引入有兩種寫法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或是 此種比較常用</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定義render-方法：-2"><a href="#定義render-方法：-2" class="headerlink" title="定義render ()方法：(2.)"></a>定義<code>render ()</code>方法：(2.)</h3><p><code>render()</code>方法是渲染頁面最重要的函式，利用<code>render()</code>將顯示內容以回傳<code>return()</code>物件的方式回傳，<code>return(JSX動態 or HTML靜態)</code>需用()包起來。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !<span class="xml"><span class="tag">&lt;<span class="name">il</span>/&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="輸出組件-3"><a href="#輸出組件-3" class="headerlink" title="輸出組件(3.)"></a>輸出組件(3.)</h3><p>將組件以<code>export default [組件名];</code>形式輸出，以供其他組件使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Item;</span><br></pre></td></tr></table></figure>
+
+<h2 id="實作組件"><a href="#實作組件" class="headerlink" title="實作組件"></a>實作組件</h2><p>兩個組件實作，在 List(ol)組件裡引入幾個Item(li)組件。<br><strong>檔案名：Item.JS</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; </span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;il&gt;Hello Paris !<span class="xml"><span class="tag">&lt;<span class="name">il</span>/&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Item;</span><br></pre></td></tr></table></figure>
+
+<p>在另一個組件裡把 Item 這個組件安插進來。<br><strong>檔案名：List.js</strong><br>記得需引入<code>Item.js</code>，置入組件時須以 self close tag 的型態插入，如<code>&lt;Item /&gt;&gt;</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Item <span class="keyword">from</span> <span class="string">'Item'</span>; <span class="comment">// 引入檔名可以不寫.js</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123; </span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;ol&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">        &lt;Item/&gt;</span><br><span class="line">      &lt;ol/&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> List;</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何渲染到畫面"><a href="#如何渲染到畫面" class="headerlink" title="如何渲染到畫面"></a>如何渲染到畫面</h2><p>組件都完成後，就可以在引入主要頁面的<code>index.js</code>並且告知要放在哪一個 DOM 元素的位置。</p>
+<ul>
+<li>在專案裡<code>src/index.js</code>，是 react 預設的程式進入點。</li>
+<li><code>react</code>是核心。<code>react-dom</code>是把 react 掛載到 dom上面的必需組件。</li>
+<li><code>src/index.js</code>裡面宣告的<code>ReactDom.render(&lt;List /&gt;,documentgetElementById(&#39;root&#39;));</code>元件，會自動 bind 綁定到<code>public/index.html裡面的</code>&lt;div id=”root&gt;`位置。</li>
+</ul>
+<p><strong>檔名：index.js</strong><br><code>render()</code>函式有兩參數:</p>
+<ol>
+<li><code>react element</code> 元素,型態是物件。ex.<code>&lt;List/&gt;</code></li>
+<li><code>DOM contener</code> 裝 DOM 的容器。ex.<code>document.getElementById(&#39;root&#39;)</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> List <span class="keyword">from</span> <span class="string">'./List'</span>; <span class="comment">// 引入組件</span></span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">List</span>/&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)); </span><br><span class="line"><span class="comment">// 把 list 放到 root 裡面</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <blockquote>
+<p>要從哪裡開始學，或許先看看 React 的組件結構比較容易懂？</p>
+</blockquote>
+<p>在開始學習 React 的時候，或許先從觀察開始，看看應有的組件檔案裡，需要有什麼塊狀結構，就像學 HTML ㄧ樣，也會有<code>&lt;html&gt;&lt;head&gt;</code>和<code>&lt;body&gt;</code> 。<br>除了我們認識的 HTML、CSS 和 JavaScript外，React 也有屬於自己的語言標記，但嚴格說起來不能說是語言，而應該說是語法糖，什麼是語法糖？算是介於 HTML 和JavaScript 之間的一種標籤語法，主要是要讓 JSX 來描述使用者界面的外觀，如官網<a href="https://zh-hant.reactjs.org/docs/introducing-jsx.html" target="_blank" rel="noopener">JSX – React</a>的介紹。</p>
+<h2 id="JSX-與-HTML-不同的地方"><a href="#JSX-與-HTML-不同的地方" class="headerlink" title="JSX 與 HTML 不同的地方"></a>JSX 與 HTML 不同的地方</h2><ol>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../React-component-JSX/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/React-component-JSX/" data-id="ck6m4yq4400512uuwri299ap7" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/React/">React</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-React-deploy_01" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../React-deploy_01/" class="article-date">
@@ -1401,90 +1512,6 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
 
 
   
-    <article id="post-JS_ironMan30_Array-dinner-is-not-finished" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_ironMan30_Array-dinner-is-not-finished/" class="article-date">
-  <time datetime="2019-11-29T20:21:14.000Z" itemprop="datePublished">2019-11-30</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_ironMan30_Array-dinner-is-not-finished/">JS 陣列 Array 之小菜還沒出完</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-30"><a href="#Day-30" class="headerlink" title="Day 30"></a>Day 30</h6><blockquote>
-<p>據聞，在法國晚餐可以從七點半吃到 11 點。婚宴呢？可以從晚上十點吃到凌晨五點。我的鐵人賽大概就是這個概念。</p>
-</blockquote>
-<p>從來沒想過，自己可以寫陣列寫得這麼久，每天都會超過三百字以上，有時想想，老天鵝！也才一個陣列就這樣寫了一個月還不夠，那物件、異步、範疇、正規和 promise 不就排到明年去了？</p>
-<p>打從轉職到現在，學習路上一直是沮喪、坎坷、壓力、燒腦的無盡迴圈，就像寫遞迴ㄧ樣，幾次的無限迴圈搞到無法關機，真的是會讓人嚇到。問自己嚇到後還要不要寫？要！因為這或許會成為下半輩子的樂趣之一。</p>
-<p>寫程式對自己而言，好像是右撇子換成左手寫字，以往直覺性的設計腦袋開始要試著把邏輯理出來，真的是件不太容易的事。轉職一年半載的，如果說不太容易，也表示說有機會變成容易，因為深信，「不可能」是不存在的，所以一路跌跌撞撞到現在。</p>
-<p>不過，能夠還在學習的路上，真的是要感謝蠻多人的，無論是指導與教授的饅頭，或是一起學習討論，甚至是在網路上的社群裡，或留言指正的朋友，這些點點滴滴都讓自己更有勇氣的繼續下去。雖然最終的目的是能夠轉職成功，也就是找一份工作，但是學習這個旅程已經很精彩，這個旅程也ㄧ定會繼續下去。</p>
-<p>鐵人賽期間，除了自己發文，也發現了好多很棒的主題，尤其一些大神們的文章，更是篇篇精彩，只是，寫文剩餘的時間要把這些系列文章看完，實在不容易，所以賽後也會繼續把這些文章慢慢地消化與學習。</p>
-<p>參賽期間，常常透過胡大的<a href="https://ithelp.ithome.com.tw/users/20091346/ironman/2621" target="_blank" rel="noopener">後設鐵人：我從其他鐵人們身上學到的事</a>系列，得到更多的好文推薦，且每天可以跟著去想念的歐洲旅行，實在舒壓不少，這裡是ㄧ定要繼續回頭挖寶的。</p>
-<p>以下是賽後想讀的系列文章：<br>一起學習的夥伴們的文章，篇篇都想讀，且很多是以讀 Spec 為主，真的相當佩服。</p>
-<h3 id="HTML-CSS"><a href="#HTML-CSS" class="headerlink" title="HTML+CSS"></a>HTML+CSS</h3><p><a href="https://ithelp.ithome.com.tw/users/20111825/ironman/2549" target="_blank" rel="noopener">每天來點 CSS Specification</a> by Ruru<br><a href="https://ithelp.ithome.com.tw/users/20112726/ironman/2274" target="_blank" rel="noopener">鉄人28號FX </a> by letter liu<br><a href="https://ithelp.ithome.com.tw/users/20117586/ironman/2617" target="_blank" rel="noopener">重新認識 CSS</a> by Titangene<br><a href="https://ithelp.ithome.com.tw/users/20120683/ironman/2609" target="_blank" rel="noopener">從門外漢到前端新手</a> by JinWe<br><a href="https://ithelp.ithome.com.tw/users/20120740/ironman/2632" target="_blank" rel="noopener">前端新手進化史</a> by yachen</p>
-<h3 id="超想了解的無障礙網頁"><a href="#超想了解的無障礙網頁" class="headerlink" title="超想了解的無障礙網頁"></a>超想了解的無障礙網頁</h3><p><a href="https://ithelp.ithome.com.tw/users/20108045/ironman/2454" target="_blank" rel="noopener">實踐無障礙網頁設計（Web Accessibility）</a> by Askie Lin</p>
-<h3 id="JavaScript-框架"><a href="#JavaScript-框架" class="headerlink" title="JavaScript + 框架"></a>JavaScript + 框架</h3><p><a href="https://ithelp.ithome.com.tw/users/20120099/ironman/2593" target="_blank" rel="noopener">JavaScript 試煉之旅</a> by Penghua<br><a href="https://ithelp.ithome.com.tw/users/20120053/ironman/2273" target="_blank" rel="noopener">Typescript 初心者手札</a> by Kira<br><a href="https://ithelp.ithome.com.tw/users/20112158/ironman/2614" target="_blank" rel="noopener">技術在走，Vue.js 要有</a> by mangoSu</p>
-<h2 id="其他大神與高手的系列文章"><a href="#其他大神與高手的系列文章" class="headerlink" title="其他大神與高手的系列文章"></a>其他大神與高手的系列文章</h2><h3 id="HTML-CSS-1"><a href="#HTML-CSS-1" class="headerlink" title="HTML+CSS"></a>HTML+CSS</h3><p><a href="https://ithelp.ithome.com.tw/users/20112550/ironman/2072" target="_blank" rel="noopener">金魚都能懂的網頁設計入門 - 金魚都能懂了你還怕學不會嗎</a> by CSScoke<br><a href="https://ithelp.ithome.com.tw/users/20112550/ironman/2092" target="_blank" rel="noopener">連續30天的超實務網頁設計的垂直置中教學</a> by CSScoke</p>
-<h3 id="JavaScript-框架-1"><a href="#JavaScript-框架-1" class="headerlink" title="JavaScript + 框架"></a>JavaScript + 框架</h3><p><a href="https://ithelp.ithome.com.tw/users/20103315/ironman/2668" target="_blank" rel="noopener">從 Hooks 開始，讓你的網頁 React 起來</a> by pjchender<br><a href="https://ithelp.ithome.com.tw/users/20103565/ironman/2527" target="_blank" rel="noopener">深入現代前端開發</a> by 愷開<br><a href="https://ithelp.ithome.com.tw/users/20092232/ironman/1612" target="_blank" rel="noopener">你懂 JavaScript 嗎？</a> by cythilya(桑夏)<br><a href="https://ithelp.ithome.com.tw/users/20106935/ironman/2188" target="_blank" rel="noopener">在 React 生態圈內打滾的一年 feat. TypeScript</a> by 神Q超人<br><a href="https://ithelp.ithome.com.tw/users/20119924/ironman/2235" target="_blank" rel="noopener">透過 ESLint 練習 JavaScript ES6</a> by 江江好<br><a href="https://ithelp.ithome.com.tw/users/20106426/ironman/2136" target="_blank" rel="noopener">前端工程師用 javaScript 學演算法</a> by hannahpun<br><a href="https://ithelp.ithome.com.tw/users/20120757/ironman/2708" target="_blank" rel="noopener">跟著 YDKJS 作者 Kyle Simpson 打造全新 JavaScript Mindset</a> by Ashe Li </p>
-<h3 id="很棒的綜合經驗"><a href="#很棒的綜合經驗" class="headerlink" title="很棒的綜合經驗"></a>很棒的綜合經驗</h3><p><a href="https://ithelp.ithome.com.tw/users/20040221/ironman/2236" target="_blank" rel="noopener">菜鳥工程師必修的 30 堂溝通課</a> by 廖洧傑<br><a href="https://ithelp.ithome.com.tw/users/20083608/ironman/2055" target="_blank" rel="noopener">前端「設計」聖光之路</a> by 卡斯伯<br><a href="https://ithelp.ithome.com.tw/users/20104132/articles" target="_blank" rel="noopener">試著把切版專案升級到 gulp4.0 吧</a> by ayugioh2003</p>
-<p>感謝曾在這裡留言的朋友們，給本人的指正與鼓勵，更感謝以上這些參賽者用心且堅持的寫出這些好文，知識分享是這世界上最美的事，也因此，期望自己可以秉持著同樣的信念，產出有用的文章。</p>
-<h4 id="30天只是一個月，也只是開始，接下來還沒寫完的陣列方法還會繼續喔～-A-bientot-D"><a href="#30天只是一個月，也只是開始，接下來還沒寫完的陣列方法還會繼續喔～-A-bientot-D" class="headerlink" title="30天只是一個月，也只是開始，接下來還沒寫完的陣列方法還會繼續喔～ À bientôt ! :-D"></a>30天只是一個月，也只是開始，接下來還沒寫完的陣列方法還會繼續喔～ À bientôt ! :-D</h4><p><img src="https://ithelp.ithome.com.tw/upload/images/20191015/20104175fmQbvF3tW7.jpg" alt="https://ithelp.ithome.com.tw/upload/images/20191015/20104175fmQbvF3tW7.jpg"></p>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-30"><a href="#Day-30" class="headerlink" title="Day 30"></a>Day 30</h6><blockquote>
-<p>據聞，在法國晚餐可以從七點半吃到 11 點。婚宴呢？可以從晚上十點吃到凌晨五點。我的鐵人賽大概就是這個概念。</p>
-</blockquote>
-<p>從來沒想過，自己可以寫陣列寫得這麼久，每天都會超過三百字以上，有時想想，老天鵝！也才一個陣列就這樣寫了一個月還不夠，那物件、異步、範疇、正規和 promise 不就排到明年去了？</p>
-<p>打從轉職到現在，學習路上一直是沮喪、坎坷、壓力、燒腦的無盡迴圈，就像寫遞迴ㄧ樣，幾次的無限迴圈搞到無法關機，真的是會讓人嚇到。問自己嚇到後還要不要寫？要！因為這或許會成為下半輩子的樂趣之一。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_ironMan30_Array-dinner-is-not-finished/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan30_Array-dinner-is-not-finished/" data-id="ck6m4yq3u00422uuwtwnugu79" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1533,6 +1560,10 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
       <ul>
         
           <li>
+            <a href="../../Vue_class_style/">Vue.js Class &amp; Style Bindings 樣式的綁定</a>
+          </li>
+        
+          <li>
             <a href="../../Vue_computed_watch/">Vue.js computed &amp; watch 計算屬性與監視器</a>
           </li>
         
@@ -1548,10 +1579,6 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
             <a href="../../Mac_for_my_new_MacBookPro/">MacBook Pro 入手安裝紀錄</a>
           </li>
         
-          <li>
-            <a href="../../VSCode_ESLint_Setup/">在 VSCode 裡使用 ESLint, Prettier &amp; Airbnb Style Guide</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1561,7 +1588,7 @@ every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回�
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/CSS/" style="font-size: 11.67px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 11.67px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 11.67px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16.67px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Base/" style="font-size: 11.67px;">JS Base</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18.33px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 11.67px;">JavaScript 30</a> <a href="../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 15px;">React</a> <a href="../../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 11.67px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 13.33px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="../../tags/CSS/" style="font-size: 12px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Base/" style="font-size: 12px;">JS Base</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 12px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 14px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 
