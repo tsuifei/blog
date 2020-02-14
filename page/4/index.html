@@ -111,6 +111,119 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/" class="article-date">
+  <time datetime="2019-11-18T20:21:14.000Z" itemprop="datePublished">2019-11-19</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/">JS 合併陣列 Array 的方法 concat()</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-19"><a href="#Day-19" class="headerlink" title="Day 19"></a>Day 19</h6><blockquote>
+<p>人生像是一列火車，旅程中總是會搭載著不同貨物，走得越遠掛載的越多，包括肥肉。</p>
+</blockquote>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191004/201041759bPpG8rNEQ.png" alt="https://ithelp.ithome.com.tw/upload/images/20191004/201041759bPpG8rNEQ.png"></p>
+<h6 id="圖片來源：www-unsplash-com-Dibyendu-Sekhar-Das"><a href="#圖片來源：www-unsplash-com-Dibyendu-Sekhar-Das" class="headerlink" title="圖片來源：www.unsplash.com / Dibyendu Sekhar Das"></a>圖片來源：<a href="http://www.unsplash.com" target="_blank" rel="noopener">www.unsplash.com</a> / Dibyendu Sekhar Das</h6><p>在法國搭高速火車時，曾經收到朋友的告誡：千萬不要自己亂換車廂，尤其是火車停在某一站的時候。</p>
+<p>原本不以為意，但聽到以下的故事就頓時聽話了：<br>某人在火車停靠在某一站時，因為肚子痛急著想上廁所，但自己座位的那節車廂廁所卻有人，於是到隔壁的車廂去上，拉肚子總是不好解決，花了許多時間，等到舒緩之後，突然意會到怎麼火車還沒開，於是走回去原車廂時，驚！發現原本坐的那節車廂不見了！完全被<code>shift()</code>掉了！</p>
+<p>這是真實的故事，因為法國很大，火車從巴黎出發，一路往南開會經過好幾個城市，為了節省資源，會特意在訂票時就把到達同城市的旅客集中在固定的幾節車廂，這樣一來只要到達某站，就會把指定的那幾節車廂拆卸下來（切斷），然後其餘的車廂繼續開往其他城市。反過來想，這列火車也是可以陸續和其他的車廂合併，一起開往巴黎。</p>
+<p>火車的車廂就像是陣列，一節節的車廂合併串起來就是<code>concat()</code>了。 <del>轉大人成功了</del></p>
+<h2 id="concat-一列到達許多城市的火車"><a href="#concat-一列到達許多城市的火車" class="headerlink" title="concat() 一列到達許多城市的火車"></a>concat() 一列到達許多城市的火車</h2><p>concat() 可以在陣列中與其他多個陣列合併，並回傳新的陣列。原陣列不會被改變。我們可以將要合併的陣列或元素，多個或單個，以引數的方式，讓原陣列與這些要併入的陣列或元素合併在一起。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191004/20104175qI0DGY793E.png" alt="https://ithelp.ithome.com.tw/upload/images/20191004/20104175qI0DGY793E.png"></p>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/concat" target="_blank" rel="noopener">Array.prototype.concat() - JavaScript | MDN</a><br>concat() 方法<br><strong>原型：</strong> Array.prototype.concat()<br><strong>功能：</strong> 用來合併兩個或多個陣列或元素。concat()不會改變原有的陣列，回傳一個包含呼叫陣列本身的值，作為代替的是回傳一個新陣列。<br><strong>改變：</strong> 不會改變原有的陣列<br><strong>語法：</strong> var new_array = old_array.concat(value1[, value2[, …[, valueN]]])<br><strong>回傳值：</strong> 一個新的陣列實體。<br><strong>參數：</strong> valueN 陣列以及／或者值，用來合併成一個新的陣列。</p>
+<h2 id="只要放在-裡都吃-不偏食"><a href="#只要放在-裡都吃-不偏食" class="headerlink" title="只要放在( )裡都吃 不偏食"></a>只要放在( )裡都吃 不偏食</h2><p>我們以參數傳入的方式，把要合併的陣列或元素放在( )裡，這部分<code>concat()</code>非常彈性，要多個、單個、或陣列與物件的方式都可以，幾乎是給什麼吃什麼。 <del>好雜食啊</del></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="string">"Hi"</span>, <span class="string">"Wow"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果將陣列以參數傳入concat()，它會拆開這些陣列，並將元素加入原本的陣列。</span></span><br><span class="line"><span class="keyword">const</span> arr2 = arr1.concat([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line"><span class="keyword">const</span> arr3 = arr2.concat(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>);</span><br><span class="line"><span class="keyword">const</span> arr4 = arr3.concat(&#123; <span class="attr">a</span>: <span class="number">42</span> &#125;);</span><br><span class="line"></span><br><span class="line">arr1; <span class="comment">// [ 'Hi', 'Wow' ]</span></span><br><span class="line">arr2; <span class="comment">// [ 'Hi', 'Wow', 1, 2, 3 ]</span></span><br><span class="line">arr3; <span class="comment">// [ 'Hi', 'Wow', 1, 2, 3, 4, 5, 6 ]</span></span><br><span class="line">arr4; <span class="comment">// [ 'Hi', 'Wow', 1, 2, 3, 4, 5, 6, &#123; a: 42 &#125; ]</span></span><br></pre></td></tr></table></figure>
+
+<p>既然是多個，我們也可以一次就把要合併的元素或物件合併上去。像這樣：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="string">"Hi"</span>, <span class="string">"Wow"</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr2 = arr1.concat([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, &#123; <span class="attr">a</span>: <span class="number">42</span> &#125;);</span><br><span class="line"></span><br><span class="line">arr1; <span class="comment">// [ 'Hi', 'Wow' ]</span></span><br><span class="line">arr2; <span class="comment">// [ 'Hi', 'Wow', 1, 2, 3, 4, 5, 6, &#123; a: 42 &#125; ]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 字串也可以</span></span><br><span class="line"><span class="keyword">const</span> colorName = <span class="string">"purple"</span></span><br><span class="line"><span class="keyword">const</span> allColor4 = [...warmColor, ...coldColor, colorName];</span><br><span class="line"></span><br><span class="line">allColor4; <span class="comment">// [ 'red', 'yellow', 'blue', 'gray', 'purple' ]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="雖彈性也不要以為可以隨便"><a href="#雖彈性也不要以為可以隨便" class="headerlink" title="雖彈性也不要以為可以隨便"></a>雖彈性也不要以為可以隨便</h3><p>雖然我們可以將陣列以參數傳入<code>concat()</code>，它會自動拆開這些陣列，但並不表示多層的陣列就可行，要注意的是，<code>concat()</code>只會拆開提供給它的第一層陣列，而不會拆開第二層陣列(陣列中的陣列)。也就是說<code>concat()</code> 不會以遞迴(recursively)的方式，把多層的陣列攤平。 <del>想得美</del></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.concat([<span class="number">4</span>, <span class="number">5</span>], <span class="number">6</span>); <span class="comment">// [1,2,3,4,5,6]; </span></span><br><span class="line">arr.concat([<span class="number">7</span>, [<span class="number">8</span>, <span class="number">9</span>]]); <span class="comment">// [ 1, 2, 3, 7, [ 8, 9 ] ]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="拷貝拷的沒那麼深的-concat"><a href="#拷貝拷的沒那麼深的-concat" class="headerlink" title="拷貝拷的沒那麼深的 concat()"></a>拷貝拷的沒那麼深的 concat()</h3><p>看到網路上討論到，使用<code>concat()</code>時，如果沒有給參數，就相當是原陣列與一個空陣列拼接，返回的原陣列，就算是原陣列的深拷貝。<br>但是利用<code>concat()</code>來複製陣列，只限用在結構較簡單的陣列上，如果運用在比較複雜與多層的物件上，這個方法就行不通了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">"hi"</span>,<span class="string">"wow"</span>,[<span class="string">"O"</span>,<span class="string">"X"</span>]]</span><br><span class="line"><span class="keyword">let</span> arr2 = arr.concat();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 試著修改第一層和第二層的陣列元素</span></span><br><span class="line">arr[<span class="number">2</span>][<span class="number">0</span>]=<span class="string">"OOO"</span></span><br><span class="line">arr[<span class="number">0</span>] = <span class="string">"Hello"</span></span><br><span class="line"></span><br><span class="line">arr; <span class="comment">// ["Hello", "wow", ["OOO", "X"]]</span></span><br><span class="line">arr2; <span class="comment">//["hi", "wow", ["OOO", "X"]]</span></span><br></pre></td></tr></table></figure>
+
+<p>我們可以觀察到，如果修改第一層的<code>arr[0]</code>這個元素為<code>&quot;Hello&quot;</code>，<code>arr2[0]</code>並沒有被修改到，但是當我們修改<code>arr[2][0]</code>為<code>&quot;OOO&quot;</code>的時候，<code>arr2[2][0]</code>也會跟著改成<code>&quot;OOO&quot;</code>。如果要拿<code>concat()</code>來複製物件型態的資料時，還是要特別注意這點。</p>
+<h3 id="push-說-你會的我也會，且比你更會！"><a href="#push-說-你會的我也會，且比你更會！" class="headerlink" title="push() 說 你會的我也會，且比你更會！"></a>push() 說 你會的我也會，且比你更會！</h3><p>還記得我們前幾篇有介紹，從陣列尾端來「新增」元素的<code>push()</code>方法嗎？看起來<code>push()</code>做的事和<code>concat()</code>很像，都是從陣列的尾端加東西，不同之處在哪裡？</p>
+<table>
+<thead>
+<tr>
+<th>concat()</th>
+<th>從原陣列複製一個新的陣列，在新陣列上進行操作，不會改變原陣列的值。</th>
+<th>會拆開參數，把元素加進去</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>push()</td>
+<td>在原陣列上修改，執行push()原陣列的值也會變</td>
+<td>參數是陣列時，把整個陣列參數作為一個元素</td>
+</tr>
+</tbody></table>
+<h3 id="其餘參數說-你們會的我更會！"><a href="#其餘參數說-你們會的我更會！" class="headerlink" title="其餘參數說 你們會的我更會！"></a>其餘參數說 你們會的我更會！</h3><p>還有另外一種方式可以達到和<code>concat()</code>一樣效果的我們把其餘參數(rest parameter)，這個方式也很方便，效果也一樣。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> warmColor = [<span class="string">"red"</span>, <span class="string">"yellow"</span>]</span><br><span class="line"><span class="keyword">const</span> coldColor = [<span class="string">"blue"</span>, <span class="string">"gray"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 concat()</span></span><br><span class="line"><span class="keyword">const</span> allColor1 = [].concat(warmColor, coldColor);</span><br><span class="line"><span class="comment">// [ 'red', 'yellow', 'blue', 'gray' ]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以寫成</span></span><br><span class="line"><span class="keyword">const</span> allColor2 = warmColor.concat(coldColor);</span><br><span class="line"><span class="comment">// [ 'red', 'yellow', 'blue', 'gray' ]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> allColor3 = [...warmColor, ...coldColor];</span><br><span class="line"><span class="comment">// [ 'red', 'yellow', 'blue', 'gray' ]</span></span><br></pre></td></tr></table></figure>
+
+<p>但據說還是有些許不一樣，我們有機會再好好的測試。 <del>機會？鐵人賽後吧</del></p>
+<p>這三種吃小菜的方法：<code>push()</code>、<code>concat()</code>和其餘參數(rest parameter)大家喜歡哪一種？<br>希望這幾天的小菜，可以讓大家至少對如何刪除或增加陣列的方法有一個概觀，路還很長、小菜還很多樣，還請大家慢慢品嚐囉。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-19"><a href="#Day-19" class="headerlink" title="Day 19"></a>Day 19</h6><blockquote>
+<p>人生像是一列火車，旅程中總是會搭載著不同貨物，走得越遠掛載的越多，包括肥肉。</p>
+</blockquote>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191004/201041759bPpG8rNEQ.png" alt="https://ithelp.ithome.com.tw/upload/images/20191004/201041759bPpG8rNEQ.png"></p>
+<h6 id="圖片來源：www-unsplash-com-Dibyendu-Sekhar-Das"><a href="#圖片來源：www-unsplash-com-Dibyendu-Sekhar-Das" class="headerlink" title="圖片來源：www.unsplash.com / Dibyendu Sekhar Das"></a>圖片來源：<a href="http://www.unsplash.com" target="_blank" rel="noopener">www.unsplash.com</a> / Dibyendu Sekhar Das</h6><p>在法國搭高速火車時，曾經收到朋友的告誡：千萬不要自己亂換車廂，尤其是火車停在某一站的時候。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/" data-id="ck6jqkvik002zyuuw1ojsn6fb" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/" class="article-date">
@@ -1044,125 +1157,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-JS_ironMan09_How-to-convert-to-Array-in-JavaScript" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_ironMan09_How-to-convert-to-Array-in-JavaScript/" class="article-date">
-  <time datetime="2019-11-04T20:21:14.000Z" itemprop="datePublished">2019-11-05</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_ironMan09_How-to-convert-to-Array-in-JavaScript/">如何轉型別為陣列</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-09"><a href="#Day-09" class="headerlink" title="Day 09"></a>Day 09</h6><blockquote>
-<p>轉大人和轉職ㄧ樣不簡單</p>
-</blockquote>
-<p>這樣一句話「JavaScript 是弱型別語言」 好像出現好幾次了，但它常出現也不是沒有原因，因為我們常常會忘記 JavaScript 會幫我們默默地 <del>偷偷的</del> 把資料轉型別這件事，且轉成它認為是合理的型別，但對我們而言卻是雷… <del>默默哭泣…</del>。</p>
-<p>在聊如何轉型別或轉成陣列時，先讓我們來聊聊 JavaScript 的型別轉換這件事吧。</p>
-<p>就像犀牛大全裡面說的，JavaScript 對值的型別要求很有彈性 <del>是沒原則吧…</del>。例如布林值的<code>true</code>和 <code>false</code>偶爾會變成 1 與 0，對其他的型別也是如此，如果 JavaScript 想要字串，它會把我們給它的任何值都轉成字串; 如果它<del>不是我們</del>想要數字，會把我們給它的任何型別的值轉成數字 <del>好隨心所欲與任性</del>，偶而轉大人轉不過去，它就直接吐 <code>NaN</code> Not a number 給我們。</p>
-<p>我們來看幾個例子：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> test1 = <span class="string">"hello "</span> + <span class="number">42</span>;</span><br><span class="line">test1; <span class="comment">// "hello 42" -&gt; 自動把 42 轉成字串，不然叫它怎麼辦</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> test2 = <span class="string">"42"</span> + <span class="string">"24"</span></span><br><span class="line">test2; <span class="comment">// "4224"</span></span><br></pre></td></tr></table></figure>
-
-<p>我們稱這種換換型別的方式為隱性轉型，也就是 JavaScript 自動幫我們轉型這件事。詳細的轉型資料實在太多，在「犀牛大全」裡就有 6,1/2 頁，有興趣可以參考這本犀牛，再加上「你說不知道的 JS」，一邊看一邊實作會更有感覺。其中有許多奇怪的部分，以下，只是舉出其中一個例子而已。 <del>到底有多少規則啊！</del></p>
-<h3 id="數字和運算子的隱性轉型-implicit"><a href="#數字和運算子的隱性轉型-implicit" class="headerlink" title="數字和運算子的隱性轉型 implicit"></a>數字和運算子的隱性轉型 implicit</h3><p>在 JavaScript 有個頗怪異的現象，就是如果是「相加」，只要兩個相加數其中一個為「字串數字」如 <code>&quot;42&quot;</code>，它就會把另一個數字也轉成字串處理。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"42"</span> + <span class="number">24</span>; <span class="comment">// "4224"</span></span><br><span class="line"><span class="number">42</span> + <span class="string">"24"</span>; <span class="comment">// "4224"</span></span><br><span class="line"><span class="number">42</span> + <span class="number">24</span>; <span class="comment">// "4224"</span></span><br></pre></td></tr></table></figure>
-
-<p>而這種現象只會出現在「加法」，而在減、乘、除、求餘時，卻會自動把「字串數字」轉成「數字」，而順利進行運算。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"42"</span> - <span class="number">24</span>; <span class="comment">// 18</span></span><br><span class="line"><span class="number">42</span> - <span class="string">"24"</span>; <span class="comment">// 18</span></span><br><span class="line"><span class="number">42</span> - <span class="number">24</span>; <span class="comment">// 18</span></span><br></pre></td></tr></table></figure>
-
-<p>一些隱性轉型成數字的規則：</p>
-<ul>
-<li>如果是可以解析(parse)的字串數字，就會轉成數字</li>
-<li>任何不是數字字面值的字串會被轉成<code>NaN</code></li>
-<li><code>true</code> 會被轉成<code>1</code>，而 <code>false</code> 和空字串<code>&quot;&quot;</code>都會被轉成<code>0</code></li>
-</ul>
-<h2 id="顯性轉型-Explicit"><a href="#顯性轉型-Explicit" class="headerlink" title="顯性轉型 Explicit"></a>顯性轉型 Explicit</h2><p>顯性轉換型別最簡單的方式是使用<code>Boolean()</code>, <code>Number()</code>, <code>String()</code>或者是<code>Object()</code>這些內建函式。以下是一些範例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Boolean</span>([]); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">String</span>(<span class="literal">true</span>); <span class="comment">// "true"</span></span><br><span class="line"><span class="literal">true</span>.toString() <span class="comment">// "true" 與 String(true); 同效果</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">"42"</span>); <span class="comment">// 42</span></span><br><span class="line"><span class="built_in">Object</span>(<span class="number">42</span>); <span class="comment">// Number &#123;42&#125;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>除了<code>null</code>和<code>undefined</code>之外，任何值可使用<code>toString()</code>方法，結果和使用<code>String()</code>相同。</li>
-<li>將<code>null</code>和<code>undefined</code>轉為物件，會產生 <code>TypeError</code>。</li>
-</ul>
-<h2 id="針對陣列的相互轉型別"><a href="#針對陣列的相互轉型別" class="headerlink" title="針對陣列的相互轉型別"></a>針對陣列的相互轉型別</h2><h3 id="把陣列轉成字串"><a href="#把陣列轉成字串" class="headerlink" title="把陣列轉成字串"></a>把陣列轉成字串</h3><p>我們常常需要把我們的陣列轉成字串，去做其他的處理，最簡單的方式就是使用內建的<code>toString()</code>函式。我們也可以使用<code>String()</code>，但記得要用一個變數去接它，就可達到一樣的效果。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">arr.toString();</span><br><span class="line">arr; <span class="comment">// "1,2,3,4,5"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr2 = <span class="built_in">String</span>(arr);</span><br><span class="line">arr2;  <span class="comment">// "1,2,3,4,5"</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="把陣列裡面的值個別轉成數字"><a href="#把陣列裡面的值個別轉成數字" class="headerlink" title="把陣列裡面的值個別轉成數字"></a>把陣列裡面的值個別轉成數字</h3><p>我們可以使用<code>map()</code> 去遍歷陣列裡的元素，並調用<code>parseInt()</code>這個可以將其他型別轉成數字的函數，將每個元素轉成數字，要注意<code>parseInt()</code>裡的第二個參數是進位，我們使用十進位去處理，如果沒給第二個參數，它就 <del>會亂給你看</del> 會有不預期的結果。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>]</span><br><span class="line"><span class="keyword">let</span> result = arr.map(<span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123; </span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">parseInt</span>(x, <span class="number">10</span>); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">result; <span class="comment">// (3) [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
-
-<p>另一種寫法好神奇</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr2 = [<span class="string">'10'</span>,<span class="string">'20'</span>,<span class="string">'30'</span>,<span class="string">'40'</span>,<span class="string">'50'</span>]</span><br><span class="line"></span><br><span class="line">arr2.map(<span class="built_in">Number</span>); </span><br><span class="line"><span class="comment">// [10, 20, 30, 40, 50]</span></span><br></pre></td></tr></table></figure>
-
-<p>如果有字面值無法轉成數字，當然就轉成代表不是數字的<code>NaN</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr3 = [<span class="string">'10'</span>,<span class="string">'20'</span>,<span class="string">'wow'</span>,<span class="string">'40'</span>,<span class="string">'Hi'</span>]</span><br><span class="line">arr3.map(<span class="built_in">Number</span>); </span><br><span class="line"><span class="comment">// (5) [10, 20, NaN, 40, NaN]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="類陣列-Array-like-轉為陣列"><a href="#類陣列-Array-like-轉為陣列" class="headerlink" title="類陣列(Array-like)轉為陣列"></a>類陣列(Array-like)轉為陣列</h3><p>在前幾天的<a href="https://ithelp.ithome.com.tw/articles/10218175" target="_blank" rel="noopener">「陣列有哪幾種？」</a>的篇章中，我們有介紹到陣列中的類陣列，而如何把類陣列物件中的值取出，並轉換成單純的陣列？<br>使用<code>Object.values()</code>可得到一組只有值得陣列，也剛好可以把類陣列的值(value)取出，這個方法也同時適用在一般的物件。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">    <span class="number">0</span>: <span class="string">'a'</span>,</span><br><span class="line">    <span class="number">1</span>: <span class="string">'b'</span>,</span><br><span class="line">    <span class="number">2</span>: <span class="string">'c'</span>,</span><br><span class="line">    length: <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.values(obj)</span><br><span class="line"><span class="comment">// Object.values(obj).map(ele =&gt; ele); 另一種寫法</span></span><br><span class="line"><span class="comment">// (4) ["a", "b", "c", 3]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="二維陣列轉換成一維陣列"><a href="#二維陣列轉換成一維陣列" class="headerlink" title="二維陣列轉換成一維陣列"></a>二維陣列轉換成一維陣列</h3><p>一般我們很少會自己創建多維陣列，所謂一維或二維陣列，就是在一個陣列裡，只有一組中括號，如果這組中括號裡有兩個或兩個以上的陣列(中括號)，就稱為多維陣列，當我們拿到這樣的陣列，又必須用方法去處理他，這時就可以用以下的方法，達到「壓平」陣列的效果。<br>現確認這個陣列的長度是否是零，如果是就不用處理它了，直接回傳零，這只是一個過濾機制。接下來，先將陣列以<code>toString()</code>轉成字串，在用<code>split()</code>以逗號分格每個元素，最後再以<code>Number</code>確保元素為數字。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flatten</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr.toString().split(<span class="string">','</span>).map(<span class="built_in">Number</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(flatten([<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, [<span class="number">4</span>]], <span class="number">5</span>], <span class="number">6</span>], <span class="number">7</span>,[<span class="number">8</span>, <span class="number">9</span>] ))</span><br><span class="line"><span class="comment">// (6) [1, 2, 3, 4, 5, 6, 7, 8, 9]</span></span><br></pre></td></tr></table></figure>
-
-<p>感謝 <a href="https://ithelp.ithome.com.tw/users/20091346/ironman/1150" target="_blank" rel="noopener">Huli</a> 提醒，在這個範例裡所使用的<code>flatten()</code>，只會對陣列元素是數字的多維陣列起作用，其他數字以外的型別就沒辦法使用<code>flatten()</code>了。</p>
-<p>另外有幾種可以把多維陣列壓平的方法，原來<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat" target="_blank" rel="noopener">MDN 上面都有範例</a>，甚至是用遞迴的方式解決，有興趣的可以參考一下，這個「[遞迴（recurse）只應天上有, 凡人該當用迴圈（iterate）]的寫法。 <del>本人絕對是凡人</del></p>
-<p>大家有沒有發現，我們已經開始使用幾個 JavaScript 的方法在處理這些不是陣列的資料？接下來我們也會一一介紹這些內建的陣列方法喔～</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-09"><a href="#Day-09" class="headerlink" title="Day 09"></a>Day 09</h6><blockquote>
-<p>轉大人和轉職ㄧ樣不簡單</p>
-</blockquote>
-<p>這樣一句話「JavaScript 是弱型別語言」 好像出現好幾次了，但它常出現也不是沒有原因，因為我們常常會忘記 JavaScript 會幫我們默默地 <del>偷偷的</del> 把資料轉型別這件事，且轉成它認為是合理的型別，但對我們而言卻是雷… <del>默默哭泣…</del>。</p>
-<p>在聊如何轉型別或轉成陣列時，先讓我們來聊聊 JavaScript 的型別轉換這件事吧。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_ironMan09_How-to-convert-to-Array-in-JavaScript/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan09_How-to-convert-to-Array-in-JavaScript/" data-id="ck6jqkvi70026yuuw80g7zv7u" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1211,6 +1205,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="../../Vue_computed_watch/">Vue.js computed &amp; watch 計算屬性與監視器</a>
+          </li>
+        
+          <li>
             <a href="../../Vue_Template_Syntax/">Vue.js Template Syntax 模板語法</a>
           </li>
         
@@ -1226,10 +1224,6 @@ ga('send', 'pageview');
             <a href="../../VSCode_ESLint_Setup/">在 VSCode 裡使用 ESLint, Prettier &amp; Airbnb Style Guide</a>
           </li>
         
-          <li>
-            <a href="../../Vue_Test_QA/">Vuejs 線上問答題</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1239,7 +1233,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../../tags/CSS/" style="font-size: 12px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 12px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 12px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Base/" style="font-size: 12px;">JS Base</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 12px;">JavaScript 30</a> <a href="../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 14px;">React</a> <a href="../../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 12px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 12px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+      <a href="../../tags/CSS/" style="font-size: 11.67px;">CSS</a> <a href="../../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../../tags/Git/" style="font-size: 11.67px;">Git</a> <a href="../../tags/GitHub/" style="font-size: 11.67px;">GitHub</a> <a href="../../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../../tags/Iron-man-30-鐵人賽/" style="font-size: 16.67px;">Iron man 30 鐵人賽</a> <a href="../../tags/JS-Base/" style="font-size: 11.67px;">JS Base</a> <a href="../../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../../tags/JS-Array/" style="font-size: 18.33px;">JS_Array</a> <a href="../../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../../tags/JavaScript-30/" style="font-size: 11.67px;">JavaScript 30</a> <a href="../../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../../tags/Note/" style="font-size: 10px;">Note</a> <a href="../../tags/Other/" style="font-size: 10px;">Other</a> <a href="../../tags/React/" style="font-size: 15px;">React</a> <a href="../../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../../tags/Test/" style="font-size: 10px;">Test</a> <a href="../../tags/VSCode/" style="font-size: 11.67px;">VSCode</a> <a href="../../tags/Vue/" style="font-size: 13.33px;">Vue</a> <a href="../../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
     </div>
   </div>
 
