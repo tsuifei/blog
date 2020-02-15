@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Vue.js Conditional Rendering 條件渲染語法</title>
+      <link href="/tsuifei.github.io/Vue_Conditional_Rendering/"/>
+      <url>/tsuifei.github.io/Vue_Conditional_Rendering/</url>
+      
+        <content type="html"><![CDATA[<p>既然是條件式，就一定有選擇，在程式裡，最簡單也最常用的選擇是使用布林值： true 或 false 只能擇一。利用這種這種二擇一的特性，去執行我們希望程式做的事。</p><p><a href="https://codepen.io/tsuifei/pen/KKpzKbV" target="_blank" rel="noopener">去 codepen 看看效果</a></p><p>在 Vue 裡的條件渲染指令有以下兩種：</p><h2 id="v-if-和-v-else-一起用"><a href="#v-if-和-v-else-一起用" class="headerlink" title="v-if 和 v-else 一起用"></a>v-if 和 v-else 一起用</h2><p><code>v-if</code>和<code>v-else</code> 一起用的時候，把條件的屬性放在<code>v-if</code>的標籤屬性裡，如果屬性結果是<code>true</code>就會顯示<code>v-if</code>的內容，如果結果是<code>false</code>就會顯示<code>v-else</code> 的內容，在選染頁面部分，我們會發現，如果是<code>false</code>，就連 HTML 的部分也不會被渲染出。</p><p>當我們只有有寫<code>v-else</code>如<code>&lt;p v-else&gt;失敗&lt;/p&gt;</code>等同是<code>v-else=&quot;true&quot;</code>，通常在<code>v-else</code>是不需要給條件的。</p><p>需要做切換時，只要使用運算子<code>!</code>將條件調整為<code>@click=&quot;yes=!yes&quot;</code> 就可達到切換的效果。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"success"</span>&gt;</span>成功<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-else</span>&gt;</span>失敗<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"success=!success"</span>&gt;</span>Switch<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure><h2 id="v-show-用兩次"><a href="#v-show-用兩次" class="headerlink" title="v-show 用兩次"></a>v-show 用兩次</h2><p><code>v-show</code>通常拿來作為一個切換器，像開關一樣，不是開就是關。如果需要平凡的切換，就使用<code>v-show</code>。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-show</span>=<span class="string">"success"</span>&gt;</span>已完成<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-show</span>=<span class="string">"!success"</span>&gt;</span>未完成<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure><h2 id="v-if-和-v-show-的不同之處"><a href="#v-if-和-v-show-的不同之處" class="headerlink" title="v-if 和 v-show 的不同之處"></a>v-if 和 v-show 的不同之處</h2><p><code>v-if</code>可以搭配<code>v-else-if</code>和<code>v-else</code> 而有多選一的機制，但是<code>v-show</code>通常只能二選一。<br>在渲染的部分，使用<code>v-if</code>只會渲染出達到條件的 HTML，但是<code>v-show</code>會把條件全渲染出來，然後用以<code>style=&quot;display: none;&quot;</code>的方式隱藏。</p><h3 id="需要多選一的時候就用-v-if"><a href="#需要多選一的時候就用-v-if" class="headerlink" title="需要多選一的時候就用 v-if"></a>需要多選一的時候就用 v-if</h3><p>剛剛說過 <code>v-if</code>可以搭配<code>v-else-if</code>和<code>v-else</code> 做出多選一的機制，也很彈性，使用方法也很簡潔，同樣只會炫染出<code>true</code>的部分。</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h4</span>&gt;</span>v-if-else multiple<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"light==='red'"</span>&gt;</span>紅燈<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-else-if</span>=<span class="string">"light==='green'"</span>&gt;</span>綠燈<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-else-if</span>=<span class="string">"light==='yellow'"</span>&gt;</span>黃燈<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-else</span>&gt;</span>燈壞了<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure><p>JavaScript Vue 實例的部分：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    success: <span class="literal">false</span>,</span><br><span class="line">    light: <span class="string">''</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>值得注意的是在 Vue 的官網上說明：不推薦同時使用<code>v-if</code> 和 <code>v-for</code></p><p>當 <code>v-if</code> 與 <code>v-for</code> 一起使用時，<code>v-for</code>會具有比 v-if 更高的優先級。詳細解釋請查閱 Vue 的<a href="https://cn.vuejs.org/v2/style-guide/#%E9%81%BF%E5%85%8D-v-if-%E5%92%8C-v-for-%E7%94%A8%E5%9C%A8%E4%B8%80%E8%B5%B7-%E5%BF%85%E8%A6%81" target="_blank" rel="noopener">風格指南 — Vue.js</a>和列表渲染指南：<br><a href="https://cn.vuejs.org/v2/guide/list.html#v-for-object" target="_blank" rel="noopener">列表渲染 — Vue.js</a></p><p><a href="https://cn.vuejs.org/v2/guide/conditional.html" target="_blank" rel="noopener">條件渲染 — Vue.js</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> JavaScript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Vue.js Class &amp; Style Bindings 樣式的綁定</title>
       <link href="/tsuifei.github.io/Vue_class_style/"/>
       <url>/tsuifei.github.io/Vue_class_style/</url>
