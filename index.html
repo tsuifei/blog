@@ -111,6 +111,100 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-Vue_List_Rendering" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="Vue_List_Rendering/" class="article-date">
+  <time datetime="2020-02-15T16:42:24.000Z" itemprop="datePublished">2020-02-16</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="Vue_List_Rendering/">Vue.js List Rendering 列表渲染</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>如果要把一個陣列或物件渲染到畫面，在原生的 JS 我們可以用迴圈或 forEach 以遍歷的方式將陣列的資料顯示，如果用 ES6 就可用 for…of 循環語句。<br>在 Vue 裡要遍歷陣列的方法並不難，只是遍歷陣列和物件的方式稍有不同。<br><a href="https://codepen.io/tsuifei/pen/QWbNErL" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
+<h2 id="以-v-for-遍歷陣列顯示"><a href="#以-v-for-遍歷陣列顯示" class="headerlink" title="以 v-for 遍歷陣列顯示"></a>以 v-for 遍歷陣列顯示</h2><p>陣列列表顯示的方法是使用<code>v-for</code>指令，在遍歷的時候語法為<code>&lt;li v-for=&quot;(p, index) in persons&quot; :key=&quot;index&quot;&gt;&lt;/li&gt;</code><br>在使用<code>v-for</code>時要記得加上<code>:key</code> 讓單筆的屬性有唯一值，這個陣列的唯一值是 index。<br>在上面的語法範例，可以想成是<code>&lt;li v-for=&quot;(單個陣列, index索引值) in 陣列&quot; :key=&quot;index唯一索引值&quot;&gt;&lt;/li&gt;</code></p>
+<p>假設我們有個陣列：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">persons: [&#123;</span><br><span class="line">            name: <span class="string">'Ayda'</span>,</span><br><span class="line">            age: <span class="number">18</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Tracy'</span>,</span><br><span class="line">            age: <span class="number">24</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Philippe'</span>,</span><br><span class="line">            age: <span class="number">42</span></span><br><span class="line">          &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 HTML 我們可以這樣寫，就可以在頁面渲染出陣列的列表：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(p, index) in persons"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">    &#123;&#123; index &#125;&#125; --- &#123;&#123;p.name&#125;&#125; --- &#123;&#123;p.age&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="以-v-for-遍歷物件顯示"><a href="#以-v-for-遍歷物件顯示" class="headerlink" title="以 v-for 遍歷物件顯示"></a>以 v-for 遍歷物件顯示</h2><p>遍歷物件的方法也差不多，只是物件並沒有索引值，所以唯一值就會抓取 key 值，如：<br><code>v-for=&quot;(value, key) in persons[1]&quot; :key=&quot;key&quot;</code><br>可以想成：<br><code>v-for=&quot;(value屬性值, key屬性鍵值) in persons物件[1]&quot; :key=&quot;key唯一鍵值&quot;</code><br>每一個 key 值都需不相同。另外，遍歷物件的功能並不常用。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 提取單筆 --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- &lt;li v-for="(value, key) in persons[1]" :key="key"&gt;&#123;&#123;value&#125;&#125; -- &#123;&#123;key&#125;&#125;&lt;/li&gt; --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 提取全部 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(value, key) in persons"</span> <span class="attr">:key</span>=<span class="string">"key"</span>&gt;</span>&#123;&#123;value&#125;&#125; -- &#123;&#123;key&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="刪除、更新、增加的寫法"><a href="#刪除、更新、增加的寫法" class="headerlink" title="刪除、更新、增加的寫法"></a>刪除、更新、增加的寫法</h2><p>在 Vue 裡要做到刪除、更新、增加陣列並須先了解 Vue 的運作，要先分清楚我們所操作的是否有改變到陣列本身？還是更改到陣列內部的物件。<br>例如，如果我們使用<code>this.persons = []</code>我們把空陣列指向 <code>persons</code>物件，陣列因此成為空陣列，這樣的動作是有更動到陣列「本身」。<br>但是如果只是去改變陣列內物件的屬性、值，這就只有更動到陣列內部結構。這樣的內部結構改變 Vue 無法知道。<br><strong>Vue 只會監視 persons 這個陣列的改變，而不會監視陣列內部資料的改變。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;; <span class="comment">// 改變物件本身</span></span><br><span class="line">obj.t = <span class="number">1</span>; <span class="comment">// 只改變了物件的內部結構資料</span></span><br></pre></td></tr></table></figure>
+
+<p>解決的方法是使用 Vue 的「變異方法」 (mutation method)。</p>
+<p>在 Vue 的官網上，列表渲染裡的「陣列更新檢測」有寫到，Vue 會將被偵聽的陣列的變異方法進行包裹，然後才將會觸發頁面的部分更新。</p>
+<p>陣列裡有這些函式可改變陣列的內部結構，在 Vue 裡用這些方法時，如增加、刪除，用這些方法已不是 JS 的原生方法，而是 Vue 有特殊處理包裹過，包裹的過程會經過兩個步驟：呼叫原生方法函式與更新頁面，也就是 <strong>Vue 重寫了一遍這些方法，讓這些方法可以檢測到陣列內部資料的變化</strong>。如果 Vue 沒做這些包裹處理，那麼 Vue 就無法檢測到陣列內部資料的變化。</p>
+<p>在做陣列內部資料的更動更新，一定要使用以下這些方法，才能讓陣列內部資料變化，自動更新到頁面上。</p>
+<p>這些被 Vue 重新包裹過的方法成為「變異方法」有：<code>push()</code>、<code>pop()</code>、<code>shift()</code>、<code>unshift()</code>、<code>splice()</code>、<code>sort()</code>、<code>reverse()</code></p>
+<p>其中，<code>splice()</code> 的功能很強大，可以一次辦到增加、刪除、修改。</p>
+<p>以範例來說，我們先在頁面增加三個分別為刪除、更新、增加的按鈕，這個範例只是簡單的介紹其運作的方法。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(p, index) in persons"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">    &#123;&#123; index &#125;&#125; --- &#123;&#123;p.name&#125;&#125; --- &#123;&#123;p.age&#125;&#125; --<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"deleteP(index)"</span>&gt;</span></span><br><span class="line">      Delete</span><br><span class="line">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    -- <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"updateP(index, &#123;name:'Fanny', age: 25&#125;)"</span>&gt;</span>Update<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>再來我們來看在 Vue 裡的刪除、更新、增加這三個方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">methods: &#123;</span><br><span class="line">        deleteP(index) &#123;</span><br><span class="line">          <span class="keyword">this</span>.persons.splice(index, <span class="number">1</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        updateP(index, newP) &#123;</span><br><span class="line">          <span class="comment">// this.persons[index] = newP</span></span><br><span class="line">          <span class="comment">// 這樣的做法因為無原生陣列函式，所以在vue 不會起作用，也不會自動更新頁面</span></span><br><span class="line">          <span class="comment">// console.log(this.persons[index], newP)</span></span><br><span class="line">          <span class="keyword">this</span>.persons.splice(index, <span class="number">1</span>, newP)</span><br><span class="line">        &#125;,</span><br><span class="line">        addP(newP) &#123;</span><br><span class="line">          <span class="keyword">this</span>.persons.push(newP)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">)&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果熟悉上面的操作，應該就可以試著寫出一個簡單的 todoList 了。<br>接下來就要來介紹排序的部分囉！</p>
+<p>參考：<br><a href="https://cn.vuejs.org/v2/guide/list.html#%E5%8F%98%E5%BC%82%E6%96%B9%E6%B3%95-mutation-method" target="_blank" rel="noopener">列表渲染 — Vue.js</a><br><a href="https://blog.csdn.net/qq_37860930/article/details/78529260" target="_blank" rel="noopener">ES6-遍曆數組 JavaScript</a><br><a href="https://segmentfault.com/a/1190000010203337" target="_blank" rel="noopener">ES5 和 ES6 數組遍歷方法詳解</a></p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>如果要把一個陣列或物件渲染到畫面，在原生的 JS 我們可以用迴圈或 forEach 以遍歷的方式將陣列的資料顯示，如果用 ES6 就可用 for…of 循環語句。<br>在 Vue 裡要遍歷陣列的方法並不難，只是遍歷陣列和物件的方式稍有不同。<br><a href="https://codepen.io/tsuifei/pen/QWbNErL" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
+<h2 id="以-v-for-遍歷陣列顯示"><a href="#以-v-for-遍歷陣列顯示" class="headerlink" title="以 v-for 遍歷陣列顯示"></a>以 v-for 遍歷陣列顯示</h2><p>陣列列表顯示的方法是使用<code>v-for</code>指令，在遍歷的時候語法為<code>&lt;li v-for=&quot;(p, index) in persons&quot; :key=&quot;index&quot;&gt;&lt;/li&gt;</code><br>在使用<code>v-for</code>時要記得加上<code>:key</code> 讓單筆的屬性有唯一值，這個陣列的唯一值是 index。<br>在上面的語法範例，可以想成是<code>&lt;li v-for=&quot;(單個陣列, index索引值) in 陣列&quot; :key=&quot;index唯一索引值&quot;&gt;&lt;/li&gt;</code></p>
+<p>假設我們有個陣列：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">persons: [&#123;</span><br><span class="line">            name: <span class="string">'Ayda'</span>,</span><br><span class="line">            age: <span class="number">18</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Tracy'</span>,</span><br><span class="line">            age: <span class="number">24</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Philippe'</span>,</span><br><span class="line">            age: <span class="number">42</span></span><br><span class="line">          &#125;</span><br></pre></td></tr></table></figure>
+
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="Vue_List_Rendering/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/Vue_List_Rendering/" data-id="ck6otjwhy0000l4uwtw4y1itp" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Vue/">Vue</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-Vue_Conditional_Rendering" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="Vue_Conditional_Rendering/" class="article-date">
@@ -1340,113 +1434,6 @@ Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profil
 
 
   
-    <article id="post-React_virtual_DOM" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="React_virtual_DOM/" class="article-date">
-  <time datetime="2020-01-26T16:42:24.000Z" itemprop="datePublished">2020-01-27</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="React_virtual_DOM/">React 裡的虛擬 DOM</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <blockquote>
-<p>這世界上有很多虛擬的東東，這些欺騙感情的虛擬物，有時也可以拿來療癒。</p>
-</blockquote>
-<p>先來理解一下什麼是虛擬 DOM : 為什麼我們需要用它?<br>這篇文章解釋得頗清楚的：<a href="https://segmentfault.com/a/1190000018891454" target="_blank" rel="noopener">虛擬 DOM的渲染原理和特性</a></p>
-<p>但是還是來整理一下重點：<br>原本我們寫原生的 JavaScript 時，我們會直接對 DOM 進行監聽和修改，然後這個 DOM 元素也會透過我們的監聽的事件所執行的，讓頁面產生互動。</p>
-<p>React 則是會把我們寫的監聽這部份，轉成一個<strong>物件</strong>，再將這個物件轉換成真實的 DOM，這個由 React 轉成的物件就是所謂的虛擬 DOM。</p>
-<p>假如說我們有一個用 HTML 寫成的樹狀 DOM 結構：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>Mes amies<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Ayda<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Tracy<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>React 可能會用這樣的物件格式來儲存這個 DOM:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const VitrualDom = &#123;</span><br><span class="line">  type: &apos;div&apos;,</span><br><span class="line">  props: &#123; class: &apos;title&apos; &#125;,</span><br><span class="line">  children: [</span><br><span class="line">    &#123;</span><br><span class="line">      type: &apos;span&apos;,</span><br><span class="line">      children: &apos;Mes amies&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      type: &apos;ul&apos;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123; type: &apos;li&apos;, children: &apos;Ayda&apos; &#125;,</span><br><span class="line">        &#123; type: &apos;li&apos;, children: &apos;Tracy&apos; &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="虛擬-DOM-物件最終都會被-React-轉化成真實的-DOM"><a href="#虛擬-DOM-物件最終都會被-React-轉化成真實的-DOM" class="headerlink" title="虛擬 DOM 物件最終都會被 React 轉化成真實的 DOM"></a>虛擬 DOM 物件最終都會被 React 轉化成真實的 DOM</h3><p>在我們需要新增或更新元素時，React 會先將這個 <code>VitrualDom</code> 物件進行新增和更改，然後再將這個虛擬的 DOM 物件渲染成一個真實的DOM。</p>
-<p>同樣的，如果我們需要對 DOM 進行監聽事件時，也會先對 <code>VitrualDom</code> 物件進行事件監聽，虛擬的 DOM 物件會代替原生的 DOM 事件做出反應與互動。</p>
-<p>當我們需要對DOM進行事件監聽時，首先對 <code>VitrualDom</code> 進行事件監聽， <code>VitrualDom</code> 會代理原生的 DOM 事件從而做出反應。</p>
-<h3 id="虛擬-DOM-和-JSX-語法"><a href="#虛擬-DOM-和-JSX-語法" class="headerlink" title="虛擬 DOM 和 JSX 語法"></a>虛擬 DOM 和 JSX 語法</h3><ol>
-<li>React 提供了一些 API 來新增特別的 JS 物件。一個簡單的虛擬 DOM 物件：<code>const elememt = React.createElement(&#39;h1標籤名&#39;,{id:&#39;myTitle&#39;標籤屬性}, &#39;hello變數&#39;)</code></li>
-<li>虛擬 DOM 物件最終都會被 React 轉化成真實的 DOM</li>
-<li>基本上只需要操作 React 的虛擬 DOM 的相關資料, React 會轉換為真實的 DOM 變化，而更新介面。</li>
-</ol>
-<h2 id="新增虛擬DOM的兩種方式"><a href="#新增虛擬DOM的兩種方式" class="headerlink" title="新增虛擬DOM的兩種方式"></a>新增虛擬DOM的兩種方式</h2><ol>
-<li>原生 JS(一般不用)：<code>React.createElement(&#39;h2&#39;,{id:myId},msg)</code></li>
-<li>JSX 語法：<code>&lt;h3 id={myId}&gt; {msg} &lt;/h3&gt;</code></li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"test1"</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">id</span>=<span class="string">"test2"</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>第一種原生 JS 方式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> msg = <span class="string">'I like you'</span></span><br><span class="line"><span class="keyword">const</span> myId = <span class="string">'Tracy'</span></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="comment">// 1.新增虛擬 DOM</span></span><br><span class="line"><span class="keyword">const</span> vDom1 =  React.createElement(<span class="string">'h2'</span>,&#123;<span class="attr">id</span>:myId.toLowerCase()&#125;,msg.toUpperCase())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.渲染虛擬 DOM</span></span><br><span class="line">ReactDom.render(vDom1, <span class="built_in">document</span>.getElementById(<span class="string">'test1'</span>))</span><br></pre></td></tr></table></figure>
-
-<p>第二種方式，使用 babel： <code>&lt;script type=&quot;text/babel&quot;&gt;&lt;/script&gt;</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.新增虛擬 DOM 直接寫入 html 結構</span></span><br><span class="line"><span class="keyword">const</span> vDom2 =  <span class="xml"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">id</span>=<span class="string">&#123;myId.toUpperCase()&#125;</span>&gt;</span> &#123;msg.toUpperCase()&#125; <span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.渲染虛擬 DOM</span></span><br><span class="line">ReactDom.render(vDom2, <span class="built_in">document</span>.getElementById(<span class="string">'test2'</span>))</span><br></pre></td></tr></table></figure>
-
-<h2 id="渲染虛擬-DOM-元素-的語法"><a href="#渲染虛擬-DOM-元素-的語法" class="headerlink" title="渲染虛擬 DOM (元素)的語法"></a>渲染虛擬 DOM (元素)的語法</h2><ol>
-<li>語法：<code>ReactDom.render(virtualDOM, containerDOM)</code> </li>
-<li>作用：將虛擬 DOM 元素渲染到頁面中真實的DOM元素中顯示。</li>
-<li>參數說明：<ul>
-<li>參數一：純 JS 或 JSX 新增的虛擬 DOM 物件</li>
-<li>參數二：用來包含虛擬 DOM 元素的真實 DOM 元素物件(通常是個<code>&lt;div&gt;</code>)</li>
-</ul>
-</li>
-</ol>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <blockquote>
-<p>這世界上有很多虛擬的東東，這些欺騙感情的虛擬物，有時也可以拿來療癒。</p>
-</blockquote>
-<p>先來理解一下什麼是虛擬 DOM : 為什麼我們需要用它?<br>這篇文章解釋得頗清楚的：<a href="https://segmentfault.com/a/1190000018891454" target="_blank" rel="noopener">虛擬 DOM的渲染原理和特性</a></p>
-<p>但是還是來整理一下重點：<br>原本我們寫原生的 JavaScript 時，我們會直接對 DOM 進行監聽和修改，然後這個 DOM 元素也會透過我們的監聽的事件所執行的，讓頁面產生互動。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="React_virtual_DOM/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/React_virtual_DOM/" data-id="ck6ngp8ow005e7nuwlobd1aa3" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/React/">React</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1495,6 +1482,10 @@ Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profil
       <ul>
         
           <li>
+            <a href="Vue_List_Rendering/">Vue.js List Rendering 列表渲染</a>
+          </li>
+        
+          <li>
             <a href="Vue_Conditional_Rendering/">Vue.js Conditional Rendering 條件渲染語法</a>
           </li>
         
@@ -1508,10 +1499,6 @@ Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profil
         
           <li>
             <a href="Vue_Template_Syntax/">Vue.js Template Syntax 模板語法</a>
-          </li>
-        
-          <li>
-            <a href="JS_Base_Object/">JavaScript 基礎 物件篇</a>
           </li>
         
       </ul>
