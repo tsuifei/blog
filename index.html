@@ -111,6 +111,88 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-Vue_Displaying_Filtered_Sorted_Results" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="Vue_Displaying_Filtered_Sorted_Results/" class="article-date">
+  <time datetime="2020-02-16T16:42:24.000Z" itemprop="datePublished">2020-02-17</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="Vue_Displaying_Filtered_Sorted_Results/">Vue.js Displaying Filtered/Sorted Results 顯示過濾/排序後的結果</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>如何把現有的陣列，在做完過濾後存在另一個新的陣列裡？如何讓頁面即時顯示這個新的陣列列表？要產生新陣列的條件有哪些？原本的陣列、輸入框輸入了什麼資料？只要拿得到這兩個資料，就可產生新的過濾後的陣列。</p>
+<p>我們來看一下，該如何進行？ 或是先來看一下<a href="https://codepen.io/tsuifei/pen/LYVNMBM" target="_blank" rel="noopener">完整的原始碼</a></p>
+<p>輸入框先以<code>v-model</code>綁定資料，這個資料是過濾的條件<code>searchName</code>，需要去實例初始化它。</p>
+<p>過濾條件後所產生的新陣列<code>filterPersons</code>則是透過<code>searchName</code>和<code>persons</code>陣列所計算產生出來的，所以我們需要一個在實例中的計算屬性 computed 的方法，去產生新的陣列<code>filterPersons</code>。這個方法的回傳值即是顯示的結果。</p>
+<p>將原本的陣列<code>persons</code>套用<code>filter()</code>方法，再以<code>indexOf()</code>方法，用<code>searchName !== -1</code>ˋ 這個條件去查找的結果，存入新陣列<code>fPersons</code>中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fPersons = persons.filter(<span class="function"><span class="params">p</span> =&gt;</span> p.name.indexOf(searchName !== <span class="number">-1</span>));</span><br></pre></td></tr></table></figure>
+
+<p>在過濾陣列的方法中，要先把需要的資料數據取出來，並將他們放在一個物件中，再開始過濾陣列的動作，把過濾產生的新陣列，用<code>sort()</code>方法來排序。</p>
+<p>如果排序的功能只有兩種，通常會以布林值的方式來做切換，但在我們的排序功能的按鈕，除了升序和降序外，還有恢復原來排列的第三種，所以我們可以以數字來作為排序分類的指標數。<br>代表排序分類的<code>orderType</code>指派為：0 代表原本排序、1 代表升序, 2 代表降序。</p>
+<p>在三個按鈕<br>上使用<code>@click=&quot;setOrderType(2)</code>監聽的方法、在實例的 methods 中增加<code>setOrderType()</code>方法，並將排序的方法寫在實例的計算屬性<code>filterPersons()</code>裡。而<code>setOrderType()</code>要做的事情，就是把這個方法的參數，指向實例中的 OrderType()。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// filterPersons()裡 排序的部分</span></span><br><span class="line"><span class="comment">// 排序</span></span><br><span class="line"><span class="comment">// 確定排序的指標 orderType 不是 0 才繼續排序下去</span></span><br><span class="line"><span class="keyword">if</span> (orderType !== <span class="number">0</span>) &#123;</span><br><span class="line">  fPersons.sort(<span class="function"><span class="keyword">function</span>(<span class="params">p1, p2</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 1代表降序, 2代表升序</span></span><br><span class="line">    <span class="keyword">if</span> (orderType === <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="comment">// 降序</span></span><br><span class="line">      <span class="keyword">return</span> p2.age - p1.age;</span><br><span class="line">      <span class="comment">// name 降序</span></span><br><span class="line">      <span class="comment">// return p2.name - p1.name</span></span><br><span class="line">      <span class="comment">// return p2.name.localeCompare(p1.name)</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 升序</span></span><br><span class="line">      <span class="keyword">return</span> p1.age - p2.age;</span><br><span class="line">      <span class="comment">// name 升序</span></span><br><span class="line">      <span class="comment">// return p1.name - p2.name</span></span><br><span class="line">      <span class="comment">// return p1.name.localeCompare(p2.name)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上例我們是以<code>age</code>來當排序條件，如果想要以<code>name</code>字母順序為排序條件，則可將條件的回傳值更改為<code>return p1.name.localeCompare(p2.name)</code>就會依字母順序排列了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// setOrderType()部分</span></span><br><span class="line">methods: &#123;</span><br><span class="line">        setOrderType(orderType) &#123;</span><br><span class="line">          <span class="keyword">this</span>.orderType = orderType</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>有了這些功能，我們就可以讓 Todo List 有過濾的更多功能了。</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>如何把現有的陣列，在做完過濾後存在另一個新的陣列裡？如何讓頁面即時顯示這個新的陣列列表？要產生新陣列的條件有哪些？原本的陣列、輸入框輸入了什麼資料？只要拿得到這兩個資料，就可產生新的過濾後的陣列。</p>
+<p>我們來看一下，該如何進行？ 或是先來看一下<a href="https://codepen.io/tsuifei/pen/LYVNMBM" target="_blank" rel="noopener">完整的原始碼</a></p>
+<p>輸入框先以<code>v-model</code>綁定資料，這個資料是過濾的條件<code>searchName</code>，需要去實例初始化它。</p>
+<p>過濾條件後所產生的新陣列<code>filterPersons</code>則是透過<code>searchName</code>和<code>persons</code>陣列所計算產生出來的，所以我們需要一個在實例中的計算屬性 computed 的方法，去產生新的陣列<code>filterPersons</code>。這個方法的回傳值即是顯示的結果。</p>
+<p>將原本的陣列<code>persons</code>套用<code>filter()</code>方法，再以<code>indexOf()</code>方法，用<code>searchName !== -1</code>ˋ 這個條件去查找的結果，存入新陣列<code>fPersons</code>中。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="Vue_Displaying_Filtered_Sorted_Results/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/Vue_Displaying_Filtered_Sorted_Results/" data-id="ck6qgro82000043uwqf26cquh" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Vue/">Vue</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-Vue_List_Rendering" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="Vue_List_Rendering/" class="article-date">
@@ -1342,98 +1424,6 @@ Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profil
 
 
   
-    <article id="post-React_module_component" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="React_module_component/" class="article-date">
-  <time datetime="2020-01-27T16:42:24.000Z" itemprop="datePublished">2020-01-28</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="React_module_component/">React 的 模塊 Module 與組件 component</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <blockquote>
-<p>模塊與組件 模塊化與組件化 好繞舌</p>
-</blockquote>
-<h2 id="模塊與組件的關係"><a href="#模塊與組件的關係" class="headerlink" title="模塊與組件的關係"></a>模塊與組件的關係</h2><h3 id="模塊-Module"><a href="#模塊-Module" class="headerlink" title="模塊 Module"></a>模塊 Module</h3><p>理解：向外提供特定功能的JS應用，一般就是以<code>.js</code>的檔案為單位。<br>為什麼：因為 JS 程式碼會越多，會越來越複雜。<br>作用：可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p>
-<h3 id="組件-Component"><a href="#組件-Component" class="headerlink" title="組件 Component"></a>組件 Component</h3><p>一個局部的介面功能模塊，介面所需元素的集合包含 HTML,CSS,JS,image。可用來做資料、變數與函式操作與儲存資料的操作。</p>
-<p>理解：用來實現特定（局部）功能效果的程式碼集合(HTML, CSS)。<br>為什麼：一個介面的功能很複雜，所以最好能拆分成多個組件會較清楚。<br>作用： 可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p>
-<h3 id="模塊化-Modular"><a href="#模塊化-Modular" class="headerlink" title="模塊化 Modular"></a>模塊化 Modular</h3><p>當應用程式的 JS 都是以模塊的方式書寫，這個程式就是一個模塊化的應用程式。</p>
-<h3 id="組件化-Componentization"><a href="#組件化-Componentization" class="headerlink" title="組件化 Componentization"></a>組件化 Componentization</h3><p>當應用程式的 JS 都是以多個組件的方式編寫，這個應用程式就是一個組件化的應用程式。</p>
-<h2 id="物件導向的組件構成"><a href="#物件導向的組件構成" class="headerlink" title="物件導向的組件構成"></a>物件導向的組件構成</h2><h3 id="基本的理解和使用"><a href="#基本的理解和使用" class="headerlink" title="基本的理解和使用"></a>基本的理解和使用</h3><p>物件導向的物件 -&gt; 物件導向的模塊 -&gt; 物件導向的組件。</p>
-<p><code>&lt;MyComponent/&gt;</code>稱為組件標籤，組件名可任意，但第一個字母需大寫，且標籤需關閉<code>&lt;組件名/&gt;</code>。</p>
-<p>新增組件的步驟：</p>
-<ol>
-<li>定義組件有兩種方式：工廠模式組件(簡單組件)、ES6 類別組件(複雜組件)</li>
-<li>渲染組件標籤</li>
-</ol>
-<h3 id="工廠模式組件-簡單組件：沒有狀態的組件"><a href="#工廠模式組件-簡單組件：沒有狀態的組件" class="headerlink" title="工廠模式組件(簡單組件：沒有狀態的組件)"></a>工廠模式組件(簡單組件：沒有狀態的組件)</h3><p>工廠模式組件的效率會比類別組件好，但是只能在組件沒有「狀態」的情況下使用它，也就是說如果只是靜態顯示資料，就可考慮用工廠模式。</p>
-<p>工廠模式的寫法很像一般函式的寫法，且一定要有回傳，而回傳內容通常就包含了 HTML 標籤。</p>
-<p>重點：一定要有回傳<code>return</code>，只要組件有<code>state</code>狀態，就不能用工廠模式。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponent</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>工廠模式組件(簡單組件) <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 渲染組件標籤</span></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MyComponent</span> /&gt;</span>, document.getElementById('example1'))</span></span><br></pre></td></tr></table></figure>
-
-<p>組件標籤的另一種寫法，如果需要內容物在組件標籤之間，就可用這種寫法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;MyComponent&gt; </span><br><span class="line">  &lt;h2&gt;工廠模式組件(簡單組件) &lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>MyComponent&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="ES6-類別組件-複雜組件"><a href="#ES6-類別組件-複雜組件" class="headerlink" title="ES6 類別組件(複雜組件)"></a>ES6 類別組件(複雜組件)</h3><p>ES6 類別組件寫法是以物件導向的類別方式來攥寫，包在裡面的會有建構式、綁定自定義函式、狀態和渲染或者是事件監聽。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2. ES6 類別組件(複雜組件)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent2</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">    <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>ES6 類別組件(複雜組件)<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">  ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MyComponent2</span> /&gt;</span>, document.getElementById('example2'))</span></span><br></pre></td></tr></table></figure> -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <blockquote>
-<p>模塊與組件 模塊化與組件化 好繞舌</p>
-</blockquote>
-<h2 id="模塊與組件的關係"><a href="#模塊與組件的關係" class="headerlink" title="模塊與組件的關係"></a>模塊與組件的關係</h2><h3 id="模塊-Module"><a href="#模塊-Module" class="headerlink" title="模塊 Module"></a>模塊 Module</h3><p>理解：向外提供特定功能的JS應用，一般就是以<code>.js</code>的檔案為單位。<br>為什麼：因為 JS 程式碼會越多，會越來越複雜。<br>作用：可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p>
-<h3 id="組件-Component"><a href="#組件-Component" class="headerlink" title="組件 Component"></a>組件 Component</h3><p>一個局部的介面功能模塊，介面所需元素的集合包含 HTML,CSS,JS,image。可用來做資料、變數與函式操作與儲存資料的操作。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="React_module_component/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/React_module_component/" data-id="ck6otqz9f0052rzuw51nx2l7q" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/React/">React</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1482,6 +1472,10 @@ Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profil
       <ul>
         
           <li>
+            <a href="Vue_Displaying_Filtered_Sorted_Results/">Vue.js Displaying Filtered/Sorted Results 顯示過濾/排序後的結果</a>
+          </li>
+        
+          <li>
             <a href="Vue_List_Rendering/">Vue.js List Rendering 列表渲染</a>
           </li>
         
@@ -1495,10 +1489,6 @@ Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profil
         
           <li>
             <a href="Vue_computed_watch/">Vue.js computed &amp; watch 計算屬性與監視器</a>
-          </li>
-        
-          <li>
-            <a href="Vue_Template_Syntax/">Vue.js Template Syntax 模板語法</a>
           </li>
         
       </ul>
