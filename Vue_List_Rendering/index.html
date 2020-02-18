@@ -29,7 +29,7 @@ ga('send', 'pageview');
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="如果要把一個陣列或物件渲染到畫面，在原生的 JS 我們可以用迴圈或 forEach 以遍歷的方式將陣列的資料顯示，如果用 ES6 就可用 for…of 循環語句。在 Vue 裡要遍歷陣列的方法並不難，只是遍歷陣列和物件的方式稍有不同。去 codepen 看看效果 以 v-for 遍歷陣列顯示陣列列表顯示的方法是使用v-for指令，在遍歷的時候語法為&amp;lt;li v-for=&amp;quot;(p, in">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-02-16T09:25:02.603Z">
+<meta property="og:updated_time" content="2020-02-17T13:01:05.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue.js List Rendering 列表渲染">
 <meta name="twitter:description" content="如果要把一個陣列或物件渲染到畫面，在原生的 JS 我們可以用迴圈或 forEach 以遍歷的方式將陣列的資料顯示，如果用 ES6 就可用 for…of 循環語句。在 Vue 裡要遍歷陣列的方法並不難，只是遍歷陣列和物件的方式稍有不同。去 codepen 看看效果 以 v-for 遍歷陣列顯示陣列列表顯示的方法是使用v-for指令，在遍歷的時候語法為&amp;lt;li v-for=&amp;quot;(p, in">
@@ -138,7 +138,7 @@ ga('send', 'pageview');
                     <div class="article-entry" itemprop="articleBody">
                         
                                             <!-- <p>如果要把一個陣列或物件渲染到畫面，在原生的 JS 我們可以用迴圈或 forEach 以遍歷的方式將陣列的資料顯示，如果用 ES6 就可用 for…of 循環語句。<br>在 Vue 裡要遍歷陣列的方法並不難，只是遍歷陣列和物件的方式稍有不同。<br><a href="https://codepen.io/tsuifei/pen/QWbNErL" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
-<h2 id="以-v-for-遍歷陣列顯示"><a href="#以-v-for-遍歷陣列顯示" class="headerlink" title="以 v-for 遍歷陣列顯示"></a>以 v-for 遍歷陣列顯示</h2><p>陣列列表顯示的方法是使用<code>v-for</code>指令，在遍歷的時候語法為<code>&lt;li v-for=&quot;(p, index) in persons&quot; :key=&quot;index&quot;&gt;&lt;/li&gt;</code><br>在使用<code>v-for</code>時要記得加上<code>:key</code> 讓單筆的屬性有唯一值，這個陣列的唯一值是 index。<br>在上面的語法範例，可以想成是<code>&lt;li v-for=&quot;(單個陣列, index索引值) in 陣列&quot; :key=&quot;index唯一索引值&quot;&gt;&lt;/li&gt;</code></p>
+<h2 id="以-v-for-遍歷陣列顯示"><a href="#以-v-for-遍歷陣列顯示" class="headerlink" title="以 v-for 遍歷陣列顯示"></a>以 v-for 遍歷陣列顯示</h2><p>陣列列表顯示的方法是使用<code>v-for</code>指令，在遍歷的時候語法為<code>&lt;li v-for=&quot;(p, index) in persons&quot; :key=&quot;index&quot;&gt;&lt;/li&gt;</code><br>在使用<code>v-for</code>時要記得加上<code>:key</code> 讓單筆的屬性有唯一值，這個陣列的唯一值是 index。<br>在上面的語法範例，可以想成是<code>&lt;li v-for=&quot;(單個陣列, index索引值) in 陣列&quot; :key=&quot;index唯一索引值&quot;&gt;&lt;/li&gt;</code>。</p>
 <p>假設我們有個陣列：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">persons: [&#123;</span><br><span class="line">            name: <span class="string">'Ayda'</span>,</span><br><span class="line">            age: <span class="number">18</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Tracy'</span>,</span><br><span class="line">            age: <span class="number">24</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Philippe'</span>,</span><br><span class="line">            age: <span class="number">42</span></span><br><span class="line">          &#125;</span><br></pre></td></tr></table></figure>
 
@@ -172,7 +172,7 @@ ga('send', 'pageview');
                                                     
                                                         
                                                             <p>如果要把一個陣列或物件渲染到畫面，在原生的 JS 我們可以用迴圈或 forEach 以遍歷的方式將陣列的資料顯示，如果用 ES6 就可用 for…of 循環語句。<br>在 Vue 裡要遍歷陣列的方法並不難，只是遍歷陣列和物件的方式稍有不同。<br><a href="https://codepen.io/tsuifei/pen/QWbNErL" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
-<h2 id="以-v-for-遍歷陣列顯示"><a href="#以-v-for-遍歷陣列顯示" class="headerlink" title="以 v-for 遍歷陣列顯示"></a>以 v-for 遍歷陣列顯示</h2><p>陣列列表顯示的方法是使用<code>v-for</code>指令，在遍歷的時候語法為<code>&lt;li v-for=&quot;(p, index) in persons&quot; :key=&quot;index&quot;&gt;&lt;/li&gt;</code><br>在使用<code>v-for</code>時要記得加上<code>:key</code> 讓單筆的屬性有唯一值，這個陣列的唯一值是 index。<br>在上面的語法範例，可以想成是<code>&lt;li v-for=&quot;(單個陣列, index索引值) in 陣列&quot; :key=&quot;index唯一索引值&quot;&gt;&lt;/li&gt;</code></p>
+<h2 id="以-v-for-遍歷陣列顯示"><a href="#以-v-for-遍歷陣列顯示" class="headerlink" title="以 v-for 遍歷陣列顯示"></a>以 v-for 遍歷陣列顯示</h2><p>陣列列表顯示的方法是使用<code>v-for</code>指令，在遍歷的時候語法為<code>&lt;li v-for=&quot;(p, index) in persons&quot; :key=&quot;index&quot;&gt;&lt;/li&gt;</code><br>在使用<code>v-for</code>時要記得加上<code>:key</code> 讓單筆的屬性有唯一值，這個陣列的唯一值是 index。<br>在上面的語法範例，可以想成是<code>&lt;li v-for=&quot;(單個陣列, index索引值) in 陣列&quot; :key=&quot;index唯一索引值&quot;&gt;&lt;/li&gt;</code>。</p>
 <p>假設我們有個陣列：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">persons: [&#123;</span><br><span class="line">            name: <span class="string">'Ayda'</span>,</span><br><span class="line">            age: <span class="number">18</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Tracy'</span>,</span><br><span class="line">            age: <span class="number">24</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Philippe'</span>,</span><br><span class="line">            age: <span class="number">42</span></span><br><span class="line">          &#125;</span><br></pre></td></tr></table></figure>
 
@@ -281,6 +281,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="../Vue_Event_Handling/">Vue.js Event Handling 事件處理</a>
+          </li>
+        
+          <li>
             <a href="../Vue_Displaying_Filtered_Sorted_Results/">Vue.js Displaying Filtered/Sorted Results 顯示過濾/排序後的結果</a>
           </li>
         
@@ -294,10 +298,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="../Vue_class_style/">Vue.js Class &amp; Style Bindings 樣式的綁定</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_computed_watch/">Vue.js computed &amp; watch 計算屬性與監視器</a>
           </li>
         
       </ul>

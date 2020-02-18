@@ -111,6 +111,357 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_book-club-note-array" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_book-club-note-array/" class="article-date">
+  <time datetime="2019-12-21T20:21:14.000Z" itemprop="datePublished">2019-12-22</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_book-club-note-array/">JS 迴圈升級的陣列 Array 方法 forEach()</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>參加讀書會是個可以讓自己和一群喜歡同一個技術領域的夥伴一起學習的方法，透過讀書會，去了解與深入書中所要表達的內容。<br>目前進行與參與的讀書會有「Javascript 大全」和「Javascript 忍者」兩本數，雖然「Javascript 大全」不包含很重要的 ES6 部分，但是能夠更全面了解 JS 的演變與歷史，將來在看不同版本的程式碼時，應該可以較為清楚的理解。而「Javascript 忍者」這本是許多前輩推崇的一本好書，雖然以目前的階段來說頗硬，但多了解 JS 深度也是將來會去面對的，將來也勢必會再重讀這一本書，所以就提早了解概況吧。</p>
+<p>本篇是主講「Javascript 大全」 裡第七章「陣列」的筆記，僅作為紀錄。</p>
+<h2 id="陣列是什麼"><a href="#陣列是什麼" class="headerlink" title="陣列是什麼"></a>陣列是什麼</h2><p>陣列：是一組有序群集，由中括號[ ]包圍，裡面的元素為「值」(value)，值得位置為「索引」(index)。<br>陣列元素可是任何型別的資料。<br>索引值從 0 開始、最高可是 4294967294、最大陣列元素數 4,294,967,295。<br>陣列繼承自<code>Array.prototype</code>。</p>
+<h2 id="創建陣列"><a href="#創建陣列" class="headerlink" title="創建陣列"></a>創建陣列</h2><h3 id="使用字面值-array-literal"><a href="#使用字面值-array-literal" class="headerlink" title="使用字面值(array literal)"></a>使用字面值(array literal)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> empty = []; </span><br><span class="line"><span class="keyword">let</span> primes = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>,<span class="number">7</span>, <span class="number">11</span>]</span><br><span class="line"><span class="keyword">let</span> misc = [<span class="number">1.1</span>, <span class="literal">true</span>, <span class="string">"a"</span>, ] <span class="comment">// misc.length -&gt; 3</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>自面值可以是任意運算式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> kilo = <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">let</span> demiKilos = [kilo * <span class="number">0.5</span>, kilo * <span class="number">1.5</span>, kilo * <span class="number">2.5</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自面值可包含物件、陣列本身</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> arr2 = [<span class="number">1</span>, <span class="number">2</span>, &#123; <span class="attr">name</span>: <span class="string">"Ayda"</span>, <span class="attr">city</span>: <span class="string">"Paris"</span>, <span class="attr">luckyNumbers</span> :[<span class="number">24</span>,<span class="number">42</span>,<span class="number">15</span>]&#125;]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="使用-Array-建構式"><a href="#使用-Array-建構式" class="headerlink" title="使用 Array()建構式"></a>使用 Array()建構式</h3><ul>
+<li><p>不帶引數</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>帶引數，引數為陣列長度</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">8</span>)</span><br><span class="line"><span class="comment">// 注意：陣列中未有值</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定陣列值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">"Hello"</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="讀取與寫入陣列元素"><a href="#讀取與寫入陣列元素" class="headerlink" title="讀取與寫入陣列元素"></a>讀取與寫入陣列元素</h2><h3 id="運算子"><a href="#運算子" class="headerlink" title="[ ] 運算子"></a>[ ] 運算子</h3><ul>
+<li><p>陣列是特化物件，可用來存取陣列元素的中括號。 -&gt; <code>arr[索引值位置]</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">"Hello"</span>]</span><br><span class="line"><span class="keyword">let</span> value = arr[<span class="number">0</span>]</span><br><span class="line">arr[<span class="number">1</span>] = <span class="number">168</span></span><br><span class="line"><span class="keyword">let</span> i = <span class="number">3</span> <span class="comment">// index</span></span><br><span class="line">arr[i] = <span class="number">4</span></span><br><span class="line"></span><br><span class="line">arr[i+<span class="number">1</span>] = <span class="string">"Hi"</span> <span class="comment">// 索引值為四</span></span><br><span class="line">arr[arr[i]] = arr[<span class="number">0</span>] <span class="comment">// 把arr[0]的值，賦值給等同索引值的4</span></span><br><span class="line">arr <span class="comment">//  ["Hello", 168, empty, 4, "Hello"]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>與存取物件相同，JS 會將指定的陣列索引轉成字串，再將此字串當成特性名稱。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;</span><br><span class="line">obj[<span class="number">1</span>] = <span class="string">"one"</span></span><br><span class="line">obj <span class="comment">// &#123;1: "one"&#125;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>== 陣列裡的「特色名稱」-&gt; index ？ == 其實不一樣</p>
+<ul>
+<li>特色名稱小於 2 的 32 次方（非負數）都會計算入<code>length</code>屬性內，其餘都成為「物件特性名稱」</li>
+<li>陣列索引（array index） !== 物件特性名稱(object property name)</li>
+<li>依索引查找的元素不存在時為<code>undefined</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="literal">true</span>,<span class="literal">false</span>]</span><br><span class="line">arr[<span class="number">2</span>] <span class="comment">// undefined</span></span><br><span class="line">arr[<span class="number">-1</span>] <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="稀疏陣列"><a href="#稀疏陣列" class="headerlink" title="稀疏陣列"></a>稀疏陣列</h2><ul>
+<li>不具有從 0 開始的索引</li>
+<li>即使是稀疏陣列，也會被計算至<code>length</code>屬性<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [,] <span class="comment">// 沒元素，但 length 為 1</span></span><br><span class="line"><span class="keyword">let</span> arr2 = [<span class="literal">undefined</span>] <span class="comment">// undefined 為元素、length 為 1</span></span><br><span class="line"><span class="number">0</span> <span class="keyword">in</span> arr1 <span class="comment">// false </span></span><br><span class="line"><span class="number">0</span> <span class="keyword">in</span> arr2 <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="陣列長度"><a href="#陣列長度" class="headerlink" title="陣列長度"></a>陣列長度</h2><ul>
+<li><p>只要在我們想知道的陣列變數，以方法的方式加上<code>.length</code>。回傳回來的就是這個陣列的長度。</p>
+</li>
+<li><p>不管是密集或稀疏陣列，長度(length)永遠大於索引值(index)。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">"hi"</span>,<span class="string">"ho"</span>,<span class="string">"woops"</span>,<span class="string">"ciao"</span>];</span><br><span class="line">arr.length <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果重新指定長度，<code>.length</code>，原本有的會被刪除，沒有的會以空的補上而成為稀疏陣列。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">arr <span class="comment">// [1, 2, 3, 4, 5]</span></span><br><span class="line">arr.length = <span class="number">10</span></span><br><span class="line">arr <span class="comment">// [1, 2, 3, empty × 7]</span></span><br><span class="line">arr.length = <span class="number">3</span></span><br><span class="line">arr <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可指定長度為「唯讀」：object.defineProperty()，改變後不可刪元素。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(arr, <span class="string">'length'</span> ,&#123;</span><br><span class="line">writable: <span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line">arr.length = <span class="number">0</span></span><br><span class="line">arr <span class="comment">// [1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="新增或刪除陣列元素"><a href="#新增或刪除陣列元素" class="headerlink" title="新增或刪除陣列元素"></a>新增或刪除陣列元素</h2><h3 id="新增陣列元素"><a href="#新增陣列元素" class="headerlink" title="新增陣列元素"></a>新增陣列元素</h3><ul>
+<li><p>把值指定給新索引</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = []</span><br><span class="line">arr[<span class="number">0</span>] = <span class="string">'Hi'</span></span><br><span class="line">arr[<span class="number">1</span>] = <span class="string">'Hello'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用push() 從尾端新增</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.push(<span class="string">'ciao'</span>)</span><br><span class="line">arr <span class="comment">// ["Hi", "Hello", "ciao"]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用unshift() 從前端新增</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.unshift(<span class="string">"你好"</span>)</span><br><span class="line">arr <span class="comment">// ["你好", "Hi", "Hello", "ciao"]</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p></p>
+<h3 id="刪除陣列元素"><a href="#刪除陣列元素" class="headerlink" title="刪除陣列元素"></a>刪除陣列元素</h3><ul>
+<li><p>使用 delete 運算子，長度不變</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="keyword">delete</span> arr[<span class="number">1</span>] <span class="comment">// true</span></span><br><span class="line">arr <span class="comment">// [1, empty, 3, 4, 5]</span></span><br><span class="line">arr.length <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 length 重新指定長度</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.length = <span class="number">4</span></span><br><span class="line">arr <span class="comment">// [1, empty, 3, 4]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 pop() 刪除，長度減 1 回傳刪除值 長度改變</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.pop()</span><br><span class="line">arr <span class="comment">// [1, empty, 3]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 shift() 從開頭刪除 1個元素 長度改變</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.shift()</span><br><span class="line">arr <span class="comment">// [empty, 3]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 splice() 插入、刪除、取代 會改變長度</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">arr.splice(<span class="number">1</span>,<span class="number">2</span>) <span class="comment">// 從index 1 切下 2 個元素 [2, 3]</span></span><br><span class="line">arr <span class="comment">// [1, 4, 5]</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="遍歷陣列之迭代"><a href="#遍歷陣列之迭代" class="headerlink" title="遍歷陣列之迭代"></a>遍歷陣列之迭代</h2><ul>
+<li><p>使用 for 迴圈</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 for/in 迴圈，稀疏陣列元素不會被迭代</p>
+</li>
+<li><p>如果迭代順序對演算法很重要，請使用 for 迴圈</p>
+</li>
+<li><p>使用 forEach():將每個元素傳給指定的函式處理</p>
+</li>
+</ul>
+<h2 id="多維陣列"><a href="#多維陣列" class="headerlink" title="多維陣列"></a>多維陣列</h2><p>javascript 並不支持真正的二維陣列，但可使用陣列中的陣列來模擬。</p>
+<h2 id="陣列方法"><a href="#陣列方法" class="headerlink" title="陣列方法"></a>陣列方法</h2><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>功能</th>
+<th>回傳</th>
+<th>原陣列</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>join()</td>
+<td>將陣列的所有元素轉成字串並串接起來</td>
+<td>回傳結果字串</td>
+<td>原陣列不改變</td>
+</tr>
+<tr>
+<td>reverse()</td>
+<td>倒轉陣列的順序</td>
+<td>回傳到轉後的陣列</td>
+<td>原陣列改變</td>
+</tr>
+<tr>
+<td>sort()</td>
+<td>在原陣列上將元素排序</td>
+<td>回傳排序後的陣列</td>
+<td>原陣列改變</td>
+</tr>
+<tr>
+<td>concat()</td>
+<td>將調用此方法的陣列連同引數回傳回來</td>
+<td>創建並回傳一個新陣列</td>
+<td>原陣列不改變</td>
+</tr>
+<tr>
+<td>slice()</td>
+<td>回傳指定陣列的切片</td>
+<td>回傳切片下來的陣列</td>
+<td>原陣列不改變</td>
+</tr>
+<tr>
+<td>splice()</td>
+<td>插入或移除陣列元素</td>
+<td>回傳由它刪除掉的元素</td>
+<td>原陣列改變</td>
+</tr>
+<tr>
+<td>push()</td>
+<td>在陣列尾端加入元素</td>
+<td>回傳陣列的新長度</td>
+<td>原陣列改變</td>
+</tr>
+<tr>
+<td>pop()</td>
+<td>在陣列尾端刪除元素</td>
+<td>回傳它移除掉的元素</td>
+<td>原陣列改變</td>
+</tr>
+<tr>
+<td>unshift()</td>
+<td>在陣列前端加入元素</td>
+<td>回傳陣列的新長度</td>
+<td>原陣列改變</td>
+</tr>
+<tr>
+<td>shift()</td>
+<td>在陣列前端刪除元素</td>
+<td>回傳它移除掉的元素</td>
+<td>原陣列改變</td>
+</tr>
+<tr>
+<td>toString()</td>
+<td>將每個陣列元素轉成字串</td>
+<td>回傳字串</td>
+<td>原陣列不改變</td>
+</tr>
+<tr>
+<td>toLocaleString()</td>
+<td>toString()的本地化</td>
+<td>回傳本地化後的字串</td>
+<td>原陣列不改變</td>
+</tr>
+</tbody></table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 日幣</span></span><br><span class="line"><span class="keyword">let</span> prices = [<span class="string">'300'</span>, <span class="number">500</span>, <span class="number">8236</span>, <span class="number">42</span>];</span><br><span class="line">prices.toLocaleString(<span class="string">'ja-JP'</span>,&#123;<span class="attr">style</span>:<span class="string">'currency'</span>,<span class="attr">currency</span>: <span class="string">'JPY'</span>&#125;); </span><br><span class="line"><span class="comment">// "300,￥500,￥8,236,￥42"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="ES5-陣列方法"><a href="#ES5-陣列方法" class="headerlink" title="ES5 陣列方法"></a>ES5 陣列方法</h2><ul>
+<li>這些方法的第一個引數大多是函式，它會對陣列中每一個元素都調用一次這個函式。</li>
+<li>不會對稀疏陣列裡不存在的元素起作用。</li>
+<li>第一個參數的函式引數通常有三個：陣列元素值、該陣列元素的索引、陣列本身。</li>
+<li>這些當成第一引數的函式，也接受額外第二引數，如有指定此引數，傳入的函式會被當作第二引數的方法來調用–&gt;傳入的第二引數會變成傳入函式內的<code>this</code>關鍵字的值。</li>
+<li>不會修改調用他們的陣列，如果傳函式給這些方法，就有可能修改陣列。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>功能</th>
+<th>回傳</th>
+<th>原陣列</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>join()</td>
+<td>將陣列的所有元素轉成字串並串接起來</td>
+<td>回傳結果字串</td>
+<td>原陣列不改變</td>
+</tr>
+<tr>
+<td>forEach()</td>
+<td>逐一查用陣列元素，對每個元素調用指定的函式</td>
+<td>回傳調用後的陣列</td>
+<td>原陣列改變</td>
+</tr>
+<tr>
+<td>map()</td>
+<td>將陣列每個元素，逐一傳給指定的函式</td>
+<td>回傳調用後的陣列</td>
+<td>原陣列不改變</td>
+</tr>
+<tr>
+<td>filter()</td>
+<td>將陣列每個元素，逐一傳給指定的函式所給的條件</td>
+<td>回傳符合條件組成的陣列</td>
+<td>原陣列不改變</td>
+</tr>
+<tr>
+<td>every()</td>
+<td>將指定的函式套用在每個陣列元素上</td>
+<td>回傳 true 或 false</td>
+<td>原陣列不改變</td>
+</tr>
+<tr>
+<td>some()</td>
+<td>將指定的函式套用在每個陣列元素上</td>
+<td>回傳 true 或 false</td>
+<td>原陣列不改變</td>
+</tr>
+<tr>
+<td>reduce()</td>
+<td>依指定的函式，結合陣列的元素產生一個值</td>
+<td>回傳產生值得結果</td>
+<td>原陣列不改變</td>
+</tr>
+<tr>
+<td>reduceRight()</td>
+<td>依指定的函式，(右至左)結合陣列的元素產生一個值</td>
+<td>回傳產生值得結果</td>
+<td>原陣列不改變</td>
+</tr>
+<tr>
+<td>indexOf()</td>
+<td>根據指定的值在陣列中(從頭到尾)搜尋元素</td>
+<td>有找到回喘該元素索引值，沒找到回傳-1</td>
+<td>原陣列不改變</td>
+</tr>
+<tr>
+<td>lastIndexOf()</td>
+<td>根據指定的值在陣列中(從尾到頭)搜尋元素</td>
+<td>有找到回喘該元素索引值，沒找到回傳-1</td>
+<td>原陣列不改變</td>
+</tr>
+</tbody></table>
+<h2 id="陣列型別"><a href="#陣列型別" class="headerlink" title="陣列型別"></a>陣列型別</h2><p>判斷是否為陣列，使用Array.isArray()</p>
+<h2 id="類陣列物件（array-like）"><a href="#類陣列物件（array-like）" class="headerlink" title="類陣列物件（array-like）"></a>類陣列物件（array-like）</h2><p>物件，為它加上<code>length</code>屬性 -&gt; 類陣列物件（array-like）<br>以 <code>typeof</code> 來查看陣列，會得到物件 <code>object</code>，但到底陣列和其他物件有什麼不同？最大的不同是陣列有：</p>
+<ul>
+<li><code>length</code>這個特殊屬性</li>
+<li>從<code>Array.prototype</code>繼承過來的許多實用的方法</li>
+<li>陣列的<code>class</code>屬性值為<code>Array</code>這幾點吧。</li>
+</ul>
+<p>但是所謂的「類陣列」(Array-like) 也是如此嗎？並不是。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    <span class="number">0</span>: <span class="string">'a'</span>,</span><br><span class="line">    <span class="number">1</span>: <span class="string">'b'</span>,</span><br><span class="line">    <span class="number">2</span>: <span class="string">'c'</span>,</span><br><span class="line">    length: <span class="number">3</span>,</span><br><span class="line">    push: <span class="built_in">Array</span>.prototype.push,</span><br><span class="line">    splice: <span class="built_in">Array</span>.prototype.splice</span><br><span class="line">&#125;</span><br><span class="line">obj.push(<span class="string">'d'</span>);</span><br><span class="line">obj; <span class="comment">// &#123;0: "a", 1: "b", 2: "c", 3: "d", length: 4, push: ƒ&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="作為陣列的字串"><a href="#作為陣列的字串" class="headerlink" title="作為陣列的字串"></a>作為陣列的字串</h2><ul>
+<li>字串的行為如唯獨的陣列。<h3 id="讀取字串裡個別的字元方法："><a href="#讀取字串裡個別的字元方法：" class="headerlink" title="讀取字串裡個別的字元方法："></a>讀取字串裡個別的字元方法：</h3></li>
+<li>使用 charAt()</li>
+<li>使用中括號 []</li>
+</ul>
+<p>字串是不可變的(immutable)值，如果把他們當成陣列，他們會視為唯讀的陣列。<br>push(), sort(), reverse(), splice() 會修改陣列的方法，不能用在字串上。</p>
+<p>自我推薦：<a href="https://ithelp.ithome.com.tw/users/20104175/ironman/2584" target="_blank" rel="noopener">JavaScript之一定要瞭解的 Array 與方法 :: 第 11 屆 iT 邦幫忙鐵人賽</a></p>
+<p>推薦：<a href="https://hackmd.io/ByKX8O9ETLqsMLeNX2DRGQ?both" target="_blank" rel="noopener">JavaScript 陣列(Array)的方法 - HackMD</a> by 鵬化</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>參加讀書會是個可以讓自己和一群喜歡同一個技術領域的夥伴一起學習的方法，透過讀書會，去了解與深入書中所要表達的內容。<br>目前進行與參與的讀書會有「Javascript 大全」和「Javascript 忍者」兩本數，雖然「Javascript 大全」不包含很重要的 ES6 部分，但是能夠更全面了解 JS 的演變與歷史，將來在看不同版本的程式碼時，應該可以較為清楚的理解。而「Javascript 忍者」這本是許多前輩推崇的一本好書，雖然以目前的階段來說頗硬，但多了解 JS 深度也是將來會去面對的，將來也勢必會再重讀這一本書，所以就提早了解概況吧。</p>
+<p>本篇是主講「Javascript 大全」 裡第七章「陣列」的筆記，僅作為紀錄。</p>
+<h2 id="陣列是什麼"><a href="#陣列是什麼" class="headerlink" title="陣列是什麼"></a>陣列是什麼</h2><p>陣列：是一組有序群集，由中括號[ ]包圍，裡面的元素為「值」(value)，值得位置為「索引」(index)。<br>陣列元素可是任何型別的資料。<br>索引值從 0 開始、最高可是 4294967294、最大陣列元素數 4,294,967,295。<br>陣列繼承自<code>Array.prototype</code>。</p>
+<h2 id="創建陣列"><a href="#創建陣列" class="headerlink" title="創建陣列"></a>創建陣列</h2><h3 id="使用字面值-array-literal"><a href="#使用字面值-array-literal" class="headerlink" title="使用字面值(array literal)"></a>使用字面值(array literal)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> empty = []; </span><br><span class="line"><span class="keyword">let</span> primes = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>,<span class="number">7</span>, <span class="number">11</span>]</span><br><span class="line"><span class="keyword">let</span> misc = [<span class="number">1.1</span>, <span class="literal">true</span>, <span class="string">"a"</span>, ] <span class="comment">// misc.length -&gt; 3</span></span><br></pre></td></tr></table></figure>
+
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_book-club-note-array/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_book-club-note-array/" data-id="ck6qgs68s00a151uw282l0l98" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/讀書會筆記/">讀書會筆記</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function/" class="article-date">
@@ -963,98 +1314,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/" class="article-date">
-  <time datetime="2019-11-23T20:21:14.000Z" itemprop="datePublished">2019-11-24</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/">JS 把陣列 Array 所有元素併成字串，且可任意穿插符號的 join()</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-24"><a href="#Day-24" class="headerlink" title="Day 24"></a>Day 24</h6><blockquote>
-<p>插隊也不能插成這樣，我們之間總是可以插點花什麼的。</p>
-</blockquote>
-<p> 不知道大家有沒有吃過義大利的千層麵，一層麵皮一層蕃茄餡料，然後再一層麵皮一層蕃茄餡料，直到最後一層麵皮鋪上，撒上會拉絲的乳酪，再送進烤箱裡烤，美味的千層麵就這樣做好了。 <del>肚子也餓了</del> </p>
-<p> <code>join()</code>做的事就像是千層麵一樣，陣列裡面的元素有如番茄餡料，以字串形式包覆，還可以選擇之間要穿插什麼，如果我們不選擇，就是很單純的麵皮<br> <del>逗點</del>就是了。 </p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join" target="_blank" rel="noopener">Array.prototype.join() - JavaScript | MDN</a></p>
-<p><strong>原型：</strong> Array.prototype.join()<br><strong>功能：</strong> 會將陣列（或一個類陣列（array-like）物件）中所有的元素連接、合併成一個字串，並回傳此字串。<br><strong>改變：</strong> 不會改變原陣列。<br><strong>語法：</strong> arr.join([separator])<br><strong>回傳值：</strong> 回傳一個合併所有陣列元素的字串。假如 arr.length 為 0，將回傳空字串。<br><strong>參數：</strong> 分隔符號。</p>
-<p><code>join()</code>會將陣列裡的所有元素轉成字串，並串接起來回傳一個結果字串。我們可以指定額外的字串，用來分隔每個字串中的元素，如果我們沒有給指定的分隔符號字串，<code>join()</code>就會用預設的逗號來當分隔符號。不只如此，<code>join()</code>還會把一些無效的元素，例如空元素、undefined 或 null 當作空字串來處理，並回傳回來。</p>
-<h3 id="沒給符號也可以跟有給一樣"><a href="#沒給符號也可以跟有給一樣" class="headerlink" title="沒給符號也可以跟有給一樣"></a>沒給符號也可以跟有給一樣</h3><p>我們先來看看<code>join()</code>怎麼用：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> arr2 = arr;</span><br><span class="line"><span class="keyword">const</span> arr3 = arr;</span><br><span class="line"></span><br><span class="line">arr.join(<span class="string">','</span>); <span class="comment">// "1,2,3,4,5"</span></span><br><span class="line">arr2.join() <span class="comment">// "1,2,3,4,5"</span></span><br><span class="line">arr3.join(<span class="string">''</span>) <span class="comment">// "12345"</span></span><br></pre></td></tr></table></figure>
-
-<p>大家有沒發現，其實<code>join()</code>裡沒給分隔符號，和給分隔符號<code>join(&#39;,&#39;)</code>得到的結果是ㄧ樣的。<br>因為所有的符號都屬於字串，所以記得在給參數的符號時，也必須以「字串」的形式包覆，像是<code>join(&#39;,&#39;)</code>。</p>
-<h3 id="把陣列裡的字串元素轉成一整個字串"><a href="#把陣列裡的字串元素轉成一整個字串" class="headerlink" title="把陣列裡的字串元素轉成一整個字串"></a>把陣列裡的字串元素轉成一整個字串</h3><p>將陣列元素用固定符號串成字串，但是遇到參考型別的陣列元素<code>join()</code>會如何處理？<br>結果是<code>join()</code>會把它們都放生，<del>阿不</del> 而不處理這些參考型別的元素。但也不全然是這樣，看了下面的例子，<code>join()</code>只會將 object 的物件行元素放生，但對同是參考型別的陣列卻不會。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">'jack'</span>, <span class="string">'john'</span>, <span class="string">'may'</span>, <span class="string">'su'</span>, <span class="string">'Ada'</span>];</span><br><span class="line"><span class="keyword">const</span> str = arr.join(<span class="string">'、'</span>); </span><br><span class="line">str; <span class="comment">// "jack、john、may、su、Ada"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr2 = [[<span class="number">1</span>,<span class="number">2</span>], <span class="string">'john'</span>, <span class="string">'may'</span>, &#123;<span class="attr">a</span> : <span class="number">42</span>&#125;, <span class="string">'Ada'</span>];</span><br><span class="line"><span class="keyword">const</span> str2 = arr2.join(<span class="string">' '</span>);</span><br><span class="line">str2; <span class="comment">// "1,2 john may [object Object] Ada"</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="如果可以活用，還真的很好用"><a href="#如果可以活用，還真的很好用" class="headerlink" title="如果可以活用，還真的很好用"></a>如果可以活用，還真的很好用</h3><p><code>join()</code>所執行的事剛好和<code>split()</code>的方法相反，<code>split()</code>會把字串切成片段來放在陣列裡，而<code>join()</code>則是會把所有元素併成一個陣列。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">"Hello word, how a bout your ?"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用 split() 轉成陣列</span></span><br><span class="line"><span class="keyword">let</span> word = str.split(<span class="string">' '</span>);</span><br><span class="line">word; <span class="comment">// ["Hello", "word,", "how", "a", "bout", "your", "?"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 再用 join() 轉回字串</span></span><br><span class="line">word.join();</span><br><span class="line">word; <span class="comment">// "Hello,word,,how,a,bout,your,?"</span></span><br></pre></td></tr></table></figure>
-
-<p>別忘了，如果字串裡有逗號，<code>join()</code>會把它當作是元素的一部分處理。</p>
-<h3 id="join-可以怎麼寫出來？"><a href="#join-可以怎麼寫出來？" class="headerlink" title="join() 可以怎麼寫出來？"></a>join() 可以怎麼寫出來？</h3><p>我們可以試著寫出一個原生的寫法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.join2 = <span class="function"><span class="keyword">function</span> (<span class="params">separator</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="keyword">this</span>[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="keyword">this</span>.length; i++)&#123;</span><br><span class="line">    result += separator + <span class="keyword">this</span>[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 以上原生維修中，晚點再來補正確的，抱歉</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">arr.join(); <span class="comment">// "1,2,3,4"</span></span><br><span class="line">arr.join(<span class="string">'-'</span>); <span class="comment">// "1-2-3-4"</span></span><br><span class="line">arr.join(<span class="string">''</span>); <span class="comment">// "1234"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr2 = [<span class="string">"hi"</span>, <span class="string">"wow"</span>,<span class="string">"hello"</span>];</span><br><span class="line">arr2.join(); <span class="comment">// "hi,wow,hello";</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 對於無效的元素，join()會置之不理，但是還是會把逗號留下來</span></span><br><span class="line"><span class="keyword">const</span> arr3 = [<span class="literal">null</span>, <span class="number">42</span>, <span class="string">"hi"</span>, <span class="literal">undefined</span>];</span><br><span class="line">arr3.join(); <span class="comment">// ",42,hi,"</span></span><br></pre></td></tr></table></figure>
-
-<p>今天就先介紹到這裡，明天開始連假，但是鐵人賽還是會繼續喔！一起繼續鐵人吧！</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～</p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-24"><a href="#Day-24" class="headerlink" title="Day 24"></a>Day 24</h6><blockquote>
-<p>插隊也不能插成這樣，我們之間總是可以插點花什麼的。</p>
-</blockquote>
-<p> 不知道大家有沒有吃過義大利的千層麵，一層麵皮一層蕃茄餡料，然後再一層麵皮一層蕃茄餡料，直到最後一層麵皮鋪上，撒上會拉絲的乳酪，再送進烤箱裡烤，美味的千層麵就這樣做好了。 <del>肚子也餓了</del> </p>
-<p> <code>join()</code>做的事就像是千層麵一樣，陣列裡面的元素有如番茄餡料，以字串形式包覆，還可以選擇之間要穿插什麼，如果我們不選擇，就是很單純的麵皮<br> <del>逗點</del>就是了。 </p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/" data-id="ck6qgs679003g51uw059dw02y" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1103,6 +1362,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="../../Vue_Event_Handling/">Vue.js Event Handling 事件處理</a>
+          </li>
+        
+          <li>
             <a href="../../Vue_Displaying_Filtered_Sorted_Results/">Vue.js Displaying Filtered/Sorted Results 顯示過濾/排序後的結果</a>
           </li>
         
@@ -1116,10 +1379,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="../../Vue_class_style/">Vue.js Class &amp; Style Bindings 樣式的綁定</a>
-          </li>
-        
-          <li>
-            <a href="../../Vue_computed_watch/">Vue.js computed &amp; watch 計算屬性與監視器</a>
           </li>
         
       </ul>

@@ -111,6 +111,96 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-Vue_Event_Handling" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="Vue_Event_Handling/" class="article-date">
+  <time datetime="2020-02-17T16:42:24.000Z" itemprop="datePublished">2020-02-18</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="Vue_Event_Handling/">Vue.js Event Handling 事件處理</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>事件處理在網頁上的應用非常廣，無論是我們滑鼠移動、按鍵輸入、或是在網頁上點擊某一個區塊，都可以因為這個互動，讓網頁做些事。但在程式裡，其實就是瀏覽者做了某些事(事件監聽)<br>，然後我們要給出什麼反應(事件觸發)，例如，點一下按鍵，我們要程式去做某些事，例如呼叫某支函式要它做些什麼，或者，我們希望能取到瀏覽者所點擊到的值。</p>
+<p>Codepen : <a href="https://codepen.io/tsuifei/pen/vYOKgOm" target="_blank" rel="noopener">Vue.js Event Handling 事件處理</a></p>
+<p>這裡分三個部分來示範在事件處理時， Vue 會用到的一些指令</p>
+<h2 id="1-監聽事件的綁定"><a href="#1-監聽事件的綁定" class="headerlink" title="1. 監聽事件的綁定"></a>1. 監聽事件的綁定</h2><p>我們可以使用 vue 的<code>@click=&quot;觸發事件的方法&quot;</code>來監聽與綁定事件：<br>第一個按鈕<code>test1</code>: 一般的觸發事件，直接取到我們點擊按鈕的值。<br>第二個按鈕<code>test2</code>: 帶參數的觸發事件，可直接取到我們給的參數。<br>第三個按鈕<code>test3</code>: 點擊的事件，可加上 vue 的特殊變數<code>$event</code>來監聽，但事實上如果我們沒有加上<code>$event</code>此參數，vue 也會自動幫我們抓取<code>event</code>監聽的對象。<br>第四個按鈕<code>test4</code>: 希望可以帶參數，同時又可取到監聽對象的值。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"test1"</span>&gt;</span>test1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 綁定自己的資料 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"test2('Hello')"</span>&gt;</span>test2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 可利用vue的特殊變數$event 來拿到button的值 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 等同這樣寫： &lt;button @clock="test3"&gt;test3&lt;/button&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"test3($event)"</span>&gt;</span>test3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 想傳自己給的變數，同時想取得點取 event 的值 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"test4(42,$event )"</span>&gt;</span>test4<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在實例的 methods 準備好觸發的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">        test1() &#123;</span><br><span class="line">          alert(<span class="string">'test1'</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        test2(msg) &#123;</span><br><span class="line">          alert(msg)</span><br><span class="line">        &#125;,</span><br><span class="line">        test3(event) &#123;</span><br><span class="line">          <span class="comment">// 透過 event裡的target與innerHTML去取得按鈕的內容</span></span><br><span class="line">          alert(event.target.innerHTML)</span><br><span class="line">        &#125;,</span><br><span class="line">        test4(nbr, event) &#123;</span><br><span class="line">          alert(nbr + <span class="string">'---'</span> + event.target.innerHTML)</span><br><span class="line"></span><br><span class="line">        &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="事件修飾符"><a href="#事件修飾符" class="headerlink" title="事件修飾符"></a>事件修飾符</h2><h3 id="阻止冒泡行為：-click-stop"><a href="#阻止冒泡行為：-click-stop" class="headerlink" title="阻止冒泡行為：@click.stop"></a>阻止冒泡行為：@click.stop</h3><p>在原生的 Javascript 如果要防止冒泡行為或預設行為，需要在 JavaScript 裡的監聽對象加上<code>stopPropagation()</code><br>例如有兩個大小疊在一起、可點擊的 box，如果想點擊小 box，也會同時觸發到在它底部的大 box ，這即是「冒泡事件」。<br>在 vue 裡，只要在希望被點取的那個 div(這裡指小 box) 的<code>@click=&quot;&quot;</code> 加上<code>.stop</code>，如<code>@click.stop=&quot;&quot;</code>即可阻止冒泡事件，非常方便。</p>
+<h3 id="阻止事件默認行為：-click-prevent"><a href="#阻止事件默認行為：-click-prevent" class="headerlink" title="阻止事件默認行為： @click.prevent"></a>阻止事件默認行為： @click.prevent</h3><p>如果有一個連結，我們想阻止事件的默認行為，也就是點擊後不想直接導向到連結網址去該怎麼做？在原生的 JavaScript 我們同樣需要使用<code>event.preventDefault()</code>來阻止 html 裡的預設行為，但是在 vue 裡，只要在 html 使用事件修飾符<code>prevent</code>就可以達到效果。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 防止(stop)事件冒泡 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box1"</span> @<span class="attr">click</span>=<span class="string">"test5"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box2"</span> @<span class="attr">click.stop</span>=<span class="string">"test6"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 阻止事件默認行為 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://google.com"</span> @<span class="attr">click.prevent</span>=<span class="string">"test7"</span>&gt;</span>去google<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在實例的 methods 準備好觸發的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">  test5() &#123;</span><br><span class="line">    alert(<span class="string">'out'</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  test6() &#123;</span><br><span class="line">    alert(<span class="string">'inner'</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  test7(event) &#123;</span><br><span class="line">    alert(<span class="string">'點到了'</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="按鍵修飾符"><a href="#按鍵修飾符" class="headerlink" title="按鍵修飾符"></a>按鍵修飾符</h2><p>通常我們在 input 填好資料時，需要按一個送出的按鈕來送出，但其實用 enter 鍵會直覺很多，使用 Vue 的按鍵修飾符<code>@keyup</code>來指定監聽的方式是鍵盤輸入，如果想指定某一個鍵，需要知道按下的那個鍵的鍵碼，才能指定，如果不知道我們指定的鍵的鍵碼，可以用<code>alert(event.keyCode)</code>來查詢。</p>
+<p>原生的寫法可用條件式判斷<code>if (event.keyCode === 13)</code>(這裡的 13 是 enter 鍵的鍵值)，確定點到的是指定的鍵。在 Vue 可直接將鍵碼加到 keyup 後面 –&gt; <code>keyup.13</code> 或是直接寫鍵名(只限定特殊鍵)<code>keyup.enter</code> 也可以達到一樣的效果。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 想使用enter鍵輸入 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> @<span class="attr">keyup.13</span>=<span class="string">"test8"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> @<span class="attr">keyup.enter</span>=<span class="string">"test8"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在實例的 methods 準備好觸發的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">  test8($event) &#123;</span><br><span class="line">    alert(event.target.value + <span class="string">'--'</span> + event.keyCode)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Vue 把以往需要在 JavaScript 裡寫的程式碼，全部改成在 HTML 就可處理的指令，的確方便許多，但也要知道 Javascript 的原生寫法，才不會改天需要寫原生寫不出來，這就是 Vue 的方便會費人 JS 武功的原因了。</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>事件處理在網頁上的應用非常廣，無論是我們滑鼠移動、按鍵輸入、或是在網頁上點擊某一個區塊，都可以因為這個互動，讓網頁做些事。但在程式裡，其實就是瀏覽者做了某些事(事件監聽)<br>，然後我們要給出什麼反應(事件觸發)，例如，點一下按鍵，我們要程式去做某些事，例如呼叫某支函式要它做些什麼，或者，我們希望能取到瀏覽者所點擊到的值。</p>
+<p>Codepen : <a href="https://codepen.io/tsuifei/pen/vYOKgOm" target="_blank" rel="noopener">Vue.js Event Handling 事件處理</a></p>
+<p>這裡分三個部分來示範在事件處理時， Vue 會用到的一些指令</p>
+<h2 id="1-監聽事件的綁定"><a href="#1-監聽事件的綁定" class="headerlink" title="1. 監聽事件的綁定"></a>1. 監聽事件的綁定</h2><p>我們可以使用 vue 的<code>@click=&quot;觸發事件的方法&quot;</code>來監聽與綁定事件：<br>第一個按鈕<code>test1</code>: 一般的觸發事件，直接取到我們點擊按鈕的值。<br>第二個按鈕<code>test2</code>: 帶參數的觸發事件，可直接取到我們給的參數。<br>第三個按鈕<code>test3</code>: 點擊的事件，可加上 vue 的特殊變數<code>$event</code>來監聽，但事實上如果我們沒有加上<code>$event</code>此參數，vue 也會自動幫我們抓取<code>event</code>監聽的對象。<br>第四個按鈕<code>test4</code>: 希望可以帶參數，同時又可取到監聽對象的值。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"test1"</span>&gt;</span>test1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 綁定自己的資料 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"test2('Hello')"</span>&gt;</span>test2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 可利用vue的特殊變數$event 來拿到button的值 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 等同這樣寫： &lt;button @clock="test3"&gt;test3&lt;/button&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"test3($event)"</span>&gt;</span>test3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 想傳自己給的變數，同時想取得點取 event 的值 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"test4(42,$event )"</span>&gt;</span>test4<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="Vue_Event_Handling/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/Vue_Event_Handling/" data-id="ck6rtm7vt0000szuw70vdr8xm" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Vue/">Vue</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-Vue_Displaying_Filtered_Sorted_Results" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="Vue_Displaying_Filtered_Sorted_Results/" class="article-date">
@@ -221,7 +311,7 @@ ga('send', 'pageview');
                     <div class="article-entry" itemprop="articleBody">
                         
                                             <!-- <p>如果要把一個陣列或物件渲染到畫面，在原生的 JS 我們可以用迴圈或 forEach 以遍歷的方式將陣列的資料顯示，如果用 ES6 就可用 for…of 循環語句。<br>在 Vue 裡要遍歷陣列的方法並不難，只是遍歷陣列和物件的方式稍有不同。<br><a href="https://codepen.io/tsuifei/pen/QWbNErL" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
-<h2 id="以-v-for-遍歷陣列顯示"><a href="#以-v-for-遍歷陣列顯示" class="headerlink" title="以 v-for 遍歷陣列顯示"></a>以 v-for 遍歷陣列顯示</h2><p>陣列列表顯示的方法是使用<code>v-for</code>指令，在遍歷的時候語法為<code>&lt;li v-for=&quot;(p, index) in persons&quot; :key=&quot;index&quot;&gt;&lt;/li&gt;</code><br>在使用<code>v-for</code>時要記得加上<code>:key</code> 讓單筆的屬性有唯一值，這個陣列的唯一值是 index。<br>在上面的語法範例，可以想成是<code>&lt;li v-for=&quot;(單個陣列, index索引值) in 陣列&quot; :key=&quot;index唯一索引值&quot;&gt;&lt;/li&gt;</code></p>
+<h2 id="以-v-for-遍歷陣列顯示"><a href="#以-v-for-遍歷陣列顯示" class="headerlink" title="以 v-for 遍歷陣列顯示"></a>以 v-for 遍歷陣列顯示</h2><p>陣列列表顯示的方法是使用<code>v-for</code>指令，在遍歷的時候語法為<code>&lt;li v-for=&quot;(p, index) in persons&quot; :key=&quot;index&quot;&gt;&lt;/li&gt;</code><br>在使用<code>v-for</code>時要記得加上<code>:key</code> 讓單筆的屬性有唯一值，這個陣列的唯一值是 index。<br>在上面的語法範例，可以想成是<code>&lt;li v-for=&quot;(單個陣列, index索引值) in 陣列&quot; :key=&quot;index唯一索引值&quot;&gt;&lt;/li&gt;</code>。</p>
 <p>假設我們有個陣列：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">persons: [&#123;</span><br><span class="line">            name: <span class="string">'Ayda'</span>,</span><br><span class="line">            age: <span class="number">18</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Tracy'</span>,</span><br><span class="line">            age: <span class="number">24</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Philippe'</span>,</span><br><span class="line">            age: <span class="number">42</span></span><br><span class="line">          &#125;</span><br></pre></td></tr></table></figure>
 
@@ -255,7 +345,7 @@ ga('send', 'pageview');
                                                     
                                                         
                                                                     <p>如果要把一個陣列或物件渲染到畫面，在原生的 JS 我們可以用迴圈或 forEach 以遍歷的方式將陣列的資料顯示，如果用 ES6 就可用 for…of 循環語句。<br>在 Vue 裡要遍歷陣列的方法並不難，只是遍歷陣列和物件的方式稍有不同。<br><a href="https://codepen.io/tsuifei/pen/QWbNErL" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
-<h2 id="以-v-for-遍歷陣列顯示"><a href="#以-v-for-遍歷陣列顯示" class="headerlink" title="以 v-for 遍歷陣列顯示"></a>以 v-for 遍歷陣列顯示</h2><p>陣列列表顯示的方法是使用<code>v-for</code>指令，在遍歷的時候語法為<code>&lt;li v-for=&quot;(p, index) in persons&quot; :key=&quot;index&quot;&gt;&lt;/li&gt;</code><br>在使用<code>v-for</code>時要記得加上<code>:key</code> 讓單筆的屬性有唯一值，這個陣列的唯一值是 index。<br>在上面的語法範例，可以想成是<code>&lt;li v-for=&quot;(單個陣列, index索引值) in 陣列&quot; :key=&quot;index唯一索引值&quot;&gt;&lt;/li&gt;</code></p>
+<h2 id="以-v-for-遍歷陣列顯示"><a href="#以-v-for-遍歷陣列顯示" class="headerlink" title="以 v-for 遍歷陣列顯示"></a>以 v-for 遍歷陣列顯示</h2><p>陣列列表顯示的方法是使用<code>v-for</code>指令，在遍歷的時候語法為<code>&lt;li v-for=&quot;(p, index) in persons&quot; :key=&quot;index&quot;&gt;&lt;/li&gt;</code><br>在使用<code>v-for</code>時要記得加上<code>:key</code> 讓單筆的屬性有唯一值，這個陣列的唯一值是 index。<br>在上面的語法範例，可以想成是<code>&lt;li v-for=&quot;(單個陣列, index索引值) in 陣列&quot; :key=&quot;index唯一索引值&quot;&gt;&lt;/li&gt;</code>。</p>
 <p>假設我們有個陣列：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">persons: [&#123;</span><br><span class="line">            name: <span class="string">'Ayda'</span>,</span><br><span class="line">            age: <span class="number">18</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Tracy'</span>,</span><br><span class="line">            age: <span class="number">24</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Philippe'</span>,</span><br><span class="line">            age: <span class="number">42</span></span><br><span class="line">          &#125;</span><br></pre></td></tr></table></figure>
 
@@ -994,436 +1084,6 @@ Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profil
 
 
   
-    <article id="post-Vue_Test_QA" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="Vue_Test_QA/" class="article-date">
-  <time datetime="2020-01-30T16:42:24.000Z" itemprop="datePublished">2020-01-31</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="Vue_Test_QA/">Vuejs 線上問答題</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <blockquote>
-<p>只要你的考試成績好，就可以得到入門票一張</p>
-</blockquote>
-<p>在法國，應徵前端工程師的職位通常需要下列幾個程序：<br>第一關：人資的電話面試，在電話裡需要大約介紹一下自己的背景，以及自己的工作經歷，接著就是對方的發問，為什麼想應徵這份工作，或是對公司有疑惑也可提問等等。<br>第二關：技術執行長的電話面試，會詢問較多細節，對技術的看法，與團隊合作的細節，介紹公司負責部門的規模和人員、工作分配，當然我們也可以發問。<br>第二關：技術測驗，這有可能是面對面的測驗，寫白板、寫函式、線上測驗都有，但有時也很有可能寄給你連結，請線上直接作答。<br>第四關：直接來公司，最後一次面試，有可能是將來的主管和同事一起面試你。</p>
-<p>以下是網路上的一些技術問題，平常多做做，也可測驗自己對某一主題的熟悉度。<br>自己翻譯了一下這些題目，用法文讀起來有時還是卡卡的，翻譯成中文希望還算順暢，感謝 Chris 的中文題目修正。<br>我會先把正確答案放在最底下，可以先試著作答在看答案喔。</p>
-<h2 id="Quiz-Vue-js-基礎"><a href="#Quiz-Vue-js-基礎" class="headerlink" title="Quiz Vue.js 基礎"></a>Quiz Vue.js 基礎</h2><p><strong>是誰創造了VueJs ?</strong></p>
-<ul>
-<li><input disabled type="checkbox"> Robert Vue</li>
-<li><input disabled type="checkbox"> Evan You</li>
-<li><input disabled type="checkbox"> Mark Zuckerberg</li>
-<li><input disabled type="checkbox"> Nicolas Cage</li>
-</ul>
-<hr>
-<p><strong>定義 Vue Component 的3個部分是什麼？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> script, template, methods</li>
-<li><input disabled type="checkbox"> template, style, script</li>
-<li><input disabled type="checkbox"> script, template, css</li>
-</ul>
-<hr>
-<p><strong>我們如何將資料從父層 Component 傳遞到子層 Component ？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 透過 鏈接屬性</li>
-<li><input disabled type="checkbox"> 透過 callback</li>
-<li><input disabled type="checkbox"> 透過 屬性 data-</li>
-<li><input disabled type="checkbox"> 透過 prop</li>
-</ul>
-<hr>
-<p><strong>我們能否不靠 Babel 編譯的情況，單獨使用 Vue (script src)？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 可</li>
-<li><input disabled type="checkbox"> 不可</li>
-<li><input disabled type="checkbox"> 使用 jQuery 的情況下</li>
-</ul>
-<hr>
-<p><strong>用動態傳值語法，將<code>kiwi</code>給<code>prop</code>的寫法？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> v-bind:kiwi=”kiwi”</li>
-<li><input disabled type="checkbox"> v-key:kiwi=”kiwi”</li>
-<li><input disabled type="checkbox"> v-model=”kiwi”</li>
-</ul>
-<hr>
-<p><strong>Vue 的哪個套件可以在所有 component 之間共享資料？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> ShareData</li>
-<li><input disabled type="checkbox"> Vuex</li>
-<li><input disabled type="checkbox"> DataLoader</li>
-<li><input disabled type="checkbox"> DataStore</li>
-</ul>
-<hr>
-<p><strong>使用<code>v-for</code> 建立 loop 時，必要的屬性是什麼？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> v-id</li>
-<li><input disabled type="checkbox"> v-key</li>
-<li><input disabled type="checkbox"> v-loop</li>
-<li><input disabled type="checkbox"> v-while</li>
-</ul>
-<hr>
-<p><strong>哪一個語法可以 route 到另一個 vue component？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> this.$router.push(url)</li>
-<li><input disabled type="checkbox"> this.$router.go(url)</li>
-<li><input disabled type="checkbox"> this.$router.change(url)</li>
-</ul>
-<hr>
-<p><strong>我們如何在資料的變化的同時觸發一個動作？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 使用 MutationObserver</li>
-<li><input disabled type="checkbox"> 在 methods 使用 setInterval</li>
-<li><input disabled type="checkbox"> 使用 watch</li>
-</ul>
-<hr>
-<p><strong>哪一個 directive (vue 的指令，ex: <code>v-for</code>, <code>v-model</code>) 將輸入欄位和 component 的 data 關聯在一起？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> v-model</li>
-<li><input disabled type="checkbox"> v-bind</li>
-<li><input disabled type="checkbox"> v-store</li>
-<li><input disabled type="checkbox"> v-input</li>
-</ul>
-<hr>
-<h2 id="Quiz-Vue-js-中等程度"><a href="#Quiz-Vue-js-中等程度" class="headerlink" title="Quiz Vue.js 中等程度"></a>Quiz Vue.js 中等程度</h2><p><strong>哪個 method 可以確保 dom 已完成更新才執行？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> Vue.sync</li>
-<li><input disabled type="checkbox"> Vue.nextTick</li>
-<li><input disabled type="checkbox"> Vue.refresh</li>
-<li><input disabled type="checkbox"> Vue.await</li>
-</ul>
-<hr>
-<p><strong>如何使用<code>Vue</code>方法（ component 的功能）訪問本機DOM的元素？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 透過 v-node et un callback</li>
-<li><input disabled type="checkbox"> 透過 id 屬性與 document.getElementById</li>
-<li><input disabled type="checkbox"> 透過 v-ref</li>
-</ul>
-<hr>
-<p><strong>我們如何從由<code>“document /：id”</code>路由解釋的URL獲取<code>“id”</code>參數？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> this.$route.params.id</li>
-<li><input disabled type="checkbox"> this.$route.vars[‘id’]</li>
-<li><input disabled type="checkbox"> this.$route.query.id</li>
-<li><input disabled type="checkbox"> this.$route.document.id</li>
-</ul>
-<hr>
-<p><strong>哪些指令不應混在同一元素或 component 上？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> v-if et v-bind</li>
-<li><input disabled type="checkbox"> v-text et v-on</li>
-<li><input disabled type="checkbox"> v-show et v-model</li>
-<li><input disabled type="checkbox"> v-for et v-if</li>
-</ul>
-<hr>
-<p><strong>將事件發送到不相關 Component 的技術是什麼？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> Event Dispatch</li>
-<li><input disabled type="checkbox"> Event Bus</li>
-<li><input disabled type="checkbox"> Global Events</li>
-<li><input disabled type="checkbox"> 透過 store</li>
-</ul>
-<hr>
-<p><strong>哪個特殊變量包含<code>v-on</code>捕獲的本機事件？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> $event</li>
-<li><input disabled type="checkbox"> nativeEvent</li>
-<li><input disabled type="checkbox"> e</li>
-<li><input disabled type="checkbox"> e.native</li>
-</ul>
-<hr>
-<p><strong><code>Vuex</code>存儲上的哪些操作是異步的？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> getter</li>
-<li><input disabled type="checkbox"> mutation</li>
-<li><input disabled type="checkbox"> action</li>
-</ul>
-<hr>
-<p><strong>這些 component 掛鉤的正確執行順序是什麼？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> created, beforeMount, mounted, updated</li>
-<li><input disabled type="checkbox"> mounted, beforeCreate, created, destroyed</li>
-<li><input disabled type="checkbox"> created, beforeUpdate, update, mounted</li>
-</ul>
-<hr>
-<p><strong>為什麼 component 的<code>data</code>屬性應該是返回新對象的函數？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 在處理大型表格時，為了讓效能更好 </li>
-<li><input disabled type="checkbox"> 強制複製並避免 component 之間資料衝突</li>
-<li><input disabled type="checkbox"> 為避免內存洩漏</li>
-</ul>
-<hr>
-<p><strong>通過<code>v-show</code>“隱藏”圖像時，瀏覽器是否會加載圖像？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 是</li>
-<li><input disabled type="checkbox"> 不是</li>
-<li><input disabled type="checkbox"> Seulement si c’est un gif animé de Jean-Claude Van Damme</li>
-</ul>
-<hr>
-<h2 id="Quiz-Vue-js-深度問題"><a href="#Quiz-Vue-js-深度問題" class="headerlink" title="Quiz Vue.js 深度問題"></a>Quiz Vue.js 深度問題</h2><p><strong>我們如何將事件廣播到不相關的多個 component ？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> Vue.broadcast</li>
-<li><input disabled type="checkbox"> 使用 Event Bus</li>
-<li><input disabled type="checkbox"> Vue.$globalEmit</li>
-</ul>
-<hr>
-<p><strong>使<code>&quot;computed&quot;</code>可修改的技術是什麼？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 切成兩個方法集並使用 set 和 get</li>
-<li><input disabled type="checkbox"> 將其與<code>v-sync</code>指令做關聯</li>
-<li><input disabled type="checkbox"> 必須將其放置在 component 的”data”屬性中</li>
-</ul>
-<hr>
-<p><strong>哪條指令允許您將樣式範圍限制為 component 本身</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 將<code>scoped</code>屬性放在<code>styles</code>中</li>
-<li><input disabled type="checkbox"> 指令 <code>v-scope</code></li>
-<li><input disabled type="checkbox"> 將屬性設定為<code>scoping:true</code></li>
-</ul>
-<hr>
-<p><strong>如果事件來自 component 本身，我們可以在<code>v-on</code>指令上使用什麼修飾符來觸發？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> v-on:click.once</li>
-<li><input disabled type="checkbox"> v-on:click.self</li>
-<li><input disabled type="checkbox"> v-on:click.this</li>
-</ul>
-<hr>
-<p><strong>哪條語句使 component 及其不活動的資料保持高速緩存？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> <code>&lt;keep-alive&gt;</code></li>
-<li><input disabled type="checkbox"> <code>&lt;template cache&gt;</code></li>
-<li><input disabled type="checkbox"> <code>&lt;slot&gt;</code></li>
-</ul>
-<hr>
-<p><strong>哪條指令可用於創建內容位置，以用一個或多個其他 component 甚至HTML代碼填充 component ？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> v-inject</li>
-<li><input disabled type="checkbox"> v-slot</li>
-<li><input disabled type="checkbox"> v-inside</li>
-<li><input disabled type="checkbox"> v-html</li>
-</ul>
-<hr>
-<p><strong>哪條指令可以使“反應性”的 component 資料成為可能，而不是事先沒有？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> Vue.react</li>
-<li><input disabled type="checkbox"> Vue.initData</li>
-<li><input disabled type="checkbox"> Vue.mount</li>
-<li><input disabled type="checkbox"> Vue.set</li>
-</ul>
-<hr>
-<p><strong>我們如何按需生成名稱為<code>“component”</code>的 component 存儲在變量中？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> <code>&lt;render template=&quot;composant&quot;&gt;</code></li>
-<li><input disabled type="checkbox"> <code>&lt;component render=&quot;composant()&quot;&gt;</code></li>
-<li><input disabled type="checkbox"> <code>&lt;component :is=&quot;composant&quot;&gt;</code></li>
-</ul>
-<hr>
-<p><strong>如何在 component 之間共享通用代碼段？（資料，掛鉤，方法）</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 透過繼承</li>
-<li><input disabled type="checkbox"> 透過 extends</li>
-<li><input disabled type="checkbox"> 透過 mixin</li>
-</ul>
-<hr>
-<p><strong>如何強制刷新 component ？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 透過 this.$update();</li>
-<li><input checked disabled type="checkbox"> 透過 :key 指示變數的變化</li>
-<li><input disabled type="checkbox"> 透過 this.$router.push(‘#’) juste après un appel à this.nextTick</li>
-</ul>
-<p>出處：<a href="https://www.alsacreations.com/" target="_blank" rel="noopener">https://www.alsacreations.com/</a></p>
-<h3 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h3><p>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.</p>
-<h3 id="Quiz-Vue-js-基礎-1"><a href="#Quiz-Vue-js-基礎-1" class="headerlink" title="Quiz Vue.js 基礎"></a>Quiz Vue.js 基礎</h3><p><strong>是誰創造了VueJs ?</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> Evan You</li>
-</ul>
-<p><strong>定義 Vue Component 的3個部分是什麼？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> template, style, script</li>
-</ul>
-<p><strong>我們如何將資料從父層 Component 傳遞到子層 Component ？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 透過 prop</li>
-</ul>
-<p><strong>我們能否不靠 Babel 編譯的情況，單獨使用 Vue (script src)？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 可</li>
-</ul>
-<p><strong>用動態傳值語法，將<code>kiwi</code>給<code>prop</code>的寫法？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> v-bind:kiwi=”kiwi”</li>
-</ul>
-<p><strong>Vue 的哪個套件可以在所有 component 之間共享資料？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> Vuex</li>
-</ul>
-<p><strong>使用<code>v-for</code> 建立 loop 時，必要的屬性是什麼？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> v-key</li>
-</ul>
-<p><strong>哪一個語法可以 route 到另一個 vue component？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> this.$router.push(url)</li>
-</ul>
-<p><strong>我們如何在資料的變化的同時觸發一個動作？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 使用 watch</li>
-</ul>
-<p><strong>哪一個 directive (vue 的指令，ex: <code>v-for</code>, <code>v-model</code>) 將輸入欄位和 component 的 data 關聯在一起？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> v-model</li>
-</ul>
-<h3 id="Quiz-Vue-js-中等程度-1"><a href="#Quiz-Vue-js-中等程度-1" class="headerlink" title="Quiz Vue.js 中等程度"></a>Quiz Vue.js 中等程度</h3><p><strong>哪個 method 可以確保 dom 已完成更新才執行？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> Vue.nextTick</li>
-</ul>
-<p><strong>如何使用<code>Vue</code>方法（ component 的功能）訪問本機DOM的元素？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 透過 v-ref</li>
-</ul>
-<p><strong>我們如何從由<code>“document /：id”</code>路由解釋的URL獲取<code>“id”</code>參數？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> this.$route.params.id</li>
-</ul>
-<p><strong>哪些指令不應混在同一元素或 component 上？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> v-for et v-if</li>
-</ul>
-<p><strong>將事件發送到不相關 Component 的技術是什麼？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> Event Bus</li>
-</ul>
-<p><strong>哪個特殊變量包含<code>v-on</code>捕獲的本機事件？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> $event</li>
-</ul>
-<p><strong><code>Vuex</code>存儲上的哪些操作是異步的？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> action</li>
-</ul>
-<p><strong>這些 component 掛鉤的正確執行順序是什麼？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> created, beforeMount, mounted, updated</li>
-</ul>
-<p><strong>為什麼 component 的<code>data</code>屬性應該是返回新對象的函數？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 強制複製並避免 component 之間資料衝突</li>
-</ul>
-<p><strong>通過<code>v-show</code>“隱藏”圖像時，瀏覽器是否會加載圖像？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 是</li>
-</ul>
-<h3 id="Quiz-Vue-js-深度問題-1"><a href="#Quiz-Vue-js-深度問題-1" class="headerlink" title="Quiz Vue.js 深度問題"></a>Quiz Vue.js 深度問題</h3><p><strong>我們如何將事件廣播到不相關的多個 component ？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 使用 Event Bus</li>
-</ul>
-<p><strong>使<code>&quot;computed&quot;</code>可修改的技術是什麼？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 切成兩個方法集並使用 set 和 get</li>
-</ul>
-<p><strong>哪條指令允許您將樣式範圍限制為 component 本身</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 將<code>scoped</code>屬性放在<code>styles</code>中</li>
-</ul>
-<p><strong>如果事件來自 component 本身，我們可以在<code>v-on</code>指令上使用什麼修飾符來觸發？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> v-on:click.self</li>
-</ul>
-<p><strong>哪條語句使 component 及其不活動的資料保持高速緩存？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> <code>&lt;keep-alive&gt;</code></li>
-</ul>
-<p><strong>哪條指令可用於創建內容位置，以用一個或多個其他 component 甚至HTML代碼填充 component ？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> v-slot</li>
-</ul>
-<p><strong>哪條指令可以使“反應性”的 component 資料成為可能，而不是事先沒有？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> Vue.set</li>
-</ul>
-<p><strong>我們如何按需生成名稱為<code>“component”</code>的 component 存儲在變量中？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> <component :is="composant">
-
-</component></li>
-</ul>
-<p><strong>如何在 component 之間共享通用代碼段？（資料，掛鉤，方法）</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 透過 mixin</li>
-</ul>
-<p><strong>如何強制刷新 component ？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 透過 <code>:key</code> 指示變數的變化</li>
-</ul>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <blockquote>
-<p>只要你的考試成績好，就可以得到入門票一張</p>
-</blockquote>
-<p>在法國，應徵前端工程師的職位通常需要下列幾個程序：<br>第一關：人資的電話面試，在電話裡需要大約介紹一下自己的背景，以及自己的工作經歷，接著就是對方的發問，為什麼想應徵這份工作，或是對公司有疑惑也可提問等等。<br>第二關：技術執行長的電話面試，會詢問較多細節，對技術的看法，與團隊合作的細節，介紹公司負責部門的規模和人員、工作分配，當然我們也可以發問。<br>第二關：技術測驗，這有可能是面對面的測驗，寫白板、寫函式、線上測驗都有，但有時也很有可能寄給你連結，請線上直接作答。<br>第四關：直接來公司，最後一次面試，有可能是將來的主管和同事一起面試你。</p>
-<p>以下是網路上的一些技術問題，平常多做做，也可測驗自己對某一主題的熟悉度。<br>自己翻譯了一下這些題目，用法文讀起來有時還是卡卡的，翻譯成中文希望還算順暢，感謝 Chris 的中文題目修正。<br>我會先把正確答案放在最底下，可以先試著作答在看答案喔。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="Vue_Test_QA/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/Vue_Test_QA/" data-id="ck6qgs68x00ag51uwx5sjouio" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Vue/">Vue</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1472,6 +1132,10 @@ Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profil
       <ul>
         
           <li>
+            <a href="Vue_Event_Handling/">Vue.js Event Handling 事件處理</a>
+          </li>
+        
+          <li>
             <a href="Vue_Displaying_Filtered_Sorted_Results/">Vue.js Displaying Filtered/Sorted Results 顯示過濾/排序後的結果</a>
           </li>
         
@@ -1485,10 +1149,6 @@ Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profil
         
           <li>
             <a href="Vue_class_style/">Vue.js Class &amp; Style Bindings 樣式的綁定</a>
-          </li>
-        
-          <li>
-            <a href="Vue_computed_watch/">Vue.js computed &amp; watch 計算屬性與監視器</a>
           </li>
         
       </ul>

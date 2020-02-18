@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>tsuifei.github.io/Vue_Displaying_Filtered_Sorted_Results/</loc>
+    <loc>tsuifei.github.io/Vue_Event_Handling/</loc>
     
-    <lastmod>2020-02-17T12:57:34.055Z</lastmod>
+    <lastmod>2020-02-18T11:44:42.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>tsuifei.github.io/Vue_List_Rendering/</loc>
     
-    <lastmod>2020-02-16T09:25:02.603Z</lastmod>
+    <lastmod>2020-02-17T13:01:05.759Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_Displaying_Filtered_Sorted_Results/</loc>
+    
+    <lastmod>2020-02-17T12:57:34.055Z</lastmod>
     
   </url>
   
