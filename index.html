@@ -161,6 +161,7 @@ ga('send', 'pageview');
 <p>在實例的 methods 準備好觸發的方法：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">  test8($event) &#123;</span><br><span class="line">    alert(event.target.value + <span class="string">'--'</span> + event.keyCode)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>在 Vue 裡還有許多其他的事件修飾符：stop / prevent / capture / self / once / passive。用法可以參閱官方文件<a href="https://cn.vuejs.org/v2/guide/events.html" target="_blank" rel="noopener">事件處理 — Vue.js</a> 來了解各項用法。</p>
 <p>Vue 把以往需要在 JavaScript 裡寫的程式碼，全部改成在 HTML 就可處理的指令，的確方便許多，但也要知道 Javascript 的原生寫法，才不會改天需要寫原生寫不出來，這就是 Vue 的方便會費人 JS 武功的原因了。</p>
  -->
                                             <!-- Table of Contents -->
