@@ -111,6 +111,98 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan25_Returns-string-representing-specified-array-and-its-elements" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/" class="article-date">
+  <time datetime="2019-11-24T20:21:14.000Z" itemprop="datePublished">2019-11-25</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/">JS 把陣列 Array 轉成字串的 toString()</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Day-25"><a href="#Day-25" class="headerlink" title="Day 25"></a>Day 25</h6><blockquote>
+<p>我不想理你是歐洲人、美洲人、非洲人或哪國人，我就是要說中文。</p>
+</blockquote>
+<p>常常聽到人家說 JavaScript 是弱型別語言，剛開始學程式的時候真的有點一頭霧水，進一步的了解，才知道在程式語言的分類上，有所謂強型別（Strong type）和弱型別（Weak type）語言之分，強弱是相對的，但強弱之間並沒有絕對，而是依語言對型態檢查的嚴格程度，以及型態轉換的規則是否多元而定論。</p>
+<p>JavaScript 是偏向弱型別語言的，我們會發現 JavaScript 雖然有型別之分，但是常一不小心就可能踩到雷，或者是被自動轉型，這也算是 JavaScript 難掌控的原因之一吧？例如，我們可以拿字串來做運算，這很怪，但是對 JavaScript 卻是可行的。</p>
+<p>兩個 String 相減的結果變成 number 的型別。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = <span class="string">'42'</span> - <span class="string">'2'</span>;</span><br><span class="line">result; <span class="comment">// 40</span></span><br><span class="line"><span class="keyword">typeof</span>(result); <span class="comment">// number</span></span><br></pre></td></tr></table></figure>
+
+<p>也因此，JavaScript 有許多內建的轉型別方法，方便我們轉換型別 <del>轉斜為正？</del>。</p>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/toString" target="_blank" rel="noopener">Array.prototype.toString() - JavaScript | MDN</a></p>
+<p><strong>原型：</strong> Array.prototype.toString()<br><strong>功能：</strong> 將指定的陣列和元素轉成字串。<br><strong>改變：</strong> 不會改變原陣列。<br><strong>語法：</strong> arr.toString()<br><strong>回傳值：</strong> 一個表示指定的數組及其元素的字符串。<br><strong>參數：</strong> 無</p>
+<h2 id="toString-轉型別為字串"><a href="#toString-轉型別為字串" class="headerlink" title="toString() 轉型別為字串"></a>toString() 轉型別為字串</h2><p><code>toString()</code>顧名思義，可透過它將指定的陣列和元素轉成字串，然後在把這這陣列「打包」成一個字符串回傳回來。<br>原理是將每個陣列裡的元素轉成字串（必要時會呼叫元素的toString()方法），然後連同字串用逗號分隔後的輸出，輸出時並不會包含中括號或任何在陣列裡的元素界定符號也就是說，如果陣列裡面還有陣列，陣列的 [ ] 會一併消除。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].toString(); <span class="comment">// "1,2,3"</span></span><br><span class="line">[<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>].toString(); <span class="comment">// "a,b,c"</span></span><br><span class="line">[<span class="number">1</span>,[<span class="number">2</span>,<span class="string">'c'</span>]].toString(); <span class="comment">// "1,2,c"</span></span><br></pre></td></tr></table></figure>
+
+<p><code>toString()</code>在遇到其他型別的元素時會如何轉型？我們可以觀察到，很有趣的<code>null</code>, <code>undefined</code>,<code>NaN</code>和空元素都被消失了（但逗號還留著）；陣列被去中括號，而物件型別反而轉成了 ˋ[object Object]`。到底轉型的規則是什麼，還真的需要好好探究一下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="literal">null</span>, &#123;<span class="attr">a</span>:<span class="number">42</span>&#125;, <span class="number">82</span>, , <span class="literal">true</span>, <span class="literal">undefined</span>, [<span class="string">"hi"</span>,<span class="string">"hello"</span>], <span class="literal">NaN</span>].toString();</span><br><span class="line"><span class="comment">// ",[object Object],82,,true,,hi,hello,NaN"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="你們是孿生兄弟嗎？"><a href="#你們是孿生兄弟嗎？" class="headerlink" title="你們是孿生兄弟嗎？"></a>你們是孿生兄弟嗎？</h3><p><code>toString()</code>也常常被拿來和<code>join()</code>做比較，兩這到底有什麼差別呢？我們可以以同樣有各種型別的元素陣列，讓兩個方法出裡看看結果：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 toString() 轉字串</span></span><br><span class="line">[<span class="literal">null</span>, &#123;<span class="attr">a</span>:<span class="number">42</span>&#125;, <span class="number">82</span>, , <span class="literal">true</span>, <span class="literal">undefined</span>, [<span class="string">"hi"</span>,<span class="string">"hello"</span>], <span class="literal">NaN</span>].toString();</span><br><span class="line"><span class="comment">// ",[object Object],82,,true,,hi,hello,NaN"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 join() 轉字串</span></span><br><span class="line">[<span class="literal">null</span>, &#123;<span class="attr">a</span>:<span class="number">42</span>&#125;, <span class="number">82</span>, , <span class="literal">true</span>, <span class="literal">undefined</span>, [<span class="string">"hi"</span>,<span class="string">"hello"</span>], <span class="literal">NaN</span>].join();</span><br><span class="line"><span class="comment">// ",[object Object],82,,true,,hi,hello,NaN"</span></span><br></pre></td></tr></table></figure>
+
+<p>結果是一模一樣！這下真的昏頭了，看來，真需要請教前輩這兩個方法的地層運作，但如果說要有什麼不同，是<code>join()</code>可以選擇元素間的分隔符號，但toString() 卻不行。或許，如果單純想把陣列轉成字串，那麼使用<code>toString()</code>會比較純粹些。大家怎麼看呢？</p>
+<p>後續: 感謝胡大提醒，原來 spec 有寫 (請看留言)，也就是說，使用<code>toString()</code>的結果與使用內建<code>join()</code>方法時不帶參數的結果是相同的。</p>
+<p>放假日，今天到這就好～</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Day-25"><a href="#Day-25" class="headerlink" title="Day 25"></a>Day 25</h6><blockquote>
+<p>我不想理你是歐洲人、美洲人、非洲人或哪國人，我就是要說中文。</p>
+</blockquote>
+<p>常常聽到人家說 JavaScript 是弱型別語言，剛開始學程式的時候真的有點一頭霧水，進一步的了解，才知道在程式語言的分類上，有所謂強型別（Strong type）和弱型別（Weak type）語言之分，強弱是相對的，但強弱之間並沒有絕對，而是依語言對型態檢查的嚴格程度，以及型態轉換的規則是否多元而定論。</p>
+<p>JavaScript 是偏向弱型別語言的，我們會發現 JavaScript 雖然有型別之分，但是常一不小心就可能踩到雷，或者是被自動轉型，這也算是 JavaScript 難掌控的原因之一吧？例如，我們可以拿字串來做運算，這很怪，但是對 JavaScript 卻是可行的。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/" data-id="ck6ru859i003n4iuwaq25avj7" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/" class="article-date">
@@ -996,111 +1088,11 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-JS_ironMan15_JavaScript-Array-push()-Method" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_ironMan15_JavaScript-Array-push()-Method/" class="article-date">
-  <time datetime="2019-11-14T20:21:14.000Z" itemprop="datePublished">2019-11-15</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_ironMan15_JavaScript-Array-push()-Method/">JS 從陣列 Array 尾端新增元素的 push()</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-15"><a href="#Day-15" class="headerlink" title="Day 15"></a>Day 15</h6><blockquote>
-<p>有付出一定有收穫，有 push ㄧ定有增加，但是要排隊喔～</p>
-</blockquote>
-<p>介紹陣列方法的第一天，想先請大家看一下底下的這張圖，在上一篇，我們依 JavaScript 的更新版本與方法的功能來列出所有<a href="https://d1dwq032kyr03c.cloudfront.net/upload/images/20190929/20104175PsptgttSeB.png" target="_blank" rel="noopener">陣列方法（Array Methods）</a>。</p>
-<p>這張圖上的所有方法，皆是 Chrome 瀏覽器有支援的方法，如果擔心與其他瀏覽器的問題，可以到 <a href="https://caniuse.com/" target="_blank" rel="noopener">Can I use</a> 查閱，看看我們使用的功能是否和其他瀏覽器有相容性的問題。</p>
-<p>圖中的陣列方法以「回傳的是什麼」和「是否更動陣列」來區分的原因，是因為當我們實做 JavaScript 的時候，無論是處理陣列或利用陣列方法來達到一些目的，甚至在刷演算題時，都需要清楚的知道這些方法回傳的是什麼，或是會不會更動到原本的陣列，以方便接下來的處理。而將不同的回傳值來區分，也有助於記憶，不然要記這麼多方法，真的是不容易啊！ <del>吞銀杏也不一定有效啊</del></p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20190930/20104175KAwMsqybra.png" alt="陣列方法"></p>
-<p>今天我們要介紹的陣列方法是<code>push()</code>，主要負責從陣列尾端來「新增」元素，這是我們常會用到的方法，新增資料就靠它。</p>
-<h2 id="push"><a href="#push" class="headerlink" title="push()"></a>push()</h2><p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/pop" target="_blank" rel="noopener">Array.prototype.pop() - JavaScript | MDN</a></p>
-<p><strong>原型：</strong> Array.prototype.push()<br><strong>功能：</strong> 會將一或多個的值，加入至一個陣列中。<br><strong>改變：</strong> 此方法會改變原陣列的長度和內容。<br><strong>語法：</strong> arr.push(element1[, …[, elementN]])<br><strong>回傳值：</strong> 呼叫此方法執行的變數時，會回傳執行後的新陣列長度（ length 屬性值）。<br><strong>參數：</strong> elementN, 要增加至陣列末端的元素。</p>
-<p><img src="https://ithelp.ithome.com.tw/upload/images/20190930/20104175LRHA7aClhg.png" alt="陣列方法"></p>
-<p>範例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> colors = [<span class="string">'yellow'</span>, <span class="string">'Orange'</span>, <span class="string">'Red'</span>];</span><br><span class="line"><span class="keyword">const</span> count = colors.push(<span class="string">'Blue'</span>);</span><br><span class="line"></span><br><span class="line">count; <span class="comment">// 4 增加後的陣列長度</span></span><br><span class="line">colors; <span class="comment">// ['yellow', 'Orange', 'Red', 'Blue']</span></span><br></pre></td></tr></table></figure>
-
-<p>也可以一次增加多個元素:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">colors.push(<span class="string">'Violet'</span>, <span class="string">'Green'</span>, <span class="string">'Cyan'</span>);</span><br><span class="line">colors; <span class="comment">// ['yellow', 'Orange', 'Red', 'Blue', 'Violet', 'Green', 'Cyan']</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="push-方法原型"><a href="#push-方法原型" class="headerlink" title="push() 方法原型"></a>push() 方法原型</h3><p><code>push()</code> 是用什麼方法寫出來的呢？有兩種方法。<br>為了避免覆蓋到原生的<code>push()</code>方法，我們可以把這個方法另外取名為<code>push2</code>和<code>push3</code>，並將他們放到瀏覽器的開發者工具。</p>
-<p>第一種方法：我們可以試著在<code>for</code>迴圈裡，把<code>this</code>用<code>console.log</code>印出來，就可觀察到每跑一次迴圈，就會加上我們放在參數<code>arguments</code>裡的元素。  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// push2(arguments)</span></span><br><span class="line"><span class="built_in">Array</span>.prototype.push2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="built_in">arguments</span>.length; i++)&#123;</span><br><span class="line">    <span class="keyword">this</span>[<span class="keyword">this</span>.length] = <span class="built_in">arguments</span>[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>這裡的<code>arguments</code>指的是我們放在<code>push()</code>裡的參數。<br><code>this</code>則是指向我們原本的陣列。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>]; <span class="comment">// `this`</span></span><br><span class="line">arr.push2(<span class="number">4</span>,<span class="number">5</span>); <span class="comment">// `arguments`</span></span><br><span class="line"><span class="comment">// this[this.length] = arguments[i]; </span></span><br><span class="line"><span class="comment">// =&gt;  [1,2][2] = 4 </span></span><br><span class="line"><span class="comment">// =&gt; [1,2,4][3] = 5</span></span><br></pre></td></tr></table></figure>
-
-<p>第二種方法：使用<code>splice()</code>方法特性，和其餘參數的方法，把參數增加到原本的陣列。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.push3 = <span class="function"><span class="keyword">function</span>(<span class="params">...rest</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.splice(<span class="keyword">this</span>.length, <span class="number">0</span>, ...rest)</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>這裡的<code>this</code>是指向我們原本的陣列。<br><code>splice(this.length, 0, ...rest)</code>則為<code>splice(陣列長度,0, ...rest)</code><br>ES6的其餘參數<code>...rest</code>：可以將陣列或物件中的資料取出成獨立變數。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>]; <span class="comment">// `this`</span></span><br><span class="line">arr.push3(<span class="number">4</span>,<span class="number">5</span>); <span class="comment">// `[4,5]` =&gt; `...rest`</span></span><br><span class="line"><span class="comment">// this.splice(this.length, 0, ...rest)</span></span><br><span class="line"><span class="comment">// =&gt; [1,2].splice(2,0,...rest)</span></span><br></pre></td></tr></table></figure>
-
-<p>不知對於今天的解釋，有沒有幫助到大家，更了解<code>push()</code>的運作原理和使用方法？<br>我們明天再繼續介紹<code>pop()</code>囉～</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-15"><a href="#Day-15" class="headerlink" title="Day 15"></a>Day 15</h6><blockquote>
-<p>有付出一定有收穫，有 push ㄧ定有增加，但是要排隊喔～</p>
-</blockquote>
-<p>介紹陣列方法的第一天，想先請大家看一下底下的這張圖，在上一篇，我們依 JavaScript 的更新版本與方法的功能來列出所有<a href="https://d1dwq032kyr03c.cloudfront.net/upload/images/20190929/20104175PsptgttSeB.png" target="_blank" rel="noopener">陣列方法（Array Methods）</a>。</p>
-<p>這張圖上的所有方法，皆是 Chrome 瀏覽器有支援的方法，如果擔心與其他瀏覽器的問題，可以到 <a href="https://caniuse.com/" target="_blank" rel="noopener">Can I use</a> 查閱，看看我們使用的功能是否和其他瀏覽器有相容性的問題。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_ironMan15_JavaScript-Array-push()-Method/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan15_JavaScript-Array-push()-Method/" data-id="ck6ru8592002q4iuwvhfd06xb" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="../3/">&laquo; Prev</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><a class="page-number" href="../3/">3</a><span class="page-number current">4</span><a class="page-number" href="../5/">5</a><a class="page-number" href="../6/">6</a><a class="page-number" href="../7/">7</a><a class="extend next" rel="next" href="../5/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="../3/">&laquo; Prev</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><a class="page-number" href="../3/">3</a><span class="page-number current">4</span><a class="page-number" href="../5/">5</a><a class="page-number" href="../6/">6</a><span class="space">&hellip;</span><a class="page-number" href="../8/">8</a><a class="extend next" rel="next" href="../5/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -1144,6 +1136,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="../../Vue_Form_Input_Bindings/">Vue.js Form Input Bindings 表單輸入綁定</a>
+          </li>
+        
+          <li>
             <a href="../../Vue_Event_Handling/">Vue.js Event Handling 事件處理</a>
           </li>
         
@@ -1157,10 +1153,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="../../Vue_Conditional_Rendering/">Vue.js Conditional Rendering 條件渲染語法</a>
-          </li>
-        
-          <li>
-            <a href="../../Vue_class_style/">Vue.js Class &amp; Style Bindings 樣式的綁定</a>
           </li>
         
       </ul>

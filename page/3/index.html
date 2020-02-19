@@ -111,6 +111,100 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/" class="article-date">
+  <time datetime="2019-12-23T16:00:00.000Z" itemprop="datePublished">2019-12-24</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/">JS 測試陣列是否有符合條件的元素好用方法 every() &amp; some()</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h6 id="Array-34"><a href="#Array-34" class="headerlink" title="Array 34"></a>Array 34</h6><blockquote>
+<p>一顆小螺絲釘立大功，一粒屎壞一鍋粥猜兩個迭代函式。</p>
+</blockquote>
+<p>在ECMAScript 5的迭代方法中有兩個好用的迭代方法，這兩個方法主要拿來檢查陣列裡的元素值是否符我們給的條件：<code>some()</code>與<code>every</code>。而這兩個方法的回傳值皆為布林值。</p>
+<p>如果用字面上來解釋，就很容易分辨兩個的不同：<br>some() -&gt; some 某一個：<strong>有一個</strong>元素符合條件就回傳<code>true</code>。
+every() -&gt; every 每一個：要<strong>全部</strong>符合條件才會回傳<code>true</code>。</p>
+<p><code>some()</code>可以用來檢查陣列中是否有「某一個」元素符合條件。如果「其中一個」元素符合條件就回傳 true。</p>
+<p><code>every</code>剛好和<code>some()</code><strong>相反</strong>，我們拿它來檢查陣列中是否「全部」都符合條件，如果「每一個」都符合條件，才會回傳 true ，否則會回傳 false。</p>
+<p><code>every</code>和<code>some()</code>也很像邏輯運算子的 OR <code>||</code>和 AND <code>&amp;&amp;</code>的關係， <code>||</code>只要一邊有符合條件就是 true ，而<code>&amp;&amp;</code>則是相反，需要兩邊都符合才會得到 true。</p>
+<p>我們先來看一下這兩個方法的基本資料：</p>
+<h2 id="every"><a href="#every" class="headerlink" title="every()"></a>every()</h2><p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/every" target="_blank" rel="noopener">Array.prototype.every() - JavaScript | MDN</a><br><strong>原型：</strong> Array.prototype.every()<br><strong>功能：</strong> 測試陣列中的所有元素是否都通過了所給的條件。<br><strong>改變：</strong> 不會改變原陣列<br><strong>語法：</strong> arr.every(callback[, thisArg])<br><strong>回傳值：</strong> 傳回布林值，若回呼函式在處理每一個陣列元素時皆得到 truthy 值，則回傳 true。否則，回傳值為 false。<br><strong>參數：</strong> callback 函式與 thisArg</p>
+<p>例如，我們想要知道陣列中的字串是否都有兩個字母以上，希望得到的值是 true，所以使用<code>every()</code>，但因為其中一個字串<code>su</code>只有兩個字母，所以回傳 false。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">'jack'</span>, <span class="string">'john'</span>, <span class="string">'may'</span>, <span class="string">'su'</span>, <span class="string">'Ada'</span>];</span><br><span class="line"><span class="keyword">let</span> friendName = arr.every(<span class="function"><span class="keyword">function</span>(<span class="params">value, index, array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value.length &gt; <span class="number">2</span>;</span><br><span class="line">&#125;);</span><br><span class="line">friendName; <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>另外一個例子，我們想檢查陣列裡的元素值是否「都」大於 10，我們也可以換個方式這樣寫較為清楚：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先把條件寫好</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isBigEnough</span>(<span class="params">element, index, array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (element &gt;= <span class="number">10</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 只要一個不符合，就回傳 false</span></span><br><span class="line"><span class="keyword">var</span> passed = [<span class="number">15</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">168</span>, <span class="number">42</span>].every(isBigEnough);</span><br><span class="line">passed; <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果條件都符合，就回傳 true</span></span><br><span class="line">passed = [<span class="number">15</span>, <span class="number">54</span>, <span class="number">18</span>, <span class="number">168</span>, <span class="number">42</span>].every(isBigEnough);</span><br><span class="line">passed; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="some"><a href="#some" class="headerlink" title="some()"></a>some()</h2><p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/some" target="_blank" rel="noopener">Array.prototype.some() - JavaScript | MDN</a><br><strong>原型：</strong> Array.prototype.some()<br><strong>功能：</strong> 測試陣列中是否至少有一個元素通過了所給的條件。<br><strong>改變：</strong> 不會改變原陣列<br><strong>語法：</strong> arr.every(callback[, thisArg])<br><strong>回傳值：</strong> 傳回布林值，若回呼函式在處理陣列元素時有一個元素得到 truthy 值，則回傳 true。否則，回傳值為 false。<br><strong>參數：</strong> callback 函式與 thisArg</p>
+<p>我們可以拿它來測試陣列元素的數值是否存在，用以下的方法可以達到和 ECMAScript 7 的<code>include（)</code>方法的效果。<br>如果元素存在於陣列中，這個自定義函數就會返回true：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> friends = [<span class="string">'Ayda'</span>, <span class="string">'Chris'</span>, <span class="string">'Kira'</span>, <span class="string">'Philippe'</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkAvailability</span>(<span class="params">arr, val</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> arr.some(<span class="function"><span class="keyword">function</span>(<span class="params">arrVal</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> val === arrVal;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">checkAvailability(friends, <span class="string">'Kira'</span>);   <span class="comment">// true</span></span><br><span class="line">checkAvailability(friends, <span class="string">'Tracy'</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>因缺乏實際應用的經驗，和朋友討論後，朋友提供了一個使用<code>some()</code>的情境：<br>例如，用<code>some()</code>來檢查使用者上傳的檔案格式是否符合條件，只要符合 checkTypeArray 中的任一格式時，就可以往下繼續執行。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可自訂檢查的檔案格式</span></span><br><span class="line"><span class="keyword">const</span> checkTypeArray = [<span class="string">'xls'</span>, <span class="string">'xlsx'</span>, <span class="string">'pdf'</span>, <span class="string">'csv'</span>];</span><br><span class="line"><span class="comment">// fileType 為使用者選取得到的檔案格式</span></span><br><span class="line"><span class="keyword">const</span> checkType = checkTypeArray.some(<span class="function"><span class="params">file</span> =&gt;</span> fileType === file);</span><br><span class="line"><span class="keyword">if</span>(checkType)</span><br><span class="line"><span class="comment">// do anything you want to do.</span></span><br></pre></td></tr></table></figure>
+
+<p>ECMAScript 5 的迭代方法就剩<code>reduce()</code>和<code>reduceRight()</code>還沒介紹，雖然還沒有辦法很多實際的情境，但相信多詳細了解這些方法的細節，總是會多一些印象，對於有著金魚腦的我，以後多少都有印象吧！</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇請告知，我會盡快修改，感謝您～ </p>
+</blockquote>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h6 id="Array-34"><a href="#Array-34" class="headerlink" title="Array 34"></a>Array 34</h6><blockquote>
+<p>一顆小螺絲釘立大功，一粒屎壞一鍋粥猜兩個迭代函式。</p>
+</blockquote>
+<p>在ECMAScript 5的迭代方法中有兩個好用的迭代方法，這兩個方法主要拿來檢查陣列裡的元素值是否符我們給的條件：<code>some()</code>與<code>every</code>。而這兩個方法的回傳值皆為布林值。</p>
+<p>如果用字面上來解釋，就很容易分辨兩個的不同：<br>some() -&gt; some 某一個：<strong>有一個</strong>元素符合條件就回傳<code>true</code>。
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/" data-id="ck6ru859t004i4iuw54kmdeif" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_book-club-note-array" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_book-club-note-array/" class="article-date">
@@ -1222,103 +1316,11 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-JS_ironMan25_Returns-string-representing-specified-array-and-its-elements" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/" class="article-date">
-  <time datetime="2019-11-24T20:21:14.000Z" itemprop="datePublished">2019-11-25</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/">JS 把陣列 Array 轉成字串的 toString()</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-25"><a href="#Day-25" class="headerlink" title="Day 25"></a>Day 25</h6><blockquote>
-<p>我不想理你是歐洲人、美洲人、非洲人或哪國人，我就是要說中文。</p>
-</blockquote>
-<p>常常聽到人家說 JavaScript 是弱型別語言，剛開始學程式的時候真的有點一頭霧水，進一步的了解，才知道在程式語言的分類上，有所謂強型別（Strong type）和弱型別（Weak type）語言之分，強弱是相對的，但強弱之間並沒有絕對，而是依語言對型態檢查的嚴格程度，以及型態轉換的規則是否多元而定論。</p>
-<p>JavaScript 是偏向弱型別語言的，我們會發現 JavaScript 雖然有型別之分，但是常一不小心就可能踩到雷，或者是被自動轉型，這也算是 JavaScript 難掌控的原因之一吧？例如，我們可以拿字串來做運算，這很怪，但是對 JavaScript 卻是可行的。</p>
-<p>兩個 String 相減的結果變成 number 的型別。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = <span class="string">'42'</span> - <span class="string">'2'</span>;</span><br><span class="line">result; <span class="comment">// 40</span></span><br><span class="line"><span class="keyword">typeof</span>(result); <span class="comment">// number</span></span><br></pre></td></tr></table></figure>
-
-<p>也因此，JavaScript 有許多內建的轉型別方法，方便我們轉換型別 <del>轉斜為正？</del>。</p>
-<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/toString" target="_blank" rel="noopener">Array.prototype.toString() - JavaScript | MDN</a></p>
-<p><strong>原型：</strong> Array.prototype.toString()<br><strong>功能：</strong> 將指定的陣列和元素轉成字串。<br><strong>改變：</strong> 不會改變原陣列。<br><strong>語法：</strong> arr.toString()<br><strong>回傳值：</strong> 一個表示指定的數組及其元素的字符串。<br><strong>參數：</strong> 無</p>
-<h2 id="toString-轉型別為字串"><a href="#toString-轉型別為字串" class="headerlink" title="toString() 轉型別為字串"></a>toString() 轉型別為字串</h2><p><code>toString()</code>顧名思義，可透過它將指定的陣列和元素轉成字串，然後在把這這陣列「打包」成一個字符串回傳回來。<br>原理是將每個陣列裡的元素轉成字串（必要時會呼叫元素的toString()方法），然後連同字串用逗號分隔後的輸出，輸出時並不會包含中括號或任何在陣列裡的元素界定符號也就是說，如果陣列裡面還有陣列，陣列的 [ ] 會一併消除。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>].toString(); <span class="comment">// "1,2,3"</span></span><br><span class="line">[<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>].toString(); <span class="comment">// "a,b,c"</span></span><br><span class="line">[<span class="number">1</span>,[<span class="number">2</span>,<span class="string">'c'</span>]].toString(); <span class="comment">// "1,2,c"</span></span><br></pre></td></tr></table></figure>
-
-<p><code>toString()</code>在遇到其他型別的元素時會如何轉型？我們可以觀察到，很有趣的<code>null</code>, <code>undefined</code>,<code>NaN</code>和空元素都被消失了（但逗號還留著）；陣列被去中括號，而物件型別反而轉成了 ˋ[object Object]`。到底轉型的規則是什麼，還真的需要好好探究一下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="literal">null</span>, &#123;<span class="attr">a</span>:<span class="number">42</span>&#125;, <span class="number">82</span>, , <span class="literal">true</span>, <span class="literal">undefined</span>, [<span class="string">"hi"</span>,<span class="string">"hello"</span>], <span class="literal">NaN</span>].toString();</span><br><span class="line"><span class="comment">// ",[object Object],82,,true,,hi,hello,NaN"</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="你們是孿生兄弟嗎？"><a href="#你們是孿生兄弟嗎？" class="headerlink" title="你們是孿生兄弟嗎？"></a>你們是孿生兄弟嗎？</h3><p><code>toString()</code>也常常被拿來和<code>join()</code>做比較，兩這到底有什麼差別呢？我們可以以同樣有各種型別的元素陣列，讓兩個方法出裡看看結果：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 toString() 轉字串</span></span><br><span class="line">[<span class="literal">null</span>, &#123;<span class="attr">a</span>:<span class="number">42</span>&#125;, <span class="number">82</span>, , <span class="literal">true</span>, <span class="literal">undefined</span>, [<span class="string">"hi"</span>,<span class="string">"hello"</span>], <span class="literal">NaN</span>].toString();</span><br><span class="line"><span class="comment">// ",[object Object],82,,true,,hi,hello,NaN"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 join() 轉字串</span></span><br><span class="line">[<span class="literal">null</span>, &#123;<span class="attr">a</span>:<span class="number">42</span>&#125;, <span class="number">82</span>, , <span class="literal">true</span>, <span class="literal">undefined</span>, [<span class="string">"hi"</span>,<span class="string">"hello"</span>], <span class="literal">NaN</span>].join();</span><br><span class="line"><span class="comment">// ",[object Object],82,,true,,hi,hello,NaN"</span></span><br></pre></td></tr></table></figure>
-
-<p>結果是一模一樣！這下真的昏頭了，看來，真需要請教前輩這兩個方法的地層運作，但如果說要有什麼不同，是<code>join()</code>可以選擇元素間的分隔符號，但toString() 卻不行。或許，如果單純想把陣列轉成字串，那麼使用<code>toString()</code>會比較純粹些。大家怎麼看呢？</p>
-<p>後續: 感謝胡大提醒，原來 spec 有寫 (請看留言)，也就是說，使用<code>toString()</code>的結果與使用內建<code>join()</code>方法時不帶參數的結果是相同的。</p>
-<p>放假日，今天到這就好～</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <h6 id="Day-25"><a href="#Day-25" class="headerlink" title="Day 25"></a>Day 25</h6><blockquote>
-<p>我不想理你是歐洲人、美洲人、非洲人或哪國人，我就是要說中文。</p>
-</blockquote>
-<p>常常聽到人家說 JavaScript 是弱型別語言，剛開始學程式的時候真的有點一頭霧水，進一步的了解，才知道在程式語言的分類上，有所謂強型別（Strong type）和弱型別（Weak type）語言之分，強弱是相對的，但強弱之間並沒有絕對，而是依語言對型態檢查的嚴格程度，以及型態轉換的規則是否多元而定論。</p>
-<p>JavaScript 是偏向弱型別語言的，我們會發現 JavaScript 雖然有型別之分，但是常一不小心就可能踩到雷，或者是被自動轉型，這也算是 JavaScript 難掌控的原因之一吧？例如，我們可以拿字串來做運算，這很怪，但是對 JavaScript 卻是可行的。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/" data-id="ck6ru859i003n4iuwaq25avj7" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="../2/">&laquo; Prev</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><span class="page-number current">3</span><a class="page-number" href="../4/">4</a><a class="page-number" href="../5/">5</a><span class="space">&hellip;</span><a class="page-number" href="../7/">7</a><a class="extend next" rel="next" href="../4/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="../2/">&laquo; Prev</a><a class="page-number" href="../../">1</a><a class="page-number" href="../2/">2</a><span class="page-number current">3</span><a class="page-number" href="../4/">4</a><a class="page-number" href="../5/">5</a><span class="space">&hellip;</span><a class="page-number" href="../8/">8</a><a class="extend next" rel="next" href="../4/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -1362,6 +1364,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="../../Vue_Form_Input_Bindings/">Vue.js Form Input Bindings 表單輸入綁定</a>
+          </li>
+        
+          <li>
             <a href="../../Vue_Event_Handling/">Vue.js Event Handling 事件處理</a>
           </li>
         
@@ -1375,10 +1381,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="../../Vue_Conditional_Rendering/">Vue.js Conditional Rendering 條件渲染語法</a>
-          </li>
-        
-          <li>
-            <a href="../../Vue_class_style/">Vue.js Class &amp; Style Bindings 樣式的綁定</a>
           </li>
         
       </ul>

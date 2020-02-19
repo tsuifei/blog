@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Vue.js Form Input Bindings 表單輸入綁定</title>
+      <link href="/tsuifei.github.io/Vue_Form_Input_Bindings/"/>
+      <url>/tsuifei.github.io/Vue_Form_Input_Bindings/</url>
+      
+        <content type="html"><![CDATA[<p>使用 Vue 資料雙向綁定的特性，做表單資料的自動收集。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> JavaScript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Vue.js Event Handling 事件處理</title>
       <link href="/tsuifei.github.io/Vue_Event_Handling/"/>
       <url>/tsuifei.github.io/Vue_Event_Handling/</url>
