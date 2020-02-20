@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-144046503-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>VueJs Instance Lifecycle Hooks 生命週期鉤子 | Cré-Coder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在 Vue 所使用到的整個生命週期方法，可以想像成是一齣戲要上演，哪一個主角需要在哪個時候上場、哪個配角需要在哪個時刻退場，都需要有邏輯才可以讓故事產生連貫性與流暢。 Vue 的生命週期方法雖然共有八個，但並不是每個都需要用到，就像在戲裡，有些橋段不出現、配角不出現也不會影響整齣性的故事性。 把 Vue 的生命週期分為三個大階段會比較容易理解：第一階段的「初始化顯示」、第二階段「更新狀態顯示」、第">
+<meta name="keywords" content="JavaScript,Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VueJs Instance Lifecycle Hooks 生命週期鉤子">
+<meta property="og:url" content="tsuifei.github.io/Vue_Instance_Lifecycle_Hooks/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="在 Vue 所使用到的整個生命週期方法，可以想像成是一齣戲要上演，哪一個主角需要在哪個時候上場、哪個配角需要在哪個時刻退場，都需要有邏輯才可以讓故事產生連貫性與流暢。 Vue 的生命週期方法雖然共有八個，但並不是每個都需要用到，就像在戲裡，有些橋段不出現、配角不出現也不會影響整齣性的故事性。 把 Vue 的生命週期分為三個大階段會比較容易理解：第一階段的「初始化顯示」、第二階段「更新狀態顯示」、第">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2020-02-20T14:36:53.012Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VueJs Instance Lifecycle Hooks 生命週期鉤子">
+<meta name="twitter:description" content="在 Vue 所使用到的整個生命週期方法，可以想像成是一齣戲要上演，哪一個主角需要在哪個時候上場、哪個配角需要在哪個時刻退場，都需要有邏輯才可以讓故事產生連貫性與流暢。 Vue 的生命週期方法雖然共有八個，但並不是每個都需要用到，就像在戲裡，有些橋段不出現、配角不出現也不會影響整齣性的故事性。 把 Vue 的生命週期分為三個大階段會比較容易理解：第一階段的「初始化顯示」、第二階段「更新狀態顯示」、第">
+  
+  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+  
+  
+  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+  
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+</head></html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../index.html" id="logo">Cré-Coder</a>
+      </h1>
+      
+      <h2 id="subtitle-wrap">
+        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
+      </h2>
+      
+    </div>
+
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+        <a class="main-nav-link" href="../index.html">Home</a>
+        
+        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
+        
+        <a class="main-nav-link" href="../coding_style">Coding style</a>
+        
+        <a class="main-nav-link" href="../javascript">JavaScript</a>
+        
+        <a class="main-nav-link" href="../react">React</a>
+        
+        <a class="main-nav-link" href="../ide">IDE</a>
+        
+        <a class="main-nav-link" href="../life">Life</a>
+        
+        <a class="main-nav-link" href="../other">Other</a>
+        
+        <a class="main-nav-link" href="../html">HTML</a>
+        
+        <a class="main-nav-link" href="../css_sass">CSS+SASS</a>
+        
+        <a class="main-nav-link" href="../linux">Linux</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
+        
+        <!-- 搜索框就加上 class="st-default-search-input" -->
+        
+        <input type="text" class="st-default-search-input" placeholder="Search....">
+        
+        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
+        <!-- 
+        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
+         -->
+        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
+      </nav>
+      <!-- <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
+      </div> -->
+
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Vue_Instance_Lifecycle_Hooks" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="" class="article-date">
+  <time datetime="2020-02-19T16:42:24.000Z" itemprop="datePublished">2020-02-20</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 class="article-title" itemprop="name">
+      VueJs Instance Lifecycle Hooks 生命週期鉤子
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>在 Vue 所使用到的整個生命週期方法，可以想像成是一齣戲要上演，哪一個主角需要在哪個時候上場、哪個配角需要在哪個時刻退場，都需要有邏輯才可以讓故事產生連貫性與流暢。</p>
+<p>Vue 的生命週期方法雖然共有八個，但並不是每個都需要用到，就像在戲裡，有些橋段不出現、配角不出現也不會影響整齣性的故事性。</p>
+<p>把 Vue 的生命週期分為三個大階段會比較容易理解：第一階段的「初始化顯示」、第二階段「更新狀態顯示」、第三階段「死亡、銷毀 Vue 實例」，每個階段都有對應的生命週期 callback 方法，這些生命週期的方法也稱為「生命週期鉤子」掛載在不同時期。 Vue 的生命週期比 React 還要複雜一些。</p>
+<p>為了避免 <code>this</code> 的混淆，這些生命週期的方法都是回調方法(callback)，所以最好一律都寫成箭頭函式，讓 <code>this</code> 直接指向父級。</p>
+<h2 id="Vue-的生命週期各階段都做了什麼？"><a href="#Vue-的生命週期各階段都做了什麼？" class="headerlink" title="Vue 的生命週期各階段都做了什麼？"></a>Vue 的生命週期各階段都做了什麼？</h2><h3 id="0-創建-Vue-的實例"><a href="#0-創建-Vue-的實例" class="headerlink" title="0. 創建 Vue 的實例"></a>0. 創建 Vue 的實例</h3><p>當我們創建好一個 Vue 的實例，就會馬上進入下一個階段<code>beforeCreate()</code>。</p>
+<h3 id="1-初始化顯示階段"><a href="#1-初始化顯示階段" class="headerlink" title="1. 初始化顯示階段"></a>1. 初始化顯示階段</h3><ul>
+<li><p><strong>beforeCreate() 實例創建前</strong></p>
+<ul>
+<li>準備工作：觀察初始化(Observe Data)、初始化事件(Init Events)</li>
+<li>這個階段實例的 data、methods 是讀不到的</li>
+</ul>
+</li>
+<li><p><strong>created() 實例創建後</strong></p>
+<ul>
+<li>這個階段已經完成了資料觀察初始化(data observer)，屬性和方法的運算， watch/event 事件回調。mount 掛載階段還沒開始，$el 屬性目前不可見，資料並沒有在 DOM 元素上進行渲染。</li>
+</ul>
+</li>
+<li><p><strong>beforeMount() 在掛載開始之前被調用</strong></p>
+</li>
+<li><p>相關的 render 函數首次被調用。</p>
+</li>
+<li><p><strong>mounted()</strong></p>
+</li>
+<li><p>初始化顯示之後。立即調用。是最常用的 callback，用來「掛載」到頁面上。</p>
+</li>
+<li><p><code>el</code>選項的 DOM 節點 被新創建的 <code>vm.$el</code> 替換，並掛載到實例上去之後調用此生命週期方法。此時實例的資料在 DOM 節點上進行渲染。</p>
+</li>
+</ul>
+<h3 id="2-更新狀態顯示階段"><a href="#2-更新狀態顯示階段" class="headerlink" title="2. 更新狀態顯示階段"></a>2. 更新狀態顯示階段</h3><p><code>this.xxx = value</code></p>
+<ul>
+<li><p><strong>beforeUpdate() 資料更新時調用</strong></p>
+<ul>
+<li>但不進行 DOM 重新渲染，在資料更新時 DOM 沒渲染前可以在這個生命方法裡進行狀態處理。</li>
+</ul>
+</li>
+<li><p><strong>updated() 資料更新並且 DOM 重新渲染</strong></p>
+<ul>
+<li>這個狀態下資料更新並且 DOM 重新渲染，當這個生命週期方法被調用時，組件 DOM 已經更新，所以這時可以執行依賴於 DOM 的操作。當實例每次進行資料更新時 updated 都會執行。</li>
+</ul>
+</li>
+</ul>
+<p>當我們調用 vm.$destroy()時，就會進入下一個銷毀 Vue 實例的階段</p>
+<h3 id="3-死亡、銷毀-Vue-實例階段"><a href="#3-死亡、銷毀-Vue-實例階段" class="headerlink" title="3.死亡、銷毀 Vue 實例階段"></a>3.死亡、銷毀 Vue 實例階段</h3><p>也稱死亡，也就是沒有互動的功能。</p>
+<ul>
+<li><p><strong>beforeDestory() 實例銷毀之前調用</strong></p>
+</li>
+<li><p><strong>destoryed() 實例銷毀後調用</strong></p>
+<ul>
+<li>Vue 實例銷毀後調用。調用後，Vue 實例指示的所有東西都會解綁定，所有的事件監聽器會被移除，所有的子實例也會被銷毀。</li>
+</ul>
+</li>
+</ul>
+<h2 id="查看生命週期方法的順序範例"><a href="#查看生命週期方法的順序範例" class="headerlink" title="查看生命週期方法的順序範例"></a>查看生命週期方法的順序範例</h2><p>範例：一行字，每隔一秒會切換成隱藏。</p>
+<p>在初始化之後，把初始化的值以<code>v-show</code>的方式讓<code>&lt;p&gt;</code>依定時器的規則顯示。<br>再設定一個按鈕，綁定可以銷毀 vm 的函式，當點擊按鈕時這個 vm 會銷毀而停止顯示或隱藏切換，這個定時器掛載到<code>mounted()</code>之後，點擊按鈕雖然會停止文字顯示的切換，卻不會停止我們在定時器裡放的<code>console.log(&#39;++++++&#39;)</code>，也表示「定時器」並沒有被銷毀。</p>
+<p>要把整個定時器銷毀(進入銷毀 Vue 實例)階段，需要在<code>beforeDestroy()</code>這個階段清除定時器，我們可使用<code>clearInterval()</code>來清除定時器，但是如何找到我們要銷毀的定時器？可以在<code>mounted()</code>階段的定時器，指向我們設定的變數<code>this.intervalId = setInterval()</code>來讓清除定時器的函式找到。</p>
+<p>在實例裡加入每個時期的生命週期方法，並用<code>console.log</code>印出來，執行一下頁面就可看到其順序。</p>
+<h2 id="常用的生命週期方法？"><a href="#常用的生命週期方法？" class="headerlink" title="常用的生命週期方法？"></a>常用的生命週期方法？</h2><ul>
+<li><code>mounted()</code>：主要用來發送<code>ajax</code>請求，啟動定時器等非同步的任務。</li>
+<li><code>beforeDestory()</code>：做收尾的工作，例如清除定時器，否則定時器會一直執行下去（如範例）</li>
+<li><code>created()</code>：進行 ajax 請求異步數據的獲取、初始化數據</li>
+<li><code>mounted()</code>：掛載元素內 dom 節點的獲取</li>
+<li><code>nextTick()</code>：針對單一事件更新數據後立即操作 dom</li>
+<li><code>updated()</code>：任何數據的更新，如果要做統一的業務邏輯處理</li>
+<li><code>watch()</code>：監聽具體數據變化，並做相應的處理</li>
+</ul>
+<h2 id="實際操作"><a href="#實際操作" class="headerlink" title="實際操作"></a>實際操作</h2><p>來 codepen 看看：<a href="https://codepen.io/tsuifei/pen/WNvGJKb?editors=1111" target="_blank" rel="noopener">VueJs Instance Lifecycle Hooks 生命週期鉤子</a>，別忘了觀察 console 的變化。<br>HTML 部分：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"destroyVm"</span>&gt;</span>Destroy vm<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-show</span>=<span class="string">"isShow"</span>&gt;</span>Hello Paris<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Vue 實例的部分</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    isShow: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 1.初始化顯示階段</span></span><br><span class="line">  beforeCreate() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'1. beforeCreate'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'2. created'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeMount() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'3. beforeMount'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 初始化後的顯示，所以放在mounted(只用一次)</span></span><br><span class="line">  mounted() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'4. mounted'</span>);</span><br><span class="line">    <span class="comment">// 定時器，每一秒改變一次</span></span><br><span class="line">    <span class="keyword">this</span>.intervalId = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'+++++++++'</span>);</span><br><span class="line">      <span class="keyword">this</span>.isShow = !<span class="keyword">this</span>.isShow;</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 2.更新狀態顯示階段</span></span><br><span class="line">  beforeUpdate() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'5. beforeUpdate'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  updated() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'6. updated'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 3.死亡、銷毀 Vue 實例階段 / 銷毀之前調用（只用一次）</span></span><br><span class="line">  beforeDestroy() &#123;</span><br><span class="line">    <span class="comment">// 清除定時器</span></span><br><span class="line">    clearInterval(<span class="keyword">this</span>.intervalId);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'7. beforeDestroy'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  destroyed() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'8. destroyed'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    <span class="comment">// 毀掉vm</span></span><br><span class="line">    destroyVm() &#123;</span><br><span class="line">      <span class="keyword">this</span>.$destroy();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                            <p>在 Vue 所使用到的整個生命週期方法，可以想像成是一齣戲要上演，哪一個主角需要在哪個時候上場、哪個配角需要在哪個時刻退場，都需要有邏輯才可以讓故事產生連貫性與流暢。</p>
+<p>Vue 的生命週期方法雖然共有八個，但並不是每個都需要用到，就像在戲裡，有些橋段不出現、配角不出現也不會影響整齣性的故事性。</p>
+<p>把 Vue 的生命週期分為三個大階段會比較容易理解：第一階段的「初始化顯示」、第二階段「更新狀態顯示」、第三階段「死亡、銷毀 Vue 實例」，每個階段都有對應的生命週期 callback 方法，這些生命週期的方法也稱為「生命週期鉤子」掛載在不同時期。 Vue 的生命週期比 React 還要複雜一些。</p>
+<p>為了避免 <code>this</code> 的混淆，這些生命週期的方法都是回調方法(callback)，所以最好一律都寫成箭頭函式，讓 <code>this</code> 直接指向父級。</p>
+<h2 id="Vue-的生命週期各階段都做了什麼？"><a href="#Vue-的生命週期各階段都做了什麼？" class="headerlink" title="Vue 的生命週期各階段都做了什麼？"></a>Vue 的生命週期各階段都做了什麼？</h2><h3 id="0-創建-Vue-的實例"><a href="#0-創建-Vue-的實例" class="headerlink" title="0. 創建 Vue 的實例"></a>0. 創建 Vue 的實例</h3><p>當我們創建好一個 Vue 的實例，就會馬上進入下一個階段<code>beforeCreate()</code>。</p>
+<h3 id="1-初始化顯示階段"><a href="#1-初始化顯示階段" class="headerlink" title="1. 初始化顯示階段"></a>1. 初始化顯示階段</h3><ul>
+<li><p><strong>beforeCreate() 實例創建前</strong></p>
+<ul>
+<li>準備工作：觀察初始化(Observe Data)、初始化事件(Init Events)</li>
+<li>這個階段實例的 data、methods 是讀不到的</li>
+</ul>
+</li>
+<li><p><strong>created() 實例創建後</strong></p>
+<ul>
+<li>這個階段已經完成了資料觀察初始化(data observer)，屬性和方法的運算， watch/event 事件回調。mount 掛載階段還沒開始，$el 屬性目前不可見，資料並沒有在 DOM 元素上進行渲染。</li>
+</ul>
+</li>
+<li><p><strong>beforeMount() 在掛載開始之前被調用</strong></p>
+</li>
+<li><p>相關的 render 函數首次被調用。</p>
+</li>
+<li><p><strong>mounted()</strong></p>
+</li>
+<li><p>初始化顯示之後。立即調用。是最常用的 callback，用來「掛載」到頁面上。</p>
+</li>
+<li><p><code>el</code>選項的 DOM 節點 被新創建的 <code>vm.$el</code> 替換，並掛載到實例上去之後調用此生命週期方法。此時實例的資料在 DOM 節點上進行渲染。</p>
+</li>
+</ul>
+<h3 id="2-更新狀態顯示階段"><a href="#2-更新狀態顯示階段" class="headerlink" title="2. 更新狀態顯示階段"></a>2. 更新狀態顯示階段</h3><p><code>this.xxx = value</code></p>
+<ul>
+<li><p><strong>beforeUpdate() 資料更新時調用</strong></p>
+<ul>
+<li>但不進行 DOM 重新渲染，在資料更新時 DOM 沒渲染前可以在這個生命方法裡進行狀態處理。</li>
+</ul>
+</li>
+<li><p><strong>updated() 資料更新並且 DOM 重新渲染</strong></p>
+<ul>
+<li>這個狀態下資料更新並且 DOM 重新渲染，當這個生命週期方法被調用時，組件 DOM 已經更新，所以這時可以執行依賴於 DOM 的操作。當實例每次進行資料更新時 updated 都會執行。</li>
+</ul>
+</li>
+</ul>
+<p>當我們調用 vm.$destroy()時，就會進入下一個銷毀 Vue 實例的階段</p>
+<h3 id="3-死亡、銷毀-Vue-實例階段"><a href="#3-死亡、銷毀-Vue-實例階段" class="headerlink" title="3.死亡、銷毀 Vue 實例階段"></a>3.死亡、銷毀 Vue 實例階段</h3><p>也稱死亡，也就是沒有互動的功能。</p>
+<ul>
+<li><p><strong>beforeDestory() 實例銷毀之前調用</strong></p>
+</li>
+<li><p><strong>destoryed() 實例銷毀後調用</strong></p>
+<ul>
+<li>Vue 實例銷毀後調用。調用後，Vue 實例指示的所有東西都會解綁定，所有的事件監聽器會被移除，所有的子實例也會被銷毀。</li>
+</ul>
+</li>
+</ul>
+<h2 id="查看生命週期方法的順序範例"><a href="#查看生命週期方法的順序範例" class="headerlink" title="查看生命週期方法的順序範例"></a>查看生命週期方法的順序範例</h2><p>範例：一行字，每隔一秒會切換成隱藏。</p>
+<p>在初始化之後，把初始化的值以<code>v-show</code>的方式讓<code>&lt;p&gt;</code>依定時器的規則顯示。<br>再設定一個按鈕，綁定可以銷毀 vm 的函式，當點擊按鈕時這個 vm 會銷毀而停止顯示或隱藏切換，這個定時器掛載到<code>mounted()</code>之後，點擊按鈕雖然會停止文字顯示的切換，卻不會停止我們在定時器裡放的<code>console.log(&#39;++++++&#39;)</code>，也表示「定時器」並沒有被銷毀。</p>
+<p>要把整個定時器銷毀(進入銷毀 Vue 實例)階段，需要在<code>beforeDestroy()</code>這個階段清除定時器，我們可使用<code>clearInterval()</code>來清除定時器，但是如何找到我們要銷毀的定時器？可以在<code>mounted()</code>階段的定時器，指向我們設定的變數<code>this.intervalId = setInterval()</code>來讓清除定時器的函式找到。</p>
+<p>在實例裡加入每個時期的生命週期方法，並用<code>console.log</code>印出來，執行一下頁面就可看到其順序。</p>
+<h2 id="常用的生命週期方法？"><a href="#常用的生命週期方法？" class="headerlink" title="常用的生命週期方法？"></a>常用的生命週期方法？</h2><ul>
+<li><code>mounted()</code>：主要用來發送<code>ajax</code>請求，啟動定時器等非同步的任務。</li>
+<li><code>beforeDestory()</code>：做收尾的工作，例如清除定時器，否則定時器會一直執行下去（如範例）</li>
+<li><code>created()</code>：進行 ajax 請求異步數據的獲取、初始化數據</li>
+<li><code>mounted()</code>：掛載元素內 dom 節點的獲取</li>
+<li><code>nextTick()</code>：針對單一事件更新數據後立即操作 dom</li>
+<li><code>updated()</code>：任何數據的更新，如果要做統一的業務邏輯處理</li>
+<li><code>watch()</code>：監聽具體數據變化，並做相應的處理</li>
+</ul>
+<h2 id="實際操作"><a href="#實際操作" class="headerlink" title="實際操作"></a>實際操作</h2><p>來 codepen 看看：<a href="https://codepen.io/tsuifei/pen/WNvGJKb?editors=1111" target="_blank" rel="noopener">VueJs Instance Lifecycle Hooks 生命週期鉤子</a>，別忘了觀察 console 的變化。<br>HTML 部分：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"destroyVm"</span>&gt;</span>Destroy vm<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-show</span>=<span class="string">"isShow"</span>&gt;</span>Hello Paris<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Vue 實例的部分</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    isShow: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 1.初始化顯示階段</span></span><br><span class="line">  beforeCreate() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'1. beforeCreate'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'2. created'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeMount() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'3. beforeMount'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 初始化後的顯示，所以放在mounted(只用一次)</span></span><br><span class="line">  mounted() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'4. mounted'</span>);</span><br><span class="line">    <span class="comment">// 定時器，每一秒改變一次</span></span><br><span class="line">    <span class="keyword">this</span>.intervalId = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'+++++++++'</span>);</span><br><span class="line">      <span class="keyword">this</span>.isShow = !<span class="keyword">this</span>.isShow;</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 2.更新狀態顯示階段</span></span><br><span class="line">  beforeUpdate() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'5. beforeUpdate'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  updated() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'6. updated'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 3.死亡、銷毀 Vue 實例階段 / 銷毀之前調用（只用一次）</span></span><br><span class="line">  beforeDestroy() &#123;</span><br><span class="line">    <span class="comment">// 清除定時器</span></span><br><span class="line">    clearInterval(<span class="keyword">this</span>.intervalId);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'7. beforeDestroy'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  destroyed() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'8. destroyed'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    <span class="comment">// 毀掉vm</span></span><br><span class="line">    destroyVm() &#123;</span><br><span class="line">      <span class="keyword">this</span>.$destroy();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/Vue_Instance_Lifecycle_Hooks/" data-id="ck6uumwcj00002nuw3gmxsz6i" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Vue/">Vue</a></li></ul>
+
+                    </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+  
+  
+    <a href="../Vue_Form_Input_Bindings/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue.js Form Input Bindings 表單輸入綁定</div>
+    </a>
+  
+</nav>
+
+            
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">About Tsuifei</h3>
+        <div class="widget">
+            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
+            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/VSCode/">VSCode</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Base/">JS Base</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/讀書會筆記/">讀書會筆記</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">VueJs Instance Lifecycle Hooks 生命週期鉤子</a>
+          </li>
+        
+          <li>
+            <a href="../Vue_Form_Input_Bindings/">Vue.js Form Input Bindings 表單輸入綁定</a>
+          </li>
+        
+          <li>
+            <a href="../Vue_Event_Handling/">Vue.js Event Handling 事件處理</a>
+          </li>
+        
+          <li>
+            <a href="../Vue_Displaying_Filtered_Sorted_Results/">Vue.js Displaying Filtered/Sorted Results 顯示過濾/排序後的結果</a>
+          </li>
+        
+          <li>
+            <a href="../Vue_List_Rendering/">Vue.js List Rendering 列表渲染</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../tags/CSS/" style="font-size: 11.67px;">CSS</a> <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 11.67px;">Git</a> <a href="../tags/GitHub/" style="font-size: 11.67px;">GitHub</a> <a href="../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 16.67px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Base/" style="font-size: 11.67px;">JS Base</a> <a href="../tags/JS-Basic/" style="font-size: 10px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 18.33px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/JavaScript-30/" style="font-size: 11.67px;">JavaScript 30</a> <a href="../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/React/" style="font-size: 13.33px;">React</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../tags/Test/" style="font-size: 10px;">Test</a> <a href="../tags/VSCode/" style="font-size: 11.67px;">VSCode</a> <a href="../tags/Vue/" style="font-size: 15px;">Vue</a> <a href="../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Tsuifei Pommier<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+    <script type="text/javascript">
+      (function (w, d, t, u, n, s, e) {
+        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
+          (w[n].q = w[n].q || []).push(arguments);
+        }; s = d.createElement(t);
+        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
+      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+
+      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
+    </script>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
+  
+    <a href="../coding_style" class="mobile-nav-link">Coding style</a>
+  
+    <a href="../javascript" class="mobile-nav-link">JavaScript</a>
+  
+    <a href="../react" class="mobile-nav-link">React</a>
+  
+    <a href="../ide" class="mobile-nav-link">IDE</a>
+  
+    <a href="../life" class="mobile-nav-link">Life</a>
+  
+    <a href="../other" class="mobile-nav-link">Other</a>
+  
+    <a href="../html" class="mobile-nav-link">HTML</a>
+  
+    <a href="../css_sass" class="mobile-nav-link">CSS+SASS</a>
+  
+    <a href="../linux" class="mobile-nav-link">Linux</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
+  <script src="../fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="../js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

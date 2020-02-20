@@ -111,6 +111,98 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-Mac_for_my_new_MacBookPro" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../Mac_for_my_new_MacBookPro/" class="article-date">
+  <time datetime="2020-02-02T16:42:24.000Z" itemprop="datePublished">2020-02-03</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/Mac/">Mac</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../Mac_for_my_new_MacBookPro/">MacBook Pro 入手安裝紀錄</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <blockquote>
+<p>衣服和褲子總要穿穿才會合身，何況是電腦這麼神聖的東西。</p>
+</blockquote>
+<p>這篇是很久以前紀錄的，如果 2019 年八月買的，到現在也已經七個月了，但是很神奇的是，從舊電腦換到新電腦，幾乎是有種無痛轉移的狀態，雖然是新電腦，但其實頗懷念舊的。</p>
+<p>上一台舊的 MacBook Pro 是已經停產的 17 吋筆電，很重但很好用，我用她做所有的事情，且從 2001 年入手到換新電腦，她都很良善的陪著我，隨然中後期她的一邊喇吧不再動了，但是除此之外一切都很完美，直到近一兩年，安裝新的系統，對她而言開始覺得很吃力，負荷不過來，所以才有想要換新電腦的念頭。</p>
+<p>原本以為寫程式是不太需要記憶體或空間的，但是學了才知道，要安裝一大堆的編譯器和套件，也頗重的。尤其套件從網站上下載下來，有時會達到幾百 M ，這時她就會氣喘如牛了。但是一台筆電陪了我近九年，也真的是算辛苦了，希望新的 MacBook Pro 也可以陪我長長久久，而我也會很珍惜與保護她的。</p>
+<p>由於在法國買的鍵盤超難打 code ，所以就決定回來台灣買。入手的時候在好想工作室 trining，所以也就得到許多人的幫助與建議，且還把部落格給架了起來。以前架站都是用 Wordpress，這次安裝在 github 上倍感新鮮。</p>
+<h2 id="安裝-Hexo-紀錄"><a href="#安裝-Hexo-紀錄" class="headerlink" title="安裝 Hexo 紀錄"></a>安裝 Hexo 紀錄</h2><p>而在本機安裝 hexo 使<code>npm install -g hexo-cli</code>卻發現權限不足的問題，記得 Chris 說過，盡量不要用<code>sudo</code>這個最高權限安裝，所以來找一下其他方式，找到這篇：<a href="https://stackoverflow.com/questions/33725639/npm-install-g-less-does-not-work" target="_blank" rel="noopener">npm install -g less does not work
+</a> 裡面也說盡量不要用<code>sudo</code>安裝，所以想來仔細了解一下。</p>
+<p>此篇寫著： Using sudo is not recommended. It may give you permission issue later. While the above works, I am not a fan of changing folders owned by root to be writable for users, although it may only be an issue with multiple users. To work around that, you could use a group, with ‘npm users’ but that is also more administrative overhead. See here for the options to deal with permissions from the documentation: <a href="https://docs.npmjs.com/getting-started/fixing-npm-permissions" target="_blank" rel="noopener">https://docs.npmjs.com/getting-started/fixing-npm-permissions</a></p>
+<p>所以他用以下的方法：<br>I would go for option 2:</p>
+<p>To minimize the chance of permissions errors, you can configure npm to use a different directory. In this example, it will be a hidden directory on your home folder. 要最小化權限錯誤的可能性，可以將 npm 配置為使用其他目錄。在此示例中，它將是主文件夾中的隱藏目錄。</p>
+<p>Make a directory for global installations:<br>為全局安裝創建一個目錄：<br><code>mkdir ~/.npm-global</code></p>
+<p>Configure npm to use the new directory path:<br>配置 npm 以使用新的目錄路徑：<br><code>npm config set prefix &#39;~/.npm-global&#39;</code></p>
+<p>Open or create a <del>/.profile file and add this line:<br>打開或創建一個〜/ .profile 文件並添加以下行：<br>`export PATH=</del>/.npm-global/bin:$PATH`
+Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profile，就解決了。</p>
+<p>Back on the command line, update your system variables:<br>返回命令行，更新系統變量：<br><code>source ~/.profile</code></p>
+<p>Test: Download a package globally without using sudo.<br>測試：在不使用 sudo 的情況下全局下載軟件包。<br><code>npm install -g jshint</code><br>==有試成功 安裝 hexo OK 但要用 hexo 時又不行==</p>
+<p>If still show permission error run (mac os):<br>如果仍顯示權限錯誤運行（mac os）：<br><code>sudo chown -R $USER ~/.npm-global</code></p>
+<p>This works with the default ubuntu install of:<br>這適用於默認的 ubuntu 安裝：==(oz:表示還是用 sodu 吧…)==<br><code>sudo apt-get install nodejs npm</code></p>
+<p>I recommend nvm if you want more flexibility in managing versions: <a href="https://github.com/creationix/nvm" target="_blank" rel="noopener">https://github.com/creationix/nvm</a><br>如果您想要更靈活地管理版本，我建議使用 nvm：</p>
+<p>On MacOS use brew, it should work without sudo out of the box if you’re on a recent npm version. Enjoy :)<br>在 MacOS 上使用 brew，如果您使用的是最近的 npm 版本，它應該可以在沒有開箱即用的情況下使用。請享用 ：）</p>
+<h2 id="幾個開發工具介紹"><a href="#幾個開發工具介紹" class="headerlink" title="幾個開發工具介紹"></a>幾個開發工具介紹</h2><p><strong>brew</strong> : MacOs 主要的套件管理工具 (The missing package manager for macOS)。用來補足 macOS 所欠缺的套件管理工具。<br><a href="https://brew.sh/index_zh-tw.html" target="_blank" rel="noopener">官網</a> | <a href="https://mt116.blogspot.com/2017/11/homebrew.html" target="_blank" rel="noopener">介紹</a></p>
+<p><strong>NPM</strong> 是隨同 NodeJS 一起安裝的包管理工具，能解決 NodeJS 程式碼部署上的很多問題。<br><a href="https://www.npmjs.com/" target="_blank" rel="noopener">官網</a> | <a href="https://www.slideshare.net/wantingj/npm-46801372" target="_blank" rel="noopener">套件管理 &amp; 常用開發工具介紹</a></p>
+<p><strong>Node Version Manager</strong> 是 Node.js 版本管理的工具。<br>照官網安裝後，仍要去 .bash_profile 改路徑與環境變數。<br><a href="https://github.com/nvm-sh/nvm/blob/master/README.md" target="_blank" rel="noopener">官網</a>｜ <a href="https://ithelp.ithome.com.tw/articles/10184980" target="_blank" rel="noopener">教學</a></p>
+<p>Mac 的環境變數相關文章<br><a href="https://codertw.com/ios/96761/" target="_blank" rel="noopener">Mac 環境變數小記</a></p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <blockquote>
+<p>衣服和褲子總要穿穿才會合身，何況是電腦這麼神聖的東西。</p>
+</blockquote>
+<p>這篇是很久以前紀錄的，如果 2019 年八月買的，到現在也已經七個月了，但是很神奇的是，從舊電腦換到新電腦，幾乎是有種無痛轉移的狀態，雖然是新電腦，但其實頗懷念舊的。</p>
+<p>上一台舊的 MacBook Pro 是已經停產的 17 吋筆電，很重但很好用，我用她做所有的事情，且從 2001 年入手到換新電腦，她都很良善的陪著我，隨然中後期她的一邊喇吧不再動了，但是除此之外一切都很完美，直到近一兩年，安裝新的系統，對她而言開始覺得很吃力，負荷不過來，所以才有想要換新電腦的念頭。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../Mac_for_my_new_MacBookPro/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/Mac_for_my_new_MacBookPro/" data-id="ck6uuloug004u0fuwjef0nlv0" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Mac/">Mac</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-VSCode_ESLint_Setup" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../VSCode_ESLint_Setup/" class="article-date">
@@ -1568,81 +1660,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-JS30_00_start" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS30_00_start/" class="article-date">
-  <time datetime="2019-12-27T16:42:24.000Z" itemprop="datePublished">2019-12-28</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS30_00_start/">JS 30 - 00. 為什麼開始？因為希望完成</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <blockquote>
-<p>當我們每天早上醒來，都是一切的開始。</p>
-</blockquote>
-<p>原始出處：<a href="https://javascript30.com/" target="_blank" rel="noopener">Javascript30.com</a><br>原始檔案：<a href="https://github.com/wesbos/JavaScript30" target="_blank" rel="noopener">[github]</a></p>
-<p>這是個很有名的免費線上課程，由 Wes Bos 推出的 30 個以原生 JavaScript 寫出來的挑戰，這 30 道題目也有 Wes Bos 所提供的免費教學影片可看，可說是佛心來的。而網路上也有許多前輩，挑戰之後將心得分享出來，我們可以在原始檔案<a href="https://github.com/wesbos/JavaScript30" target="_blank" rel="noopener">[github]</a>上的 README 上看到列表，其中有好幾位來自台灣的前輩，因此增加了中文的分享筆記，是英文不夠好的救星啊！而這一兩年這30題也成為許多人入手學習 JS 必做的練習，在框架盛行的年代，能夠以原生的 JavaScript 來寫練習真的是越來越珍貴。</p>
-<h3 id="寫在前頭"><a href="#寫在前頭" class="headerlink" title="寫在前頭"></a>寫在前頭</h3><p>開始寫這些題目是在 2018 年還在 42 的時候，那是很焦急的時期，一直等待的 Piscine JavaScript 確定落空後，只有自己找課程來學，聽聞這個挑戰主題，當然也想試一下，且野心勃勃的改掉全部的視覺，加上自己根本對 JS 不熟，導致進度非常緩慢，且懞懞懂懂的參考著其他人寫的，搭配當時的「Alex 宅幹嘛」教學影片，竟也完成了四篇，現在看來覺得有點不可思議。</p>
-<p>一年後的現在，再次想要把它慢慢理解完，並試著記錄在每一個練習上所學到的，希望自己可以因此更熟悉 JavaScript。</p>
-<p>之前有聽到人家的進度是一天一題，很白痴的以為自己真的是動作慢到不行（也的確慢），後來才知道原來是把整個檔案從Github clone 下來後，直接寫而不要管視覺的部分，不過儘管如此，還是希望至少要讓畫面不太ㄧ樣，即使顏色也好。</p>
-<p>看到前輩先把功能和畫面效果分析出來是有道理的，分析後，再來把要執行的思路想一想，而不要馬上進行或許可以比較有條理地想清楚需要什麼函式、用什麼方法或是抓到的 DOM 要如何操控，一步步記錄下來，應該會對學習有幫助的，也要提醒自己常回來看看自己所記錄的才有用有印象啊！</p>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <blockquote>
-<p>當我們每天早上醒來，都是一切的開始。</p>
-</blockquote>
-<p>原始出處：<a href="https://javascript30.com/" target="_blank" rel="noopener">Javascript30.com</a><br>原始檔案：<a href="https://github.com/wesbos/JavaScript30" target="_blank" rel="noopener">[github]</a></p>
-<p>這是個很有名的免費線上課程，由 Wes Bos 推出的 30 個以原生 JavaScript 寫出來的挑戰，這 30 道題目也有 Wes Bos 所提供的免費教學影片可看，可說是佛心來的。而網路上也有許多前輩，挑戰之後將心得分享出來，我們可以在原始檔案<a href="https://github.com/wesbos/JavaScript30" target="_blank" rel="noopener">[github]</a>上的 README 上看到列表，其中有好幾位來自台灣的前輩，因此增加了中文的分享筆記，是英文不夠好的救星啊！而這一兩年這30題也成為許多人入手學習 JS 必做的練習，在框架盛行的年代，能夠以原生的 JavaScript 來寫練習真的是越來越珍貴。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS30_00_start/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS30_00_start/" data-id="ck6uulot0000l0fuwjjawb2k1" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript-30/">JavaScript 30</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1691,6 +1708,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="../../Vue_Instance_Lifecycle_Hooks/">VueJs Instance Lifecycle Hooks 生命週期鉤子</a>
+          </li>
+        
+          <li>
             <a href="../../Vue_Form_Input_Bindings/">Vue.js Form Input Bindings 表單輸入綁定</a>
           </li>
         
@@ -1704,10 +1725,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="../../Vue_List_Rendering/">Vue.js List Rendering 列表渲染</a>
-          </li>
-        
-          <li>
-            <a href="../../Vue_Conditional_Rendering/">Vue.js Conditional Rendering 條件渲染語法</a>
           </li>
         
       </ul>

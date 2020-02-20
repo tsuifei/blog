@@ -111,6 +111,77 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_JS101-Exercise" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_JS101-Exercise/" class="article-date">
+  <time datetime="2019-07-18T20:26:59.000Z" itemprop="datePublished">2019-07-19</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_JS101-Exercise/">JS-[JS101] 練習</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <h2 id="判斷條件練習"><a href="#判斷條件練習" class="headerlink" title="判斷條件練習"></a>判斷條件練習</h2><h3 id="練習一：判斷是否及格"><a href="#練習一：判斷是否及格" class="headerlink" title="練習一：判斷是否及格"></a>練習一：判斷是否及格</h3><p>請你自己寫出一段程式碼，是判斷一個叫做 score 的變數是否及格（超過或剛好 60 分），如果及格的話就輸出 pass，否則輸出 fail。<br>進階練習：<br>除了判斷是否及格以外，也請你對滿分做出特別判斷，如果是 100 分的話就輸出 you are no1!</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pass</span>(<span class="params">score</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (score &lt; <span class="number">60</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'不及格，但沒關係，再接再厲！'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (score === <span class="number">100</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'你真是好棒棒！'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (score &gt; <span class="number">100</span> || score &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'咦，沒這樣的分數耶'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span>(score) !== <span class="built_in">Number</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'輸入的不是數字型態'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'恭喜，及格了'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">pass(<span class="number">100</span>)  <span class="comment">// 程式內是用 console.log，所以呼叫函式時就不需用 console.log</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="練習二：BMI-計算"><a href="#練習二：BMI-計算" class="headerlink" title="練習二：BMI 計算"></a>練習二：BMI 計算</h3><p>假設體重是 70，身高是 180(1.8m)，BMI 就是 70/(1.8*1.8) = 21。<br>現在請你寫出一個簡單的 BMI 計算器，用兩個變數代表體重跟身高，算出 BMI 之後判斷 BMI 是落在哪個範圍內並輸出相對應的字串。<br>體重過輕：BMI &lt; 18.5<br>正常範圍：18.5 &lt;= BMI &lt; 24<br>過重：24 &lt;= BMI &lt; 27<br>輕度肥胖：27 &lt;= BMI &lt; 30<br>中度肥胖：30 &lt;= BMI &lt; 35<br>重度肥胖：35 &lt;= BMI </p>
+<p>這題原本做時一直多一個 undefined ，後來請教hu大才理解，console.log() 是印出，return 是回傳，印出是印出、回傳是回傳。如果在程式裡使用 console.log()，那麼呼叫程式時就不需用 console.log()，如果程式內是用return 那麼呼叫函式時就要用console.log() 來印出在螢幕上。<br>一般建議用 return ，function 裡面不要出現 console.log 讓程式保持乾淨。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testBMI2</span>(<span class="params">weight, height</span>) </span>&#123;</span><br><span class="line">    height = height * <span class="number">0.01</span></span><br><span class="line">    <span class="keyword">var</span> bmi = weight / (height * height)</span><br><span class="line">    bmi = <span class="built_in">parseFloat</span>(bmi).toFixed(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (bmi &lt; <span class="number">18.5</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重過輕'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bmi &gt;= <span class="number">18.5</span> &amp;&amp; bmi &lt; <span class="number">24</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重正常'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bmi &gt;= <span class="number">24</span> &amp;&amp; bmi &lt; <span class="number">27</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重過重'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bmi &gt;= <span class="number">27</span> &amp;&amp; bmi &lt; <span class="number">30</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重為輕度肥胖'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bmi &gt;= <span class="number">30</span> &amp;&amp; bmi &lt; <span class="number">35</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重過輕為中度肥胖'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bmi &gt;= <span class="number">35</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'BMI為：'</span> + bmi + <span class="string">' 您的體重過輕為重度肥胖'</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'輸入資料不正確'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(testBMI2(<span class="string">'s'</span>, <span class="number">162</span>))</span><br></pre></td></tr></table></figure> -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <h2 id="判斷條件練習"><a href="#判斷條件練習" class="headerlink" title="判斷條件練習"></a>判斷條件練習</h2><h3 id="練習一：判斷是否及格"><a href="#練習一：判斷是否及格" class="headerlink" title="練習一：判斷是否及格"></a>練習一：判斷是否及格</h3><p>請你自己寫出一段程式碼，是判斷一個叫做 score 的變數是否及格（超過或剛好 60 分），如果及格的話就輸出 pass，否則輸出 fail。<br>進階練習：<br>除了判斷是否及格以外，也請你對滿分做出特別判斷，如果是 100 分的話就輸出 you are no1!</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pass</span>(<span class="params">score</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (score &lt; <span class="number">60</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'不及格，但沒關係，再接再厲！'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (score === <span class="number">100</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'你真是好棒棒！'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (score &gt; <span class="number">100</span> || score &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'咦，沒這樣的分數耶'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span>(score) !== <span class="built_in">Number</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'輸入的不是數字型態'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'恭喜，及格了'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">pass(<span class="number">100</span>)  <span class="comment">// 程式內是用 console.log，所以呼叫函式時就不需用 console.log</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="練習二：BMI-計算"><a href="#練習二：BMI-計算" class="headerlink" title="練習二：BMI 計算"></a>練習二：BMI 計算</h3><p>假設體重是 70，身高是 180(1.8m)，BMI 就是 70/(1.8*1.8) = 21。<br>現在請你寫出一個簡單的 BMI 計算器，用兩個變數代表體重跟身高，算出 BMI 之後判斷 BMI 是落在哪個範圍內並輸出相對應的字串。<br>體重過輕：BMI &lt; 18.5<br>正常範圍：18.5 &lt;= BMI &lt; 24<br>過重：24 &lt;= BMI &lt; 27<br>輕度肥胖：27 &lt;= BMI &lt; 30<br>中度肥胖：30 &lt;= BMI &lt; 35<br>重度肥胖：35 &lt;= BMI </p>
+<p>這題原本做時一直多一個 undefined ，後來請教hu大才理解，console.log() 是印出，return 是回傳，印出是印出、回傳是回傳。如果在程式裡使用 console.log()，那麼呼叫程式時就不需用 console.log()，如果程式內是用return 那麼呼叫函式時就要用console.log() 來印出在螢幕上。<br>一般建議用 return ，function 裡面不要出現 console.log 讓程式保持乾淨。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_JS101-Exercise/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_JS101-Exercise/" data-id="ck6uulot800190fuwju9s5st0" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/ExerciceJS/">ExerciceJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS101/">JS101</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-SASS_deployment-environment-and-fundamental" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../SASS_deployment-environment-and-fundamental/" class="article-date">
@@ -1070,100 +1141,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-JS_ES6-箭頭函式-Arrow-function" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_ES6-箭頭函式-Arrow-function/" class="article-date">
-  <time datetime="2019-07-02T01:17:36.000Z" itemprop="datePublished">2019-07-02</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>►<a class="article-category-link" href="../../categories/JavaScript/ES6/">ES6</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_ES6-箭頭函式-Arrow-function/">JavaScript ES6 箭頭函式 Arrow function</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>箭頭函式是 ES6 的新語法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原本的寫法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">double</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或是 </span></span><br><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 語法</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function">(<span class="params">x</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="箭頭函式的簡寫規則"><a href="#箭頭函式的簡寫規則" class="headerlink" title="箭頭函式的簡寫規則"></a>箭頭函式的簡寫規則</h3><p>1.如果參數只有一個，可省略參數的括號(x)=&gt; x，0或多個都不可省略。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">x</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.函式本體如果只有一行，且只有 return 一個值，可省略大花括號和 return，直接把本體接在=&gt;後面 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">x</span> =&gt;</span> x * <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="This-是什麼？和箭頭函式的關係"><a href="#This-是什麼？和箭頭函式的關係" class="headerlink" title="This 是什麼？和箭頭函式的關係"></a>This 是什麼？和箭頭函式的關係</h3><p>this 指的是函式的情境(context)，某人去101大樓往下跳，但跳下去沒事，因為在爬樓梯，他只有跳一格的樓梯，當然沒事，但是跳這個動作很明確，就像是函式的定義一樣。<br>但是你在什麼樣的情境下跳，會影響他的結果，這個情境就是 Context 。<br>例如：一個跳的函式，裡面內容是固定的，但裡面的this就要看他執行時的情境而定。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jump</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>javascript 裡函式的執行基本上可分為三種：<br>1.直接執行： 函式裡的 this 是 window (global)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jump();</span><br><span class="line"><span class="comment">// window 物件</span></span><br></pre></td></tr></table></figure>
-
-<p>2.作為一個物件的方法來執行:裡面的 this 就是物件。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123;&#125;</span><br><span class="line">a.jump = jump;</span><br><span class="line">a.jump();</span><br><span class="line"><span class="comment">// 執行結果是物件 &#123;jump:f..&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>3.假設頁面上有一個button，點它就會執行 jump()，<br>如果一個函式以 Dom 監聽函式來執行，函式裡面的this就會指向所監聽的元素 Dom。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=&quot;btn&quot;&gt;</span><br><span class="line">btn</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jump</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">btn.sddEventListener(<span class="string">'click'</span>, jump);</span><br><span class="line"><span class="comment">// button DOM</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="用箭頭-This-會改變"><a href="#用箭頭-This-會改變" class="headerlink" title="用箭頭 This 會改變"></a>用箭頭 This 會改變</h3><p>如果以箭頭函式攥寫 Dom 的監聽函式，This就會改變成指向 window。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> jump = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">btn.sddEventListener(<span class="string">'click'</span>, jump);</span><br><span class="line"><span class="comment">// window</span></span><br><span class="line"><span class="keyword">const</span> a = &#123;&#125;</span><br><span class="line">a.jump = jump; <span class="comment">// window</span></span><br><span class="line">a.jump(); <span class="comment">// window</span></span><br></pre></td></tr></table></figure>
-
-<p>只要是箭頭函式，無論如何執行它，裡面的 this 都會指向 window，這就是箭頭函式的特性，它沒有自己的情境(Context)，它的內部 context 就等於它宣告的時候，它外面的this。</p>
-<p>React 會大量的用到 This 所以一定要弄懂。</p>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <p>箭頭函式是 ES6 的新語法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原本的寫法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">double</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或是 </span></span><br><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 語法</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function">(<span class="params">x</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="箭頭函式的簡寫規則"><a href="#箭頭函式的簡寫規則" class="headerlink" title="箭頭函式的簡寫規則"></a>箭頭函式的簡寫規則</h3><p>1.如果參數只有一個，可省略參數的括號(x)=&gt; x，0或多個都不可省略。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">x</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_ES6-箭頭函式-Arrow-function/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ES6-箭頭函式-Arrow-function/" data-id="ck6uulot700160fuw9ngr1r4b" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1212,6 +1189,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="../../Vue_Instance_Lifecycle_Hooks/">VueJs Instance Lifecycle Hooks 生命週期鉤子</a>
+          </li>
+        
+          <li>
             <a href="../../Vue_Form_Input_Bindings/">Vue.js Form Input Bindings 表單輸入綁定</a>
           </li>
         
@@ -1225,10 +1206,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="../../Vue_List_Rendering/">Vue.js List Rendering 列表渲染</a>
-          </li>
-        
-          <li>
-            <a href="../../Vue_Conditional_Rendering/">Vue.js Conditional Rendering 條件渲染語法</a>
           </li>
         
       </ul>
