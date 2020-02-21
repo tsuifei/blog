@@ -111,6 +111,126 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-Vue_Transitioning_Elements_Components" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="Vue_Transitioning_Elements_Components/" class="article-date">
+  <time datetime="2020-02-20T16:42:24.000Z" itemprop="datePublished">2020-02-21</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="Vue_Transitioning_Elements_Components/">VueJs Transitioning Single Elements/Component 過渡與動畫效果</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>原本在一般頁面要製造一些簡單的動畫效果，只要掌控 class 和 Css 就好了，但是如果要在框架內做這些動態效果，如何做？</p>
+<p>在 Vue 裡有它的特殊做法，必須把享有動態效果的元素，以<code>&lt;transition&gt;</code>的標籤包起來，並給予一個<code>name</code>的屬性，然後在 CSS 裡，以這個<code>name</code>來作為 class 的名稱，並加上動畫不同時期的後綴，來達到動態效果。</p>
+<p>先來看一下 Codepen <a href="https://codepen.io/tsuifei/pen/vYOyGeq" target="_blank" rel="noopener">VueJs Transitioning Single Elements/Component 過渡與動畫效果</a></p>
+<p>我們先來看一張官方上的示意圖：<br><img src="https://cn.vuejs.org/images/transition.png" alt></p>
+<p>要指定進出場的樣式需要搭配 Vue 指定的後綴詞，進、出場個分三個階段<br>進場：</p>
+<table>
+<thead>
+<tr>
+<th>階段</th>
+<th>進場 Enter</th>
+<th>出場 Leave</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>開始</td>
+<td>v-enter</td>
+<td>v-leave</td>
+</tr>
+<tr>
+<td>結束</td>
+<td>v-enter-to</td>
+<td>v-leave-to</td>
+</tr>
+<tr>
+<td>整個過程</td>
+<td>v-enter-active</td>
+<td>v-leave-active</td>
+</tr>
+</tbody></table>
+<p>再醫每個過程指定的效果。而表中的<code>v</code>是在沒有給<code>&lt;transition&gt;</code>名字的時候，如果有給<code>name</code>，則把<code>v</code>用我們給的<code>name</code>替換就好了。</p>
+<h2 id="淡入淡出的過度效果-Transition"><a href="#淡入淡出的過度效果-Transition" class="headerlink" title="淡入淡出的過度效果 Transition"></a>淡入淡出的過度效果 Transition</h2><p>以淡入淡出的效果來說，在 HTML 需要先將<code>&lt;transition&gt;</code>把我們要做動態效果的元素包住，例如我們希望點一個按鈕，讓文字淡入淡出切換，就可以寫成：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app1"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 將字慢慢消失、透明度0 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"show = !show"</span>&gt;</span>Switch1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"fade"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;p v-show="show"&gt;Hello Paris&lt;/p&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"show"</span>&gt;</span>Hello Paris<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在文字的<code>&lt;p&gt;</code>標籤內，我們可以給<code>v-if</code>或<code>v-show</code>，這兩個效果是一樣的。</p>
+<p>Vue 實例的部分</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm1 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el: <span class="string">'#app1'</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">          show: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>然後在 CSS 裡依上述規則指定，在進場時透明度為 0 漸變為 100，而出場則反之。而按鈕則控制進出場的切換。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*指定進場*/</span></span><br><span class="line"><span class="selector-class">.fade-enter-active</span>,</span><br><span class="line"><span class="selector-class">.fade-leave-active</span> &#123;</span><br><span class="line">  <span class="attribute">transition</span>: opacity <span class="number">1s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*指定出場*/</span></span><br><span class="line"><span class="selector-class">.fade-enter</span>,</span><br><span class="line"><span class="selector-class">.fade-leave-to</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="動畫效果的放大縮小-Animation"><a href="#動畫效果的放大縮小-Animation" class="headerlink" title="動畫效果的放大縮小 Animation"></a>動畫效果的放大縮小 Animation</h2><p>我們也可以以動畫的方式來將組件變大變小與出場，也是一樣使用 Enter 和 Leave 的三個階段，分別設定。<br>CSS 的部分</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 使用Animation 動畫 */</span></span><br><span class="line">      <span class="selector-class">.bounce-enter-active</span> &#123;</span><br><span class="line">        <span class="attribute">animation</span>: bounce-in <span class="number">1s</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="selector-class">.bounce-leave-active</span> &#123;</span><br><span class="line">        <span class="attribute">animation</span>: bounce-in <span class="number">1s</span> reverse;</span><br><span class="line">      &#125;</span><br><span class="line">      @<span class="keyword">keyframes</span> bounce-in &#123;</span><br><span class="line">        0% &#123;</span><br><span class="line">          <span class="attribute">transform</span>: <span class="built_in">scale</span>(0);</span><br><span class="line">        &#125;</span><br><span class="line">        50% &#123;</span><br><span class="line">          <span class="attribute">transform</span>: <span class="built_in">scale</span>(1.5);</span><br><span class="line">        &#125;</span><br><span class="line">        100% &#123;</span><br><span class="line">          <span class="attribute">transform</span>: <span class="built_in">scale</span>(1);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<p>HTML 部分<br>因為文字段落<code>&lt;p&gt;</code>標簽是行內元素，所以放大縮小會以整行的大小來算，所以會看不出小果，最好將這段該成<code>display: inline-block</code>就可比較清出的看出變化效果。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Animation 動畫 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app4"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"show = !show"</span>&gt;</span>Toggle show<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"bounce"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"show"</span> <span class="attr">style</span>=<span class="string">"display: inline-block"</span>&gt;</span></span><br><span class="line">      Hello Tainan</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Vue 實例的部分</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm4 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app4'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    show: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>發現原本可以簡單在 Css 裡做出的的動畫效果，在框架裡做還是有些綁手綁腳，如果讓這些小果更容易操控，得要先了解<br>Vue 是怎麼處理這些效果，在官網的解釋算是蠻清楚的，但幫自己要做一些簡單的圖片入場效果，就開始感到有點綁手綁腳，有點可惜。</p>
+<p>如果對此部分有興趣的話，除了可以看看官方解釋，也推薦「Summer。桑莫。夏天」的部落格，只少比較親和。</p>
+<p>Transitioning Single Elements/Components<br>官方文件：<a href="https://cn.vuejs.org/v2/guide/transitions.html" target="_blank" rel="noopener">進入/離開 &amp; 列表過渡 — Vue.js</a></p>
+<p><a href="https://cythilya.github.io/2017/05/28/vue-transitions/" target="_blank" rel="noopener">Vue.js: 樣式與漸變 Transitions | Summer。桑莫。夏天</a></p>
+<p><a href="https://cythilya.github.io/2017/06/09/vue-transition-effects/" target="_blank" rel="noopener">Vue.js: 進階過渡效果 | Summer。桑莫。夏天</a></p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>原本在一般頁面要製造一些簡單的動畫效果，只要掌控 class 和 Css 就好了，但是如果要在框架內做這些動態效果，如何做？</p>
+<p>在 Vue 裡有它的特殊做法，必須把享有動態效果的元素，以<code>&lt;transition&gt;</code>的標籤包起來，並給予一個<code>name</code>的屬性，然後在 CSS 裡，以這個<code>name</code>來作為 class 的名稱，並加上動畫不同時期的後綴，來達到動態效果。</p>
+<p>先來看一下 Codepen <a href="https://codepen.io/tsuifei/pen/vYOyGeq" target="_blank" rel="noopener">VueJs Transitioning Single Elements/Component 過渡與動畫效果</a></p>
+<p>我們先來看一張官方上的示意圖：<br><img src="https://cn.vuejs.org/images/transition.png" alt></p>
+<p>要指定進出場的樣式需要搭配 Vue 指定的後綴詞，進、出場個分三個階段<br>進場：</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="Vue_Transitioning_Elements_Components/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/Vue_Transitioning_Elements_Components/" data-id="ck6w9cvx00000cuuw6hyrj5ms" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/Vue/">Vue</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-Vue_Instance_Lifecycle_Hooks" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="Vue_Instance_Lifecycle_Hooks/" class="article-date">
@@ -951,142 +1071,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-JS_Base_Object" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="JS_Base_Object/" class="article-date">
-  <time datetime="2020-02-06T16:42:24.000Z" itemprop="datePublished">2020-02-07</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="JS_Base_Object/">JavaScript 基礎 物件篇</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <blockquote>
-<p>什麼是物件 Object？ 物件可以包山包海。</p>
-</blockquote>
-<p>物件是 JavaScript 中的參考資料型別，它擁有複合的值，可以儲存不同類型的值(value)，然後透過 Key 來取值。<br>Object 也可以看成是屬性的無序列集合，每個屬性都是一對 Key:value。物件除了可以擁有自己的屬性，還可以透過原型物件來繼承屬性。</p>
-<p>在 JavaScript 的資料型別裡，除了<code>string</code>、<code>number</code>、<code>boolean</code>、<code>null</code>和<code>undefined</code>之外，其他都是物件型別。<br>物件以外的型別資料的值是無法修改與不可變的，我們稱為這類的資料型別為「基本型別」，「基本型別」的比較，是以「值」來比較，如果兩個變數的值相等，就會被視為這兩個變數是相等的。</p>
-<p>物件是「參考資料型別」，它的值是被保存在記憶體裡的物件，當一個變數是物件（參考型別）時，實際上變數中保存的並不是這個物件本身，而是記憶體的位址。<br>當我們複製一個物件給另一變數時，這個變數會依照這個變數的參考值（記憶體的位址）給另一個變數參考，而不是複製物件，也就是說複製物件的值，會同時指向被複製的物件記憶體位址。也因此如果更動其中一個物件變數的內容，另一個物件變數內容也會一起更動。</p>
-<p>在讀一些中文簡體的資料時，我們會看到類似：「简单来说栈内存用来保存变量和基本类型。堆内存用来保存对象」，用繁體的解釋是：基本型別是依照記憶體所存的值當依據，參考型別則是會先以記憶體位址為參考，才將裡面的值取出，但因為會參考同一個記憶體位址，所以找到的值也ㄧ樣。</p>
-<h3 id="如何創建一個物件"><a href="#如何創建一個物件" class="headerlink" title="如何創建一個物件"></a>如何創建一個物件</h3><p>有兩種方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一種使用建構式：</span></span><br><span class="line"><span class="keyword">let</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">obj.name = <span class="string">"Tracy"</span>;</span><br><span class="line">obj.age = <span class="number">18</span>;</span><br><span class="line"><span class="comment">// 第二種方法，也是我們較常用的方法，以 &#123;&#125; 表示物件。</span></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  name = <span class="string">"Tracy"</span>;</span><br><span class="line">  age = <span class="number">18</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="物件取值與賦值的方法"><a href="#物件取值與賦值的方法" class="headerlink" title="物件取值與賦值的方法"></a>物件取值與賦值的方法</h2><ol>
-<li>以物件名.屬性名 ex.<code>obj.name</code>，使用「點」</li>
-<li>使用[] ex.<code>obj[&#39;屬性名&#39;]</code>，使用[中括號]</li>
-</ol>
-<p>和 Array 不同的是，Array 是以索引<code>index</code>和值<code>value</code>做配對，但 objet 是以鍵<code>Key</code>和值<code>Valur</code>配對使用。</p>
-<h4 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h4><p><code>let arr = [&quot;Tracy&quot;, 42, &quot;Paris&quot;, &quot;Taiwan&quot; ];</code></p>
-<table>
-<thead>
-<tr>
-<th>index</th>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>value</td>
-<td>Tracy</td>
-<td>42</td>
-<td>Paris</td>
-<td>Taiwan</td>
-</tr>
-</tbody></table>
-<p>取值的方法：<code>arr[0]</code></p>
-<h4 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h4><p><code>let obj= { name : &quot;Tracy&quot;, age: 42, city: &quot;Paris&quot;, pays: &quot;Taiwan&quot; }</code></p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>name</th>
-<th>age</th>
-<th>city</th>
-<th>pays</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>value</td>
-<td>Tracy</td>
-<td>42</td>
-<td>Paris</td>
-<td>Taiwan</td>
-</tr>
-</tbody></table>
-<p>取值的方法：<code>obj.name</code></p>
-<p>Array 和 Object 最大的不同是 Array 是有順序的，會隨著索引值的順序，而 Object 的值是跟著 Key，所以即使變換順序也不會受影響。</p>
-<p>Object 取值的 ==.== <code>obj.name</code>如同中文的「的」，我們在其他地方也常用的這個點。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a id=&quot;alink&quot; href=&quot;https://google.com&quot; target=&quot;_blank&quot;&gt; c&apos;est un lien &lt;/a&gt;</span><br></pre></td></tr></table></figure>
-
-<p>想要抓取 DOM 的值也可利用此一方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> attr = <span class="built_in">document</span>.getElementById(<span class="string">'alink'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(attr.href); <span class="comment">// 會抓到 &lt;a&gt; 裡的 href 這個屬性的值</span></span><br><span class="line"><span class="comment">// 修改的方法</span></span><br><span class="line">attr.href = <span class="string">'www.tsuifei.com'</span>;</span><br></pre></td></tr></table></figure>
-
-<p>如果把上述的 HTML<code>&lt;a&gt;</code>改為物件，即是：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">  id: <span class="string">'alink'</span>,</span><br><span class="line">  href: <span class="string">'https://google.com'</span>,</span><br><span class="line">  target: <span class="string">'_blank'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>修改物件裡的某一值:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  name: <span class="string">'Tracy'</span>,</span><br><span class="line">  age: <span class="number">42</span>,</span><br><span class="line">  city: <span class="string">'Paris'</span>,</span><br><span class="line">  pays: <span class="string">'Taiwan'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.age = <span class="number">50</span>; <span class="comment">// 重新給值</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="常見的物件使用方式"><a href="#常見的物件使用方式" class="headerlink" title="常見的物件使用方式"></a>常見的物件使用方式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br></pre></td></tr></table></figure>
-
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <blockquote>
-<p>什麼是物件 Object？ 物件可以包山包海。</p>
-</blockquote>
-<p>物件是 JavaScript 中的參考資料型別，它擁有複合的值，可以儲存不同類型的值(value)，然後透過 Key 來取值。<br>Object 也可以看成是屬性的無序列集合，每個屬性都是一對 Key:value。物件除了可以擁有自己的屬性，還可以透過原型物件來繼承屬性。</p>
-<p>在 JavaScript 的資料型別裡，除了<code>string</code>、<code>number</code>、<code>boolean</code>、<code>null</code>和<code>undefined</code>之外，其他都是物件型別。<br>物件以外的型別資料的值是無法修改與不可變的，我們稱為這類的資料型別為「基本型別」，「基本型別」的比較，是以「值」來比較，如果兩個變數的值相等，就會被視為這兩個變數是相等的。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="JS_Base_Object/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_Base_Object/" data-id="ck6uundsy000w4zuwvigkydtm" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JS-Base/">JS Base</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1135,6 +1119,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="Vue_Transitioning_Elements_Components/">VueJs Transitioning Single Elements/Component 過渡與動畫效果</a>
+          </li>
+        
+          <li>
             <a href="Vue_Instance_Lifecycle_Hooks/">VueJs Instance Lifecycle Hooks 生命週期鉤子</a>
           </li>
         
@@ -1148,10 +1136,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="Vue_Displaying_Filtered_Sorted_Results/">Vue.js Displaying Filtered/Sorted Results 顯示過濾/排序後的結果</a>
-          </li>
-        
-          <li>
-            <a href="Vue_List_Rendering/">Vue.js List Rendering 列表渲染</a>
           </li>
         
       </ul>
