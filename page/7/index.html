@@ -111,6 +111,85 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS_Array-Slice" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS_Array-Slice/" class="article-date">
+  <time datetime="2019-07-29T19:44:18.000Z" itemprop="datePublished">2019-07-30</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS_Array-Slice/">JS Array Slice</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>slice() 中文直譯為切片，即是從陣列複製一份出來。<br>有時我們想要處理陣列資料，又不想動到原始資料，因為一但動到原始資料就無法回復原本的樣子，甚至要比對都無從比對，這時slice()就常派上用場。<br>這點感覺有點像 git，先把資料pull一份下來的動作一樣。</p>
+<h5 id="語法：arr-slice-begin-end-，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個"><a href="#語法：arr-slice-begin-end-，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個" class="headerlink" title="語法：arr.slice([begin[, end]]) ，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個"></a>語法：arr.slice([begin[, end]]) ，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個</h5><p>MDN:<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" target="_blank" rel="noopener">slice();</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis = [<span class="string">'Ayda'</span>, <span class="string">'Phi'</span>, <span class="string">'Alex'</span>, <span class="string">'Chris'</span>, <span class="string">'Tracy'</span>, <span class="string">'Thomas'</span>, <span class="string">'Jean'</span>];</span><br></pre></td></tr></table></figure>
+
+<h4 id="沒給參數和參數零的結果是一樣的"><a href="#沒給參數和參數零的結果是一樣的" class="headerlink" title="沒給參數和參數零的結果是一樣的"></a>沒給參數和參數零的結果是一樣的</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis2 = amis.slice();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'沒參數： '</span> + amis2) <span class="comment">// Ayda,Phi,Alex,Chris,Tracy,Thomas,Jean</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> amis3 = amis.slice(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'參數0： '</span> + amis3) <span class="comment">// Ayda,Phi,Alex,Chris,Tracy,Thomas,Jean</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="只給一個參數，會從給的index開始切"><a href="#只給一個參數，會從給的index開始切" class="headerlink" title="只給一個參數，會從給的index開始切"></a>只給一個參數，會從給的index開始切</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis4 = amis.slice(<span class="number">2</span>); </span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'只給一個參數： '</span> + amis4) <span class="comment">// Alex,Chris,Tracy,Thomas,Jean</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="給負數參數，會從最後面開始取"><a href="#給負數參數，會從最後面開始取" class="headerlink" title="給負數參數，會從最後面開始取"></a>給負數參數，會從最後面開始取</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis5 = amis.slice(<span class="number">-2</span>); </span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'給負數參數： '</span> + amis5) <span class="comment">// Thomas,Jean</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="給兩個參數，"><a href="#給兩個參數，" class="headerlink" title="給兩個參數，"></a>給兩個參數，</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis6 = amis.slice(<span class="number">2</span>, <span class="number">-2</span>); </span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'給兩個參數： '</span> + amis6) <span class="comment">// Alex,Chris,Tracy</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二參數的索引值為指定的前一個</span></span><br><span class="line"><span class="keyword">var</span> amis7 = amis.slice(<span class="number">2</span>, <span class="number">4</span>); </span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'給兩個參數： '</span> + amis7) <span class="comment">// Alex,Chris </span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'原始陣列不變： '</span> + amis) <span class="comment">// Ayda,Phi,Alex,Chris,Tracy,Thomas,Jean</span></span><br></pre></td></tr></table></figure>
+
+<p>在使用 slice() 的時候並不需要再用另一個變數去接結果，因為使用slice()時，就會自動的在新的記憶體位址產生。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(amis.slice(<span class="number">2</span>, <span class="number">4</span>)); <span class="comment">// Alex,Chris</span></span><br></pre></td></tr></table></figure> -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>slice() 中文直譯為切片，即是從陣列複製一份出來。<br>有時我們想要處理陣列資料，又不想動到原始資料，因為一但動到原始資料就無法回復原本的樣子，甚至要比對都無從比對，這時slice()就常派上用場。<br>這點感覺有點像 git，先把資料pull一份下來的動作一樣。</p>
+<h5 id="語法：arr-slice-begin-end-，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個"><a href="#語法：arr-slice-begin-end-，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個" class="headerlink" title="語法：arr.slice([begin[, end]]) ，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個"></a>語法：arr.slice([begin[, end]]) ，參數一是從哪裡切，參數二是切到哪裡，如果要全部複製則可填0，如有第二參數，它的索引值為指定的前一個</h5><p>MDN:<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" target="_blank" rel="noopener">slice();</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis = [<span class="string">'Ayda'</span>, <span class="string">'Phi'</span>, <span class="string">'Alex'</span>, <span class="string">'Chris'</span>, <span class="string">'Tracy'</span>, <span class="string">'Thomas'</span>, <span class="string">'Jean'</span>];</span><br></pre></td></tr></table></figure>
+
+<h4 id="沒給參數和參數零的結果是一樣的"><a href="#沒給參數和參數零的結果是一樣的" class="headerlink" title="沒給參數和參數零的結果是一樣的"></a>沒給參數和參數零的結果是一樣的</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> amis2 = amis.slice();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'沒參數： '</span> + amis2) <span class="comment">// Ayda,Phi,Alex,Chris,Tracy,Thomas,Jean</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> amis3 = amis.slice(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'參數0： '</span> + amis3) <span class="comment">// Ayda,Phi,Alex,Chris,Tracy,Thomas,Jean</span></span><br></pre></td></tr></table></figure>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS_Array-Slice/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS_Array-Slice/" data-id="ck6y17z4d000igxuwapwyknhp" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_Converting-strings-to-numbers" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_Converting-strings-to-numbers/" class="article-date">
@@ -999,96 +1078,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-JS_What-is-an-IIFE-in-JavaScript" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_What-is-an-IIFE-in-JavaScript/" class="article-date">
-  <time datetime="2019-07-04T06:25:44.000Z" itemprop="datePublished">2019-07-04</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_What-is-an-IIFE-in-JavaScript/">JavaScript IIFE 立即呼叫函式</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。<br>IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。</p>
-<h2 id="IIFE語法"><a href="#IIFE語法" class="headerlink" title="IIFE語法"></a>IIFE語法</h2><p>將一個正常的函式包在()裡，後面加個()就成了匿名函式。<br>後面的()表示立即執行，也可帶參數。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<p>IIFE函式前面一定要有; 不然會有錯誤<br>範例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="string">'foo'</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">bar</span>) </span>&#123;</span><br><span class="line">    Console.log(bar)</span><br><span class="line">&#125;)(foo)</span><br></pre></td></tr></table></figure>
-
-<p>匿名函數的參數(foo)就是 var foo 的這個變數，如果匿名函數有兩個參數， 後面的() 也可帶兩個參數</p>
-<p>一般呼叫函式的方式可以是：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">doSomething(<span class="number">123</span>);</span><br><span class="line"><span class="comment">// 匿名函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">doSomething</span> (<span class="params">i</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;)(<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
-
-<p>使用匿名函式即是馬上使用，也就是宣告他的同時也呼叫它，自然就不需要給名字了。所以就成了以下不需名字的函式。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">i</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;)(<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
-
-<p>在回圈內呼叫 function 會需要用 IIFE 來把參數的值保留起來，如果有看過 jQuery 的原始碼，會發現有這段：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"> window, undefined</span>)</span>&#123;</span><br><span class="line"> <span class="comment">// ....</span></span><br><span class="line">&#125;)(<span class="built_in">window</span>);</span><br></pre></td></tr></table></figure>
-
-<p>jQuery 也用了相同的手法將 window 和 indefined 保留起來。<br>ES6 以後新增了 let 與 const 的變數型態，且改以 { } 作為它的 Scope。換句話說，將範例中的 for 的 var 改為以 let 宣告就可以做到保留 i 在執行迴圈當下的「值」的效果：</p>
-<h4 id="經典迴圈非同步問題"><a href="#經典迴圈非同步問題" class="headerlink" title="經典迴圈非同步問題"></a>經典迴圈非同步問題</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i)</span><br><span class="line">    &#125;, i * <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>目的：每一秒列出一個 i<br>但會列印出１０個１０，因為當進入列印迴圈時，i已經跑到１０了<br>解決如何因非同步而無法印出１－１０的方法：使用IIFE和閉包<br>使用IIFE</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>) </span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(j)</span><br><span class="line">        &#125;, j * <span class="number">1000</span>)</span><br><span class="line">    &#125;)(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>參考：<a href="https://ithelp.ithome.com.tw/articles/10192739" target="_blank" rel="noopener">立即被呼叫的函式 (Immediately Invoked Function Expression, IIFE)</a></p>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <p>IIFE 是立即被呼叫的函式的簡寫，全名為 Immediately Invoked Function Expression。在 ES6 之前，JavaScript 變數有效範圍的最小單位以 function 為分界。<br>IIFE 的好處，就是可以減少「全域變數」的產生，同時也避免了變數名稱衝突的機會。</p>
-<h2 id="IIFE語法"><a href="#IIFE語法" class="headerlink" title="IIFE語法"></a>IIFE語法</h2><p>將一個正常的函式包在()裡，後面加個()就成了匿名函式。<br>後面的()表示立即執行，也可帶參數。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般的函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IIFE函式</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 做一些事....</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-
-<p>IIFE函式前面一定要有; 不然會有錯誤<br>範例：</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_What-is-an-IIFE-in-JavaScript/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_What-is-an-IIFE-in-JavaScript/" data-id="ck6y17z4v001igxuwbdja7bp5" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1137,6 +1126,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="../../Vue_filters/">Vue.js Filters 過濾器</a>
+          </li>
+        
+          <li>
             <a href="../../Vue_Transitioning_Elements_Components/">VueJs Transitioning Single Elements/Component 過渡與動畫效果</a>
           </li>
         
@@ -1150,10 +1143,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="../../Vue_Event_Handling/">Vue.js Event Handling 事件處理</a>
-          </li>
-        
-          <li>
-            <a href="../../Vue_Displaying_Filtered_Sorted_Results/">Vue.js Displaying Filtered/Sorted Results 顯示過濾/排序後的結果</a>
           </li>
         
       </ul>

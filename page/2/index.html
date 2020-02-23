@@ -111,6 +111,98 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-Vue_Template_Syntax" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../Vue_Template_Syntax/" class="article-date">
+  <time datetime="2020-02-10T16:42:24.000Z" itemprop="datePublished">2020-02-11</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../Vue_Template_Syntax/">Vue.js Template Syntax 模板語法</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>VusJs 是個便利的框架，它的便利在於幫我們把一些較複雜的事情都先做好了，據說 Vue 的入門較簡單，單是也是會讓我們將 JS 武功廢掉的框架，還記得有位朋友說，他寫了一陣子 Vue 之後，幾乎 JS 的武功都廢了，聽起來蠻聳動的。所以一定要記住，時不常回來寫原生還是必要的。</p>
+<p>這裡記錄一些學習上的筆記和用法，以便將來腦殘可回來補腦。</p>
+<p>我們先以 CDN 的方式將 Vue.js 引入就可以用了，記得也要先創建一個 Vue 的實例來用，裡面會有所有控制與資料的部分。<br>接著，在 HTML 裡將要控制的部分以一個<code>&lt;div&gt;</code>包住，並給予 ID <code>&lt;div id=&quot;app&quot;&gt;</code>這個 <code>#app</code>就可以以標籤綁定資料的方式，和 Vue 的實例裡的資料做溝通。</p>
+<h3 id="資料綁定"><a href="#資料綁定" class="headerlink" title="資料綁定 "></a>資料綁定 </h3><p>資料綁定最常用的是雙大括號，裡面的變數就是聯繫實例裡面<code>Data</code>物件裡的屬性資料。<br>我們可以如何使用它：</p>
+<p>可以以 HTML 的形式來綁定如<code>&lt;p v-html=&quot;msg&quot;&gt;&lt;/p&gt;</code> (顯示 html 格式)<br>用 text 的形式來綁定如<code>&lt;p v-text=&quot;msg&quot;&gt;&lt;/p&gt;</code>(顯示純文字)<br>雙花括號不可直接用在 html 的屬性上，在需要用的情況下，可以用<code>v-bind</code>的方式如</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-bind:disabled</span>=<span class="string">"isDisabled"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>直接使用 JS 表達式，在雙大括號裡可以直接些三元運算子，甚至是直接用 JS 的內建函式。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; isName ? Yes : No; &#125;&#125; or &#123;&#123; name .split('') .reverse() .join(''); &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>必須寫在 Html 的屬性裡：<code>&lt;div v-bind:id=&quot;&#39;list-&#39; + id&quot;&gt;&lt;/div&gt;</code></p>
+<p>我們想要在一個 input 裡即使顯示我們輸入的內容，在實例的<code>data</code>先準備好初始化的資料，在<code>input</code>裡，用指令<code>v-model</code>(資料)去綁住，然後再到要顯示的 html 裡，以雙花括號包住在<code>data</code>裡的某一屬性，就可以達到即使顯示的效果。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>my name is &#123;&#123; name &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"name"</span> <span class="attr">placeholder</span>=<span class="string">"Write your name"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在監聽事件的部分，可使用<code>v-on:click=&quot;方法名&quot;</code>去觸發想要做的事情或資料&gt;<br>&lt;button @click=”showHi(say)”&gt;click</p>
+<p><a href="https://codepen.io/tsuifei/pen/oNXjGBY" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-html</span>=<span class="string">"msg"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>my name is &#123;&#123; name &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; name.toUpperCase() &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; isName ? `Your Name is $&#123;name&#125;` : `Name not good ou null`&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; name.split('').reverse().join('') &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-bind:name</span>=<span class="string">"'list-' + name + ' ' + say"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"name"</span> <span class="attr">placeholder</span>=<span class="string">"Write your name"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">"imgUrl"</span> <span class="attr">alt</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"showHi(say)"</span>&gt;</span>click<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="在-Vue-的實例裡會有什麼？"><a href="#在-Vue-的實例裡會有什麼？" class="headerlink" title="在 Vue 的實例裡會有什麼？"></a>在 Vue 的實例裡會有什麼？</h2><p>在 vm 的實例裡，我們需要準備我們想對組件操控的方法和顯示的資料，當然不只這些，實例有點像是控制中心，在這裏控制 V:viem 和 M:model ，我們也成實例為 VM: viewModel。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>, <span class="comment">//  指定 DOM 標籤容器的選擇器，Vue 就會針對這個容器做管理</span></span><br><span class="line">  data: &#123;</span><br><span class="line">    <span class="comment">// 物件，所有這個容器（組件）的資料來源，是初始化資料狀態的物件，vm 會自動擁有data 中所有屬性，在頁面中也可直接調用這些屬性。</span></span><br><span class="line">    name: <span class="string">'Tracy'</span>,</span><br><span class="line">    isName: <span class="literal">true</span>,</span><br><span class="line">    msg: <span class="string">'&lt;h2&gt;Today is good day&lt;/h2&gt;'</span>,</span><br><span class="line">    imgUrl: <span class="string">'https://cn.vuejs.org/images/logo.png'</span>,</span><br><span class="line">    say: <span class="string">'Hi Paris'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    <span class="comment">// 這個組件會用到的方法，供頁面中的事件指令來綁定 callback</span></span><br><span class="line">    showHi(sayHi) &#123;</span><br><span class="line">      alert(sayHi);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="data"><a href="#data" class="headerlink" title="data: { }"></a>data: { }</h3><p>data 物件的屬性大多為初始化的屬性字面值。</p>
+<h3 id="methods"><a href="#methods" class="headerlink" title="methods: { }"></a>methods: { }</h3><p>methods 裡面包含多個方法的物件，來提供給頁面中的<code>v-on</code>事件指令來綁定 callback 回調函式<br>callback 函式預設有 event 參數, 但也可以指定自己的參數<br>所有的方法由 vue 物件來呼叫, 調用 data 中的屬性直接使用 this.xxx</p>
+<p>今天先寫到這裡，一定要堅持下去喔！</p>
+<p>題外話，近日武漢肺肺炎的關係，開始關注一些中國的現狀，和中國朋友閒聊時，才知道真的是水深火熱的環境。<br>另如，我不解為何中國朋友都不太敢對自己的國家有所批評，台灣說的「批評求進步」簡直是讓自己陷入危險。上次看法國報導，記者試著採訪中國遊客，關於看到法輪功的感想，一團幾十個，沒有一個願意開口。後來朋友跟我說，如果從中國第一次出國，就要參加一種叫行前教育的活動，需要政府部門批准他們出去，那時工作人員會告誡他們不要把外面的信息帶回來。這可能也是很多海外華人不像多評論政治的原因。他去台灣的第一次是這麼要求，他的父母也是。</p>
+<p>想想，生活在台灣真的還是件蠻幸福的事。</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>VusJs 是個便利的框架，它的便利在於幫我們把一些較複雜的事情都先做好了，據說 Vue 的入門較簡單，單是也是會讓我們將 JS 武功廢掉的框架，還記得有位朋友說，他寫了一陣子 Vue 之後，幾乎 JS 的武功都廢了，聽起來蠻聳動的。所以一定要記住，時不常回來寫原生還是必要的。</p>
+<p>這裡記錄一些學習上的筆記和用法，以便將來腦殘可回來補腦。</p>
+<p>我們先以 CDN 的方式將 Vue.js 引入就可以用了，記得也要先創建一個 Vue 的實例來用，裡面會有所有控制與資料的部分。<br>接著，在 HTML 裡將要控制的部分以一個<code>&lt;div&gt;</code>包住，並給予 ID <code>&lt;div id=&quot;app&quot;&gt;</code>這個 <code>#app</code>就可以以標籤綁定資料的方式，和 Vue 的實例裡的資料做溝通。</p>
+<h3 id="資料綁定"><a href="#資料綁定" class="headerlink" title="資料綁定 "></a>資料綁定 </h3><p>資料綁定最常用的是雙大括號，裡面的變數就是聯繫實例裡面<code>Data</code>物件裡的屬性資料。<br>我們可以如何使用它：</p>
+<p>可以以 HTML 的形式來綁定如<code>&lt;p v-html=&quot;msg&quot;&gt;&lt;/p&gt;</code> (顯示 html 格式)<br>用 text 的形式來綁定如<code>&lt;p v-text=&quot;msg&quot;&gt;&lt;/p&gt;</code>(顯示純文字)<br>雙花括號不可直接用在 html 的屬性上，在需要用的情況下，可以用<code>v-bind</code>的方式如</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../Vue_Template_Syntax/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/Vue_Template_Syntax/" data-id="ck6y17z6g0067gxuwz9vvdp3c" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Vue/">Vue</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_Base_Object" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_Base_Object/" class="article-date">
@@ -1404,266 +1496,6 @@ Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profil
 
 
   
-    <article id="post-JS_front_test01" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_front_test01/" class="article-date">
-  <time datetime="2020-01-20T01:17:36.000Z" itemprop="datePublished">2020-01-20</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_front_test01/">法國前端初級測驗</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <blockquote>
-<p>人總是在某種方式的評估下，才能清楚地知道自己的能耐。</p>
-</blockquote>
-<p>法國有不少人力派遣公司，因為法國聘人程序繁瑣，徵人又需投入大量資源人力，所以越來越多公司採用人力派遣所派遣過來的工程師，來開發公司的專案。</p>
-<p>此測驗是法國某大人力派遣公司，對應徵者所做的線上測驗，進入測驗網頁後，須依規定的時間作答，時間到會自動前往下一題，無法回頭修改答案。</p>
-<p>以下是本人測驗之後，重新再花時間整理出來的，包含整理時「自己認為」的正確答案，如對答案有意見，歡迎提示給予修正建議，感謝先。</p>
-<p>這個測驗總共給約55分鐘。</p>
-<h3 id="1-21"><a href="#1-21" class="headerlink" title="1/21"></a>1/21</h3><h6 id="45-seconts"><a href="#45-seconts" class="headerlink" title="45 seconts"></a>45 seconts</h6><p><strong>需要在<code>&lt;a&gt;</code>標籤加上什麼屬性讓連結可以另開分頁？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> target=”_self”</li>
-<li><input disabled type="checkbox"> href=”#”</li>
-<li><input disabled type="checkbox"> target=”_parent”</li>
-<li><input checked disabled type="checkbox"> target=”_blank”</li>
-</ul>
-<h3 id="2-21"><a href="#2-21" class="headerlink" title="2/21"></a>2/21</h3><h6 id="20-minuts"><a href="#20-minuts" class="headerlink" title="20 minuts"></a>20 minuts</h6><p><strong>實做<code>findLargest（numbers）</code>函式。</strong><br><strong>將回傳<code>findLargest（numbers）</code>numbers陣列中的最大整數。 <code>numbers</code>是一個整數陣列，至少包含一個元素。</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findLargest</span>（<span class="title">numbers</span>）</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> max = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span> ; i &lt; arr.length; i++)&#123;</span><br><span class="line">      <span class="keyword">if</span>(max &lt; arr[i])&#123;</span><br><span class="line">        max = arr[i];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">findLargest（[<span class="number">1</span>, <span class="number">-28</span>, <span class="number">88</span>, <span class="number">200</span>, <span class="number">7</span>]）</span><br></pre></td></tr></table></figure>
-
-<p><strong>範例</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 實作 arr.max()</span></span><br><span class="line"><span class="built_in">Array</span>.prototype.max = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> max = <span class="keyword">this</span>[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">this</span>.forEach (<span class="function"><span class="keyword">function</span>(<span class="params">ele,index,arr</span>)</span>&#123;</span><br><span class="line"><span class="keyword">if</span>(ele &gt; max) &#123;</span><br><span class="line">max = ele;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">45</span>,<span class="number">23</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">234</span>,<span class="number">56</span>];</span><br><span class="line">arr.max(); <span class="comment">// 234</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*******************************/</span></span><br><span class="line"><span class="comment">// 取最大值函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">max</span> (<span class="params">arr</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> max = arr[<span class="number">0</span>];</span><br><span class="line">arr.forEach (<span class="function"><span class="keyword">function</span>(<span class="params">ele,index,arr</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(ele &gt; max) &#123;</span><br><span class="line">    max = ele;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">45</span>,<span class="number">23</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">234</span>,<span class="number">56</span>];</span><br><span class="line">max(arr); <span class="comment">// 234</span></span><br><span class="line"><span class="comment">/*******************************/</span></span><br><span class="line"><span class="comment">// 取最小值函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">min</span> (<span class="params">arr</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> min = arr[<span class="number">0</span>];</span><br><span class="line">arr.forEach (<span class="function"><span class="keyword">function</span>(<span class="params">ele,index,arr</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(ele &lt; min) &#123;</span><br><span class="line">    min = ele;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">45</span>,<span class="number">23</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">234</span>,<span class="number">56</span>];</span><br><span class="line">min(arr); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
-
-<p>參考出處：<a href="https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/268893/" target="_blank" rel="noopener">JavaScript學習筆記之取陣列中最大值和最小值 | 程式前沿</a></p>
-<h3 id="3-21"><a href="#3-21" class="headerlink" title="3/21"></a>3/21</h3><h6 id="30-seconts"><a href="#30-seconts" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>JavaScript <code>&quot;2&quot; === 2;</code> 會回傳以下哪個？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> null</li>
-<li><input disabled type="checkbox"> true</li>
-<li><input checked disabled type="checkbox"> false</li>
-<li><input disabled type="checkbox"> undefined</li>
-</ul>
-<h3 id="4-21"><a href="#4-21" class="headerlink" title="4/21"></a>4/21</h3><h6 id="30-seconts-1"><a href="#30-seconts-1" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>Javascript 頁面加載完成後，可以使用哪個事件執行操作?</strong></p>
-<ul>
-<li><input disabled type="checkbox"> oncomplete</li>
-<li><input disabled type="checkbox"> onfinished</li>
-<li><input checked disabled type="checkbox"> onload</li>
-<li><input disabled type="checkbox"> onupload</li>
-<li><input disabled type="checkbox"> oninit</li>
-</ul>
-<h3 id="5-21"><a href="#5-21" class="headerlink" title="5/21"></a>5/21</h3><h6 id="30-seconts-2"><a href="#30-seconts-2" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>哪個HTML標記用於定義<code>&lt;table&gt;</code>表格標題單元格?</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> th</li>
-<li><input disabled type="checkbox"> tr</li>
-<li><input disabled type="checkbox"> tt</li>
-<li><input disabled type="checkbox"> td</li>
-</ul>
-<h3 id="6-21"><a href="#6-21" class="headerlink" title="6/21"></a>6/21</h3><h6 id="30-seconts-3"><a href="#30-seconts-3" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>在 JavaScript 中，以下哪些語句可以退出循環？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> quit();</li>
-<li><input checked disabled type="checkbox"> break;</li>
-<li><input disabled type="checkbox"> exit;</li>
-<li><input disabled type="checkbox"> i = 99999999;</li>
-</ul>
-<h3 id="7-21"><a href="#7-21" class="headerlink" title="7/21"></a>7/21</h3><h6 id="45-seconts-1"><a href="#45-seconts-1" class="headerlink" title="45 seconts"></a>45 seconts</h6><p><strong>在 JavaScript 中，如何聲明一個變數？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> var x = 7;</li>
-<li><input disabled type="checkbox"> x := 7;</li>
-<li><input disabled type="checkbox"> int x = 7;</li>
-<li><input disabled type="checkbox"> def x = 7;</li>
-</ul>
-<h3 id="8-21"><a href="#8-21" class="headerlink" title="8/21"></a>8/21</h3><h6 id="30-seconts-4"><a href="#30-seconts-4" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>在HTML中，應如何編寫字符&lt;（小於）以防止將其視為打開標籤&lt; &gt;？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> <code>&amp;lt</code>;</li>
-<li><input disabled type="checkbox"> <code>%60</code></li>
-<li><input disabled type="checkbox"> <code>\&lt;</code></li>
-</ul>
-<h3 id="9-21"><a href="#9-21" class="headerlink" title="9/21"></a>9/21</h3><h6 id="30-seconts-5"><a href="#30-seconts-5" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>在CSS中，選擇ID前綴是使用哪個符號？</strong><br><code>#</code></p>
-<h3 id="10-21"><a href="#10-21" class="headerlink" title="10/21"></a>10/21</h3><h6 id="30-seconts-6"><a href="#30-seconts-6" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>哪一個是<code>foo.length</code>的值</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = [];</span><br><span class="line">foo.push(<span class="number">1</span>);</span><br><span class="line">foo.push(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><input disabled type="checkbox"> 3</li>
-<li><input checked disabled type="checkbox"> 2</li>
-<li><input disabled type="checkbox"> 1</li>
-<li><input disabled type="checkbox"> 0</li>
-<li><input disabled type="checkbox"> null</li>
-</ul>
-<h3 id="11-21"><a href="#11-21" class="headerlink" title="11/21"></a>11/21</h3><h6 id="3-minuts"><a href="#3-minuts" class="headerlink" title="3 minuts"></a>3 minuts</h6><p><strong>寫出<code>average(table)</code>函式，該函式必須回傳作為參數給的<code>table</code>的平均值。<code>table</code>是已定義的陣列，並且僅包含數字。</strong><br><strong>如果<code>table</code>為空，則<code>averge</code>必須回傳<code>0</code>。</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">average</span>(<span class="params">table</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span>(table.length === <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span> ; i &lt; table.length; i++)&#123;</span><br><span class="line">    sum += table[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum / table.length</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="12-21"><a href="#12-21" class="headerlink" title="12/21"></a>12/21</h3><h6 id="40-seconts"><a href="#40-seconts" class="headerlink" title="40 seconts"></a>40 seconts</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myJson = &#123;</span><br><span class="line">  <span class="string">"cities"</span> : [</span><br><span class="line">    &#123;<span class="string">"name"</span>: <span class="string">"Paris"</span>, <span class="string">"pop"</span> : <span class="number">2</span> &#125;,</span><br><span class="line">    &#123;<span class="string">"name"</span>: <span class="string">"London"</span>, <span class="string">"pop"</span> : <span class="number">8</span> &#125;,</span><br><span class="line">    &#123;<span class="string">"name"</span>: <span class="string">"New York"</span>, <span class="string">"pop"</span> : <span class="number">9</span> &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><strong>以下哪一個的結果是<code>2</code></strong></p>
-<ul>
-<li><input disabled type="checkbox"> <code>myJson -&gt; cities -&gt; Laos -&gt; pop</code></li>
-<li><input disabled type="checkbox"> <code>myJson.cities.[&#39;Paris&#39;].[pop]</code></li>
-<li><input checked disabled type="checkbox"> <code>myJson.cities[0].pop</code></li>
-<li><input disabled type="checkbox"> <code>myJson.cities.Paris.pop</code></li>
-</ul>
-<h3 id="13-21"><a href="#13-21" class="headerlink" title="13/21"></a>13/21</h3><h6 id="45-seconts-2"><a href="#45-seconts-2" class="headerlink" title="45 seconts"></a>45 seconts</h6><p><strong>在JavaScript中，您使用什麼函式在控制台中顯示錯誤？</strong></p>
-<p><code>consol.log();</code> ??? 不確定對不對</p>
-<h3 id="14-21"><a href="#14-21" class="headerlink" title="14/21"></a>14/21</h3><h6 id="25-seconts"><a href="#25-seconts" class="headerlink" title="25 seconts"></a>25 seconts</h6><p><strong>在CSS中，如何選擇在<code>&lt;p&gt;</code>的元素中所有的<code>&lt;span&gt;</code>元素？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> <code>p.span</code></li>
-<li><input disabled type="checkbox"> <code>span p</code></li>
-<li><input disabled type="checkbox"> <code>p span</code></li>
-<li><input checked disabled type="checkbox"> <code>p &gt; span</code></li>
-<li><input disabled type="checkbox"> <code>span &lt; p</code></li>
-</ul>
-<h3 id="15-21"><a href="#15-21" class="headerlink" title="15/21"></a>15/21</h3><h6 id="30-seconts-7"><a href="#30-seconts-7" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>HTML <code>&lt;p&gt;</code>在CSS默認下屬於什麼元素？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> true</li>
-<li><input checked disabled type="checkbox"> inline</li>
-<li><input disabled type="checkbox"> inline-block</li>
-<li><input disabled type="checkbox"> none</li>
-<li><input disabled type="checkbox"> block</li>
-</ul>
-<h3 id="16-21"><a href="#16-21" class="headerlink" title="16/21"></a>16/21</h3><h6 id="2-minuts"><a href="#2-minuts" class="headerlink" title="2 minuts"></a>2 minuts</h6><p><strong>請寫出此函式，如果<code>a（i，j）</code>函式的參數至少一個等於1或<code>i,j</code>的總和等於1，回傳<code>true</code>。</strong><br><strong>兩個參數皆為數字。</strong><br>Par exemple:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`a(1,5)`</span> <span class="keyword">return</span> <span class="string">`true`</span></span><br><span class="line"><span class="string">`a(2,3)`</span> <span class="keyword">return</span> <span class="string">`false`</span></span><br><span class="line"><span class="string">`a(-3,4)`</span> <span class="keyword">return</span> <span class="string">`true`</span></span><br><span class="line"><span class="string">``</span><span class="string">`javascript</span></span><br><span class="line"><span class="string">function a(i,j)&#123;</span></span><br><span class="line"><span class="string">  if(typeof i !== 'number' &amp;&amp; typeof j !== 'number') return false;</span></span><br><span class="line"><span class="string">  if(i == 1 || j == 1 || i+j == 1) return true</span></span><br><span class="line"><span class="string">  return false</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="17-21"><a href="#17-21" class="headerlink" title="17/21"></a>17/21</h3><h6 id="45-seconts-3"><a href="#45-seconts-3" class="headerlink" title="45 seconts"></a>45 seconts</h6><p><strong>在以下範例，哪一個是 JQuer 的最佳選擇器？</strong><br><strong>答案只有一個</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span> id=<span class="string">"content"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><input disabled type="checkbox"> <code>$(&#39;.content&#39;);</code></li>
-<li><input checked disabled type="checkbox"> <code>$(&#39;#content&#39;);</code></li>
-<li><input disabled type="checkbox"> <code>$(&#39;box&#39;);</code></li>
-<li><input disabled type="checkbox"> <code>$(&#39;#box&#39;);</code></li>
-<li><input disabled type="checkbox"> <code>$(&#39;content&#39;);</code></li>
-<li><input disabled type="checkbox"> <code>$(&#39;.box&#39;);</code></li>
-</ul>
-<h3 id="18-21"><a href="#18-21" class="headerlink" title="18/21"></a>18/21</h3><h6 id="30-seconts-8"><a href="#30-seconts-8" class="headerlink" title="30 seconts"></a>30 seconts</h6><p><strong>在 HTML 中，以下哪個答案對應於正確的元素層級結構？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> <code>&lt;div&gt; &lt;p&gt; &lt;section&gt; &lt;span&gt;</code></li>
-<li><input checked disabled type="checkbox"> <code>&lt;section&gt; &lt;div&gt; &lt;p&gt; &lt;span&gt;</code></li>
-<li><input disabled type="checkbox"> <code>&lt;div&gt; &lt;p&gt; &lt;section&gt; &lt;span&gt;</code></li>
-<li><input disabled type="checkbox"> <code>&lt;div&gt; &lt;section&gt; &lt;span&gt; &lt;p&gt;</code></li>
-</ul>
-<h3 id="19-21"><a href="#19-21" class="headerlink" title="19/21"></a>19/21</h3><h6 id="5-minuts"><a href="#5-minuts" class="headerlink" title="5 minuts"></a>5 minuts</h6><p><strong>你的同事把階乘<code>factorial</code>這個函式寫壞了，請把它修好。</strong></p>
-<p>Rappel : <code>factorial(n) = 1 * 2 * 3 *... * n</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (n != <span class="number">1</span>) ? n * factorial(n<span class="number">-1</span>) : <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(factorial(<span class="number">5</span>))</span><br><span class="line"><span class="built_in">console</span>.log(factorial(<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 基本寫法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorialBase</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> n * factorialBase(n<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(factorialBase(<span class="number">5</span>))</span><br><span class="line"><span class="built_in">console</span>.log(factorialBase(<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
-
-<p>參考：<a href="https://javascript.info/task/factorial" target="_blank" rel="noopener">Calculate factorial</a></p>
-<h3 id="20-21"><a href="#20-21" class="headerlink" title="20/21"></a>20/21</h3><h6 id="25-seconts-1"><a href="#25-seconts-1" class="headerlink" title="25 seconts"></a>25 seconts</h6><p><strong>JavaScript 是多序列語言嗎？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> Faux 錯</li>
-<li><input disabled type="checkbox"> Vrai 對</li>
-</ul>
-<h3 id="21-21"><a href="#21-21" class="headerlink" title="21/21"></a>21/21</h3><h6 id="40-minuts"><a href="#40-minuts" class="headerlink" title="40 minuts"></a>40 minuts</h6><p><strong>超市越來越配備自動收款機。 儘管大部分國家的消費者仍使用現金（包括鈔票和硬幣），但大多數收銀機僅接受銀行卡付款。</strong><br><strong>現金支付遇到的問題之一是貨幣兌換：如何以最佳方式製作給定的金額，也就是說，使用最少數量的硬幣和紙幣？ 這是我們每個人每天都會遇到的問題，更不用說在自動付款站了。</strong><br><strong>在本練習中，請嘗試找到在特定情況下進行更改的最佳解決方案：當自動提款機僅包含==2歐元硬幣==，==5歐元紙鈔== 和 ==10歐元紙鈔==。</strong><br><strong>為了簡化問題，我們將考慮所有這些硬幣和紙幣以==無限數量==提供。</strong><br><strong>以下是一些示範：</strong></p>
-<table>
-<thead>
-<tr>
-<th>要退回的貨幣</th>
-<th>可能的解決方式</th>
-<th>優化後的解決方式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>無解</td>
-<td>無解</td>
-</tr>
-<tr>
-<td>6</td>
-<td>2 + 2 + 2</td>
-<td>2 + 2 + 2</td>
-</tr>
-<tr>
-<td>10</td>
-<td>2 + 2 + 2 + 2 +</td>
-<td>10</td>
-</tr>
-<tr>
-<td></td>
-<td>5 + 5</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>10</td>
-<td></td>
-</tr>
-<tr>
-<td>9007199254740991</td>
-<td>…</td>
-<td>10 *</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>900719925474098 +</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>5 + 2 * 3</td>
-</tr>
-</tbody></table>
-<p><strong>金額由具有3個屬性的物件表示。<br>分別存儲2歐元硬幣，5歐元鈔票和10歐元的鈔票數量，以<code>two</code>,<code>five</code>,<code>ten</code>為屬性。</strong></p>
-<p><strong>例如第二個例子，如果我們從表中獲取6歐元，則應獲取物件：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  two: <span class="number">3</span>,   <span class="comment">// 3 pièces de 2 euros</span></span><br><span class="line">  five: <span class="number">0</span>,  <span class="comment">// 0 pièces de 5 euros</span></span><br><span class="line">  ten: <span class="number">0</span>    <span class="comment">// 0 pièces de 10 euros</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>寫出<code>change（cash）</code>函式，該函式需回傳一個物件，其中包含總和為<code>s</code>。 如果不可能進行更改（例如第一個例子），則回傳<code>null</code>。</strong><br><strong>為了獲得最高分，您的解決方案必須盡可能使用「最小面額的硬幣和紙幣」</strong>。
-<strong>數據：<code>0 &lt;</code>cash<code>&lt; 9007199254740991</code></strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">change</span>(<span class="params">cash</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    two:<span class="number">0</span>,</span><br><span class="line">    five:<span class="number">0</span>,</span><br><span class="line">    ten:<span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">1</span>)); <span class="comment">// null</span></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">42</span>).ten); <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">42</span>).five); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">42</span>).two); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
-
-<p>回答：<a href="https://jsbin.com/duzefon/edit?js,console" target="_blank" rel="noopener">20/20 找錢 - JS Bin</a><br>後記：最後ㄧ題似乎還有些問題，如果把範例中最後一個拿來測試，會有問題，且無法做到優化，也就是說如果尾數是11，就可變成（5<em>1）+(2</em>3)。這部分得再好好想想才行。</p>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <blockquote>
-<p>人總是在某種方式的評估下，才能清楚地知道自己的能耐。</p>
-</blockquote>
-<p>法國有不少人力派遣公司，因為法國聘人程序繁瑣，徵人又需投入大量資源人力，所以越來越多公司採用人力派遣所派遣過來的工程師，來開發公司的專案。</p>
-<p>此測驗是法國某大人力派遣公司，對應徵者所做的線上測驗，進入測驗網頁後，須依規定的時間作答，時間到會自動前往下一題，無法回頭修改答案。</p>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_front_test01/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_front_test01/" data-id="ck6y17z7900argxuwp2412mhn" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Test/">Test</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1712,6 +1544,10 @@ Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profil
       <ul>
         
           <li>
+            <a href="../../Vue_filters/">Vue.js Filters 過濾器</a>
+          </li>
+        
+          <li>
             <a href="../../Vue_Transitioning_Elements_Components/">VueJs Transitioning Single Elements/Component 過渡與動畫效果</a>
           </li>
         
@@ -1725,10 +1561,6 @@ Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profil
         
           <li>
             <a href="../../Vue_Event_Handling/">Vue.js Event Handling 事件處理</a>
-          </li>
-        
-          <li>
-            <a href="../../Vue_Displaying_Filtered_Sorted_Results/">Vue.js Displaying Filtered/Sorted Results 顯示過濾/排序後的結果</a>
           </li>
         
       </ul>
