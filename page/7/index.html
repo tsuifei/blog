@@ -111,6 +111,183 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-JSstrange_call-function-execution-stack" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JSstrange_call-function-execution-stack/" class="article-date">
+  <time datetime="2019-09-02T19:04:21.000Z" itemprop="datePublished">2019-09-03</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>►<a class="article-category-link" href="../../categories/JavaScript/Strange-JS/">Strange JS</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JSstrange_call-function-execution-stack/">JS 奇怪的部分:函數呼叫與執行堆</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。<br>JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？<br>了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。</p>
+<p>我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b();</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
+
+<p>當我們呼叫<code>a()</code>函數時，第一個被創造的是全域執行環境(Global Execution)。語法解析器會分析程式，然後編譯程式，接著創造全域執行環境與全域變數 <code>this</code>。如果是在瀏覽器，就會創造<code>windows</code>這個物件，然後將這些函數放進記憶體中。這裡的<code>this</code> 等同全域物件或瀏覽器裡的window。</p>
+<p>在創造的第一個階段，是把<code>a()</code>和<code>b()</code>都先放在記憶體裡，然後程式碼會逐行被執行。雖然是先放在記憶體裡，但 JS 不會執行函數中的程式，因為它們還沒被呼叫。</p>
+<p>當編譯器遇到最下面這個<code>a()</code>時，<code>a()</code>函數被呼叫了，這時候<code>a()</code>會被放進執行堆（execution stack）中。這個執行堆會一個一個疊起來，誰在最上面的就是正在執行的東西。</p>
+<p>所以每此 JavaScript 呼叫函數，就會創造一個新的執行環境，然後被放進執行堆中，一個新的執行環境被創造，就像全域執行環境一樣，會有它自己的記憶體空間給變數和函數。</p>
+<p>這個過程會歷經創造階段，然後逐行執行函數中的程式。但是一但我們呼叫另一個函數，它就會停止執行程式，然後，再創造另一個執行環境，然後繼續執行。</p>
+<p>如果函式裡沒有程式需要被執行，如<code>b()</code>，JavaScript 仍會創造一個執行環境，然後如上述般，逐行執行程式。</p>
+<p>當<code>b()</code>結束後，因為它在執行堆的最上面，所以它會離開執行堆，然後是<code>a()</code>，最後回到最下面的全域執行環境。<br><img src="/images/js_stack01.jpg" alt></p>
+<p>程式執行中實際排列的順序並不重要，在函數中剩下的程式碼順序也不會影響執行先後<br>，假設我們把<code>a()</code>放到<code>b()</code>前面，然後在函數裡多了一些程式（如下），這並不會影響執行，因為雖然<code>a()</code>看起來在<code>b()</code>前面，但這些函數在創造階段就已經在記憶體中了，也就是在全域執行環境被初始化時就在了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b();</span><br><span class="line">    <span class="keyword">var</span> c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> d;</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br><span class="line"><span class="keyword">var</span> d;</span><br></pre></td></tr></table></figure>
+
+<p>我們所看到下面被函數呼叫的<code>var c</code>和<code>var d</code>也都在記憶體中了。</p>
+<p>他們的執行順序是，首先<code>a()</code>函數會被呼叫，因此<code>a()</code>會被放入執行堆，同時進入<code>a()</code>的執行環境。接著，它會變成目前執行的程式，而最後一行的 <code>var d</code> 在 <code>a ()</code>下面所以不會被呼叫。</p>
+<p>因為 JavaScript 是同步且一次執行一行，現在執行的程式就是目前的執行環境，也就是執行堆最上面的那個。所以當<code>a()</code>在最上面時 它會進入函式逐行執行，在a函式中呼叫<code>b()</code>函數，<code>b()</code>會創造出自己的執行環境，然後進入執行堆最上面，再逐行執行它裡面的程式，等執行完最後一行之後，再跳回去繼續執行<code>a()</code>函數裡的其他程式。</p>
+<p>為什麼？ 因為當我們結束<code>b()</code>函數後，<code>b()</code>的執行環境就會離開執行堆，所以現在在最上面的是誰？是<code>a()</code>。然後繼續執行剛剛在<code>b()</code>後面的<code>var c</code></p>
+<p>當<code>a()</code>執行完畢後a()會離開執行堆，接著下一行還沒被執行的程式，也就是在全域執行環境中，最後的<code>var d</code></p>
+<p>這就是 JavaScript 執行的順序。每當函數被呼叫，一個新的執行環境就被創造給函數，同時，<code>this</code> 變數被創造給這個函數，而裡面的變數在創造階段就已經建立了，<br>然後程式碼會被逐行的執行。但每當函數被呼叫，即使是被自己呼叫，一個新的執行環境就會進入執行堆，然後當執行完畢後，離開執行堆。所以無論最上面是什麼，那個就是正在執行的程式。–&gt;正在執行的永遠在執行堆的最上面。</p>
+<p>逐行的、同步的這個觀念是非常重要，了解程式執行的逐一步驟，才會預防一些不知名的問題。</p>
+<h6 id="單字"><a href="#單字" class="headerlink" title="單字"></a>單字</h6><p>invoke the function 或是 function invocation, 意思是執行這個函數</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>這一系列為 Anthony Alicea 的 「JavaScript 全攻略：克服 JS 的奇怪部分」課程筆記。<br>JavaScript 在呼叫函式的時候，到底發生了什麼事？是如何被執行的？<br>了解這些重不重要？應該很重要，就像一部車，如果不知道結構，要修理它恐怕很難吧？抱著這總心態，既然要學 JavaScript，那就好好瞭解它的運作原理吧。</p>
+<p>我們先來想像一下，以下這段碼，在被編譯的時候，是怎麼進行的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b();</span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
+
+<p>當我們呼叫<code>a()</code>函數時，第一個被創造的是全域執行環境(Global Execution)。語法解析器會分析程式，然後編譯程式，接著創造全域執行環境與全域變數 <code>this</code>。如果是在瀏覽器，就會創造<code>windows</code>這個物件，然後將這些函數放進記憶體中。這裡的<code>this</code> 等同全域物件或瀏覽器裡的window。</p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JSstrange_call-function-execution-stack/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JSstrange_call-function-execution-stack/" data-id="ck6z0h0gx004m6ouw2xoc1ngo" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Strange-JS/">Strange JS</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
+    <article id="post-JS-Confirm-whether-is-Array" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-meta">
+        <a href="../../JS-Confirm-whether-is-Array/" class="article-date">
+  <time datetime="2019-07-31T04:08:31.000Z" itemprop="datePublished">2019-07-31</time>
+</a>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
+  </div>
+
+    </div>
+    <div class="article-inner">
+        
+            
+                <header class="article-header">
+                    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="../../JS-Confirm-whether-is-Array/">JavaScript 判別是否為陣列 Array 的方法</a>
+    </h1>
+  
+
+                </header>
+                
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                                            <!-- <p>陣列在 JS 裡的原生型別是 object，這點可以由 typeof 來確認。但如果要確認某一元素的原型是陣列，或是在物件裡的某一元素是陣列，又該怎麼判別？<br>如果元素不是陣列，就無法使用陣列專用的函式或做些陣列的處理，因此才會有確認某元素的原型是陣列的需求。</p>
+<h5 id="1-isArray"><a href="#1-isArray" class="headerlink" title="1.isArray"></a>1.isArray</h5><p>最簡單的陣列判斷語法 isArray，用的是內建Array物件中的isArray，是個ES5的標準方法:<br><code>Array.isArray(variable)</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="built_in">Array</span>.isArray(a); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-constructor"><a href="#2-constructor" class="headerlink" title="2.constructor"></a>2.constructor</h5><p>使用<code>constructor</code>，這是在Chrome瀏覽器中效能最佳的判斷方法，它是直接用物件的建構式來判斷:<br><code>variable.constructor === Array</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="string">'2'</span>, [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]];</span><br><span class="line">a.constructor === <span class="built_in">Array</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="判別物件中的陣列"><a href="#判別物件中的陣列" class="headerlink" title="判別物件中的陣列"></a>判別物件中的陣列</h4><h5 id="3-constructor-Array"><a href="#3-constructor-Array" class="headerlink" title="3.constructor === Array"></a>3.constructor === Array</h5><p>如果要判別物件中的其中屬性是否為陣列，可以先判斷這個屬性是否存在，如下(foo指的是物件屬性):<br><code>variable.foo &amp;&amp; variable.foo.constructor === Array</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = &#123;</span><br><span class="line">  foo:[<span class="number">1</span>,<span class="number">2</span>,<span class="string">"f"</span>],</span><br><span class="line">  ho:[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],</span><br><span class="line">  hi: <span class="string">"hello"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">b.foo &amp;&amp; b.foo.constructor === <span class="built_in">Array</span> <span class="comment">// true</span></span><br><span class="line">b.ho &amp;&amp; b.ho.constructor === <span class="built_in">Array</span> <span class="comment">// true</span></span><br><span class="line">b.hi &amp;&amp; b.hi.constructor === <span class="built_in">Array</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>例外: 當使用在一個繼承自陣列的陣列會失效</p>
+<h5 id="4-instanceof"><a href="#4-instanceof" class="headerlink" title="4.instanceof"></a>4.instanceof</h5><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof" target="_blank" rel="noopener">instanceof</a> 也是用物件的相關判別方法來判斷，instanceof 運算符是用於判斷是否為某個物件的實例，優點為語法簡潔清楚。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]; </span><br><span class="line">a <span class="keyword">instanceof</span> <span class="built_in">Array</span>; <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> oArrayObject = <span class="keyword">new</span> <span class="built_in">Array</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]); </span><br><span class="line">oArrayObject <span class="keyword">instanceof</span> <span class="built_in">Array</span>;   <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 也適用於其他型別的判別</span></span><br><span class="line"><span class="keyword">var</span> oStringObject = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"hello world"</span>); </span><br><span class="line">oStringObject <span class="keyword">instanceof</span> <span class="built_in">String</span>;   <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>例外: 處理不同window或iframe時的變數會失效</p>
+<h5 id="5-toString-call"><a href="#5-toString-call" class="headerlink" title="5.toString.call"></a>5.toString.call</h5><p>==推薦使用==<br>網路上推薦這種方式判別的頗多，原因應該是這種方式是所有情況都可以正確判斷的一種，且可適用各種狀況，也可以判斷陣列以外的其他特別物件，唯一缺點是效率最差。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(variable) === <span class="string">'[object Array]'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>據說在JavaScript: The Definitive Guide, 6th Edition書中有提到，Array.isArray其實就是用這個方式實作的。</p>
+<p>另外，網路上也有人寫成一支判斷陣列終極解決方案：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]; </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArrayFn</span>(<span class="params">obj</span>)</span>&#123;  <span class="comment">// 包成函式</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">Array</span>.isArray === <span class="string">"function"</span>) &#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.isArray(obj); <span class="comment">// 如果瀏覽器支援就用 isArray() 方法</span></span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;  <span class="comment">// 否則就使用 toString 方法</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">"[object Array]"</span>; </span><br><span class="line">  &#125; </span><br><span class="line">&#125; </span><br><span class="line">isArrayFn(arr)<span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="用哪一種？"><a href="#用哪一種？" class="headerlink" title="用哪一種？"></a>用哪一種？</h3><p>這幾個方式的選擇，網路上的前輩建議是==只要學最後一種==就行了(如果不考慮舊瀏覽器就用第一種)，它可以正確判斷並應用在各種情況，有時候正確比效能快更為重要，更何況它其實是萬用的，除了陣列之外也可以用於其它的判斷情況。雖然它的語法對初學者來說，可能無法在此時完全理解，不過就先知道要這樣用就行了。</p>
+ -->
+                                            <!-- Table of Contents -->
+                                            
+
+                                                    
+                                                        
+                                                                    <p>陣列在 JS 裡的原生型別是 object，這點可以由 typeof 來確認。但如果要確認某一元素的原型是陣列，或是在物件裡的某一元素是陣列，又該怎麼判別？<br>如果元素不是陣列，就無法使用陣列專用的函式或做些陣列的處理，因此才會有確認某元素的原型是陣列的需求。</p>
+<h5 id="1-isArray"><a href="#1-isArray" class="headerlink" title="1.isArray"></a>1.isArray</h5><p>最簡單的陣列判斷語法 isArray，用的是內建Array物件中的isArray，是個ES5的標準方法:<br><code>Array.isArray(variable)</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="built_in">Array</span>.isArray(a); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-constructor"><a href="#2-constructor" class="headerlink" title="2.constructor"></a>2.constructor</h5><p>使用<code>constructor</code>，這是在Chrome瀏覽器中效能最佳的判斷方法，它是直接用物件的建構式來判斷:<br><code>variable.constructor === Array</code></p>
+                                                                        
+                                                                            <p class="article-more-link">
+                                                                                <a href="../../JS-Confirm-whether-is-Array/">
+                                                                                    Read More
+                                                                                </a>
+                                                                            </p>
+                                                                            
+                                                                                
+                                                                                    
+                                                                                        <!-- FIN 要出現的段落數 -->
+
+                    </div>
+
+                    <footer class="article-footer">
+                        <a data-url="tsuifei.github.io/JS-Confirm-whether-is-Array/" data-id="ck6z0h0fm000g6ouw7bulwxs1" class="article-share-link">
+                            Share
+                        </a>
+                        
+                                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
+
+                    </footer>
+    </div>
+    
+</article>
+
+
+  
     <article id="post-JS_Array-Slice" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-meta">
         <a href="../../JS_Array-Slice/" class="article-date">
@@ -910,174 +1087,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-git-github練習心得" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../git-github練習心得/" class="article-date">
-  <time datetime="2019-07-09T07:02:24.000Z" itemprop="datePublished">2019-07-09</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/Git/">Git</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../git-github練習心得/">Git/GitHub練習心得</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>照著程式導師實驗計畫的操作，學會如何設置本端和遠端之間的更新與開分支，合併等方法，程序有點小複雜，但對於版本控管的確是輕度多了，只是還沒和其他人合作控管，這部分須多操控。<br>.gitignore 的設置在設github前就應該處理，不然之後刪來刪去很麻煩，記得不要上傳node_modules/不然會很龐大。</p>
-<h3 id="小筆記"><a href="#小筆記" class="headerlink" title="小筆記"></a>小筆記</h3><p>設分支練習：</p>
-<ol>
-<li>原本在master，創另一個分支 ：git branch [分支名] </li>
-<li>切換到那個分支：git checkout [分支名] </li>
-<li>用git status查在哪個分支</li>
-<li>用git branch -v 看有哪些branch</li>
-<li>push 到新的branch上：git push origin [branch名]</li>
-</ol>
-<h3 id="在github上merge合併："><a href="#在github上merge合併：" class="headerlink" title="在github上merge合併："></a>在github上merge合併：</h3><ol>
-<li>在github上的標籤頁pull requests上點Create pull request → 會顯示兩邊的不同</li>
-<li>再點Create pull request 之後，等Merge pull request出現，點下確認即可</li>
-<li>Merge後切換到Master就會看到更新結果。</li>
-<li>用git pull origin master 把已經merge好得檔案拉到本地端</li>
-</ol>
-<p>要改東西一定要新開branch再merge到master本支</p>
-<blockquote>
-<p>忘記切回test分支，所以後來無法順利merge到master分支，雖然後來看似解決，但還真不知道自己是怎麼解決的，就是試了幾個鍵，跟著打就好了．．．這樣其實有點可怕，下次再注意！</p>
-</blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <p>照著程式導師實驗計畫的操作，學會如何設置本端和遠端之間的更新與開分支，合併等方法，程序有點小複雜，但對於版本控管的確是輕度多了，只是還沒和其他人合作控管，這部分須多操控。<br>.gitignore 的設置在設github前就應該處理，不然之後刪來刪去很麻煩，記得不要上傳node_modules/不然會很龐大。</p>
-<h3 id="小筆記"><a href="#小筆記" class="headerlink" title="小筆記"></a>小筆記</h3><p>設分支練習：</p>
-<ol>
-<li>原本在master，創另一個分支 ：git branch [分支名] </li>
-<li>切換到那個分支：git checkout [分支名] </li>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../git-github練習心得/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/git-github練習心得/" data-id="ck6z0h0hg006b6ouwwr1ga24a" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/GitHub/">GitHub</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/Note/">Note</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
-    <article id="post-JS_回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="../../JS_回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" class="article-date">
-  <time datetime="2019-07-05T06:08:16.000Z" itemprop="datePublished">2019-07-05</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../../categories/JavaScript/">JavaScript</a>
-  </div>
-
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="../../JS_回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/">JS 回呼函式 Callbacks、Promises 物件、Async/Await 非同步流程控制</a>
-    </h1>
-  
-
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>Javascript 近幾年來受歡迎的原因，有一大部分是因為 JS 可以處理非同步（異步）的問題，也因為可以非同步，所以處理速度快，且可帶給瀏覽者更好的體驗，所以了解如何控制非同步也成了前端重要的技能之一。</p>
-<h2 id="無非同步的程式"><a href="#無非同步的程式" class="headerlink" title="無非同步的程式"></a>無非同步的程式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">n1, n2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n1+n2</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">testNoAsync</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = add(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">// testNoAsync(); // 7</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="問題的起源，非同步程式"><a href="#問題的起源，非同步程式" class="headerlink" title="問題的起源，非同步程式"></a>問題的起源，非同步程式</h2><p>寫程式如果遇到要處理非同步的程式，就會變得複雜了起來，為什麼會複雜？<br>預設想要延遲執行，卻出現undefined 程式會一直往下跑， return的部分不會回傳會被忽略….。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd0</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 設定排程，延遲一段時間後執行</span></span><br><span class="line">  <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> n1+n2;</span><br><span class="line">  &#125;, delayTime);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>); <span class="comment">// 仔細觀察出現的順序</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = delayedAdd0(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">// 1, undefined, 2 (不會出現return結果)</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="第一個解決方式-callback-回呼函式"><a href="#第一個解決方式-callback-回呼函式" class="headerlink" title="第一個解決方式 : callback 回呼函式"></a>第一個解決方式 : callback 回呼函式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd1</span>(<span class="params">n1, n2, delayTime, callback</span>)</span>&#123; <span class="comment">// callback 函式</span></span><br><span class="line">  <span class="comment">// 設定排程，延遲一段時間後執行</span></span><br><span class="line">  <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 延遲一段時間，計算加法，呼叫callback函式</span></span><br><span class="line">    callback(n1+n2);</span><br><span class="line">  &#125;, delayTime);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  delayedAdd1(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>, <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">test1(); <span class="comment">// 7</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="第二個解決方式-Promise-物件"><a href="#第二個解決方式-Promise-物件" class="headerlink" title="第二個解決方式 : Promise 物件"></a>第二個解決方式 : Promise 物件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd2</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 建立 Promise 物件 :  new promise(執行函式)</span></span><br><span class="line">  <span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123; <span class="comment">// 兩個系統給的參數</span></span><br><span class="line">    <span class="comment">// 要做的工作放到promise的函式裡</span></span><br><span class="line">    <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      resolve(n1+n2); <span class="comment">// 工作完成，呼叫 resolve 函式，並把結果透過參數傳遞進去，如果工作出現問題就呼叫 reject ex. reject(n1+n2);</span></span><br><span class="line">      </span><br><span class="line">    &#125;, delayTime);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// 把 promise 傳遞出來</span></span><br><span class="line">  <span class="keyword">return</span> p; <span class="comment">// 或直接以 return 去接以上的結果 回傳回去而不需要變數 p </span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// resolve 會對應 .then / reject 會對應 .catch 但.catch可以忽略不寫</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> promise = delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">  &#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Error"</span>, error)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="需求-需要運行兩次的-promise-然後將結果相乘"><a href="#需求-需要運行兩次的-promise-然後將結果相乘" class="headerlink" title="需求: 需要運行兩次的 promise 然後將結果相乘"></a>需求: 需要運行兩次的 promise 然後將結果相乘</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test2a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> promise1 = delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="keyword">let</span> promise2 = delayedAdd2(<span class="number">1</span>, <span class="number">5</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="comment">// 多個 promise 都完成後才繼續工作.</span></span><br><span class="line">  <span class="comment">// 把 promises 放入陣列裡</span></span><br><span class="line">  <span class="built_in">Promise</span>.all([promise1, promise2]).then(<span class="function"><span class="keyword">function</span>(<span class="params">results</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 用 reduce() 處理相乘</span></span><br><span class="line">    <span class="keyword">let</span> answer = results.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">total, value</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> total * value;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">console</span>.log(answer);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">test2a();</span><br></pre></td></tr></table></figure>
-
-<h2 id="第三個解決方式-使用-Async-Await-簡化-Promise-。"><a href="#第三個解決方式-使用-Async-Await-簡化-Promise-。" class="headerlink" title="第三個解決方式 : 使用 Async/Await 簡化 Promise 。"></a>第三個解決方式 : 使用 Async/Await 簡化 Promise 。</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Async/Await 背後的邏輯就是和 Promise 是一樣的。</span></span><br><span class="line"><span class="comment">// 使用 Async/Await 的大前提是仍要建立一個 Promise 物件 將它回傳</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd3</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 建立 Promise 物件 : new promise(執行函式)</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123; <span class="comment">// 兩個系統給的參數</span></span><br><span class="line">    <span class="comment">// 要做的工作放到promise的函式裡</span></span><br><span class="line">    <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    resolve(n1+n2); <span class="comment">// 工作完成，呼叫 resolve 函式，並把結果透過參數傳遞進去，如果工作出現問題就呼叫 reject</span></span><br><span class="line">    &#125;, delayTime);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 語法糖，函式前面加 async， async / await 需要一起使用</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test3</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// await 後面接函式. 上面的 resolve 會直接由 result 接收</span></span><br><span class="line">  <span class="keyword">let</span> result = <span class="keyword">await</span> delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="需求-需要運行兩次的-promise-然後將結果相乘-1"><a href="#需求-需要運行兩次的-promise-然後將結果相乘-1" class="headerlink" title="需求 需要運行兩次的 promise 然後將結果相乘"></a>需求 需要運行兩次的 promise 然後將結果相乘</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test3a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="comment">// await 後面接函式. 上面的 resolve 會直接由 result 接收</span></span><br><span class="line">  <span class="keyword">let</span> result1 = <span class="keyword">await</span> delayedAdd2(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="keyword">let</span> result2 = <span class="keyword">await</span> delayedAdd2(<span class="number">3</span>, <span class="number">1</span>, <span class="number">3000</span>);</span><br><span class="line">  <span class="keyword">let</span> answer = result1 * result2;</span><br><span class="line">  <span class="built_in">console</span>.log(answer);</span><br><span class="line">&#125;</span><br><span class="line">test3a();</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://www.youtube.com/watch?v=NOprCnnjHm0" target="_blank" rel="noopener">參考1 彭彭的課程</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/setTimeout" target="_blank" rel="noopener">參考2 code</a></p>
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                                    <p>Javascript 近幾年來受歡迎的原因，有一大部分是因為 JS 可以處理非同步（異步）的問題，也因為可以非同步，所以處理速度快，且可帶給瀏覽者更好的體驗，所以了解如何控制非同步也成了前端重要的技能之一。</p>
-<h2 id="無非同步的程式"><a href="#無非同步的程式" class="headerlink" title="無非同步的程式"></a>無非同步的程式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">n1, n2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n1+n2</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">testNoAsync</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = add(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">// testNoAsync(); // 7</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="問題的起源，非同步程式"><a href="#問題的起源，非同步程式" class="headerlink" title="問題的起源，非同步程式"></a>問題的起源，非同步程式</h2><p>寫程式如果遇到要處理非同步的程式，就會變得複雜了起來，為什麼會複雜？<br>預設想要延遲執行，卻出現undefined 程式會一直往下跑， return的部分不會回傳會被忽略….。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delayedAdd0</span>(<span class="params">n1, n2, delayTime</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// 設定排程，延遲一段時間後執行</span></span><br><span class="line">  <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> n1+n2;</span><br><span class="line">  &#125;, delayTime);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>); <span class="comment">// 仔細觀察出現的順序</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = delayedAdd0(<span class="number">4</span>, <span class="number">2</span>, <span class="number">2000</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;</span><br><span class="line">test(); <span class="comment">// 1, undefined, 2 (不會出現return結果)</span></span><br></pre></td></tr></table></figure>
-                                                                        
-                                                                            <p class="article-more-link">
-                                                                                <a href="../../JS_回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/">
-                                                                                    Read More
-                                                                                </a>
-                                                                            </p>
-                                                                            
-                                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_回呼函式-Callbacks、Promises-物件、Async-Await-非同步流程控制/" data-id="ck6z0h0gw004f6ouwk9zt1c7x" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
-    </div>
-    
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -1126,6 +1135,14 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="../../Vue_Custom_Directives/">Vue.js Custom Directives 自定義指令</a>
+          </li>
+        
+          <li>
+            <a href="../../Vue_Directives/">Vue.js Directives Vue 常用的內建指令</a>
+          </li>
+        
+          <li>
             <a href="../../Vue_filters/">Vue.js Filters 過濾器</a>
           </li>
         
@@ -1135,14 +1152,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="../../Vue_Instance_Lifecycle_Hooks/">VueJs Instance Lifecycle Hooks 生命週期鉤子</a>
-          </li>
-        
-          <li>
-            <a href="../../Vue_Form_Input_Bindings/">Vue.js Form Input Bindings 表單輸入綁定</a>
-          </li>
-        
-          <li>
-            <a href="../../Vue_Event_Handling/">Vue.js Event Handling 事件處理</a>
           </li>
         
       </ul>
