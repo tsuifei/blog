@@ -29,7 +29,7 @@ ga('send', 'pageview');
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="之前的幾篇都有介紹此表前半段的 Vue 內建指令用法，這裡要介紹最後面的兩個內建指令ref和v-cloak先來 codepen 看看：Vue.Js ref 唯一識別 與 v-cloak 隱藏表達式    指令 作用 Vue    v-if 如果為 true, 當前標籤才會輸出到頁面    v-html 更新元素的 innerHTML    v-else 如果為 false, 當前標籤才會輸出到頁面">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-02-24T12:51:17.783Z">
+<meta property="og:updated_time" content="2020-02-24T14:48:49.535Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue.js Directives Vue 常用的內建指令">
 <meta name="twitter:description" content="之前的幾篇都有介紹此表前半段的 Vue 內建指令用法，這裡要介紹最後面的兩個內建指令ref和v-cloak先來 codepen 看看：Vue.Js ref 唯一識別 與 v-cloak 隱藏表達式    指令 作用 Vue    v-if 如果為 true, 當前標籤才會輸出到頁面    v-html 更新元素的 innerHTML    v-else 如果為 false, 當前標籤才會輸出到頁面">
@@ -209,6 +209,7 @@ ga('send', 'pageview');
 
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    msg: <span class="string">'Hello Taipei'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    hint() &#123;</span><br><span class="line">      alert(<span class="keyword">this</span>.$refs.content.textContent);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
+<p>有了自定義的指令功能，相信會讓重複性的功能，使用起來更方便。</p>
  -->
                                             <!-- Table of Contents -->
                                             
@@ -287,6 +288,7 @@ ga('send', 'pageview');
 
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    msg: <span class="string">'Hello Taipei'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    hint() &#123;</span><br><span class="line">      alert(<span class="keyword">this</span>.$refs.content.textContent);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
+<p>有了自定義的指令功能，相信會讓重複性的功能，使用起來更方便。</p>
 
                                                                 
                                                                                     
