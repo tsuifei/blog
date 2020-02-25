@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="VusJs 是個便利的框架，它的便利在於幫我們把一些較複雜的事情都先做好了，據說 Vue 的入門較簡單，單是也是會讓我們將 JS 武功廢掉的框架，還記得有位朋友說，他寫了一陣子 Vue 之後，幾乎 JS 的武功都廢了，聽起來蠻聳動的。所以一定要記住，時不常回來寫原生還是必要的。 這裡記錄一些學習上的筆記和用法，以便將來腦殘可回來補腦。 我們先以 CDN 的方式將 Vue.js 引入就可以用了，記得">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-02-25T20:39:57.596Z">
+<meta property="og:updated_time" content="2020-02-25T21:23:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue.js Template Syntax 模板語法">
 <meta name="twitter:description" content="VusJs 是個便利的框架，它的便利在於幫我們把一些較複雜的事情都先做好了，據說 Vue 的入門較簡單，單是也是會讓我們將 JS 武功廢掉的框架，還記得有位朋友說，他寫了一陣子 Vue 之後，幾乎 JS 的武功都廢了，聽起來蠻聳動的。所以一定要記住，時不常回來寫原生還是必要的。 這裡記錄一些學習上的筆記和用法，以便將來腦殘可回來補腦。 我們先以 CDN 的方式將 Vue.js 引入就可以用了，記得">
@@ -325,7 +325,9 @@
         <p>VusJs 是個便利的框架，它的便利在於幫我們把一些較複雜的事情都先做好了，據說 Vue 的入門較簡單，單是也是會讓我們將 JS 武功廢掉的框架，還記得有位朋友說，他寫了一陣子 Vue 之後，幾乎 JS 的武功都廢了，聽起來蠻聳動的。所以一定要記住，時不常回來寫原生還是必要的。</p>
 <p>這裡記錄一些學習上的筆記和用法，以便將來腦殘可回來補腦。</p>
 <p>我們先以 CDN 的方式將 Vue.js 引入就可以用了，記得也要先創建一個 Vue 的實例來用，裡面會有所有控制與資料的部分。<br>接著，在 HTML 裡將要控制的部分以一個<code>&lt;div&gt;</code>包住，並給予 ID <code>&lt;div id=&quot;app&quot;&gt;</code>這個 <code>#app</code>就可以以標籤綁定資料的方式，和 Vue 的實例裡的資料做溝通。</p>
-<h3 id="資料綁定"><a href="#資料綁定" class="headerlink" title="資料綁定 "></a>資料綁定 </h3><p>資料綁定最常用的是雙大括號，裡面的變數就是聯繫實例裡面<code>Data</code>物件裡的屬性資料。<br>我們可以如何使用它：</p>
+<a id="more"></a>
+
+<h3 id="資料綁定"><a href="#資料綁定" class="headerlink" title="資料綁定 "></a>資料綁定 </h3><p>資料綁定最常用的是雙大括號，裡面的變數就是聯繫實例裡面<code>Data</code>物件裡的屬性資料。<br>我們如何使用它：</p>
 <p>可以以 HTML 的形式來綁定如<code>&lt;p v-html=&quot;msg&quot;&gt;&lt;/p&gt;</code> (顯示 html 格式)<br>用 text 的形式來綁定如<code>&lt;p v-text=&quot;msg&quot;&gt;&lt;/p&gt;</code>(顯示純文字)<br>雙花括號不可直接用在 html 的屬性上，在需要用的情況下，可以用<code>v-bind</code>的方式如</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-bind:disabled</span>=<span class="string">"isDisabled"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
 

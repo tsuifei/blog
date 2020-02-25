@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="SASS 重點 Variables 變數 Nesting 巢狀 Partials / Imports Functions &amp;amp; Mixins 函式 &amp;amp; 巢狀 Conditionale 條件式 Operators &amp;amp; Calculations 必較與計算子 Color Functions 顏色函式  使用 NodeJs 佈署 SASS 環境在資料夾裡面安裝 SASS 編譯器：n">
+<meta name="description" content="SASS 重點 Variables 變數 Nesting 巢狀 Partials / Imports Functions &amp;amp; Mixins 函式 &amp;amp; 巢狀 Conditionale 條件式 Operators &amp;amp; Calculations 必較與計算子 Color Functions 顏色函式">
 <meta name="keywords" content="CSS,SASS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SASS 環境部署與基礎">
 <meta property="og:url" content="tsuifei.github.io/SASS_deployment-environment-and-fundamental/index.html">
 <meta property="og:site_name" content="Cré-Coder">
-<meta property="og:description" content="SASS 重點 Variables 變數 Nesting 巢狀 Partials / Imports Functions &amp;amp; Mixins 函式 &amp;amp; 巢狀 Conditionale 條件式 Operators &amp;amp; Calculations 必較與計算子 Color Functions 顏色函式  使用 NodeJs 佈署 SASS 環境在資料夾裡面安裝 SASS 編譯器：n">
+<meta property="og:description" content="SASS 重點 Variables 變數 Nesting 巢狀 Partials / Imports Functions &amp;amp; Mixins 函式 &amp;amp; 巢狀 Conditionale 條件式 Operators &amp;amp; Calculations 必較與計算子 Color Functions 顏色函式">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-02-12T18:13:14.237Z">
+<meta property="og:updated_time" content="2020-02-25T21:26:43.179Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SASS 環境部署與基礎">
-<meta name="twitter:description" content="SASS 重點 Variables 變數 Nesting 巢狀 Partials / Imports Functions &amp;amp; Mixins 函式 &amp;amp; 巢狀 Conditionale 條件式 Operators &amp;amp; Calculations 必較與計算子 Color Functions 顏色函式  使用 NodeJs 佈署 SASS 環境在資料夾裡面安裝 SASS 編譯器：n">
+<meta name="twitter:description" content="SASS 重點 Variables 變數 Nesting 巢狀 Partials / Imports Functions &amp;amp; Mixins 函式 &amp;amp; 巢狀 Conditionale 條件式 Operators &amp;amp; Calculations 必較與計算子 Color Functions 顏色函式">
 
 
 
@@ -329,9 +329,10 @@
 <li>Functions &amp; Mixins 函式 &amp; 巢狀</li>
 <li>Conditionale 條件式</li>
 <li>Operators &amp; Calculations 必較與計算子</li>
-<li>Color Functions 顏色函式</li>
+<li>Color Functions 顏色函式<a id="more"></a>
+<h2 id="使用-NodeJs-佈署-SASS-環境"><a href="#使用-NodeJs-佈署-SASS-環境" class="headerlink" title="使用 NodeJs 佈署 SASS 環境"></a>使用 NodeJs 佈署 SASS 環境</h2></li>
 </ul>
-<h2 id="使用-NodeJs-佈署-SASS-環境"><a href="#使用-NodeJs-佈署-SASS-環境" class="headerlink" title="使用 NodeJs 佈署 SASS 環境"></a>使用 NodeJs 佈署 SASS 環境</h2><h3 id="在資料夾裡面安裝-SASS-編譯器：node-sass"><a href="#在資料夾裡面安裝-SASS-編譯器：node-sass" class="headerlink" title="在資料夾裡面安裝 SASS 編譯器：node sass"></a>在資料夾裡面安裝 SASS 編譯器：node sass</h3><p>1.先確認有安裝 npm 2.輸入 <code>npm init -y</code> 初始化並給予預設值 3.檔案夾裡會有一個自動生成的 package.json 4.在終端機安裝 node sass ：<code>npm install node-sass</code> 5.在檔案夾裡會生成 node_modules，同時在 package.json 裡也會自動增加 node-sass 的版本號 6.打開它修改預設檔案生成位置，修改 script，將 test 拿掉，改成：<br><code>&quot;sass&quot;: &quot;node-sass -w scss/ -o dist/css/ --recursive&quot;</code><br>-w 監控 scss 檔案夾，-o output 編譯輸出至 dist/css 這個檔案夾。 7.至根目錄，增加 scss 和 dist 等檔案夾，並在 scss 檔案夾裡增加 scss 檔案：<code>main.scss</code> 8.先在終端機執行 <code>npm run sass</code> 指令，啟動 sass 監聽 9.在 <code>main.scss</code>寫些簡單的 sass，儲存後，會顯示編譯完成，並且在 dist 自動生成 css 檔案夾和<code>main.css</code>。 10.想退出監聽模式可 <code>control + c</code> 結束監聽。</p>
+<h3 id="在資料夾裡面安裝-SASS-編譯器：node-sass"><a href="#在資料夾裡面安裝-SASS-編譯器：node-sass" class="headerlink" title="在資料夾裡面安裝 SASS 編譯器：node sass"></a>在資料夾裡面安裝 SASS 編譯器：node sass</h3><p>1.先確認有安裝 npm 2.輸入 <code>npm init -y</code> 初始化並給予預設值 3.檔案夾裡會有一個自動生成的 package.json 4.在終端機安裝 node sass ：<code>npm install node-sass</code> 5.在檔案夾裡會生成 node_modules，同時在 package.json 裡也會自動增加 node-sass 的版本號 6.打開它修改預設檔案生成位置，修改 script，將 test 拿掉，改成：<br><code>&quot;sass&quot;: &quot;node-sass -w scss/ -o dist/css/ --recursive&quot;</code><br>-w 監控 scss 檔案夾，-o output 編譯輸出至 dist/css 這個檔案夾。 7.至根目錄，增加 scss 和 dist 等檔案夾，並在 scss 檔案夾裡增加 scss 檔案：<code>main.scss</code> 8.先在終端機執行 <code>npm run sass</code> 指令，啟動 sass 監聽 9.在 <code>main.scss</code>寫些簡單的 sass，儲存後，會顯示編譯完成，並且在 dist 自動生成 css 檔案夾和<code>main.css</code>。 10.想退出監聽模式可 <code>control + c</code> 結束監聽。</p>
 <p>(6)也可加入其他參數</p>
 <p>啟動監聽後，在每次更新存檔時會自動更新網頁，如有修改後網頁沒變化，可跳出 sass 再重啟，通常可解決此問題。</p>
 <h2 id="SASS-變數"><a href="#SASS-變數" class="headerlink" title="SASS 變數"></a>SASS 變數</h2><p>將變數統一整理到 <code>_variables.scss</code> 裡，並在<code>main.scss</code> 裡以<code>@import &#39;variables&#39;</code> 引入。<br>常用的變數名：</p>

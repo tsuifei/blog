@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Converting strings to numbers with vanilla JavaScript透過瀏覽器輸入的內容，要拿來做運算用的時候，必須先轉成數字，否則運算出來結果一定會讓人出乎意料。列如要使用者輸入兩個數字，然後將其相加，再將結果顯示於畫面，如果不做轉型，則會 1 + 1 = 11, 4 + 2 = 42,而不是我們想要的 2 和 6。 字串轉數字42 和 ‘42’ 都是數字，">
+<meta name="description" content="Converting strings to numbers with vanilla JavaScript透過瀏覽器輸入的內容，要拿來做運算用的時候，必須先轉成數字，否則運算出來結果一定會讓人出乎意料。列如要使用者輸入兩個數字，然後將其相加，再將結果顯示於畫面，如果不做轉型，則會 1 + 1 = 11, 4 + 2 = 42,而不是我們想要的 2 和 6。">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript 三種字串轉數字的方法">
 <meta property="og:url" content="tsuifei.github.io/JS_Converting-strings-to-numbers/index.html">
 <meta property="og:site_name" content="Cré-Coder">
-<meta property="og:description" content="Converting strings to numbers with vanilla JavaScript透過瀏覽器輸入的內容，要拿來做運算用的時候，必須先轉成數字，否則運算出來結果一定會讓人出乎意料。列如要使用者輸入兩個數字，然後將其相加，再將結果顯示於畫面，如果不做轉型，則會 1 + 1 = 11, 4 + 2 = 42,而不是我們想要的 2 和 6。 字串轉數字42 和 ‘42’ 都是數字，">
+<meta property="og:description" content="Converting strings to numbers with vanilla JavaScript透過瀏覽器輸入的內容，要拿來做運算用的時候，必須先轉成數字，否則運算出來結果一定會讓人出乎意料。列如要使用者輸入兩個數字，然後將其相加，再將結果顯示於畫面，如果不做轉型，則會 1 + 1 = 11, 4 + 2 = 42,而不是我們想要的 2 和 6。">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-02-12T18:13:49.962Z">
+<meta property="og:updated_time" content="2020-02-25T21:31:37.326Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 三種字串轉數字的方法">
-<meta name="twitter:description" content="Converting strings to numbers with vanilla JavaScript透過瀏覽器輸入的內容，要拿來做運算用的時候，必須先轉成數字，否則運算出來結果一定會讓人出乎意料。列如要使用者輸入兩個數字，然後將其相加，再將結果顯示於畫面，如果不做轉型，則會 1 + 1 = 11, 4 + 2 = 42,而不是我們想要的 2 和 6。 字串轉數字42 和 ‘42’ 都是數字，">
+<meta name="twitter:description" content="Converting strings to numbers with vanilla JavaScript透過瀏覽器輸入的內容，要拿來做運算用的時候，必須先轉成數字，否則運算出來結果一定會讓人出乎意料。列如要使用者輸入兩個數字，然後將其相加，再將結果顯示於畫面，如果不做轉型，則會 1 + 1 = 11, 4 + 2 = 42,而不是我們想要的 2 和 6。">
 
 
 
@@ -323,6 +323,8 @@
 
       
         <h5 id="Converting-strings-to-numbers-with-vanilla-JavaScript"><a href="#Converting-strings-to-numbers-with-vanilla-JavaScript" class="headerlink" title="Converting strings to numbers with vanilla JavaScript"></a>Converting strings to numbers with vanilla JavaScript</h5><p>透過瀏覽器輸入的內容，要拿來做運算用的時候，必須先轉成數字，否則運算出來結果一定會讓人出乎意料。列如要使用者輸入兩個數字，然後將其相加，再將結果顯示於畫面，如果不做轉型，則會 1 + 1 = 11, 4 + 2 = 42,而不是我們想要的 2 和 6。</p>
+<a id="more"></a>
+
 <h2 id="字串轉數字"><a href="#字串轉數字" class="headerlink" title="字串轉數字"></a>字串轉數字</h2><p>42 和 ‘42’ 都是數字，但對 JS 來說卻是不同的。<br>我們可以以嚴格模式的比較運算子，透過以下的方式得知，兩者的不同。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num1 = <span class="string">'42'</span>;</span><br><span class="line"><span class="keyword">var</span> num2 = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">if</span> (num1 === num2) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 

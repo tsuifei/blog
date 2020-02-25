@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="在 Vue 所使用到的整個生命週期方法，可以想像成是一齣戲要上演，哪一個主角需要在哪個時候上場、哪個配角需要在哪個時刻退場，都需要有邏輯才可以讓故事產生連貫性與流暢。 Vue 的生命週期方法雖然共有八個，但並不是每個都需要用到，就像在戲裡，有些橋段不出現、配角不出現也不會影響整齣性的故事性。 把 Vue 的生命週期分為三個大階段會比較容易理解：第一階段的「初始化顯示」、第二階段「更新狀態顯示」、第">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-02-20T14:36:53.012Z">
+<meta property="og:updated_time" content="2020-02-25T21:22:57.717Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VueJs Instance Lifecycle Hooks 生命週期鉤子">
 <meta name="twitter:description" content="在 Vue 所使用到的整個生命週期方法，可以想像成是一齣戲要上演，哪一個主角需要在哪個時候上場、哪個配角需要在哪個時刻退場，都需要有邏輯才可以讓故事產生連貫性與流暢。 Vue 的生命週期方法雖然共有八個，但並不是每個都需要用到，就像在戲裡，有些橋段不出現、配角不出現也不會影響整齣性的故事性。 把 Vue 的生命週期分為三個大階段會比較容易理解：第一階段的「初始化顯示」、第二階段「更新狀態顯示」、第">
@@ -326,6 +326,8 @@
 <p>Vue 的生命週期方法雖然共有八個，但並不是每個都需要用到，就像在戲裡，有些橋段不出現、配角不出現也不會影響整齣性的故事性。</p>
 <p>把 Vue 的生命週期分為三個大階段會比較容易理解：第一階段的「初始化顯示」、第二階段「更新狀態顯示」、第三階段「死亡、銷毀 Vue 實例」，每個階段都有對應的生命週期 callback 方法，這些生命週期的方法也稱為「生命週期鉤子」掛載在不同時期。 Vue 的生命週期比 React 還要複雜一些。</p>
 <p>為了避免 <code>this</code> 的混淆，這些生命週期的方法都是回調方法(callback)，所以最好一律都寫成箭頭函式，讓 <code>this</code> 直接指向父級。</p>
+<a id="more"></a>
+
 <h2 id="Vue-的生命週期各階段都做了什麼？"><a href="#Vue-的生命週期各階段都做了什麼？" class="headerlink" title="Vue 的生命週期各階段都做了什麼？"></a>Vue 的生命週期各階段都做了什麼？</h2><h3 id="0-創建-Vue-的實例"><a href="#0-創建-Vue-的實例" class="headerlink" title="0. 創建 Vue 的實例"></a>0. 創建 Vue 的實例</h3><p>當我們創建好一個 Vue 的實例，就會馬上進入下一個階段<code>beforeCreate()</code>。</p>
 <h3 id="1-初始化顯示階段"><a href="#1-初始化顯示階段" class="headerlink" title="1. 初始化顯示階段"></a>1. 初始化顯示階段</h3><ul>
 <li><p><strong>beforeCreate() 實例創建前</strong></p>

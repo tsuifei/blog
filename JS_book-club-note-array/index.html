@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="參加讀書會是個可以讓自己和一群喜歡同一個技術領域的夥伴一起學習的方法，透過讀書會，去了解與深入書中所要表達的內容。目前進行與參與的讀書會有「Javascript 大全」和「Javascript 忍者」兩本數，雖然「Javascript 大全」不包含很重要的 ES6 部分，但是能夠更全面了解 JS 的演變與歷史，將來在看不同版本的程式碼時，應該可以較為清楚的理解。而「Javascript 忍者」這本">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2019-12-23T21:29:09.004Z">
+<meta property="og:updated_time" content="2020-02-25T21:31:41.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS 迴圈升級的陣列 Array 方法 forEach()">
 <meta name="twitter:description" content="參加讀書會是個可以讓自己和一群喜歡同一個技術領域的夥伴一起學習的方法，透過讀書會，去了解與深入書中所要表達的內容。目前進行與參與的讀書會有「Javascript 大全」和「Javascript 忍者」兩本數，雖然「Javascript 大全」不包含很重要的 ES6 部分，但是能夠更全面了解 JS 的演變與歷史，將來在看不同版本的程式碼時，應該可以較為清楚的理解。而「Javascript 忍者」這本">
@@ -323,6 +323,7 @@
 
       
         <p>參加讀書會是個可以讓自己和一群喜歡同一個技術領域的夥伴一起學習的方法，透過讀書會，去了解與深入書中所要表達的內容。<br>目前進行與參與的讀書會有「Javascript 大全」和「Javascript 忍者」兩本數，雖然「Javascript 大全」不包含很重要的 ES6 部分，但是能夠更全面了解 JS 的演變與歷史，將來在看不同版本的程式碼時，應該可以較為清楚的理解。而「Javascript 忍者」這本是許多前輩推崇的一本好書，雖然以目前的階段來說頗硬，但多了解 JS 深度也是將來會去面對的，將來也勢必會再重讀這一本書，所以就提早了解概況吧。</p>
+<a id="more"></a>
 <p>本篇是主講「Javascript 大全」 裡第七章「陣列」的筆記，僅作為紀錄。</p>
 <h2 id="陣列是什麼"><a href="#陣列是什麼" class="headerlink" title="陣列是什麼"></a>陣列是什麼</h2><p>陣列：是一組有序群集，由中括號[ ]包圍，裡面的元素為「值」(value)，值得位置為「索引」(index)。<br>陣列元素可是任何型別的資料。<br>索引值從 0 開始、最高可是 4294967294、最大陣列元素數 4,294,967,295。<br>陣列繼承自<code>Array.prototype</code>。</p>
 <h2 id="創建陣列"><a href="#創建陣列" class="headerlink" title="創建陣列"></a>創建陣列</h2><h3 id="使用字面值-array-literal"><a href="#使用字面值-array-literal" class="headerlink" title="使用字面值(array literal)"></a>使用字面值(array literal)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> empty = []; </span><br><span class="line"><span class="keyword">let</span> primes = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>,<span class="number">7</span>, <span class="number">11</span>]</span><br><span class="line"><span class="keyword">let</span> misc = [<span class="number">1.1</span>, <span class="literal">true</span>, <span class="string">"a"</span>, ] <span class="comment">// misc.length -&gt; 3</span></span><br></pre></td></tr></table></figure>

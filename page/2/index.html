@@ -325,26 +325,16 @@
 
       
         
-          
-            <p>當我們在瀏覽網頁時，透過使用者的輸入或互動，最容易會有變動的就是資料（透過輸入或修改）和樣式（透過互動或事件）的更動，而 VueJs 的樣式部分用 class 和 style 的綁定，就是專門用來與互動產生動態的樣式而來的。</p>
+          <p>當我們在瀏覽網頁時，透過使用者的輸入或互動，最容易會有變動的就是資料（透過輸入或修改）和樣式（透過互動或事件）的更動，而 VueJs 的樣式部分用 class 和 style 的綁定，就是專門用來與互動產生動態的樣式而來的。</p>
 <p><a href="https://codepen.io/tsuifei/pen/yLNewLm" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
 <h2 id="Binding-HTML-Classes-綁定-HTML-裡-Class-的方法"><a href="#Binding-HTML-Classes-綁定-HTML-裡-Class-的方法" class="headerlink" title="Binding HTML Classes / 綁定 HTML 裡 Class 的方法"></a>Binding HTML Classes / 綁定 HTML 裡 Class 的方法</h2><p>在 DOM 的節點上使用<code>:class=&#39;xxx&#39;</code> xxx 可以是字串、物件或者是陣列型態。<br>這裡我們先設置了三個樣式分別為<code>ClassA</code>、<code>ClassB</code>、<code>ClassC</code>，我們在「xxx 是字元串」這個段落先給它一個基礎樣式<code>ClassC</code>，再綁定<code>myClass</code>，這會對應到 vm 實例裡<code>data</code>的<code>ClassA</code>，所以在這一段會有兩個樣式分別是<code>ClassA</code>＋<code>ClassC</code>。</p>
-<p>CSS 的部分：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.ClassA</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.ClassB</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: blue;</span><br><span class="line">  <span class="attribute">background</span>: yellow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.ClassC</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">30px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在「xxx 是物件」這個段落，我們以物件的方式綁定樣式，<code>:class=&quot;{classA:isActive, classB:!isActive}&quot;</code>，記得以物件綁定的話可以給多組樣式，但是一定要是以<code>key:value</code>的方式寫，這裏我們以<code>classB:!isActive</code>把<code>classB</code>設為非 isActive，這個樣式就不會被顯示。</p>
-<p>另一段「xxx 是陣列」的段落是以陣列的方式綁定，既然是陣列就可以給多個值，但這種方式比較不常用，以物件的方式還是比較靈活。</p>
-<h2 id="Binding-Inline-Styles-綁定行內-style-的方法"><a href="#Binding-Inline-Styles-綁定行內-style-的方法" class="headerlink" title="Binding Inline Styles / 綁定行內 style 的方法"></a>Binding Inline Styles / 綁定行內 style 的方法</h2><p>使用 Style 綁定的方法也很方便，我們先創建一個叫<code>Update</code>的按鍵，使用<code>v-on:click</code>等同<code>@click=&quot;Update&quot;</code>去呼叫實例中<code>methods</code>的<code>Update</code>的方法，並指定這個事件被觸發時，某些屬性的值會跟著改變。<br>我們在這個段落初始的樣式以物件型態給值，初始化的顏色為<code>{activeColor: &#39;gray&#39;,fontSize:20px}</code>，按下按鍵時呼叫<code>Update</code>的方法後<code>activeColor</code>和<code>fontSize</code>的值會被變更為<code>Update</code>方法裡的設定：<code>pink</code>和<code>30px</code>。</p>
-<p>HTML 的部分：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>class綁定: :class='xxx'<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"classC"</span> <span class="attr">:class</span>=<span class="string">"myClass"</span>&gt;</span>xxx是字元串<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">:class</span>=<span class="string">"&#123;classA:isActive, classB:!isActive&#125;"</span>&gt;</span>xxx是物件<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">:class</span>=<span class="string">"[myClass,hasClass ]"</span>&gt;</span>xxx是陣列<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 比較少用 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"Update"</span>&gt;</span>Update<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>style綁定<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">:style</span>=<span class="string">"&#123;color: activeColor, fontSize: fontSize + 'px'&#125;"</span>&gt;</span></span><br><span class="line">    color: activeColor, fontSize: fontSize + 'px'</span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- activeColor 和 fontSize 需要去 data 初始化 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>VueJs 的部分</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    myClass: <span class="string">'classA'</span>,</span><br><span class="line">    hasClass: <span class="string">'classB'</span>,</span><br><span class="line">    isActive: <span class="literal">false</span>,</span><br><span class="line">    activeColor: <span class="string">'gray'</span>,</span><br><span class="line">    fontSize: <span class="number">20</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    Update() &#123;</span><br><span class="line">      <span class="keyword">this</span>.myClass = <span class="keyword">this</span>.hasClass;</span><br><span class="line">      <span class="keyword">this</span>.isActive = <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">this</span>.activeColor = <span class="string">'pink'</span>;</span><br><span class="line">      <span class="keyword">this</span>.fontSize = <span class="number">30</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>Class 和 Style 的綁定對於控制樣式或狀態切換來說是很方便的，在處理許多互動狀態的設計上應該會蠻常用到的。</p>
-<p>今天是情人節，無論有沒有情人，我們都要愛自己，才會有能力愛人或是吸引其他人來愛你。<br>十幾年前曾經聽過一句頗浪漫的情人節話語：「如果我的生活是 HTML，你(妳)就是我的 CSS。」當時 JavaScript 還沒那麼重要，不過以現在的發展狀況而言，JavaScript，它是我的精神伴侶。<br>情人節快樂！</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="../../Vue_class_style/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -483,39 +473,17 @@
 
       
         
-          
-            <p>昨天介紹了 VueJs 裡常用的模板語法，今天就來介紹在我們 <code>new Vue({ })</code>裡面會用到到的 computed(計算屬性)和 watch(監視器)</p>
+          <p>昨天介紹了 VueJs 裡常用的模板語法，今天就來介紹在我們 <code>new Vue({ })</code>裡面會用到到的 computed(計算屬性)和 watch(監視器)</p>
 <p>我們可以先來看一下範例：<a href="https://codepen.io/pen/" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
 <p>同樣的以 cdn 的方式先引入<code>vue.js</code>。</p>
 <p>前兩個是「姓」和「名」的輸入框<code>input</code>First Name 和 Last Name，先在實例裡的<code>data</code>初始化他們的值之後，就可以在各別的<code>input</code>和<code>p</code>標籤看到它們顯示出來，現在要來進行將「姓」和「名」合併，且可以透過這些<code>input</code>去直接更改已經初始化的值。</p>
-<p>合併「姓」和「名」的三個輸入框<code>fullName</code>則是想做到讓姓和名可綁定，並顯示在輸入框裡。<br>前兩個是單向改變，也就是說在「姓」和「名」的輸入會影響 Full Name1 和 Full Name2，但改變 Full Name1 和 Full Name2 時「姓」和「名」的內容不會更動。<br>最後一個是雙向的，也就是說無論是「姓」和「名」的輸入或是 Full Name3 裡的更動，兩邊的內容都會一起變動。<br>這幾個輸入框都是用<code>v-model</code>來綁定。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app2"</span>&gt;</span></span><br><span class="line">  First Name :</span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"FirstName"</span> <span class="attr">v-model</span>=<span class="string">"firstName"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  Last Name :</span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"LastName"</span> <span class="attr">v-model</span>=<span class="string">"lastName"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!--fullName1是根據fistName和lastName計算產生出來的--&gt;</span></span><br><span class="line">  Full Name1 (computed, sens unique ) :</span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"full Name1"</span> <span class="attr">v-model</span>=<span class="string">"fullName1"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--fullName2是根據watch監看產生出來的--&gt;</span></span><br><span class="line">  Full Name2 (watch, deux sens) :</span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"full Name"</span> <span class="attr">v-model</span>=<span class="string">"fullName2"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  Full Name3 (computed, deux sens) :</span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"full Name2"</span> <span class="attr">v-model</span>=<span class="string">"fullName3"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 顯示觀察用 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>firstName : &#123;&#123; firstName &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>lastName : &#123;&#123; lastName &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>fullName1 : &#123;&#123; fullName1 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>fullName2 : &#123;&#123; fullName2 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>fullName3 : &#123;&#123; fullName3 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>先來說明這幾個在實例裡的屬性，這些屬性都是物件。</p>
-<h3 id="computed-計算屬性"><a href="#computed-計算屬性" class="headerlink" title="computed: { } 計算屬性"></a>computed: { } 計算屬性</h3><p>computed 是實例裡的一個屬性，而它的值是個物件，在物件裡可能會有：</p>
-<ol>
-<li>多個方法的物件，對狀態屬性進行計算後，回傳一個新的資料, 供頁面獲取顯示。</li>
-<li>自定義方法，一般情況下，相當是一個只能讀取的屬性，可利用 set/get 方法來實現屬性資料的計算讀取, 同時監視屬性資料的變化</li>
-</ol>
-<p>如何給物件定義 <code>get/set</code> 屬性 ?<br>在建立物件時指定:<code>·get name () {return xxx} / set name (value) {}</code><br>物件建立之後指定: <code>Object.defineProperty(obj, age, {get(){}, set(value){}})</code></p>
-<p>在頁面中使用雙大括號，將「方法名」包起來顯示計算的結果。</p>
-<h3 id="使用-computed-計算屬性的-get-set-方法雙向顯示和監視"><a href="#使用-computed-計算屬性的-get-set-方法雙向顯示和監視" class="headerlink" title="使用 computed 計算屬性的 get / set 方法雙向顯示和監視"></a>使用 computed 計算屬性的 get / set 方法雙向顯示和監視</h3><p>剛剛說的 Full Name3 可達到互相牽動的效果，就是用 computed 計算屬性裡的兩個 callback 函式 getter/setter 來做到。<br><code>get()</code>我們需要讀取當前屬性時呼叫。然後根據相關的資料計算並傳回當前屬性的值。<br><code>set(value)</code> 並不像字面上的意思，而是當屬性值發生變化呼叫 set callback 函式，然後去更新相關的屬性資料。在這裏<code>value</code>即代表 Full Name3 最新的屬性值。</p>
-<p>如果是以 computed 來計算屬性產生值，就不需要在<code>data</code>裡初始化值。所以我們也不需要在<code>data</code>裡初始化 Full Name3 的值。<br>計算屬性 computed 有個特性，它會在第一次計算時就將結果存在快取裡, 多次讀取也只執行一次 getter 計算，以節省效能。</p>
-<h3 id="watch-監視器"><a href="#watch-監視器" class="headerlink" title="watch 監視器"></a>watch 監視器</h3><p>監視器的寫法有兩種：</p>
-<ol>
-<li>直接寫成實例的<code>watch</code>屬性物件，屬性的值為監聽的對象，值則 callback 函式，在函數內部進行計算。這個監聽屬性可包含多個屬性監視的物件，並分為一般監視和深度<code>deep</code>監視。</li>
-<li>透過實例本身(vm)有的方法<code>$watch()</code>來監聽 <code>$watch</code>有兩個參數，第一個為要監聽的對象，第二參數為 callback 函式，在函數內部進行計算。<br>有沒覺得這兩種寫法大同小異？</li>
-</ol>
-<p>這兩種寫法的語法分別為：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.</span></span><br><span class="line">xxx: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;&#125;</span><br><span class="line">xxx : &#123;</span><br><span class="line">deep : <span class="literal">true</span>,</span><br><span class="line">handler : fun(value)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.</span></span><br><span class="line">vm.$watch(<span class="string">'xxx'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>我們再來看一下完整的程式碼：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app2'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    firstName: <span class="string">'A'</span>,</span><br><span class="line">    lastName: <span class="string">'B'</span>,</span><br><span class="line">    fullName2: <span class="string">'A-B'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 計算屬性配置：值為物件</span></span><br><span class="line">  computed: &#123;</span><br><span class="line">    <span class="comment">// 什麼時候執行：初始化顯示/ 相關的data屬性資料發生變化</span></span><br><span class="line">    <span class="comment">// 計算並回傳目前屬性的值</span></span><br><span class="line">    fullName1() &#123;</span><br><span class="line">      <span class="comment">// 計算屬性中的一個方法，方法的回傳值作為屬性值</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">'-'</span> + <span class="keyword">this</span>.lastName;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    fullName3: &#123;</span><br><span class="line">      <span class="comment">// 自定義物件，有兩個callback 函式 get, set(value)</span></span><br><span class="line">      <span class="comment">// 什麼時候用？ 當需要讀取當前屬性時呼叫。</span></span><br><span class="line">      <span class="comment">// 用來做什麼？ 根據相關的資料計算並傳回當前屬性的值</span></span><br><span class="line">      <span class="keyword">get</span>() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">'-'</span> + <span class="keyword">this</span>.lastName;</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">// 什麼時候用？ 監視當前屬性的變化，當屬性值發生變化時呼叫。更新相關的資料屬性</span></span><br><span class="line">      <span class="comment">// 用來做什麼？ 根據相關的資料計算並傳回當前屬性的值</span></span><br><span class="line">      <span class="keyword">set</span>(value) &#123;</span><br><span class="line">        <span class="comment">// value 是 fullName3 輸入的最新屬性值</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'fullName3 set()'</span>, value);</span><br><span class="line">        <span class="comment">// 更新firstName和lastName</span></span><br><span class="line">        <span class="keyword">const</span> names = value.split(<span class="string">'-'</span>);</span><br><span class="line">        <span class="keyword">this</span>.firstName = names[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">this</span>.lastName = names[<span class="number">1</span>];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 寫在vm 實例的監聽，叫配置監聽，另一種監聽方法使用vm的方法</span></span><br><span class="line">  watch: &#123;</span><br><span class="line">    <span class="comment">// 要監聽哪個屬性？ 監聽變動時通知我們，使用callback 給我們最新的值</span></span><br><span class="line">    firstName: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// firstName 發生了變化</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'watch firstName'</span>, value);</span><br><span class="line">      <span class="comment">// 更新 fullName2</span></span><br><span class="line">      <span class="keyword">this</span>.fullName2 = value + <span class="string">'-'</span> + <span class="keyword">this</span>.lastName;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 這段和下面用 vm.$watch() 寫的效果是一樣的。</span></span><br><span class="line">    <span class="comment">// lastName: function (value) &#123;</span></span><br><span class="line">    <span class="comment">//   this.fullName2 = this.firstName + '-' + value</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 實例的方法都是以 $ 開頭 第一參數監聽對象 第二參數callback函式</span></span><br><span class="line">vm.$watch(<span class="string">'lastName'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'watch lastName'</span>, value);</span><br><span class="line">  <span class="comment">// 更新 fullName2</span></span><br><span class="line">  <span class="keyword">this</span>.fullName2 = <span class="keyword">this</span>.firstName + <span class="string">' '</span> + value;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h4 id="有趣的-callback-解釋"><a href="#有趣的-callback-解釋" class="headerlink" title="有趣的 callback 解釋"></a>有趣的 callback 解釋</h4><p>callback 函式需滿足三個條件： 1.你定義的 2.你沒有呼叫 3.但最終它執行了<br>callback 什麼時候用？ 呼叫函式的時候<br>用來做什麼？ 計算並回傳當前屬性的值</p>
-<p>再接再厲～</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="../../Vue_computed_watch/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -654,35 +622,16 @@
 
       
         
-          
-            <p>VusJs 是個便利的框架，它的便利在於幫我們把一些較複雜的事情都先做好了，據說 Vue 的入門較簡單，單是也是會讓我們將 JS 武功廢掉的框架，還記得有位朋友說，他寫了一陣子 Vue 之後，幾乎 JS 的武功都廢了，聽起來蠻聳動的。所以一定要記住，時不常回來寫原生還是必要的。</p>
+          <p>VusJs 是個便利的框架，它的便利在於幫我們把一些較複雜的事情都先做好了，據說 Vue 的入門較簡單，單是也是會讓我們將 JS 武功廢掉的框架，還記得有位朋友說，他寫了一陣子 Vue 之後，幾乎 JS 的武功都廢了，聽起來蠻聳動的。所以一定要記住，時不常回來寫原生還是必要的。</p>
 <p>這裡記錄一些學習上的筆記和用法，以便將來腦殘可回來補腦。</p>
 <p>我們先以 CDN 的方式將 Vue.js 引入就可以用了，記得也要先創建一個 Vue 的實例來用，裡面會有所有控制與資料的部分。<br>接著，在 HTML 裡將要控制的部分以一個<code>&lt;div&gt;</code>包住，並給予 ID <code>&lt;div id=&quot;app&quot;&gt;</code>這個 <code>#app</code>就可以以標籤綁定資料的方式，和 Vue 的實例裡的資料做溝通。</p>
-<h3 id="資料綁定"><a href="#資料綁定" class="headerlink" title="資料綁定 "></a>資料綁定 </h3><p>資料綁定最常用的是雙大括號，裡面的變數就是聯繫實例裡面<code>Data</code>物件裡的屬性資料。<br>我們可以如何使用它：</p>
-<p>可以以 HTML 的形式來綁定如<code>&lt;p v-html=&quot;msg&quot;&gt;&lt;/p&gt;</code> (顯示 html 格式)<br>用 text 的形式來綁定如<code>&lt;p v-text=&quot;msg&quot;&gt;&lt;/p&gt;</code>(顯示純文字)<br>雙花括號不可直接用在 html 的屬性上，在需要用的情況下，可以用<code>v-bind</code>的方式如</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-bind:disabled</span>=<span class="string">"isDisabled"</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>直接使用 JS 表達式，在雙大括號裡可以直接些三元運算子，甚至是直接用 JS 的內建函式。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; isName ? Yes : No; &#125;&#125; or &#123;&#123; name .split('') .reverse() .join(''); &#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>必須寫在 Html 的屬性裡：<code>&lt;div v-bind:id=&quot;&#39;list-&#39; + id&quot;&gt;&lt;/div&gt;</code></p>
-<p>我們想要在一個 input 裡即使顯示我們輸入的內容，在實例的<code>data</code>先準備好初始化的資料，在<code>input</code>裡，用指令<code>v-model</code>(資料)去綁住，然後再到要顯示的 html 裡，以雙花括號包住在<code>data</code>裡的某一屬性，就可以達到即使顯示的效果。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>my name is &#123;&#123; name &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"name"</span> <span class="attr">placeholder</span>=<span class="string">"Write your name"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>在監聽事件的部分，可使用<code>v-on:click=&quot;方法名&quot;</code>去觸發想要做的事情或資料&gt;<br>&lt;button @click=”showHi(say)”&gt;click</p>
-<p><a href="https://codepen.io/tsuifei/pen/oNXjGBY" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-html</span>=<span class="string">"msg"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>my name is &#123;&#123; name &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; name.toUpperCase() &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; isName ? `Your Name is $&#123;name&#125;` : `Name not good ou null`&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; name.split('').reverse().join('') &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-bind:name</span>=<span class="string">"'list-' + name + ' ' + say"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"name"</span> <span class="attr">placeholder</span>=<span class="string">"Write your name"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">"imgUrl"</span> <span class="attr">alt</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"showHi(say)"</span>&gt;</span>click<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="在-Vue-的實例裡會有什麼？"><a href="#在-Vue-的實例裡會有什麼？" class="headerlink" title="在 Vue 的實例裡會有什麼？"></a>在 Vue 的實例裡會有什麼？</h2><p>在 vm 的實例裡，我們需要準備我們想對組件操控的方法和顯示的資料，當然不只這些，實例有點像是控制中心，在這裏控制 V:viem 和 M:model ，我們也成實例為 VM: viewModel。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>, <span class="comment">//  指定 DOM 標籤容器的選擇器，Vue 就會針對這個容器做管理</span></span><br><span class="line">  data: &#123;</span><br><span class="line">    <span class="comment">// 物件，所有這個容器（組件）的資料來源，是初始化資料狀態的物件，vm 會自動擁有data 中所有屬性，在頁面中也可直接調用這些屬性。</span></span><br><span class="line">    name: <span class="string">'Tracy'</span>,</span><br><span class="line">    isName: <span class="literal">true</span>,</span><br><span class="line">    msg: <span class="string">'&lt;h2&gt;Today is good day&lt;/h2&gt;'</span>,</span><br><span class="line">    imgUrl: <span class="string">'https://cn.vuejs.org/images/logo.png'</span>,</span><br><span class="line">    say: <span class="string">'Hi Paris'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    <span class="comment">// 這個組件會用到的方法，供頁面中的事件指令來綁定 callback</span></span><br><span class="line">    showHi(sayHi) &#123;</span><br><span class="line">      alert(sayHi);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="data"><a href="#data" class="headerlink" title="data: { }"></a>data: { }</h3><p>data 物件的屬性大多為初始化的屬性字面值。</p>
-<h3 id="methods"><a href="#methods" class="headerlink" title="methods: { }"></a>methods: { }</h3><p>methods 裡面包含多個方法的物件，來提供給頁面中的<code>v-on</code>事件指令來綁定 callback 回調函式<br>callback 函式預設有 event 參數, 但也可以指定自己的參數<br>所有的方法由 vue 物件來呼叫, 調用 data 中的屬性直接使用 this.xxx</p>
-<p>今天先寫到這裡，一定要堅持下去喔！</p>
-<p>題外話，近日武漢肺肺炎的關係，開始關注一些中國的現狀，和中國朋友閒聊時，才知道真的是水深火熱的環境。<br>另如，我不解為何中國朋友都不太敢對自己的國家有所批評，台灣說的「批評求進步」簡直是讓自己陷入危險。上次看法國報導，記者試著採訪中國遊客，關於看到法輪功的感想，一團幾十個，沒有一個願意開口。後來朋友跟我說，如果從中國第一次出國，就要參加一種叫行前教育的活動，需要政府部門批准他們出去，那時工作人員會告誡他們不要把外面的信息帶回來。這可能也是很多海外華人不像多評論政治的原因。他去台灣的第一次是這麼要求，他的父母也是。</p>
-<p>想想，生活在台灣真的還是件蠻幸福的事。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="../../Vue_Template_Syntax/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -821,79 +770,18 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>什麼是物件 Object？ 物件可以包山包海。</p>
 </blockquote>
 <p>物件是 JavaScript 中的參考資料型別，它擁有複合的值，可以儲存不同類型的值(value)，然後透過 Key 來取值。<br>Object 也可以看成是屬性的無序列集合，每個屬性都是一對 Key:value。物件除了可以擁有自己的屬性，還可以透過原型物件來繼承屬性。</p>
 <p>在 JavaScript 的資料型別裡，除了<code>string</code>、<code>number</code>、<code>boolean</code>、<code>null</code>和<code>undefined</code>之外，其他都是物件型別。<br>物件以外的型別資料的值是無法修改與不可變的，我們稱為這類的資料型別為「基本型別」，「基本型別」的比較，是以「值」來比較，如果兩個變數的值相等，就會被視為這兩個變數是相等的。</p>
-<p>物件是「參考資料型別」，它的值是被保存在記憶體裡的物件，當一個變數是物件（參考型別）時，實際上變數中保存的並不是這個物件本身，而是記憶體的位址。<br>當我們複製一個物件給另一變數時，這個變數會依照這個變數的參考值（記憶體的位址）給另一個變數參考，而不是複製物件，也就是說複製物件的值，會同時指向被複製的物件記憶體位址。也因此如果更動其中一個物件變數的內容，另一個物件變數內容也會一起更動。</p>
-<p>在讀一些中文簡體的資料時，我們會看到類似：「简单来说栈内存用来保存变量和基本类型。堆内存用来保存对象」，用繁體的解釋是：基本型別是依照記憶體所存的值當依據，參考型別則是會先以記憶體位址為參考，才將裡面的值取出，但因為會參考同一個記憶體位址，所以找到的值也ㄧ樣。</p>
-<h3 id="如何創建一個物件"><a href="#如何創建一個物件" class="headerlink" title="如何創建一個物件"></a>如何創建一個物件</h3><p>有兩種方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一種使用建構式：</span></span><br><span class="line"><span class="keyword">let</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">obj.name = <span class="string">"Tracy"</span>;</span><br><span class="line">obj.age = <span class="number">18</span>;</span><br><span class="line"><span class="comment">// 第二種方法，也是我們較常用的方法，以 &#123;&#125; 表示物件。</span></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  name = <span class="string">"Tracy"</span>;</span><br><span class="line">  age = <span class="number">18</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="物件取值與賦值的方法"><a href="#物件取值與賦值的方法" class="headerlink" title="物件取值與賦值的方法"></a>物件取值與賦值的方法</h2><ol>
-<li>以物件名.屬性名 ex.<code>obj.name</code>，使用「點」</li>
-<li>使用[] ex.<code>obj[&#39;屬性名&#39;]</code>，使用[中括號]</li>
-</ol>
-<p>和 Array 不同的是，Array 是以索引<code>index</code>和值<code>value</code>做配對，但 objet 是以鍵<code>Key</code>和值<code>Valur</code>配對使用。</p>
-<h4 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h4><p><code>let arr = [&quot;Tracy&quot;, 42, &quot;Paris&quot;, &quot;Taiwan&quot; ];</code></p>
-<table>
-<thead>
-<tr>
-<th>index</th>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>value</td>
-<td>Tracy</td>
-<td>42</td>
-<td>Paris</td>
-<td>Taiwan</td>
-</tr>
-</tbody></table>
-<p>取值的方法：<code>arr[0]</code></p>
-<h4 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h4><p><code>let obj= { name : &quot;Tracy&quot;, age: 42, city: &quot;Paris&quot;, pays: &quot;Taiwan&quot; }</code></p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>name</th>
-<th>age</th>
-<th>city</th>
-<th>pays</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>value</td>
-<td>Tracy</td>
-<td>42</td>
-<td>Paris</td>
-<td>Taiwan</td>
-</tr>
-</tbody></table>
-<p>取值的方法：<code>obj.name</code></p>
-<p>Array 和 Object 最大的不同是 Array 是有順序的，會隨著索引值的順序，而 Object 的值是跟著 Key，所以即使變換順序也不會受影響。</p>
-<p>Object 取值的 ==.== <code>obj.name</code>如同中文的「的」，我們在其他地方也常用的這個點。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a id=&quot;alink&quot; href=&quot;https://google.com&quot; target=&quot;_blank&quot;&gt; c&apos;est un lien &lt;/a&gt;</span><br></pre></td></tr></table></figure>
-
-<p>想要抓取 DOM 的值也可利用此一方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> attr = <span class="built_in">document</span>.getElementById(<span class="string">'alink'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(attr.href); <span class="comment">// 會抓到 &lt;a&gt; 裡的 href 這個屬性的值</span></span><br><span class="line"><span class="comment">// 修改的方法</span></span><br><span class="line">attr.href = <span class="string">'www.tsuifei.com'</span>;</span><br></pre></td></tr></table></figure>
-
-<p>如果把上述的 HTML<code>&lt;a&gt;</code>改為物件，即是：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">  id: <span class="string">'alink'</span>,</span><br><span class="line">  href: <span class="string">'https://google.com'</span>,</span><br><span class="line">  target: <span class="string">'_blank'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>修改物件裡的某一值:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  name: <span class="string">'Tracy'</span>,</span><br><span class="line">  age: <span class="number">42</span>,</span><br><span class="line">  city: <span class="string">'Paris'</span>,</span><br><span class="line">  pays: <span class="string">'Taiwan'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.age = <span class="number">50</span>; <span class="comment">// 重新給值</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="常見的物件使用方式"><a href="#常見的物件使用方式" class="headerlink" title="常見的物件使用方式"></a>常見的物件使用方式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br></pre></td></tr></table></figure>
-
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="../../JS_Basic_Object/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1032,35 +920,19 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>衣服和褲子總要穿穿才會合身，何況是電腦這麼神聖的東西。</p>
 </blockquote>
 <p>這篇是很久以前紀錄的，如果 2019 年八月買的，到現在也已經七個月了，但是很神奇的是，從舊電腦換到新電腦，幾乎是有種無痛轉移的狀態，雖然是新電腦，但其實頗懷念舊的。</p>
 <p>上一台舊的 MacBook Pro 是已經停產的 17 吋筆電，很重但很好用，我用她做所有的事情，且從 2001 年入手到換新電腦，她都很良善的陪著我，隨然中後期她的一邊喇吧不再動了，但是除此之外一切都很完美，直到近一兩年，安裝新的系統，對她而言開始覺得很吃力，負荷不過來，所以才有想要換新電腦的念頭。</p>
 <p>原本以為寫程式是不太需要記憶體或空間的，但是學了才知道，要安裝一大堆的編譯器和套件，也頗重的。尤其套件從網站上下載下來，有時會達到幾百 M ，這時她就會氣喘如牛了。但是一台筆電陪了我近九年，也真的是算辛苦了，希望新的 MacBook Pro 也可以陪我長長久久，而我也會很珍惜與保護她的。</p>
-<p>由於在法國買的鍵盤超難打 code ，所以就決定回來台灣買。入手的時候在好想工作室 trining，所以也就得到許多人的幫助與建議，且還把部落格給架了起來。以前架站都是用 Wordpress，這次安裝在 github 上倍感新鮮。</p>
-<h2 id="安裝-Hexo-紀錄"><a href="#安裝-Hexo-紀錄" class="headerlink" title="安裝 Hexo 紀錄"></a>安裝 Hexo 紀錄</h2><p>而在本機安裝 hexo 使<code>npm install -g hexo-cli</code>卻發現權限不足的問題，記得 Chris 說過，盡量不要用<code>sudo</code>這個最高權限安裝，所以來找一下其他方式，找到這篇：<a href="https://stackoverflow.com/questions/33725639/npm-install-g-less-does-not-work" target="_blank" rel="noopener">npm install -g less does not work
-</a> 裡面也說盡量不要用<code>sudo</code>安裝，所以想來仔細了解一下。</p>
-<p>此篇寫著： Using sudo is not recommended. It may give you permission issue later. While the above works, I am not a fan of changing folders owned by root to be writable for users, although it may only be an issue with multiple users. To work around that, you could use a group, with ‘npm users’ but that is also more administrative overhead. See here for the options to deal with permissions from the documentation: <a href="https://docs.npmjs.com/getting-started/fixing-npm-permissions" target="_blank" rel="noopener">https://docs.npmjs.com/getting-started/fixing-npm-permissions</a></p>
-<p>所以他用以下的方法：<br>I would go for option 2:</p>
-<p>To minimize the chance of permissions errors, you can configure npm to use a different directory. In this example, it will be a hidden directory on your home folder. 要最小化權限錯誤的可能性，可以將 npm 配置為使用其他目錄。在此示例中，它將是主文件夾中的隱藏目錄。</p>
-<p>Make a directory for global installations:<br>為全局安裝創建一個目錄：<br><code>mkdir ~/.npm-global</code></p>
-<p>Configure npm to use the new directory path:<br>配置 npm 以使用新的目錄路徑：<br><code>npm config set prefix &#39;~/.npm-global&#39;</code></p>
-<p>Open or create a <del>/.profile file and add this line:<br>打開或創建一個〜/ .profile 文件並添加以下行：<br>`export PATH=</del>/.npm-global/bin:$PATH`
-Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profile，就解決了。</p>
-<p>Back on the command line, update your system variables:<br>返回命令行，更新系統變量：<br><code>source ~/.profile</code></p>
-<p>Test: Download a package globally without using sudo.<br>測試：在不使用 sudo 的情況下全局下載軟件包。<br><code>npm install -g jshint</code><br>==有試成功 安裝 hexo OK 但要用 hexo 時又不行==</p>
-<p>If still show permission error run (mac os):<br>如果仍顯示權限錯誤運行（mac os）：<br><code>sudo chown -R $USER ~/.npm-global</code></p>
-<p>This works with the default ubuntu install of:<br>這適用於默認的 ubuntu 安裝：==(oz:表示還是用 sodu 吧…)==<br><code>sudo apt-get install nodejs npm</code></p>
-<p>I recommend nvm if you want more flexibility in managing versions: <a href="https://github.com/creationix/nvm" target="_blank" rel="noopener">https://github.com/creationix/nvm</a><br>如果您想要更靈活地管理版本，我建議使用 nvm：</p>
-<p>On MacOS use brew, it should work without sudo out of the box if you’re on a recent npm version. Enjoy :)<br>在 MacOS 上使用 brew，如果您使用的是最近的 npm 版本，它應該可以在沒有開箱即用的情況下使用。請享用 ：）</p>
-<h2 id="幾個開發工具介紹"><a href="#幾個開發工具介紹" class="headerlink" title="幾個開發工具介紹"></a>幾個開發工具介紹</h2><p><strong>brew</strong> : MacOs 主要的套件管理工具 (The missing package manager for macOS)。用來補足 macOS 所欠缺的套件管理工具。<br><a href="https://brew.sh/index_zh-tw.html" target="_blank" rel="noopener">官網</a> | <a href="https://mt116.blogspot.com/2017/11/homebrew.html" target="_blank" rel="noopener">介紹</a></p>
-<p><strong>NPM</strong> 是隨同 NodeJS 一起安裝的包管理工具，能解決 NodeJS 程式碼部署上的很多問題。<br><a href="https://www.npmjs.com/" target="_blank" rel="noopener">官網</a> | <a href="https://www.slideshare.net/wantingj/npm-46801372" target="_blank" rel="noopener">套件管理 &amp; 常用開發工具介紹</a></p>
-<p><strong>Node Version Manager</strong> 是 Node.js 版本管理的工具。<br>照官網安裝後，仍要去 .bash_profile 改路徑與環境變數。<br><a href="https://github.com/nvm-sh/nvm/blob/master/README.md" target="_blank" rel="noopener">官網</a>｜ <a href="https://ithelp.ithome.com.tw/articles/10184980" target="_blank" rel="noopener">教學</a></p>
-<p>Mac 的環境變數相關文章<br><a href="https://codertw.com/ios/96761/" target="_blank" rel="noopener">Mac 環境變數小記</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="../../Mac_for_my_new_MacBookPro/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1199,64 +1071,18 @@ Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profil
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>想要矯正儀容端正，看來也沒那麼簡單。</p>
 </blockquote>
 <p>前陣子面試時，有被問到有沒有用 ESLint 來讓自己的寫碼風格統一些，被問了才想到，在舊電腦時還有用這個在 VSCode 裡的外掛，換了電腦就幾乎忘記它了，再加上將來開發專案時，也希望自己在寫碼的統一風格上做改善，所以想說也應該再來重新部署一次，可以以 Airbnb 的寫作風格為榜樣的規則，訓練自己養成專業開發人員應有的寫作習慣。</p>
 <p>這次的部署主要參考很喜歡的老師 Traversy 所放在 Youtube 的影片，再參考其他大神的文章當輔助，試著了解每一個步驟或指令背後的意義，這樣應該比較可以理解原理，將來遇到問題比較有可能解決。</p>
-<p><a href="https://www.youtube.com/watch?v=SydnKbGc7W8" target="_blank" rel="noopener">VSCode ESLint, Prettier &amp; Airbnb Style Guide Setup</a></p>
-<p>使用 ESLint 主要目的是確保將來自己寫的程式能夠較為統一風格與簡潔，請跟著以下的步驟來設定，需要注意的是，這次的設定並沒有考慮到實用其他框架時所需要的套件，如果到時候以框架開發，也應該把需要的套件安裝好。</p>
-<h3 id="第一部，先去暸解要安裝的套件以及規則"><a href="#第一部，先去暸解要安裝的套件以及規則" class="headerlink" title="第一部，先去暸解要安裝的套件以及規則"></a>第一部，先去暸解要安裝的套件以及規則</h3><p>ESLint 官網：<a href="https://eslint.org/" target="_blank" rel="noopener">ESLint - Pluggable JavaScript linter</a><br>ESLint 中文：<a href="https://cn.eslint.org/docs/user-guide/configuring" target="_blank" rel="noopener">Configuring ESLint - ESLint 中文</a><br>ESLint 規則：<a href="https://eslint.org/docs/rules/" target="_blank" rel="noopener">List of available rules - ESLint - Pluggable JavaScript linter</a></p>
-<p>Airbnb 的寫作規範：<a href="https://github.com/airbnb/javascript" target="_blank" rel="noopener">airbnb/javascript: JavaScript Style Guide</a></p>
-<p>安裝 npm 的 Airbnb 設置套件：<a href="https://www.npmjs.com/package/eslint-config-airbnb" target="_blank" rel="noopener">eslint-config-airbnb - npm</a>將遵循 Airbnb 這個套件的規則，再依自定義配置文件調整。</p>
-<p>在 VSCode 安裝 prettier 外掛<br><a href="https://prettier.io/" target="_blank" rel="noopener">Prettier · Opinionated Code Formatter</a></p>
-<h4 id="如何查找資料？"><a href="#如何查找資料？" class="headerlink" title="如何查找資料？"></a>如何查找資料？</h4><p>例如看 no-empty 這條<a href="https://eslint.org/docs/rules/no-empty" target="_blank" rel="noopener">no-empty - Rules - ESLint - Pluggable JavaScript linter</a><br>會告訴我們如何修正不當的寫法，在這裡可找得到每條規則的範例，可看出什麼寫法是允許的，什麼是不允許的。如果要練習，也可以在部署完成之後，直接把錯誤的範例貼到自己的檔案上來一一修正，相信會更清楚寫作的規則。</p>
-<h3 id="第二步去-VSCODE-設置"><a href="#第二步去-VSCODE-設置" class="headerlink" title="第二步去 VSCODE 設置"></a>第二步去 VSCODE 設置</h3><ol>
-<li>先確定是否有安裝這兩個套件</li>
-</ol>
-<ul>
-<li>ESLint (by Dirk Baeumer)</li>
-<li>Prettier - Code formatter (by Esben Petersen)</li>
-</ul>
-<ol start="2">
-<li><p>接下來是全局的設置，以<code>command + ,</code>叫出 VSCode 的設定，輸入<code>format on save</code> 並將這項打勾。也就是說如果我儲存檔案時，如果忘記打分號，VSCode 會自動幫我補上去。</p>
-</li>
-<li><p>在 VSCode 的設定尋找<code>Prettier</code>再找到<code>Prettier: Single Quote</code>打勾，表示如果我設定單引號，VSCode 在儲存時會幫我們自動更正; 尋找<code>Prettier: Semi</code> 打勾。</p>
-</li>
-</ol>
-<h3 id="第三步-安裝相關套件-4-23"><a href="#第三步-安裝相關套件-4-23" class="headerlink" title="第三步 安裝相關套件(4:23)"></a>第三步 安裝相關套件(4:23)</h3><p>1.<code>npm init -y</code> 會自動增加一個<code>package.json</code>配置檔案。</p>
-<p>2.把需要的套件都先安裝好，指令：<code>npm i -D eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-node eslint-config-node</code>執行後等待這些套件安裝完畢。</p>
-<p>在安裝這些套件時，最好也可以試著了解每個指令的意義，請參閱：<a href="http://dreamerslab.com/blog/tw/npm-basic-commands/" target="_blank" rel="noopener">npm 基本指令</a></p>
-<h3 id="第四步-安裝-Airbnb-風格指南"><a href="#第四步-安裝-Airbnb-風格指南" class="headerlink" title="第四步 安裝 Airbnb 風格指南"></a>第四步 安裝 Airbnb 風格指南</h3><p>Airbnb 的寫作風格一直是大家推崇的，就連命名規則據說也很清楚，應該是值得來好好看看。我們先至 Airbnb 的 <a href="https://www.npmjs.com/package/eslint-config-airbnb" target="_blank" rel="noopener">eslint-config-airbnb - npm</a> 上面找到安裝指令：<code>npx install-peerdeps --dev eslint-config-airbnb</code>，再到終端機去執行安裝它。</p>
-<h3 id="第五步-手動創建並設置-Prettier、eslint"><a href="#第五步-手動創建並設置-Prettier、eslint" class="headerlink" title="第五步 手動創建並設置 Prettier、eslint"></a>第五步 手動創建並設置 Prettier、eslint</h3><p>手動建立兩個文件<code>.eslintrc</code> 與 <code>.prettierrc</code> 的設定檔到專案的根目錄。內容如下，最好是先建立好，之後每個專案直接拷貝即可。如果不用手動設置，也可以用自動的方式生成（在第六步）。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// .prettierrc</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"singleQuote"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">"trailingComma"</span>: <span class="string">"es5"</span>,</span><br><span class="line">  <span class="string">"semi"</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ”字串使用單引號”、“物件字面定義統一加上最後逗號”、“不使用分號作為語句結尾”</span></span><br></pre></td></tr></table></figure>
-
-<p>可以去<a href="https://prettier.io/docs/en/options.html" target="_blank" rel="noopener">Options · Prettier</a>找更多的設置，並依自己的需求去<code>.prettierrc</code>訂定規則。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.eslintrc</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"env"</span>: &#123;</span><br><span class="line">    <span class="string">"node"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"browser"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"es6"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"jest"</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"extends"</span>: <span class="string">"react-app"</span>,</span><br><span class="line">  <span class="string">"parser"</span>: <span class="string">"babel-eslint"</span>,</span><br><span class="line">  <span class="string">"plugins"</span>: [<span class="string">"prettier"</span>],</span><br><span class="line">  <span class="string">"rules"</span>: &#123;</span><br><span class="line">    <span class="string">"prettier/prettier"</span>: <span class="string">"error"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="第六步-安裝-eslint-與初始化配置"><a href="#第六步-安裝-eslint-與初始化配置" class="headerlink" title="第六步 安裝 eslint 與初始化配置"></a>第六步 安裝 eslint 與初始化配置</h3><p><strong>安裝套件的方式自動生成設定檔</strong>如果用這方式就會需要全局 Global 最高權限去設定它（不建議）。指令：<code>sudo npm i -g eslint</code>。如果是安裝到<strong>Global</strong>，完成就可以直接以初始化的方式去自動產生設定檔。<br>指令：<code>eslint --init</code>。輸入後回答一連串的設定問題後，就會自動產生一個<code>eslintrc.json</code>的設定檔了。</p>
-<p>如果只想要安裝在開發的專案中就選擇<code>npm install eslint --save-dev</code><br>如果是在<strong>專案</strong>裡，可以執行 <code>./node_modules/.bin/eslint --init</code>去初始化專案的 ESLint。</p>
-<h4 id="初始化的選項"><a href="#初始化的選項" class="headerlink" title="初始化的選項"></a>初始化的選項</h4><p>在初始化時，ESLint 會以詢問方式請我們選擇，再將這些我們選擇的設定彙整到<code>eslintrc.json</code>去。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">How would you like to use ESLint? <span class="comment">// 你想使用 ESLint 來做什麼？</span></span><br><span class="line">- To check syntax, find problems, and enforce code style <span class="comment">//檢查語法、找出問題和強制執行編碼風格。</span></span><br><span class="line"></span><br><span class="line">What type <span class="keyword">of</span> modules does your project use? <span class="comment">// 該專案是用什麼方式導入模組？</span></span><br><span class="line">- JavaScript modules (<span class="keyword">import</span>/<span class="keyword">export</span>) <span class="comment">// 使用 import/export</span></span><br><span class="line"></span><br><span class="line">Which framework does your project use? <span class="comment">// 在專案裡用了哪個框架？</span></span><br><span class="line">- React <span class="comment">//</span></span><br><span class="line"></span><br><span class="line">Does your project use TypeScript? No <span class="comment">// 該專案有使用 TypeScript 嗎？</span></span><br><span class="line">- No</span><br><span class="line"></span><br><span class="line">Where does your code run? <span class="comment">// 想在哪個執行環境下使用？</span></span><br><span class="line">- Browser</span><br><span class="line"></span><br><span class="line">How would you like to define a style <span class="keyword">for</span> your project? <span class="comment">// 該如何定義專案中的編碼風格？</span></span><br><span class="line">- Use a popular style guide</span><br><span class="line">- Airbnb: https:<span class="comment">//github.com/airbnb/javascript</span></span><br><span class="line"></span><br><span class="line">What format <span class="keyword">do</span> you want your config file to be <span class="keyword">in</span>? <span class="comment">// 用什麼檔案格式設置？</span></span><br><span class="line">- <span class="built_in">JSON</span> <span class="comment">// 下次可選 Javascript 格式</span></span><br><span class="line"></span><br><span class="line">What style <span class="keyword">of</span> indentation <span class="keyword">do</span> you use? <span class="comment">// 使用哪種縮進樣式？</span></span><br><span class="line">- Tabs</span><br><span class="line"></span><br><span class="line">What quotes <span class="keyword">do</span> you use <span class="keyword">for</span> strings? <span class="comment">// 字符串使用什麼引號？</span></span><br><span class="line">- Double <span class="comment">//雙</span></span><br><span class="line"></span><br><span class="line">What line endings <span class="keyword">do</span> you use? <span class="comment">// 使用什麼行尾？</span></span><br><span class="line">- Unix</span><br><span class="line"></span><br><span class="line">Do you <span class="built_in">require</span> semicolons? <span class="comment">// 結尾使用分號嗎？</span></span><br><span class="line">- No</span><br><span class="line"></span><br><span class="line">Checking peerDependencies <span class="keyword">of</span> eslint-config-airbnb@latest <span class="comment">// 確認是否有這幾個設定檔</span></span><br><span class="line">Would you like to install them now <span class="keyword">with</span> npm? <span class="comment">// 要立即使用npm安裝它們嗎？</span></span><br><span class="line">- Y</span><br></pre></td></tr></table></figure>
-
-<p>設定完成後，會自動生成剛剛選的設置格式<code>json</code>而產生<code>.eslintrc.json</code></p>
-<h3 id="第七步-配置完成使用方式"><a href="#第七步-配置完成使用方式" class="headerlink" title="第七步 配置完成使用方式"></a>第七步 配置完成使用方式</h3><p>配置完成後，在終端機旁的分頁會多一個<code>PROBLEMS 問題</code>，在所有這個檔案夾裡的文件就會依循 ESLint 給的規則而來給予提示，顯示在問題分頁裡了。<br>如果有看不懂的錯誤訊息，可以再回頭去<a href="https://eslint.org/docs/rules/" target="_blank" rel="noopener">ESLint</a>以關鍵字搜尋方式，搜尋到說明、參照範例，會比較清楚需要修正的部分。</p>
-<h3 id="不想使用-Airbnb-的風格該如何設置？（10-22）"><a href="#不想使用-Airbnb-的風格該如何設置？（10-22）" class="headerlink" title="不想使用 Airbnb 的風格該如何設置？（10:22）"></a>不想使用 Airbnb 的風格該如何設置？（10:22）</h3><p>如果不想以 Airbnb 的風格修正功能，可以打開第六步自動部署 ESLint 所自動產生<code>eslintrc.json</code>來調整設置。<br>將<code>eslintrc.json</code>的內容改成大概是這樣：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"extends"</span>: [</span><br><span class="line">        <span class="string">"airbnb"</span>,</span><br><span class="line">        <span class="string">"prettier"</span></span><br><span class="line">    ],</span><br><span class="line">   <span class="string">"plugins"</span>: [</span><br><span class="line">        <span class="string">"prettier"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"rules"</span>: &#123;</span><br><span class="line">        <span class="string">"prettier/prettier"</span>: <span class="string">"error"</span>,</span><br><span class="line">        <span class="string">"No-unused-vars"</span>: <span class="string">"warn"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="引入-express-套件"><a href="#引入-express-套件" class="headerlink" title="引入 express 套件"></a>引入 express 套件</h3><p>在開發如 React 或 Node 專案時，常需要引入不同的函式庫，就需要 Express 套件。<br>指令<code>npm i express</code></p>
-<h3 id="可針客製化調整規則-12-37"><a href="#可針客製化調整規則-12-37" class="headerlink" title="可針客製化調整規則(12:37)"></a>可針客製化調整規則(12:37)</h3><p>如果不希望 ESLint 一直是顯示錯誤，也可以針對某個錯誤標籤設定顯示的方式，在這裏我們把原本沒有宣告變數的「錯誤」提示改成「警告」級別。<br>可在<code>eslintrc.json</code>將 rules 修改為</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"rules"</span>: &#123;</span><br><span class="line">        <span class="string">"No-unused-vars"</span>: <span class="string">"warn"</span> <span class="comment">// 不使用的變數</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>我們在程式裡使用<code>console.log()</code>通常是來除錯，但是 ESLint 卻會警告我們不要用它，我們也可以在<code>eslintrc.json</code>修改規則，在<code>rules</code>增加<code>&quot;no-console&quot;:&quot;off&quot;</code>即可使用<code>console.log()</code>而不出現警告提示。</p>
-<p>如果希望 ESLint 提醒我們，使用我們想要的字串用單括號包覆，也可在<code>eslintrc.json</code>的<code>rules</code>增加<code>&quot;prettier/prettier&quot;: &quot;error&quot;,</code>這樣如果我們用雙括號包字串就會出現[錯誤]提示。</p>
-<p>ESLint 會提示我們要給函式命名，但當我們使用箭頭函式，沒有函式名時，ESLint 就會提示，所以可以在<code>rules</code>加上增加<code>&quot;func-names&quot;:&quot;off&quot;</code>就可使用箭頭函式了。</p>
-<p>還有許多可調整的部分，在此不一一說明，可依 ESLint 出現的提示做更細部的修改，如<code>&quot;no-process&quot;:&quot;off&quot;</code>、<code>&quot;object-shorthand&quot;:&quot;off&quot;</code>、<code>&quot;class-methods-use-this&quot;:&quot;off&quot;</code>，可以修正到自己滿意的狀態，開發會變得更順暢些。</p>
-<p>剛開始使用時勢必會出現義大堆的錯誤或警告提示，但只要慢慢修正、慢慢將好習慣養成，相信將來寫作起來也會越來越簡潔有風格呢～</p>
-<p>在安裝時難免產生疑惑，參考了以下這幾篇文章<br>參考：<br><a href="https://wcc723.github.io/tool/2017/11/09/coding-style/" target="_blank" rel="noopener">在 VSCode 啟用程式碼規範工具 (ESLint)</a><br><a href="https://eddychang.me/react-native-eslint-prettier/" target="_blank" rel="noopener">在 VSCode 中的 React Native 專案設定 ESLint 與 Prettier</a><br><a href="https://ithelp.ithome.com.tw/articles/10215259" target="_blank" rel="noopener">整齊的程式，讓看的人長命百歲，給我用 ESLint</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="../../VSCode_ESLint_Setup/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1395,373 +1221,17 @@ Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profil
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>只要你的考試成績好，就可以得到入門票一張</p>
 </blockquote>
 <p>在法國，應徵前端工程師的職位通常需要下列幾個程序：<br>第一關：人資的電話面試，在電話裡需要大約介紹一下自己的背景，以及自己的工作經歷，接著就是對方的發問，為什麼想應徵這份工作，或是對公司有疑惑也可提問等等。<br>第二關：技術執行長的電話面試，會詢問較多細節，對技術的看法，與團隊合作的細節，介紹公司負責部門的規模和人員、工作分配，當然我們也可以發問。<br>第二關：技術測驗，這有可能是面對面的測驗，寫白板、寫函式、線上測驗都有，但有時也很有可能寄給你連結，請線上直接作答。<br>第四關：直接來公司，最後一次面試，有可能是將來的主管和同事一起面試你。</p>
-<p>以下是網路上的一些技術問題，平常多做做，也可測驗自己對某一主題的熟悉度。<br>自己翻譯了一下這些題目，用法文讀起來有時還是卡卡的，翻譯成中文希望還算順暢，感謝 Chris 的中文題目修正。<br>我會先把正確答案放在最底下，可以先試著作答在看答案喔。</p>
-<h2 id="Quiz-Vue-js-基礎"><a href="#Quiz-Vue-js-基礎" class="headerlink" title="Quiz Vue.js 基礎"></a>Quiz Vue.js 基礎</h2><p><strong>是誰創造了VueJs ?</strong></p>
-<ul>
-<li><input disabled type="checkbox"> Robert Vue</li>
-<li><input disabled type="checkbox"> Evan You</li>
-<li><input disabled type="checkbox"> Mark Zuckerberg</li>
-<li><input disabled type="checkbox"> Nicolas Cage</li>
-</ul>
-<hr>
-<p><strong>定義 Vue Component 的3個部分是什麼？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> script, template, methods</li>
-<li><input disabled type="checkbox"> template, style, script</li>
-<li><input disabled type="checkbox"> script, template, css</li>
-</ul>
-<hr>
-<p><strong>我們如何將資料從父層 Component 傳遞到子層 Component ？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 透過 鏈接屬性</li>
-<li><input disabled type="checkbox"> 透過 callback</li>
-<li><input disabled type="checkbox"> 透過 屬性 data-</li>
-<li><input disabled type="checkbox"> 透過 prop</li>
-</ul>
-<hr>
-<p><strong>我們能否不靠 Babel 編譯的情況，單獨使用 Vue (script src)？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 可</li>
-<li><input disabled type="checkbox"> 不可</li>
-<li><input disabled type="checkbox"> 使用 jQuery 的情況下</li>
-</ul>
-<hr>
-<p><strong>用動態傳值語法，將<code>kiwi</code>給<code>prop</code>的寫法？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> v-bind:kiwi=”kiwi”</li>
-<li><input disabled type="checkbox"> v-key:kiwi=”kiwi”</li>
-<li><input disabled type="checkbox"> v-model=”kiwi”</li>
-</ul>
-<hr>
-<p><strong>Vue 的哪個套件可以在所有 component 之間共享資料？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> ShareData</li>
-<li><input disabled type="checkbox"> Vuex</li>
-<li><input disabled type="checkbox"> DataLoader</li>
-<li><input disabled type="checkbox"> DataStore</li>
-</ul>
-<hr>
-<p><strong>使用<code>v-for</code> 建立 loop 時，必要的屬性是什麼？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> v-id</li>
-<li><input disabled type="checkbox"> v-key</li>
-<li><input disabled type="checkbox"> v-loop</li>
-<li><input disabled type="checkbox"> v-while</li>
-</ul>
-<hr>
-<p><strong>哪一個語法可以 route 到另一個 vue component？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> this.$router.push(url)</li>
-<li><input disabled type="checkbox"> this.$router.go(url)</li>
-<li><input disabled type="checkbox"> this.$router.change(url)</li>
-</ul>
-<hr>
-<p><strong>我們如何在資料的變化的同時觸發一個動作？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 使用 MutationObserver</li>
-<li><input disabled type="checkbox"> 在 methods 使用 setInterval</li>
-<li><input disabled type="checkbox"> 使用 watch</li>
-</ul>
-<hr>
-<p><strong>哪一個 directive (vue 的指令，ex: <code>v-for</code>, <code>v-model</code>) 將輸入欄位和 component 的 data 關聯在一起？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> v-model</li>
-<li><input disabled type="checkbox"> v-bind</li>
-<li><input disabled type="checkbox"> v-store</li>
-<li><input disabled type="checkbox"> v-input</li>
-</ul>
-<hr>
-<h2 id="Quiz-Vue-js-中等程度"><a href="#Quiz-Vue-js-中等程度" class="headerlink" title="Quiz Vue.js 中等程度"></a>Quiz Vue.js 中等程度</h2><p><strong>哪個 method 可以確保 dom 已完成更新才執行？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> Vue.sync</li>
-<li><input disabled type="checkbox"> Vue.nextTick</li>
-<li><input disabled type="checkbox"> Vue.refresh</li>
-<li><input disabled type="checkbox"> Vue.await</li>
-</ul>
-<hr>
-<p><strong>如何使用<code>Vue</code>方法（ component 的功能）訪問本機DOM的元素？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 透過 v-node et un callback</li>
-<li><input disabled type="checkbox"> 透過 id 屬性與 document.getElementById</li>
-<li><input disabled type="checkbox"> 透過 v-ref</li>
-</ul>
-<hr>
-<p><strong>我們如何從由<code>“document /：id”</code>路由解釋的URL獲取<code>“id”</code>參數？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> this.$route.params.id</li>
-<li><input disabled type="checkbox"> this.$route.vars[‘id’]</li>
-<li><input disabled type="checkbox"> this.$route.query.id</li>
-<li><input disabled type="checkbox"> this.$route.document.id</li>
-</ul>
-<hr>
-<p><strong>哪些指令不應混在同一元素或 component 上？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> v-if et v-bind</li>
-<li><input disabled type="checkbox"> v-text et v-on</li>
-<li><input disabled type="checkbox"> v-show et v-model</li>
-<li><input disabled type="checkbox"> v-for et v-if</li>
-</ul>
-<hr>
-<p><strong>將事件發送到不相關 Component 的技術是什麼？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> Event Dispatch</li>
-<li><input disabled type="checkbox"> Event Bus</li>
-<li><input disabled type="checkbox"> Global Events</li>
-<li><input disabled type="checkbox"> 透過 store</li>
-</ul>
-<hr>
-<p><strong>哪個特殊變量包含<code>v-on</code>捕獲的本機事件？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> $event</li>
-<li><input disabled type="checkbox"> nativeEvent</li>
-<li><input disabled type="checkbox"> e</li>
-<li><input disabled type="checkbox"> e.native</li>
-</ul>
-<hr>
-<p><strong><code>Vuex</code>存儲上的哪些操作是異步的？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> getter</li>
-<li><input disabled type="checkbox"> mutation</li>
-<li><input disabled type="checkbox"> action</li>
-</ul>
-<hr>
-<p><strong>這些 component 掛鉤的正確執行順序是什麼？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> created, beforeMount, mounted, updated</li>
-<li><input disabled type="checkbox"> mounted, beforeCreate, created, destroyed</li>
-<li><input disabled type="checkbox"> created, beforeUpdate, update, mounted</li>
-</ul>
-<hr>
-<p><strong>為什麼 component 的<code>data</code>屬性應該是返回新對象的函數？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 在處理大型表格時，為了讓效能更好 </li>
-<li><input disabled type="checkbox"> 強制複製並避免 component 之間資料衝突</li>
-<li><input disabled type="checkbox"> 為避免內存洩漏</li>
-</ul>
-<hr>
-<p><strong>通過<code>v-show</code>“隱藏”圖像時，瀏覽器是否會加載圖像？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 是</li>
-<li><input disabled type="checkbox"> 不是</li>
-<li><input disabled type="checkbox"> Seulement si c’est un gif animé de Jean-Claude Van Damme</li>
-</ul>
-<hr>
-<h2 id="Quiz-Vue-js-深度問題"><a href="#Quiz-Vue-js-深度問題" class="headerlink" title="Quiz Vue.js 深度問題"></a>Quiz Vue.js 深度問題</h2><p><strong>我們如何將事件廣播到不相關的多個 component ？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> Vue.broadcast</li>
-<li><input disabled type="checkbox"> 使用 Event Bus</li>
-<li><input disabled type="checkbox"> Vue.$globalEmit</li>
-</ul>
-<hr>
-<p><strong>使<code>&quot;computed&quot;</code>可修改的技術是什麼？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 切成兩個方法集並使用 set 和 get</li>
-<li><input disabled type="checkbox"> 將其與<code>v-sync</code>指令做關聯</li>
-<li><input disabled type="checkbox"> 必須將其放置在 component 的”data”屬性中</li>
-</ul>
-<hr>
-<p><strong>哪條指令允許您將樣式範圍限制為 component 本身</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 將<code>scoped</code>屬性放在<code>styles</code>中</li>
-<li><input disabled type="checkbox"> 指令 <code>v-scope</code></li>
-<li><input disabled type="checkbox"> 將屬性設定為<code>scoping:true</code></li>
-</ul>
-<hr>
-<p><strong>如果事件來自 component 本身，我們可以在<code>v-on</code>指令上使用什麼修飾符來觸發？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> v-on:click.once</li>
-<li><input disabled type="checkbox"> v-on:click.self</li>
-<li><input disabled type="checkbox"> v-on:click.this</li>
-</ul>
-<hr>
-<p><strong>哪條語句使 component 及其不活動的資料保持高速緩存？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> <code>&lt;keep-alive&gt;</code></li>
-<li><input disabled type="checkbox"> <code>&lt;template cache&gt;</code></li>
-<li><input disabled type="checkbox"> <code>&lt;slot&gt;</code></li>
-</ul>
-<hr>
-<p><strong>哪條指令可用於創建內容位置，以用一個或多個其他 component 甚至HTML代碼填充 component ？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> v-inject</li>
-<li><input disabled type="checkbox"> v-slot</li>
-<li><input disabled type="checkbox"> v-inside</li>
-<li><input disabled type="checkbox"> v-html</li>
-</ul>
-<hr>
-<p><strong>哪條指令可以使“反應性”的 component 資料成為可能，而不是事先沒有？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> Vue.react</li>
-<li><input disabled type="checkbox"> Vue.initData</li>
-<li><input disabled type="checkbox"> Vue.mount</li>
-<li><input disabled type="checkbox"> Vue.set</li>
-</ul>
-<hr>
-<p><strong>我們如何按需生成名稱為<code>“component”</code>的 component 存儲在變量中？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> <code>&lt;render template=&quot;composant&quot;&gt;</code></li>
-<li><input disabled type="checkbox"> <code>&lt;component render=&quot;composant()&quot;&gt;</code></li>
-<li><input disabled type="checkbox"> <code>&lt;component :is=&quot;composant&quot;&gt;</code></li>
-</ul>
-<hr>
-<p><strong>如何在 component 之間共享通用代碼段？（資料，掛鉤，方法）</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 透過繼承</li>
-<li><input disabled type="checkbox"> 透過 extends</li>
-<li><input disabled type="checkbox"> 透過 mixin</li>
-</ul>
-<hr>
-<p><strong>如何強制刷新 component ？</strong></p>
-<ul>
-<li><input disabled type="checkbox"> 透過 this.$update();</li>
-<li><input checked disabled type="checkbox"> 透過 :key 指示變數的變化</li>
-<li><input disabled type="checkbox"> 透過 this.$router.push(‘#’) juste après un appel à this.nextTick</li>
-</ul>
-<p>出處：<a href="https://www.alsacreations.com/" target="_blank" rel="noopener">https://www.alsacreations.com/</a></p>
-<h3 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h3><p>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.<br>.
-.</p>
-<h3 id="Quiz-Vue-js-基礎-1"><a href="#Quiz-Vue-js-基礎-1" class="headerlink" title="Quiz Vue.js 基礎"></a>Quiz Vue.js 基礎</h3><p><strong>是誰創造了VueJs ?</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> Evan You</li>
-</ul>
-<p><strong>定義 Vue Component 的3個部分是什麼？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> template, style, script</li>
-</ul>
-<p><strong>我們如何將資料從父層 Component 傳遞到子層 Component ？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 透過 prop</li>
-</ul>
-<p><strong>我們能否不靠 Babel 編譯的情況，單獨使用 Vue (script src)？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 可</li>
-</ul>
-<p><strong>用動態傳值語法，將<code>kiwi</code>給<code>prop</code>的寫法？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> v-bind:kiwi=”kiwi”</li>
-</ul>
-<p><strong>Vue 的哪個套件可以在所有 component 之間共享資料？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> Vuex</li>
-</ul>
-<p><strong>使用<code>v-for</code> 建立 loop 時，必要的屬性是什麼？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> v-key</li>
-</ul>
-<p><strong>哪一個語法可以 route 到另一個 vue component？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> this.$router.push(url)</li>
-</ul>
-<p><strong>我們如何在資料的變化的同時觸發一個動作？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 使用 watch</li>
-</ul>
-<p><strong>哪一個 directive (vue 的指令，ex: <code>v-for</code>, <code>v-model</code>) 將輸入欄位和 component 的 data 關聯在一起？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> v-model</li>
-</ul>
-<h3 id="Quiz-Vue-js-中等程度-1"><a href="#Quiz-Vue-js-中等程度-1" class="headerlink" title="Quiz Vue.js 中等程度"></a>Quiz Vue.js 中等程度</h3><p><strong>哪個 method 可以確保 dom 已完成更新才執行？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> Vue.nextTick</li>
-</ul>
-<p><strong>如何使用<code>Vue</code>方法（ component 的功能）訪問本機DOM的元素？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 透過 v-ref</li>
-</ul>
-<p><strong>我們如何從由<code>“document /：id”</code>路由解釋的URL獲取<code>“id”</code>參數？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> this.$route.params.id</li>
-</ul>
-<p><strong>哪些指令不應混在同一元素或 component 上？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> v-for et v-if</li>
-</ul>
-<p><strong>將事件發送到不相關 Component 的技術是什麼？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> Event Bus</li>
-</ul>
-<p><strong>哪個特殊變量包含<code>v-on</code>捕獲的本機事件？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> $event</li>
-</ul>
-<p><strong><code>Vuex</code>存儲上的哪些操作是異步的？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> action</li>
-</ul>
-<p><strong>這些 component 掛鉤的正確執行順序是什麼？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> created, beforeMount, mounted, updated</li>
-</ul>
-<p><strong>為什麼 component 的<code>data</code>屬性應該是返回新對象的函數？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 強制複製並避免 component 之間資料衝突</li>
-</ul>
-<p><strong>通過<code>v-show</code>“隱藏”圖像時，瀏覽器是否會加載圖像？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 是</li>
-</ul>
-<h3 id="Quiz-Vue-js-深度問題-1"><a href="#Quiz-Vue-js-深度問題-1" class="headerlink" title="Quiz Vue.js 深度問題"></a>Quiz Vue.js 深度問題</h3><p><strong>我們如何將事件廣播到不相關的多個 component ？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 使用 Event Bus</li>
-</ul>
-<p><strong>使<code>&quot;computed&quot;</code>可修改的技術是什麼？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 切成兩個方法集並使用 set 和 get</li>
-</ul>
-<p><strong>哪條指令允許您將樣式範圍限制為 component 本身</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 將<code>scoped</code>屬性放在<code>styles</code>中</li>
-</ul>
-<p><strong>如果事件來自 component 本身，我們可以在<code>v-on</code>指令上使用什麼修飾符來觸發？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> v-on:click.self</li>
-</ul>
-<p><strong>哪條語句使 component 及其不活動的資料保持高速緩存？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> <code>&lt;keep-alive&gt;</code></li>
-</ul>
-<p><strong>哪條指令可用於創建內容位置，以用一個或多個其他 component 甚至HTML代碼填充 component ？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> v-slot</li>
-</ul>
-<p><strong>哪條指令可以使“反應性”的 component 資料成為可能，而不是事先沒有？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> Vue.set</li>
-</ul>
-<p><strong>我們如何按需生成名稱為<code>“component”</code>的 component 存儲在變量中？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> <component :is="composant">
-
-</component></li>
-</ul>
-<p><strong>如何在 component 之間共享通用代碼段？（資料，掛鉤，方法）</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 透過 mixin</li>
-</ul>
-<p><strong>如何強制刷新 component ？</strong></p>
-<ul>
-<li><input checked disabled type="checkbox"> 透過 <code>:key</code> 指示變數的變化</li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="../../Vue_Test_QA/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1900,35 +1370,17 @@ Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profil
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>模塊與組件 模塊化與組件化 好繞舌</p>
 </blockquote>
-<h2 id="模塊與組件的關係"><a href="#模塊與組件的關係" class="headerlink" title="模塊與組件的關係"></a>模塊與組件的關係</h2><h3 id="模塊-Module"><a href="#模塊-Module" class="headerlink" title="模塊 Module"></a>模塊 Module</h3><p>理解：向外提供特定功能的JS應用，一般就是以<code>.js</code>的檔案為單位。<br>為什麼：因為 JS 程式碼會越多，會越來越複雜。<br>作用：可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p>
-<h3 id="組件-Component"><a href="#組件-Component" class="headerlink" title="組件 Component"></a>組件 Component</h3><p>一個局部的介面功能模塊，介面所需元素的集合包含 HTML,CSS,JS,image。可用來做資料、變數與函式操作與儲存資料的操作。</p>
-<p>理解：用來實現特定（局部）功能效果的程式碼集合(HTML, CSS)。<br>為什麼：一個介面的功能很複雜，所以最好能拆分成多個組件會較清楚。<br>作用： 可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p>
-<h3 id="模塊化-Modular"><a href="#模塊化-Modular" class="headerlink" title="模塊化 Modular"></a>模塊化 Modular</h3><p>當應用程式的 JS 都是以模塊的方式書寫，這個程式就是一個模塊化的應用程式。</p>
-<h3 id="組件化-Componentization"><a href="#組件化-Componentization" class="headerlink" title="組件化 Componentization"></a>組件化 Componentization</h3><p>當應用程式的 JS 都是以多個組件的方式編寫，這個應用程式就是一個組件化的應用程式。</p>
-<h2 id="物件導向的組件構成"><a href="#物件導向的組件構成" class="headerlink" title="物件導向的組件構成"></a>物件導向的組件構成</h2><h3 id="基本的理解和使用"><a href="#基本的理解和使用" class="headerlink" title="基本的理解和使用"></a>基本的理解和使用</h3><p>物件導向的物件 -&gt; 物件導向的模塊 -&gt; 物件導向的組件。</p>
-<p><code>&lt;MyComponent/&gt;</code>稱為組件標籤，組件名可任意，但第一個字母需大寫，且標籤需關閉<code>&lt;組件名/&gt;</code>。</p>
-<p>新增組件的步驟：</p>
-<ol>
-<li>定義組件有兩種方式：工廠模式組件(簡單組件)、ES6 類別組件(複雜組件)</li>
-<li>渲染組件標籤</li>
-</ol>
-<h3 id="工廠模式組件-簡單組件：沒有狀態的組件"><a href="#工廠模式組件-簡單組件：沒有狀態的組件" class="headerlink" title="工廠模式組件(簡單組件：沒有狀態的組件)"></a>工廠模式組件(簡單組件：沒有狀態的組件)</h3><p>工廠模式組件的效率會比類別組件好，但是只能在組件沒有「狀態」的情況下使用它，也就是說如果只是靜態顯示資料，就可考慮用工廠模式。</p>
-<p>工廠模式的寫法很像一般函式的寫法，且一定要有回傳，而回傳內容通常就包含了 HTML 標籤。</p>
-<p>重點：一定要有回傳<code>return</code>，只要組件有<code>state</code>狀態，就不能用工廠模式。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponent</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>工廠模式組件(簡單組件) <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 渲染組件標籤</span></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MyComponent</span> /&gt;</span>, document.getElementById('example1'))</span></span><br></pre></td></tr></table></figure>
-
-<p>組件標籤的另一種寫法，如果需要內容物在組件標籤之間，就可用這種寫法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;MyComponent&gt; </span><br><span class="line">  &lt;h2&gt;工廠模式組件(簡單組件) &lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>MyComponent&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="ES6-類別組件-複雜組件"><a href="#ES6-類別組件-複雜組件" class="headerlink" title="ES6 類別組件(複雜組件)"></a>ES6 類別組件(複雜組件)</h3><p>ES6 類別組件寫法是以物件導向的類別方式來攥寫，包在裡面的會有建構式、綁定自定義函式、狀態和渲染或者是事件監聽。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2. ES6 類別組件(複雜組件)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent2</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">    <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>ES6 類別組件(複雜組件)<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">  ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MyComponent2</span> /&gt;</span>, document.getElementById('example2'))</span></span><br></pre></td></tr></table></figure>
-          
+<h2 id="模塊與組件的關係"><a href="#模塊與組件的關係" class="headerlink" title="模塊與組件的關係"></a>模塊與組件的關係</h2><h3 id="模塊-Module"><a href="#模塊-Module" class="headerlink" title="模塊 Module"></a>模塊 Module</h3><p>理解：向外提供特定功能的 JS 應用，一般就是以<code>.js</code>的檔案為單位。<br>為什麼：因為 JS 程式碼會越多，會越來越複雜。<br>作用：可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="../../React_module_component/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2067,50 +1519,18 @@ Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profil
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>這世界上有很多虛擬的東東，這些欺騙感情的虛擬物，有時也可以拿來療癒。</p>
 </blockquote>
-<p>先來理解一下什麼是虛擬 DOM : 為什麼我們需要用它?<br>這篇文章解釋得頗清楚的：<a href="https://segmentfault.com/a/1190000018891454" target="_blank" rel="noopener">虛擬 DOM的渲染原理和特性</a></p>
+<p>先來理解一下什麼是虛擬 DOM : 為什麼我們需要用它?<br>這篇文章解釋得頗清楚的：<a href="https://segmentfault.com/a/1190000018891454" target="_blank" rel="noopener">虛擬 DOM 的渲染原理和特性</a></p>
 <p>但是還是來整理一下重點：<br>原本我們寫原生的 JavaScript 時，我們會直接對 DOM 進行監聽和修改，然後這個 DOM 元素也會透過我們的監聽的事件所執行的，讓頁面產生互動。</p>
-<p>React 則是會把我們寫的監聽這部份，轉成一個<strong>物件</strong>，再將這個物件轉換成真實的 DOM，這個由 React 轉成的物件就是所謂的虛擬 DOM。</p>
-<p>假如說我們有一個用 HTML 寫成的樹狀 DOM 結構：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>Mes amies<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Ayda<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Tracy<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>React 可能會用這樣的物件格式來儲存這個 DOM:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const VitrualDom = &#123;</span><br><span class="line">  type: &apos;div&apos;,</span><br><span class="line">  props: &#123; class: &apos;title&apos; &#125;,</span><br><span class="line">  children: [</span><br><span class="line">    &#123;</span><br><span class="line">      type: &apos;span&apos;,</span><br><span class="line">      children: &apos;Mes amies&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      type: &apos;ul&apos;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123; type: &apos;li&apos;, children: &apos;Ayda&apos; &#125;,</span><br><span class="line">        &#123; type: &apos;li&apos;, children: &apos;Tracy&apos; &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="虛擬-DOM-物件最終都會被-React-轉化成真實的-DOM"><a href="#虛擬-DOM-物件最終都會被-React-轉化成真實的-DOM" class="headerlink" title="虛擬 DOM 物件最終都會被 React 轉化成真實的 DOM"></a>虛擬 DOM 物件最終都會被 React 轉化成真實的 DOM</h3><p>在我們需要新增或更新元素時，React 會先將這個 <code>VitrualDom</code> 物件進行新增和更改，然後再將這個虛擬的 DOM 物件渲染成一個真實的DOM。</p>
-<p>同樣的，如果我們需要對 DOM 進行監聽事件時，也會先對 <code>VitrualDom</code> 物件進行事件監聽，虛擬的 DOM 物件會代替原生的 DOM 事件做出反應與互動。</p>
-<p>當我們需要對DOM進行事件監聽時，首先對 <code>VitrualDom</code> 進行事件監聽， <code>VitrualDom</code> 會代理原生的 DOM 事件從而做出反應。</p>
-<h3 id="虛擬-DOM-和-JSX-語法"><a href="#虛擬-DOM-和-JSX-語法" class="headerlink" title="虛擬 DOM 和 JSX 語法"></a>虛擬 DOM 和 JSX 語法</h3><ol>
-<li>React 提供了一些 API 來新增特別的 JS 物件。一個簡單的虛擬 DOM 物件：<code>const elememt = React.createElement(&#39;h1標籤名&#39;,{id:&#39;myTitle&#39;標籤屬性}, &#39;hello變數&#39;)</code></li>
-<li>虛擬 DOM 物件最終都會被 React 轉化成真實的 DOM</li>
-<li>基本上只需要操作 React 的虛擬 DOM 的相關資料, React 會轉換為真實的 DOM 變化，而更新介面。</li>
-</ol>
-<h2 id="新增虛擬DOM的兩種方式"><a href="#新增虛擬DOM的兩種方式" class="headerlink" title="新增虛擬DOM的兩種方式"></a>新增虛擬DOM的兩種方式</h2><ol>
-<li>原生 JS(一般不用)：<code>React.createElement(&#39;h2&#39;,{id:myId},msg)</code></li>
-<li>JSX 語法：<code>&lt;h3 id={myId}&gt; {msg} &lt;/h3&gt;</code></li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"test1"</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">id</span>=<span class="string">"test2"</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>第一種原生 JS 方式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> msg = <span class="string">'I like you'</span></span><br><span class="line"><span class="keyword">const</span> myId = <span class="string">'Tracy'</span></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="comment">// 1.新增虛擬 DOM</span></span><br><span class="line"><span class="keyword">const</span> vDom1 =  React.createElement(<span class="string">'h2'</span>,&#123;<span class="attr">id</span>:myId.toLowerCase()&#125;,msg.toUpperCase())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.渲染虛擬 DOM</span></span><br><span class="line">ReactDom.render(vDom1, <span class="built_in">document</span>.getElementById(<span class="string">'test1'</span>))</span><br></pre></td></tr></table></figure>
-
-<p>第二種方式，使用 babel： <code>&lt;script type=&quot;text/babel&quot;&gt;&lt;/script&gt;</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.新增虛擬 DOM 直接寫入 html 結構</span></span><br><span class="line"><span class="keyword">const</span> vDom2 =  <span class="xml"><span class="tag">&lt;<span class="name">h3</span> <span class="attr">id</span>=<span class="string">&#123;myId.toUpperCase()&#125;</span>&gt;</span> &#123;msg.toUpperCase()&#125; <span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.渲染虛擬 DOM</span></span><br><span class="line">ReactDom.render(vDom2, <span class="built_in">document</span>.getElementById(<span class="string">'test2'</span>))</span><br></pre></td></tr></table></figure>
-
-<h2 id="渲染虛擬-DOM-元素-的語法"><a href="#渲染虛擬-DOM-元素-的語法" class="headerlink" title="渲染虛擬 DOM (元素)的語法"></a>渲染虛擬 DOM (元素)的語法</h2><ol>
-<li>語法：<code>ReactDom.render(virtualDOM, containerDOM)</code> </li>
-<li>作用：將虛擬 DOM 元素渲染到頁面中真實的DOM元素中顯示。</li>
-<li>參數說明：<ul>
-<li>參數一：純 JS 或 JSX 新增的虛擬 DOM 物件</li>
-<li>參數二：用來包含虛擬 DOM 元素的真實 DOM 元素物件(通常是個<code>&lt;div&gt;</code>)</li>
-</ul>
-</li>
-</ol>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="../../React_virtual_DOM/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2249,56 +1669,17 @@ Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profil
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>我們很容易忘記，我們曾學過的東西裡，仍有許多細微的小細節。</p>
 </blockquote>
 <p>知道自己是個健忘的人，所以偶爾會翻些基礎的知識來看看，才發現其實有許多自己忘，或根本沒有去注意到的小細節。<br>這次來記錄一下自己之前學的時候沒注意到的點。</p>
-<h2 id="JavaScript-的資料類型"><a href="#JavaScript-的資料類型" class="headerlink" title="JavaScript 的資料類型"></a>JavaScript 的資料類型</h2><p>JavaScript 的資料類型分為兩種：</p>
-<ol>
-<li>基本(值)類型</li>
-</ol>
-<ul>
-<li>String</li>
-<li>number</li>
-<li>boolean</li>
-<li>undefined</li>
-<li>null</li>
-</ul>
-<ol start="2">
-<li>物件(引用)類型 Object</li>
-</ol>
-<ul>
-<li>Array：有索引/有序</li>
-<li>function：可執行</li>
-<li>object ：任意物件</li>
-</ul>
-<h3 id="判斷資料類型的方式"><a href="#判斷資料類型的方式" class="headerlink" title="判斷資料類型的方式"></a>判斷資料類型的方式</h3><ol>
-<li><p>typeof : 可判斷 undefined/數值/字串/布林/function; 不能判斷 null 和 Object / Object 和 Array<br>typeof 回傳時的資料類型是以字串表達，所以會有雙引號’number’，且都以小寫表示。</p>
-</li>
-<li><p>Instanceof : 判斷物件具體的類型<br>ex.物件是陣列還是函式等，instance of 的意思是實例。<br>所以（a Instanceof b）即為 a 是不是 b 的實例。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123;</span><br><span class="line">  b: [<span class="number">1</span>, <span class="string">'hi'</span>, <span class="built_in">console</span>.log],</span><br><span class="line">  c: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Hello'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(a <span class="keyword">instanceof</span> <span class="built_in">Object</span>, a <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true false 型別以第一字母為大寫。</span></span><br><span class="line"><span class="built_in">console</span>.log(a.b <span class="keyword">instanceof</span> <span class="built_in">Object</span>, a.b <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true true</span></span><br><span class="line"><span class="built_in">console</span>.log(a.c <span class="keyword">instanceof</span> <span class="built_in">Object</span>, a.c <span class="keyword">instanceof</span> <span class="built_in">Function</span>); <span class="comment">// true true 是物件也是函式的物件</span></span><br><span class="line"></span><br><span class="line">consol.log(<span class="keyword">typeof</span> a.b); <span class="comment">// object 無法知道是array</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用typeof時，比較時應該用字串型態</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a.c === <span class="string">'function'</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// console.log 是什麼資料型態？</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a.b[<span class="number">2</span>] === <span class="string">'function'</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">a.b[<span class="number">2</span>](<span class="number">4</span>); <span class="comment">//4 ,a.b[2] 在這裏等同console.log()</span></span><br><span class="line">a.c(); <span class="comment">// 等同 a 物件裡的 function() &#123; return 'Hello';&#125;</span></span><br></pre></td></tr></table></figure>
-
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. === 全等：比較運算子，可判斷 undefine 和 null</span><br><span class="line"></span><br><span class="line">## 為什麼 null 是資料型態是 &apos;object&apos; ?</span><br><span class="line"></span><br><span class="line">覺得這樣的解釋還蠻有道理的，也就是說，當我們宣告一個物件或是字串形態的變數，他原本是個物件或陣列，型別皆為物件，但是如果我想要把這個變數整個在記憶體清掉，那麼我們就可以將`null`指向這個變數，這樣這個物件也會被清空。以這個方向來想，就不難理解為什麼 `null`的資料型態是`&apos;object&apos;`了。</span><br><span class="line"></span><br><span class="line">## undefined 和 null 的區別？</span><br><span class="line"></span><br><span class="line">undefined 為宣告(定義)了變數，但還沒賦值。</span><br><span class="line">null 宣告了，並已賦值，只是值是 null。</span><br><span class="line"></span><br><span class="line">```javascript</span><br><span class="line">let a;</span><br><span class="line">console.log(a); // undefined 宣告(定義)了但還沒賦值</span><br><span class="line">a = null;</span><br><span class="line">console.log(a); // null</span><br><span class="line"></span><br><span class="line">let b = null; // 初始賦值為 null，表示將要賦值的物件 object</span><br><span class="line">b = [1, 2, 3]; // 確定對物件 object 賦值</span><br><span class="line">b = null; // 這個 object 被清空</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="何時會需要將-null-指向變數？"><a href="#何時會需要將-null-指向變數？" class="headerlink" title="何時會需要將 null 指向變數？"></a>何時會需要將 null 指向變數？</h2><p>在初始變數時，將要賦值給變數的資料是物件 Object，但還沒有資料。<br>還有就是在結束前希望指向變數能成為回收物件。<br>簡單來說，回收就是釋放記憶體的意思，且在瀏覽器的環境下。<br>想知道更多的「回收物件」可看<a href="https://zhuanlan.zhihu.com/p/23992332" target="_blank" rel="noopener">JavaScript 中的垃圾回收 - 知乎</a></p>
-<h2 id="嚴格區別變數型別與資料型別"><a href="#嚴格區別變數型別與資料型別" class="headerlink" title="嚴格區別變數型別與資料型別"></a>嚴格區別變數型別與資料型別</h2><p>資料類型：基本型別和物件型別</p>
-<ul>
-<li>基本型別</li>
-<li>物件型別 -&gt; 參考()型別</li>
-</ul>
-<p>變數型別：基本型別和參考型別</p>
-<ul>
-<li>基本型別 : 保存的是基本型別的資料(值)</li>
-<li>參考型別 : 保存的是資料的記憶體位址</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> c = &#123;&#125;; <span class="comment">// c 指向的是記憶體位置</span></span><br></pre></td></tr></table></figure>
-
-<p>(待續…)</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="../../JS_Basic_type/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

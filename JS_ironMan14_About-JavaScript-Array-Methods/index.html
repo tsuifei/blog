@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="Day 14 知道怎麼做，但是如果有好工具會更得心應手。  JavaScript一直在演化，也因此因不同時期推出的新方法好像是給我們補充能量，原本需要複雜的程序寫出來的函式，現在大多可用內建的方法處理 for 被放生了，不但直接且經過優化，以往使用For迴圈來遍歷陣列，現在只要用內建方法就可以，簡單又好用。 如果有用 javascript 來操作處理 JSON 的經驗，會發現陣列方法實在是非常好用">
+<meta name="description" content="Day 14 知道怎麼做，但是如果有好工具會更得心應手。  JavaScript 一直在演化，也因此因不同時期推出的新方法好像是給我們補充能量，原本需要複雜的程序寫出來的函式，現在大多可用內建的方法處理 for 被放生了，不但直接且經過優化，以往使用For迴圈來遍歷陣列，現在只要用內建方法就可以，簡單又好用。 如果有用 javascript 來操作處理 JSON 的經驗，會發現陣列方法實在是非常好">
 <meta name="keywords" content="JavaScript,JS_Array,Iron man 30 鐵人賽">
 <meta property="og:type" content="article">
 <meta property="og:title" content="陣列 Array 方法概觀">
 <meta property="og:url" content="tsuifei.github.io/JS_ironMan14_About-JavaScript-Array-Methods/index.html">
 <meta property="og:site_name" content="Cré-Coder">
-<meta property="og:description" content="Day 14 知道怎麼做，但是如果有好工具會更得心應手。  JavaScript一直在演化，也因此因不同時期推出的新方法好像是給我們補充能量，原本需要複雜的程序寫出來的函式，現在大多可用內建的方法處理 for 被放生了，不但直接且經過優化，以往使用For迴圈來遍歷陣列，現在只要用內建方法就可以，簡單又好用。 如果有用 javascript 來操作處理 JSON 的經驗，會發現陣列方法實在是非常好用">
+<meta property="og:description" content="Day 14 知道怎麼做，但是如果有好工具會更得心應手。  JavaScript 一直在演化，也因此因不同時期推出的新方法好像是給我們補充能量，原本需要複雜的程序寫出來的函式，現在大多可用內建的方法處理 for 被放生了，不但直接且經過優化，以往使用For迴圈來遍歷陣列，現在只要用內建方法就可以，簡單又好用。 如果有用 javascript 來操作處理 JSON 的經驗，會發現陣列方法實在是非常好">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20190929/20104175xe6gdKuhHZ.png">
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20190929/20104175PsptgttSeB.png">
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20190929/20104175O7rB8LpoRb.png">
-<meta property="og:updated_time" content="2019-12-16T16:14:55.702Z">
+<meta property="og:updated_time" content="2020-02-25T21:30:15.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="陣列 Array 方法概觀">
-<meta name="twitter:description" content="Day 14 知道怎麼做，但是如果有好工具會更得心應手。  JavaScript一直在演化，也因此因不同時期推出的新方法好像是給我們補充能量，原本需要複雜的程序寫出來的函式，現在大多可用內建的方法處理 for 被放生了，不但直接且經過優化，以往使用For迴圈來遍歷陣列，現在只要用內建方法就可以，簡單又好用。 如果有用 javascript 來操作處理 JSON 的經驗，會發現陣列方法實在是非常好用">
+<meta name="twitter:description" content="Day 14 知道怎麼做，但是如果有好工具會更得心應手。  JavaScript 一直在演化，也因此因不同時期推出的新方法好像是給我們補充能量，原本需要複雜的程序寫出來的函式，現在大多可用內建的方法處理 for 被放生了，不但直接且經過優化，以往使用For迴圈來遍歷陣列，現在只要用內建方法就可以，簡單又好用。 如果有用 javascript 來操作處理 JSON 的經驗，會發現陣列方法實在是非常好">
 <meta name="twitter:image" content="https://ithelp.ithome.com.tw/upload/images/20190929/20104175xe6gdKuhHZ.png">
 
 
@@ -329,23 +329,25 @@
         <h6 id="Day-14"><a href="#Day-14" class="headerlink" title="Day 14"></a>Day 14</h6><blockquote>
 <p>知道怎麼做，但是如果有好工具會更得心應手。</p>
 </blockquote>
-<p>JavaScript一直在演化，也因此因不同時期推出的新方法好像是給我們補充能量，原本需要複雜的程序寫出來的函式，現在大多可用內建的方法處理 <del>for 被放生了</del>，不但直接且經過優化，以往使用<code>For</code>迴圈來遍歷陣列，現在只要用內建方法就可以，簡單又好用。</p>
+<p>JavaScript 一直在演化，也因此因不同時期推出的新方法好像是給我們補充能量，原本需要複雜的程序寫出來的函式，現在大多可用內建的方法處理 <del>for 被放生了</del>，不但直接且經過優化，以往使用<code>For</code>迴圈來遍歷陣列，現在只要用內建方法就可以，簡單又好用。</p>
 <p>如果有用 javascript 來操作處理 JSON 的經驗，會發現陣列方法實在是非常好用，無論是在陣列上的資料過濾、排序、儲存、組合都超級方便！我們可以想像一下，如果我們想要做出好看又好吃的甜點，是不是需要一些必須的工具，例如刮刀、擠花袋、打蛋器（電動的更好、量匙、電子秤等等，如果沒有這些，即使有上好的材料與器材如烤箱，要做甜點勢必困難重重，而這些陣列 Array 的方法正如這些工具，幫我們快速又精準的把甜點做出來。 <del>寫著寫著就餓了</del></p>
+<a id="more"></a>
+
 <p><img src="https://ithelp.ithome.com.tw/upload/images/20190929/20104175xe6gdKuhHZ.png" alt="dessert"></p>
-<h3 id="好工具永遠不嫌多"><a href="#好工具永遠不嫌多" class="headerlink" title="好工具永遠不嫌多"></a>好工具永遠不嫌多</h3><p>這些好用的陣列工具（功能），是<a href="https://zh.wikipedia.org/wiki/JavaScript" target="_blank" rel="noopener">什麼時候被增加</a>到 javascript 裡呢？javascript 發展至今，最主要的版本為 ECMAScript 3/5/6/7/10 ，在 ES3.0 的時期，推出了基本的新增、刪除與切割字串的方法; ES5 又推出了許多查詢與迭代，功能強大的方法。到了 ES6（2015年發布)，又推出了一些更強大的陣列方法，如迭代器、尋找、替代等相關陣列方法。</p>
-<p>ES3.0是最標準的，許多方法都是在3.0的時候推出來的，這個時期推出的方法，是現今使用的方法中最重要的部分。ES6 因為更新的部分頗多，所以許多人都把 ES6 當成一個檻，有了它可以更加速的開發專案，也因此成為前端工程師的標準技能之一。</p>
-<p>接下來的版本，我們就都知道了，越受歡迎的語言，更新的速度也會越頻繁 <del>看Python就知道了</del>。等到 ES7、ES10 出來了，但各家的瀏覽器卻不一定有支援這些新方法，就像年輕人發明的新詞彙、新說法，中年大嬸（瀏覽器）怎麼可能聽得懂？總要一些時間之後，才能讓大嬸聽懂年輕人說的話。</p>
+<h3 id="好工具永遠不嫌多"><a href="#好工具永遠不嫌多" class="headerlink" title="好工具永遠不嫌多"></a>好工具永遠不嫌多</h3><p>這些好用的陣列工具（功能），是<a href="https://zh.wikipedia.org/wiki/JavaScript" target="_blank" rel="noopener">什麼時候被增加</a>到 javascript 裡呢？javascript 發展至今，最主要的版本為 ECMAScript 3/5/6/7/10 ，在 ES3.0 的時期，推出了基本的新增、刪除與切割字串的方法; ES5 又推出了許多查詢與迭代，功能強大的方法。到了 ES6（2015 年發布)，又推出了一些更強大的陣列方法，如迭代器、尋找、替代等相關陣列方法。</p>
+<p>ES3.0 是最標準的，許多方法都是在 3.0 的時候推出來的，這個時期推出的方法，是現今使用的方法中最重要的部分。ES6 因為更新的部分頗多，所以許多人都把 ES6 當成一個檻，有了它可以更加速的開發專案，也因此成為前端工程師的標準技能之一。</p>
+<p>接下來的版本，我們就都知道了，越受歡迎的語言，更新的速度也會越頻繁 <del>看 Python 就知道了</del>。等到 ES7、ES10 出來了，但各家的瀏覽器卻不一定有支援這些新方法，就像年輕人發明的新詞彙、新說法，中年大嬸（瀏覽器）怎麼可能聽得懂？總要一些時間之後，才能讓大嬸聽懂年輕人說的話。</p>
 <p>但是，大嬸也是有愛追流行和傳統婦女之分，跟上潮流的大嬸(瀏覽器)就聽得懂年輕人的詞彙，<del>那些傳統婦女我們就放生吧！</del></p>
-<p>但是每次年輕人（新版JS）說什麼，讓大部分的大嬸（瀏覽器）都聽不太懂也頗煩惱，會產生代溝啊！所以就有一位在年輕人之間走跳的壯年人（Babel）出來協調翻譯，讓大嬸都聽得懂年輕人的話，讓鴻溝化為無痕……<del>實在好難掰</del></p>
+<p>但是每次年輕人（新版 JS）說什麼，讓大部分的大嬸（瀏覽器）都聽不太懂也頗煩惱，會產生代溝啊！所以就有一位在年輕人之間走跳的壯年人（Babel）出來協調翻譯，讓大嬸都聽得懂年輕人的話，讓鴻溝化為無痕……<del>實在好難掰</del></p>
 <h2 id="以功能性來區分的陣列方法"><a href="#以功能性來區分的陣列方法" class="headerlink" title="以功能性來區分的陣列方法"></a>以功能性來區分的陣列方法</h2><p>我們可以發現許多人在介紹陣列方法時，都是以方法是否可以複製、回傳值來分，這也是一種不錯的記憶方法，畢竟方法那麼多，沒記好要用這些方法總是會卡卡的。先來看看以功能分類的陣列方法列表：</p>
 <p><img src="https://ithelp.ithome.com.tw/upload/images/20190929/20104175PsptgttSeB.png" alt="dessert"></p>
 <h2 id="JavaScript-的三巨頭"><a href="#JavaScript-的三巨頭" class="headerlink" title="JavaScript 的三巨頭"></a>JavaScript 的三巨頭</h2><p>上面說了大嬸和年輕人的故事，其實應該說說 JavaScript 的源頭的，在 JavaScript 裡主要構成的成分有：</p>
 <ul>
 <li>ES3/5/6/7/10(ECMAScript) 規範</li>
-<li>DOM (Document Object Model) 文件物件模型 </li>
+<li>DOM (Document Object Model) 文件物件模型</li>
 <li>BOM (Browser Object Model) 瀏覽器物件模型</li>
 </ul>
-<p>ECMAScript 是 JavaScript 所擬出來的規範，而 DOM 和 BOM 是以參與形式增加了許多使用上的規則，透過 DON 以 JavaScript 來操控 HTML 也就是Windows; 而 BOM 則是透過 JavaScript 來操控瀏覽器。ECMAScript 給出 DOM 和 BOM 的標準，由各個瀏覽器來補充與支援這些方法，讓這些新功能可以在最新的瀏覽器上被讀取與使用。</p>
+<p>ECMAScript 是 JavaScript 所擬出來的規範，而 DOM 和 BOM 是以參與形式增加了許多使用上的規則，透過 DON 以 JavaScript 來操控 HTML 也就是 Windows; 而 BOM 則是透過 JavaScript 來操控瀏覽器。ECMAScript 給出 DOM 和 BOM 的標準，由各個瀏覽器來補充與支援這些方法，讓這些新功能可以在最新的瀏覽器上被讀取與使用。</p>
 <p>瀏覽器執行 JavaScript 的環境，是由不同的瀏覽器廠商，結合 ECMAScript 固定的規範而產生出來執行的環境，也因此，各個瀏覽器讀取 DOM 和 BOM 會有些許差異，才造成相同的程式碼在不同的瀏覽器解析下會有不同的結果。尤其是 BOM 是操作瀏覽器的規則，各家瀏覽器都以自己的標準為標準 <del>好任性</del>，自然呈現的差異性會比較大。</p>
 <p>接下來將介紹陣列方法的篇章，會以 Chrome 最新版的瀏覽器為主 <del>其他放生</del>，如何知道 Chrome 有支援哪些新的方法？只要我們打開 Chrome 的開發工具，選擇<code>console</code>分頁，輸入<code>Array.prototype</code>按<code>entre</code>之後就會出現在這個瀏覽器版本可以執行方法和屬性。</p>
 <p><img src="https://ithelp.ithome.com.tw/upload/images/20190929/20104175O7rB8LpoRb.png" alt="prototype"></p>

@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="什麼是物件 Object？ 物件可以包山包海。  物件是 JavaScript 中的參考資料型別，它擁有複合的值，可以儲存不同類型的值(value)，然後透過 Key 來取值。Object 也可以看成是屬性的無序列集合，每個屬性都是一對 Key:value。物件除了可以擁有自己的屬性，還可以透過原型物件來繼承屬性。 在 JavaScript 的資料型別裡，除了string、number、bool">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-02-24T14:41:11.170Z">
+<meta property="og:updated_time" content="2020-02-25T21:31:48.788Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 基礎 物件篇">
 <meta name="twitter:description" content="什麼是物件 Object？ 物件可以包山包海。  物件是 JavaScript 中的參考資料型別，它擁有複合的值，可以儲存不同類型的值(value)，然後透過 Key 來取值。Object 也可以看成是屬性的無序列集合，每個屬性都是一對 Key:value。物件除了可以擁有自己的屬性，還可以透過原型物件來繼承屬性。 在 JavaScript 的資料型別裡，除了string、number、bool">
@@ -327,6 +327,8 @@
 </blockquote>
 <p>物件是 JavaScript 中的參考資料型別，它擁有複合的值，可以儲存不同類型的值(value)，然後透過 Key 來取值。<br>Object 也可以看成是屬性的無序列集合，每個屬性都是一對 Key:value。物件除了可以擁有自己的屬性，還可以透過原型物件來繼承屬性。</p>
 <p>在 JavaScript 的資料型別裡，除了<code>string</code>、<code>number</code>、<code>boolean</code>、<code>null</code>和<code>undefined</code>之外，其他都是物件型別。<br>物件以外的型別資料的值是無法修改與不可變的，我們稱為這類的資料型別為「基本型別」，「基本型別」的比較，是以「值」來比較，如果兩個變數的值相等，就會被視為這兩個變數是相等的。</p>
+<a id="more"></a>
+
 <p>物件是「參考資料型別」，它的值是被保存在記憶體裡的物件，當一個變數是物件（參考型別）時，實際上變數中保存的並不是這個物件本身，而是記憶體的位址。<br>當我們複製一個物件給另一變數時，這個變數會依照這個變數的參考值（記憶體的位址）給另一個變數參考，而不是複製物件，也就是說複製物件的值，會同時指向被複製的物件記憶體位址。也因此如果更動其中一個物件變數的內容，另一個物件變數內容也會一起更動。</p>
 <p>在讀一些中文簡體的資料時，我們會看到類似：「简单来说栈内存用来保存变量和基本类型。堆内存用来保存对象」，用繁體的解釋是：基本型別是依照記憶體所存的值當依據，參考型別則是會先以記憶體位址為參考，才將裡面的值取出，但因為會參考同一個記憶體位址，所以找到的值也ㄧ樣。</p>
 <h3 id="如何創建一個物件"><a href="#如何創建一個物件" class="headerlink" title="如何創建一個物件"></a>如何創建一個物件</h3><p>有兩種方法：</p>

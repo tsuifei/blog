@@ -686,7 +686,6 @@
 <p>先來 Codepen 看一下效果 <a href="https://codepen.io/tsuifei/pen/eYNBoLZ" target="_blank" rel="noopener">Vue.Js Filters 過濾器</a></p>
 <h3 id="什麼是過濾器"><a href="#什麼是過濾器" class="headerlink" title="什麼是過濾器"></a>什麼是過濾器</h3><p>過濾器的功能是要對顯示的資料進行特定的格式化後再顯示，且過濾器並不會去改變原本的資料，而是產生一個新的對應的資料格式。</p>
 <p>白話一點就是「過濾器」主要的功能是將我們想要的資料，進行格式化。例如我們想要依照我們想要的格式來顯示日期。在程式裡取得的時間是透過從 1970 年 1 月 1 日所開始計算的時間差而來，透過程式拿到的現在時間必須經過一些步驟的運算，才能得到當下點的時間。</p>
-<p>因為有時差、時區與冬夏令時間的問題，所以要得到我們想要的時間點變得有些複雜，也因此在處裡時間時，會偏向引入已經把繁複計算包成函式庫的方式來操控時間與日期的部分。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="Vue_Filters/#more" rel="contents">
@@ -832,63 +831,16 @@
 
       
         
-          
-            <p>原本在一般頁面要製造一些簡單的動畫效果，只要掌控 class 和 Css 就好了，但是如果要在框架內做這些動態效果，如何做？</p>
+          <p>原本在一般頁面要製造一些簡單的動畫效果，只要掌控 class 和 Css 就好了，但是如果要在框架內做這些動態效果，如何做？</p>
 <p>在 Vue 裡有它的特殊做法，必須把享有動態效果的元素，以<code>&lt;transition&gt;</code>的標籤包起來，並給予一個<code>name</code>的屬性，然後在 CSS 裡，以這個<code>name</code>來作為 class 的名稱，並加上動畫不同時期的後綴，來達到動態效果。</p>
 <p>先來看一下 Codepen <a href="https://codepen.io/tsuifei/pen/vYOyGeq" target="_blank" rel="noopener">VueJs Transitioning Single Elements/Component 過渡與動畫效果</a></p>
-<p>我們先來看一張官方上的示意圖：<br><img src="https://cn.vuejs.org/images/transition.png" alt></p>
-<p>要指定進出場的樣式需要搭配 Vue 指定的後綴詞，進、出場個分三個階段<br>進場：</p>
-<table>
-<thead>
-<tr>
-<th>階段</th>
-<th>進場 Enter</th>
-<th>出場 Leave</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>開始</td>
-<td>v-enter</td>
-<td>v-leave</td>
-</tr>
-<tr>
-<td>結束</td>
-<td>v-enter-to</td>
-<td>v-leave-to</td>
-</tr>
-<tr>
-<td>整個過程</td>
-<td>v-enter-active</td>
-<td>v-leave-active</td>
-</tr>
-</tbody></table>
-<p>再依照每個過程，指定不同的效果。而表中的<code>v</code>是在沒有給<code>&lt;transition&gt;</code>名字的時候，如果有給<code>name</code>，則把<code>v</code>用我們給的<code>name</code>替換就好了。</p>
-<h2 id="淡入淡出的過度效果-Transition"><a href="#淡入淡出的過度效果-Transition" class="headerlink" title="淡入淡出的過度效果 Transition"></a>淡入淡出的過度效果 Transition</h2><p>以淡入淡出的效果來說，在 HTML 需要先將<code>&lt;transition&gt;</code>把我們要做動態效果的元素包住，例如我們希望點一個按鈕，讓文字淡入淡出切換，就可以寫成：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app1"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 將字慢慢消失、透明度0 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"show = !show"</span>&gt;</span>Switch1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"fade"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;p v-show="show"&gt;Hello Paris&lt;/p&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"show"</span>&gt;</span>Hello Paris<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>在文字的<code>&lt;p&gt;</code>標籤內，我們可以給<code>v-if</code>或<code>v-show</code>，這兩個效果是一樣的。</p>
-<p>Vue 實例的部分</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm1 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el: <span class="string">'#app1'</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">          show: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>然後在 CSS 裡依上述規則指定，在進場時透明度為 0 漸變為 100，而出場則反之。而按鈕則控制進出場的切換。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*指定進場*/</span></span><br><span class="line"><span class="selector-class">.fade-enter-active</span>,</span><br><span class="line"><span class="selector-class">.fade-leave-active</span> &#123;</span><br><span class="line">  <span class="attribute">transition</span>: opacity <span class="number">1s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*指定出場*/</span></span><br><span class="line"><span class="selector-class">.fade-enter</span>,</span><br><span class="line"><span class="selector-class">.fade-leave-to</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="動畫效果的放大縮小-Animation"><a href="#動畫效果的放大縮小-Animation" class="headerlink" title="動畫效果的放大縮小 Animation"></a>動畫效果的放大縮小 Animation</h2><p>我們也可以以動畫的方式來將組件變大變小與出場，也是一樣使用 Enter 和 Leave 的三個階段，分別設定。<br>CSS 的部分</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 使用Animation 動畫 */</span></span><br><span class="line">      <span class="selector-class">.bounce-enter-active</span> &#123;</span><br><span class="line">        <span class="attribute">animation</span>: bounce-in <span class="number">1s</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="selector-class">.bounce-leave-active</span> &#123;</span><br><span class="line">        <span class="attribute">animation</span>: bounce-in <span class="number">1s</span> reverse;</span><br><span class="line">      &#125;</span><br><span class="line">      @<span class="keyword">keyframes</span> bounce-in &#123;</span><br><span class="line">        0% &#123;</span><br><span class="line">          <span class="attribute">transform</span>: <span class="built_in">scale</span>(0);</span><br><span class="line">        &#125;</span><br><span class="line">        50% &#123;</span><br><span class="line">          <span class="attribute">transform</span>: <span class="built_in">scale</span>(1.5);</span><br><span class="line">        &#125;</span><br><span class="line">        100% &#123;</span><br><span class="line">          <span class="attribute">transform</span>: <span class="built_in">scale</span>(1);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
-
-<p>HTML 部分<br>因為文字段落<code>&lt;p&gt;</code>標簽是行內元素，所以放大縮小會以整行的大小來算，所以會看不出小果，最好將這段該成<code>display: inline-block</code>就可比較清出的看出變化效果。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Animation 動畫 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app4"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"show = !show"</span>&gt;</span>Toggle show<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"bounce"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"show"</span> <span class="attr">style</span>=<span class="string">"display: inline-block"</span>&gt;</span></span><br><span class="line">      Hello Tainan</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>Vue 實例的部分</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm4 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app4'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    show: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>發現原本可以簡單在 Css 裡做出的的動畫效果，在框架裡做還是有些綁手綁腳，如果讓這些小果更容易操控，得要先了解<br>Vue 是怎麼處理這些效果，在官網的解釋算是蠻清楚的，但幫自己要做一些簡單的圖片入場效果，就開始感到有點綁手綁腳，有點可惜。</p>
-<p>如果對此部分有興趣的話，除了可以看看官方解釋，也推薦「Summer。桑莫。夏天」的部落格，只少比較親和。</p>
-<p>Transitioning Single Elements/Components<br>官方文件：<a href="https://cn.vuejs.org/v2/guide/transitions.html" target="_blank" rel="noopener">進入/離開 &amp; 列表過渡 — Vue.js</a></p>
-<p><a href="https://cythilya.github.io/2017/05/28/vue-transitions/" target="_blank" rel="noopener">Vue.js: 樣式與漸變 Transitions | Summer。桑莫。夏天</a></p>
-<p><a href="https://cythilya.github.io/2017/06/09/vue-transition-effects/" target="_blank" rel="noopener">Vue.js: 進階過渡效果 | Summer。桑莫。夏天</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="Vue_Transitioning_Elements_Components/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1027,80 +979,17 @@
 
       
         
-          
-            <p>在 Vue 所使用到的整個生命週期方法，可以想像成是一齣戲要上演，哪一個主角需要在哪個時候上場、哪個配角需要在哪個時刻退場，都需要有邏輯才可以讓故事產生連貫性與流暢。</p>
+          <p>在 Vue 所使用到的整個生命週期方法，可以想像成是一齣戲要上演，哪一個主角需要在哪個時候上場、哪個配角需要在哪個時刻退場，都需要有邏輯才可以讓故事產生連貫性與流暢。</p>
 <p>Vue 的生命週期方法雖然共有八個，但並不是每個都需要用到，就像在戲裡，有些橋段不出現、配角不出現也不會影響整齣性的故事性。</p>
 <p>把 Vue 的生命週期分為三個大階段會比較容易理解：第一階段的「初始化顯示」、第二階段「更新狀態顯示」、第三階段「死亡、銷毀 Vue 實例」，每個階段都有對應的生命週期 callback 方法，這些生命週期的方法也稱為「生命週期鉤子」掛載在不同時期。 Vue 的生命週期比 React 還要複雜一些。</p>
 <p>為了避免 <code>this</code> 的混淆，這些生命週期的方法都是回調方法(callback)，所以最好一律都寫成箭頭函式，讓 <code>this</code> 直接指向父級。</p>
-<h2 id="Vue-的生命週期各階段都做了什麼？"><a href="#Vue-的生命週期各階段都做了什麼？" class="headerlink" title="Vue 的生命週期各階段都做了什麼？"></a>Vue 的生命週期各階段都做了什麼？</h2><h3 id="0-創建-Vue-的實例"><a href="#0-創建-Vue-的實例" class="headerlink" title="0. 創建 Vue 的實例"></a>0. 創建 Vue 的實例</h3><p>當我們創建好一個 Vue 的實例，就會馬上進入下一個階段<code>beforeCreate()</code>。</p>
-<h3 id="1-初始化顯示階段"><a href="#1-初始化顯示階段" class="headerlink" title="1. 初始化顯示階段"></a>1. 初始化顯示階段</h3><ul>
-<li><p><strong>beforeCreate() 實例創建前</strong></p>
-<ul>
-<li>準備工作：觀察初始化(Observe Data)、初始化事件(Init Events)</li>
-<li>這個階段實例的 data、methods 是讀不到的</li>
-</ul>
-</li>
-<li><p><strong>created() 實例創建後</strong></p>
-<ul>
-<li>這個階段已經完成了資料觀察初始化(data observer)，屬性和方法的運算， watch/event 事件回調。mount 掛載階段還沒開始，$el 屬性目前不可見，資料並沒有在 DOM 元素上進行渲染。</li>
-</ul>
-</li>
-<li><p><strong>beforeMount() 在掛載開始之前被調用</strong></p>
-</li>
-<li><p>相關的 render 函數首次被調用。</p>
-</li>
-<li><p><strong>mounted()</strong></p>
-</li>
-<li><p>初始化顯示之後。立即調用。是最常用的 callback，用來「掛載」到頁面上。</p>
-</li>
-<li><p><code>el</code>選項的 DOM 節點 被新創建的 <code>vm.$el</code> 替換，並掛載到實例上去之後調用此生命週期方法。此時實例的資料在 DOM 節點上進行渲染。</p>
-</li>
-</ul>
-<h3 id="2-更新狀態顯示階段"><a href="#2-更新狀態顯示階段" class="headerlink" title="2. 更新狀態顯示階段"></a>2. 更新狀態顯示階段</h3><p><code>this.xxx = value</code></p>
-<ul>
-<li><p><strong>beforeUpdate() 資料更新時調用</strong></p>
-<ul>
-<li>但不進行 DOM 重新渲染，在資料更新時 DOM 沒渲染前可以在這個生命方法裡進行狀態處理。</li>
-</ul>
-</li>
-<li><p><strong>updated() 資料更新並且 DOM 重新渲染</strong></p>
-<ul>
-<li>這個狀態下資料更新並且 DOM 重新渲染，當這個生命週期方法被調用時，組件 DOM 已經更新，所以這時可以執行依賴於 DOM 的操作。當實例每次進行資料更新時 updated 都會執行。</li>
-</ul>
-</li>
-</ul>
-<p>當我們調用 vm.$destroy()時，就會進入下一個銷毀 Vue 實例的階段</p>
-<h3 id="3-死亡、銷毀-Vue-實例階段"><a href="#3-死亡、銷毀-Vue-實例階段" class="headerlink" title="3.死亡、銷毀 Vue 實例階段"></a>3.死亡、銷毀 Vue 實例階段</h3><p>也稱死亡，也就是沒有互動的功能。</p>
-<ul>
-<li><p><strong>beforeDestory() 實例銷毀之前調用</strong></p>
-</li>
-<li><p><strong>destoryed() 實例銷毀後調用</strong></p>
-<ul>
-<li>Vue 實例銷毀後調用。調用後，Vue 實例指示的所有東西都會解綁定，所有的事件監聽器會被移除，所有的子實例也會被銷毀。</li>
-</ul>
-</li>
-</ul>
-<h2 id="查看生命週期方法的順序範例"><a href="#查看生命週期方法的順序範例" class="headerlink" title="查看生命週期方法的順序範例"></a>查看生命週期方法的順序範例</h2><p>範例：一行字，每隔一秒會切換成隱藏。</p>
-<p>在初始化之後，把初始化的值以<code>v-show</code>的方式讓<code>&lt;p&gt;</code>依定時器的規則顯示。<br>再設定一個按鈕，綁定可以銷毀 vm 的函式，當點擊按鈕時這個 vm 會銷毀而停止顯示或隱藏切換，這個定時器掛載到<code>mounted()</code>之後，點擊按鈕雖然會停止文字顯示的切換，卻不會停止我們在定時器裡放的<code>console.log(&#39;++++++&#39;)</code>，也表示「定時器」並沒有被銷毀。</p>
-<p>要把整個定時器銷毀(進入銷毀 Vue 實例)階段，需要在<code>beforeDestroy()</code>這個階段清除定時器，我們可使用<code>clearInterval()</code>來清除定時器，但是如何找到我們要銷毀的定時器？可以在<code>mounted()</code>階段的定時器，指向我們設定的變數<code>this.intervalId = setInterval()</code>來讓清除定時器的函式找到。</p>
-<p>在實例裡加入每個時期的生命週期方法，並用<code>console.log</code>印出來，執行一下頁面就可看到其順序。</p>
-<h2 id="常用的生命週期方法？"><a href="#常用的生命週期方法？" class="headerlink" title="常用的生命週期方法？"></a>常用的生命週期方法？</h2><ul>
-<li><code>mounted()</code>：主要用來發送<code>ajax</code>請求，啟動定時器等非同步的任務。</li>
-<li><code>beforeDestory()</code>：做收尾的工作，例如清除定時器，否則定時器會一直執行下去（如範例）</li>
-<li><code>created()</code>：進行 ajax 請求異步數據的獲取、初始化數據</li>
-<li><code>mounted()</code>：掛載元素內 dom 節點的獲取</li>
-<li><code>nextTick()</code>：針對單一事件更新數據後立即操作 dom</li>
-<li><code>updated()</code>：任何數據的更新，如果要做統一的業務邏輯處理</li>
-<li><code>watch()</code>：監聽具體數據變化，並做相應的處理</li>
-</ul>
-<h2 id="實際操作"><a href="#實際操作" class="headerlink" title="實際操作"></a>實際操作</h2><p>來 codepen 看看：<a href="https://codepen.io/tsuifei/pen/WNvGJKb?editors=1111" target="_blank" rel="noopener">VueJs Instance Lifecycle Hooks 生命週期鉤子</a>，別忘了觀察 console 的變化。<br>HTML 部分：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"destroyVm"</span>&gt;</span>Destroy vm<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-show</span>=<span class="string">"isShow"</span>&gt;</span>Hello Paris<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>Vue 實例的部分</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    isShow: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 1.初始化顯示階段</span></span><br><span class="line">  beforeCreate() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'1. beforeCreate'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'2. created'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeMount() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'3. beforeMount'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 初始化後的顯示，所以放在mounted(只用一次)</span></span><br><span class="line">  mounted() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'4. mounted'</span>);</span><br><span class="line">    <span class="comment">// 定時器，每一秒改變一次</span></span><br><span class="line">    <span class="keyword">this</span>.intervalId = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'+++++++++'</span>);</span><br><span class="line">      <span class="keyword">this</span>.isShow = !<span class="keyword">this</span>.isShow;</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 2.更新狀態顯示階段</span></span><br><span class="line">  beforeUpdate() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'5. beforeUpdate'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  updated() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'6. updated'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 3.死亡、銷毀 Vue 實例階段 / 銷毀之前調用（只用一次）</span></span><br><span class="line">  beforeDestroy() &#123;</span><br><span class="line">    <span class="comment">// 清除定時器</span></span><br><span class="line">    clearInterval(<span class="keyword">this</span>.intervalId);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'7. beforeDestroy'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  destroyed() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'8. destroyed'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    <span class="comment">// 毀掉vm</span></span><br><span class="line">    destroyVm() &#123;</span><br><span class="line">      <span class="keyword">this</span>.$destroy();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="Vue_Instance_Lifecycle_Hooks/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1239,21 +1128,17 @@
 
       
         
-          
-            <p>使用 Vue 資料雙向綁定的特性，做表單資料的自動收集。</p>
+          <p>使用 Vue 資料雙向綁定的特性，做表單資料的自動收集。</p>
 <p>先去 codepen 看看：<a href="https://codepen.io/tsuifei/pen/qBdaPrL?editors=1111" target="_blank" rel="noopener">Vue.js Form Input Bindings 表單輸入綁定</a></p>
 <p>通常在處理表單的時候，在填完表單時，通常以<code>&lt;from&gt;</code>標籤內的<code>action</code>屬性來傳送，但在 Vue 裡，可以先把<code>&lt;from&gt;</code>的預設<code>submit</code>動作取消，並以監聽的方式(v-on)處理：<code>@submit.prevent(方法)</code>。當我們按下送出表單鍵時，就會去執行<code>handleSubmit</code>這個方法，在方法裡在指定我們希望如何處理表單內的資料就可以了。</p>
 <h3 id="表單裡的標籤綁定"><a href="#表單裡的標籤綁定" class="headerlink" title="表單裡的標籤綁定"></a>表單裡的標籤綁定</h3><p>主要以<code>v-model</code>來做資料的雙向綁定，達到自動收集填入資料的目的。<br>表單裡有單純的輸入(text/textarea)、單選項(radio)、複選項(checkbox)和選單(select)，實例中我們必須先在<code>data</code>裡初始化我們會用到的值，這些初始值則是對應到 HTML 表單標籤裡的<code>value</code>，例如，如果我們希望預設的<code>radio</code>選項是 female，在<code>data</code>裡的<code>sex</code>初始，給<code>female</code>就可以了，以此類推。</p>
-<p>需要注意的是，因為複選項(checkbox)是可以複選，所以必須是陣列格式，才能複選。</p>
-<p>另外，在選單(select)的部分，可以在實例的<code>data</code>中先把物件型態的陣列準備好，然後在 HTML 使用<code>v-for</code>迴圈的方式讀取選單裡的選項。需要注意的是，通常在資料庫裡，我們需要的會是這些屬性的<code>id</code>而非文字，所以物件型態的陣列可以給兩個屬性：<code>city.name</code>和<code>city.id</code>，找到<code>id</code>就可找到對應的城市名。<br>而這個選單(select)的初始值，也就是<code>v-model</code>綁定的<code>cityId</code>，在實例的<code>data</code>裡也須先初始化好。</p>
-<p>HTML 的部分：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"xxx"</span> @<span class="attr">submit.prevent</span>=<span class="string">"handleSubmit"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>Name : <span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"name"</span> /&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>Password : <span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"pwd"</span> <span class="attr">v-model</span>=<span class="string">"pwd"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>Sex : <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">id</span>=<span class="string">"female"</span> <span class="attr">value</span>=<span class="string">"female"</span> <span class="attr">v-model</span>=<span class="string">"sex"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"female"</span>&gt;</span>Femme<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">id</span>=<span class="string">"male"</span> <span class="attr">value</span>=<span class="string">"male"</span> <span class="attr">v-model</span>=<span class="string">"sex"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"male"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>Hobby : <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">value</span>=<span class="string">"travel"</span> <span class="attr">id</span>=<span class="string">"travel"</span> <span class="attr">v-model</span>=<span class="string">"hobbys"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"travel"</span>&gt;</span>Travel<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">value</span>=<span class="string">"cinema"</span> <span class="attr">id</span>=<span class="string">"cinema"</span> <span class="attr">v-model</span>=<span class="string">"hobbys"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"cinema"</span>&gt;</span>Cinema<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">value</span>=<span class="string">"food"</span> <span class="attr">id</span>=<span class="string">"food"</span> <span class="attr">v-model</span>=<span class="string">"hobbys"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"food"</span>&gt;</span>Food<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">value</span>=<span class="string">"sport"</span> <span class="attr">id</span>=<span class="string">"sport"</span> <span class="attr">v-model</span>=<span class="string">"hobbys"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"sport"</span>&gt;</span>Sport<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>City : <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 動態顯示 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">"city"</span> <span class="attr">v-model</span>=<span class="string">"cityId"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">""</span>&gt;</span>No selection<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 如果直接寫value="city.id" 會被當成是字串，需加上冒號 :value="" 成為表達式 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">option</span> <span class="attr">:value</span>=<span class="string">"city.id"</span> <span class="attr">v-for</span>=<span class="string">"(city, index) in citys"</span> <span class="attr">:key</span>=<span class="string">"city.id"</span></span></span><br><span class="line"><span class="tag">          &gt;</span>&#123;&#123;city.name&#125;&#125;<span class="tag">&lt;/<span class="name">option</span></span></span><br><span class="line"><span class="tag">        &gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">textarea</span></span></span><br><span class="line"><span class="tag">        <span class="attr">name</span>=<span class="string">"info"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">cols</span>=<span class="string">"30"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">rows</span>=<span class="string">"10"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">placeholder</span>=<span class="string">"Self introduction"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">v-model</span>=<span class="string">"info"</span></span></span><br><span class="line"><span class="tag">      &gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"register"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>Vue 實例的部分：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    name: <span class="string">''</span>,</span><br><span class="line">    pwd: <span class="string">''</span>,</span><br><span class="line">    sex: <span class="string">'female'</span>, <span class="comment">// 預設值是從 value 抓來的</span></span><br><span class="line">    hobbys: [<span class="string">'travel'</span>],</span><br><span class="line">    citys: [</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">1</span>,</span><br><span class="line">        name: <span class="string">'Paris'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">2</span>,</span><br><span class="line">        name: <span class="string">'Taipei'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">3</span>,</span><br><span class="line">        name: <span class="string">'London'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">4</span>,</span><br><span class="line">        name: <span class="string">'Tainan'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    cityId: <span class="string">'2'</span>,</span><br><span class="line">    info: <span class="string">''</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleSubmit() &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(</span><br><span class="line">        <span class="keyword">this</span>.name,</span><br><span class="line">        <span class="keyword">this</span>.pwd,</span><br><span class="line">        <span class="keyword">this</span>.sex,</span><br><span class="line">        <span class="keyword">this</span>.hobbys,</span><br><span class="line">        <span class="keyword">this</span>.cityId,</span><br><span class="line">        <span class="keyword">this</span>.info</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="Vue_Form_Input_Bindings/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1689,37 +1574,15 @@
 
       
         
-          
-            <p>如果要把一個陣列或物件渲染到畫面，在原生的 JS 我們可以用迴圈或 forEach 以遍歷的方式將陣列的資料顯示，如果用 ES6 就可用 for…of 循環語句。<br>在 Vue 裡要遍歷陣列的方法並不難，只是遍歷陣列和物件的方式稍有不同。<br><a href="https://codepen.io/tsuifei/pen/QWbNErL" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
+          <p>如果要把一個陣列或物件渲染到畫面，在原生的 JS 我們可以用迴圈或 forEach 以遍歷的方式將陣列的資料顯示，如果用 ES6 就可用 for…of 循環語句。<br>在 Vue 裡要遍歷陣列的方法並不難，只是遍歷陣列和物件的方式稍有不同。<br><a href="https://codepen.io/tsuifei/pen/QWbNErL" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
 <h2 id="以-v-for-遍歷陣列顯示"><a href="#以-v-for-遍歷陣列顯示" class="headerlink" title="以 v-for 遍歷陣列顯示"></a>以 v-for 遍歷陣列顯示</h2><p>陣列列表顯示的方法是使用<code>v-for</code>指令，在遍歷的時候語法為<code>&lt;li v-for=&quot;(p, index) in persons&quot; :key=&quot;index&quot;&gt;&lt;/li&gt;</code><br>在使用<code>v-for</code>時要記得加上<code>:key</code> 讓單筆的屬性有唯一值，這個陣列的唯一值是 index。<br>在上面的語法範例，可以想成是<code>&lt;li v-for=&quot;(單個陣列, index索引值) in 陣列&quot; :key=&quot;index唯一索引值&quot;&gt;&lt;/li&gt;</code>。</p>
-<p>假設我們有個陣列：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">persons: [&#123;</span><br><span class="line">            name: <span class="string">'Ayda'</span>,</span><br><span class="line">            age: <span class="number">18</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Tracy'</span>,</span><br><span class="line">            age: <span class="number">24</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Philippe'</span>,</span><br><span class="line">            age: <span class="number">42</span></span><br><span class="line">          &#125;</span><br></pre></td></tr></table></figure>
-
-<p>在 HTML 我們可以這樣寫，就可以在頁面渲染出陣列的列表：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(p, index) in persons"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">    &#123;&#123; index &#125;&#125; --- &#123;&#123;p.name&#125;&#125; --- &#123;&#123;p.age&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="以-v-for-遍歷物件顯示"><a href="#以-v-for-遍歷物件顯示" class="headerlink" title="以 v-for 遍歷物件顯示"></a>以 v-for 遍歷物件顯示</h2><p>遍歷物件的方法也差不多，只是物件並沒有索引值，所以唯一值就會抓取 key 值，如：<br><code>v-for=&quot;(value, key) in persons[1]&quot; :key=&quot;key&quot;</code><br>可以想成：<br><code>v-for=&quot;(value屬性值, key屬性鍵值) in persons物件[1]&quot; :key=&quot;key唯一鍵值&quot;</code><br>每一個 key 值都需不相同。另外，遍歷物件的功能並不常用。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 提取單筆 --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- &lt;li v-for="(value, key) in persons[1]" :key="key"&gt;&#123;&#123;value&#125;&#125; -- &#123;&#123;key&#125;&#125;&lt;/li&gt; --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 提取全部 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(value, key) in persons"</span> <span class="attr">:key</span>=<span class="string">"key"</span>&gt;</span>&#123;&#123;value&#125;&#125; -- &#123;&#123;key&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="是改變了陣列本身還是陣列內部的資料？"><a href="#是改變了陣列本身還是陣列內部的資料？" class="headerlink" title="是改變了陣列本身還是陣列內部的資料？"></a>是改變了陣列本身還是陣列內部的資料？</h2><p>在 Vue 裡要做到刪除、更新、增加陣列並須先了解 Vue 的運作，要先分清楚我們所操作的是否有改變到陣列本身？還是更改到陣列內部的物件。<br>例如，如果我們使用<code>this.persons = []</code>我們把空陣列指向 <code>persons</code>物件，陣列因此成為空陣列，這樣的動作是有更動到陣列「本身」。<br>但是如果只是去改變陣列內物件的屬性、值，這就只有更動到陣列內部結構。這樣的內部結構改變 Vue 無法知道。<br><strong>Vue 只會監視 persons 這個陣列的改變，而不會監視陣列內部資料的改變。</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;; <span class="comment">// 改變物件本身</span></span><br><span class="line">obj.t = <span class="number">1</span>; <span class="comment">// 只改變了物件的內部結構資料</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="變異方法對原生陣列方法進行包裹"><a href="#變異方法對原生陣列方法進行包裹" class="headerlink" title="變異方法對原生陣列方法進行包裹"></a>變異方法對原生陣列方法進行包裹</h2><p>解決的方法是使用 Vue 的「變異方法」 (mutation method)。</p>
-<p>在 Vue 的官網上，列表渲染裡的「陣列更新檢測」有寫到，Vue 會將被偵聽的陣列的變異方法進行包裹，然後才將會觸發頁面的部分更新。</p>
-<p>陣列裡有這些函式可改變陣列的內部結構，在 Vue 裡用這些方法時，如增加、刪除，用這些方法已不是 JS 的原生方法，而是 Vue 有特殊處理包裹過，包裹的過程會經過兩個步驟：呼叫原生方法函式與更新頁面，也就是 <strong>Vue 重寫了一遍這些方法，讓這些方法可以檢測到陣列內部資料的變化</strong>。如果 Vue 沒做這些包裹處理，那麼 Vue 就無法檢測到陣列內部資料的變化。</p>
-<p>在做陣列內部資料的更動更新，一定要使用以下這些方法，才能讓陣列內部資料變化，自動更新到頁面上。</p>
-<p>這些被 Vue 重新包裹過的方法成為「變異方法」有：<code>push()</code>、<code>pop()</code>、<code>shift()</code>、<code>unshift()</code>、<code>splice()</code>、<code>sort()</code>、<code>reverse()</code></p>
-<p>其中，<code>splice()</code> 的功能很強大，可以一次辦到增加、刪除、修改。</p>
-<h2 id="刪除、更新、增加的寫法"><a href="#刪除、更新、增加的寫法" class="headerlink" title="刪除、更新、增加的寫法"></a>刪除、更新、增加的寫法</h2><p>以範例來說，我們先在頁面增加三個分別為刪除、更新、增加的按鈕，這個範例只是簡單的介紹其運作的方法。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(p, index) in persons"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">    &#123;&#123; index &#125;&#125; --- &#123;&#123;p.name&#125;&#125; --- &#123;&#123;p.age&#125;&#125; --<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"deleteP(index)"</span>&gt;</span></span><br><span class="line">      Delete</span><br><span class="line">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    -- <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"updateP(index, &#123;name:'Fanny', age: 25&#125;)"</span>&gt;</span>Update<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>再來我們來看在 Vue 裡的刪除、更新、增加這三個方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">methods: &#123;</span><br><span class="line">        deleteP(index) &#123;</span><br><span class="line">          <span class="keyword">this</span>.persons.splice(index, <span class="number">1</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        updateP(index, newP) &#123;</span><br><span class="line">          <span class="comment">// this.persons[index] = newP</span></span><br><span class="line">          <span class="comment">// 這樣的做法因為無原生陣列函式，所以在vue 不會起作用，也不會自動更新頁面</span></span><br><span class="line">          <span class="comment">// console.log(this.persons[index], newP)</span></span><br><span class="line">          <span class="keyword">this</span>.persons.splice(index, <span class="number">1</span>, newP)</span><br><span class="line">        &#125;,</span><br><span class="line">        addP(newP) &#123;</span><br><span class="line">          <span class="keyword">this</span>.persons.push(newP)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">)&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果熟悉上面的操作，應該就可以試著寫出一個簡單的 todoList 了。<br>接下來就要來介紹排序的部分囉！</p>
-<p>參考：<br><a href="https://cn.vuejs.org/v2/guide/list.html#%E5%8F%98%E5%BC%82%E6%96%B9%E6%B3%95-mutation-method" target="_blank" rel="noopener">列表渲染 — Vue.js</a><br><a href="https://blog.csdn.net/qq_37860930/article/details/78529260" target="_blank" rel="noopener">ES6-遍曆數組 JavaScript</a><br><a href="https://segmentfault.com/a/1190000010203337" target="_blank" rel="noopener">ES5 和 ES6 數組遍歷方法詳解</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="Vue_List_Rendering/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1858,30 +1721,17 @@
 
       
         
-          
-            <p>既然是條件式，就一定有選擇，在程式裡，最簡單也最常用的選擇是使用布林值： true 或 false 只能擇一。利用這種二擇一的特性，去執行我們希望程式做的事。</p>
+          <p>既然是條件式，就一定有選擇，在程式裡，最簡單也最常用的選擇是使用布林值： true 或 false 只能擇一。利用這種二擇一的特性，去執行我們希望程式做的事。</p>
 <p><a href="https://codepen.io/tsuifei/pen/KKpzKbV" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
 <p>在 Vue 裡的條件渲染指令有以下兩種：</p>
 <h2 id="v-if-和-v-else-一起用"><a href="#v-if-和-v-else-一起用" class="headerlink" title="v-if 和 v-else 一起用"></a>v-if 和 v-else 一起用</h2><p><code>v-if</code>和<code>v-else</code> 一起用的時候，把條件的屬性放在<code>v-if</code>的標籤屬性裡，如果屬性結果是<code>true</code>就會顯示<code>v-if</code>的內容，如果結果是<code>false</code>就會顯示<code>v-else</code> 的內容，在選染頁面部分，我們會發現，如果是<code>false</code>，就連 HTML 的部分也不會被渲染出。</p>
-<p>當我們只有有寫<code>v-else</code>如<code>&lt;p v-else&gt;失敗&lt;/p&gt;</code>等同是<code>v-else=&quot;true&quot;</code>，通常在<code>v-else</code>是不需要給條件的。</p>
-<p>需要做切換時，只要使用運算子<code>!</code>將條件調整為<code>@click=&quot;yes=!yes&quot;</code> 就可達到切換的效果。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"success"</span>&gt;</span>成功<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-else</span>&gt;</span>失敗<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"success=!success"</span>&gt;</span>Switch<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="v-show-用兩次"><a href="#v-show-用兩次" class="headerlink" title="v-show 用兩次"></a>v-show 用兩次</h2><p><code>v-show</code>通常拿來作為一個切換器，像開關一樣，不是開就是關。如果需要平凡的切換，就使用<code>v-show</code>。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-show</span>=<span class="string">"success"</span>&gt;</span>已完成<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-show</span>=<span class="string">"!success"</span>&gt;</span>未完成<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="v-if-和-v-show-的不同之處"><a href="#v-if-和-v-show-的不同之處" class="headerlink" title="v-if 和 v-show 的不同之處"></a>v-if 和 v-show 的不同之處</h2><p><code>v-if</code>可以搭配<code>v-else-if</code>和<code>v-else</code> 而有多選一的機制，但是<code>v-show</code>通常只能二選一。<br>在渲染的部分，使用<code>v-if</code>只會渲染出達到條件的 HTML，但是<code>v-show</code>會把條件全渲染出來，然後用以<code>style=&quot;display: none;&quot;</code>的方式隱藏。</p>
-<h3 id="需要多選一的時候就用-v-if"><a href="#需要多選一的時候就用-v-if" class="headerlink" title="需要多選一的時候就用 v-if"></a>需要多選一的時候就用 v-if</h3><p>剛剛說過 <code>v-if</code>可以搭配<code>v-else-if</code>和<code>v-else</code> 做出多選一的機制，也很彈性，使用方法也很簡潔，同樣只會炫染出<code>true</code>的部分。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h4</span>&gt;</span>v-if-else multiple<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"light==='red'"</span>&gt;</span>紅燈<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-else-if</span>=<span class="string">"light==='green'"</span>&gt;</span>綠燈<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-else-if</span>=<span class="string">"light==='yellow'"</span>&gt;</span>黃燈<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-else</span>&gt;</span>燈壞了<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>JavaScript Vue 實例的部分：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    success: <span class="literal">false</span>,</span><br><span class="line">    light: <span class="string">''</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>值得注意的是在 Vue 的官網上說明：不推薦同時使用<code>v-if</code> 和 <code>v-for</code></p>
-<p>當 <code>v-if</code> 與 <code>v-for</code> 一起使用時，<code>v-for</code>會具有比 v-if 更高的優先級。詳細解釋請查閱 Vue 的<a href="https://cn.vuejs.org/v2/style-guide/#%E9%81%BF%E5%85%8D-v-if-%E5%92%8C-v-for-%E7%94%A8%E5%9C%A8%E4%B8%80%E8%B5%B7-%E5%BF%85%E8%A6%81" target="_blank" rel="noopener">風格指南 — Vue.js</a>和列表渲染指南：<br><a href="https://cn.vuejs.org/v2/guide/list.html#v-for-object" target="_blank" rel="noopener">列表渲染 — Vue.js</a></p>
-<p><a href="https://cn.vuejs.org/v2/guide/conditional.html" target="_blank" rel="noopener">條件渲染 — Vue.js</a></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="Vue_Conditional_Rendering/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

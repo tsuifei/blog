@@ -88,7 +88,7 @@
 <meta property="og:description" content="Day 13 傻傻以為迴圈是唯一，那只是沙灘上的一塊小岩石。  回想剛開始學程式時，看到 While 迴圈可以透過 ASCII 碼，把英文數字從 ａ 到 Z 印出來，感到好驚訝！到底是怎麼辦到的？但是，經過了幾次無限迴圈的背叛後，才知道如果迴圈不給一個「範圍」，就會出大事。 電腦整個當掉要重開 記得小時候家裡小孩多，當時的台灣經濟正在起飛 馬上透露了世代，家庭代工正興起。記得媽媽總是會叫我們兄弟姐">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20190928/20104175SagETy0KNh.png">
-<meta property="og:updated_time" content="2019-12-16T18:08:24.818Z">
+<meta property="og:updated_time" content="2020-02-25T21:30:20.473Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="遍歷陣列的方法">
 <meta name="twitter:description" content="Day 13 傻傻以為迴圈是唯一，那只是沙灘上的一塊小岩石。  回想剛開始學程式時，看到 While 迴圈可以透過 ASCII 碼，把英文數字從 ａ 到 Z 印出來，感到好驚訝！到底是怎麼辦到的？但是，經過了幾次無限迴圈的背叛後，才知道如果迴圈不給一個「範圍」，就會出大事。 電腦整個當掉要重開 記得小時候家裡小孩多，當時的台灣經濟正在起飛 馬上透露了世代，家庭代工正興起。記得媽媽總是會叫我們兄弟姐">
@@ -329,6 +329,8 @@
 </blockquote>
 <p>回想剛開始學程式時，看到 While 迴圈可以透過 ASCII 碼，把英文數字從 ａ 到 Z 印出來，感到好驚訝！到底是怎麼辦到的？但是，經過了幾次無限迴圈的背叛後，才知道如果迴圈不給一個「範圍」，就會出大事。 <del>電腦整個當掉要重開</del></p>
 <p>記得小時候家裡小孩多，當時的台灣經濟正在起飛 <del>馬上透露了世代</del>，家庭代工正興起。記得媽媽總是會叫我們兄弟姐妹來幫忙 <del>是滴，本人兄弟姐妹都有。</del> 當時的手工產品是要寄往北方某個遙遠國度的聖誕節飾品，也就是要掛在樹上的小型禮物盒。媽媽先是叫我們排排坐，開始解說步驟，接著就開始這條要完成「一百個」小禮物的童工生產線：</p>
+<a id="more"></a>
+
 <ul>
 <li>哥哥把一張包裝紙拿起來放桌上</li>
 <li>姊姊把四方形的保麗龍放在包裝紙上</li>
@@ -348,11 +350,11 @@
 <h2 id="遇到稀疏陣列怎麼辦？"><a href="#遇到稀疏陣列怎麼辦？" class="headerlink" title="遇到稀疏陣列怎麼辦？"></a>遇到稀疏陣列怎麼辦？</h2><p>遍歷陣列的作法，是逐一的去走訪在陣列的每一個值，看過政治人物在街頭嗎？他們看到民眾時會和民眾逐一握手，那一排的民眾是陣列；每一個民眾就像是元素；握手就是讓元素產生變化 <del>考慮看看要不要投你</del>。
 但是，如果這位政治人物在逐一握手的時候，中間卡了座石獅子，他也會跳過這隻不會握手的石獅子，繼續跟下一位民眾握手。這一排民眾就成了稀疏（spars）陣列的民眾、而這隻石獅子就是稀疏陣列裡面無效或空的元素。</p>
 <p>通常在使用迭代陣列方法，遇到是稀疏陣列的時候，我們會先把一些無效或空的元素先排除，例如<code>null</code>或<code>undefined</code>，例如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,,<span class="literal">null</span>,<span class="number">5</span>,<span class="literal">undefined</span>];</span><br><span class="line"><span class="keyword">let</span> arr2=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.length;i++ )&#123;</span><br><span class="line">  <span class="keyword">if</span>(!arr[i]) <span class="keyword">continue</span>;</span><br><span class="line">  arr2.push(arr[i]);</span><br><span class="line">&#125;</span><br><span class="line">arr2; <span class="comment">// [1,2,5]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, , <span class="literal">null</span>, <span class="number">5</span>, <span class="literal">undefined</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!arr[i]) <span class="keyword">continue</span>;</span><br><span class="line">  arr2.push(arr[i]);</span><br><span class="line">&#125;</span><br><span class="line">arr2; <span class="comment">// [1,2,5]</span></span><br></pre></td></tr></table></figure>
 
 <p>我們希望回傳的是這個陣列被處理過後的結果，但如果是稀疏陣列，這些無效的值也會被一併保留，很沒意義。所以在做處理前，最好先把陣列處理成密集的陣列，這樣迭代才有意義。</p>
 <blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～</p>
 </blockquote>
 
       

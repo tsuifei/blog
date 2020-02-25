@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。  help -&amp;gt; Interactive Playground -&amp;gt;  重構工具Rename Refactoring (重新命名)選中要修改的某一個名稱，按 fn+F2 即可重新輸入新的命名， e">
+<meta name="description" content="在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。  help -&amp;gt; Interactive Playground -&amp;gt;">
 <meta name="keywords" content="VSCode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VSCode 秘技 Rename Refactoring 重新命名＋Formatting重新整理程式碼">
 <meta property="og:url" content="tsuifei.github.io/VS-Code_秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/index.html">
 <meta property="og:site_name" content="Cré-Coder">
-<meta property="og:description" content="在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。  help -&amp;gt; Interactive Playground -&amp;gt;  重構工具Rename Refactoring (重新命名)選中要修改的某一個名稱，按 fn+F2 即可重新輸入新的命名， e">
+<meta property="og:description" content="在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。  help -&amp;gt; Interactive Playground -&amp;gt;">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-02-02T21:20:56.646Z">
+<meta property="og:updated_time" content="2020-02-25T21:26:37.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VSCode 秘技 Rename Refactoring 重新命名＋Formatting重新整理程式碼">
-<meta name="twitter:description" content="在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。  help -&amp;gt; Interactive Playground -&amp;gt;  重構工具Rename Refactoring (重新命名)選中要修改的某一個名稱，按 fn+F2 即可重新輸入新的命名， e">
+<meta name="twitter:description" content="在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。  help -&amp;gt; Interactive Playground -&amp;gt;">
 
 
 
@@ -324,7 +324,9 @@
       
         <p>在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。<br>這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。</p>
 <ul>
-<li>help -&gt; Interactive Playground -&gt;</li>
+<li>help -&gt; Interactive Playground -&gt;<a id="more"></a>
+
+</li>
 </ul>
 <h2 id="重構工具"><a href="#重構工具" class="headerlink" title="重構工具"></a>重構工具</h2><h3 id="Rename-Refactoring-重新命名"><a href="#Rename-Refactoring-重新命名" class="headerlink" title="Rename Refactoring (重新命名)"></a>Rename Refactoring (重新命名)</h3><p>選中要修改的某一個名稱，按 fn+F2 即可重新輸入新的命名， enter 之後會發現所有用此函式名的地方，都會換成新名字。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Reference the function</span></span><br><span class="line"><span class="keyword">new</span> Book(<span class="string">'War of the Worlds'</span>, <span class="string">'H G Wells'</span>);</span><br><span class="line"><span class="keyword">new</span> Book(<span class="string">'The Martian'</span>, <span class="string">'Andy Weir'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Represents a book.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Book</span>(<span class="params">title, author</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.title = title;</span><br><span class="line">  <span class="keyword">this</span>.author = author;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

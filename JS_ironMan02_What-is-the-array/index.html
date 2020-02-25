@@ -88,7 +88,7 @@
 <meta property="og:description" content="Day 02 C’est quoi un Array  測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。在討論陣列之前，可以先來想像一下，如果今天天氣超級好，我們洗了很多衣服，曬乾之後的衣服充滿陽光的氣息，我們把這些衣服整包的丟到床上，一邊開著電視，一邊開始折衣服，再將所有的上衣折好放成一疊、長褲折好一疊、襪子捲好放成一堆，再一">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://lh3.google.com/u/0/d/1nGDgv3Yig9uGJRuuXZyes5ijhNCP7Pp0=w1434-h1624-iv1">
-<meta property="og:updated_time" content="2019-12-16T15:39:22.869Z">
+<meta property="og:updated_time" content="2020-02-25T21:31:04.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Array 陣列是什麼">
 <meta name="twitter:description" content="Day 02 C’est quoi un Array  測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。在討論陣列之前，可以先來想像一下，如果今天天氣超級好，我們洗了很多衣服，曬乾之後的衣服充滿陽光的氣息，我們把這些衣服整包的丟到床上，一邊開著電視，一邊開始折衣服，再將所有的上衣折好放成一疊、長褲折好一疊、襪子捲好放成一堆，再一">
@@ -329,6 +329,8 @@
 </blockquote>
 <h5 id="測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。"><a href="#測試環境已-Chrome-瀏覽器為主，通常會在-VS-code-打好碼，再丟到-Chrome-的-Console-跑。" class="headerlink" title="測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。"></a>測試環境已 Chrome 瀏覽器為主，通常會在 VS code 打好碼，再丟到 Chrome 的 Console 跑。</h5><p>在討論陣列之前，可以先來想像一下，如果今天天氣超級好，我們洗了很多衣服，曬乾之後的衣服充滿陽光的氣息，我們把這些衣服整包的丟到床上，一邊開著電視，一邊開始折衣服，再將所有的上衣折好放成一疊、長褲折好一疊、襪子捲好放成一堆，再一一放入衣櫃裡，我們分門別類地把這些衣服摺好時，這一疊的衣服就有陣列的概念了。</p>
 <p>一般來說，陣列在程式語言裡的定義是：陣列(Array)是一組相同型態的連續變數，它們使用同一個變數名稱，而另外用一個索引值來指定使用第幾個變數。且陣列本質上是有序的，索引是從零開始計算的。</p>
+<a id="more"></a>
+
 <p>在<a href="https://zh.wikipedia.org/zh-tw/%E6%95%B0%E7%BB%84" target="_blank" rel="noopener">維基百科</a>裡，對於陣列的說明是：</p>
 <blockquote>
 <p>在電腦科學中，陣列資料結構（英語：array data structure），簡稱陣列（英語：Array），是由相同類型的元素（element）的集合所組成的資料結構，分配一塊連續的記憶體來儲存。利用元素的索引（index）可以計算出該元素對應的儲存位址。</p>
@@ -340,21 +342,21 @@
 <p>JavaScript 果然是個很奇特的語言，不只沒限制放在陣列裡的資料型別，也就是說在陣列裡，要放數字、字串、陣列甚至是物件都可以，簡直是百寶箱了。不只這樣，JavaScript 還幫我們做好了陣列 Array 的物件供我們應用，以及許多陣列的方法，讓我們可以輕易的操控陣列，這些方法將在後續一一來介紹。</p>
 <h2 id="陣列-Array-的真面目"><a href="#陣列-Array-的真面目" class="headerlink" title="陣列 Array 的真面目"></a>陣列 Array 的真面目</h2><p>JavaScript 的資料型別有數字(Number)、字串(String)、布林(Boolean)、空(null)、未定義(undefined)、符號(Symbol)、陣列(Array)、物件(Object)。雖然字面上 JavaScript 的型別有這麼多種，但是其實骨子裡 JavaScript 在這些型別裡又分組，甚至，有些還喬裝成別組，是不是很錯亂？</p>
 <p>想要各型別現出原形，得用 JavaScript 裡的關鍵運算子 typeof 來照妖，猜猜陣列 Array 的真面目是什麼？</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">typeof</span> arr; <span class="comment">// "object" 是物件</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">typeof</span> arr; <span class="comment">// "object" 是物件</span></span><br></pre></td></tr></table></figure>
 
 <p>怎麼回事？居然是”object”物件！關於陣列或 JavaScript 的各型別，我們在之後也會陸續提到。</p>
 <h2 id="陣列長什麼樣子"><a href="#陣列長什麼樣子" class="headerlink" title="陣列長什麼樣子"></a>陣列長什麼樣子</h2><p>JavaScript 陣列的基本長相為下圖，是由一對中括號 [ ] 組成， [ ] 裡面為陣列元素，每個元素以逗號分開，通常我們會將一組陣列，賦值給一個變數。再以這個變數來做各種處理。</p>
 <img src="https://lh3.google.com/u/0/d/1nGDgv3Yig9uGJRuuXZyes5ijhNCP7Pp0=w1434-h1624-iv1" width="70%" height="70%">
 
 <p>以下是幾個陣列的範例</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 變數 = [ 元素, 元素, 元素, ]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arrDeux = [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>],</span><br><span class="line">    [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>]</span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arrObj = [<span class="number">1</span>, <span class="number">2</span>, &#123; <span class="attr">name</span>: <span class="string">"Ayda"</span>, <span class="attr">city</span>: <span class="string">"Paris"</span>,<span class="attr">luckyNumbers</span> :[<span class="number">24</span>,<span class="number">42</span>,<span class="number">15</span>]&#125;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 變數 = [ 元素, 元素, 元素, ]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arrDeux = [</span><br><span class="line">  [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>],</span><br><span class="line">  [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arrObj = [</span><br><span class="line">  <span class="number">1</span>,</span><br><span class="line">  <span class="number">2</span>,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'Ayda'</span>, <span class="attr">city</span>: <span class="string">'Paris'</span>, <span class="attr">luckyNumbers</span>: [<span class="number">24</span>, <span class="number">42</span>, <span class="number">15</span>] &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
 
 <p>有沒有被陣列能裝載的東西嚇到，看得出最後一個陣列像什麼嗎？有沒有覺得似曾相似？似乎，陣列不像我們想像的那樣單純，明天我們再繼續了解囉。</p>
 <blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～</p>
 </blockquote>
-<h4 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h4><p> <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Obsolete_Pages/Obsolete_Pages/Obsolete_Pages/%E9%99%A3%E5%88%97%E7%9A%84%E9%81%8B%E7%94%A8" target="_blank" rel="noopener">陣列的運用 - JavaScript | MDN</a> </p>
-<p> <a href="https://zh.wikipedia.org/zh-tw/%E6%95%B0%E7%BB%84" target="_blank" rel="noopener">陣列 - 維基百科，自由的百科全書</a></p>
+<h4 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h4><p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Obsolete_Pages/Obsolete_Pages/Obsolete_Pages/%E9%99%A3%E5%88%97%E7%9A%84%E9%81%8B%E7%94%A8" target="_blank" rel="noopener">陣列的運用 - JavaScript | MDN</a></p>
+<p><a href="https://zh.wikipedia.org/zh-tw/%E6%95%B0%E7%BB%84" target="_blank" rel="noopener">陣列 - 維基百科，自由的百科全書</a></p>
 
       
     </div>

@@ -88,7 +88,7 @@
 <meta property="og:description" content="Day 11 別懷疑，複製就是拷貝，深拷貝淺拷貝就是深複製淺複製，呼～  人家說，如果我們可以和某位朋友一起旅行 30 天，要嘛旅程結束變至親，不然就是變仇人，鐵人賽已經第十天，本人也開始有點了解 Array 這位木訥寡言，但一肚子學問的中年大叔。很難想像，光陣列就可以讓我寫十天寫不盡，即使寫完它，但是後頭還有多少 JavaScript 特性或其他奇怪的東西要了解？不過，只要確定走在進步的路上，那">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20190926/20104175vA55RlDfRq.png">
-<meta property="og:updated_time" content="2019-12-16T18:09:16.977Z">
+<meta property="og:updated_time" content="2020-02-25T21:30:31.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="以陣列 Array 的複製談型別（上）">
 <meta name="twitter:description" content="Day 11 別懷疑，複製就是拷貝，深拷貝淺拷貝就是深複製淺複製，呼～  人家說，如果我們可以和某位朋友一起旅行 30 天，要嘛旅程結束變至親，不然就是變仇人，鐵人賽已經第十天，本人也開始有點了解 Array 這位木訥寡言，但一肚子學問的中年大叔。很難想像，光陣列就可以讓我寫十天寫不盡，即使寫完它，但是後頭還有多少 JavaScript 特性或其他奇怪的東西要了解？不過，只要確定走在進步的路上，那">
@@ -329,6 +329,8 @@
 </blockquote>
 <p>人家說，如果我們可以和某位朋友一起旅行 30 天，要嘛旅程結束變至親，不然就是變仇人，鐵人賽已經第十天，本人也開始有點了解 Array 這位木訥寡言，但一肚子學問的中年大叔。很難想像，光陣列就可以讓我寫十天寫不盡，即使寫完它，但是後頭還有多少 JavaScript 特性或其他奇怪的東西要了解？不過，只要確定走在進步的路上，那就繼續走吧！</p>
 <h2 id="複製到哪個程度？"><a href="#複製到哪個程度？" class="headerlink" title="複製到哪個程度？"></a>複製到哪個程度？</h2><p>要說到陣列的複製，得讓我們聊聊 Javascript 是怎麼將型別分類的，原因是這牽涉到記憶體的分配與讀取的方式。在這之前，我們再來複習一下，在前幾天有聊到的 Javascript 資料型別。</p>
+<a id="more"></a>
+
 <p>在「你說不知道的 JS 導讀，型別與文法」提面提到，JavaScript 定義了七個內建型別：</p>
 <ul>
 <li>Null</li>
@@ -339,7 +341,7 @@
 <li>Object</li>
 <li>Symbol (ES6 增加的，但目前還很少用)</li>
 </ul>
-<p>而在這些型別中，又被分為兩大類Primitive type（基本型別）和Non-primitive type（非基本型別）。形容這兩大類的詞彙有許多版本，我們可以透過底下這張圖看得更清楚一點。</p>
+<p>而在這些型別中，又被分為兩大類 Primitive type（基本型別）和 Non-primitive type（非基本型別）。形容這兩大類的詞彙有許多版本，我們可以透過底下這張圖看得更清楚一點。</p>
 <p><img src="https://ithelp.ithome.com.tw/upload/images/20190926/20104175vA55RlDfRq.png" alt="DataType圖"></p>
 <p>實作時常會聽到<code>call by reference</code> 還是 <code>call by value</code>，這兩個有什麼不同？最簡易的解釋方法是：</p>
 <ul>
@@ -350,27 +352,27 @@
 <p>在查找資料時，又多了新的疑問，因為許多人談到另一種名叫<code>call by sharing</code> 雖然讀了許多資料，但本人還是無法清楚的釐清它和<code>Call by reference</code>的相異之處，有興趣的朋友可以來看看這篇<a href="https://blog.techbridge.cc/2018/06/23/javascript-call-by-value-or-reference/" target="_blank" rel="noopener">深入探討 JavaScript 中的參數傳遞：call by value 還是 reference？ | TechBridge 技術共筆部落格</a> 相信會有收穫的，在本人還沒完全吸收的狀況下，還是留給高人來解說比較保險。</p>
 <h2 id="比較不同型別的複製的方法"><a href="#比較不同型別的複製的方法" class="headerlink" title="比較不同型別的複製的方法"></a>比較不同型別的複製的方法</h2><h3 id="By-value-你的是你的，我的是我的"><a href="#By-value-你的是你的，我的是我的" class="headerlink" title="By value 你的是你的，我的是我的"></a>By value 你的是你的，我的是我的</h3><p>這些抽象的概念，初學者並不是那麼容易懂，但透過實作會讓這些抽象部分更有感覺。</p>
 <p>我們先創建一個變數<code>a</code>，再將<code>a</code>複製給<code>b</code>，接著重新給<code>b</code> 一個新值，然後以這兩個變數的結果來觀察。我們會發現<code>a</code>和<code>b</code>都有各自的值。<code>a</code>的值不會因為<code>b</code>而更動到。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// by value</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="string">"something"</span>;</span><br><span class="line"><span class="keyword">let</span> b = a; </span><br><span class="line">b = <span class="string">"somebody"</span>; </span><br><span class="line"></span><br><span class="line">a; <span class="comment">// something</span></span><br><span class="line">b; <span class="comment">// somebody</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// by value</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="string">'something'</span>;</span><br><span class="line"><span class="keyword">let</span> b = a;</span><br><span class="line">b = <span class="string">'somebody'</span>;</span><br><span class="line"></span><br><span class="line">a; <span class="comment">// something</span></span><br><span class="line">b; <span class="comment">// somebody</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="By-reference-你怎麼把我變得跟你一樣？"><a href="#By-reference-你怎麼把我變得跟你一樣？" class="headerlink" title="By reference 你怎麼把我變得跟你一樣？"></a>By reference 你怎麼把我變得跟你一樣？</h3><p>我們先以物件資料型態的物件來測試。</p>
 <p>先建立一個物件<code>person</code>，並給予兩個屬性，在另創一個變數<code>person2</code>，並將<code>person</code>指向（或複製）到<code>person2</code>，這時我們試著修改<code>person2</code>的某個屬性，結果<code>person</code>的屬性也被更動了。</p>
 <p>在修改<code>person2</code>這個<code>object</code>裡的<code>name</code>屬性時，也會同時改到原來參考的<code>person</code>的<code>name</code>屬性，是不是很恐怖？</p>
 <p>因為他們兩個是住在同一個記憶體裡啊！只不過，當我們認為從<code>person</code>複製一份到<code>person2</code>這件事，實際上是並沒有像影印一樣拷貝一份，而是拷貝時，我們跟<code>person2</code>說，要找<code>person2</code>就來<code>person</code>這個位址查找吧，所以來到同樣一個位址，改變<code>person2</code>也就理所當然的改到原本的<code>person</code>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// by reference(參考值)</span></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">    name: <span class="string">"Tracy"</span>,</span><br><span class="line">    city: <span class="string">"Tainan"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person2 = person; </span><br><span class="line">person2.name = <span class="string">"Ayda"</span></span><br><span class="line"></span><br><span class="line">person; <span class="comment">// name: "Ayda"</span></span><br><span class="line">person2; <span class="comment">// name: "Ayda"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// by reference(參考值)</span></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  name: <span class="string">'Tracy'</span>,</span><br><span class="line">  city: <span class="string">'Tainan'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person2 = person;</span><br><span class="line">person2.name = <span class="string">'Ayda'</span>;</span><br><span class="line"></span><br><span class="line">person; <span class="comment">// name: "Ayda"</span></span><br><span class="line">person2; <span class="comment">// name: "Ayda"</span></span><br></pre></td></tr></table></figure>
 
 <p>接下來我們來測試我們的主角陣列。<br>同樣是先創建一個陣列的變數<code>arr1</code>，並複製一份給<code>arr2</code>，接著我們試著在<code>arr2</code>的<code>index3</code>位置加入一個陣列元素<code>4</code>(使用<code>push()</code>也可以)，再把兩個陣列叫出來觀察。</p>
 <p>嗯，<code>arr1</code>也被更動到了！ <del>是不是很討厭！</del></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 陣列 by reference(參考值)</span></span><br><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr1;</span><br><span class="line">arr2[<span class="number">3</span>] = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line">arr1; <span class="comment">// [1, 2, 3, 4]</span></span><br><span class="line">arr2; <span class="comment">// [1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 陣列 by reference(參考值)</span></span><br><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = arr1;</span><br><span class="line">arr2[<span class="number">3</span>] = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line">arr1; <span class="comment">// [1, 2, 3, 4]</span></span><br><span class="line">arr2; <span class="comment">// [1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
 
 <p>因為<code>Array</code>也是參考型<code>(reference)</code>的原始資料類型所以也會像<code>Object</code>一樣，在修改時也會更改到原始參考值<code>by reference</code>。</p>
 <h3 id="住在同一個位址有問題嗎？"><a href="#住在同一個位址有問題嗎？" class="headerlink" title="住在同一個位址有問題嗎？"></a>住在同一個位址有問題嗎？</h3><p>這樣的狀況會對寫程式和處理資料有什麼影響？ <del>會出人命啊</del> 當然會。</p>
 <p>想像一下我們跟同學借了筆記來抄，抄完之後我們開始在我們抄過來的筆記上畫重點，甚至塗鴉，等到借我們筆記的同學翻開他的筆記時，發現 <del>這什麼鬼啊</del> 筆記上有著我們畫的密密麻麻的記號和塗鴉，友誼還要走下去嗎？</p>
 <p>上面的複製方式是我們最常用的，也是最直覺的複製方法，但是卻對陣列與物件的資料行不通，有其他方法複製嗎？當然有 <del>或….應該有～～</del>。</p>
-<p>我們可以利用 JavaScript 許多內建的方法來做複製這件事，但是 JavaScript 可沒那麼容易讓我們複製物件型態的資料。大家也聽過很多人都在聊的「深拷貝（DeepCopy）」和「淺拷貝（ShallowCopy）」，這兩者的區別又在哪裡呢？ </p>
+<p>我們可以利用 JavaScript 許多內建的方法來做複製這件事，但是 JavaScript 可沒那麼容易讓我們複製物件型態的資料。大家也聽過很多人都在聊的「深拷貝（DeepCopy）」和「淺拷貝（ShallowCopy）」，這兩者的區別又在哪裡呢？</p>
 <p>我們可以先想像一下，在 JavaScript 裡，要複製這些物件型別的「DNA」是有難度的，假如我們想徹徹底底地模仿一位巨星，髮型、服飾、化妝、配件都和這位巨星打扮的一模一樣，這樣或許看起來一樣，但當我們講話、走路時，就馬上會被識破，然後我們努力的把自己的音調也改了、姿態也修正了，以為一切都完美了，結果，遇到這會巨星的好朋友或男友，你想，我們會過關嗎？</p>
 <p>物件型別的複製，正有如以上講述情境的尷尬，也就是說，即使是複製，也是分好幾個層級的。我們明天再來聊聊，如何改變我們的<code>DNA</code>，完完全全地成為那位巨星！ <del>甘五摳零？</del></p>
 <blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～ </p>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～</p>
 </blockquote>
 
       
