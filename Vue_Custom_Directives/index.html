@@ -1,327 +1,731 @@
 <!DOCTYPE html>
-<html>
 
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-144046503-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
   
-  <title>Vue.js Custom Directives 自定義指令 | Cré-Coder</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什麼時候會用到自定義指令？在 Vue 內建的指令無法滿足需求或需要一個特別的功能時，就可以自己攥寫自定義指令，好處是可以重複使用。 自定義指定有兩種：全域自定義指令與局部的自定義指令。有時候我們在一個頁面裡可能會引入或增加好幾個 Vue 的實例，如果是全域的自定義指令，表示所有的 Vue 實例都可使用這個指令，但如果是局部自定義指令，需要指定能使用這組指令的 Vue 實例。 先來看 codepen">
+  <link href="../lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="../lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="../css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="../images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Vue,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="什麼時候會用到自定義指令？在 Vue 內建的指令無法滿足需求或需要一個特別的功能時，就可以自己攥寫自定義指令，好處是可以重複使用。 自定義指定有兩種：全域自定義指令與局部的自定義指令。有時候我們在一個頁面裡可能會引入或增加好幾個 Vue 的實例，如果是全域的自定義指令，表示所有的 Vue 實例都可使用這個指令，但如果是局部自定義指令，需要指定能使用這組指令的 Vue 實例。">
 <meta name="keywords" content="JavaScript,Vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue.js Custom Directives 自定義指令">
 <meta property="og:url" content="tsuifei.github.io/Vue_Custom_Directives/index.html">
 <meta property="og:site_name" content="Cré-Coder">
-<meta property="og:description" content="什麼時候會用到自定義指令？在 Vue 內建的指令無法滿足需求或需要一個特別的功能時，就可以自己攥寫自定義指令，好處是可以重複使用。 自定義指定有兩種：全域自定義指令與局部的自定義指令。有時候我們在一個頁面裡可能會引入或增加好幾個 Vue 的實例，如果是全域的自定義指令，表示所有的 Vue 實例都可使用這個指令，但如果是局部自定義指令，需要指定能使用這組指令的 Vue 實例。 先來看 codepen">
+<meta property="og:description" content="什麼時候會用到自定義指令？在 Vue 內建的指令無法滿足需求或需要一個特別的功能時，就可以自己攥寫自定義指令，好處是可以重複使用。 自定義指定有兩種：全域自定義指令與局部的自定義指令。有時候我們在一個頁面裡可能會引入或增加好幾個 Vue 的實例，如果是全域的自定義指令，表示所有的 Vue 實例都可使用這個指令，但如果是局部自定義指令，需要指定能使用這組指令的 Vue 實例。">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-02-25T20:40:13.565Z">
+<meta property="og:updated_time" content="2020-02-25T21:19:59.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue.js Custom Directives 自定義指令">
-<meta name="twitter:description" content="什麼時候會用到自定義指令？在 Vue 內建的指令無法滿足需求或需要一個特別的功能時，就可以自己攥寫自定義指令，好處是可以重複使用。 自定義指定有兩種：全域自定義指令與局部的自定義指令。有時候我們在一個頁面裡可能會引入或增加好幾個 Vue 的實例，如果是全域的自定義指令，表示所有的 Vue 實例都可使用這個指令，但如果是局部自定義指令，需要指定能使用這組指令的 Vue 實例。 先來看 codepen">
-  
-  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
-  
-  
-  <link rel="icon" href="/tsuifei.github.io//favicon.png">
-  
-  
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="../css/style.css">
-</head></html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="../index.html" id="logo">Cré-Coder</a>
-      </h1>
-      
-      <h2 id="subtitle-wrap">
-        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
-      </h2>
-      
-    </div>
+<meta name="twitter:description" content="什麼時候會用到自定義指令？在 Vue 內建的指令無法滿足需求或需要一個特別的功能時，就可以自己攥寫自定義指令，好處是可以重複使用。 自定義指定有兩種：全域自定義指令與局部的自定義指令。有時候我們在一個頁面裡可能會引入或增加好幾個 Vue 的實例，如果是全域的自定義指令，表示所有的 Vue 實例都可使用這個指令，但如果是局部自定義指令，需要指定能使用這組指令的 Vue 實例。">
 
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-        <a class="main-nav-link" href="../index.html">Home</a>
-        
-        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
-        
-        <!-- 搜索框就加上 class="st-default-search-input" -->
-        
-        <input type="text" class="st-default-search-input" placeholder="Search....">
-        
-        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
-        <!-- 
-        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
-         -->
-        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
-      </nav>
-      <!-- <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
-      </div> -->
 
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-Vue_Custom_Directives" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="" class="article-date">
-  <time datetime="2020-02-24T16:42:24.000Z" itemprop="datePublished">2020-02-25</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
-  </div>
 
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 class="article-title" itemprop="name">
-      Vue.js Custom Directives 自定義指令
-    </h1>
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/tsuifei.github.io/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="tsuifei.github.io/Vue_Custom_Directives/">
+
+
+
+
+
+  <title>Vue.js Custom Directives 自定義指令 | Cré-Coder</title>
   
 
-                </header>
-                
-
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>什麼時候會用到自定義指令？在 Vue 內建的指令無法滿足需求或需要一個特別的功能時，就可以自己攥寫自定義指令，好處是可以重複使用。</p>
-<p>自定義指定有兩種：全域自定義指令與局部的自定義指令。有時候我們在一個頁面裡可能會引入或增加好幾個 Vue 的實例，如果是全域的自定義指令，表示所有的 Vue 實例都可使用這個指令，但如果是局部自定義指令，需要指定能使用這組指令的 Vue 實例。</p>
-<p>先來看 codepen :<br><a href="https://codepen.io/tsuifei/pen/eYNgWzg" target="_blank" rel="noopener">Vue.Js Custom Directives 自定義指令</a></p>
-<h3 id="全域的寫法"><a href="#全域的寫法" class="headerlink" title="全域的寫法"></a>全域的寫法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Global 全域自定義指令 ps. directive 沒有 s</span></span><br><span class="line">Vue.directive(<span class="string">'my-directive'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">el, binding</span>) </span>&#123;</span><br><span class="line">  el.innerHTML = binding.value.toupperCase();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="局部的寫法"><a href="#局部的寫法" class="headerlink" title="局部的寫法"></a>局部的寫法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 局部的自定義指令 ps. directives 有 s</span></span><br><span class="line">directives : &#123;</span><br><span class="line">    <span class="string">'my-directive'</span> : &#123;</span><br><span class="line">        bind (el, binding) &#123;</span><br><span class="line">          el.innerHTML = binding.value.toUpperCase()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 也可以寫成</span></span><br><span class="line">    <span class="string">'my-directive'</span>(el, binding) &#123;</span><br><span class="line">      el.innerHTML = binding.value.toUpperCase()</span><br><span class="line">&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v-my-directive = 'xxx';</span><br></pre></td></tr></table></figure>
-
-<h2 id="實作兩個自定義指令"><a href="#實作兩個自定義指令" class="headerlink" title="實作兩個自定義指令"></a>實作兩個自定義指令</h2><ol>
-<li>功能的類型為<code>v-text</code>，功能是可將字串轉換成大寫，取名為<code>v-upper-text</code></li>
-<li>功能的類型為<code>v-text</code>，功能是可將字串轉換成小寫，取名為<code>v-lower-text</code></li>
-</ol>
-<p>需要注意的是，我們自訂的指令名，並不包含<code>v-</code>例如上述要實作的<code>v-upper-text</code>，指令名為<code>upper-text</code>，<code>v-</code>一但定義了這些自定義的指令，在使用時就需要加上<code>v-</code>。而只最終會被寫在 HTML 的元素標籤裡。</p>
-<p>這個指令名會對應到一個「處理函式」，如以下範例的<code>Vue.directive()</code>的第二參數<br>以下面的範例的 callback 函式來看，有兩個參數，第一個為<code>el</code>表示使用這個指令的標籤，第二個參數<code>binding</code>我們可以試著<code>console.log()</code>出來觀察。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-upper-text</span>=<span class="string">"msg1"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-lower-text</span>=<span class="string">"msg1"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app2"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-upper-text</span>=<span class="string">"msg2"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-lower-text</span>=<span class="string">"msg2"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 註冊定義全局指令</span></span><br><span class="line"><span class="comment">// el : 指令屬性的所在標籤物件</span></span><br><span class="line"><span class="comment">// binding : 包含指令相關訊息的資料物件</span></span><br><span class="line">Vue.directive(<span class="string">'upper-text'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">el, binding</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(el, binding);</span><br><span class="line">  <span class="comment">// 把改變好的內容在指定回去</span></span><br><span class="line">  el.innerHTML = binding.value.toUpperCase();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app1'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    msg1: <span class="string">'Hello Paris'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 註冊局部定義指令，只會對 #app1 這個實例有效</span></span><br><span class="line">  directives: &#123;</span><br><span class="line">    <span class="string">'lower-text'</span>(el, binding) &#123;</span><br><span class="line">      el.innerHTML = binding.value.toLowerCase();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app2'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    msg2: <span class="string">'Hello Taipei'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
- -->
-                                            <!-- Table of Contents -->
-                                            
-
-                                                    
-                                                        
-                                                            <p>什麼時候會用到自定義指令？在 Vue 內建的指令無法滿足需求或需要一個特別的功能時，就可以自己攥寫自定義指令，好處是可以重複使用。</p>
-<p>自定義指定有兩種：全域自定義指令與局部的自定義指令。有時候我們在一個頁面裡可能會引入或增加好幾個 Vue 的實例，如果是全域的自定義指令，表示所有的 Vue 實例都可使用這個指令，但如果是局部自定義指令，需要指定能使用這組指令的 Vue 實例。</p>
-<p>先來看 codepen :<br><a href="https://codepen.io/tsuifei/pen/eYNgWzg" target="_blank" rel="noopener">Vue.Js Custom Directives 自定義指令</a></p>
-<h3 id="全域的寫法"><a href="#全域的寫法" class="headerlink" title="全域的寫法"></a>全域的寫法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Global 全域自定義指令 ps. directive 沒有 s</span></span><br><span class="line">Vue.directive(<span class="string">'my-directive'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">el, binding</span>) </span>&#123;</span><br><span class="line">  el.innerHTML = binding.value.toupperCase();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="局部的寫法"><a href="#局部的寫法" class="headerlink" title="局部的寫法"></a>局部的寫法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 局部的自定義指令 ps. directives 有 s</span></span><br><span class="line">directives : &#123;</span><br><span class="line">    <span class="string">'my-directive'</span> : &#123;</span><br><span class="line">        bind (el, binding) &#123;</span><br><span class="line">          el.innerHTML = binding.value.toUpperCase()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 也可以寫成</span></span><br><span class="line">    <span class="string">'my-directive'</span>(el, binding) &#123;</span><br><span class="line">      el.innerHTML = binding.value.toUpperCase()</span><br><span class="line">&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v-my-directive = 'xxx';</span><br></pre></td></tr></table></figure>
-
-<h2 id="實作兩個自定義指令"><a href="#實作兩個自定義指令" class="headerlink" title="實作兩個自定義指令"></a>實作兩個自定義指令</h2><ol>
-<li>功能的類型為<code>v-text</code>，功能是可將字串轉換成大寫，取名為<code>v-upper-text</code></li>
-<li>功能的類型為<code>v-text</code>，功能是可將字串轉換成小寫，取名為<code>v-lower-text</code></li>
-</ol>
-<p>需要注意的是，我們自訂的指令名，並不包含<code>v-</code>例如上述要實作的<code>v-upper-text</code>，指令名為<code>upper-text</code>，<code>v-</code>一但定義了這些自定義的指令，在使用時就需要加上<code>v-</code>。而只最終會被寫在 HTML 的元素標籤裡。</p>
-<p>這個指令名會對應到一個「處理函式」，如以下範例的<code>Vue.directive()</code>的第二參數<br>以下面的範例的 callback 函式來看，有兩個參數，第一個為<code>el</code>表示使用這個指令的標籤，第二個參數<code>binding</code>我們可以試著<code>console.log()</code>出來觀察。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-upper-text</span>=<span class="string">"msg1"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-lower-text</span>=<span class="string">"msg1"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app2"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-upper-text</span>=<span class="string">"msg2"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-lower-text</span>=<span class="string">"msg2"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 註冊定義全局指令</span></span><br><span class="line"><span class="comment">// el : 指令屬性的所在標籤物件</span></span><br><span class="line"><span class="comment">// binding : 包含指令相關訊息的資料物件</span></span><br><span class="line">Vue.directive(<span class="string">'upper-text'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">el, binding</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(el, binding);</span><br><span class="line">  <span class="comment">// 把改變好的內容在指定回去</span></span><br><span class="line">  el.innerHTML = binding.value.toUpperCase();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app1'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    msg1: <span class="string">'Hello Paris'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 註冊局部定義指令，只會對 #app1 這個實例有效</span></span><br><span class="line">  directives: &#123;</span><br><span class="line">    <span class="string">'lower-text'</span>(el, binding) &#123;</span><br><span class="line">      el.innerHTML = binding.value.toLowerCase();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app2'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    msg2: <span class="string">'Hello Taipei'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 
-                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
 
-                    </div>
 
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/Vue_Custom_Directives/" data-id="ck72decwp005hl7uw3z1y077n" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Vue/">Vue</a></li></ul>
 
-                    </footer>
-    </div>
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
     
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/tsuifei.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Je code donc je suis là.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
         
-<nav id="article-nav">
+        <li class="menu-item menu-item-home">
+          <a href rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
   
-  
-    <a href="../Vue_Directives/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Vue.js Directives Vue 常用的內建指令</div>
-    </a>
+
   
 </nav>
 
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
             
-</article>
 
-</section>
-        
-          <aside id="sidebar">
-  
+  <div id="posts" class="posts-expand">
     
-    <div class="widget-wrap">
-        <h3 class="widget-title">About Tsuifei</h3>
-        <div class="widget">
-            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
-            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="../images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue.js Custom Directives 自定義指令</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-02-24T17:42:24+01:00">
+                2020-02-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="../categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
         </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>什麼時候會用到自定義指令？在 Vue 內建的指令無法滿足需求或需要一個特別的功能時，就可以自己攥寫自定義指令，好處是可以重複使用。</p>
+<p>自定義指定有兩種：全域自定義指令與局部的自定義指令。有時候我們在一個頁面裡可能會引入或增加好幾個 Vue 的實例，如果是全域的自定義指令，表示所有的 Vue 實例都可使用這個指令，但如果是局部自定義指令，需要指定能使用這組指令的 Vue 實例。</p>
+<a id="more"></a>
+
+<p>先來看 codepen :<br><a href="https://codepen.io/tsuifei/pen/eYNgWzg" target="_blank" rel="noopener">Vue.Js Custom Directives 自定義指令</a></p>
+<h3 id="全域的寫法"><a href="#全域的寫法" class="headerlink" title="全域的寫法"></a>全域的寫法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Global 全域自定義指令 ps. directive 沒有 s</span></span><br><span class="line">Vue.directive(<span class="string">'my-directive'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">el, binding</span>) </span>&#123;</span><br><span class="line">  el.innerHTML = binding.value.toupperCase();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="局部的寫法"><a href="#局部的寫法" class="headerlink" title="局部的寫法"></a>局部的寫法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 局部的自定義指令 ps. directives 有 s</span></span><br><span class="line">directives : &#123;</span><br><span class="line">    <span class="string">'my-directive'</span> : &#123;</span><br><span class="line">        bind (el, binding) &#123;</span><br><span class="line">          el.innerHTML = binding.value.toUpperCase()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 也可以寫成</span></span><br><span class="line">    <span class="string">'my-directive'</span>(el, binding) &#123;</span><br><span class="line">      el.innerHTML = binding.value.toUpperCase()</span><br><span class="line">&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v-my-directive = 'xxx';</span><br></pre></td></tr></table></figure>
+
+<h2 id="實作兩個自定義指令"><a href="#實作兩個自定義指令" class="headerlink" title="實作兩個自定義指令"></a>實作兩個自定義指令</h2><ol>
+<li>功能的類型為<code>v-text</code>，功能是可將字串轉換成大寫，取名為<code>v-upper-text</code></li>
+<li>功能的類型為<code>v-text</code>，功能是可將字串轉換成小寫，取名為<code>v-lower-text</code></li>
+</ol>
+<p>需要注意的是，我們自訂的指令名，並不包含<code>v-</code>例如上述要實作的<code>v-upper-text</code>，指令名為<code>upper-text</code>，<code>v-</code>一但定義了這些自定義的指令，在使用時就需要加上<code>v-</code>。而只最終會被寫在 HTML 的元素標籤裡。</p>
+<p>這個指令名會對應到一個「處理函式」，如以下範例的<code>Vue.directive()</code>的第二參數<br>以下面的範例的 callback 函式來看，有兩個參數，第一個為<code>el</code>表示使用這個指令的標籤，第二個參數<code>binding</code>我們可以試著<code>console.log()</code>出來觀察。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-upper-text</span>=<span class="string">"msg1"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-lower-text</span>=<span class="string">"msg1"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app2"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-upper-text</span>=<span class="string">"msg2"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-lower-text</span>=<span class="string">"msg2"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 註冊定義全局指令</span></span><br><span class="line"><span class="comment">// el : 指令屬性的所在標籤物件</span></span><br><span class="line"><span class="comment">// binding : 包含指令相關訊息的資料物件</span></span><br><span class="line">Vue.directive(<span class="string">'upper-text'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">el, binding</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(el, binding);</span><br><span class="line">  <span class="comment">// 把改變好的內容在指定回去</span></span><br><span class="line">  el.innerHTML = binding.value.toUpperCase();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app1'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    msg1: <span class="string">'Hello Paris'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 註冊局部定義指令，只會對 #app1 這個實例有效</span></span><br><span class="line">  directives: &#123;</span><br><span class="line">    <span class="string">'lower-text'</span>(el, binding) &#123;</span><br><span class="line">      el.innerHTML = binding.value.toLowerCase();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app2'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    msg2: <span class="string">'Hello Taipei'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+      
     </div>
     
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/VSCode/">VSCode</a></li></ul>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="../tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="../tags/Vue/" rel="tag"># Vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="../Vue_Directives/" rel="next" title="Vue.js Directives Vue 常用的內建指令">
+                <i class="fa fa-chevron-left"></i> Vue.js Directives Vue 常用的內建指令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
     </div>
   </div>
 
 
+          </div>
+          
+
+
+          
+
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/讀書會筆記/">讀書會筆記</a></li></ul>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
-
-  
+  <aside id="sidebar" class="sidebar">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="">Vue.js Custom Directives 自定義指令</a>
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
           </li>
-        
-          <li>
-            <a href="../Vue_Directives/">Vue.js Directives Vue 常用的內建指令</a>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
           </li>
-        
-          <li>
-            <a href="../Vue_Filters/">Vue.js Filters 過濾器</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Transitioning_Elements_Components/">Vue.Js Transitioning Single Elements/Component 過渡與動畫效果</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Instance_Lifecycle_Hooks/">VueJs Instance Lifecycle Hooks 生命週期鉤子</a>
-          </li>
-        
-      </ul>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+              <p class="site-description motion-element" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="../archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分類</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">標籤</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#全域的寫法"><span class="nav-number">1.</span> <span class="nav-text">全域的寫法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部的寫法"><span class="nav-number">2.</span> <span class="nav-text">局部的寫法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何使用"><span class="nav-number">3.</span> <span class="nav-text">如何使用</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#實作兩個自定義指令"><span class="nav-number"></span> <span class="nav-text">實作兩個自定義指令</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
     </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="../tags/CSS/" style="font-size: 11.43px;">CSS</a> <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 11.43px;">Git</a> <a href="../tags/GitHub/" style="font-size: 11.43px;">GitHub</a> <a href="../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 17.14px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 12.86px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 18.57px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/JavaScript-30/" style="font-size: 11.43px;">JavaScript 30</a> <a href="../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/React/" style="font-size: 14.29px;">React</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../tags/Test/" style="font-size: 10px;">Test</a> <a href="../tags/VSCode/" style="font-size: 11.43px;">VSCode</a> <a href="../tags/Vue/" style="font-size: 15.71px;">Vue</a> <a href="../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
-    </div>
-  </div>
+  </aside>
 
 
-  
-</aside>
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Tsuifei Pommier<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-    <script type="text/javascript">
-      (function (w, d, t, u, n, s, e) {
-        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
-          (w[n].q = w[n].q || []).push(arguments);
-        }; s = d.createElement(t);
-        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
-      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+    </main>
 
-      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
-    </script>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+
   
-    <a href="../index.html" class="mobile-nav-link">Home</a>
-  
-    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
-  
-</nav>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
-  <script src="../fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="../js/script.js"></script>
-
-
+    
 
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="../lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="../js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="../js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="../js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="../js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="../js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="../js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="../js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

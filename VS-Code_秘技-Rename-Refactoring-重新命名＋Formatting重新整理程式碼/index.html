@@ -1,27 +1,85 @@
 <!DOCTYPE html>
-<html>
 
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-144046503-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
   
-  <title>VSCode 秘技 Rename Refactoring 重新命名＋Formatting重新整理程式碼 | Cré-Coder</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。  help -&amp;gt; Interactive Playground -&amp;gt;  重構工具Rename Refactoring (重新命名)選中要修改的某一個名稱，按 fn+F2 即可重新輸入新的命名， e">
+  <link href="../lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="../lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="../css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="../images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="VSCode,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。  help -&amp;gt; Interactive Playground -&amp;gt;  重構工具Rename Refactoring (重新命名)選中要修改的某一個名稱，按 fn+F2 即可重新輸入新的命名， e">
 <meta name="keywords" content="VSCode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VSCode 秘技 Rename Refactoring 重新命名＋Formatting重新整理程式碼">
@@ -33,93 +91,238 @@ ga('send', 'pageview');
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VSCode 秘技 Rename Refactoring 重新命名＋Formatting重新整理程式碼">
 <meta name="twitter:description" content="在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。  help -&amp;gt; Interactive Playground -&amp;gt;  重構工具Rename Refactoring (重新命名)選中要修改的某一個名稱，按 fn+F2 即可重新輸入新的命名， e">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/tsuifei.github.io/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="tsuifei.github.io/VS-Code_秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/">
+
+
+
+
+
+  <title>VSCode 秘技 Rename Refactoring 重新命名＋Formatting重新整理程式碼 | Cré-Coder</title>
   
-  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
   
   
-  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+    
   
-  
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="../css/style.css">
-</head></html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="../index.html" id="logo">Cré-Coder</a>
-      </h1>
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/tsuifei.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
       
-      <h2 id="subtitle-wrap">
-        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
-      </h2>
+        <p class="site-subtitle">Je code donc je suis là.</p>
       
-    </div>
-
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-        <a class="main-nav-link" href="../index.html">Home</a>
-        
-        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
-        
-        <!-- 搜索框就加上 class="st-default-search-input" -->
-        
-        <input type="text" class="st-default-search-input" placeholder="Search....">
-        
-        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
-        <!-- 
-        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
-         -->
-        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
-      </nav>
-      <!-- <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
-      </div> -->
-
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-VS-Code_秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="" class="article-date">
-  <time datetime="2019-07-01T22:36:17.000Z" itemprop="datePublished">2019-07-02</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../categories/VSCode/">VSCode</a>
   </div>
 
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 class="article-title" itemprop="name">
-      VSCode 秘技 Rename Refactoring 重新命名＋Formatting重新整理程式碼
-    </h1>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
   
 
-                </header>
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="../images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">VSCode 秘技 Rename Refactoring 重新命名＋Formatting重新整理程式碼</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2019-07-02T00:36:17+02:00">
+                2019-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="../categories/VSCode/" itemprop="url" rel="index">
+                    <span itemprop="name">VSCode</span>
+                  </a>
+                </span>
+
                 
+                
+              
+            </span>
+          
 
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。<br>這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。</p>
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。<br>這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。</p>
 <ul>
 <li>help -&gt; Interactive Playground -&gt;</li>
 </ul>
@@ -134,190 +337,387 @@ ga('send', 'pageview');
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cars = [<span class="string">'🚗'</span>, <span class="string">'🚙'</span>, <span class="string">'🚕'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> car <span class="keyword">of</span> cars) &#123;</span><br><span class="line">  <span class="comment">// Drive the car</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`This is the car <span class="subst">$&#123;car&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>或是開啟 sstting 預設: editor.formatOnSave = true，即可啟動存檔就會自動編排的功能。</p>
- -->
-                                            <!-- Table of Contents -->
-                                            
 
-                                                    
-                                                        
-                                                            <p>在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。<br>這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。</p>
-<ul>
-<li>help -&gt; Interactive Playground -&gt;</li>
-</ul>
-<h2 id="重構工具"><a href="#重構工具" class="headerlink" title="重構工具"></a>重構工具</h2><h3 id="Rename-Refactoring-重新命名"><a href="#Rename-Refactoring-重新命名" class="headerlink" title="Rename Refactoring (重新命名)"></a>Rename Refactoring (重新命名)</h3><p>選中要修改的某一個名稱，按 fn+F2 即可重新輸入新的命名， enter 之後會發現所有用此函式名的地方，都會換成新名字。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Reference the function</span></span><br><span class="line"><span class="keyword">new</span> Book(<span class="string">'War of the Worlds'</span>, <span class="string">'H G Wells'</span>);</span><br><span class="line"><span class="keyword">new</span> Book(<span class="string">'The Martian'</span>, <span class="string">'Andy Weir'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Represents a book.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Book</span>(<span class="params">title, author</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.title = title;</span><br><span class="line">  <span class="keyword">this</span>.author = author;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Refactoring-via-Extraction-透過提取重構函式"><a href="#Refactoring-via-Extraction-透過提取重構函式" class="headerlink" title="Refactoring via Extraction (透過提取重構函式)"></a>Refactoring via Extraction (透過提取重構函式)</h3><p>可將程式中某一部分提去出來自成一函式。<br>選取要提取出來成函式的部份，按 command + . 會出現選單：<br>1.Extract to inner function in function ‘findFirstEvenNumber’(提取函式中的內部函數尋找找’findFirstEvenNumber’函式)<br>2.Extract to function in global scope(提取全局範圍內的功能)<br>3.Extract to constant in enclosing scope(在封閉範圍內提取常量)</p>
-<p>例如選 2.會將選取提取出的碼轉成一函式，並需賦予函式名稱，即可成函式，輸入新函式名之後會自動替換，原題取出來的函式位置。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findFirstEvenNumber</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> el <span class="keyword">of</span> arr) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> el === <span class="string">'number'</span> &amp;&amp; el % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> el;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Formatting-重新整理程式碼"><a href="#Formatting-重新整理程式碼" class="headerlink" title="Formatting (重新整理程式碼)"></a>Formatting (重新整理程式碼)</h3><p>shift + option + F 可重新整理程式碼的排列。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cars = [<span class="string">'🚗'</span>, <span class="string">'🚙'</span>, <span class="string">'🚕'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> car <span class="keyword">of</span> cars) &#123;</span><br><span class="line">  <span class="comment">// Drive the car</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`This is the car <span class="subst">$&#123;car&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>或是開啟 sstting 預設: editor.formatOnSave = true，即可啟動存檔就會自動編排的功能。</p>
-
-                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/VS-Code_秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" data-id="ck72decwm0059l7uwf41wmk7a" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/VSCode/">VSCode</a></li></ul>
-
-                    </footer>
+      
     </div>
     
-        
-<nav id="article-nav">
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="../tags/VSCode/" rel="tag"># VSCode</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="../JS_ES6-箭頭函式-Arrow-function/" rel="prev" title="JavaScript ES6 箭頭函式 Arrow function">
+                JavaScript ES6 箭頭函式 Arrow function <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
   
-    <a href="../JS_ES6-箭頭函式-Arrow-function/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          JavaScript ES6 箭頭函式 Arrow function
-        
-      </div>
-    </a>
   
   
-</nav>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+              <p class="site-description motion-element" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</p>
+          </div>
+
+          <nav class="site-state motion-element">
 
             
-</article>
+              <div class="site-state-item site-state-posts">
+              
+                <a href="../archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-    <div class="widget-wrap">
-        <h3 class="widget-title">About Tsuifei</h3>
-        <div class="widget">
-            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
-            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分類</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">標籤</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#重構工具"><span class="nav-number">1.</span> <span class="nav-text">重構工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Rename-Refactoring-重新命名"><span class="nav-number">1.1.</span> <span class="nav-text">Rename Refactoring (重新命名)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Refactoring-via-Extraction-透過提取重構函式"><span class="nav-number">1.2.</span> <span class="nav-text">Refactoring via Extraction (透過提取重構函式)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Formatting-重新整理程式碼"><span class="nav-number">1.3.</span> <span class="nav-text">Formatting (重新整理程式碼)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
     </div>
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/VSCode/">VSCode</a></li></ul>
-    </div>
-  </div>
+  </aside>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/讀書會筆記/">讀書會筆記</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="../Vue_Custom_Directives/">Vue.js Custom Directives 自定義指令</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Directives/">Vue.js Directives Vue 常用的內建指令</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Filters/">Vue.js Filters 過濾器</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Transitioning_Elements_Components/">Vue.Js Transitioning Single Elements/Component 過渡與動畫效果</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Instance_Lifecycle_Hooks/">VueJs Instance Lifecycle Hooks 生命週期鉤子</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="../tags/CSS/" style="font-size: 11.43px;">CSS</a> <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 11.43px;">Git</a> <a href="../tags/GitHub/" style="font-size: 11.43px;">GitHub</a> <a href="../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 17.14px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 12.86px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 18.57px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/JavaScript-30/" style="font-size: 11.43px;">JavaScript 30</a> <a href="../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/React/" style="font-size: 14.29px;">React</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../tags/Test/" style="font-size: 10px;">Test</a> <a href="../tags/VSCode/" style="font-size: 11.43px;">VSCode</a> <a href="../tags/Vue/" style="font-size: 15.71px;">Vue</a> <a href="../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Tsuifei Pommier<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-    <script type="text/javascript">
-      (function (w, d, t, u, n, s, e) {
-        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
-          (w[n].q = w[n].q || []).push(arguments);
-        }; s = d.createElement(t);
-        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
-      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+    </main>
 
-      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
-    </script>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+
   
-    <a href="../index.html" class="mobile-nav-link">Home</a>
-  
-    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
-  
-</nav>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
-  <script src="../fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="../js/script.js"></script>
-
-
+    
 
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="../lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="../js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="../js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="../js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="../js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="../js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="../js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="../js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

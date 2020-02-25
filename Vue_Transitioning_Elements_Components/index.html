@@ -1,27 +1,85 @@
 <!DOCTYPE html>
-<html>
 
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-144046503-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
   
-  <title>Vue.Js Transitioning Single Elements/Component 過渡與動畫效果 | Cré-Coder</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原本在一般頁面要製造一些簡單的動畫效果，只要掌控 class 和 Css 就好了，但是如果要在框架內做這些動態效果，如何做？ 在 Vue 裡有它的特殊做法，必須把享有動態效果的元素，以&amp;lt;transition&amp;gt;的標籤包起來，並給予一個name的屬性，然後在 CSS 裡，以這個name來作為 class 的名稱，並加上動畫不同時期的後綴，來達到動態效果。 先來看一下 Codepen Vue">
+  <link href="../lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="../lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="../css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="../images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Vue,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原本在一般頁面要製造一些簡單的動畫效果，只要掌控 class 和 Css 就好了，但是如果要在框架內做這些動態效果，如何做？ 在 Vue 裡有它的特殊做法，必須把享有動態效果的元素，以&amp;lt;transition&amp;gt;的標籤包起來，並給予一個name的屬性，然後在 CSS 裡，以這個name來作為 class 的名稱，並加上動畫不同時期的後綴，來達到動態效果。 先來看一下 Codepen Vue">
 <meta name="keywords" content="JavaScript,Vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue.Js Transitioning Single Elements&#x2F;Component 過渡與動畫效果">
@@ -35,93 +93,238 @@ ga('send', 'pageview');
 <meta name="twitter:title" content="Vue.Js Transitioning Single Elements&#x2F;Component 過渡與動畫效果">
 <meta name="twitter:description" content="原本在一般頁面要製造一些簡單的動畫效果，只要掌控 class 和 Css 就好了，但是如果要在框架內做這些動態效果，如何做？ 在 Vue 裡有它的特殊做法，必須把享有動態效果的元素，以&amp;lt;transition&amp;gt;的標籤包起來，並給予一個name的屬性，然後在 CSS 裡，以這個name來作為 class 的名稱，並加上動畫不同時期的後綴，來達到動態效果。 先來看一下 Codepen Vue">
 <meta name="twitter:image" content="https://cn.vuejs.org/images/transition.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/tsuifei.github.io/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="tsuifei.github.io/Vue_Transitioning_Elements_Components/">
+
+
+
+
+
+  <title>Vue.Js Transitioning Single Elements/Component 過渡與動畫效果 | Cré-Coder</title>
   
-  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
   
   
-  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+    
   
-  
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="../css/style.css">
-</head></html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="../index.html" id="logo">Cré-Coder</a>
-      </h1>
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/tsuifei.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
       
-      <h2 id="subtitle-wrap">
-        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
-      </h2>
+        <p class="site-subtitle">Je code donc je suis là.</p>
       
-    </div>
-
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-        <a class="main-nav-link" href="../index.html">Home</a>
-        
-        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
-        
-        <!-- 搜索框就加上 class="st-default-search-input" -->
-        
-        <input type="text" class="st-default-search-input" placeholder="Search....">
-        
-        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
-        <!-- 
-        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
-         -->
-        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
-      </nav>
-      <!-- <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
-      </div> -->
-
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-Vue_Transitioning_Elements_Components" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="" class="article-date">
-  <time datetime="2020-02-20T16:42:24.000Z" itemprop="datePublished">2020-02-21</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
   </div>
 
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 class="article-title" itemprop="name">
-      Vue.Js Transitioning Single Elements/Component 過渡與動畫效果
-    </h1>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
   
 
-                </header>
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="../images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue.Js Transitioning Single Elements/Component 過渡與動畫效果</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-02-20T17:42:24+01:00">
+                2020-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="../categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
                 
+                
+              
+            </span>
+          
 
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>原本在一般頁面要製造一些簡單的動畫效果，只要掌控 class 和 Css 就好了，但是如果要在框架內做這些動態效果，如何做？</p>
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>原本在一般頁面要製造一些簡單的動畫效果，只要掌控 class 和 Css 就好了，但是如果要在框架內做這些動態效果，如何做？</p>
 <p>在 Vue 裡有它的特殊做法，必須把享有動態效果的元素，以<code>&lt;transition&gt;</code>的標籤包起來，並給予一個<code>name</code>的屬性，然後在 CSS 裡，以這個<code>name</code>來作為 class 的名稱，並加上動畫不同時期的後綴，來達到動態效果。</p>
 <p>先來看一下 Codepen <a href="https://codepen.io/tsuifei/pen/vYOyGeq" target="_blank" rel="noopener">VueJs Transitioning Single Elements/Component 過渡與動畫效果</a></p>
 <p>我們先來看一張官方上的示意圖：<br><img src="https://cn.vuejs.org/images/transition.png" alt></p>
@@ -175,234 +378,393 @@ ga('send', 'pageview');
 <p>Transitioning Single Elements/Components<br>官方文件：<a href="https://cn.vuejs.org/v2/guide/transitions.html" target="_blank" rel="noopener">進入/離開 &amp; 列表過渡 — Vue.js</a></p>
 <p><a href="https://cythilya.github.io/2017/05/28/vue-transitions/" target="_blank" rel="noopener">Vue.js: 樣式與漸變 Transitions | Summer。桑莫。夏天</a></p>
 <p><a href="https://cythilya.github.io/2017/06/09/vue-transition-effects/" target="_blank" rel="noopener">Vue.js: 進階過渡效果 | Summer。桑莫。夏天</a></p>
- -->
-                                            <!-- Table of Contents -->
-                                            
 
-                                                    
-                                                        
-                                                            <p>原本在一般頁面要製造一些簡單的動畫效果，只要掌控 class 和 Css 就好了，但是如果要在框架內做這些動態效果，如何做？</p>
-<p>在 Vue 裡有它的特殊做法，必須把享有動態效果的元素，以<code>&lt;transition&gt;</code>的標籤包起來，並給予一個<code>name</code>的屬性，然後在 CSS 裡，以這個<code>name</code>來作為 class 的名稱，並加上動畫不同時期的後綴，來達到動態效果。</p>
-<p>先來看一下 Codepen <a href="https://codepen.io/tsuifei/pen/vYOyGeq" target="_blank" rel="noopener">VueJs Transitioning Single Elements/Component 過渡與動畫效果</a></p>
-<p>我們先來看一張官方上的示意圖：<br><img src="https://cn.vuejs.org/images/transition.png" alt></p>
-<p>要指定進出場的樣式需要搭配 Vue 指定的後綴詞，進、出場個分三個階段<br>進場：</p>
-<table>
-<thead>
-<tr>
-<th>階段</th>
-<th>進場 Enter</th>
-<th>出場 Leave</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>開始</td>
-<td>v-enter</td>
-<td>v-leave</td>
-</tr>
-<tr>
-<td>結束</td>
-<td>v-enter-to</td>
-<td>v-leave-to</td>
-</tr>
-<tr>
-<td>整個過程</td>
-<td>v-enter-active</td>
-<td>v-leave-active</td>
-</tr>
-</tbody></table>
-<p>再依照每個過程，指定不同的效果。而表中的<code>v</code>是在沒有給<code>&lt;transition&gt;</code>名字的時候，如果有給<code>name</code>，則把<code>v</code>用我們給的<code>name</code>替換就好了。</p>
-<h2 id="淡入淡出的過度效果-Transition"><a href="#淡入淡出的過度效果-Transition" class="headerlink" title="淡入淡出的過度效果 Transition"></a>淡入淡出的過度效果 Transition</h2><p>以淡入淡出的效果來說，在 HTML 需要先將<code>&lt;transition&gt;</code>把我們要做動態效果的元素包住，例如我們希望點一個按鈕，讓文字淡入淡出切換，就可以寫成：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app1"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 將字慢慢消失、透明度0 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"show = !show"</span>&gt;</span>Switch1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"fade"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;p v-show="show"&gt;Hello Paris&lt;/p&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"show"</span>&gt;</span>Hello Paris<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>在文字的<code>&lt;p&gt;</code>標籤內，我們可以給<code>v-if</code>或<code>v-show</code>，這兩個效果是一樣的。</p>
-<p>Vue 實例的部分</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm1 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el: <span class="string">'#app1'</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">          show: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>然後在 CSS 裡依上述規則指定，在進場時透明度為 0 漸變為 100，而出場則反之。而按鈕則控制進出場的切換。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*指定進場*/</span></span><br><span class="line"><span class="selector-class">.fade-enter-active</span>,</span><br><span class="line"><span class="selector-class">.fade-leave-active</span> &#123;</span><br><span class="line">  <span class="attribute">transition</span>: opacity <span class="number">1s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*指定出場*/</span></span><br><span class="line"><span class="selector-class">.fade-enter</span>,</span><br><span class="line"><span class="selector-class">.fade-leave-to</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="動畫效果的放大縮小-Animation"><a href="#動畫效果的放大縮小-Animation" class="headerlink" title="動畫效果的放大縮小 Animation"></a>動畫效果的放大縮小 Animation</h2><p>我們也可以以動畫的方式來將組件變大變小與出場，也是一樣使用 Enter 和 Leave 的三個階段，分別設定。<br>CSS 的部分</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 使用Animation 動畫 */</span></span><br><span class="line">      <span class="selector-class">.bounce-enter-active</span> &#123;</span><br><span class="line">        <span class="attribute">animation</span>: bounce-in <span class="number">1s</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="selector-class">.bounce-leave-active</span> &#123;</span><br><span class="line">        <span class="attribute">animation</span>: bounce-in <span class="number">1s</span> reverse;</span><br><span class="line">      &#125;</span><br><span class="line">      @<span class="keyword">keyframes</span> bounce-in &#123;</span><br><span class="line">        0% &#123;</span><br><span class="line">          <span class="attribute">transform</span>: <span class="built_in">scale</span>(0);</span><br><span class="line">        &#125;</span><br><span class="line">        50% &#123;</span><br><span class="line">          <span class="attribute">transform</span>: <span class="built_in">scale</span>(1.5);</span><br><span class="line">        &#125;</span><br><span class="line">        100% &#123;</span><br><span class="line">          <span class="attribute">transform</span>: <span class="built_in">scale</span>(1);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
-
-<p>HTML 部分<br>因為文字段落<code>&lt;p&gt;</code>標簽是行內元素，所以放大縮小會以整行的大小來算，所以會看不出小果，最好將這段該成<code>display: inline-block</code>就可比較清出的看出變化效果。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Animation 動畫 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app4"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"show = !show"</span>&gt;</span>Toggle show<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"bounce"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"show"</span> <span class="attr">style</span>=<span class="string">"display: inline-block"</span>&gt;</span></span><br><span class="line">      Hello Tainan</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>Vue 實例的部分</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm4 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app4'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    show: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>發現原本可以簡單在 Css 裡做出的的動畫效果，在框架裡做還是有些綁手綁腳，如果讓這些小果更容易操控，得要先了解<br>Vue 是怎麼處理這些效果，在官網的解釋算是蠻清楚的，但幫自己要做一些簡單的圖片入場效果，就開始感到有點綁手綁腳，有點可惜。</p>
-<p>如果對此部分有興趣的話，除了可以看看官方解釋，也推薦「Summer。桑莫。夏天」的部落格，只少比較親和。</p>
-<p>Transitioning Single Elements/Components<br>官方文件：<a href="https://cn.vuejs.org/v2/guide/transitions.html" target="_blank" rel="noopener">進入/離開 &amp; 列表過渡 — Vue.js</a></p>
-<p><a href="https://cythilya.github.io/2017/05/28/vue-transitions/" target="_blank" rel="noopener">Vue.js: 樣式與漸變 Transitions | Summer。桑莫。夏天</a></p>
-<p><a href="https://cythilya.github.io/2017/06/09/vue-transition-effects/" target="_blank" rel="noopener">Vue.js: 進階過渡效果 | Summer。桑莫。夏天</a></p>
-
-                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/Vue_Transitioning_Elements_Components/" data-id="ck72decx4006gl7uw8doymda5" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Vue/">Vue</a></li></ul>
-
-                    </footer>
+      
     </div>
     
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="../tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="../tags/Vue/" rel="tag"># Vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="../Vue_Instance_Lifecycle_Hooks/" rel="next" title="VueJs Instance Lifecycle Hooks 生命週期鉤子">
+                <i class="fa fa-chevron-left"></i> VueJs Instance Lifecycle Hooks 生命週期鉤子
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="../Vue_Filters/" rel="prev" title="Vue.js Filters 過濾器">
+                Vue.js Filters 過濾器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
         
-<nav id="article-nav">
+          
   
-    <a href="../Vue_Filters/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Vue.js Filters 過濾器
-        
-      </div>
-    </a>
-  
-  
-    <a href="../Vue_Instance_Lifecycle_Hooks/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">VueJs Instance Lifecycle Hooks 生命週期鉤子</div>
-    </a>
-  
-</nav>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+              <p class="site-description motion-element" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</p>
+          </div>
+
+          <nav class="site-state motion-element">
 
             
-</article>
+              <div class="site-state-item site-state-posts">
+              
+                <a href="../archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-    <div class="widget-wrap">
-        <h3 class="widget-title">About Tsuifei</h3>
-        <div class="widget">
-            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
-            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分類</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">標籤</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#淡入淡出的過度效果-Transition"><span class="nav-number">1.</span> <span class="nav-text">淡入淡出的過度效果 Transition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#動畫效果的放大縮小-Animation"><span class="nav-number">2.</span> <span class="nav-text">動畫效果的放大縮小 Animation</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
     </div>
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/VSCode/">VSCode</a></li></ul>
-    </div>
-  </div>
+  </aside>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/讀書會筆記/">讀書會筆記</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="../Vue_Custom_Directives/">Vue.js Custom Directives 自定義指令</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Directives/">Vue.js Directives Vue 常用的內建指令</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Filters/">Vue.js Filters 過濾器</a>
-          </li>
-        
-          <li>
-            <a href="">Vue.Js Transitioning Single Elements/Component 過渡與動畫效果</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Instance_Lifecycle_Hooks/">VueJs Instance Lifecycle Hooks 生命週期鉤子</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="../tags/CSS/" style="font-size: 11.43px;">CSS</a> <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 11.43px;">Git</a> <a href="../tags/GitHub/" style="font-size: 11.43px;">GitHub</a> <a href="../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 17.14px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 12.86px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 18.57px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/JavaScript-30/" style="font-size: 11.43px;">JavaScript 30</a> <a href="../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/React/" style="font-size: 14.29px;">React</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../tags/Test/" style="font-size: 10px;">Test</a> <a href="../tags/VSCode/" style="font-size: 11.43px;">VSCode</a> <a href="../tags/Vue/" style="font-size: 15.71px;">Vue</a> <a href="../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Tsuifei Pommier<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-    <script type="text/javascript">
-      (function (w, d, t, u, n, s, e) {
-        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
-          (w[n].q = w[n].q || []).push(arguments);
-        }; s = d.createElement(t);
-        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
-      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+    </main>
 
-      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
-    </script>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+
   
-    <a href="../index.html" class="mobile-nav-link">Home</a>
-  
-    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
-  
-</nav>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
-  <script src="../fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="../js/script.js"></script>
-
-
+    
 
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="../lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="../js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="../js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="../js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="../js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="../js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="../js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="../js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

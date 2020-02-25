@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/Vue_Filters/</loc>
+    
+    <lastmod>2020-02-25T21:20:49.740Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_Event_Handling/</loc>
+    
+    <lastmod>2020-02-25T21:20:40.833Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_Displaying_Filtered_Sorted_Results/</loc>
+    
+    <lastmod>2020-02-25T21:20:19.898Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_Directives/</loc>
+    
+    <lastmod>2020-02-25T21:20:09.261Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/Vue_Custom_Directives/</loc>
     
-    <lastmod>2020-02-25T20:40:13.565Z</lastmod>
+    <lastmod>2020-02-25T21:19:59.339Z</lastmod>
     
   </url>
   
@@ -26,20 +54,6 @@
     <loc>tsuifei.github.io/Vue_Transitioning_Elements_Components/</loc>
     
     <lastmod>2020-02-25T20:39:11.233Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_Directives/</loc>
-    
-    <lastmod>2020-02-24T14:48:49.535Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_Filters/</loc>
-    
-    <lastmod>2020-02-24T14:44:04.303Z</lastmod>
     
   </url>
   
@@ -68,20 +82,6 @@
     <loc>tsuifei.github.io/Vue_Form_Input_Bindings/</loc>
     
     <lastmod>2020-02-20T09:18:38.648Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_Event_Handling/</loc>
-    
-    <lastmod>2020-02-18T12:01:47.020Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_Displaying_Filtered_Sorted_Results/</loc>
-    
-    <lastmod>2020-02-17T12:57:34.055Z</lastmod>
     
   </url>
   

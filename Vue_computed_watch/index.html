@@ -1,27 +1,85 @@
 <!DOCTYPE html>
-<html>
 
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-144046503-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
   
-  <title>Vue.js computed &amp; watch 計算屬性與監視器 | Cré-Coder</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="昨天介紹了 VueJs 裡常用的模板語法，今天就來介紹在我們 new Vue({ })裡面會用到到的 computed(計算屬性)和 watch(監視器) 我們可以先來看一下範例：去 codepen 看看效果 同樣的以 cdn 的方式先引入vue.js。 前兩個是「姓」和「名」的輸入框inputFirst Name 和 Last Name，先在實例裡的data初始化他們的值之後，就可以在各別的in">
+  <link href="../lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="../lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="../css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="../images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Vue,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="昨天介紹了 VueJs 裡常用的模板語法，今天就來介紹在我們 new Vue({ })裡面會用到到的 computed(計算屬性)和 watch(監視器) 我們可以先來看一下範例：去 codepen 看看效果 同樣的以 cdn 的方式先引入vue.js。 前兩個是「姓」和「名」的輸入框inputFirst Name 和 Last Name，先在實例裡的data初始化他們的值之後，就可以在各別的in">
 <meta name="keywords" content="JavaScript,Vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue.js computed &amp; watch 計算屬性與監視器">
@@ -33,93 +91,238 @@ ga('send', 'pageview');
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue.js computed &amp; watch 計算屬性與監視器">
 <meta name="twitter:description" content="昨天介紹了 VueJs 裡常用的模板語法，今天就來介紹在我們 new Vue({ })裡面會用到到的 computed(計算屬性)和 watch(監視器) 我們可以先來看一下範例：去 codepen 看看效果 同樣的以 cdn 的方式先引入vue.js。 前兩個是「姓」和「名」的輸入框inputFirst Name 和 Last Name，先在實例裡的data初始化他們的值之後，就可以在各別的in">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/tsuifei.github.io/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="tsuifei.github.io/Vue_computed_watch/">
+
+
+
+
+
+  <title>Vue.js computed & watch 計算屬性與監視器 | Cré-Coder</title>
   
-  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
   
   
-  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+    
   
-  
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="../css/style.css">
-</head></html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="../index.html" id="logo">Cré-Coder</a>
-      </h1>
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/tsuifei.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
       
-      <h2 id="subtitle-wrap">
-        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
-      </h2>
+        <p class="site-subtitle">Je code donc je suis là.</p>
       
-    </div>
-
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-        <a class="main-nav-link" href="../index.html">Home</a>
-        
-        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
-        
-        <!-- 搜索框就加上 class="st-default-search-input" -->
-        
-        <input type="text" class="st-default-search-input" placeholder="Search....">
-        
-        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
-        <!-- 
-        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
-         -->
-        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
-      </nav>
-      <!-- <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
-      </div> -->
-
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-Vue_computed_watch" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="" class="article-date">
-  <time datetime="2020-02-12T16:42:24.000Z" itemprop="datePublished">2020-02-13</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
   </div>
 
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 class="article-title" itemprop="name">
-      Vue.js computed &amp; watch 計算屬性與監視器
-    </h1>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
   
 
-                </header>
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="../images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue.js computed & watch 計算屬性與監視器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-02-12T17:42:24+01:00">
+                2020-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="../categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
                 
+                
+              
+            </span>
+          
 
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>昨天介紹了 VueJs 裡常用的模板語法，今天就來介紹在我們 <code>new Vue({ })</code>裡面會用到到的 computed(計算屬性)和 watch(監視器)</p>
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>昨天介紹了 VueJs 裡常用的模板語法，今天就來介紹在我們 <code>new Vue({ })</code>裡面會用到到的 computed(計算屬性)和 watch(監視器)</p>
 <p>我們可以先來看一下範例：<a href="https://codepen.io/pen/" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
 <p>同樣的以 cdn 的方式先引入<code>vue.js</code>。</p>
 <p>前兩個是「姓」和「名」的輸入框<code>input</code>First Name 和 Last Name，先在實例裡的<code>data</code>初始化他們的值之後，就可以在各別的<code>input</code>和<code>p</code>標籤看到它們顯示出來，現在要來進行將「姓」和「名」合併，且可以透過這些<code>input</code>去直接更改已經初始化的值。</p>
@@ -149,210 +352,393 @@ ga('send', 'pageview');
 
 <h4 id="有趣的-callback-解釋"><a href="#有趣的-callback-解釋" class="headerlink" title="有趣的 callback 解釋"></a>有趣的 callback 解釋</h4><p>callback 函式需滿足三個條件： 1.你定義的 2.你沒有呼叫 3.但最終它執行了<br>callback 什麼時候用？ 呼叫函式的時候<br>用來做什麼？ 計算並回傳當前屬性的值</p>
 <p>再接再厲～</p>
- -->
-                                            <!-- Table of Contents -->
-                                            
 
-                                                    
-                                                        
-                                                            <p>昨天介紹了 VueJs 裡常用的模板語法，今天就來介紹在我們 <code>new Vue({ })</code>裡面會用到到的 computed(計算屬性)和 watch(監視器)</p>
-<p>我們可以先來看一下範例：<a href="https://codepen.io/pen/" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
-<p>同樣的以 cdn 的方式先引入<code>vue.js</code>。</p>
-<p>前兩個是「姓」和「名」的輸入框<code>input</code>First Name 和 Last Name，先在實例裡的<code>data</code>初始化他們的值之後，就可以在各別的<code>input</code>和<code>p</code>標籤看到它們顯示出來，現在要來進行將「姓」和「名」合併，且可以透過這些<code>input</code>去直接更改已經初始化的值。</p>
-<p>合併「姓」和「名」的三個輸入框<code>fullName</code>則是想做到讓姓和名可綁定，並顯示在輸入框裡。<br>前兩個是單向改變，也就是說在「姓」和「名」的輸入會影響 Full Name1 和 Full Name2，但改變 Full Name1 和 Full Name2 時「姓」和「名」的內容不會更動。<br>最後一個是雙向的，也就是說無論是「姓」和「名」的輸入或是 Full Name3 裡的更動，兩邊的內容都會一起變動。<br>這幾個輸入框都是用<code>v-model</code>來綁定。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app2"</span>&gt;</span></span><br><span class="line">  First Name :</span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"FirstName"</span> <span class="attr">v-model</span>=<span class="string">"firstName"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  Last Name :</span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"LastName"</span> <span class="attr">v-model</span>=<span class="string">"lastName"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!--fullName1是根據fistName和lastName計算產生出來的--&gt;</span></span><br><span class="line">  Full Name1 (computed, sens unique ) :</span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"full Name1"</span> <span class="attr">v-model</span>=<span class="string">"fullName1"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--fullName2是根據watch監看產生出來的--&gt;</span></span><br><span class="line">  Full Name2 (watch, deux sens) :</span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"full Name"</span> <span class="attr">v-model</span>=<span class="string">"fullName2"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  Full Name3 (computed, deux sens) :</span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"full Name2"</span> <span class="attr">v-model</span>=<span class="string">"fullName3"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 顯示觀察用 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>firstName : &#123;&#123; firstName &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>lastName : &#123;&#123; lastName &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>fullName1 : &#123;&#123; fullName1 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>fullName2 : &#123;&#123; fullName2 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>fullName3 : &#123;&#123; fullName3 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>先來說明這幾個在實例裡的屬性，這些屬性都是物件。</p>
-<h3 id="computed-計算屬性"><a href="#computed-計算屬性" class="headerlink" title="computed: { } 計算屬性"></a>computed: { } 計算屬性</h3><p>computed 是實例裡的一個屬性，而它的值是個物件，在物件裡可能會有：</p>
-<ol>
-<li>多個方法的物件，對狀態屬性進行計算後，回傳一個新的資料, 供頁面獲取顯示。</li>
-<li>自定義方法，一般情況下，相當是一個只能讀取的屬性，可利用 set/get 方法來實現屬性資料的計算讀取, 同時監視屬性資料的變化</li>
-</ol>
-<p>如何給物件定義 <code>get/set</code> 屬性 ?<br>在建立物件時指定:<code>·get name () {return xxx} / set name (value) {}</code><br>物件建立之後指定: <code>Object.defineProperty(obj, age, {get(){}, set(value){}})</code></p>
-<p>在頁面中使用雙大括號，將「方法名」包起來顯示計算的結果。</p>
-<h3 id="使用-computed-計算屬性的-get-set-方法雙向顯示和監視"><a href="#使用-computed-計算屬性的-get-set-方法雙向顯示和監視" class="headerlink" title="使用 computed 計算屬性的 get / set 方法雙向顯示和監視"></a>使用 computed 計算屬性的 get / set 方法雙向顯示和監視</h3><p>剛剛說的 Full Name3 可達到互相牽動的效果，就是用 computed 計算屬性裡的兩個 callback 函式 getter/setter 來做到。<br><code>get()</code>我們需要讀取當前屬性時呼叫。然後根據相關的資料計算並傳回當前屬性的值。<br><code>set(value)</code> 並不像字面上的意思，而是當屬性值發生變化呼叫 set callback 函式，然後去更新相關的屬性資料。在這裏<code>value</code>即代表 Full Name3 最新的屬性值。</p>
-<p>如果是以 computed 來計算屬性產生值，就不需要在<code>data</code>裡初始化值。所以我們也不需要在<code>data</code>裡初始化 Full Name3 的值。<br>計算屬性 computed 有個特性，它會在第一次計算時就將結果存在快取裡, 多次讀取也只執行一次 getter 計算，以節省效能。</p>
-<h3 id="watch-監視器"><a href="#watch-監視器" class="headerlink" title="watch 監視器"></a>watch 監視器</h3><p>監視器的寫法有兩種：</p>
-<ol>
-<li>直接寫成實例的<code>watch</code>屬性物件，屬性的值為監聽的對象，值則 callback 函式，在函數內部進行計算。這個監聽屬性可包含多個屬性監視的物件，並分為一般監視和深度<code>deep</code>監視。</li>
-<li>透過實例本身(vm)有的方法<code>$watch()</code>來監聽 <code>$watch</code>有兩個參數，第一個為要監聽的對象，第二參數為 callback 函式，在函數內部進行計算。<br>有沒覺得這兩種寫法大同小異？</li>
-</ol>
-<p>這兩種寫法的語法分別為：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.</span></span><br><span class="line">xxx: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;&#125;</span><br><span class="line">xxx : &#123;</span><br><span class="line">deep : <span class="literal">true</span>,</span><br><span class="line">handler : fun(value)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.</span></span><br><span class="line">vm.$watch(<span class="string">'xxx'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>我們再來看一下完整的程式碼：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app2'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    firstName: <span class="string">'A'</span>,</span><br><span class="line">    lastName: <span class="string">'B'</span>,</span><br><span class="line">    fullName2: <span class="string">'A-B'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 計算屬性配置：值為物件</span></span><br><span class="line">  computed: &#123;</span><br><span class="line">    <span class="comment">// 什麼時候執行：初始化顯示/ 相關的data屬性資料發生變化</span></span><br><span class="line">    <span class="comment">// 計算並回傳目前屬性的值</span></span><br><span class="line">    fullName1() &#123;</span><br><span class="line">      <span class="comment">// 計算屬性中的一個方法，方法的回傳值作為屬性值</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">'-'</span> + <span class="keyword">this</span>.lastName;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    fullName3: &#123;</span><br><span class="line">      <span class="comment">// 自定義物件，有兩個callback 函式 get, set(value)</span></span><br><span class="line">      <span class="comment">// 什麼時候用？ 當需要讀取當前屬性時呼叫。</span></span><br><span class="line">      <span class="comment">// 用來做什麼？ 根據相關的資料計算並傳回當前屬性的值</span></span><br><span class="line">      <span class="keyword">get</span>() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.firstName + <span class="string">'-'</span> + <span class="keyword">this</span>.lastName;</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">// 什麼時候用？ 監視當前屬性的變化，當屬性值發生變化時呼叫。更新相關的資料屬性</span></span><br><span class="line">      <span class="comment">// 用來做什麼？ 根據相關的資料計算並傳回當前屬性的值</span></span><br><span class="line">      <span class="keyword">set</span>(value) &#123;</span><br><span class="line">        <span class="comment">// value 是 fullName3 輸入的最新屬性值</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'fullName3 set()'</span>, value);</span><br><span class="line">        <span class="comment">// 更新firstName和lastName</span></span><br><span class="line">        <span class="keyword">const</span> names = value.split(<span class="string">'-'</span>);</span><br><span class="line">        <span class="keyword">this</span>.firstName = names[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">this</span>.lastName = names[<span class="number">1</span>];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 寫在vm 實例的監聽，叫配置監聽，另一種監聽方法使用vm的方法</span></span><br><span class="line">  watch: &#123;</span><br><span class="line">    <span class="comment">// 要監聽哪個屬性？ 監聽變動時通知我們，使用callback 給我們最新的值</span></span><br><span class="line">    firstName: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// firstName 發生了變化</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'watch firstName'</span>, value);</span><br><span class="line">      <span class="comment">// 更新 fullName2</span></span><br><span class="line">      <span class="keyword">this</span>.fullName2 = value + <span class="string">'-'</span> + <span class="keyword">this</span>.lastName;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 這段和下面用 vm.$watch() 寫的效果是一樣的。</span></span><br><span class="line">    <span class="comment">// lastName: function (value) &#123;</span></span><br><span class="line">    <span class="comment">//   this.fullName2 = this.firstName + '-' + value</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 實例的方法都是以 $ 開頭 第一參數監聽對象 第二參數callback函式</span></span><br><span class="line">vm.$watch(<span class="string">'lastName'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'watch lastName'</span>, value);</span><br><span class="line">  <span class="comment">// 更新 fullName2</span></span><br><span class="line">  <span class="keyword">this</span>.fullName2 = <span class="keyword">this</span>.firstName + <span class="string">' '</span> + value;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h4 id="有趣的-callback-解釋"><a href="#有趣的-callback-解釋" class="headerlink" title="有趣的 callback 解釋"></a>有趣的 callback 解釋</h4><p>callback 函式需滿足三個條件： 1.你定義的 2.你沒有呼叫 3.但最終它執行了<br>callback 什麼時候用？ 呼叫函式的時候<br>用來做什麼？ 計算並回傳當前屬性的值</p>
-<p>再接再厲～</p>
-
-                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/Vue_computed_watch/" data-id="ck72decx6006kl7uw2h50vphs" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Vue/">Vue</a></li></ul>
-
-                    </footer>
+      
     </div>
     
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="../tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="../tags/Vue/" rel="tag"># Vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="../Vue_Template_Syntax/" rel="next" title="Vue.js Template Syntax 模板語法">
+                <i class="fa fa-chevron-left"></i> Vue.js Template Syntax 模板語法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="../Vue_class_style/" rel="prev" title="Vue.js Class & Style Bindings 樣式的綁定">
+                Vue.js Class & Style Bindings 樣式的綁定 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
         
-<nav id="article-nav">
+          
   
-    <a href="../Vue_class_style/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Vue.js Class &amp; Style Bindings 樣式的綁定
-        
-      </div>
-    </a>
-  
-  
-    <a href="../Vue_Template_Syntax/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Vue.js Template Syntax 模板語法</div>
-    </a>
-  
-</nav>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+              <p class="site-description motion-element" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</p>
+          </div>
+
+          <nav class="site-state motion-element">
 
             
-</article>
+              <div class="site-state-item site-state-posts">
+              
+                <a href="../archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-    <div class="widget-wrap">
-        <h3 class="widget-title">About Tsuifei</h3>
-        <div class="widget">
-            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
-            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分類</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">標籤</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#computed-計算屬性"><span class="nav-number">1.</span> <span class="nav-text">computed: { } 計算屬性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-computed-計算屬性的-get-set-方法雙向顯示和監視"><span class="nav-number">2.</span> <span class="nav-text">使用 computed 計算屬性的 get / set 方法雙向顯示和監視</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#watch-監視器"><span class="nav-number">3.</span> <span class="nav-text">watch 監視器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#有趣的-callback-解釋"><span class="nav-number">3.1.</span> <span class="nav-text">有趣的 callback 解釋</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
     </div>
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/VSCode/">VSCode</a></li></ul>
-    </div>
-  </div>
+  </aside>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/讀書會筆記/">讀書會筆記</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="../Vue_Custom_Directives/">Vue.js Custom Directives 自定義指令</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Directives/">Vue.js Directives Vue 常用的內建指令</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Filters/">Vue.js Filters 過濾器</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Transitioning_Elements_Components/">Vue.Js Transitioning Single Elements/Component 過渡與動畫效果</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Instance_Lifecycle_Hooks/">VueJs Instance Lifecycle Hooks 生命週期鉤子</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="../tags/CSS/" style="font-size: 11.43px;">CSS</a> <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 11.43px;">Git</a> <a href="../tags/GitHub/" style="font-size: 11.43px;">GitHub</a> <a href="../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 17.14px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 12.86px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 18.57px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/JavaScript-30/" style="font-size: 11.43px;">JavaScript 30</a> <a href="../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/React/" style="font-size: 14.29px;">React</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../tags/Test/" style="font-size: 10px;">Test</a> <a href="../tags/VSCode/" style="font-size: 11.43px;">VSCode</a> <a href="../tags/Vue/" style="font-size: 15.71px;">Vue</a> <a href="../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Tsuifei Pommier<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-    <script type="text/javascript">
-      (function (w, d, t, u, n, s, e) {
-        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
-          (w[n].q = w[n].q || []).push(arguments);
-        }; s = d.createElement(t);
-        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
-      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+    </main>
 
-      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
-    </script>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+
   
-    <a href="../index.html" class="mobile-nav-link">Home</a>
-  
-    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
-  
-</nav>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
-  <script src="../fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="../js/script.js"></script>
-
-
+    
 
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="../lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="../js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="../js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="../js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="../js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="../js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="../js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="../js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

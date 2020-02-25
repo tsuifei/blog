@@ -1,27 +1,85 @@
 <!DOCTYPE html>
-<html>
 
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-144046503-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
   
-  <title>SASS 環境部署與基礎 | Cré-Coder</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SASS 重點 Variables 變數 Nesting 巢狀 Partials / Imports Functions &amp;amp; Mixins 函式 &amp;amp; 巢狀 Conditionale 條件式 Operators &amp;amp; Calculations 必較與計算子 Color Functions 顏色函式  使用 NodeJs 佈署 SASS 環境在資料夾裡面安裝 SASS 編譯器：n">
+  <link href="../lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="../lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="../css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="../images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CSS,SASS,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="SASS 重點 Variables 變數 Nesting 巢狀 Partials / Imports Functions &amp;amp; Mixins 函式 &amp;amp; 巢狀 Conditionale 條件式 Operators &amp;amp; Calculations 必較與計算子 Color Functions 顏色函式  使用 NodeJs 佈署 SASS 環境在資料夾裡面安裝 SASS 編譯器：n">
 <meta name="keywords" content="CSS,SASS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SASS 環境部署與基礎">
@@ -33,93 +91,238 @@ ga('send', 'pageview');
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SASS 環境部署與基礎">
 <meta name="twitter:description" content="SASS 重點 Variables 變數 Nesting 巢狀 Partials / Imports Functions &amp;amp; Mixins 函式 &amp;amp; 巢狀 Conditionale 條件式 Operators &amp;amp; Calculations 必較與計算子 Color Functions 顏色函式  使用 NodeJs 佈署 SASS 環境在資料夾裡面安裝 SASS 編譯器：n">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/tsuifei.github.io/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="tsuifei.github.io/SASS_deployment-environment-and-fundamental/">
+
+
+
+
+
+  <title>SASS 環境部署與基礎 | Cré-Coder</title>
   
-  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
   
   
-  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+    
   
-  
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="../css/style.css">
-</head></html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="../index.html" id="logo">Cré-Coder</a>
-      </h1>
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/tsuifei.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
       
-      <h2 id="subtitle-wrap">
-        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
-      </h2>
+        <p class="site-subtitle">Je code donc je suis là.</p>
       
-    </div>
-
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-        <a class="main-nav-link" href="../index.html">Home</a>
-        
-        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
-        
-        <!-- 搜索框就加上 class="st-default-search-input" -->
-        
-        <input type="text" class="st-default-search-input" placeholder="Search....">
-        
-        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
-        <!-- 
-        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
-         -->
-        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
-      </nav>
-      <!-- <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
-      </div> -->
-
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-SASS_deployment-environment-and-fundamental" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="" class="article-date">
-  <time datetime="2019-07-17T19:53:46.000Z" itemprop="datePublished">2019-07-18</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../categories/SASS/">SASS</a>
   </div>
 
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 class="article-title" itemprop="name">
-      SASS 環境部署與基礎
-    </h1>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
   
 
-                </header>
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="../images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SASS 環境部署與基礎</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2019-07-17T21:53:46+02:00">
+                2019-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="../categories/SASS/" itemprop="url" rel="index">
+                    <span itemprop="name">SASS</span>
+                  </a>
+                </span>
+
                 
+                
+              
+            </span>
+          
 
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h2 id="SASS-重點"><a href="#SASS-重點" class="headerlink" title="SASS 重點"></a>SASS 重點</h2><ul>
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="SASS-重點"><a href="#SASS-重點" class="headerlink" title="SASS 重點"></a>SASS 重點</h2><ul>
 <li>Variables 變數</li>
 <li>Nesting 巢狀</li>
 <li>Partials / Imports</li>
@@ -185,246 +388,393 @@ ga('send', 'pageview');
 
 <h2 id="參考網站"><a href="#參考網站" class="headerlink" title="參考網站"></a>參考網站</h2><p><a href="https://sass-lang.com/guide" target="_blank" rel="noopener">SASS 官網</a> | <a href="https://paper.dropbox.com/doc/Sass-Bootstrap--AepLvl6rTzh_ryoWRR5ADMXtAg-yuK4SQmHw4CzC96uX8ylZ" target="_blank" rel="noopener">六角筆記 範例</a><br><a href="https://dwatow.github.io/2018/03-12-node-sass/" target="_blank" rel="noopener">node-sass 初探 - 《Chris 技術筆記》</a><br><a href="https://hackmd.io/vgVp2KlzR6mYQvLu74wvgw" target="_blank" rel="noopener">Askie 筆記</a> | <a href="https://hackmd.io/ZMQqAUxBQzGLuuw0en8MBA" target="_blank" rel="noopener">初見 SCSS 一天開竅起手式</a><br><a href="https://www.codecademy.com/learn/learn-sass" target="_blank" rel="noopener">線上課程</a> | <a href="https://www.kancloud.cn/kancloud/sass-guidelin/" target="_blank" rel="noopener">簡中查閱</a> | <a href="https://medium.com/@chihsuan/%E5%A6%82%E4%BD%95%E5%AF%AB%E5%87%BA%E6%9B%B4%E5%A5%BD%E7%9A%84-css-scss-%E7%A8%8B%E5%BC%8F%E7%A2%BC-bab4396b1a01" target="_blank" rel="noopener">如何寫出更好的 CSS/SCSS 程式碼？</a> | <a href="https://www.youtube.com/watch?v=mgZRZ91h5yk&t=12s" target="_blank" rel="noopener">Sass 基礎運用介紹</a><br><a href="https://www.youtube.com/watch?v=FVx8WvZQV10" target="_blank" rel="noopener">六角學院 - SASS 之 @function、@extend、@mixin</a> | <a href="https://wcc723.github.io/sass/2013/08/26/sass-hsl-funtion/" target="_blank" rel="noopener">卡斯柏 Sass HSL function</a><br><a href="https://www.udemy.com/modern-html-css-from-the-beginning/learn/lecture/13875728#overview" target="_blank" rel="noopener">Udemy Modern HTML &amp; CSS From The Beginning (Including Sass)
 </a></p>
- -->
-                                            <!-- Table of Contents -->
-                                            
 
-                                                    
-                                                        
-                                                            <h2 id="SASS-重點"><a href="#SASS-重點" class="headerlink" title="SASS 重點"></a>SASS 重點</h2><ul>
-<li>Variables 變數</li>
-<li>Nesting 巢狀</li>
-<li>Partials / Imports</li>
-<li>Functions &amp; Mixins 函式 &amp; 巢狀</li>
-<li>Conditionale 條件式</li>
-<li>Operators &amp; Calculations 必較與計算子</li>
-<li>Color Functions 顏色函式</li>
-</ul>
-<h2 id="使用-NodeJs-佈署-SASS-環境"><a href="#使用-NodeJs-佈署-SASS-環境" class="headerlink" title="使用 NodeJs 佈署 SASS 環境"></a>使用 NodeJs 佈署 SASS 環境</h2><h3 id="在資料夾裡面安裝-SASS-編譯器：node-sass"><a href="#在資料夾裡面安裝-SASS-編譯器：node-sass" class="headerlink" title="在資料夾裡面安裝 SASS 編譯器：node sass"></a>在資料夾裡面安裝 SASS 編譯器：node sass</h3><p>1.先確認有安裝 npm 2.輸入 <code>npm init -y</code> 初始化並給予預設值 3.檔案夾裡會有一個自動生成的 package.json 4.在終端機安裝 node sass ：<code>npm install node-sass</code> 5.在檔案夾裡會生成 node_modules，同時在 package.json 裡也會自動增加 node-sass 的版本號 6.打開它修改預設檔案生成位置，修改 script，將 test 拿掉，改成：<br><code>&quot;sass&quot;: &quot;node-sass -w scss/ -o dist/css/ --recursive&quot;</code><br>-w 監控 scss 檔案夾，-o output 編譯輸出至 dist/css 這個檔案夾。 7.至根目錄，增加 scss 和 dist 等檔案夾，並在 scss 檔案夾裡增加 scss 檔案：<code>main.scss</code> 8.先在終端機執行 <code>npm run sass</code> 指令，啟動 sass 監聽 9.在 <code>main.scss</code>寫些簡單的 sass，儲存後，會顯示編譯完成，並且在 dist 自動生成 css 檔案夾和<code>main.css</code>。 10.想退出監聽模式可 <code>control + c</code> 結束監聽。</p>
-<p>(6)也可加入其他參數</p>
-<p>啟動監聽後，在每次更新存檔時會自動更新網頁，如有修改後網頁沒變化，可跳出 sass 再重啟，通常可解決此問題。</p>
-<h2 id="SASS-變數"><a href="#SASS-變數" class="headerlink" title="SASS 變數"></a>SASS 變數</h2><p>將變數統一整理到 <code>_variables.scss</code> 裡，並在<code>main.scss</code> 裡以<code>@import &#39;variables&#39;</code> 引入。<br>常用的變數名：</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$primary-color</span></span><br><span class="line"><span class="variable">$secondary-color</span></span><br><span class="line"><span class="variable">$light-color</span></span><br><span class="line"><span class="variable">$dark-color</span></span><br><span class="line"><span class="variable">$font-stack</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="SASS-自帶的函式"><a href="#SASS-自帶的函式" class="headerlink" title="SASS 自帶的函式"></a>SASS 自帶的函式</h2><p>lighten(顏色;百分比); sass 會自動計算顏色深淺。</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$primary-color</span>:<span class="number">#00cc99</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="variable">$primary-color</span>;</span><br><span class="line">  background_color:lighten(<span class="variable">$primary-color</span>, <span class="number">45%</span>); <span class="comment">/* 自動計算顏色變淺 */</span></span><br><span class="line">&#125;</span><br><span class="line">darken(<span class="variable">$primary-color</span>, 15%);</span><br><span class="line"><span class="comment">/* 自動計算顏色變深 */</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="SASS-巢狀"><a href="#SASS-巢狀" class="headerlink" title="SASS 巢狀"></a>SASS 巢狀</h2><p>在 sass 的巢狀結構裡，我們可以使用更簡潔的方式來表示結構：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;section class=&quot;section section-a&quot;&gt;</span><br><span class="line">    &lt;h2&gt;Hello Paris&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit.&lt;/p&gt;</span><br><span class="line">  &lt;/section&gt;</span><br><span class="line">  &lt;section class=&quot;section section-b&quot;&gt;</span><br><span class="line">    &lt;h2&gt;Hello taipei&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit.&lt;/p&gt;</span><br><span class="line">  &lt;/section&gt;</span><br></pre></td></tr></table></figure>
-
-<p>scss 可以用巢狀的<code>&amp;-a</code>表示是指向哪一個<code>section</code></p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.section</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2rem</span>;</span><br><span class="line">  <span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$primary-color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;-<span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$primary-color</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;-<span class="selector-tag">b</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$secondary-color</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>==要避免過度巢狀，多用在偽元素、狀態、hover…。==<br>例 : &amp;:hover { … ; &amp;.active { … ; &amp;:after { …</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">12px</span>;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  backgroung-<span class="attribute">color</span>: <span class="variable">$primary-color</span>;</span><br><span class="line">  &amp;:hover &#123;</span><br><span class="line">    backgroung-<span class="attribute">color</span>: darken(<span class="variable">$primary-color</span>, <span class="number">15%</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;<span class="selector-class">.active</span> &#123;</span><br><span class="line">    backgroung-<span class="attribute">color</span>: darken(<span class="variable">$primary-color</span>, <span class="number">15%</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Mixin-精華"><a href="#Mixin-精華" class="headerlink" title="Mixin 精華"></a>Mixin 精華</h2><p>使用情境，按鈕很多想做不同色彩。</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$primary-color</span>: <span class="number">#00cc99</span>;</span><br><span class="line">@<span class="keyword">mixin</span> btnColor(<span class="variable">$color</span>) &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="variable">$color</span>;</span><br><span class="line">  &amp;:hover &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: darken(<span class="variable">$color</span>, <span class="number">15%</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">1rem</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 創見一個btn 並用傳入的顏色給予背景色 */</span></span><br><span class="line"><span class="selector-class">.btn-primary</span> &#123;</span><br><span class="line">  @<span class="keyword">include</span> btnColor(<span class="variable">$primary-color</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Extend"><a href="#Extend" class="headerlink" title="Extend"></a>Extend</h2><p>Sass 的 @extend 可以將相同的樣式整理在一起，在其他語言來說是非常帥氣的技法，但在 CSS 中請警慎使用。</p>
-<p>OOCSS 概念，在撰寫 CSS 時要盡可能符合兩個原則，==結構與樣式分離、容器與內容分離==，所以到這邊為止還是要貫徹這個概念，當使用 @extend 時如果會造成這個缺陷時，請避免使用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;btn-light&quot;&gt;Read more&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;btn-dark&quot;&gt;Read more&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">%btn-read-more &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0.27rem</span> <span class="number">2rem</span>;</span><br><span class="line">  <span class="attribute">border</span>: none;</span><br><span class="line">  <span class="attribute">text-decoration</span>: none;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">1rem</span>;</span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  &amp;-light &#123;</span><br><span class="line">    @<span class="keyword">extend</span> %btn-read-more;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$dark-color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  &amp;-dark &#123;</span><br><span class="line">    @<span class="keyword">extend</span> %btn-read-more;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$dark-color</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果認為以上寫法較容易導致混亂，也可寫成這樣：</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.btn-light</span> &#123;</span><br><span class="line">  @<span class="keyword">extend</span> %btn-read-more;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="variable">$dark-color</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.btn-dark</span> &#123;</span><br><span class="line">  @<span class="keyword">extend</span> %btn-read-more;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="variable">$dark-color</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Mixin-amp-Extend-比較與應用"><a href="#Mixin-amp-Extend-比較與應用" class="headerlink" title="Mixin &amp; Extend 比較與應用"></a>Mixin &amp; Extend 比較與應用</h2><p>究竟 Mixin 與 extend 的使用時機該如何抉擇？基本上來說，<br>@mixin 是將程式碼帶入到對應的 class 去，同時可帶入變數。<br>@extend 則是藉由 class 合併，並吃到共通樣式，但==無法帶入變數==。<br><a href="https://ithelp.ithome.com.tw/articles/10128359" target="_blank" rel="noopener">30 天掌握 Sass 語法 - (7)利用 Sass「@extend」，讓你無痛合併 CSS 樣式</a></p>
-<h2 id="運算式："><a href="#運算式：" class="headerlink" title="運算式："></a>運算式：</h2><p>會先乘除、後加減</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$width: 200px;</span><br><span class="line">$height: 400px;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: $width / <span class="number">2</span>;</span><br><span class="line">  <span class="attribute">height</span>: ($height - <span class="number">4</span>) / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Function-函式"><a href="#Function-函式" class="headerlink" title="Function 函式"></a>Function 函式</h2><p>可自創函式來處理許多繁瑣的事，例如自動辨別在深色底使用淺色字，反之，或是需要前贅詞讓瀏覽器相容的部份，也可一併用 function 處理。<br>方法：產生<code>_functions</code> 再以<code>@import</code>在主 scss 裡引入。<br>例一：</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// _functions</span></span><br><span class="line"><span class="comment">// Set Text Color 自動偵測字體顏色該深or淺</span></span><br><span class="line">@function set-text-color(<span class="variable">$color</span>) &#123;</span><br><span class="line">  @<span class="keyword">if</span> (lightness(<span class="variable">$color</span>) &gt; 50) &#123;</span><br><span class="line">    @return <span class="number">#000</span>;</span><br><span class="line">  &#125; @<span class="keyword">else</span> &#123;</span><br><span class="line">    @return <span class="number">#fff</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Transform mixin 轉換小動畫</span></span><br><span class="line"><span class="comment">// 因 css transform 最好有前贅詞讓瀏覽器相容，可統一整理在這裡就不需要每次都寫</span></span><br><span class="line">@<span class="keyword">mixin</span> transform(<span class="variable">$property</span>) &#123;</span><br><span class="line">  --webkit-<span class="attribute">transform</span>: <span class="variable">$property</span>;</span><br><span class="line">  -ms-<span class="attribute">transform</span>: <span class="variable">$property</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="variable">$property</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.scss</span></span><br><span class="line"><span class="selector-class">.btn</span> &#123;</span><br><span class="line">  &amp;-light &#123;</span><br><span class="line">    @<span class="keyword">extend</span> %btn-read-more;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="variable">$light-color</span>;</span><br><span class="line">    <span class="attribute">color</span>: set-text-color(<span class="variable">$light-color</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// hover 動畫效果</span></span><br><span class="line">    &amp;:hover &#123;</span><br><span class="line">      @<span class="keyword">include</span> transform(rotate(-<span class="number">10deg</span>));</span><br><span class="line">      <span class="comment">// 讓背景變深或淺</span></span><br><span class="line">      <span class="attribute">background-color</span>: darken(<span class="variable">$light-color</span>, <span class="number">15%</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>HSL function 是常用到的函式，HSL 是色彩學中的色相、明度、彩度。<a href="https://color.adobe.com/create/color-wheel/" target="_blank" rel="noopener">adobe 色相環</a></p>
-<h2 id="規劃-Sass-結構-import-的用法"><a href="#規劃-Sass-結構-import-的用法" class="headerlink" title="規劃 Sass 結構 @import 的用法"></a>規劃 Sass 結構 @import 的用法</h2><p>@import 的的功用在於可以將 CSS 檔案進行切割，如果是單純要被匯入整合 Sass 檔，而並沒有要轉出成 CSS 檔案，在檔案名稱前面加個下底線『_』，例：_button.css 就不會被編譯了。</p>
-<p>基本的設計：</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> mixin //放置所有Sass全域變數與<span class="keyword">Mixin</span></span><br><span class="line">  @<span class="keyword">import</span> reset // reset.css</span><br><span class="line">  @<span class="keyword">import</span> extnd // 拿來合併樣式，都放@<span class="keyword">extend</span>用的檔案</span><br><span class="line">  @<span class="keyword">import</span> layout //共同框架</span><br><span class="line">  @<span class="keyword">import</span> index //首頁</span><br><span class="line">  @<span class="keyword">import</span> page //內頁</span><br><span class="line">  @<span class="keyword">import</span> xxx;</span><br></pre></td></tr></table></figure>
-
-<p>@import 最前面先放全域變數與 ==mixin==，原因是因為前面@import 有寫到變數的地方找不到值，所以自然系統沒辦法編譯出來。</p>
-<p>接著 ==reset== 檔案，<br>網頁排版須先將所有瀏覽器預設樣式都統一，所以用 reset 統一。放在 mixin 前或後沒有差，因 mixin 都是變數而已，可以依照自己習慣放置。但也可能會在 reset 裡面導入全域變數，所以放第二有它的道理。</p>
-<p>@extend 與@mixin 並不會實際產生 code，只有呼叫才會合併與匯出</p>
-<p>第三個 ==extend== 是拿來合併 css 樣式用的，在設計網頁時，會發現有些樣式應可以抽出來進行合併動作，所以就會統一放在要合併的位置，就統一來放置@extend 的語法。</p>
-<p>==layout== 是網頁版型的共通設計，也就是無論哪一頁都會有的樣式，如：表頭、表尾<br>接著是不同頁面性質與區塊的分割，==index== 首頁、==page== 內頁，依單元數量視情況來切割，Sass @import 的主要用就是希望你可以把 CSS 進行切割，這樣在編輯 CSS 時就可以聚焦於某功能來進行瀏覽，將檔案歸類完善，找 CSS 相對也會方便許多。</p>
-<h3 id="國外-Sass-Way-介紹的-Sass-結構"><a href="#國外-Sass-Way-介紹的-Sass-結構" class="headerlink" title="國外 Sass Way 介紹的 Sass 結構"></a>國外 Sass Way 介紹的 Sass 結構</h3><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">stylesheets/</span><br><span class="line">|</span><br><span class="line">|-- modules/              # Common modules</span><br><span class="line">|   |-- _all.scss         # Include to get all modules 將所有 modules 引入到這裡(A)</span><br><span class="line">|   |-- _utility.scss     # Module name</span><br><span class="line">|   |-- _colors.scss      # Etc...</span><br><span class="line">|   ...</span><br><span class="line">|</span><br><span class="line">|-- partials/             # Partials</span><br><span class="line">|   |-- _base.sass        # imports for all mixins + global project variables 將所有 partials 引入到這裡(B)</span><br><span class="line">|   |-- _buttons.scss     # buttons</span><br><span class="line">|   |-- _figures.scss     # figures</span><br><span class="line">|   |-- _grids.scss       # grids</span><br><span class="line">|   |-- _typography.scss  # typography</span><br><span class="line">|   |-- _reset.scss       # reset</span><br><span class="line">|   ...</span><br><span class="line">|</span><br><span class="line">|-- vendor/               # CSS or Sass from other projects</span><br><span class="line">|   |-- _colorpicker.scss</span><br><span class="line">|   |-- _jquery.ui.core.scss</span><br><span class="line">|   ...</span><br><span class="line">|</span><br><span class="line">`-- main<span class="selector-class">.scss</span>            # primary Sass file 將(<span class="selector-tag">A</span>)、(<span class="selector-tag">B</span>) 引入這裡，與其他的partials</span><br></pre></td></tr></table></figure>
-
-<p>此份規劃的 Sass 架構還有分資料夾，將各類功能與模組分得更細：<br>==modules== 主要是放各種元素的模組，<br>== partials== 則是放置主結構的 CSS，<br>== vendor==則是統一放別人寫好的 Sass Framework，<br>所以 Sass 的主檔案就會這樣子去寫@import：</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Modules and Variables</span></span><br><span class="line">@<span class="keyword">import</span> <span class="string">'partials/base'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Partials</span></span><br><span class="line">@<span class="keyword">import</span> <span class="string">'partials/reset'</span>;</span><br><span class="line">@<span class="keyword">import</span> <span class="string">'partials/typography'</span>;</span><br><span class="line">@<span class="keyword">import</span> <span class="string">'partials/buttons'</span>;</span><br><span class="line">@<span class="keyword">import</span> <span class="string">'partials/figures'</span>;</span><br><span class="line">@<span class="keyword">import</span> <span class="string">'partials/grids'</span>;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Third-party</span></span><br><span class="line">@<span class="keyword">import</span> <span class="string">'vendor/colorpicker'</span>;</span><br><span class="line">@<span class="keyword">import</span> <span class="string">'vendor/jquery.ui.core'</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="組件化的變數抽離"><a href="#組件化的變數抽離" class="headerlink" title="組件化的變數抽離"></a>組件化的變數抽離</h3><p>在每一個區塊的 sass 裡，雖然已經使用了引入的變數，但為了組件的可重複性，也就是說，例如 header 或 footer 可以拿去給別的專案用，就可以再把每個 sass 裡的變數提取出來，以便日後只要改最上頭的變數列表即可。</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$footer_font_color</span>: lighten(<span class="variable">$dark-color</span>, <span class="number">15%</span>);</span><br><span class="line"><span class="variable">$footer_background_color</span>: darken(<span class="variable">$light-color</span>, <span class="number">15%</span>);</span><br><span class="line"><span class="variable">$footer_link_color</span>: <span class="variable">$primary-color</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">footer</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">color</span>: <span class="variable">$footer_font_color</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2rem</span> <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="variable">$footer_background_color</span>;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="variable">$font-base</span>;</span><br><span class="line">  <span class="selector-class">.link</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$footer_link_color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="參考網站"><a href="#參考網站" class="headerlink" title="參考網站"></a>參考網站</h2><p><a href="https://sass-lang.com/guide" target="_blank" rel="noopener">SASS 官網</a> | <a href="https://paper.dropbox.com/doc/Sass-Bootstrap--AepLvl6rTzh_ryoWRR5ADMXtAg-yuK4SQmHw4CzC96uX8ylZ" target="_blank" rel="noopener">六角筆記 範例</a><br><a href="https://dwatow.github.io/2018/03-12-node-sass/" target="_blank" rel="noopener">node-sass 初探 - 《Chris 技術筆記》</a><br><a href="https://hackmd.io/vgVp2KlzR6mYQvLu74wvgw" target="_blank" rel="noopener">Askie 筆記</a> | <a href="https://hackmd.io/ZMQqAUxBQzGLuuw0en8MBA" target="_blank" rel="noopener">初見 SCSS 一天開竅起手式</a><br><a href="https://www.codecademy.com/learn/learn-sass" target="_blank" rel="noopener">線上課程</a> | <a href="https://www.kancloud.cn/kancloud/sass-guidelin/" target="_blank" rel="noopener">簡中查閱</a> | <a href="https://medium.com/@chihsuan/%E5%A6%82%E4%BD%95%E5%AF%AB%E5%87%BA%E6%9B%B4%E5%A5%BD%E7%9A%84-css-scss-%E7%A8%8B%E5%BC%8F%E7%A2%BC-bab4396b1a01" target="_blank" rel="noopener">如何寫出更好的 CSS/SCSS 程式碼？</a> | <a href="https://www.youtube.com/watch?v=mgZRZ91h5yk&t=12s" target="_blank" rel="noopener">Sass 基礎運用介紹</a><br><a href="https://www.youtube.com/watch?v=FVx8WvZQV10" target="_blank" rel="noopener">六角學院 - SASS 之 @function、@extend、@mixin</a> | <a href="https://wcc723.github.io/sass/2013/08/26/sass-hsl-funtion/" target="_blank" rel="noopener">卡斯柏 Sass HSL function</a><br><a href="https://www.udemy.com/modern-html-css-from-the-beginning/learn/lecture/13875728#overview" target="_blank" rel="noopener">Udemy Modern HTML &amp; CSS From The Beginning (Including Sass)
-</a></p>
-
-                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/SASS_deployment-environment-and-fundamental/" data-id="ck72decyp00c0l7uwsf6yiybg" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/SASS/">SASS</a></li></ul>
-
-                    </footer>
+      
     </div>
     
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="../tags/CSS/" rel="tag"># CSS</a>
+          
+            <a href="../tags/SASS/" rel="tag"># SASS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="../JS_Return-in-the-loop/" rel="next" title="JS 迴圈 Loop 裡的 return">
+                <i class="fa fa-chevron-left"></i> JS 迴圈 Loop 裡的 return
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="../JS_JS101-Exercise/" rel="prev" title="JS-[JS101] 練習">
+                JS-[JS101] 練習 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
         
-<nav id="article-nav">
+          
   
-    <a href="../JS_JS101-Exercise/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          JS-[JS101] 練習
-        
-      </div>
-    </a>
-  
-  
-    <a href="../JS_Return-in-the-loop/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">JS 迴圈 Loop 裡的 return</div>
-    </a>
-  
-</nav>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+              <p class="site-description motion-element" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</p>
+          </div>
+
+          <nav class="site-state motion-element">
 
             
-</article>
+              <div class="site-state-item site-state-posts">
+              
+                <a href="../archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-    <div class="widget-wrap">
-        <h3 class="widget-title">About Tsuifei</h3>
-        <div class="widget">
-            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
-            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分類</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">標籤</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SASS-重點"><span class="nav-number">1.</span> <span class="nav-text">SASS 重點</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-NodeJs-佈署-SASS-環境"><span class="nav-number">2.</span> <span class="nav-text">使用 NodeJs 佈署 SASS 環境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在資料夾裡面安裝-SASS-編譯器：node-sass"><span class="nav-number">2.1.</span> <span class="nav-text">在資料夾裡面安裝 SASS 編譯器：node sass</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SASS-變數"><span class="nav-number">3.</span> <span class="nav-text">SASS 變數</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SASS-自帶的函式"><span class="nav-number">4.</span> <span class="nav-text">SASS 自帶的函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SASS-巢狀"><span class="nav-number">5.</span> <span class="nav-text">SASS 巢狀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mixin-精華"><span class="nav-number">6.</span> <span class="nav-text">Mixin 精華</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extend"><span class="nav-number">7.</span> <span class="nav-text">Extend</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mixin-amp-Extend-比較與應用"><span class="nav-number">8.</span> <span class="nav-text">Mixin &amp; Extend 比較與應用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#運算式："><span class="nav-number">9.</span> <span class="nav-text">運算式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Function-函式"><span class="nav-number">10.</span> <span class="nav-text">Function 函式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#規劃-Sass-結構-import-的用法"><span class="nav-number">11.</span> <span class="nav-text">規劃 Sass 結構 @import 的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#國外-Sass-Way-介紹的-Sass-結構"><span class="nav-number">11.1.</span> <span class="nav-text">國外 Sass Way 介紹的 Sass 結構</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#組件化的變數抽離"><span class="nav-number">11.2.</span> <span class="nav-text">組件化的變數抽離</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參考網站"><span class="nav-number">12.</span> <span class="nav-text">參考網站</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
     </div>
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/VSCode/">VSCode</a></li></ul>
-    </div>
-  </div>
+  </aside>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/讀書會筆記/">讀書會筆記</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="../Vue_Custom_Directives/">Vue.js Custom Directives 自定義指令</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Directives/">Vue.js Directives Vue 常用的內建指令</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Filters/">Vue.js Filters 過濾器</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Transitioning_Elements_Components/">Vue.Js Transitioning Single Elements/Component 過渡與動畫效果</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Instance_Lifecycle_Hooks/">VueJs Instance Lifecycle Hooks 生命週期鉤子</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="../tags/CSS/" style="font-size: 11.43px;">CSS</a> <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 11.43px;">Git</a> <a href="../tags/GitHub/" style="font-size: 11.43px;">GitHub</a> <a href="../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 17.14px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 12.86px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 18.57px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/JavaScript-30/" style="font-size: 11.43px;">JavaScript 30</a> <a href="../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/React/" style="font-size: 14.29px;">React</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../tags/Test/" style="font-size: 10px;">Test</a> <a href="../tags/VSCode/" style="font-size: 11.43px;">VSCode</a> <a href="../tags/Vue/" style="font-size: 15.71px;">Vue</a> <a href="../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Tsuifei Pommier<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-    <script type="text/javascript">
-      (function (w, d, t, u, n, s, e) {
-        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
-          (w[n].q = w[n].q || []).push(arguments);
-        }; s = d.createElement(t);
-        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
-      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+    </main>
 
-      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
-    </script>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+
   
-    <a href="../index.html" class="mobile-nav-link">Home</a>
-  
-    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
-  
-</nav>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
-  <script src="../fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="../js/script.js"></script>
-
-
+    
 
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="../lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="../js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="../js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="../js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="../js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="../js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="../js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="../js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

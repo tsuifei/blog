@@ -1,27 +1,85 @@
 <!DOCTYPE html>
-<html>
 
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-144046503-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
   
-  <title>Vue.js List Rendering 列表渲染 | Cré-Coder</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如果要把一個陣列或物件渲染到畫面，在原生的 JS 我們可以用迴圈或 forEach 以遍歷的方式將陣列的資料顯示，如果用 ES6 就可用 for…of 循環語句。在 Vue 裡要遍歷陣列的方法並不難，只是遍歷陣列和物件的方式稍有不同。去 codepen 看看效果 以 v-for 遍歷陣列顯示陣列列表顯示的方法是使用v-for指令，在遍歷的時候語法為&amp;lt;li v-for=&amp;quot;(p, in">
+  <link href="../lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="../lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="../css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="../images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,Vue,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="如果要把一個陣列或物件渲染到畫面，在原生的 JS 我們可以用迴圈或 forEach 以遍歷的方式將陣列的資料顯示，如果用 ES6 就可用 for…of 循環語句。在 Vue 裡要遍歷陣列的方法並不難，只是遍歷陣列和物件的方式稍有不同。去 codepen 看看效果 以 v-for 遍歷陣列顯示陣列列表顯示的方法是使用v-for指令，在遍歷的時候語法為&amp;lt;li v-for=&amp;quot;(p, in">
 <meta name="keywords" content="JavaScript,Vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue.js List Rendering 列表渲染">
@@ -33,93 +91,238 @@ ga('send', 'pageview');
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue.js List Rendering 列表渲染">
 <meta name="twitter:description" content="如果要把一個陣列或物件渲染到畫面，在原生的 JS 我們可以用迴圈或 forEach 以遍歷的方式將陣列的資料顯示，如果用 ES6 就可用 for…of 循環語句。在 Vue 裡要遍歷陣列的方法並不難，只是遍歷陣列和物件的方式稍有不同。去 codepen 看看效果 以 v-for 遍歷陣列顯示陣列列表顯示的方法是使用v-for指令，在遍歷的時候語法為&amp;lt;li v-for=&amp;quot;(p, in">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/tsuifei.github.io/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="tsuifei.github.io/Vue_List_Rendering/">
+
+
+
+
+
+  <title>Vue.js List Rendering 列表渲染 | Cré-Coder</title>
   
-  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
   
   
-  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+    
   
-  
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="../css/style.css">
-</head></html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="../index.html" id="logo">Cré-Coder</a>
-      </h1>
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/tsuifei.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
       
-      <h2 id="subtitle-wrap">
-        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
-      </h2>
+        <p class="site-subtitle">Je code donc je suis là.</p>
       
-    </div>
-
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-        <a class="main-nav-link" href="../index.html">Home</a>
-        
-        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
-        
-        <!-- 搜索框就加上 class="st-default-search-input" -->
-        
-        <input type="text" class="st-default-search-input" placeholder="Search....">
-        
-        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
-        <!-- 
-        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
-         -->
-        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
-      </nav>
-      <!-- <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
-      </div> -->
-
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-Vue_List_Rendering" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="" class="article-date">
-  <time datetime="2020-02-15T16:42:24.000Z" itemprop="datePublished">2020-02-16</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
   </div>
 
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 class="article-title" itemprop="name">
-      Vue.js List Rendering 列表渲染
-    </h1>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
   
 
-                </header>
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="../images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue.js List Rendering 列表渲染</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-02-15T17:42:24+01:00">
+                2020-02-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="../categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
                 
+                
+              
+            </span>
+          
 
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <p>如果要把一個陣列或物件渲染到畫面，在原生的 JS 我們可以用迴圈或 forEach 以遍歷的方式將陣列的資料顯示，如果用 ES6 就可用 for…of 循環語句。<br>在 Vue 裡要遍歷陣列的方法並不難，只是遍歷陣列和物件的方式稍有不同。<br><a href="https://codepen.io/tsuifei/pen/QWbNErL" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>如果要把一個陣列或物件渲染到畫面，在原生的 JS 我們可以用迴圈或 forEach 以遍歷的方式將陣列的資料顯示，如果用 ES6 就可用 for…of 循環語句。<br>在 Vue 裡要遍歷陣列的方法並不難，只是遍歷陣列和物件的方式稍有不同。<br><a href="https://codepen.io/tsuifei/pen/QWbNErL" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
 <h2 id="以-v-for-遍歷陣列顯示"><a href="#以-v-for-遍歷陣列顯示" class="headerlink" title="以 v-for 遍歷陣列顯示"></a>以 v-for 遍歷陣列顯示</h2><p>陣列列表顯示的方法是使用<code>v-for</code>指令，在遍歷的時候語法為<code>&lt;li v-for=&quot;(p, index) in persons&quot; :key=&quot;index&quot;&gt;&lt;/li&gt;</code><br>在使用<code>v-for</code>時要記得加上<code>:key</code> 讓單筆的屬性有唯一值，這個陣列的唯一值是 index。<br>在上面的語法範例，可以想成是<code>&lt;li v-for=&quot;(單個陣列, index索引值) in 陣列&quot; :key=&quot;index唯一索引值&quot;&gt;&lt;/li&gt;</code>。</p>
 <p>假設我們有個陣列：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">persons: [&#123;</span><br><span class="line">            name: <span class="string">'Ayda'</span>,</span><br><span class="line">            age: <span class="number">18</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Tracy'</span>,</span><br><span class="line">            age: <span class="number">24</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Philippe'</span>,</span><br><span class="line">            age: <span class="number">42</span></span><br><span class="line">          &#125;</span><br></pre></td></tr></table></figure>
@@ -147,208 +350,393 @@ ga('send', 'pageview');
 
 <p>如果熟悉上面的操作，應該就可以試著寫出一個簡單的 todoList 了。<br>接下來就要來介紹排序的部分囉！</p>
 <p>參考：<br><a href="https://cn.vuejs.org/v2/guide/list.html#%E5%8F%98%E5%BC%82%E6%96%B9%E6%B3%95-mutation-method" target="_blank" rel="noopener">列表渲染 — Vue.js</a><br><a href="https://blog.csdn.net/qq_37860930/article/details/78529260" target="_blank" rel="noopener">ES6-遍曆數組 JavaScript</a><br><a href="https://segmentfault.com/a/1190000010203337" target="_blank" rel="noopener">ES5 和 ES6 數組遍歷方法詳解</a></p>
- -->
-                                            <!-- Table of Contents -->
-                                            
 
-                                                    
-                                                        
-                                                            <p>如果要把一個陣列或物件渲染到畫面，在原生的 JS 我們可以用迴圈或 forEach 以遍歷的方式將陣列的資料顯示，如果用 ES6 就可用 for…of 循環語句。<br>在 Vue 裡要遍歷陣列的方法並不難，只是遍歷陣列和物件的方式稍有不同。<br><a href="https://codepen.io/tsuifei/pen/QWbNErL" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
-<h2 id="以-v-for-遍歷陣列顯示"><a href="#以-v-for-遍歷陣列顯示" class="headerlink" title="以 v-for 遍歷陣列顯示"></a>以 v-for 遍歷陣列顯示</h2><p>陣列列表顯示的方法是使用<code>v-for</code>指令，在遍歷的時候語法為<code>&lt;li v-for=&quot;(p, index) in persons&quot; :key=&quot;index&quot;&gt;&lt;/li&gt;</code><br>在使用<code>v-for</code>時要記得加上<code>:key</code> 讓單筆的屬性有唯一值，這個陣列的唯一值是 index。<br>在上面的語法範例，可以想成是<code>&lt;li v-for=&quot;(單個陣列, index索引值) in 陣列&quot; :key=&quot;index唯一索引值&quot;&gt;&lt;/li&gt;</code>。</p>
-<p>假設我們有個陣列：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">persons: [&#123;</span><br><span class="line">            name: <span class="string">'Ayda'</span>,</span><br><span class="line">            age: <span class="number">18</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Tracy'</span>,</span><br><span class="line">            age: <span class="number">24</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">'Philippe'</span>,</span><br><span class="line">            age: <span class="number">42</span></span><br><span class="line">          &#125;</span><br></pre></td></tr></table></figure>
-
-<p>在 HTML 我們可以這樣寫，就可以在頁面渲染出陣列的列表：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(p, index) in persons"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">    &#123;&#123; index &#125;&#125; --- &#123;&#123;p.name&#125;&#125; --- &#123;&#123;p.age&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="以-v-for-遍歷物件顯示"><a href="#以-v-for-遍歷物件顯示" class="headerlink" title="以 v-for 遍歷物件顯示"></a>以 v-for 遍歷物件顯示</h2><p>遍歷物件的方法也差不多，只是物件並沒有索引值，所以唯一值就會抓取 key 值，如：<br><code>v-for=&quot;(value, key) in persons[1]&quot; :key=&quot;key&quot;</code><br>可以想成：<br><code>v-for=&quot;(value屬性值, key屬性鍵值) in persons物件[1]&quot; :key=&quot;key唯一鍵值&quot;</code><br>每一個 key 值都需不相同。另外，遍歷物件的功能並不常用。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 提取單筆 --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- &lt;li v-for="(value, key) in persons[1]" :key="key"&gt;&#123;&#123;value&#125;&#125; -- &#123;&#123;key&#125;&#125;&lt;/li&gt; --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 提取全部 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(value, key) in persons"</span> <span class="attr">:key</span>=<span class="string">"key"</span>&gt;</span>&#123;&#123;value&#125;&#125; -- &#123;&#123;key&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="是改變了陣列本身還是陣列內部的資料？"><a href="#是改變了陣列本身還是陣列內部的資料？" class="headerlink" title="是改變了陣列本身還是陣列內部的資料？"></a>是改變了陣列本身還是陣列內部的資料？</h2><p>在 Vue 裡要做到刪除、更新、增加陣列並須先了解 Vue 的運作，要先分清楚我們所操作的是否有改變到陣列本身？還是更改到陣列內部的物件。<br>例如，如果我們使用<code>this.persons = []</code>我們把空陣列指向 <code>persons</code>物件，陣列因此成為空陣列，這樣的動作是有更動到陣列「本身」。<br>但是如果只是去改變陣列內物件的屬性、值，這就只有更動到陣列內部結構。這樣的內部結構改變 Vue 無法知道。<br><strong>Vue 只會監視 persons 這個陣列的改變，而不會監視陣列內部資料的改變。</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;; <span class="comment">// 改變物件本身</span></span><br><span class="line">obj.t = <span class="number">1</span>; <span class="comment">// 只改變了物件的內部結構資料</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="變異方法對原生陣列方法進行包裹"><a href="#變異方法對原生陣列方法進行包裹" class="headerlink" title="變異方法對原生陣列方法進行包裹"></a>變異方法對原生陣列方法進行包裹</h2><p>解決的方法是使用 Vue 的「變異方法」 (mutation method)。</p>
-<p>在 Vue 的官網上，列表渲染裡的「陣列更新檢測」有寫到，Vue 會將被偵聽的陣列的變異方法進行包裹，然後才將會觸發頁面的部分更新。</p>
-<p>陣列裡有這些函式可改變陣列的內部結構，在 Vue 裡用這些方法時，如增加、刪除，用這些方法已不是 JS 的原生方法，而是 Vue 有特殊處理包裹過，包裹的過程會經過兩個步驟：呼叫原生方法函式與更新頁面，也就是 <strong>Vue 重寫了一遍這些方法，讓這些方法可以檢測到陣列內部資料的變化</strong>。如果 Vue 沒做這些包裹處理，那麼 Vue 就無法檢測到陣列內部資料的變化。</p>
-<p>在做陣列內部資料的更動更新，一定要使用以下這些方法，才能讓陣列內部資料變化，自動更新到頁面上。</p>
-<p>這些被 Vue 重新包裹過的方法成為「變異方法」有：<code>push()</code>、<code>pop()</code>、<code>shift()</code>、<code>unshift()</code>、<code>splice()</code>、<code>sort()</code>、<code>reverse()</code></p>
-<p>其中，<code>splice()</code> 的功能很強大，可以一次辦到增加、刪除、修改。</p>
-<h2 id="刪除、更新、增加的寫法"><a href="#刪除、更新、增加的寫法" class="headerlink" title="刪除、更新、增加的寫法"></a>刪除、更新、增加的寫法</h2><p>以範例來說，我們先在頁面增加三個分別為刪除、更新、增加的按鈕，這個範例只是簡單的介紹其運作的方法。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(p, index) in persons"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">    &#123;&#123; index &#125;&#125; --- &#123;&#123;p.name&#125;&#125; --- &#123;&#123;p.age&#125;&#125; --<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"deleteP(index)"</span>&gt;</span></span><br><span class="line">      Delete</span><br><span class="line">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    -- <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"updateP(index, &#123;name:'Fanny', age: 25&#125;)"</span>&gt;</span>Update<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>再來我們來看在 Vue 裡的刪除、更新、增加這三個方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">methods: &#123;</span><br><span class="line">        deleteP(index) &#123;</span><br><span class="line">          <span class="keyword">this</span>.persons.splice(index, <span class="number">1</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        updateP(index, newP) &#123;</span><br><span class="line">          <span class="comment">// this.persons[index] = newP</span></span><br><span class="line">          <span class="comment">// 這樣的做法因為無原生陣列函式，所以在vue 不會起作用，也不會自動更新頁面</span></span><br><span class="line">          <span class="comment">// console.log(this.persons[index], newP)</span></span><br><span class="line">          <span class="keyword">this</span>.persons.splice(index, <span class="number">1</span>, newP)</span><br><span class="line">        &#125;,</span><br><span class="line">        addP(newP) &#123;</span><br><span class="line">          <span class="keyword">this</span>.persons.push(newP)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">)&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果熟悉上面的操作，應該就可以試著寫出一個簡單的 todoList 了。<br>接下來就要來介紹排序的部分囉！</p>
-<p>參考：<br><a href="https://cn.vuejs.org/v2/guide/list.html#%E5%8F%98%E5%BC%82%E6%96%B9%E6%B3%95-mutation-method" target="_blank" rel="noopener">列表渲染 — Vue.js</a><br><a href="https://blog.csdn.net/qq_37860930/article/details/78529260" target="_blank" rel="noopener">ES6-遍曆數組 JavaScript</a><br><a href="https://segmentfault.com/a/1190000010203337" target="_blank" rel="noopener">ES5 和 ES6 數組遍歷方法詳解</a></p>
-
-                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/Vue_List_Rendering/" data-id="ck72decx00066l7uwsvzrhlt0" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Vue/">Vue</a></li></ul>
-
-                    </footer>
+      
     </div>
     
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="../tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="../tags/Vue/" rel="tag"># Vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="../Vue_Conditional_Rendering/" rel="next" title="Vue.js Conditional Rendering 條件渲染語法">
+                <i class="fa fa-chevron-left"></i> Vue.js Conditional Rendering 條件渲染語法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="../Vue_Displaying_Filtered_Sorted_Results/" rel="prev" title="Vue.js Displaying Filtered/Sorted Results 顯示過濾/排序後的結果">
+                Vue.js Displaying Filtered/Sorted Results 顯示過濾/排序後的結果 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
         
-<nav id="article-nav">
+          
   
-    <a href="../Vue_Displaying_Filtered_Sorted_Results/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Vue.js Displaying Filtered/Sorted Results 顯示過濾/排序後的結果
-        
-      </div>
-    </a>
-  
-  
-    <a href="../Vue_Conditional_Rendering/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Vue.js Conditional Rendering 條件渲染語法</div>
-    </a>
-  
-</nav>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+              <p class="site-description motion-element" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</p>
+          </div>
+
+          <nav class="site-state motion-element">
 
             
-</article>
+              <div class="site-state-item site-state-posts">
+              
+                <a href="../archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-    <div class="widget-wrap">
-        <h3 class="widget-title">About Tsuifei</h3>
-        <div class="widget">
-            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
-            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分類</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">標籤</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#以-v-for-遍歷陣列顯示"><span class="nav-number">1.</span> <span class="nav-text">以 v-for 遍歷陣列顯示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#以-v-for-遍歷物件顯示"><span class="nav-number">2.</span> <span class="nav-text">以 v-for 遍歷物件顯示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#是改變了陣列本身還是陣列內部的資料？"><span class="nav-number">3.</span> <span class="nav-text">是改變了陣列本身還是陣列內部的資料？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#變異方法對原生陣列方法進行包裹"><span class="nav-number">4.</span> <span class="nav-text">變異方法對原生陣列方法進行包裹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#刪除、更新、增加的寫法"><span class="nav-number">5.</span> <span class="nav-text">刪除、更新、增加的寫法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
     </div>
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/VSCode/">VSCode</a></li></ul>
-    </div>
-  </div>
+  </aside>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/讀書會筆記/">讀書會筆記</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="../Vue_Custom_Directives/">Vue.js Custom Directives 自定義指令</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Directives/">Vue.js Directives Vue 常用的內建指令</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Filters/">Vue.js Filters 過濾器</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Transitioning_Elements_Components/">Vue.Js Transitioning Single Elements/Component 過渡與動畫效果</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Instance_Lifecycle_Hooks/">VueJs Instance Lifecycle Hooks 生命週期鉤子</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="../tags/CSS/" style="font-size: 11.43px;">CSS</a> <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 11.43px;">Git</a> <a href="../tags/GitHub/" style="font-size: 11.43px;">GitHub</a> <a href="../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 17.14px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 12.86px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 18.57px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/JavaScript-30/" style="font-size: 11.43px;">JavaScript 30</a> <a href="../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/React/" style="font-size: 14.29px;">React</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../tags/Test/" style="font-size: 10px;">Test</a> <a href="../tags/VSCode/" style="font-size: 11.43px;">VSCode</a> <a href="../tags/Vue/" style="font-size: 15.71px;">Vue</a> <a href="../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Tsuifei Pommier<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-    <script type="text/javascript">
-      (function (w, d, t, u, n, s, e) {
-        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
-          (w[n].q = w[n].q || []).push(arguments);
-        }; s = d.createElement(t);
-        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
-      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+    </main>
 
-      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
-    </script>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+
   
-    <a href="../index.html" class="mobile-nav-link">Home</a>
-  
-    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
-  
-</nav>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
-  <script src="../fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="../js/script.js"></script>
-
-
+    
 
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="../lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="../js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="../js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="../js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="../js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="../js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="../js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="../js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

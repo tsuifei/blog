@@ -1,27 +1,85 @@
 <!DOCTYPE html>
-<html>
 
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-144046503-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-
   
-  <title>JS 把陣列 Array 所有元素併成字串，且可任意穿插符號的 join() | Cré-Coder</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Day 24 插隊也不能插成這樣，我們之間總是可以插點花什麼的。   不知道大家有沒有吃過義大利的千層麵，一層麵皮一層蕃茄餡料，然後再一層麵皮一層蕃茄餡料，直到最後一層麵皮鋪上，撒上會拉絲的乳酪，再送進烤箱裡烤，美味的千層麵就這樣做好了。 肚子也餓了   join()做的事就像是千層麵一樣，陣列裡面的元素有如番茄餡料，以字串形式包覆，還可以選擇之間要穿插什麼，如果我們不選擇，就是很單純的麵皮 逗點">
+  <link href="../lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="../lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="../css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="../images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,JS_Array,Iron man 30 鐵人賽,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Day 24 插隊也不能插成這樣，我們之間總是可以插點花什麼的。   不知道大家有沒有吃過義大利的千層麵，一層麵皮一層蕃茄餡料，然後再一層麵皮一層蕃茄餡料，直到最後一層麵皮鋪上，撒上會拉絲的乳酪，再送進烤箱裡烤，美味的千層麵就這樣做好了。 肚子也餓了   join()做的事就像是千層麵一樣，陣列裡面的元素有如番茄餡料，以字串形式包覆，還可以選擇之間要穿插什麼，如果我們不選擇，就是很單純的麵皮 逗點">
 <meta name="keywords" content="JavaScript,JS_Array,Iron man 30 鐵人賽">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS 把陣列 Array 所有元素併成字串，且可任意穿插符號的 join()">
@@ -33,93 +91,238 @@ ga('send', 'pageview');
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS 把陣列 Array 所有元素併成字串，且可任意穿插符號的 join()">
 <meta name="twitter:description" content="Day 24 插隊也不能插成這樣，我們之間總是可以插點花什麼的。   不知道大家有沒有吃過義大利的千層麵，一層麵皮一層蕃茄餡料，然後再一層麵皮一層蕃茄餡料，直到最後一層麵皮鋪上，撒上會拉絲的乳酪，再送進烤箱裡烤，美味的千層麵就這樣做好了。 肚子也餓了   join()做的事就像是千層麵一樣，陣列裡面的元素有如番茄餡料，以字串形式包覆，還可以選擇之間要穿插什麼，如果我們不選擇，就是很單純的麵皮 逗點">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/tsuifei.github.io/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="tsuifei.github.io/JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/">
+
+
+
+
+
+  <title>JS 把陣列 Array 所有元素併成字串，且可任意穿插符號的 join() | Cré-Coder</title>
   
-  <link rel="alternate" href="../atom.xml" title="Cré-Coder" type="application/atom+xml">
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
   
   
-  <link rel="icon" href="/tsuifei.github.io//favicon.png">
+    
   
-  
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="../css/style.css">
-</head></html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="../index.html" id="logo">Cré-Coder</a>
-      </h1>
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/tsuifei.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
       
-      <h2 id="subtitle-wrap">
-        <a href="../index.html" id="subtitle">Je code donc je suis là.</a>
-      </h2>
+        <p class="site-subtitle">Je code donc je suis là.</p>
       
-    </div>
-
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-        <a class="main-nav-link" href="../index.html">Home</a>
-        
-        <a class="main-nav-link" href="../tsuifei/">About Tsuifei</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        <a id="nav-rss-link" class="nav-icon" href="../atom.xml" title="RSS Feed"></a>
-        
-        <!-- 搜索框就加上 class="st-default-search-input" -->
-        
-        <input type="text" class="st-default-search-input" placeholder="Search....">
-        
-        <!-- 搜索按钮就加上 class="st-search-show-outputs" -->
-        <!-- 
-        <a href="#" title="Search" class="st-search-show-outputs">Search</a>
-         -->
-        <!-- <a id="nav-search-btn" class="nav-icon" title="Search"></a> -->
-      </nav>
-      <!-- <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="tsuifei.github.io"></form>
-      </div> -->
-
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-meta">
-        <a href="" class="article-date">
-  <time datetime="2019-11-23T20:21:14.000Z" itemprop="datePublished">2019-11-24</time>
-</a>
-            
-  <div class="article-category">
-    <a class="article-category-link" href="../categories/JavaScript/">JavaScript</a>
   </div>
 
-    </div>
-    <div class="article-inner">
-        
-            
-                <header class="article-header">
-                    
-  
-    <h1 class="article-title" itemprop="name">
-      JS 把陣列 Array 所有元素併成字串，且可任意穿插符號的 join()
-    </h1>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
   
 
-                </header>
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="../images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS 把陣列 Array 所有元素併成字串，且可任意穿插符號的 join()</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2019-11-23T21:21:14+01:00">
+                2019-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="../categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
                 
+                
+              
+            </span>
+          
 
-                    <div class="article-entry" itemprop="articleBody">
-                        
-                                            <!-- <h6 id="Day-24"><a href="#Day-24" class="headerlink" title="Day 24"></a>Day 24</h6><blockquote>
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h6 id="Day-24"><a href="#Day-24" class="headerlink" title="Day 24"></a>Day 24</h6><blockquote>
 <p>插隊也不能插成這樣，我們之間總是可以插點花什麼的。</p>
 </blockquote>
 <p> 不知道大家有沒有吃過義大利的千層麵，一層麵皮一層蕃茄餡料，然後再一層麵皮一層蕃茄餡料，直到最後一層麵皮鋪上，撒上會拉絲的乳酪，再送進烤箱裡烤，美味的千層麵就這樣做好了。 <del>肚子也餓了</del> </p>
@@ -145,206 +348,395 @@ ga('send', 'pageview');
 <blockquote>
 <p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～</p>
 </blockquote>
- -->
-                                            <!-- Table of Contents -->
-                                            
 
-                                                    
-                                                        
-                                                            <h6 id="Day-24"><a href="#Day-24" class="headerlink" title="Day 24"></a>Day 24</h6><blockquote>
-<p>插隊也不能插成這樣，我們之間總是可以插點花什麼的。</p>
-</blockquote>
-<p> 不知道大家有沒有吃過義大利的千層麵，一層麵皮一層蕃茄餡料，然後再一層麵皮一層蕃茄餡料，直到最後一層麵皮鋪上，撒上會拉絲的乳酪，再送進烤箱裡烤，美味的千層麵就這樣做好了。 <del>肚子也餓了</del> </p>
-<p> <code>join()</code>做的事就像是千層麵一樣，陣列裡面的元素有如番茄餡料，以字串形式包覆，還可以選擇之間要穿插什麼，如果我們不選擇，就是很單純的麵皮<br> <del>逗點</del>就是了。 </p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join" target="_blank" rel="noopener">Array.prototype.join() - JavaScript | MDN</a></p>
-<p><strong>原型：</strong> Array.prototype.join()<br><strong>功能：</strong> 會將陣列（或一個類陣列（array-like）物件）中所有的元素連接、合併成一個字串，並回傳此字串。<br><strong>改變：</strong> 不會改變原陣列。<br><strong>語法：</strong> arr.join([separator])<br><strong>回傳值：</strong> 回傳一個合併所有陣列元素的字串。假如 arr.length 為 0，將回傳空字串。<br><strong>參數：</strong> 分隔符號。</p>
-<p><code>join()</code>會將陣列裡的所有元素轉成字串，並串接起來回傳一個結果字串。我們可以指定額外的字串，用來分隔每個字串中的元素，如果我們沒有給指定的分隔符號字串，<code>join()</code>就會用預設的逗號來當分隔符號。不只如此，<code>join()</code>還會把一些無效的元素，例如空元素、undefined 或 null 當作空字串來處理，並回傳回來。</p>
-<h3 id="沒給符號也可以跟有給一樣"><a href="#沒給符號也可以跟有給一樣" class="headerlink" title="沒給符號也可以跟有給一樣"></a>沒給符號也可以跟有給一樣</h3><p>我們先來看看<code>join()</code>怎麼用：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> arr2 = arr;</span><br><span class="line"><span class="keyword">const</span> arr3 = arr;</span><br><span class="line"></span><br><span class="line">arr.join(<span class="string">','</span>); <span class="comment">// "1,2,3,4,5"</span></span><br><span class="line">arr2.join() <span class="comment">// "1,2,3,4,5"</span></span><br><span class="line">arr3.join(<span class="string">''</span>) <span class="comment">// "12345"</span></span><br></pre></td></tr></table></figure>
-
-<p>大家有沒發現，其實<code>join()</code>裡沒給分隔符號，和給分隔符號<code>join(&#39;,&#39;)</code>得到的結果是ㄧ樣的。<br>因為所有的符號都屬於字串，所以記得在給參數的符號時，也必須以「字串」的形式包覆，像是<code>join(&#39;,&#39;)</code>。</p>
-<h3 id="把陣列裡的字串元素轉成一整個字串"><a href="#把陣列裡的字串元素轉成一整個字串" class="headerlink" title="把陣列裡的字串元素轉成一整個字串"></a>把陣列裡的字串元素轉成一整個字串</h3><p>將陣列元素用固定符號串成字串，但是遇到參考型別的陣列元素<code>join()</code>會如何處理？<br>結果是<code>join()</code>會把它們都放生，<del>阿不</del> 而不處理這些參考型別的元素。但也不全然是這樣，看了下面的例子，<code>join()</code>只會將 object 的物件行元素放生，但對同是參考型別的陣列卻不會。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">'jack'</span>, <span class="string">'john'</span>, <span class="string">'may'</span>, <span class="string">'su'</span>, <span class="string">'Ada'</span>];</span><br><span class="line"><span class="keyword">const</span> str = arr.join(<span class="string">'、'</span>); </span><br><span class="line">str; <span class="comment">// "jack、john、may、su、Ada"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr2 = [[<span class="number">1</span>,<span class="number">2</span>], <span class="string">'john'</span>, <span class="string">'may'</span>, &#123;<span class="attr">a</span> : <span class="number">42</span>&#125;, <span class="string">'Ada'</span>];</span><br><span class="line"><span class="keyword">const</span> str2 = arr2.join(<span class="string">' '</span>);</span><br><span class="line">str2; <span class="comment">// "1,2 john may [object Object] Ada"</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="如果可以活用，還真的很好用"><a href="#如果可以活用，還真的很好用" class="headerlink" title="如果可以活用，還真的很好用"></a>如果可以活用，還真的很好用</h3><p><code>join()</code>所執行的事剛好和<code>split()</code>的方法相反，<code>split()</code>會把字串切成片段來放在陣列裡，而<code>join()</code>則是會把所有元素併成一個陣列。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">"Hello word, how a bout your ?"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用 split() 轉成陣列</span></span><br><span class="line"><span class="keyword">let</span> word = str.split(<span class="string">' '</span>);</span><br><span class="line">word; <span class="comment">// ["Hello", "word,", "how", "a", "bout", "your", "?"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 再用 join() 轉回字串</span></span><br><span class="line">word.join();</span><br><span class="line">word; <span class="comment">// "Hello,word,,how,a,bout,your,?"</span></span><br></pre></td></tr></table></figure>
-
-<p>別忘了，如果字串裡有逗號，<code>join()</code>會把它當作是元素的一部分處理。</p>
-<h3 id="join-可以怎麼寫出來？"><a href="#join-可以怎麼寫出來？" class="headerlink" title="join() 可以怎麼寫出來？"></a>join() 可以怎麼寫出來？</h3><p>我們可以試著寫出一個原生的寫法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.join2 = <span class="function"><span class="keyword">function</span> (<span class="params">separator</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="keyword">this</span>[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="keyword">this</span>.length; i++)&#123;</span><br><span class="line">    result += separator + <span class="keyword">this</span>[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 以上原生維修中，晚點再來補正確的，抱歉</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">arr.join(); <span class="comment">// "1,2,3,4"</span></span><br><span class="line">arr.join(<span class="string">'-'</span>); <span class="comment">// "1-2-3-4"</span></span><br><span class="line">arr.join(<span class="string">''</span>); <span class="comment">// "1234"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr2 = [<span class="string">"hi"</span>, <span class="string">"wow"</span>,<span class="string">"hello"</span>];</span><br><span class="line">arr2.join(); <span class="comment">// "hi,wow,hello";</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 對於無效的元素，join()會置之不理，但是還是會把逗號留下來</span></span><br><span class="line"><span class="keyword">const</span> arr3 = [<span class="literal">null</span>, <span class="number">42</span>, <span class="string">"hi"</span>, <span class="literal">undefined</span>];</span><br><span class="line">arr3.join(); <span class="comment">// ",42,hi,"</span></span><br></pre></td></tr></table></figure>
-
-<p>今天就先介紹到這裡，明天開始連假，但是鐵人賽還是會繼續喔！一起繼續鐵人吧！</p>
-<blockquote>
-<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～</p>
-</blockquote>
-
-                                                                
-                                                                                    
-                                                                                        <!-- FIN 要出現的段落數 -->
-
-                    </div>
-
-                    <footer class="article-footer">
-                        <a data-url="tsuifei.github.io/JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/" data-id="ck72decvr0033l7uw1jr59cuj" class="article-share-link">
-                            Share
-                        </a>
-                        
-                                
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/JavaScript/">JavaScript</a></li></ul>
-
-                    </footer>
+      
     </div>
     
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="../tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="../tags/JS-Array/" rel="tag"># JS_Array</a>
+          
+            <a href="../tags/Iron-man-30-鐵人賽/" rel="tag"># Iron man 30 鐵人賽</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="../JS_ironMan23_Reverses-an-array-in-place-reverse()-method/" rel="next" title="JS 可讓陣列 Array 反過來的 reverse()">
+                <i class="fa fa-chevron-left"></i> JS 可讓陣列 Array 反過來的 reverse()
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="../JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/" rel="prev" title="JS 把陣列 Array 轉成字串的 toString()">
+                JS 把陣列 Array 轉成字串的 toString() <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
         
-<nav id="article-nav">
+          
   
-    <a href="../JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          JS 把陣列 Array 轉成字串的 toString()
-        
-      </div>
-    </a>
-  
-  
-    <a href="../JS_ironMan23_Reverses-an-array-in-place-reverse()-method/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">JS 可讓陣列 Array 反過來的 reverse()</div>
-    </a>
-  
-</nav>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+              <p class="site-description motion-element" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</p>
+          </div>
+
+          <nav class="site-state motion-element">
 
             
-</article>
+              <div class="site-state-item site-state-posts">
+              
+                <a href="../archives/">
+              
+                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-    <div class="widget-wrap">
-        <h3 class="widget-title">About Tsuifei</h3>
-        <div class="widget">
-            Email：<a href="mailto:tsuifei@gmail.com">tsuifei@gmail.com</a>
-            <br /> Site：<a href="http://www.tsuifei.com/" target="_blank" title="www.tsuifei.com">www.tsuifei.com</a>
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分類</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">標籤</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
         </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#Day-24"><span class="nav-number">1.</span> <span class="nav-text">Day 24</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#沒給符號也可以跟有給一樣"><span class="nav-number"></span> <span class="nav-text">沒給符號也可以跟有給一樣</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把陣列裡的字串元素轉成一整個字串"><span class="nav-number"></span> <span class="nav-text">把陣列裡的字串元素轉成一整個字串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果可以活用，還真的很好用"><span class="nav-number"></span> <span class="nav-text">如果可以活用，還真的很好用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#join-可以怎麼寫出來？"><span class="nav-number"></span> <span class="nav-text">join() 可以怎麼寫出來？</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
     </div>
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="../categories/Git/">Git</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/">JavaScript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/ES6/">ES6</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/JavaScript/Strange-JS/">Strange JS</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="../categories/Mac/">Mac</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/SASS/">SASS</a></li><li class="category-list-item"><a class="category-list-link" href="../categories/VSCode/">VSCode</a></li></ul>
-    </div>
-  </div>
+  </aside>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="../tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ES6/">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ESLint/">ESLint</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ExerciceJS/">ExerciceJS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/GitHub/">GitHub</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/HTML/">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Iron-man-30-鐵人賽/">Iron man 30 鐵人賽</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Basic/">JS Basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS101/">JS101</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JS-Array/">JS_Array</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/JavaScript-30/">JavaScript 30</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Mac/">Mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Note/">Note</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Other/">Other</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/React/">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/SASS/">SASS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Strange-JS/">Strange JS</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Test/">Test</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/VSCode/">VSCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/讀書會筆記/">讀書會筆記</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="../Vue_Custom_Directives/">Vue.js Custom Directives 自定義指令</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Directives/">Vue.js Directives Vue 常用的內建指令</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Filters/">Vue.js Filters 過濾器</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Transitioning_Elements_Components/">Vue.Js Transitioning Single Elements/Component 過渡與動畫效果</a>
-          </li>
-        
-          <li>
-            <a href="../Vue_Instance_Lifecycle_Hooks/">VueJs Instance Lifecycle Hooks 生命週期鉤子</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="../tags/CSS/" style="font-size: 11.43px;">CSS</a> <a href="../tags/ES6/" style="font-size: 10px;">ES6</a> <a href="../tags/ESLint/" style="font-size: 10px;">ESLint</a> <a href="../tags/ExerciceJS/" style="font-size: 10px;">ExerciceJS</a> <a href="../tags/Git/" style="font-size: 11.43px;">Git</a> <a href="../tags/GitHub/" style="font-size: 11.43px;">GitHub</a> <a href="../tags/HTML/" style="font-size: 10px;">HTML</a> <a href="../tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="../tags/Iron-man-30-鐵人賽/" style="font-size: 17.14px;">Iron man 30 鐵人賽</a> <a href="../tags/JS-Basic/" style="font-size: 12.86px;">JS Basic</a> <a href="../tags/JS101/" style="font-size: 10px;">JS101</a> <a href="../tags/JS-Array/" style="font-size: 18.57px;">JS_Array</a> <a href="../tags/JavaScript/" style="font-size: 20px;">JavaScript</a> <a href="../tags/JavaScript-30/" style="font-size: 11.43px;">JavaScript 30</a> <a href="../tags/Mac/" style="font-size: 10px;">Mac</a> <a href="../tags/Note/" style="font-size: 10px;">Note</a> <a href="../tags/Other/" style="font-size: 10px;">Other</a> <a href="../tags/React/" style="font-size: 14.29px;">React</a> <a href="../tags/SASS/" style="font-size: 10px;">SASS</a> <a href="../tags/Strange-JS/" style="font-size: 10px;">Strange JS</a> <a href="../tags/Test/" style="font-size: 10px;">Test</a> <a href="../tags/VSCode/" style="font-size: 11.43px;">VSCode</a> <a href="../tags/Vue/" style="font-size: 15.71px;">Vue</a> <a href="../tags/讀書會筆記/" style="font-size: 10px;">讀書會筆記</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2019/07/">七月 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Tsuifei Pommier<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-    <script type="text/javascript">
-      (function (w, d, t, u, n, s, e) {
-        w['SwiftypeObject'] = n; w[n] = w[n] || function () {
-          (w[n].q = w[n].q || []).push(arguments);
-        }; s = d.createElement(t);
-        e = d.getElementsByTagName(t)[0]; s.async = 1; s.src = u; e.parentNode.insertBefore(s, e);
-      })(window, document, 'script', '//s.swiftypecdn.com/install/v2/st.js', '_st');
+    </main>
 
-      _st('install', 'rp1sZQ9wsd88KKWtwTsJ', '2.0.0');
-    </script>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+
   
-    <a href="../index.html" class="mobile-nav-link">Home</a>
-  
-    <a href="../tsuifei/" class="mobile-nav-link">About Tsuifei</a>
-  
-</nav>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="../fancybox/jquery.fancybox.css">
-  <script src="../fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="../js/script.js"></script>
-
-
+    
 
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="../lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="../lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="../js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="../js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="../js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="../js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="../js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="../js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="../js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
