@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/Vue_Transitioning_Elements_Components/</loc>
+    
+    <lastmod>2020-02-24T14:52:41.801Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/Vue_Directives/</loc>
     
     <lastmod>2020-02-24T14:48:49.535Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>tsuifei.github.io/Vue_Custom_Directives/</loc>
     
     <lastmod>2020-02-24T14:28:49.827Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_Transitioning_Elements_Components/</loc>
-    
-    <lastmod>2020-02-21T14:21:47.884Z</lastmod>
     
   </url>
   
