@@ -149,6 +149,88 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/Vue_List_Rendering/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/tsuifei.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/tsuifei.github.io/Vue_List_Rendering/" class="post-title-link" itemprop="url">Vue.js List Rendering 列表渲染</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-02-16 00:42:24" itemprop="dateCreated datePublished" datetime="2020-02-16T00:42:24+08:00">2020-02-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-26 05:23:03" itemprop="dateModified" datetime="2020-02-26T05:23:03+08:00">2020-02-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tsuifei.github.io/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>如果要把一個陣列或物件渲染到畫面，在原生的 JS 我們可以用迴圈或 forEach 以遍歷的方式將陣列的資料顯示，如果用 ES6 就可用 for…of 循環語句。<br>在 Vue 裡要遍歷陣列的方法並不難，只是遍歷陣列和物件的方式稍有不同。<br><a href="https://codepen.io/tsuifei/pen/QWbNErL" target="_blank" rel="noopener">去 codepen 看看效果</a></p>
+<h2 id="以-v-for-遍歷陣列顯示"><a href="#以-v-for-遍歷陣列顯示" class="headerlink" title="以 v-for 遍歷陣列顯示"></a>以 v-for 遍歷陣列顯示</h2><p>陣列列表顯示的方法是使用<code>v-for</code>指令，在遍歷的時候語法為<code>&lt;li v-for=&quot;(p, index) in persons&quot; :key=&quot;index&quot;&gt;&lt;/li&gt;</code><br>在使用<code>v-for</code>時要記得加上<code>:key</code> 讓單筆的屬性有唯一值，這個陣列的唯一值是 index。<br>在上面的語法範例，可以想成是<code>&lt;li v-for=&quot;(單個陣列, index索引值) in 陣列&quot; :key=&quot;index唯一索引值&quot;&gt;&lt;/li&gt;</code>。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/tsuifei.github.io/Vue_List_Rendering/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="tsuifei.github.io/Vue_Conditional_Rendering/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -903,91 +985,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/React_virtual_DOM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/tsuifei.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Tsuifei Pommier">
-      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cré-Coder">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/tsuifei.github.io/React_virtual_DOM/" class="post-title-link" itemprop="url">React 裡的虛擬 DOM</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-01-27 00:42:24" itemprop="dateCreated datePublished" datetime="2020-01-27T00:42:24+08:00">2020-01-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-26 05:27:13" itemprop="dateModified" datetime="2020-02-26T05:27:13+08:00">2020-02-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tsuifei.github.io/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>這世界上有很多虛擬的東東，這些欺騙感情的虛擬物，有時也可以拿來療癒。</p>
-</blockquote>
-<p>先來理解一下什麼是虛擬 DOM : 為什麼我們需要用它?<br>這篇文章解釋得頗清楚的：<a href="https://segmentfault.com/a/1190000018891454" target="_blank" rel="noopener">虛擬 DOM 的渲染原理和特性</a></p>
-<p>但是還是來整理一下重點：<br>原本我們寫原生的 JavaScript 時，我們會直接對 DOM 進行監聽和修改，然後這個 DOM 元素也會透過我們的監聽的事件所執行的，讓頁面產生互動。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/tsuifei.github.io/React_virtual_DOM/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1058,7 +1055,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/tsuifei.github.io/archives/">
         
-          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-count">78</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

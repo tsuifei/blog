@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>JS 語法作用域(Lexical scope)</title>
+      <link href="/tsuifei.github.io/JS_Basic_Lexical_Scope/"/>
+      <url>/tsuifei.github.io/JS_Basic_Lexical_Scope/</url>
+      
+        <content type="html"><![CDATA[<p>常常聽到 JavaScript 的語法作用域和其它語言有些不同，主要是 JavaScript 是屬於使用「靜態作用域」的語言，那什麼又是「靜態作用域」呢？</p><p>簡單來說，「靜態作用域」就是變數的作用域在被解析時，就已經確定了作用域，且不會再改變。有靜態就有動態，而「動態作用域」又是什麼？<br>「動態作用域」是變數的作用域，在調用函式的時候才決定。</p><p>靜態作用域，是在 <strong>語法解析</strong>的時候，就已經確定了。<br>動態作用域，是在函式<strong>被調用呼叫的時候</strong>才決定的。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> moi = <span class="string">'Tsuifei'</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(moi);</span><br><span class="line">&#125;</span><br><span class="line">callName(); <span class="comment">// Tsuifei</span></span><br></pre></td></tr></table></figure><p>在<code>function</code>裡的變數因為被函式包住，所以是區域變數，而在函式最外層的則是全域變數，所以在上面這段程式中，我們呼叫了<code>callName()</code>這個函式，再進去一行行執行函式內，當我們要它印出<code>moi</code>時，他會先去上面（已經讀到的）找，這時會找到<code>let moi = &#39;Tsuifei&#39;;</code>而把<code>&#39;Tsuifei&#39;</code>印出來。</p><p>但是如果函式裡面找不到<code>moi</code>，又要在函式裡面印出<code>moi</code>呢？因為<code>moi</code>這個變數是在<code>callName()</code>這個函式被定義的，所以它的作用域就會在這個函式裡。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> moi = <span class="string">'Tsuifei'</span>;</span><br><span class="line">&#125;</span><br><span class="line">callName(); <span class="comment">//</span></span><br><span class="line"><span class="built_in">console</span>.log(moi);</span><br></pre></td></tr></table></figure><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> moi = <span class="string">'Philippe'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> moi = <span class="string">'Tsuifei'</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'內：'</span> + moi);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'外：'</span> + moi);</span><br><span class="line">callName();</span><br><span class="line"><span class="comment">// 外：Philippe</span></span><br><span class="line"><span class="comment">// 內：Tsuifei</span></span><br></pre></td></tr></table></figure><p>參考：<br><a href="https://ithelp.ithome.com.tw/articles/10223753" target="_blank" rel="noopener">Javascript 進階 2-3 語法作用域(Lexical scope) - iT 邦幫忙::一起幫忙解決難題，拯救 IT 人的一天</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> JavaScript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> JavaScript 30 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>淺談 Ajax 是什麼？</title>
       <link href="/tsuifei.github.io/Ajax_01/"/>
       <url>/tsuifei.github.io/Ajax_01/</url>
