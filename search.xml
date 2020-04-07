@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>JS 有疑問的部分</title>
+      <link href="/tsuifei.github.io/Discutable_code/"/>
+      <url>/tsuifei.github.io/Discutable_code/</url>
+      
+        <content type="html"><![CDATA[<p>重新看了 Chris 的鐵人賽糙扣系列，在這一篇裡<a href="https://ithelp.ithome.com.tw/articles/10203004" target="_blank" rel="noopener">糙 code 與他們的產地 - if 的判斷式</a> 看到了 Array 去重的部分，卻看不懂…先記下，看以後有沒有辦法看懂。</p><h2 id="Array-去掉重複值"><a href="#Array-去掉重複值" class="headerlink" title="Array 去掉重複值"></a>Array 去掉重複值</h2><p>在處理 Array 元素重複問題時，常常會寫 if 並且走訪元素找重複。<br>好一點的，會使用 Array.prototype.includes</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = [];</span><br><span class="line">arr.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!arr2.includes(item)) &#123;</span><br><span class="line">    arr2.push(item);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">arr2; <span class="comment">// [1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure><p>但是，這很糙!!! &lt;– Chris 大大說的。<br>其實，只要換容器，就可以輕鬆做到這件事。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = [...new <span class="built_in">Set</span>(arr)]; <span class="comment">// [1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure><p>你看！沒有任何的 if 這樣的品味才對。&lt;– 也是 Chris 大大說的。</p><p>待續….</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> JavaScript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>JS 語法作用域(Lexical scope)</title>
       <link href="/tsuifei.github.io/JS_Basic_Lexical_Scope/"/>
       <url>/tsuifei.github.io/JS_Basic_Lexical_Scope/</url>
