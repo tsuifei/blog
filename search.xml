@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>六角 JS 學徒特訓班 筆記</title>
+      <link href="/tsuifei.github.io/JS_60_note/"/>
+      <url>/tsuifei.github.io/JS_60_note/</url>
+      
+        <content type="html"><![CDATA[<p>學習路上跌跌撞撞、過程總是零散，生活中總是被瑣事切割成碎片，如何把碎片時間拾揀與拼湊成可專心學習的塊狀已是一種考驗。</p><p>遇到六角舉辦的「JS 學徒特訓班」，給自己一次機會跟上進度，也要求自己要真的理解才寫，這需要時間，而語法的不熟悉仍然花時間，這樣一次、兩次、三次的記憶，希望能夠多留在腦中，很清楚知道自己忘的比記的還快，也在找尋且動自己對語法記憶的一把鑰匙。學習程式是非常全面性的，也因此看到自己在幾十年歲月裡看不到的盲點，雖然開始的非常慢，但總是比沒開始的好，那就透過寫程式當作一種自我的修煉吧。</p><p>這次的特訓班題目都很實用，尤其是對自己較不熟悉的 API 銜接、資料處理、資料圖形化的部分，覺得練習內容很受用，以此篇來記錄一下。</p><h3 id="第二十九關，監聽切換排序功能"><a href="#第二十九關，監聽切換排序功能" class="headerlink" title="第二十九關，監聽切換排序功能"></a>第二十九關，監聽切換排序功能</h3><p>內容：讀取 API、使用表單元素 select 切換資料條件。<br>方式：</p><ul><li>抓取 DOM</li><li>以 Axios 讀取 API 的資料</li><li>監聽 select 切換</li><li>處理資料</li><li>渲染畫面</li></ul><p>常常會忘記有些 JS 內建函式的參數是「函式」，然後常常用箭頭函式寫法忘記花括號…。</p><p>首先，需要先把 Axios 函式庫引進來</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>接著是 html 的內容</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">class</span>=<span class="string">"choose"</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- &lt;option value=""&gt;請選擇排序依據&lt;/option&gt; --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"id"</span>&gt;</span>依照 id 編號排序(由1開始從上往下)<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"process"</span>&gt;</span>依照完課率排序(由最高到最低)<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"list"</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure><p>再來就是 JavaScript 的部分了：</p><h3 id="抓取-DOM"><a href="#抓取-DOM" class="headerlink" title="抓取 DOM"></a>抓取 DOM</h3><p>把會用到的 DOM 和 裝載資料的變數先抓好</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> list = <span class="built_in">document</span>.querySelector(<span class="string">'.list'</span>);</span><br><span class="line"><span class="keyword">const</span> selector = <span class="built_in">document</span>.querySelector(<span class="string">'.choose'</span>);</span><br><span class="line"><span class="keyword">const</span> url =</span><br><span class="line">  <span class="string">'https://raw.githubusercontent.com/hexschool/hexschoolNewbieJS/master/data.json'</span>;</span><br><span class="line"><span class="keyword">let</span> data = [];</span><br></pre></td></tr></table></figure><h3 id="讀取資料"><a href="#讀取資料" class="headerlink" title="讀取資料"></a>讀取資料</h3><p>以 Axios 讀取 API 的資料</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">axios.get(url).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">  data = response.data;</span><br><span class="line">  <span class="comment">// console.log(data);</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h3 id="監聽-select-切換，取值"><a href="#監聽-select-切換，取值" class="headerlink" title="監聽 select 切換，取值"></a>監聽 select 切換，取值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 監聽事件綁定</span></span><br><span class="line">selector.addEventListener(<span class="string">'change'</span>, (event) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (event.target.value == <span class="string">''</span>) <span class="keyword">return</span>;</span><br><span class="line">  getSortData(event.target.value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h3 id="處理資料"><a href="#處理資料" class="headerlink" title="處理資料"></a>處理資料</h3><p>資料需要以 ID 或 完成率來做排序，所以這個函式負責排序資料的處理。當選單的值為<code>id</code>時，以<code>id</code>來排序，不然就是用完成率來排名。<br>而為了讓排序更精準，在使用<code>sort()</code>時，給函式當參數。記得最後要呼叫渲染畫面的函式<code>render()</code>。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 取得選單的value 並排序</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSortData</span>(<span class="params">choose</span>) </span>&#123;</span><br><span class="line">  data.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (choose == <span class="string">'id'</span>) <span class="keyword">return</span> <span class="built_in">parseInt</span>(a.id) - <span class="built_in">parseInt</span>(b.id);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">parseInt</span>(b.process) - <span class="built_in">parseInt</span>(a.process);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// 排序完炫染畫面</span></span><br><span class="line">  render();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="渲染畫面"><a href="#渲染畫面" class="headerlink" title="渲染畫面"></a>渲染畫面</h3><p>以<code>forEach()</code>把資料一一撈出來，放在要渲染頁面的元素裡。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 渲染畫面</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> str = <span class="string">''</span>;</span><br><span class="line">  data.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    str += <span class="string">`&lt;li&gt;ID: <span class="subst">$&#123;item.id&#125;</span> 是 <span class="subst">$&#123;item.name&#125;</span>，他的特訓班完成度是 <span class="subst">$&#123;item.process&#125;</span>&lt;/li&gt;`</span>;</span><br><span class="line">    <span class="comment">// console.log(item);</span></span><br><span class="line">  &#125;);</span><br><span class="line">  list.innerHTML = str;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> JavaScript </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> JS Base </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Zhs $ Hexo 故障解決記錄</title>
       <link href="/tsuifei.github.io/debug_note/"/>
       <url>/tsuifei.github.io/debug_note/</url>
@@ -151,9 +178,9 @@
       
         <tags>
             
-            <tag> Ajax </tag>
-            
             <tag> API </tag>
+            
+            <tag> Ajax </tag>
             
         </tags>
       
