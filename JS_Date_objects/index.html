@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="new Date() 物件的時間處理我們常需要在網頁上處理或顯示時間，例如文章是何時編輯的、購物時間或是在觀察程式碼的效能時也會需要時間的處理，JavaScript 是如何處理日期和時間的呢？ JavaScript 包含了一個處理時間的物件：new Date()，透過這個構造式裡的方法或參數，我們可以精準的計算任何形式的時間。在這個物件的時間計算單位為毫秒（1000 毫秒為一秒），所以處理時需要另">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-08-10T09:51:20.961Z">
+<meta property="og:updated_time" content="2020-08-10T09:57:35.481Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript Date &amp; Times 時間處理">
 <meta name="twitter:description" content="new Date() 物件的時間處理我們常需要在網頁上處理或顯示時間，例如文章是何時編輯的、購物時間或是在觀察程式碼的效能時也會需要時間的處理，JavaScript 是如何處理日期和時間的呢？ JavaScript 包含了一個處理時間的物件：new Date()，透過這個構造式裡的方法或參數，我們可以精準的計算任何形式的時間。在這個物件的時間計算單位為毫秒（1000 毫秒為一秒），所以處理時需要另">
@@ -174,7 +174,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-08-10 00:42:25 / Modified: 17:51:20" itemprop="dateCreated datePublished" datetime="2020-08-10T00:42:25+08:00">2020-08-10</time>
+              <time title="Created: 2020-08-10 00:42:25 / Modified: 17:57:35" itemprop="dateCreated datePublished" datetime="2020-08-10T00:42:25+08:00">2020-08-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -217,7 +217,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'2020/5/8'</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'2020-8-8'</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'05/8/2020'</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'2020-August-8'</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'August 8, 2020'</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'August, 8, 2020'</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'8, August, 2020'</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'8 August 2020'</span>);</span><br><span class="line"><span class="comment">// Sat Aug 08 2020 00:00:00 GMT+0200 (中歐夏令時間)</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="Date-以物件的方法取得時間計算"><a href="#Date-以物件的方法取得時間計算" class="headerlink" title="Date() 以物件的方法取得時間計算"></a>Date() 以物件的方法取得時間計算</h2><p><code>Date()</code>包含了許多的方法，透過呼叫這些方法，可以得到較為細節的時間，以下我們只介紹我們常用的方法。</p>
-<h3 id="get-得到特定的時間，並回傳整數"><a href="#get-得到特定的時間，並回傳整數" class="headerlink" title="get*() 得到特定的時間，並回傳整數"></a>get*() 得到特定的時間，並回傳整數</h3><p>以字串為參數，直接指定時間，回傳的整數皆以 0 為起始，以星期來說，0 為週日、月份 0 為一月，以此類推。</p>
+<h3 id="get-得到特定的時間，並回傳整數"><a href="#get-得到特定的時間，並回傳整數" class="headerlink" title="get*() 得到特定的時間，並回傳整數"></a>get*() 得到特定的時間，並回傳整數</h3><p>以 get 開頭的方法顧名思義是用來取得時間的，以字串為參數，直接指定時間，回傳的整數皆以 0 為起始，以星期來說，0 為週日、月份 0 為一月，以此類推。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'08/08/2020 12:42:24'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(date); <span class="comment">// Sat Aug 08 2020 12:42:24 GMT+0200 (中歐夏令時間)</span></span><br><span class="line"><span class="keyword">let</span> day = date.getDay(); <span class="comment">// 回傳數字 6 ，表示 08/08/2020 這天是週六</span></span><br></pre></td></tr></table></figure>
 
 <p>以下為常用的<code>get*()</code>方法</p>
@@ -241,7 +241,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> start = <span class="built_in">Date</span>.now();</span><br><span class="line"><span class="built_in">console</span>.log(start);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">  <span class="comment">// console.log(i);</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> end = <span class="built_in">Date</span>.now();</span><br><span class="line"><span class="built_in">console</span>.log(end);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`執行了<span class="subst">$&#123;end - start&#125;</span>毫秒`</span>);</span><br></pre></td></tr></table></figure>
 
 <p>取執行前和執行後的時間戳印相減，即可得執行時間</p>
-<h3 id="set-設置時間的方法"><a href="#set-設置時間的方法" class="headerlink" title="set*() 設置時間的方法"></a>set*() 設置時間的方法</h3><p>以<code>set*()</code>來設定當下的時間點，常用的有：</p>
+<h3 id="set-設置時間的方法"><a href="#set-設置時間的方法" class="headerlink" title="set*() 設置時間的方法"></a>set*() 設置時間的方法</h3><p>以 set 為開頭的方法，主要以設定時間為主，<code>set*()</code>來設定當下的時間點，常用的有：</p>
 <ul>
 <li>setDate(date)：設置當前時間對應的每個月的幾號（1-31），返回改變後時間(毫秒)。</li>
 <li>setFullYear(year)：設置四位數的年份。</li>
