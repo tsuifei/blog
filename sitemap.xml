@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/Vue_computed_watch/</loc>
+    
+    <lastmod>2020-09-20T15:10:36.930Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/JS_Date_objects/</loc>
     
     <lastmod>2020-08-22T07:41:51.702Z</lastmod>
@@ -502,13 +509,6 @@
     <loc>tsuifei.github.io/VSCode_ESLint_Setup/</loc>
     
     <lastmod>2020-02-25T21:26:18.342Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_computed_watch/</loc>
-    
-    <lastmod>2020-02-25T21:25:55.256Z</lastmod>
     
   </url>
   
