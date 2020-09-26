@@ -2,9 +2,100 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>tsuifei.github.io/Vue_computed_watch/</loc>
+    <loc>tsuifei.github.io/Vue_08_Form_Input_Bindings/</loc>
     
-    <lastmod>2020-09-20T15:10:36.930Z</lastmod>
+    <lastmod>2020-09-26T12:13:10.693Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_14_Cli3_environment_deployment/</loc>
+    
+    <lastmod>2020-09-21T10:29:43.804Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_13_Custom_Directives/</loc>
+    
+    <lastmod>2020-09-21T10:29:32.416Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_12_Directives/</loc>
+    
+    <lastmod>2020-09-21T10:29:09.231Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_11_Filters/</loc>
+    
+    <lastmod>2020-09-21T10:28:54.297Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_10_Transitioning_Elements_Components/</loc>
+    
+    <lastmod>2020-09-21T10:28:40.066Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_09_Instance_Lifecycle_Hooks/</loc>
+    
+    <lastmod>2020-09-21T10:27:56.453Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_07_Event_Handling/</loc>
+    
+    <lastmod>2020-09-21T10:27:23.732Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_06_Displaying_Filtered_Sorted_Results/</loc>
+    
+    <lastmod>2020-09-21T10:27:07.021Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_05_List_Rendering/</loc>
+    
+    <lastmod>2020-09-21T10:26:53.967Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_04_Conditional_Rendering/</loc>
+    
+    <lastmod>2020-09-21T10:26:23.959Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_03_class_style/</loc>
+    
+    <lastmod>2020-09-21T10:26:10.373Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_02_computed_watch/</loc>
+    
+    <lastmod>2020-09-21T10:25:48.859Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_01_Template_Syntax/</loc>
+    
+    <lastmod>2020-09-21T10:25:16.114Z</lastmod>
     
   </url>
   
@@ -40,20 +131,6 @@
     <loc>tsuifei.github.io/debug_note/</loc>
     
     <lastmod>2020-04-28T08:35:32.956Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_Cli3_environment_deployment/</loc>
-    
-    <lastmod>2020-04-20T13:00:51.982Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_class_style/</loc>
-    
-    <lastmod>2020-04-19T16:47:44.388Z</lastmod>
     
   </url>
   
@@ -513,86 +590,9 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/Vue_Conditional_Rendering/</loc>
-    
-    <lastmod>2020-02-25T21:25:47.243Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_Filters/</loc>
-    
-    <lastmod>2020-02-25T21:25:32.342Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_Transitioning_Elements_Components/</loc>
-    
-    <lastmod>2020-02-25T21:23:40.275Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/Vue_Test_QA/</loc>
     
     <lastmod>2020-02-25T21:23:32.524Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_Template_Syntax/</loc>
-    
-    <lastmod>2020-02-25T21:23:28.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_List_Rendering/</loc>
-    
-    <lastmod>2020-02-25T21:23:03.010Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_Instance_Lifecycle_Hooks/</loc>
-    
-    <lastmod>2020-02-25T21:22:57.717Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_Form_Input_Bindings/</loc>
-    
-    <lastmod>2020-02-25T21:22:48.278Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_Event_Handling/</loc>
-    
-    <lastmod>2020-02-25T21:20:40.833Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_Displaying_Filtered_Sorted_Results/</loc>
-    
-    <lastmod>2020-02-25T21:20:19.898Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_Directives/</loc>
-    
-    <lastmod>2020-02-25T21:20:09.261Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_Custom_Directives/</loc>
-    
-    <lastmod>2020-02-25T21:19:59.339Z</lastmod>
     
   </url>
   

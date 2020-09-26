@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"tsuifei.github.io","root":"/tsuifei.github.io/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="這系列是由觀看法國這位求職教練 Yves Gautier 的 QuestionEntretien 這一系列的影片Parlez moi de vous, présentez-vous, exemples de réponses (coaching emploi)的筆記。 在法國找工作必須先進入「找工作」領域，也就是說，要先學習如何找工作。從如何寫履歷、寫動機信、得到面試機會，如何面試，都有種種的眉眉">
-<meta name="keywords" content="Entretien">
+  <meta name="description" content="如何把現有的陣列，在做完過濾後存在另一個新的陣列裡？如何讓頁面即時顯示這個新的陣列列表？要產生新陣列的條件有哪些？原本的陣列、輸入框輸入了什麼資料？只要拿得到這兩個資料，就可產生新的過濾後的陣列。 我們來看一下，該如何進行？ 或是先來看一下完整的原始碼 輸入框先以v-model綁定資料，這個資料是過濾的條件searchName，需要去實例初始化它。 過濾條件後所產生的新陣列filterPerson">
+<meta name="keywords" content="JavaScript,Vue">
 <meta property="og:type" content="article">
-<meta property="og:title" content="法國面試筆記">
-<meta property="og:url" content="tsuifei.github.io/Question_Entretien_01/index.html">
+<meta property="og:title" content="Vue.js Displaying Filtered&#x2F;Sorted Results 顯示過濾&#x2F;排序後的結果">
+<meta property="og:url" content="tsuifei.github.io/Vue_06_Displaying_Filtered_Sorted_Results/index.html">
 <meta property="og:site_name" content="Cré-Coder">
-<meta property="og:description" content="這系列是由觀看法國這位求職教練 Yves Gautier 的 QuestionEntretien 這一系列的影片Parlez moi de vous, présentez-vous, exemples de réponses (coaching emploi)的筆記。 在法國找工作必須先進入「找工作」領域，也就是說，要先學習如何找工作。從如何寫履歷、寫動機信、得到面試機會，如何面試，都有種種的眉眉">
+<meta property="og:description" content="如何把現有的陣列，在做完過濾後存在另一個新的陣列裡？如何讓頁面即時顯示這個新的陣列列表？要產生新陣列的條件有哪些？原本的陣列、輸入框輸入了什麼資料？只要拿得到這兩個資料，就可產生新的過濾後的陣列。 我們來看一下，該如何進行？ 或是先來看一下完整的原始碼 輸入框先以v-model綁定資料，這個資料是過濾的條件searchName，需要去實例初始化它。 過濾條件後所產生的新陣列filterPerson">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-04-15T21:25:28.405Z">
+<meta property="og:updated_time" content="2020-09-21T10:27:07.021Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="法國面試筆記">
-<meta name="twitter:description" content="這系列是由觀看法國這位求職教練 Yves Gautier 的 QuestionEntretien 這一系列的影片Parlez moi de vous, présentez-vous, exemples de réponses (coaching emploi)的筆記。 在法國找工作必須先進入「找工作」領域，也就是說，要先學習如何找工作。從如何寫履歷、寫動機信、得到面試機會，如何面試，都有種種的眉眉">
+<meta name="twitter:title" content="Vue.js Displaying Filtered&#x2F;Sorted Results 顯示過濾&#x2F;排序後的結果">
+<meta name="twitter:description" content="如何把現有的陣列，在做完過濾後存在另一個新的陣列裡？如何讓頁面即時顯示這個新的陣列列表？要產生新陣列的條件有哪些？原本的陣列、輸入框輸入了什麼資料？只要拿得到這兩個資料，就可產生新的過濾後的陣列。 我們來看一下，該如何進行？ 或是先來看一下完整的原始碼 輸入框先以v-model綁定資料，這個資料是過濾的條件searchName，需要去實例初始化它。 過濾條件後所產生的新陣列filterPerson">
 
-<link rel="canonical" href="tsuifei.github.io/Question_Entretien_01/">
+<link rel="canonical" href="tsuifei.github.io/Vue_06_Displaying_Filtered_Sorted_Results/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>法國面試筆記 | Cré-Coder</title>
+  <title>Vue.js Displaying Filtered/Sorted Results 顯示過濾/排序後的結果 | Cré-Coder</title>
   
 
 
@@ -150,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/Question_Entretien_01/">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/Vue_06_Displaying_Filtered_Sorted_Results/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/tsuifei.github.io/images/avatar.gif">
@@ -163,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          法國面試筆記
+          Vue.js Displaying Filtered/Sorted Results 顯示過濾/排序後的結果
         </h1>
 
         <div class="post-meta">
@@ -173,14 +173,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-04-12 00:42:24" itemprop="dateCreated datePublished" datetime="2020-04-12T00:42:24+08:00">2020-04-12</time>
+              <time title="Created: 2020-02-17 00:42:24" itemprop="dateCreated datePublished" datetime="2020-02-17T00:42:24+08:00">2020-02-17</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-16 05:25:28" itemprop="dateModified" datetime="2020-04-16T05:25:28+08:00">2020-04-16</time>
+                <time title="Modified: 2020-09-21 18:27:07" itemprop="dateModified" datetime="2020-09-21T18:27:07+08:00">2020-09-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -188,7 +188,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tsuifei.github.io/categories/Entretien/" itemprop="url" rel="index"><span itemprop="name">Entretien</span></a>
+                  <a href="/tsuifei.github.io/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
                 </span>
             </span>
 
@@ -203,31 +203,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>這系列是由觀看法國這位求職教練 Yves Gautier 的 QuestionEntretien 這一系列的影片<a href="https://youtu.be/8i4BaK9tUws" target="_blank" rel="noopener">Parlez moi de vous, présentez-vous, exemples de réponses (coaching emploi)</a>的筆記。</p>
-<p>在法國找工作必須先進入「找工作」領域，也就是說，要先學習如何找工作。從如何寫履歷、寫動機信、得到面試機會，如何面試，都有種種的眉眉角角的地方要注意，而歐洲文化與東方的不同，也讓面試時所注重的點不同，這是文化上的差距，需要多聽聽法國的求職教練怎麼說，才能較為清楚與正確地在面試中表達自己。</p>
-<p>在法國面試，一定會先請你口頭自我介紹，如何在幾分鐘內把自己的動機和特質介紹給對方，且讓對方對你有印象還真不是件容易的事，當對方請你做簡短的自我介紹，以下為建議。</p>
-<h2 id="請你談談你自己"><a href="#請你談談你自己" class="headerlink" title="請你談談你自己"></a>請你談談你自己</h2><ol>
-<li>為什麼自我介紹是必要的</li>
-</ol>
-<ul>
-<li>是面試的開端</li>
-<li>好的內容是給對方對的訊息</li>
-<li>讓對方聆聽</li>
-</ul>
-<ol start="2">
-<li>常犯的錯誤</li>
-</ol>
-<ul>
-<li>敘述履歷、太攏長、偏離主題</li>
-</ul>
-<ol start="3">
-<li>回答範例</li>
-</ol>
-<ul>
-<li>有主題的敘述自己的專長與特質，從技術面、工作經驗等等條例式的敘述。</li>
-<li>以目標來敘述自己，例如想成為開發者的，用關鍵字的方式說明自己的特質。</li>
-<li>如果得到這個職位後的計畫。</li>
-</ul>
+        <p>如何把現有的陣列，在做完過濾後存在另一個新的陣列裡？如何讓頁面即時顯示這個新的陣列列表？要產生新陣列的條件有哪些？原本的陣列、輸入框輸入了什麼資料？只要拿得到這兩個資料，就可產生新的過濾後的陣列。</p>
+<p>我們來看一下，該如何進行？ 或是先來看一下<a href="https://codepen.io/tsuifei/pen/LYVNMBM" target="_blank" rel="noopener">完整的原始碼</a></p>
+<p>輸入框先以<code>v-model</code>綁定資料，這個資料是過濾的條件<code>searchName</code>，需要去實例初始化它。</p>
+<p>過濾條件後所產生的新陣列<code>filterPersons</code>則是透過<code>searchName</code>和<code>persons</code>陣列所計算產生出來的，所以我們需要一個在實例中的計算屬性 computed 的方法，去產生新的陣列<code>filterPersons</code>。這個方法的回傳值即是顯示的結果。</p>
+<p>將原本的陣列<code>persons</code>套用<code>filter()</code>方法，再以<code>indexOf()</code>方法，用<code>searchName !== -1</code>ˋ 這個條件去查找的結果，存入新陣列<code>fPersons</code>中。</p>
+<a id="more"></a>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fPersons = persons.filter(<span class="function"><span class="params">p</span> =&gt;</span> p.name.indexOf(searchName !== <span class="number">-1</span>));</span><br></pre></td></tr></table></figure>
+
+<p>在過濾陣列的方法中，要先把需要的資料數據取出來，並將他們放在一個物件中，再開始過濾陣列的動作，把過濾產生的新陣列，用<code>sort()</code>方法來排序。</p>
+<p>如果排序的功能只有兩種，通常會以布林值的方式來做切換，但在我們的排序功能的按鈕，除了升序和降序外，還有恢復原來排列的第三種，所以我們可以以數字來作為排序分類的指標數。<br>代表排序分類的<code>orderType</code>指派為：0 代表原本排序、1 代表升序, 2 代表降序。</p>
+<p>在三個按鈕<br>上使用<code>@click=&quot;setOrderType(2)</code>監聽的方法、在實例的 methods 中增加<code>setOrderType()</code>方法，並將排序的方法寫在實例的計算屬性<code>filterPersons()</code>裡。而<code>setOrderType()</code>要做的事情，就是把這個方法的參數，指向實例中的 OrderType()。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// filterPersons()裡 排序的部分</span></span><br><span class="line"><span class="comment">// 排序</span></span><br><span class="line"><span class="comment">// 確定排序的指標 orderType 不是 0 才繼續排序下去</span></span><br><span class="line"><span class="keyword">if</span> (orderType !== <span class="number">0</span>) &#123;</span><br><span class="line">  fPersons.sort(<span class="function"><span class="keyword">function</span>(<span class="params">p1, p2</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 1代表降序, 2代表升序</span></span><br><span class="line">    <span class="keyword">if</span> (orderType === <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="comment">// 降序</span></span><br><span class="line">      <span class="keyword">return</span> p2.age - p1.age;</span><br><span class="line">      <span class="comment">// name 降序</span></span><br><span class="line">      <span class="comment">// return p2.name - p1.name</span></span><br><span class="line">      <span class="comment">// return p2.name.localeCompare(p1.name)</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 升序</span></span><br><span class="line">      <span class="keyword">return</span> p1.age - p2.age;</span><br><span class="line">      <span class="comment">// name 升序</span></span><br><span class="line">      <span class="comment">// return p1.name - p2.name</span></span><br><span class="line">      <span class="comment">// return p1.name.localeCompare(p2.name)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上例我們是以<code>age</code>來當排序條件，如果想要以<code>name</code>字母順序為排序條件，則可將條件的回傳值更改為<code>return p1.name.localeCompare(p2.name)</code>就會依字母順序排列了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// setOrderType()部分</span></span><br><span class="line">methods: &#123;</span><br><span class="line">        setOrderType(orderType) &#123;</span><br><span class="line">          <span class="keyword">this</span>.orderType = orderType</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>有了這些功能，我們就可以讓 Todo List 有過濾的更多功能了。</p>
 
     </div>
 
@@ -237,7 +230,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tsuifei.github.io/tags/Entretien/" rel="tag"># Entretien</a>
+              <a href="/tsuifei.github.io/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tsuifei.github.io/tags/Vue/" rel="tag"># Vue</a>
           </div>
 
         
@@ -246,12 +240,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/tsuifei.github.io/Discutable_code/" rel="prev" title="JS 有疑問的部分">
-      <i class="fa fa-chevron-left"></i> JS 有疑問的部分
+    <a href="/tsuifei.github.io/Vue_05_List_Rendering/" rel="prev" title="Vue.js List Rendering 列表渲染">
+      <i class="fa fa-chevron-left"></i> Vue.js List Rendering 列表渲染
     </a></div>
       <div class="post-nav-item">
-    <a href="/tsuifei.github.io/Vue_14_Cli3_environment_deployment/" rel="next" title="VueJs Vue Cli 3 environment deployment 開發部署">
-      VueJs Vue Cli 3 environment deployment 開發部署 <i class="fa fa-chevron-right"></i>
+    <a href="/tsuifei.github.io/Vue_07_Event_Handling/" rel="next" title="Vue.js Event Handling 事件處理">
+      Vue.js Event Handling 事件處理 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -312,7 +306,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#請你談談你自己"><span class="nav-number">1.</span> <span class="nav-text">請你談談你自己</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
