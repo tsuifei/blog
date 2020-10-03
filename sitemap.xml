@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/Vue_12_Directives/</loc>
+    
+    <lastmod>2020-10-03T12:57:50.447Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_09_Instance_Lifecycle_Hooks/</loc>
+    
+    <lastmod>2020-10-02T12:19:43.597Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_10_Transitioning_Elements_Components/</loc>
+    
+    <lastmod>2020-10-01T12:02:58.974Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_14_Cli3_environment_deployment/</loc>
+    
+    <lastmod>2020-09-27T07:41:28.582Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_11_Filters/</loc>
+    
+    <lastmod>2020-09-27T07:37:51.364Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/Vue_08_Form_Input_Bindings/</loc>
     
     <lastmod>2020-09-26T12:13:10.693Z</lastmod>
@@ -9,44 +44,9 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/Vue_14_Cli3_environment_deployment/</loc>
-    
-    <lastmod>2020-09-21T10:29:43.804Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/Vue_13_Custom_Directives/</loc>
     
     <lastmod>2020-09-21T10:29:32.416Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_12_Directives/</loc>
-    
-    <lastmod>2020-09-21T10:29:09.231Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_11_Filters/</loc>
-    
-    <lastmod>2020-09-21T10:28:54.297Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_10_Transitioning_Elements_Components/</loc>
-    
-    <lastmod>2020-09-21T10:28:40.066Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_09_Instance_Lifecycle_Hooks/</loc>
-    
-    <lastmod>2020-09-21T10:27:56.453Z</lastmod>
     
   </url>
   
