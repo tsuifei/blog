@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="有時我們拿到一包資料，需要透過過濾器來拿到我們想要的資料格式。例如我們可以透過一些外來的函式庫，拿到一些資料，但如果想依照我們想要的格式顯示，就必須過濾我們要的資訊，再依我們用的函式庫規則，寫成想要顯示的格式。 先來 Codepen 看一下效果 Vue.Js Filters 過濾器 什麼是過濾器過濾器的功能是要對顯示的資料進行特定的格式化後再顯示，且過濾器並不會去改變原本的資料，而是產生一個新的對">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-09-27T07:37:51.364Z">
+<meta property="og:updated_time" content="2020-10-17T21:16:01.318Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue.js Filters 過濾器">
 <meta name="twitter:description" content="有時我們拿到一包資料，需要透過過濾器來拿到我們想要的資料格式。例如我們可以透過一些外來的函式庫，拿到一些資料，但如果想依照我們想要的格式顯示，就必須過濾我們要的資訊，再依我們用的函式庫規則，寫成想要顯示的格式。 先來 Codepen 看一下效果 Vue.Js Filters 過濾器 什麼是過濾器過濾器的功能是要對顯示的資料進行特定的格式化後再顯示，且過濾器並不會去改變原本的資料，而是產生一個新的對">
@@ -180,7 +180,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-27 15:37:51" itemprop="dateModified" datetime="2020-09-27T15:37:51+08:00">2020-09-27</time>
+                <time title="Modified: 2020-10-18 05:16:01" itemprop="dateModified" datetime="2020-10-18T05:16:01+08:00">2020-10-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -209,11 +209,13 @@
 <p>白話一點就是「過濾器」主要的功能是將我們想要的資料，進行格式化。例如我們想要依照我們想要的格式來顯示日期。在程式裡取得的時間是透過從 1970 年 1 月 1 日所開始計算的時間差而來，透過程式拿到的現在時間必須經過一些步驟的運算，才能得到當下點的時間。</p>
 <a id="more"></a>
 
+<p>要注意的是過濾器只能在雙花括號的插值和表達式的<code>v-bind</code>時使用。</p>
 <p>因為有時差、時區與冬夏令時間的問題，所以要得到我們想要的時間點變得有些複雜，也因此在處裡時間時，會偏向引入已經把繁複計算包成函式庫的方式來操控時間與日期的部分。</p>
 <p>在這裡我們以<code>moments.js</code>為例，這支函式庫在處理時間的顯示上非常方便，所以許多人引入它來直接使用。</p>
 <p>使用外來的函式庫，可以使用 CDN 的方式，或者透過<code>npm</code>安裝到我們的專案裡，記得如果我們的 Vue 也是以 CDN 的方式引入，要將外來的 CDN 排在 Vue 之後。</p>
 <p>我們可以先創建一個由建構是得來的<code>new Data()</code>，將其存在<code>time</code>裡，試著在頁面上顯示它，會得到「Sun Feb 23 2020 11:26:19 GMT+0100 (中歐標準時間)」，但這並不是我們想顯示的時間格式，我們想顯示的是像「2020-02-23, 13:10:20」的格式。</p>
 <p>可先去 <a href="https://momentjs.com/" target="_blank" rel="noopener">Moment.js</a>的官網查找使用規則。</p>
+<h3 id="過濾器呼叫時候的使用"><a href="#過濾器呼叫時候的使用" class="headerlink" title="過濾器呼叫時候的使用"></a>過濾器呼叫時候的使用</h3><p>當我們在使用大花括號的時候，如果需要特別處理包裹在大花括號裡的文字，可使<code>|</code>分隔，之後寫上過濾器的名稱，Vue 會先使用過濾器處理文字，再把處理過的值給予大花括號裡的變數。</p>
 <h2 id="如何自定義與使用過濾器"><a href="#如何自定義與使用過濾器" class="headerlink" title="如何自定義與使用過濾器"></a>如何自定義與使用過濾器</h2><p>我們先來看一下定義與使用過濾器的公式</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用過濾器</span></span><br><span class="line">&lt;div&gt;&#123;&#123; myData | filterName &#125;&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;div&gt;&#123;&#123; myData | filterName(arg) &#125;&#125;&lt;/</span>div&gt;</span><br></pre></td></tr></table></figure>
 
@@ -229,6 +231,9 @@
 <p>回傳的<code>format</code>:
 format(ˋ 如果有給值就用 myFormat || 不然就用我們設定的’YYYY-MM-DD, HH:mm:ss’)。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定義過濾器</span></span><br><span class="line">Vue.filter(<span class="string">'timeString'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">value, myFormat</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> moment(value).format(myFormat || <span class="string">'YYYY-MM-DD, HH:mm:ss'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    <span class="comment">// 建構式取得現在時間</span></span><br><span class="line">    time: <span class="keyword">new</span> <span class="built_in">Date</span>(),</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;&#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="過濾器也可以用正則和帶參數"><a href="#過濾器也可以用正則和帶參數" class="headerlink" title="過濾器也可以用正則和帶參數"></a>過濾器也可以用正則和帶參數</h3><p>替代部分文字</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; msg | changeText('嬰孩') &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="comment">// 定義全域過濾器，也可帶參數</span></span></span><br><span class="line"><span class="javascript">  Vue.filter(<span class="string">'changeText'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">text, arg2</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 字串的replace方法只會取代一次，第一個參數除了可寫一個字串外，也可定義一個正則式</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> text.replace(<span class="regexp">/年輕/g</span>, arg2);</span></span><br><span class="line">  &#125;);</span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">    el: <span class="string">'#app'</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="javascript">      msg: <span class="string">'年輕的人最有活力，年輕是美好的，年輕就是本錢。'</span>,</span></span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;&#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>今天就先介紹到這邊囉。</p>
 
@@ -316,7 +321,7 @@ format(ˋ 如果有給值就用 myFormat || 不然就用我們設定的’YYYY-M
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什麼是過濾器"><span class="nav-number">1.</span> <span class="nav-text">什麼是過濾器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何自定義與使用過濾器"><span class="nav-number"></span> <span class="nav-text">如何自定義與使用過濾器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#實作"><span class="nav-number"></span> <span class="nav-text">實作</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什麼是過濾器"><span class="nav-number">1.</span> <span class="nav-text">什麼是過濾器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#過濾器呼叫時候的使用"><span class="nav-number">2.</span> <span class="nav-text">過濾器呼叫時候的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何自定義與使用過濾器"><span class="nav-number"></span> <span class="nav-text">如何自定義與使用過濾器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#實作"><span class="nav-number"></span> <span class="nav-text">實作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#過濾器也可以用正則和帶參數"><span class="nav-number">1.</span> <span class="nav-text">過濾器也可以用正則和帶參數</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -330,16 +335,16 @@ format(ˋ 如果有給值就用 myFormat || 不然就用我們設定的’YYYY-M
       <div class="site-state-item site-state-posts">
           <a href="/tsuifei.github.io/archives/">
         
-          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>

@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="事件處理在網頁上的應用非常廣，無論是我們滑鼠移動、按鍵輸入、或是在網頁上點擊某一個區塊，都可以因為這個互動，讓網頁做些事。但在程式裡，其實就是瀏覽者做了某些事(事件監聽)，然後我們要給出什麼反應(事件觸發)，例如，點一下按鍵，我們要程式去做某些事，例如呼叫某支函式要它做些什麼，或者，我們希望能取到瀏覽者所點擊到的值。 Codepen : Vue.js Event Handling 事件處理">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-09-21T10:27:23.732Z">
+<meta property="og:updated_time" content="2020-10-06T16:15:22.573Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue.js Event Handling 事件處理">
 <meta name="twitter:description" content="事件處理在網頁上的應用非常廣，無論是我們滑鼠移動、按鍵輸入、或是在網頁上點擊某一個區塊，都可以因為這個互動，讓網頁做些事。但在程式裡，其實就是瀏覽者做了某些事(事件監聽)，然後我們要給出什麼反應(事件觸發)，例如，點一下按鍵，我們要程式去做某些事，例如呼叫某支函式要它做些什麼，或者，我們希望能取到瀏覽者所點擊到的值。 Codepen : Vue.js Event Handling 事件處理">
@@ -180,7 +180,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-21 18:27:23" itemprop="dateModified" datetime="2020-09-21T18:27:23+08:00">2020-09-21</time>
+                <time title="Modified: 2020-10-07 00:15:22" itemprop="dateModified" datetime="2020-10-07T00:15:22+08:00">2020-10-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -230,6 +230,7 @@
 
 <p>在 Vue 裡還有許多其他的事件修飾符：stop / prevent / capture / self / once / passive。用法可以參閱官方文件<a href="https://cn.vuejs.org/v2/guide/events.html" target="_blank" rel="noopener">事件處理 — Vue.js</a> 來了解各項用法。</p>
 <p>Vue 把以往需要在 JavaScript 裡寫的程式碼，全部改成在 HTML 就可處理的指令，的確方便許多，但也要知道 Javascript 的原生寫法，才不會改天需要寫原生寫不出來，這就是 Vue 的方便會費人 JS 武功的原因了。</p>
+<h3 id="自定義全域按鍵修飾符"><a href="#自定義全域按鍵修飾符" class="headerlink" title="自定義全域按鍵修飾符"></a>自定義全域按鍵修飾符</h3><p>有時需要操控某個按鍵，來達到一些效果，就可以指定某個按鍵為替代<br><code>Vue.config.keyCode.f2 = 113</code>表示以按鍵 F2 來取代原本 113(enter 鍵)keyCode 所做的事。<br>在標籤上就可這樣寫<code>@keyup.f2=&quot;addItem&quot;</code></p>
 
     </div>
 
@@ -315,7 +316,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-監聽事件的綁定"><span class="nav-number">1.</span> <span class="nav-text">1. 監聽事件的綁定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件修飾符"><span class="nav-number">2.</span> <span class="nav-text">事件修飾符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阻止冒泡行為：-click-stop"><span class="nav-number">2.1.</span> <span class="nav-text">阻止冒泡行為：@click.stop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻止事件默認行為：-click-prevent"><span class="nav-number">2.2.</span> <span class="nav-text">阻止事件默認行為： @click.prevent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按鍵修飾符"><span class="nav-number">3.</span> <span class="nav-text">按鍵修飾符</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-監聽事件的綁定"><span class="nav-number">1.</span> <span class="nav-text">1. 監聽事件的綁定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件修飾符"><span class="nav-number">2.</span> <span class="nav-text">事件修飾符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阻止冒泡行為：-click-stop"><span class="nav-number">2.1.</span> <span class="nav-text">阻止冒泡行為：@click.stop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻止事件默認行為：-click-prevent"><span class="nav-number">2.2.</span> <span class="nav-text">阻止事件默認行為： @click.prevent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按鍵修飾符"><span class="nav-number">3.</span> <span class="nav-text">按鍵修飾符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定義全域按鍵修飾符"><span class="nav-number">3.1.</span> <span class="nav-text">自定義全域按鍵修飾符</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -329,16 +330,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/tsuifei.github.io/archives/">
         
-          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>

@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="new Date() 物件的時間處理我們常需要在網頁上處理或顯示時間，例如文章是何時編輯的、購物時間或是在觀察程式碼的效能時也會需要時間的處理，JavaScript 是如何處理日期和時間的呢？ JavaScript 包含了一個處理時間的物件：new Date()，透過這個構造式裡的方法或參數，我們可以精準的計算任何形式的時間。在這個物件的時間計算單位為毫秒（1000 毫秒為一秒），所以處理時需要另">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-08-22T07:41:51.702Z">
+<meta property="og:updated_time" content="2020-10-17T20:50:41.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript Date &amp; Times 時間處理">
 <meta name="twitter:description" content="new Date() 物件的時間處理我們常需要在網頁上處理或顯示時間，例如文章是何時編輯的、購物時間或是在觀察程式碼的效能時也會需要時間的處理，JavaScript 是如何處理日期和時間的呢？ JavaScript 包含了一個處理時間的物件：new Date()，透過這個構造式裡的方法或參數，我們可以精準的計算任何形式的時間。在這個物件的時間計算單位為毫秒（1000 毫秒為一秒），所以處理時需要另">
@@ -180,7 +180,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-22 15:41:51" itemprop="dateModified" datetime="2020-08-22T15:41:51+08:00">2020-08-22</time>
+                <time title="Modified: 2020-10-18 04:50:41" itemprop="dateModified" datetime="2020-10-18T04:50:41+08:00">2020-10-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -206,6 +206,8 @@
         <h3 id="new-Date-物件的時間處理"><a href="#new-Date-物件的時間處理" class="headerlink" title="new Date() 物件的時間處理"></a>new Date() 物件的時間處理</h3><p>我們常需要在網頁上處理或顯示時間，例如文章是何時編輯的、購物時間或是在觀察程式碼的效能時也會需要時間的處理，JavaScript 是如何處理日期和時間的呢？</p>
 <p>JavaScript 包含了一個處理時間的物件：<code>new Date()</code>，透過這個構造式裡的方法或參數，我們可以精準的計算任何形式的時間。在這個物件的時間計算單位為毫秒（1000 毫秒為一秒），所以處理時需要另外除以 1000 才能得到我們熟悉的秒數。</p>
 <p><code>Date()</code>物件是基於世界標準時間（UTC） 1970 年 1 月 1 日開始的毫秒數值來儲存時間的。要得到當下的時間是很容易的，這個當下時間來自於我們本身使用的電腦當下的時間，而電腦的時間，有可能是透過網路而得到電腦當下所在時區的時間。但如果我們想要「計算時間」就必須透過一些方式與計算，例如想要計算不是在同時需的時間，或是要對某個時間點做倒數。</p>
+<a id="more"></a>
+
 <p>我們先來看看<a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Date" target="_blank" rel="noopener">Date - JavaScript | MDN</a> 怎麼解釋。</p>
 <h2 id="構造函式-new-Date"><a href="#構造函式-new-Date" class="headerlink" title="構造函式 new Date()"></a>構造函式 new Date()</h2><p>因為是構造式，創建時間的物件須先以<code>new Date()</code>創建，所回傳的值是一個封裝好的物件，以這個構造式被執行的時間點為標記傳回時間。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="built_in">console</span>.log(date); <span class="comment">// Sat Aug 08 2020 15:36:59 GMT+0200 (中歐夏令時間)</span></span><br></pre></td></tr></table></figure>
@@ -284,7 +286,10 @@
     <a href="/tsuifei.github.io/JS_60_note29/" rel="prev" title="JS Axios API、表單元素切換顯示資料">
       <i class="fa fa-chevron-left"></i> JS Axios API、表單元素切換顯示資料
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/tsuifei.github.io/Add_unique_generated_Identifier_on_array_of_json_objec/" rel="next" title="在 JSON 物件陣列上增加一對鍵與唯一值">
+      在 JSON 物件陣列上增加一對鍵與唯一值 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -358,16 +363,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/tsuifei.github.io/archives/">
         
-          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
