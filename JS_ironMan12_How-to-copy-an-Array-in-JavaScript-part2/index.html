@@ -254,8 +254,7 @@
 <blockquote>
 <p><code>JSON.parse()</code>方法用來解析<code>JSON</code>的字串，構造由字串描述的 JavaScript 值或物件。</p>
 </blockquote>
-<p>這時的<code>arr</code>已經變成 JSON 的字串格式：<code>&quot;[[1,2,3],[4,5,6]]&quot;</code>。
-接下來再轉回陣列的型態：</p>
+<p>這時的<code>arr</code>已經變成 JSON 的字串格式：<code>&quot;[[1,2,3],[4,5,6]]&quot;</code>。<br>接下來再轉回陣列的型態：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr = <span class="built_in">JSON</span>.parse(arr); <span class="comment">// [[1,2,3],[4,5,6]]</span></span><br></pre></td></tr></table></figure>
 
 <p>把原本的物件值轉成字串，然後再轉回來物件的型態，兩個函式手牽手處理下來，就等於複製了一份<code>arr1</code>到<code>arr2</code>。</p>
