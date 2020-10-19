@@ -200,7 +200,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-04 21:52:33" itemprop="dateModified" datetime="2020-10-04T21:52:33+08:00">2020-10-04</time>
+                <time title="Modified: 2020-10-20 02:34:36" itemprop="dateModified" datetime="2020-10-20T02:34:36+08:00">2020-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -225,7 +225,6 @@
       
           <p>什麼時候會用到自定義指令？除了原本的默認內置指令，雖然 Vue 的元件是可以複用的，但有時候我們仍然需要對普通 DOM 元素進行不同效果的操作，這時候就會用到自定義指令。在 Vue 內建的指令無法滿足需求或需要一個特別的功能時，就可以自己攥寫自定義指令，好處是可以重複使用。</p>
 <p>自定義指定有兩種：全域自定義指令與局部的自定義指令。有時候我們在一個頁面裡可能會引入或增加好幾個 Vue 的實例，如果是全域的自定義指令，表示所有的 Vue 實例都可使用這個指令，但如果是局部自定義指令，需要指定能使用這組指令的 Vue 實例。</p>
-<p>先來看 codepen :<br><a href="https://codepen.io/tsuifei/pen/eYNgWzg" target="_blank" rel="noopener">Vue.Js Custom Directives 自定義指令</a></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/tsuifei.github.io/Vue_13_Custom_Directives/#more" rel="contents">
@@ -283,7 +282,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-04 21:16:34" itemprop="dateModified" datetime="2020-10-04T21:16:34+08:00">2020-10-04</time>
+                <time title="Modified: 2020-10-20 02:34:46" itemprop="dateModified" datetime="2020-10-20T02:34:46+08:00">2020-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -371,26 +370,14 @@
 <td></td>
 </tr>
 </tbody></table>
-<h2 id="ref-元素的唯一識別"><a href="#ref-元素的唯一識別" class="headerlink" title="ref 元素的唯一識別"></a>ref 元素的唯一識別</h2><p>給需要一個標籤一個唯一識別，可用<code>ref</code>，但如何透過我們給標籤的<code>ref</code>取得標籤的內容，在實例的方法裡，可以使用<code>$refs</code>這個方法取得：<code>this.$refs.content.textContent</code>，可選用<code>innerText</code>或者是<code>textContent</code>效果是一樣的。</p>
-<p><code>ref</code>的作用是為某個元素註冊一個唯一標識, vue 物件會透過 $refs 屬性來訪問這個元素物件或其內容。</p>
-<p>參考：<a href="https://cn.vuejs.org/v2/api/#ref" target="_blank" rel="noopener">API — Vue.js ref</a></p>
-<h2 id="v-cloak-防止在頁面出現-Vue-的表達式"><a href="#v-cloak-防止在頁面出現-Vue-的表達式" class="headerlink" title="v-cloak 防止在頁面出現 Vue 的表達式"></a>v-cloak 防止在頁面出現 Vue 的表達式</h2><p>因為程式是一行行執行的，有時因為頁面跳轉的關係，程式還沒讀取完即出現在頁面上，這時 Vue 的表達式像是<code></code>就會被看見，為了避免這樣的狀況產生，可以使用在標籤上使用<code>v-cloak</code>，並在 Style 以屬性選擇器<code>[v-cloak]</code>選取，並給予<code>display:none</code>先隱藏它，直到程式讀取到資料後，這個屬性會自動地被拿掉，就可預防出現 Vue 的表達式。<br><strong>HTML 部分</strong></p>
-<p>來看看使用<code>ref</code>和<code>v-cloak</code>的範例</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">ref</span>=<span class="string">"content"</span>&gt;</span>Hello Paris<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"hint"</span>&gt;</span>Hint<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- v-cloak --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-cloak</span>&gt;</span>Hello Taipei<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>JavaScript 部分</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    msg: <span class="string">'Hello Taipei'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    hint() &#123;</span><br><span class="line">      alert(<span class="keyword">this</span>.$refs.content.textContent);</span><br><span class="line">      alert(<span class="keyword">this</span>.$refs.content.innerText);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>參考：<a href="https://cn.vuejs.org/v2/api/#v-cloak" target="_blank" rel="noopener">API — Vue.js v-cloak</a></p>
-<h2 id="v-once-只渲染元素和元件一次"><a href="#v-once-只渲染元素和元件一次" class="headerlink" title="v-once 只渲染元素和元件一次"></a>v-once 只渲染元素和元件一次</h2><p>有些元素在頁面中並不需要每次都渲染，如果使用<code>v-once</code>，Vue 就只會渲染元素和元件一次，之後如果重新渲染，元素/元件及其所有 DOM Tree 的子節點就會被視為靜態的內容並略過，這樣可以有助於優化效能。<br><strong>HTML 部分</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-once</span>&gt;</span></span><br><span class="line">        &#123;&#123;content&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>JavaScript 部分</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    content: <span class="string">'第一次的文字內容'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 第二次給值渲染</span></span><br><span class="line">app.content = <span class="string">'第二次的文字更新'</span>;</span><br></pre></td></tr></table></figure>
-
-<p>以上的範例即使使用<code>app.content</code>再次選染，但值還是會是第一次被選染的值，因為渲染一次之後就會被當成靜態元素處理。</p>
-<p>參考：<a href="https://cn.vuejs.org/v2/api/#v-once" target="_blank" rel="noopener">API — Vue.js v-once</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/tsuifei.github.io/Vue_12_Directives/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -440,7 +427,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-18 05:16:01" itemprop="dateModified" datetime="2020-10-18T05:16:01+08:00">2020-10-18</time>
+                <time title="Modified: 2020-10-20 02:34:55" itemprop="dateModified" datetime="2020-10-20T02:34:55+08:00">2020-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -466,7 +453,6 @@
           <p>有時我們拿到一包資料，需要透過過濾器來拿到我們想要的資料格式。例如我們可以透過一些外來的函式庫，拿到一些資料，但如果想依照我們想要的格式顯示，就必須過濾我們要的資訊，再依我們用的函式庫規則，寫成想要顯示的格式。</p>
 <p>先來 Codepen 看一下效果 <a href="https://codepen.io/tsuifei/pen/eYNBoLZ" target="_blank" rel="noopener">Vue.Js Filters 過濾器</a></p>
 <h3 id="什麼是過濾器"><a href="#什麼是過濾器" class="headerlink" title="什麼是過濾器"></a>什麼是過濾器</h3><p>過濾器的功能是要對顯示的資料進行特定的格式化後再顯示，且過濾器並不會去改變原本的資料，而是產生一個新的對應的資料格式。</p>
-<p>白話一點就是「過濾器」主要的功能是將我們想要的資料，進行格式化。例如我們想要依照我們想要的格式來顯示日期。在程式裡取得的時間是透過從 1970 年 1 月 1 日所開始計算的時間差而來，透過程式拿到的現在時間必須經過一些步驟的運算，才能得到當下點的時間。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/tsuifei.github.io/Vue_11_Filters/#more" rel="contents">

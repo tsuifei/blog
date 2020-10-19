@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="之前的幾篇都有介紹此表前半段的 Vue 內建指令用法，這裡要介紹最後面的兩個內建指令ref和v-cloak先來 codepen 看看：Vue.Js ref 唯一識別 與 v-cloak 隱藏表達式    指令 作用 Vue    v-if 如果為 true, 當下的標籤元素才會輸出渲染到頁面    v-html 更新元素的 innerHTML    v-else 如果為 false, 當前標籤才會">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-10-04T13:16:34.155Z">
+<meta property="og:updated_time" content="2020-10-19T18:34:46.221Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue.js Directives Vue 常用的內建指令">
 <meta name="twitter:description" content="之前的幾篇都有介紹此表前半段的 Vue 內建指令用法，這裡要介紹最後面的兩個內建指令ref和v-cloak先來 codepen 看看：Vue.Js ref 唯一識別 與 v-cloak 隱藏表達式    指令 作用 Vue    v-if 如果為 true, 當下的標籤元素才會輸出渲染到頁面    v-html 更新元素的 innerHTML    v-else 如果為 false, 當前標籤才會">
@@ -200,7 +200,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-04 21:16:34" itemprop="dateModified" datetime="2020-10-04T21:16:34+08:00">2020-10-04</time>
+                <time title="Modified: 2020-10-20 02:34:46" itemprop="dateModified" datetime="2020-10-20T02:34:46+08:00">2020-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -288,6 +288,8 @@
 <td></td>
 </tr>
 </tbody></table>
+<a id="more"></a>
+
 <h2 id="ref-元素的唯一識別"><a href="#ref-元素的唯一識別" class="headerlink" title="ref 元素的唯一識別"></a>ref 元素的唯一識別</h2><p>給需要一個標籤一個唯一識別，可用<code>ref</code>，但如何透過我們給標籤的<code>ref</code>取得標籤的內容，在實例的方法裡，可以使用<code>$refs</code>這個方法取得：<code>this.$refs.content.textContent</code>，可選用<code>innerText</code>或者是<code>textContent</code>效果是一樣的。</p>
 <p><code>ref</code>的作用是為某個元素註冊一個唯一標識, vue 物件會透過 $refs 屬性來訪問這個元素物件或其內容。</p>
 <p>參考：<a href="https://cn.vuejs.org/v2/api/#ref" target="_blank" rel="noopener">API — Vue.js ref</a></p>

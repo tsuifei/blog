@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="什麼時候會用到自定義指令？除了原本的默認內置指令，雖然 Vue 的元件是可以複用的，但有時候我們仍然需要對普通 DOM 元素進行不同效果的操作，這時候就會用到自定義指令。在 Vue 內建的指令無法滿足需求或需要一個特別的功能時，就可以自己攥寫自定義指令，好處是可以重複使用。 自定義指定有兩種：全域自定義指令與局部的自定義指令。有時候我們在一個頁面裡可能會引入或增加好幾個 Vue 的實例，如果是全域">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-10-04T13:52:33.338Z">
+<meta property="og:updated_time" content="2020-10-19T18:34:36.209Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue.js Custom Directives 自定義指令">
 <meta name="twitter:description" content="什麼時候會用到自定義指令？除了原本的默認內置指令，雖然 Vue 的元件是可以複用的，但有時候我們仍然需要對普通 DOM 元素進行不同效果的操作，這時候就會用到自定義指令。在 Vue 內建的指令無法滿足需求或需要一個特別的功能時，就可以自己攥寫自定義指令，好處是可以重複使用。 自定義指定有兩種：全域自定義指令與局部的自定義指令。有時候我們在一個頁面裡可能會引入或增加好幾個 Vue 的實例，如果是全域">
@@ -200,7 +200,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-04 21:52:33" itemprop="dateModified" datetime="2020-10-04T21:52:33+08:00">2020-10-04</time>
+                <time title="Modified: 2020-10-20 02:34:36" itemprop="dateModified" datetime="2020-10-20T02:34:36+08:00">2020-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -225,8 +225,10 @@
       
         <p>什麼時候會用到自定義指令？除了原本的默認內置指令，雖然 Vue 的元件是可以複用的，但有時候我們仍然需要對普通 DOM 元素進行不同效果的操作，這時候就會用到自定義指令。在 Vue 內建的指令無法滿足需求或需要一個特別的功能時，就可以自己攥寫自定義指令，好處是可以重複使用。</p>
 <p>自定義指定有兩種：全域自定義指令與局部的自定義指令。有時候我們在一個頁面裡可能會引入或增加好幾個 Vue 的實例，如果是全域的自定義指令，表示所有的 Vue 實例都可使用這個指令，但如果是局部自定義指令，需要指定能使用這組指令的 Vue 實例。</p>
-<p>先來看 codepen :<br><a href="https://codepen.io/tsuifei/pen/eYNgWzg" target="_blank" rel="noopener">Vue.Js Custom Directives 自定義指令</a></p>
 <a id="more"></a>
+
+<p>先來看 codepen :<br><a href="https://codepen.io/tsuifei/pen/eYNgWzg" target="_blank" rel="noopener">Vue.Js Custom Directives 自定義指令</a></p>
+<!-- more -->
 
 <h3 id="全域的寫法"><a href="#全域的寫法" class="headerlink" title="全域的寫法"></a>全域的寫法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Global 全域自定義指令 ps. directive 沒有 s</span></span><br><span class="line">Vue.directive(<span class="string">'my-directive'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">el, binding</span>) </span>&#123;</span><br><span class="line">  el.innerHTML = binding.value.toupperCase();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
