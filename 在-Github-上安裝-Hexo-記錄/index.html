@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="在學員的鼓勵下，決定試試安裝輕量級 blog Hexo。隨然玩 Wordpress 已經很久了，但 WP 的架構越來越龐大更新速度快，整個檔案也越來越龐大了，且 WP 需要資料庫的配合。但 Hexo 不但不需要，且還可以部屬在 Github 上，超方便的！雖然設定與修改比較繁瑣，但也有它的樂趣，且既然是與程式有關的文章和內容，那何不把他們放在一起。 將 Hexo 自動生成的靜態頁面、搭配 gith">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-02-25T21:32:34.599Z">
+<meta property="og:updated_time" content="2020-10-19T11:44:07.869Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Github 上安裝 Hexo 記錄">
 <meta name="twitter:description" content="在學員的鼓勵下，決定試試安裝輕量級 blog Hexo。隨然玩 Wordpress 已經很久了，但 WP 的架構越來越龐大更新速度快，整個檔案也越來越龐大了，且 WP 需要資料庫的配合。但 Hexo 不但不需要，且還可以部屬在 Github 上，超方便的！雖然設定與修改比較繁瑣，但也有它的樂趣，且既然是與程式有關的文章和內容，那何不把他們放在一起。 將 Hexo 自動生成的靜態頁面、搭配 gith">
@@ -195,7 +195,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-26 05:32:34" itemprop="dateModified" datetime="2020-02-26T05:32:34+08:00">2020-02-26</time>
+                <time title="Modified: 2020-10-19 19:44:07" itemprop="dateModified" datetime="2020-10-19T19:44:07+08:00">2020-10-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -223,7 +223,7 @@
 <a id="more"></a>
 
 <p>這裡使用的佈景主題是 Hexo 的預設主題：landscape，希望慢慢修改成自己喜歡的樣子即可，功能仍不是很完善，期待自己慢慢把它做的更完整一點。</p>
-<h2 id="Hexo-建立文章的方式"><a href="#Hexo-建立文章的方式" class="headerlink" title="Hexo 建立文章的方式"></a>Hexo 建立文章的方式</h2><p>一般我們都會使用 hexo new <title>來建立新文章，這種方法會將新文章建立在 source/_posts 目錄下，當使用 hexo generate 編譯 markdown 文件時，就會將其 HTML 結果編譯在 public 目錄下，之後 hexo deploy 再將把 public 目錄下所有文章一起部署到 GitHub，這是我們熟悉的 Hexo 流程。</title></p>
+<h2 id="Hexo-建立文章的方式"><a href="#Hexo-建立文章的方式" class="headerlink" title="Hexo 建立文章的方式"></a>Hexo 建立文章的方式</h2><p>一般我們都會使用 hexo new <code>&lt;title&gt;</code>來建立新文章，這種方法會將新文章建立在 source/_posts 目錄下，當使用 hexo generate 編譯 markdown 文件時，就會將其 HTML 結果編譯在 public 目錄下，之後 hexo deploy 再將把 public 目錄下所有文章一起部署到 GitHub，這是我們熟悉的 Hexo 流程。</p>
 <p>這種建立文章方式的缺點是：如果同時編輯多篇文章，只要其中一篇文章尚未編輯完成，也會隨著 hexo deploy 通通一起部署到 GitHub，也就是 GitHub 可能會看到我們尚未完成的文章。以下會介紹先將文章存成草稿的步驟。</p>
 <h2 id="如何安裝"><a href="#如何安裝" class="headerlink" title="如何安裝"></a>如何安裝</h2><p>條件：node.js 環境 ＋ git<br><a href="https://hexo.io/zh-tw/docs/" target="_blank" rel="noopener">官網文件</a></p>
 <p>先在本地端安裝好需要檔案，安裝後檔案夾內會有</p>
