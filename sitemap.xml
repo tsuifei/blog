@@ -2,23 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>tsuifei.github.io/categories/index.html</loc>
+    <loc>tsuifei.github.io//404.html</loc>
     
-    <lastmod>2020-10-19T12:10:50.652Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/tags/index.html</loc>
-    
-    <lastmod>2020-10-19T12:10:22.814Z</lastmod>
+    <lastmod>2020-10-19T18:23:19.472Z</lastmod>
     
   </url>
   
   <url>
     <loc>tsuifei.github.io/about/index.html</loc>
     
-    <lastmod>2020-10-19T11:57:33.557Z</lastmod>
+    <lastmod>2020-10-19T12:14:13.946Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/categories/index.html</loc>
+    
+    <lastmod>2020-10-19T12:14:02.996Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/tags/index.html</loc>
+    
+    <lastmod>2020-10-19T12:13:49.874Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/javascript/index.html</loc>
+    
+    <lastmod>2020-10-19T12:13:32.784Z</lastmod>
     
   </url>
   
@@ -660,13 +674,6 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/react/index.html</loc>
-    
-    <lastmod>2019-07-02T06:06:50.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/css-sass/index.html</loc>
     
     <lastmod>2019-07-02T06:05:55.000Z</lastmod>
@@ -677,13 +684,6 @@
     <loc>tsuifei.github.io/html/index.html</loc>
     
     <lastmod>2019-07-02T06:05:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/javascript/index.html</loc>
-    
-    <lastmod>2019-07-02T06:05:32.000Z</lastmod>
     
   </url>
   
