@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/debug_note_02/</loc>
+    
+    <lastmod>2020-10-21T19:54:46.060Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/debug_note_01/</loc>
+    
+    <lastmod>2020-10-21T18:59:25.313Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_Basic_function_method/</loc>
+    
+    <lastmod>2020-10-19T18:47:14.851Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/Vue_11_Filters/</loc>
     
     <lastmod>2020-10-19T18:34:55.864Z</lastmod>
@@ -26,13 +47,6 @@
     <loc>tsuifei.github.io/Vue_14_Cli3_environment_deployment/</loc>
     
     <lastmod>2020-10-19T18:34:28.702Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/debug_note/</loc>
-    
-    <lastmod>2020-10-19T18:33:52.236Z</lastmod>
     
   </url>
   
