@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/tsuifei.github.io/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/tsuifei.github.io/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/tsuifei.github.io/favicon.png">
+  <link rel="mask-icon" href="/tsuifei.github.io/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/tsuifei.github.io/css/main.css">
+
+
+<link rel="stylesheet" href="/tsuifei.github.io/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tsuifei.github.io","root":"/tsuifei.github.io/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="OOCSS (Object Oriented CSS) 最早是由Nicole Sullivan提出的概念，中文直譯是「物件導向的 CSS」但比較接近 「CSS 物件」也就是「可複用」的模式。 OOCSS 有兩個大原則，「結構與外觀(樣式)分離」、「容器和內容物分開」的原則。比較口語化的解釋會直解釋把 OOCSS 以「容器與內容分離」的設計模式來寫 CSS。 結構與外觀分離定義一個元素的時候，將本身">
+<meta name="keywords" content="CSS,OOCSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS 的 OOCSS 設計模式">
+<meta property="og:url" content="tsuifei.github.io/css_oocss/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="OOCSS (Object Oriented CSS) 最早是由Nicole Sullivan提出的概念，中文直譯是「物件導向的 CSS」但比較接近 「CSS 物件」也就是「可複用」的模式。 OOCSS 有兩個大原則，「結構與外觀(樣式)分離」、「容器和內容物分開」的原則。比較口語化的解釋會直解釋把 OOCSS 以「容器與內容分離」的設計模式來寫 CSS。 結構與外觀分離定義一個元素的時候，將本身">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2020-10-24T20:37:21.774Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS 的 OOCSS 設計模式">
+<meta name="twitter:description" content="OOCSS (Object Oriented CSS) 最早是由Nicole Sullivan提出的概念，中文直譯是「物件導向的 CSS」但比較接近 「CSS 物件」也就是「可複用」的模式。 OOCSS 有兩個大原則，「結構與外觀(樣式)分離」、「容器和內容物分開」的原則。比較口語化的解釋會直解釋把 OOCSS 以「容器與內容分離」的設計模式來寫 CSS。 結構與外觀分離定義一個元素的時候，將本身">
+
+<link rel="canonical" href="tsuifei.github.io/css_oocss/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>CSS 的 OOCSS 設計模式 | Cré-Coder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/tsuifei.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Je code donc je suis là.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/tsuifei.github.io/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/tsuifei.github.io/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/tsuifei.github.io/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">13</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tsuifei.github.io/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">36</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/tsuifei.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">90</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/tsuifei.github.io/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/css_oocss/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/tsuifei.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CSS 的 OOCSS 設計模式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-10-25 00:42:42 / Modified: 04:37:21" itemprop="dateCreated datePublished" datetime="2020-10-25T00:42:42+08:00">2020-10-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tsuifei.github.io/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>OOCSS (Object Oriented CSS) 最早是由<a href="https://en.wikipedia.org/wiki/OOCSS" target="_blank" rel="noopener">Nicole Sullivan</a>提出的概念，中文直譯是「物件導向的 CSS」但比較接近 「CSS 物件」也就是「可複用」的模式。</p>
+<p>OOCSS 有兩個大原則，「結構與外觀(樣式)分離」、「容器和內容物分開」的原則。比較口語化的解釋會直解釋把 OOCSS 以「容器與內容分離」的設計模式來寫 CSS。</p>
+<h3 id="結構與外觀分離"><a href="#結構與外觀分離" class="headerlink" title="結構與外觀分離"></a>結構與外觀分離</h3><p>定義一個元素的時候，將本身的結構和對元素外觀的樣式分開，增強 CSS 的復用性</p>
+<h3 id="容器和內容物分開"><a href="#容器和內容物分開" class="headerlink" title="容器和內容物分開"></a>容器和內容物分開</h3><p>最好不要直接使用標籤名定義樣式，減少對 html 的依賴</p>
+<p>使用 OOCSS 設計模式來寫的 CSS 框架最有名的算是 Bootstrap，透過「容器與內容分離」樣式的概念達到增加複用與靈活運用的效果與目的。另外一個知名的 CSS 框架 Tailwindcss 也是使用 OOCSS 的設計模式來撰寫樣式。</p>
+<a id="more"></a>
+
+<p>要開始使用 OOCSS 設計模式來寫的 CSS 樣式時，需要把重複的樣式抽取出來，以及注意命名方法。在早期我們會用語意的方式來為樣式命名，例如<code>.last-articles-box</code>或是<code>.comment-title</code>使用 OOCSS 之後命名會較偏向是例如<code>.links-box</code>或是<code>.tiny-title</code>。</p>
+<p>以命名方式來說 常以元素的位置來寫，例如<code>.main .aside {}</code> 表示針對<code>.main</code>元素裡的<code>.aside</code>來撰寫樣式。但是這樣的寫法，會只「針對」這個放在<code>.main</code>裡的<code>.aside</code>，但是<code>.aside</code>如果在其他地方也出現呢？是的，那就再寫一遍，但是通常這樣的區塊風格大多統一或相似，也就是會有許多的樣式會重複寫。</p>
+<p>把各種元素拆分成「容器」與「內容」<br>內容元素表示放在哪裡都可以不被影響樣式</p>
+<p>我們可以想像成容器元素就像房子，內容像是房子裡面的家具，放哪裡都可以。<br>讓各個樣式和其他的元素沒有依賴性，</p>
+<p>格線系統，控制欄寬 也是容器類的樣式</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tsuifei.github.io/tags/CSS/" rel="tag"># CSS</a>
+              <a href="/tsuifei.github.io/tags/OOCSS/" rel="tag"># OOCSS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/tsuifei.github.io/debug_note_02/" rel="prev" title="JSON 的方法和型別">
+      <i class="fa fa-chevron-left"></i> JSON 的方法和型別
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/tsuifei.github.io/DevTool_Chrome_Lighthouse/" rel="next" title="網站速度優化分析工具：SEO Lighthouse">
+      網站速度優化分析工具：SEO Lighthouse <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#結構與外觀分離"><span class="nav-number">1.</span> <span class="nav-text">結構與外觀分離</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器和內容物分開"><span class="nav-number">2.</span> <span class="nav-text">容器和內容物分開</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+  <div class="site-description" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/tsuifei.github.io/archives/">
+        
+          <span class="site-state-item-count">90</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/tsuifei.github.io/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tsuifei.github.io/tags/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tsuifei" title="GitHub → https://github.com/tsuifei" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tsuifei@gmail.com" title="E-Mail → mailto:tsuifei@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/tsuifei.github.io/lib/anime.min.js"></script>
+  <script src="/tsuifei.github.io/lib/velocity/velocity.min.js"></script>
+  <script src="/tsuifei.github.io/lib/velocity/velocity.ui.min.js"></script>
+<script src="/tsuifei.github.io/js/utils.js"></script><script src="/tsuifei.github.io/js/motion.js"></script>
+<script src="/tsuifei.github.io/js/schemes/pisces.js"></script>
+<script src="/tsuifei.github.io/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

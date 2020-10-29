@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="Ajax 全名為 Asynchronous JavaScript and XML，一種允許瀏覽器與伺服器交換資料，而不需刷新頁面的技術，都可以叫做 Ajax. Ajax 這個名字是在 2005 年 5 月的時候，Adaptive Path 的 Jasse James Garrett 在他所寫的文章 Ajax : New Approach to Web Application 中提出的。而 Ajax">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-03-13T20:02:58.423Z">
+<meta property="og:updated_time" content="2020-10-25T07:51:42.873Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="淺談 Ajax 是什麼？">
 <meta name="twitter:description" content="Ajax 全名為 Asynchronous JavaScript and XML，一種允許瀏覽器與伺服器交換資料，而不需刷新頁面的技術，都可以叫做 Ajax. Ajax 這個名字是在 2005 年 5 月的時候，Adaptive Path 的 Jasse James Garrett 在他所寫的文章 Ajax : New Approach to Web Application 中提出的。而 Ajax">
@@ -126,17 +126,17 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/tsuifei.github.io/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">11</span></a>
+    <a href="/tsuifei.github.io/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">13</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tsuifei.github.io/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">32</span></a>
+    <a href="/tsuifei.github.io/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">36</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/tsuifei.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">88</span></a>
+    <a href="/tsuifei.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">90</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -200,7 +200,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-14 04:02:58" itemprop="dateModified" datetime="2020-03-14T04:02:58+08:00">2020-03-14</time>
+                <time title="Modified: 2020-10-25 15:51:42" itemprop="dateModified" datetime="2020-10-25T15:51:42+08:00">2020-10-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -298,7 +298,7 @@
 <h2 id="使用-Axios"><a href="#使用-Axios" class="headerlink" title="使用 Axios"></a>使用 Axios</h2><p>Axios 在 Github 上說明，可透過 npm 安裝在開發專案上，或者也可以使用 CDN 將 Axios 引進來，就可以開始用了。</p>
 <p>先以 GET 的方式向 Server 請求資料，因為 Axios 是非同步，所以<code>response</code>會在程式一行行都跑完後，最後才會跑<code>.then</code>的部分。</p>
 <p>線上模擬 api <code>www.mocky.io</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"</span>&gt;&lt;<span class="regexp">/script&gt;;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 使用 GER 方法</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ Make a request for a user with a given ID</span></span><br><span class="line"><span class="regexp">axios</span></span><br><span class="line"><span class="regexp">  .get('/u</span>ser?ID=<span class="number">12345</span><span class="string">')</span></span><br><span class="line"><span class="string">  .then(function(response) &#123;</span></span><br><span class="line"><span class="string">    // handle success 接收伺服器的回應</span></span><br><span class="line"><span class="string">    console.log(response);</span></span><br><span class="line"><span class="string">  &#125;)</span></span><br><span class="line"><span class="string">  .catch(function(error) &#123;</span></span><br><span class="line"><span class="string">    // handle error 如有錯誤會到這裡</span></span><br><span class="line"><span class="string">    console.log(error);</span></span><br><span class="line"><span class="string">  &#125;)</span></span><br><span class="line"><span class="string">  .then(function() &#123;</span></span><br><span class="line"><span class="string">    // always executed 無論如何都會執行</span></span><br><span class="line"><span class="string">  &#125;);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// 使用 POST 方法</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"</span>&gt;&lt;<span class="regexp">/script&gt;;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 使用 GER 方法</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ Make a request for a user with a given ID</span></span><br><span class="line"><span class="regexp">axios</span></span><br><span class="line"><span class="regexp">  .get('/u</span>ser?ID=<span class="number">12345</span><span class="string">')</span></span><br><span class="line"><span class="string">  .then(function (response) &#123;</span></span><br><span class="line"><span class="string">    // handle success 接收伺服器的回應</span></span><br><span class="line"><span class="string">    console.log(response);</span></span><br><span class="line"><span class="string">  &#125;)</span></span><br><span class="line"><span class="string">  .catch(function (error) &#123;</span></span><br><span class="line"><span class="string">    // handle error 如有錯誤會到這裡</span></span><br><span class="line"><span class="string">    console.error(error);</span></span><br><span class="line"><span class="string">  &#125;)</span></span><br><span class="line"><span class="string">  .then(function () &#123;</span></span><br><span class="line"><span class="string">    // always executed 無論如何都會執行</span></span><br><span class="line"><span class="string">  &#125;);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// 使用 POST 方法</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="HTTP-Methods"><a href="#HTTP-Methods" class="headerlink" title="HTTP Methods"></a>HTTP Methods</h2><p>運作方式為 Server -&gt; JSON -&gt; Client -&gt; AJAX -&gt; Server</p>
 <h3 id="1-GET-讀取-readoncy"><a href="#1-GET-讀取-readoncy" class="headerlink" title="1. GET 讀取 readoncy"></a>1. GET 讀取 readoncy</h3><p>只有 GET 才應使用 Query String (重要)<br>如果 fd 結尾 -&gt; 讀取單一物<br>如果沒有 fd 結尾 -&gt; 讀取該物的 collection</p>
@@ -413,20 +413,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/tsuifei.github.io/archives/">
         
-          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-count">90</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/tsuifei.github.io/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tsuifei.github.io/tags/">
           
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
