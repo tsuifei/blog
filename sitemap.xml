@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/JS_front_test01/</loc>
+    
+    <lastmod>2020-11-07T20:18:53.545Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/RWD_Images-adaptatives/</loc>
     
     <lastmod>2020-11-07T20:13:11.307Z</lastmod>
@@ -313,13 +320,6 @@
     <loc>tsuifei.github.io/JS_ES6-%E7%AE%AD%E9%A0%AD%E5%87%BD%E5%BC%8F-Arrow-function/</loc>
     
     <lastmod>2020-02-25T21:31:31.706Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_front_test01/</loc>
-    
-    <lastmod>2020-02-25T21:31:17.057Z</lastmod>
     
   </url>
   
