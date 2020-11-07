@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="RWD (responsive web design）中文為「響應式設計」簡單來說就是網頁會依照我們使用的載具(電腦、平版、手機)的螢幕大小與螢幕的像素密度不同，而顯示指定的圖片圖像。而針對 RWD 中的網頁圖像的處理，我們稱為是響應式圖片(responsive image)，使用 JS 或是 CSS 都可以操控要顯示的圖像，但使用具有語義性的 HTML 方法與屬性，可以讓瀏覽器原生就支援這個功能">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-11-07T20:10:22.718Z">
+<meta property="og:updated_time" content="2020-11-07T20:13:11.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RWD 圖片選擇的 Html 屬性">
 <meta name="twitter:description" content="RWD (responsive web design）中文為「響應式設計」簡單來說就是網頁會依照我們使用的載具(電腦、平版、手機)的螢幕大小與螢幕的像素密度不同，而顯示指定的圖片圖像。而針對 RWD 中的網頁圖像的處理，我們稱為是響應式圖片(responsive image)，使用 JS 或是 CSS 都可以操控要顯示的圖像，但使用具有語義性的 HTML 方法與屬性，可以讓瀏覽器原生就支援這個功能">
@@ -200,7 +200,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-11-08 04:10:22" itemprop="dateModified" datetime="2020-11-08T04:10:22+08:00">2020-11-08</time>
+                <time title="Modified: 2020-11-08 04:13:11" itemprop="dateModified" datetime="2020-11-08T04:13:11+08:00">2020-11-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,6 +226,8 @@
         <p>RWD (responsive web design）中文為「響應式設計」簡單來說就是網頁會依照我們使用的載具(電腦、平版、手機)的螢幕大小與螢幕的像素密度不同，而顯示指定的圖片圖像。<br>而針對 RWD 中的網頁圖像的處理，我們稱為是響應式圖片(responsive image)，使用 JS 或是 CSS 都可以操控要顯示的圖像，但使用具有語義性的 HTML 方法與屬性，可以讓瀏覽器原生就支援這個功能。</p>
 <p>如果只是把一張圖片以<code>&lt;img&gt;</code>包起來，如<code>&lt;img src=&quot;paris.png&quot;&gt;</code>，那麼在手機或是在桌上型電腦上瀏覽時都會出現「同一張」<code>paris.png</code>的圖片。使用同意張圖片，卻要給不同的載據顯示，可能造成的問題會是在大螢幕瀏覽這張圖時解析度可能不夠、在手機上瀏覽這張圖時，會因為過大而顯示很慢。這時依照載具的條件不同，來載入相對應的圖像就變得很重要。</p>
 <p>HTML 提供了多個方法與屬性，讓我們可以在「響應式設計」上更彈性，以下是幾個常用的屬性。</p>
+<a id="more"></a>
+
 <h3 id="srcset-螢幕的像素密度選擇"><a href="#srcset-螢幕的像素密度選擇" class="headerlink" title="srcset 螢幕的像素密度選擇"></a><code>srcset</code> 螢幕的像素密度選擇</h3><p>一般的桌上型顯示器是單倍像素密度，而手機的螢幕往往是多倍像素密度，就是多個像素合成為一個像素，也稱為 Retina 。有時圖像在桌上型顯示器看很清晰，但從手機上看會有點模糊，因為大部分的手機螢幕像素的像素密度有可能是 1.5 或是 2 倍，所以在手機上圖像像素被擴充放大了。</p>
 <p>這時如果我們希望依不同的載具來顯示不同大小的圖片與像素密度，<code>&lt;img&gt;</code>的屬性<code>srcset</code> 就可派上用場。<code>srcset</code>屬性用來指定多張圖像，來適應不同像素密度的螢幕，語法為<code>&lt;img srcset=&quot;[圖像][像素密度描述符]&quot;&gt;</code>，不同的尺寸以逗點隔開。圖像後面的像素密度描述符，格式是像素密度倍數 + 字母 <code>x</code>。1x 表示單倍像素密度，可以省略。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">srcset</span>=<span class="string">"paris-320w.png,</span></span></span><br><span class="line"><span class="tag"><span class="string">             paris-480w.png 1.5x,</span></span></span><br><span class="line"><span class="tag"><span class="string">             paris-640w.png 2x"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">src</span>=<span class="string">"paris-640w.png"</span> &gt;</span></span><br></pre></td></tr></table></figure>
