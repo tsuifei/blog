@@ -169,6 +169,101 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/RWD_Images-adaptatives/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/tsuifei.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/tsuifei.github.io/RWD_Images-adaptatives/" class="post-title-link" itemprop="url">RWD 圖片選擇的 Html 屬性</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-11-07 00:42:24" itemprop="dateCreated datePublished" datetime="2020-11-07T00:42:24+08:00">2020-11-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-11-08 04:10:22" itemprop="dateModified" datetime="2020-11-08T04:10:22+08:00">2020-11-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tsuifei.github.io/categories/RWD/" itemprop="url" rel="index"><span itemprop="name">RWD</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>RWD (responsive web design）中文為「響應式設計」簡單來說就是網頁會依照我們使用的載具(電腦、平版、手機)的螢幕大小與螢幕的像素密度不同，而顯示指定的圖片圖像。<br>而針對 RWD 中的網頁圖像的處理，我們稱為是響應式圖片(responsive image)，使用 JS 或是 CSS 都可以操控要顯示的圖像，但使用具有語義性的 HTML 方法與屬性，可以讓瀏覽器原生就支援這個功能。</p>
+<p>如果只是把一張圖片以<code>&lt;img&gt;</code>包起來，如<code>&lt;img src=&quot;paris.png&quot;&gt;</code>，那麼在手機或是在桌上型電腦上瀏覽時都會出現「同一張」<code>paris.png</code>的圖片。使用同意張圖片，卻要給不同的載據顯示，可能造成的問題會是在大螢幕瀏覽這張圖時解析度可能不夠、在手機上瀏覽這張圖時，會因為過大而顯示很慢。這時依照載具的條件不同，來載入相對應的圖像就變得很重要。</p>
+<p>HTML 提供了多個方法與屬性，讓我們可以在「響應式設計」上更彈性，以下是幾個常用的屬性。</p>
+<h3 id="srcset-螢幕的像素密度選擇"><a href="#srcset-螢幕的像素密度選擇" class="headerlink" title="srcset 螢幕的像素密度選擇"></a><code>srcset</code> 螢幕的像素密度選擇</h3><p>一般的桌上型顯示器是單倍像素密度，而手機的螢幕往往是多倍像素密度，就是多個像素合成為一個像素，也稱為 Retina 。有時圖像在桌上型顯示器看很清晰，但從手機上看會有點模糊，因為大部分的手機螢幕像素的像素密度有可能是 1.5 或是 2 倍，所以在手機上圖像像素被擴充放大了。</p>
+<p>這時如果我們希望依不同的載具來顯示不同大小的圖片與像素密度，<code>&lt;img&gt;</code>的屬性<code>srcset</code> 就可派上用場。<code>srcset</code>屬性用來指定多張圖像，來適應不同像素密度的螢幕，語法為<code>&lt;img srcset=&quot;[圖像][像素密度描述符]&quot;&gt;</code>，不同的尺寸以逗點隔開。圖像後面的像素密度描述符，格式是像素密度倍數 + 字母 <code>x</code>。1x 表示單倍像素密度，可以省略。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">srcset</span>=<span class="string">"paris-320w.png,</span></span></span><br><span class="line"><span class="tag"><span class="string">             paris-480w.png 1.5x,</span></span></span><br><span class="line"><span class="tag"><span class="string">             paris-640w.png 2x"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">src</span>=<span class="string">"paris-640w.png"</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>瀏覽器會依照當前螢幕設備的像素密度，去選擇載入的圖像，如果<code>srcset</code>屬性都沒有符合的條件，那麼就會去載入<code>src</code>的圖像。</p>
+<h3 id="srcset-sizes-屬性-圖像大小的選擇"><a href="#srcset-sizes-屬性-圖像大小的選擇" class="headerlink" title="srcset + sizes 屬性 = 圖像大小的選擇"></a><code>srcset</code> + <code>sizes</code> 屬性 = 圖像大小的選擇</h3><p>想要依照螢幕的「像素密度」和「螢幕大小」顯示載入的圖像，就必須加上<code>sizes</code> 屬性，使用時必須在不同的圖像後加上「寬度描述符」。<br>「寬度描述符」其實就是圖像原始的寬度，再加上代表寬度的<code>w</code>。所以在<code>paris-320.png 320w</code>裡的<code>320w</code>表示這張圖像的原始寬度為 320。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">srcset</span>=<span class="string">"paris-320.png 320w,</span></span></span><br><span class="line"><span class="tag"><span class="string">             paris-480.png 480w,</span></span></span><br><span class="line"><span class="tag"><span class="string">             paris-640.png 640w,</span></span></span><br><span class="line"><span class="tag"><span class="string">             paris-1280.png 1280w"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">sizes</span>=<span class="string">"(max-width: 440px) 100vw,</span></span></span><br><span class="line"><span class="tag"><span class="string">             (max-width: 800px) 33vw,</span></span></span><br><span class="line"><span class="tag"><span class="string">             320px"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">src</span>=<span class="string">"paris-1280w.png"</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>sizes</code>屬性會列出不同載據的圖像顯示寬度，語法：<code>sizes=&quot;([媒體查詢表達式]) [圖像的顯示寬度]</code>。<br><code>(max-width: 440px) 100vw</code>＝ 如果載具的螢幕最大寬度是(不超過) 440px，圖像顯示寬度就為 100％。<br><code>(max-width: 800px) 33vw</code>＝ 載具螢幕寬度 441~800px，圖像顯示寬度就為 33％。<br>最後一個<code>320px</code>即是載具螢幕寬度為 800px 以上，圖像顯示寬度就為 320px。</p>
+<h3 id="小測試"><a href="#小測試" class="headerlink" title="小測試"></a>小測試</h3><p>問題 <strong>- What is the meaning of the “800px” value below?</strong><br>“800px” 在下列程式碼中代表什麼？</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span></span></span><br><span class="line"><span class="tag">  <span class="attr">srcset</span>=<span class="string">"</span></span></span><br><span class="line"><span class="tag"><span class="string">    https://i.imgur.com/wdpNu4W.jpeg 480w,</span></span></span><br><span class="line"><span class="tag"><span class="string">    https://i.imgur.com/mY3Cz2I.jpg  800w</span></span></span><br><span class="line"><span class="tag"><span class="string">  "</span></span></span><br><span class="line"><span class="tag">  <span class="attr">sizes</span>=<span class="string">"(max-width:600px) 480px, 800px"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">"https://i.imgur.com/JiVQRCg.jpg"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">alt</span>=<span class="string">""</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>答案：如果螢幕大小最大是 600px 就把圖片寬度以 480px 顯示，600px 以上就顯示 800px。答對了嗎？</p>
+<p>後記：每一個語言和技術都會有新的語法和擴充功能，雖然 HTML 和 CSS 用了這麼多年，但每次碰到這些問題，都還是覺得自己所學不足，所以特地記錄一下。</p>
+<p>參考：</p>
+<ul>
+<li><a href="https://developer.mozilla.org/fr/docs/Apprendre/HTML/Comment/Ajouter_des_images_adaptatives_%C3%A0_une_page_web" target="_blank" rel="noopener">Images adaptatives - Apprendre le développement web | MDN</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2019/06/responsive-images.html" target="_blank" rel="noopener">響應式圖像教程 - 阮一峰的網絡日誌</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="tsuifei.github.io/Html_figure/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -906,89 +1001,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/tsuifei.github.io/debug_note_01/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/Vue_14_Cli3_environment_deployment/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/tsuifei.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Tsuifei Pommier">
-      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cré-Coder">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/tsuifei.github.io/Vue_14_Cli3_environment_deployment/" class="post-title-link" itemprop="url">VueJs Vue Cli 3 environment deployment 開發部署</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-04-20 00:42:24" itemprop="dateCreated datePublished" datetime="2020-04-20T00:42:24+08:00">2020-04-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-20 02:34:28" itemprop="dateModified" datetime="2020-10-20T02:34:28+08:00">2020-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tsuifei.github.io/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>大部分的許多專案的開發，都是偏向 Cli 環境部署的方式開發，也就是常聽到的「腳手架」的方式，但為什麼是「腳手架」？還是這也代表「起手式」？也就是專案在開發，應該就把要開發與運行的環境架設好，到時要打包輸出相容個瀏覽器的語法就會變得簡單多了。</p>
-<p>雖然剛開始設定有點繁複，但只要習慣了、工具都齊了，這樣開發起來在測試也會順手許多，所以開發基本功還是要學起來。</p>
-<p>實際上以 Cli 的方式部署，也有許多優點，因為他不只會幫你部署，還把整個專案需要用的檔案與資料夾都自動生成，讓你一安裝完就可以寫「Hello World」，當然這些自動生成的檔案我們也需要去了解其作用與規則，不然檔案放錯位置也是會產生錯誤的。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/tsuifei.github.io/Vue_14_Cli3_environment_deployment/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
