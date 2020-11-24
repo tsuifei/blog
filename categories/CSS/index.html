@@ -24,7 +24,7 @@
 <meta name="keywords" content="tsuifei, Pommier, Front-End, developpeurse, JavaScript, Vuejs, HTML, CSS, linux, sass, coding">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cré-Coder">
-<meta property="og:url" content="tsuifei.github.io/page/10/index.html">
+<meta property="og:url" content="tsuifei.github.io/categories/CSS/index.html">
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="Un blog pour partager, expérimenter et s&apos;améliorer en programmation.">
 <meta property="og:locale" content="zh-tw">
@@ -32,19 +32,19 @@
 <meta name="twitter:title" content="Cré-Coder">
 <meta name="twitter:description" content="Un blog pour partager, expérimenter et s&apos;améliorer en programmation.">
 
-<link rel="canonical" href="tsuifei.github.io/page/10/">
+<link rel="canonical" href="tsuifei.github.io/categories/CSS/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
+    isHome: false,
     isPost: false
   };
 </script>
 
-  <title>Cré-Coder</title>
+  <title>Category: CSS | Cré-Coder</title>
   
 
 
@@ -164,182 +164,49 @@
           <div class="content">
             
 
-  <div class="posts-expand">
-        
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/JS_ES6-箭頭函式-Arrow-function/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/tsuifei.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Tsuifei Pommier">
-      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cré-Coder">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/tsuifei.github.io/JS_ES6-箭頭函式-Arrow-function/" class="post-title-link" itemprop="url">JavaScript ES6 箭頭函式 Arrow function</a>
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <h1 class="collection-header">CSS
+          <small>Category</small>
         </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-07-02 09:17:36" itemprop="dateCreated datePublished" datetime="2019-07-02T09:17:36+08:00">2019-07-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-26 05:31:31" itemprop="dateModified" datetime="2020-02-26T05:31:31+08:00">2020-02-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tsuifei.github.io/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tsuifei.github.io/categories/JavaScript/ES6/" itemprop="url" rel="index"><span itemprop="name">ES6</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+      </div>
 
       
-          <p>箭頭函式是 ES6 的新語法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原本的寫法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">double</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或是</span></span><br><span class="line"><span class="keyword">var</span> double = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 語法</span></span><br><span class="line"><span class="keyword">const</span> double = <span class="function"><span class="params">x</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> x * <span class="number">2</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/tsuifei.github.io/JS_ES6-箭頭函式-Arrow-function/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+    <div class="collection-year">
+      <h1 class="collection-header">2020</h1>
     </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2020-11-25T00:42:42+08:00"
+              content="2020-11-25">
+          11-25
+        </time>
+      </div>
+
+      <h2 class="post-title">
+          <a class="post-title-link" href="/tsuifei.github.io/CSS_Tips/" itemprop="url">
+            <span itemprop="name">CSS 的 小技巧</span>
+          </a>
+      </h2>
+
+    </header>
   </article>
-  
-  
-  
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/VS-Code_秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/tsuifei.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Tsuifei Pommier">
-      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cré-Coder">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/tsuifei.github.io/VS-Code_秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/" class="post-title-link" itemprop="url">VSCode 秘技 Rename Refactoring 重新命名＋Formatting重新整理程式碼</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-07-02 06:36:17" itemprop="dateCreated datePublished" datetime="2019-07-02T06:36:17+08:00">2019-07-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-26 05:26:37" itemprop="dateModified" datetime="2020-02-26T05:26:37+08:00">2020-02-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tsuifei.github.io/categories/VSCode/" itemprop="url" rel="index"><span itemprop="name">VSCode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在 VS Code 隱藏了一些相當好用的功能，在每次重啟 VS Code 時，就會有一些基本的講解，沒仔細看還真的很容易忽略。<br>這個功能主要在幫助增快原始的重構，可從以下位置找到這個說明功能。</p>
-<ul>
-<li>help -&gt; Interactive Playground -&gt;
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/tsuifei.github.io/VS-Code_秘技-Rename-Refactoring-重新命名＋Formatting重新整理程式碼/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
+  
+  
+  
 
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/tsuifei.github.io/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/tsuifei.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/tsuifei.github.io/page/9/">9</a><span class="page-number current">10</span>
-  </nav>
 
 
 
