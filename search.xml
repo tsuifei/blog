@@ -8,7 +8,7 @@
       <link href="/tsuifei.github.io/CSS_Tips/"/>
       <url>/tsuifei.github.io/CSS_Tips/</url>
       
-        <content type="html"><![CDATA[<p>有時候在設計網站的時候，如果多一些輕量小技巧，就可以增加網站的質感，此篇記錄有可能會用到的一些 CSS 小技巧，來幫忙點綴網頁。</p><h2 id="網頁上文字選取時的反白顏色"><a href="#網頁上文字選取時的反白顏色" class="headerlink" title="網頁上文字選取時的反白顏色"></a>網頁上文字選取時的反白顏色</h2><p>一般網頁上的文字在選取時預設是淺藍色的底與白色的字，我們可已透過 CSS 的選擇器來設定和網站風格相搭配的顏色。</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">::selection</span> &#123;</span><br><span class="line"><span class="attribute">background</span>: <span class="number">#76b852</span>;</span><br><span class="line"><span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-pseudo">::-moz-selection</span> &#123;</span><br><span class="line"><span class="attribute">background</span>: <span class="number">#76b852</span>;</span><br><span class="line"><span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">img</span><span class="selector-pseudo">::selection</span> &#123;</span><br><span class="line"><span class="attribute">background</span>: transparent;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">img</span><span class="selector-pseudo">::-moz-selection</span> &#123;</span><br><span class="line"><span class="attribute">background</span>: transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>以此記錄，將來會陸續增加…。</p>]]></content>
+        <content type="html"><![CDATA[<p>有時候在設計網站的時候，如果多一些輕量小技巧，就可以增加網站的質感，此篇記錄有可能會用到的一些 CSS 小技巧，來幫忙點綴網頁。</p><h2 id="網頁上文字選取時的反白顏色"><a href="#網頁上文字選取時的反白顏色" class="headerlink" title="網頁上文字選取時的反白顏色"></a>網頁上文字選取時的反白顏色</h2><p>一般網頁上的文字在選取時預設是淺藍色的底與白色的字，我們可已透過 CSS 的選擇器來設定和網站風格相搭配的顏色。如果要針對某個樣式來設定，也是可以的。</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">::selection</span> &#123;</span><br><span class="line"><span class="attribute">background</span>: <span class="number">#76b852</span>;</span><br><span class="line"><span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-pseudo">::-moz-selection</span> &#123;</span><br><span class="line"><span class="attribute">background</span>: <span class="number">#76b852</span>;</span><br><span class="line"><span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">img</span><span class="selector-pseudo">::selection</span> &#123;</span><br><span class="line"><span class="attribute">background</span>: transparent;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">img</span><span class="selector-pseudo">::-moz-selection</span> &#123;</span><br><span class="line"><span class="attribute">background</span>: transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>以此記錄，將來會陸續增加…。</p>]]></content>
       
       
       <categories>
@@ -423,9 +423,9 @@
       
         <tags>
             
-            <tag> API </tag>
-            
             <tag> Ajax </tag>
+            
+            <tag> API </tag>
             
         </tags>
       
@@ -1042,9 +1042,9 @@
       
         <tags>
             
-            <tag> HTML </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> HTML </tag>
             
             <tag> CSS </tag>
             
