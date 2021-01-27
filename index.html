@@ -135,7 +135,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/tsuifei.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">95</span></a>
+    <a href="/tsuifei.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">97</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -165,6 +165,183 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/JS_This_how_it_works/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/tsuifei.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/tsuifei.github.io/JS_This_how_it_works/" class="post-title-link" itemprop="url">This 是如何運作的</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-01-24 12:42:24" itemprop="dateCreated datePublished" datetime="2021-01-24T12:42:24+08:00">2021-01-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-27 22:17:21" itemprop="dateModified" datetime="2021-01-27T22:17:21+08:00">2021-01-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tsuifei.github.io/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="傳統函式的-this-指向"><a href="#傳統函式的-this-指向" class="headerlink" title="傳統函式的 this 指向"></a>傳統函式的 this 指向</h2><h3 id="一個函式包含多少參數"><a href="#一個函式包含多少參數" class="headerlink" title="一個函式包含多少參數"></a>一個函式包含多少參數</h3><p>先瞭解一下，函式本身</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'全域宇宙'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">params</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(params, <span class="keyword">this</span>, <span class="built_in">window</span>, <span class="built_in">arguments</span>);</span><br><span class="line">  <span class="keyword">debugger</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用<code>debugger</code>會在執行中停止，這時在 DevTool 裡可看到<code>Scope</code>，<code>Scope</code>表示函式的作用域。<br>這些是在運行函式時，本身就會存取的參數內容：</li>
+<li><code>arguments</code>會把此函式的「參數」以陣列裝成一個「類陣列」。</li>
+<li><code>window</code> 瀏覽器本身，屬全域變數(Global)。</li>
+<li><code>this</code>指向全域變數。</li>
+</ul>
+<h3 id="This-指向誰？"><a href="#This-指向誰？" class="headerlink" title="This 指向誰？"></a>This 指向誰？</h3><p><code>this</code>在上述的函式裡是指向 window，但是在使用時，它可能會有許多不同的指向。指向會影響到框架的使用，例如希望<code>this</code>指向某個元件（物件），但卻指向 window，就會發生不預期的錯誤。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  name: <span class="string">'Tracy'</span>,</span><br><span class="line">  fn: <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">params</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(params, <span class="keyword">this</span>, <span class="built_in">window</span>, <span class="built_in">arguments</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">obj.fn(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>params</code>, <code>window</code>, <code>arguments</code> 的結果和上述結果是一樣的，但是<code>this</code>卻不同，<code>this</code>指向了哪裡？</p>
+<h3 id="複雜的-This-指向"><a href="#複雜的-This-指向" class="headerlink" title="複雜的 This 指向"></a>複雜的 This 指向</h3><p>傳統函式寫法的<code>this</code>只與<strong>調用方式</strong>有關，以下使用<code>var</code>來定義變數(全域)，如果使用<code>let</code>或<code>const</code>則有不同的結果。</p>
+<ol>
+<li>Simple call</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> someone = <span class="string">'全域宇宙'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callSomeone</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.someone);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Simple call</span></span><br><span class="line">callSomeone(); <span class="comment">// 全域全域宇宙 &lt;-- 指向全域</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="this-運用的變化"><a href="#this-運用的變化" class="headerlink" title="this 運用的變化"></a>this 運用的變化</h3><p>兩個同樣的函式<code>callSomeone()</code>，一個放在全域，一個用物件包起來，來測試指向。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> someone = <span class="string">'全域宇宙'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callSomeone</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.someone);</span><br><span class="line">&#125;</span><br><span class="line">callSomeone(); <span class="comment">// 1. 全域宇宙'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.在物件裡的 this 指向</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  someone: <span class="string">'在物件裡'</span>,</span><br><span class="line">  callSomeone() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.someone);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">obj.callSomeone(); <span class="comment">// 2. 在物件裡</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 觀察指向</span></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">  someone: <span class="string">'在第二個物件裡'</span>,</span><br><span class="line">  callSomeone,</span><br><span class="line">&#125;;</span><br><span class="line">obj2.callSomeone(); <span class="comment">// 3. 在第二個物件裡</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 試試它們的 this 指向誰？</span></span><br><span class="line"><span class="keyword">var</span> wrapObj = &#123;</span><br><span class="line">  someone: <span class="string">'外層的物件'</span>,</span><br><span class="line">  callSomeone,</span><br><span class="line">  innerObj: &#123;</span><br><span class="line">    someone: <span class="string">'內層的物件'</span>,</span><br><span class="line">    callSomeone,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">wrapObj.callSomeone(); <span class="comment">// 4. 外層的物件</span></span><br><span class="line">wrapObj.innerObj.callSomeone(); <span class="comment">// 4. 內層的物件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. 用不同的方式呼叫，取 This</span></span><br><span class="line"><span class="keyword">var</span> obj3 = &#123;</span><br><span class="line">  someone: <span class="string">'物件3'</span>,</span><br><span class="line">  fn() &#123;</span><br><span class="line">    callSomeone(); <span class="comment">// 全域宇宙  通常不太會這樣取this</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">obj3.fn();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 6. 頗常見的調用 this 的方法</span></span><br><span class="line"><span class="keyword">var</span> obj4 = &#123;</span><br><span class="line">  someone: <span class="string">'物件4'</span>,</span><br><span class="line">  fn() &#123;</span><br><span class="line">    <span class="comment">// callback function</span></span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.someone);</span><br><span class="line">    &#125;, timeout);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">obj4.fn(); <span class="comment">// 全域宇宙</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>如果函式本身在全域環境裡，呼叫時自然是指向全域</li>
+<li>如果在呼叫這個函式時，是呼叫物件裡的函式，那麼<code>this</code>就會指向包裹它的物件<code>obj</code>.</li>
+<li>如果在物件裡呼全域外的函式，裡面的變數也會先指向物件<code>obj2</code>本身。</li>
+<li>如果物件有多層，那麼在呼叫的時候還是會指向上「ㄧ」層。</li>
+<li>如果是在物件裡的函式，並且直接呼叫(使用 Simple call)的方式呼叫，這時<code>this</code>仍會指回向全域的物件變數(window)，而不會指向本身的物件。<br>通常不會使用 Simple call 的方式去調用<code>this</code>，因為<code>this</code>指向會不是我們想要的結果。而會使用在物件下的方式調用<code>this</code>。</li>
+<li><code>callback function</code> 大部分是屬於<code>Simple call</code>的形式，它的<code>this</code>大多指向全域，只有少部分的<code>callback function</code>會重新定義，<code>this</code>指向也會不同。</li>
+</ol>
+<p>待續</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/logic-training04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/tsuifei.github.io/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/tsuifei.github.io/logic-training04/" class="post-title-link" itemprop="url">邏輯思維訓練 歸納推理</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-01-10 00:42:24 / Modified: 06:11:17" itemprop="dateCreated datePublished" datetime="2021-01-10T00:42:24+08:00">2021-01-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tsuifei.github.io/categories/學習二三事/" itemprop="url" rel="index"><span itemprop="name">學習二三事</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>這是在網路上無意發現的邏輯思維訓練課程，看時所做的筆記。</p>
+</blockquote>
+<h2 id="歸納推理"><a href="#歸納推理" class="headerlink" title="歸納推理"></a>歸納推理</h2><h5 id="舉例ㄧ："><a href="#舉例ㄧ：" class="headerlink" title="舉例ㄧ："></a>舉例ㄧ：</h5><h5 id="最後結論："><a href="#最後結論：" class="headerlink" title="最後結論："></a>最後結論：</h5><p>透過 <code>document.write(“…”);</code> 可以控制頁面的內容。</p>
+<p>這就是以類比的方式去舉一反三的得知，相同性質會有特性的方法。</p>
+<p>而類比是最能夠讓人理解較複雜的解說工具，尤其在解說特別抽象的概念時，類比通常會使用日常的事物來比喻，也因為是日常的事物比喻，所以更能容易理解其概念。</p>
+<h3 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -914,193 +1091,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/JS_Basic_function_method/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/tsuifei.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Tsuifei Pommier">
-      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cré-Coder">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/tsuifei.github.io/JS_Basic_function_method/" class="post-title-link" itemprop="url">JS 函式的方法與 This</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-10-18 14:08:16" itemprop="dateCreated datePublished" datetime="2020-10-18T14:08:16+08:00">2020-10-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-20 02:47:14" itemprop="dateModified" datetime="2020-10-20T02:47:14+08:00">2020-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tsuifei.github.io/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>函式也是一個物件，所以也會有它的方法，需要以物件的方式調用，</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'我是fun函式'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun.call(); <span class="comment">// 我是fun函式</span></span><br><span class="line">fun.apply(); <span class="comment">// 我是fun函式</span></span><br></pre></td></tr></table></figure>
-
-<p>剛開始接觸程式時，常常把<code>fun</code>和<code>fun()</code>搞混，其實這兩者是不同的，<code>fun</code>指的是這個函式本身，函式在 Javascript 裡是物件型別，所以<code>fun</code>也是一個物件。<code>fun()</code>指的是呼叫這個函式。</p>
-<p>使用函式的方法<code>call()</code>和<code>apply()</code>都必須以物件的方式調用，且會執行此函式。當我們使用<code>fun()</code>,<code>fun.call()</code>和<code>fun.apply()</code>時，都會執行<code>fun()</code>此函式，但有什麼不同？<br>使用函式的<code>call()</code>和<code>apply()</code>方法可修改 this，因為可以將一個物件，指定為這兩個方法的第一個參數，如果沒使用這兩個方法，單純執行函式，函式的 this 是 window。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">fun(); <span class="comment">// Window</span></span><br><span class="line">fun.call(obj); <span class="comment">// &#123;&#125;</span></span><br><span class="line">fun.apply(obj); <span class="comment">// &#123;&#125;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'a = '</span> + a);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'b = '</span> + b);</span><br><span class="line">  <span class="comment">//alert(this);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  name: <span class="string">'obj'</span>,</span><br><span class="line">  sayName: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h3 id="call-和-apply"><a href="#call-和-apply" class="headerlink" title="call()和 apply()"></a>call()和 apply()</h3><ul>
-<li>這兩個方法都是函式物件的方法，需要通過函式物件來調用</li>
-<li>當對函式調用 call()和 apply()都會調用函式執行</li>
-<li>在調用 call()和 apply()可以將一個物件指定為第一個參數<br><strong>此時這個物件將會成為函式執行時的 this</strong></li>
-<li>call()方法可以將實參在物件之後依次傳遞</li>
-<li>apply()方法需要將實參封裝到一個陣列中統一傳遞</li>
-</ul>
-<h3 id="this-的情況："><a href="#this-的情況：" class="headerlink" title="this 的情況："></a>this 的情況：</h3><ul>
-<li>以函式形式呼叫時，this 永遠都是 window</li>
-<li>以方法的形式調用時，this 是調用方法的物件</li>
-<li>以構造函式的形式調用時，this 是新創建的那個物件</li>
-<li>使用 call 和 apply 調用時，this 是指定的那個物件</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//fun.call(obj,2,3);</span></span><br><span class="line">fun.apply(obj, [<span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">  name: <span class="string">'obj2'</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*fun.apply();</span></span><br><span class="line"><span class="comment">	fun.call();</span></span><br><span class="line"><span class="comment">	fun();*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//fun.call(obj);</span></span><br><span class="line"><span class="comment">//fun.apply(obj);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//fun();</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//obj.sayName.apply(obj2);</span></span><br></pre></td></tr></table></figure>
-
-<p>這題的重點是 <code>add()</code>出現兩次！雖然程式是一行行跑的，但是因為 JS 的 hoisting 特色，所以所有的函式都會優先被提升，而在提升的規則裡，如果有重複的變數或函式，後面的會覆蓋前面的，所以第一個<code>add()</code>基本上是無效的。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>,</span><br><span class="line"><span class="keyword">var</span> y = (z = <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (n = n + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">y = add(x); <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (n = n + <span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">z = add(x); <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
-
-<p><code>arguments</code>所依據的是實參而不是形參。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">  <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// B</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">  <span class="keyword">return</span> x;</span><br><span class="line">&#125;)(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">foo(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/Add_unique_generated_Identifier_on_array_of_json_objec/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/tsuifei.github.io/images/avatar.gif">
-      <meta itemprop="name" content="Tsuifei Pommier">
-      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cré-Coder">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/tsuifei.github.io/Add_unique_generated_Identifier_on_array_of_json_objec/" class="post-title-link" itemprop="url">在 JSON 物件陣列上增加一對鍵與唯一值</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-10-16 00:42:24" itemprop="dateCreated datePublished" datetime="2020-10-16T00:42:24+08:00">2020-10-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-18 04:27:34" itemprop="dateModified" datetime="2020-10-18T04:27:34+08:00">2020-10-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tsuifei.github.io/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近在學習的時候，常常遇到問題卻不知怎麼問人的窘狀，也發現自己常常把問題「複雜化」，而這個後果就是會讓自己如鬼打牆般轉不出來。程式設計最吸引我的一部份就是程式的結果或許一樣，但這中間的運作卻是多樣的，每次在看到其他人解出題來時，總會對於解題的方式感到讚嘆，自己不知要練多久才有那個程度。而也在透過「試著讀懂」其他人的程式碼的過程中又學習到許多。</p>
-<p>在使用 Vue.js 的<code>v-for</code>時，需要使用<code>v-bind:key=&#39;uniqueValue&#39;</code>去綁定一個唯一值，這樣可以讓 Vue 知道哪一個元素有變動而單一渲染，但是有時拿到的資料並沒有「唯一」值，如果使用陣列的索引值(index)當 key 的唯一值，會有因陣列的變動而索引值被改動的問題。如果後端給的資料沒有在每一筆資料裡給各唯一值，那麼只好自己生成，但是怎麼在 JSON 格式裡為每一個陣列裡的物間自動加上一對「鍵與唯一值」例如:</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/tsuifei.github.io/Add_unique_generated_Identifier_on_array_of_json_objec/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1171,7 +1161,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/tsuifei.github.io/archives/">
         
-          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
