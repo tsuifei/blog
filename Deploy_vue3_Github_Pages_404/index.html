@@ -20,26 +20,20 @@
     var CONFIG = {"hostname":"tsuifei.github.io","root":"/tsuifei.github.io/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="網站載入的速度不只會影響使用者體驗，也會影響 SEO，因為網頁載入的速度也是 Google 搜尋排序的一個指標，進而影響排名，也因為載入速度同時影響網站的排名和使用者體驗，所以更不該忽視。 但怎麼知道我們的網站效能？這個有一個小小燈塔圖形的 Chrome 外掛工具，就是一個超好用的網站速度優化工具：SEO Lighthouse 它可以幫上我們！ Lighthouse 是什麼？有什麼用途？燈塔工具(">
-<meta name="keywords" content="Chrome,Extension">
+  <meta name="description" content="最近重新以 Vue3 來建構自己的網站，雖然內容很簡單，也只有幾個頁面而已，但算是第一次以 VueJs 開發，並且部屬到 Github pages 上，才知道原來使用框架之後的部屬和以往傳統的部署，有很大的不同。 原因是 VueJs 透過 Router 的設定，和 webpack 的編譯打包，有許多的細節設定要做，加上部屬到 Github pages 上，最上層的資料夾並不是路徑源頭，所以有時候出">
+<meta name="keywords" content="Other,Github">
 <meta property="og:type" content="article">
-<meta property="og:title" content="網站速度優化分析工具：SEO Lighthouse">
-<meta property="og:url" content="tsuifei.github.io/DevTool_Chrome_Lighthouse/index.html">
+<meta property="og:title" content="在 Github Pages 上部屬 VueJs 遇上的 404">
+<meta property="og:url" content="tsuifei.github.io/Deploy_vue3_Github_Pages_404/index.html">
 <meta property="og:site_name" content="Cré-Coder">
-<meta property="og:description" content="網站載入的速度不只會影響使用者體驗，也會影響 SEO，因為網頁載入的速度也是 Google 搜尋排序的一個指標，進而影響排名，也因為載入速度同時影響網站的排名和使用者體驗，所以更不該忽視。 但怎麼知道我們的網站效能？這個有一個小小燈塔圖形的 Chrome 外掛工具，就是一個超好用的網站速度優化工具：SEO Lighthouse 它可以幫上我們！ Lighthouse 是什麼？有什麼用途？燈塔工具(">
+<meta property="og:description" content="最近重新以 Vue3 來建構自己的網站，雖然內容很簡單，也只有幾個頁面而已，但算是第一次以 VueJs 開發，並且部屬到 Github pages 上，才知道原來使用框架之後的部屬和以往傳統的部署，有很大的不同。 原因是 VueJs 透過 Router 的設定，和 webpack 的編譯打包，有許多的細節設定要做，加上部屬到 Github pages 上，最上層的資料夾並不是路徑源頭，所以有時候出">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:image" content="/images/lighthouse_01.png">
-<meta property="og:image" content="/images/lighthouse_02.png">
-<meta property="og:image" content="/images/lighthouse_Performance.png">
-<meta property="og:image" content="/images/lighthouse_Opportunities.png">
-<meta property="og:image" content="/images/lighthouse_Diagnostics.png">
-<meta property="og:updated_time" content="2020-10-30T16:00:37.167Z">
+<meta property="og:updated_time" content="2021-03-03T21:02:36.484Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="網站速度優化分析工具：SEO Lighthouse">
-<meta name="twitter:description" content="網站載入的速度不只會影響使用者體驗，也會影響 SEO，因為網頁載入的速度也是 Google 搜尋排序的一個指標，進而影響排名，也因為載入速度同時影響網站的排名和使用者體驗，所以更不該忽視。 但怎麼知道我們的網站效能？這個有一個小小燈塔圖形的 Chrome 外掛工具，就是一個超好用的網站速度優化工具：SEO Lighthouse 它可以幫上我們！ Lighthouse 是什麼？有什麼用途？燈塔工具(">
-<meta name="twitter:image" content="/images/lighthouse_01.png">
+<meta name="twitter:title" content="在 Github Pages 上部屬 VueJs 遇上的 404">
+<meta name="twitter:description" content="最近重新以 Vue3 來建構自己的網站，雖然內容很簡單，也只有幾個頁面而已，但算是第一次以 VueJs 開發，並且部屬到 Github pages 上，才知道原來使用框架之後的部屬和以往傳統的部署，有很大的不同。 原因是 VueJs 透過 Router 的設定，和 webpack 的編譯打包，有許多的細節設定要做，加上部屬到 Github pages 上，最上層的資料夾並不是路徑源頭，所以有時候出">
 
-<link rel="canonical" href="tsuifei.github.io/DevTool_Chrome_Lighthouse/">
+<link rel="canonical" href="tsuifei.github.io/Deploy_vue3_Github_Pages_404/">
 
 
 <script id="page-configurations">
@@ -51,7 +45,7 @@
   };
 </script>
 
-  <title>網站速度優化分析工具：SEO Lighthouse | Cré-Coder</title>
+  <title>在 Github Pages 上部屬 VueJs 遇上的 404 | Cré-Coder</title>
   
 
 
@@ -176,7 +170,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/DevTool_Chrome_Lighthouse/">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/Deploy_vue3_Github_Pages_404/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/tsuifei.github.io/images/avatar.gif">
@@ -189,7 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          網站速度優化分析工具：SEO Lighthouse
+          在 Github Pages 上部屬 VueJs 遇上的 404
         </h1>
 
         <div class="post-meta">
@@ -199,14 +193,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-10-29 00:42:24" itemprop="dateCreated datePublished" datetime="2020-10-29T00:42:24+08:00">2020-10-29</time>
+              <time title="Created: 2019-07-03 10:07:02" itemprop="dateCreated datePublished" datetime="2019-07-03T10:07:02+08:00">2019-07-03</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-31 00:00:37" itemprop="dateModified" datetime="2020-10-31T00:00:37+08:00">2020-10-31</time>
+                <time title="Modified: 2021-03-04 05:02:36" itemprop="dateModified" datetime="2021-03-04T05:02:36+08:00">2021-03-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -214,7 +208,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tsuifei.github.io/categories/DevTool/" itemprop="url" rel="index"><span itemprop="name">DevTool</span></a>
+                  <a href="/tsuifei.github.io/categories/Other/" itemprop="url" rel="index"><span itemprop="name">Other</span></a>
                 </span>
             </span>
 
@@ -229,23 +223,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>網站載入的速度不只會影響使用者體驗，也會影響 SEO，因為網頁載入的速度也是 Google 搜尋排序的一個指標，進而影響排名，也因為載入速度同時影響網站的排名和使用者體驗，所以更不該忽視。</p>
-<p>但怎麼知道我們的網站效能？這個有一個小小燈塔圖形的 Chrome 外掛工具，就是一個超好用的網站速度優化工具：SEO Lighthouse 它可以幫上我們！</p>
-<h2 id="Lighthouse-是什麼？有什麼用途？"><a href="#Lighthouse-是什麼？有什麼用途？" class="headerlink" title="Lighthouse 是什麼？有什麼用途？"></a>Lighthouse 是什麼？有什麼用途？</h2><p>燈塔工具(Lighthouse)是 Google Chrome 的擴充應用程式，是一個網路開發者(Web developer)的工具，主要功能是針對網頁的性能做詳細與全面的分析(包含網頁載入速度)，並產生分析報告，報告上會有詳細的分析結果與如何優化改善的建議，以及每個頁面的各種數據和指標的表現。</p>
-<a id="more"></a>
-
-<h2 id="要如何使用-Lighthouse？"><a href="#要如何使用-Lighthouse？" class="headerlink" title="要如何使用 Lighthouse？"></a>要如何使用 Lighthouse？</h2><p>開啟瀏覽器 Chrome 的「更多工具」裡的「擴充功能」直接輸入關鍵字<a href="https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=zh-TW" target="_blank" rel="noopener">Lighthouse</a>搜尋進行安裝。</p>
-<p>安裝完畢後在瀏覽器的又上方會有一個小燈塔的圖示，接著在我們想要測試的網頁上點擊這個小燈塔，並按下「Generate Report」小燈塔就會開始進行網頁分析，並於分析完後，直接跳出一個分析的報告視窗。</p>
-<h2 id="如何看懂分析報告？"><a href="#如何看懂分析報告？" class="headerlink" title="如何看懂分析報告？"></a>如何看懂分析報告？</h2><p>我們可以透過這份報告得知，網頁的哪一個部分最耗效能，並以五個綜合評分指標來說明網頁在不同層面的表現，接著再一一細部顯示各個指標的細部說明，並提供方向與建議來改善網頁。<br><img src="/images/lighthouse_01.png" alt="lighthouse 01"><br><img src="/images/lighthouse_02.png" alt="lighthouse 02"><br>如果不善英文，也可以使用 Google 翻譯，就能輕易理解 Lighthouse 的解說。</p>
-<p>下圖的效能部分，可以得知網站詳細各頁的載入速度，再一一去修正與優化。<br><img src="/images/lighthouse_Performance.png" alt="Performance"></p>
-<p>Opportunities 所列舉的是可以幫助更快地加載頁面的方法，例如刪除未使用的 CSS 或 JavaScript 可以節省多少時間等等。</p>
-<p><img src="/images/lighthouse_Opportunities.png" alt="Opportunities"></p>
-<p>而 Diagnostics 的區塊則是有關應用程序性能的更多訊息，例如如何確保網頁在 Webfont 載入期間保持可見度等等，按開每個訊息右邊的小三角形，可以找到一些解決的方式。<br><img src="/images/lighthouse_Diagnostics.png" alt="Diagnostics"></p>
-<h2 id="有優化就一定會效能提升"><a href="#有優化就一定會效能提升" class="headerlink" title="有優化就一定會效能提升"></a>有優化就一定會效能提升</h2><p>在查閱完 Lighthouse 給我們的訊息與可修正的方向後，就可以一一去對每個細部做修正與優化，但建議從排行越前面，也就是越影響效能的部分著手，這樣在優化後也能比較明顯的體驗到提升效能優化前和後的差異。</p>
-<p>Lighthouse 也很貼心的將這些分析功能，合併整合到 google 的網頁測速工具(Page Speed Insights)當中，只要透過<a href="http://www.ec-world.com/blog/google-pagespeed-insights-lighthouse" target="_blank" rel="noopener">Google PageSpeed Insights</a>工具就可以直接輸入網址，且以中文的界面顯示測試報告的結果分析，非常方便。（應該早點說的 XD）</p>
-<p>當然，也建議看看官方更詳盡的說明<a href="https://developers.google.com/web/tools/lighthouse/?hl=zh-tw" target="_blank" rel="noopener">使用 Lighthouse 審查網絡應用</a>，在這些工具給的建議一一修正優化之後，相信在 SEO 的排名上也會有不少的提升。</p>
-<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>網路工具越來越強大，平時常會忽略這些工具真的是件可惜的事，且還佛心的免費讓我們用，現能有一部份是圖片沒有優化所造成，不妨先研究圖片優化的方式，就會發現更多好用的優化圖片工具，能善用這些工具，真的是可以大大提升開發的品質啊！尤其網頁載入速度會影響 SEO，所以不得不正視網頁效能這部分啊！</p>
-<p>其他網站性能優化工具：<br><a href="https://webpagetest.org/" target="_blank" rel="noopener">WebPageTest - Website Performance and Optimization Test</a></p>
+        <p>最近重新以 Vue3 來建構自己的網站，雖然內容很簡單，也只有幾個頁面而已，但算是第一次以 VueJs 開發，並且部屬到 Github pages 上，才知道原來使用框架之後的部屬和以往傳統的部署，有很大的不同。</p>
+<p>原因是 VueJs 透過 Router 的設定，和 webpack 的編譯打包，有許多的細節設定要做，加上部屬到 Github pages 上，最上層的資料夾並不是路徑源頭，所以有時候出現問題，有些難找出原因。</p>
+<p>部屬完成後，網頁跑得還蠻順的，每個連結也都很聽話的顯示，唯有在連結網址按下 enter 鍵時，噹～噹～出現 404 ，也就是找不到這一頁，怎麼回事？</p>
+<h2 id="history-amp-hash"><a href="#history-amp-hash" class="headerlink" title="history &amp; hash"></a>history &amp; hash</h2><p>中午和好有 K 通了 zoom，她覺得是 Vue-Router 設定的問題，找了一下資料似乎是在 Vue-Router 裡的設定模式有關，Router 模式有兩種，一種是 HashRouter (hash mode)另一種是 BrowserRouter (history mode)，HashRouter 會在網址上加上<code>#</code>字號，大部分的網頁都會使用 BrowserRouter。以下是 K 提供的解釋：</p>
+<blockquote>
+<ul>
+<li>HashRouter: 頁面路徑最前面會有個「#」，換 url 時不會發送 request。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>BrowserRouter: 頁面路徑不會有井字，但換 url 時會發送 request。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>簡單來說，由於#是用來判斷是否要發送 request 的工具，反言之如果要使用 BrowserRouter，server 必須要有對應的 response(最簡單的方法就是要請後端幫你設定好除了 api 以外的 request 都回傳你的 index.html)</p>
+</blockquote>
+<h2 id="複製哪一個版本？"><a href="#複製哪一個版本？" class="headerlink" title="複製哪一個版本？"></a>複製哪一個版本？</h2><p>雖然有了這個概念，但如何修正又是另外一回事，於是又再爬了一些文，解決方式大多是把 history mode 改成 hash mode，但我真的想要我的 url 出現<code>#</code>字號嗎？於是又不死心的找其他方法，甚至修改了路徑，但仍試圖勞。在找資料的同時，又發現有許多人建議「複製」一份 index.html 然後改成 404.html 就可以解決，原本以為在 public 檔案夾裡「複製」，會自動解析到 dist 去，的確是會重新打包到 dist 資料夾，但是 build 後推到 Github pages 上，仍然是出現 404，雖然往上許多人建議「複製」一份 index.html 然後改成 404.html 就可以解決，但是不是複製的方式與來源有會有影響，最後我試著將「build 編譯過」的 index.html 複製，然後「問題就解決了！」。</p>
+<p>原來是這樣啊！但這也會有問題吧？就是每次 index.html 有更動，我就必須再一次的「複製」然後改成 404，如果忘記改不就糗大了？需要再想想有沒辦法用 sh 的角本來解決。</p>
+<p>問題算是暫時解決的，但是還有修正的空間，先記錄這一段，下次找到解決方案再來記錄。</p>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>世界變的比想像中還快，前端技術也是。如果說轉職前端工程師有什麼禮物，那麼一直學習或許就是一個禮物吧。<br>後需網站要修正的地方還不少，除了動畫部分想用套件外，RWD 也有許多要優化的地方。因為現在的產品的是一直在進化的，所以也有相對應的 Méthode agile (敏捷軟體開發) ，人們在使用的 APP 永遠不可能是最終版，當然網站也是。</p>
 
     </div>
 
@@ -255,8 +253,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tsuifei.github.io/tags/Chrome/" rel="tag"># Chrome</a>
-              <a href="/tsuifei.github.io/tags/Extension/" rel="tag"># Extension</a>
+              <a href="/tsuifei.github.io/tags/Other/" rel="tag"># Other</a>
+              <a href="/tsuifei.github.io/tags/Github/" rel="tag"># Github</a>
           </div>
 
         
@@ -265,12 +263,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/tsuifei.github.io/debug_note_02/" rel="prev" title="JSON 的方法和型別">
-      <i class="fa fa-chevron-left"></i> JSON 的方法和型別
+    <a href="/tsuifei.github.io/JS_ES6-箭頭函式-Arrow-function/" rel="prev" title="JavaScript ES6 箭頭函式 Arrow function">
+      <i class="fa fa-chevron-left"></i> JavaScript ES6 箭頭函式 Arrow function
     </a></div>
       <div class="post-nav-item">
-    <a href="/tsuifei.github.io/Html_figure/" rel="next" title="HTML figure 標籤的用法">
-      HTML figure 標籤的用法 <i class="fa fa-chevron-right"></i>
+    <a href="/tsuifei.github.io/在-Github-上安裝-Hexo-記錄/" rel="next" title="在 Github 上安裝 Hexo 記錄">
+      在 Github 上安裝 Hexo 記錄 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -331,7 +329,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lighthouse-是什麼？有什麼用途？"><span class="nav-number">1.</span> <span class="nav-text">Lighthouse 是什麼？有什麼用途？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#要如何使用-Lighthouse？"><span class="nav-number">2.</span> <span class="nav-text">要如何使用 Lighthouse？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何看懂分析報告？"><span class="nav-number">3.</span> <span class="nav-text">如何看懂分析報告？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有優化就一定會效能提升"><span class="nav-number">4.</span> <span class="nav-text">有優化就一定會效能提升</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#後記"><span class="nav-number">5.</span> <span class="nav-text">後記</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#history-amp-hash"><span class="nav-number">1.</span> <span class="nav-text">history &amp; hash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#複製哪一個版本？"><span class="nav-number">2.</span> <span class="nav-text">複製哪一個版本？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#後記"><span class="nav-number">3.</span> <span class="nav-text">後記</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

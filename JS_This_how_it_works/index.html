@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="記得初學 JavaScript 的時候，曾經和 42 的同學討論過學程式遇到的一些「抽象」的名詞概念，因為抽象所以難懂，我總是想要以類比的方式來找出一個合理且容易記住的解釋。這位同學本科是唸哲學（發現哲學轉職工程師的還真不少），他的第一個實習就找到了法國頗有名的電商公司。我們討論著 this 但是似乎怎麼解釋也無法清楚的描繪出來，只聽他重複著說著 this 就是 this…。 有些事真的需要「時間">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2021-01-27T15:53:41.108Z">
+<meta property="og:updated_time" content="2021-01-29T16:59:49.902Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="This 是如何運作的">
 <meta name="twitter:description" content="記得初學 JavaScript 的時候，曾經和 42 的同學討論過學程式遇到的一些「抽象」的名詞概念，因為抽象所以難懂，我總是想要以類比的方式來找出一個合理且容易記住的解釋。這位同學本科是唸哲學（發現哲學轉職工程師的還真不少），他的第一個實習就找到了法國頗有名的電商公司。我們討論著 this 但是似乎怎麼解釋也無法清楚的描繪出來，只聽他重複著說著 this 就是 this…。 有些事真的需要「時間">
@@ -131,12 +131,12 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tsuifei.github.io/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">39</span></a>
+    <a href="/tsuifei.github.io/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">40</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/tsuifei.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">96</span></a>
+    <a href="/tsuifei.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">97</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -200,7 +200,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-27 23:53:41" itemprop="dateModified" datetime="2021-01-27T23:53:41+08:00">2021-01-27</time>
+                <time title="Modified: 2021-01-30 00:59:49" itemprop="dateModified" datetime="2021-01-30T00:59:49+08:00">2021-01-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -263,7 +263,11 @@
 <li><code>callback function</code> 大部分是屬於<code>Simple call</code>的形式，它的<code>this</code>大多指向全域，只有少部分的<code>callback function</code>會重新定義，<code>this</code>指向也會不同。</li>
 </ol>
 <p>待續…</p>
-
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>調用函式的方式不同， this 的指向也會不同。</p>
+<h3 id="1-simple-call"><a href="#1-simple-call" class="headerlink" title="1. simple call"></a>1. simple call</h3><p>指在調用時，直接以函式名後加雙括號的方式調用，如<code>sayHi()</code>。</p>
+<h3 id="2-Object-methods"><a href="#2-Object-methods" class="headerlink" title="2. Object methods"></a>2. Object methods</h3><p>函式本身是包含在一個物件裡，也就是是物件的方法，如果要調用則以物件的方式調用，如<code>obj.sayHi()</code>。</p>
+<h3 id="3-建構式-new-創建的函式"><a href="#3-建構式-new-創建的函式" class="headerlink" title="3. 建構式 new 創建的函式"></a>3. 建構式 new 創建的函式</h3><p>以建構式 new 創建的函式，它的<code>this</code>指向，就會指向 new 這個函式的建構式的物件本身。</p>
+<h3 id="4-bind-call-append"><a href="#4-bind-call-append" class="headerlink" title="4.bind, call, append"></a>4.bind, call, append</h3>
     </div>
 
     
@@ -344,7 +348,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#傳統函式的-this-指向"><span class="nav-number">1.</span> <span class="nav-text">傳統函式的 this 指向</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#This-指向誰？"><span class="nav-number">1.1.</span> <span class="nav-text">This 指向誰？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#複雜的-This-指向"><span class="nav-number">1.2.</span> <span class="nav-text">複雜的 This 指向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this-運用的變化"><span class="nav-number">1.3.</span> <span class="nav-text">this 運用的變化</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#傳統函式的-this-指向"><span class="nav-number">1.</span> <span class="nav-text">傳統函式的 this 指向</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#This-指向誰？"><span class="nav-number">1.1.</span> <span class="nav-text">This 指向誰？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#複雜的-This-指向"><span class="nav-number">1.2.</span> <span class="nav-text">複雜的 This 指向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this-運用的變化"><span class="nav-number">1.3.</span> <span class="nav-text">this 運用的變化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">2.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-simple-call"><span class="nav-number">2.1.</span> <span class="nav-text">1. simple call</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Object-methods"><span class="nav-number">2.2.</span> <span class="nav-text">2. Object methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-建構式-new-創建的函式"><span class="nav-number">2.3.</span> <span class="nav-text">3. 建構式 new 創建的函式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-bind-call-append"><span class="nav-number">2.4.</span> <span class="nav-text">4.bind, call, append</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -358,7 +362,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/tsuifei.github.io/archives/">
         
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -371,7 +375,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tsuifei.github.io/tags/">
           
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">40</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
