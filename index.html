@@ -200,7 +200,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-04 05:05:42" itemprop="dateModified" datetime="2021-03-04T05:05:42+08:00">2021-03-04</time>
+                <time title="Modified: 2021-03-04 05:07:34" itemprop="dateModified" datetime="2021-03-04T05:07:34+08:00">2021-03-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,25 +226,14 @@
           <p>最近重新以 Vue3 來建構自己的網站，雖然內容很簡單，也只有幾個頁面而已，但算是第一次以 VueJs 開發，並且部屬到 Github pages 上，才知道原來使用框架之後的部屬和以往傳統的部署，有很大的不同。</p>
 <p>原因是 VueJs 透過 Router 的設定，和 webpack 的編譯打包，有許多的細節設定要做，加上部屬到 Github pages 上，最上層的資料夾並不是路徑源頭，所以有時候出現問題，有些難找出原因。</p>
 <p>部屬完成後，網頁跑得還蠻順的，每個連結也都很聽話的顯示，唯有在連結網址按下 enter 鍵時，噹～噹～出現 404 ，也就是找不到這一頁，怎麼回事？</p>
-<h2 id="history-amp-hash"><a href="#history-amp-hash" class="headerlink" title="history &amp; hash"></a>history &amp; hash</h2><p>中午和好有 K 通了 zoom，她覺得是 Vue-Router 設定的問題，找了一下資料似乎是在 Vue-Router 裡的設定模式有關，Router 模式有兩種，一種是 HashRouter (hash mode)另一種是 BrowserRouter (history mode)，HashRouter 會在網址上加上<code>#</code>字號，大部分的網頁都會使用 BrowserRouter。以下是 K 提供的解釋：</p>
-<blockquote>
-<ul>
-<li>HashRouter: 頁面路徑最前面會有個「#」，換 url 時不會發送 request。</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>BrowserRouter: 頁面路徑不會有井字，但換 url 時會發送 request。</li>
-</ul>
-</blockquote>
-<blockquote>
-<p>簡單來說，由於#是用來判斷是否要發送 request 的工具，反言之如果要使用 BrowserRouter，server 必須要有對應的 response(最簡單的方法就是要請後端幫你設定好除了 api 以外的 request 都回傳你的 index.html)</p>
-</blockquote>
-<h2 id="複製哪一個版本？"><a href="#複製哪一個版本？" class="headerlink" title="複製哪一個版本？"></a>複製哪一個版本？</h2><p>雖然有了這個概念，但如何修正又是另外一回事，於是又再爬了一些文，解決方式大多是把 history mode 改成 hash mode，但我真的想要我的 url 出現<code>#</code>字號嗎？於是又不死心的找其他方法，甚至修改了路徑，但仍試圖勞。在找資料的同時，又發現有許多人建議「複製」一份 index.html 然後改成 404.html 就可以解決，原本以為在 public 檔案夾裡「複製」，會自動解析到 dist 去，的確是會重新打包到 dist 資料夾，但是 build 後推到 Github pages 上，仍然是出現 404，雖然往上許多人建議「複製」一份 index.html 然後改成 404.html 就可以解決，但是不是複製的方式與來源有會有影響，最後我試著將「build 編譯過」的 index.html 複製，然後「問題就解決了！」。</p>
-<p>原來是這樣啊！但這也會有問題吧？就是每次 index.html 有更動，我就必須再一次的「複製」然後改成 404，如果忘記改不就糗大了？需要再想想有沒辦法用 sh 的角本來解決。</p>
-<p>問題算是暫時解決的，但是還有修正的空間，先記錄這一段，下次找到解決方案再來記錄。</p>
-<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>世界變的比想像中還快，前端技術也是。如果說轉職前端工程師有什麼禮物，那麼一直學習或許就是一個禮物吧。<br>後需網站要修正的地方還不少，除了動畫部分想用套件外，RWD 也有許多要優化的地方。因為現在的產品的是一直在進化的，所以也有相對應的 Méthode agile (敏捷軟體開發) ，人們在使用的 APP 永遠不可能是最終版，當然網站也是。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/tsuifei.github.io/Deploy_vue3_Github_Pages_404/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
