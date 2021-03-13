@@ -271,10 +271,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-03-04 00:42:24 / Modified: 22:46:02" itemprop="dateCreated datePublished" datetime="2021-03-04T00:42:24+08:00">2021-03-04</time>
+              <time title="Created: 2021-03-04 00:42:24" itemprop="dateCreated datePublished" datetime="2021-03-04T00:42:24+08:00">2021-03-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-13 23:28:55" itemprop="dateModified" datetime="2021-03-13T23:28:55+08:00">2021-03-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -296,33 +302,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>AOS 是個支援因網頁捲軸(scroll)變化的動畫效果套件，可以在 VueJs 的專案直接使用，讓頁面內容多需要往下滑動時，內穃出現在頁面時，以動畫效果出現。</p>
-<p>Animate On Scroll Library<br><a href="https://github.com/michalsnik/aos" target="_blank" rel="noopener">michalsnik/aos: Animate on scroll library</a></p>
-<ol>
-<li>在專案中安裝套件</li>
-</ol>
-<p>Install aos package:<br><code>yarn add aos@next</code><br>or<br><code>npm install --save aos@next</code></p>
-<ol start="2">
-<li>在 main.js 裡引入 CSS，讓 AOS 的 CSS 在 global 環境可以使用。</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'aos/dist/aos.css'</span>; <span class="comment">// You can also use &lt;link&gt; for styles</span></span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li><p>初始化 AOS 套件<br>初始化只能一次，時機是所有的 DOM 元素都被渲染到頁面時進行初始化的動作，所以需要在主<code>#app</code>的 Vue 實例裡的<code>mounted</code>生命週期執行初始化。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    onMounted(() =&gt; &#123;</span><br><span class="line">      AOS.init();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>在初始化時，ASO 以幫我們初始化了許多參數可以設定，請看<a href="https://github.com/michalsnik/aos" target="_blank" rel="noopener">aos: Animate on scroll library</a></p>
-<p>接著記得在<code>#app</code>的 Vue 實例裡引入 AOS，<code>onMounted</code>生命週期<br><code>import { ref, onMounted } from &#39;vue&#39;;</code><br><code>import AOS from &#39;aos&#39;;</code></p>
-</li>
-<li><p>可以以單一物件的方式，在<code>&lt;div&gt;</code>裡以<code>data-aos-*</code>的屬性來設定：</p>
-</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-aos</span>=<span class="string">"fade-up"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-aos-offset</span>=<span class="string">"200"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-aos-delay</span>=<span class="string">"50"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-aos-duration</span>=<span class="string">"1000"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-aos-easing</span>=<span class="string">"ease-in-out"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-aos-mirror</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-aos-once</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-aos-anchor-placement</span>=<span class="string">"top-center"</span></span></span><br><span class="line"><span class="tag">  &gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>但查閱<a href="http://michalsnik.github.io/aos/" target="_blank" rel="noopener">官網</a>的資料，可以直接在圖片增加<code>data-aos-*</code>的屬性直接加上功能。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./test.png"</span> <span class="attr">data-aos</span>=<span class="string">"fade-up"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
+          <p>AOS 是個支援因網頁捲軸(scroll)變化的動畫效果套件，可以在 VueJs 的專案直接使用，讓頁面內容或圖片量多需要往下滑動時，內容或圖片會出現以動畫效果出現在頁面上，讓頁面增加一些互動性。</p>
+<p>這次重新以 Vus 3 建構自己的個人網站時，就以 AOS 的套件來製作動畫效果，其實這些效果使用 CSS 的 Animation 也是可以達到的，但測試之後發現手刻的 CSS 動畫可能 keyframe 分的不夠細，和 AOS 的動畫相較起來沒那麼順暢，所以才又回來改用 AOS 套件。</p>
+<p>官網的展示效果清楚簡單，只要將 AOS 套件引入專案，變可以開始使用了，效果也只要下幾個關鍵字，就可達到不錯的結果。</p>
+<p>因為之前的作品頗多，所以個人網站上有很多圖片，使用的主要是<a href="https://tsuifei.github.io/profile/portfolio">這一頁</a>。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/tsuifei.github.io/npm_AOS_animation/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
