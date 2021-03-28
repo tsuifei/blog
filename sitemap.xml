@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/API_Introduction_to_Ajax_and_Applications/</loc>
+    
+    <lastmod>2021-03-28T18:46:44.747Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_Axios_Api_show_by_D3Js/</loc>
+    
+    <lastmod>2021-03-28T18:21:11.289Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_Axios_Api_show_Data/</loc>
+    
+    <lastmod>2021-03-28T18:19:50.621Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/DOM_Methodes/</loc>
     
     <lastmod>2021-03-15T14:20:25.872Z</lastmod>
@@ -159,20 +180,6 @@
     <loc>tsuifei.github.io/Vue_14_Cli3_environment_deployment/</loc>
     
     <lastmod>2020-10-19T18:34:28.702Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_60_note29/</loc>
-    
-    <lastmod>2020-10-19T18:33:09.039Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_60_note30/</loc>
-    
-    <lastmod>2020-10-19T18:33:03.098Z</lastmod>
     
   </url>
   
