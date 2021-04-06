@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/module_form_Valitatation/</loc>
+    
+    <lastmod>2021-04-06T11:53:13.615Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/module_AOS_animation/</loc>
+    
+    <lastmod>2021-04-06T11:52:31.792Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/API_Introduction_to_Ajax_and_Applications/</loc>
     
     <lastmod>2021-03-29T14:13:48.607Z</lastmod>
@@ -33,13 +47,6 @@
     <loc>tsuifei.github.io/DOM_Methodes/</loc>
     
     <lastmod>2021-03-15T14:20:25.872Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/npm_AOS_animation/</loc>
-    
-    <lastmod>2021-03-13T15:28:55.242Z</lastmod>
     
   </url>
   
