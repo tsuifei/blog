@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tsuifei.github.io","root":"/blog/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="有開頭總是好事，沒開頭就什麼事也不會發生。  這個練習是在畫面上顯示好幾個鍵盤上面的鍵，讓使用者在按下鍵盤，依鍵盤不同而發出不同的聲響，原本的練習是以英文字母為發音鍵，但自己愛好自然就把它們換成了數字鍵，並搭配各種不同動物的叫聲也頗有趣的。 如果依照「功能」和「畫面」來拆解這個練習，那麼也表示「功能的部分」需要用 DOM 和 JavaScript 來操控，而「畫面」部分則需要先用 HTML +">
+<meta name="keywords" content="JavaScript,JavaScript 30">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 30 - 01. Drum Kit 鍵盤音樂">
+<meta property="og:url" content="tsuifei.github.io/JS30_01_Drum-Kit/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="有開頭總是好事，沒開頭就什麼事也不會發生。  這個練習是在畫面上顯示好幾個鍵盤上面的鍵，讓使用者在按下鍵盤，依鍵盤不同而發出不同的聲響，原本的練習是以英文字母為發音鍵，但自己愛好自然就把它們換成了數字鍵，並搭配各種不同動物的叫聲也頗有趣的。 如果依照「功能」和「畫面」來拆解這個練習，那麼也表示「功能的部分」需要用 DOM 和 JavaScript 來操控，而「畫面」部分則需要先用 HTML +">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2021-01-05T21:05:46.812Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 30 - 01. Drum Kit 鍵盤音樂">
+<meta name="twitter:description" content="有開頭總是好事，沒開頭就什麼事也不會發生。  這個練習是在畫面上顯示好幾個鍵盤上面的鍵，讓使用者在按下鍵盤，依鍵盤不同而發出不同的聲響，原本的練習是以英文字母為發音鍵，但自己愛好自然就把它們換成了數字鍵，並搭配各種不同動物的叫聲也頗有趣的。 如果依照「功能」和「畫面」來拆解這個練習，那麼也表示「功能的部分」需要用 DOM 和 JavaScript 來操控，而「畫面」部分則需要先用 HTML +">
+
+<link rel="canonical" href="tsuifei.github.io/JS30_01_Drum-Kit/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>JS 30 - 01. Drum Kit 鍵盤音樂 | Cré-Coder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Je code donc je suis là.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">53</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">105</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/JS30_01_Drum-Kit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS 30 - 01. Drum Kit 鍵盤音樂
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-30 00:42:24" itemprop="dateCreated datePublished" datetime="2019-12-30T00:42:24+08:00">2019-12-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-01-06 05:05:46" itemprop="dateModified" datetime="2021-01-06T05:05:46+08:00">2021-01-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>有開頭總是好事，沒開頭就什麼事也不會發生。</p>
+</blockquote>
+<p>這個練習是在畫面上顯示好幾個鍵盤上面的鍵，讓使用者在按下鍵盤，依鍵盤不同而發出不同的聲響，原本的練習是以英文字母為發音鍵，但自己愛好自然就把它們換成了數字鍵，並搭配各種不同動物的叫聲也頗有趣的。</p>
+<p>如果依照「功能」和「畫面」來拆解這個練習，那麼也表示「功能的部分」需要用 DOM 和 JavaScript 來操控，而「畫面」部分則需要先用 HTML + CSS 來刻好，以 JS 來等待觸發事件，來播放音效與變換元件（鍵）的狀態。</p>
+<a id="more"></a>
+
+<p><strong>功能：</strong> 按下鍵時，觸發相對應的聲音。離開鍵時聲音消失。<br><strong>畫面：</strong> 按下實際鍵時，畫面上對應的鍵會有反應，搭配動畫效果。離開自下去的鍵時會恢復原狀。</p>
+<ul>
+<li>如何監聽到按到哪個鍵： -&gt; 監聽 keydown 事件</li>
+<li>鍵在按下去的時候播放音效： -&gt; 呼叫播放音效的函式 -&gt; playSound()</li>
+<li>鍵在按下去的同時，播放動畫效果 CSS： -&gt; <code>key.classList.add(&#39;playing&#39;);</code></li>
+<li>鍵在按下去之後恢復原狀： -&gt; 呼叫<code>removeTransition(event)</code> 執行<code>event.target.classList.remove(&#39;playing&#39;);</code>作切換。</li>
+</ul>
+<h3 id="HTML-的部分"><a href="#HTML-的部分" class="headerlink" title="HTML 的部分"></a>HTML 的部分</h3><ul>
+<li>依序將需要的鍵顯示出來：<code>&lt;kbd&gt;7&lt;/kbd&gt;</code>表示鍵入數字 7</li>
+<li>使用<code>data-</code>這個屬性來放入自定義的資料，這裡我們用<code>data-key</code>來定義。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">data-key</span>=<span class="string">"55"</span> <span class="attr">class</span>=<span class="string">"key"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">kbd</span>&gt;</span>7<span class="tag">&lt;/<span class="name">kbd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"sound"</span>&gt;</span>Loup<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>再以<code>data-key</code>將我們會使用到的<code>audio</code>音效關聯起來。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">data-key</span>=<span class="string">"55"</span> <span class="attr">src</span>=<span class="string">"sounds/loup.wav"</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="關於-data-屬性"><a href="#關於-data-屬性" class="headerlink" title="關於 data- 屬性"></a>關於 <code>data-</code> 屬性</h5><ul>
+<li><code>data-</code>屬性可以讓我們自定義資料，它可以讓我們在任意的<code>html</code>標籤上放入我們自定義的資料屬性，<br>要注意的是，屬性名不可以是大寫字母，前面需要加上前綴詞<code>data-</code>緊接至少一個小寫字符，如我們用的<code>key</code>成了我們自定義的<code>data-key</code>標籤，例如<code>&lt;audio data-key=&quot;55&quot;&gt;</code></li>
+</ul>
+<h3 id="CSS-的部分"><a href="#CSS-的部分" class="headerlink" title="CSS 的部分"></a>CSS 的部分</h3><ul>
+<li>我們先把要出現的效果寫好，命名為<code>.key</code>樣式。</li>
+<li>當我們按下按鍵時，加上<code>.playing</code>樣式 讓畫面上的按鍵有些效果。這個<code>.playing</code> 樣式會在離開這個鍵時被拿掉。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.key</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">0.2rem</span> solid <span class="built_in">rgb</span>(<span class="number">11</span>, <span class="number">89</span>, <span class="number">37</span>);</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">0.5rem</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">1rem</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1.5rem</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">1rem</span> <span class="number">0.5rem</span>;</span><br><span class="line">  <span class="attribute">transition</span>: all <span class="number">0.07s</span> ease;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">rgb</span>(<span class="number">21</span>, <span class="number">168</span>, <span class="number">40</span>);</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">254</span>, <span class="number">254</span>, <span class="number">0.6</span>);</span><br><span class="line">  <span class="attribute">text-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">0.5rem</span> <span class="built_in">rgb</span>(<span class="number">15</span>, <span class="number">15</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.playing</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">1.1</span>);</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="built_in">rgb</span>(<span class="number">21</span>, <span class="number">168</span>, <span class="number">40</span>);</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">1rem</span> <span class="built_in">rgb</span>(<span class="number">21</span>, <span class="number">168</span>, <span class="number">40</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="JavaScript-的部分"><a href="#JavaScript-的部分" class="headerlink" title="JavaScript 的部分"></a>JavaScript 的部分</h3><p>前面有提到，當我們按下按鍵，程式會去呼叫發出音效的<code>playSound()</code>函式，做到這一點，我們得先監聽這些按鍵，何時被按下繼而觸發事件。</p>
+<p>我們先將所有的按鍵放在一個陣列型別的變數<code>keys</code>裡，然後利用<code>forEach()</code>走訪陣列裡的元素（鍵），並監聽所會發生的事件，給予事件一個名稱：<code>transitionend</code>，並在觸發時，執行<code>removeTransition</code>函式去清除按下去被觸發的行為。也就是使鍵盤的 Key 恢復還沒被按下去的原狀。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> keys = <span class="built_in">Array</span>.from(<span class="built_in">document</span>.querySelectorAll(<span class="string">'.key'</span>));</span><br><span class="line">keys.forEach(<span class="function">(<span class="params">key</span>) =&gt;</span> key.addEventListener(<span class="string">'transitionend'</span>, removeTransition));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 監聽頁面的鍵 keydown事件，觸發 playAudio 函式。</span></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'keydown'</span>, playSound);</span><br></pre></td></tr></table></figure>
+
+<p>接著我們來看看發出音效的函式<code>playSound(event)</code>:</p>
+<ul>
+<li>利用<code>querySelector</code>先找出「音效」和「鍵」的 DOM 元素。</li>
+<li>如果沒有找到<code>audio</code>就什麼也不做。</li>
+<li>在<code>key</code>上面加上動畫效果的<code>playing</code>樣式。</li>
+<li>讓播放音效的時間歸零。</li>
+<li>再開始播放。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">playSound</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> audio = <span class="built_in">document</span>.querySelector(<span class="string">`audio[data-key="<span class="subst">$&#123;event.keyCode&#125;</span>"]`</span>);</span><br><span class="line">  <span class="keyword">const</span> key = <span class="built_in">document</span>.querySelector(<span class="string">`div[data-key="<span class="subst">$&#123;event.keyCode&#125;</span>"]`</span>);</span><br><span class="line">  <span class="keyword">if</span> (!audio) <span class="keyword">return</span>; <span class="comment">// arreter le fonction de jouer</span></span><br><span class="line"></span><br><span class="line">  key.classList.add(<span class="string">'playing'</span>);</span><br><span class="line">  audio.currentTime = <span class="number">0</span>; <span class="comment">// revenir au debut</span></span><br><span class="line">  <span class="comment">// key.currentTime = 0; // revenir au debut</span></span><br><span class="line">  audio.play();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="按鍵的監聽＋音效的播放＋按下鍵的動畫效果"><a href="#按鍵的監聽＋音效的播放＋按下鍵的動畫效果" class="headerlink" title="按鍵的監聽＋音效的播放＋按下鍵的動畫效果"></a>按鍵的監聽＋音效的播放＋按下鍵的動畫效果</h3><p>還有，在按下按鍵發出聲效後，使鍵盤的 Key 恢復原狀，移除這個動畫效果的<code>removeTransition(event)</code>函式：</p>
+<ul>
+<li>先檢查這個要監聽的事件元素，如果沒有 CSS 的動畫屬性<code>transform</code>就什麼都不做。</li>
+<li>否則，就在這個元素上移除這個<code>.playing</code> CSS 樣式。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeTransition</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (event.propertyName !== <span class="string">'transform'</span>) <span class="keyword">return</span>;</span><br><span class="line">  event.target.classList.remove(<span class="string">'playing'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，我們必須把寫好的函式放在 JS 程式碼的最前面，因為程式是一行行讀的，如果沒有先放前面，在讀到呼叫這些函式時，程式會因為還沒記憶這些函式而出現錯誤。</p>
+<h2 id="相關語法"><a href="#相關語法" class="headerlink" title="相關語法"></a>相關語法</h2><p>在這個練習裡的<code>JavaScript</code>，我們用到了一些 ES6 的語法：</p>
+<ul>
+<li>使用了<code>const</code>的變數宣告，表示常數只能賦值一次。也就是說，賦值給這個變數後，值就不能再更改了。</li>
+<li>使用了字串模板(Template literals)，語法為：<code>字串 ${變數、屬性名}</code>，<a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Template_literals" target="_blank" rel="noopener">樣板字面值 MDN</a></li>
+<li><code>forEach</code>和箭頭函式：因為在這個練習裡使用的是<code>document.querySelector</code>來得到一組 NodeList(DOM)，使用<code>forEach</code>方法來走訪這些 DOM 元素。</li>
+</ul>
+<h2 id="基礎語法"><a href="#基礎語法" class="headerlink" title="基礎語法"></a>基礎語法</h2><ul>
+<li>使用<a href="https://developer.mozilla.org/zh-TW/docs/Web/API/EventTarget/addEventListener" target="_blank" rel="noopener">EventTarget.addEventListener()</a>來增加監聽事件。</li>
+<li>使用 <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Document/querySelector" target="_blank" rel="noopener">document.querySelector</a> 來抓去我們所要監聽的 DOM 元素。</li>
+</ul>
+<h2 id="解決問題"><a href="#解決問題" class="headerlink" title="解決問題"></a>解決問題</h2><p><strong>如何可以讓我們按下鍵盤某個鍵時，和音效連結起來？</strong> 可以連結的原因是在<code>keydown</code>的事件中的<code>keyCode</code>屬性，<code>keyCode</code>的屬性值和 ASCII<br>的編碼相同，我們可以在 <a href="http://keycode.info/" target="_blank" rel="noopener">JavaScript Event KeyCodes</a> 查找對應的鍵碼。<br>我們在按鍵的<code>div</code>和音效的<code>audio</code>標籤中，都增加了一個我們自定義的屬性<code>data-key</code>，這樣我們在按下按鍵的同時，也可依循找到對應的音效。</p>
+<p><strong>如何讓按鍵即使按著不放，也可以馬上有連續的音效？</strong> 我們把每次要播放音效之前，將播放的時間點歸零。</p>
+<p><strong>如何讓每次按完鍵後，恢復成原狀？</strong> 在監聽按鍵時，我們使用<code>transitionend</code>這個事件，讓它在動畫效果結束後被觸發，動畫效果完成之後，就去除這個樣式。但是因為按鍵按下時，不只只有動畫效果<code>transform</code>所以需要增加一個<code>if</code>的判斷式，讓每發生一次按鍵事件，只去除一次樣式。</p>
+<h6 id="碎碎唸：其實如果沒有這個判斷式，如果按住按鈕不放，也不會有一直是有動畫效果停滯，反而效果較好。"><a href="#碎碎唸：其實如果沒有這個判斷式，如果按住按鈕不放，也不會有一直是有動畫效果停滯，反而效果較好。" class="headerlink" title="碎碎唸：其實如果沒有這個判斷式，如果按住按鈕不放，也不會有一直是有動畫效果停滯，反而效果較好。"></a>碎碎唸：其實如果沒有這個判斷式，如果按住按鈕不放，也不會有一直是有動畫效果停滯，反而效果較好。</h6><h3 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h3><p>雖然看似步驟不複雜的按鍵與音效，要注意的部分也不少，希望在這樣的詳細拆解之下，可以多了解不同語法的應用與使用的原因，以實務的方式了解程式面，的確比較類比多了。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/blog/tags/JavaScript-30/" rel="tag"># JavaScript 30</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/JS30_00_start/" rel="prev" title="JS 30 - 00. 為什麼開始？因為希望完成">
+      <i class="fa fa-chevron-left"></i> JS 30 - 00. 為什麼開始？因為希望完成
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/JS_front_test01/" rel="next" title="法國前端初級測驗">
+      法國前端初級測驗 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-的部分"><span class="nav-number">1.</span> <span class="nav-text">HTML 的部分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#關於-data-屬性"><span class="nav-number">1.0.1.</span> <span class="nav-text">關於 data- 屬性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-的部分"><span class="nav-number">2.</span> <span class="nav-text">CSS 的部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-的部分"><span class="nav-number">3.</span> <span class="nav-text">JavaScript 的部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按鍵的監聽＋音效的播放＋按下鍵的動畫效果"><span class="nav-number">4.</span> <span class="nav-text">按鍵的監聽＋音效的播放＋按下鍵的動畫效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相關語法"><span class="nav-number"></span> <span class="nav-text">相關語法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基礎語法"><span class="nav-number"></span> <span class="nav-text">基礎語法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解決問題"><span class="nav-number"></span> <span class="nav-text">解決問題</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#碎碎唸：其實如果沒有這個判斷式，如果按住按鈕不放，也不會有一直是有動畫效果停滯，反而效果較好。"><span class="nav-number">0.0.0.1.</span> <span class="nav-text">碎碎唸：其實如果沒有這個判斷式，如果按住按鈕不放，也不會有一直是有動畫效果停滯，反而效果較好。</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#後記"><span class="nav-number">1.</span> <span class="nav-text">後記</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+  <div class="site-description" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tsuifei" title="GitHub → https://github.com/tsuifei" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tsuifei@gmail.com" title="E-Mail → mailto:tsuifei@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

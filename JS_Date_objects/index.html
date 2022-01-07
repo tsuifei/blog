@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tsuifei.github.io","root":"/blog/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="new Date() 物件的時間處理我們常需要在網頁上處理或顯示時間，例如文章是何時編輯的、購物時間或是在觀察程式碼的效能時也會需要時間的處理，JavaScript 是如何處理日期和時間的呢？ JavaScript 包含了一個處理時間的物件：new Date()，透過這個構造式裡的方法或參數，我們可以精準的計算任何形式的時間。在這個物件的時間計算單位為毫秒（1000 毫秒為一秒），所以處理時需要另">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript Date &amp; Times 時間處理">
+<meta property="og:url" content="tsuifei.github.io/JS_Date_objects/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="new Date() 物件的時間處理我們常需要在網頁上處理或顯示時間，例如文章是何時編輯的、購物時間或是在觀察程式碼的效能時也會需要時間的處理，JavaScript 是如何處理日期和時間的呢？ JavaScript 包含了一個處理時間的物件：new Date()，透過這個構造式裡的方法或參數，我們可以精準的計算任何形式的時間。在這個物件的時間計算單位為毫秒（1000 毫秒為一秒），所以處理時需要另">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2020-10-17T20:50:41.576Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript Date &amp; Times 時間處理">
+<meta name="twitter:description" content="new Date() 物件的時間處理我們常需要在網頁上處理或顯示時間，例如文章是何時編輯的、購物時間或是在觀察程式碼的效能時也會需要時間的處理，JavaScript 是如何處理日期和時間的呢？ JavaScript 包含了一個處理時間的物件：new Date()，透過這個構造式裡的方法或參數，我們可以精準的計算任何形式的時間。在這個物件的時間計算單位為毫秒（1000 毫秒為一秒），所以處理時需要另">
+
+<link rel="canonical" href="tsuifei.github.io/JS_Date_objects/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>JavaScript Date & Times 時間處理 | Cré-Coder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Je code donc je suis là.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">53</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">105</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/JS_Date_objects/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript Date & Times 時間處理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-08-10 00:42:25" itemprop="dateCreated datePublished" datetime="2020-08-10T00:42:25+08:00">2020-08-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-18 04:50:41" itemprop="dateModified" datetime="2020-10-18T04:50:41+08:00">2020-10-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="new-Date-物件的時間處理"><a href="#new-Date-物件的時間處理" class="headerlink" title="new Date() 物件的時間處理"></a>new Date() 物件的時間處理</h3><p>我們常需要在網頁上處理或顯示時間，例如文章是何時編輯的、購物時間或是在觀察程式碼的效能時也會需要時間的處理，JavaScript 是如何處理日期和時間的呢？</p>
+<p>JavaScript 包含了一個處理時間的物件：<code>new Date()</code>，透過這個構造式裡的方法或參數，我們可以精準的計算任何形式的時間。在這個物件的時間計算單位為毫秒（1000 毫秒為一秒），所以處理時需要另外除以 1000 才能得到我們熟悉的秒數。</p>
+<p><code>Date()</code>物件是基於世界標準時間（UTC） 1970 年 1 月 1 日開始的毫秒數值來儲存時間的。要得到當下的時間是很容易的，這個當下時間來自於我們本身使用的電腦當下的時間，而電腦的時間，有可能是透過網路而得到電腦當下所在時區的時間。但如果我們想要「計算時間」就必須透過一些方式與計算，例如想要計算不是在同時需的時間，或是要對某個時間點做倒數。</p>
+<a id="more"></a>
+
+<p>我們先來看看<a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Date" target="_blank" rel="noopener">Date - JavaScript | MDN</a> 怎麼解釋。</p>
+<h2 id="構造函式-new-Date"><a href="#構造函式-new-Date" class="headerlink" title="構造函式 new Date()"></a>構造函式 new Date()</h2><p>因為是構造式，創建時間的物件須先以<code>new Date()</code>創建，所回傳的值是一個封裝好的物件，以這個構造式被執行的時間點為標記傳回時間。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="built_in">console</span>.log(date); <span class="comment">// Sat Aug 08 2020 15:36:59 GMT+0200 (中歐夏令時間)</span></span><br></pre></td></tr></table></figure>
+
+<p>以上的範例傳回<code>// Sat Aug 08 2020 15:36:59 GMT+0200 (中歐夏令時間)</code><br>如果我們沒有給<code>Date()</code>任何參數，回傳的會是依電腦系統的設定，產生當下時間的 Date 物件。</p>
+<h2 id="以參數的方式取得時間"><a href="#以參數的方式取得時間" class="headerlink" title="以參數的方式取得時間"></a>以參數的方式取得時間</h2><p><code>Date()</code>可接受多種格式參數，回傳一個該參數對應的時間。</p>
+<ul>
+<li>參數為字串：如果想指定我們所需要的特定日期（月/日/年）時間(時：分：秒)，傳入一個表示時間的字串作為參數，回傳值則是我們指定的日期時間。</li>
+<li>參數為毫秒：參數為時間零點開始計算的毫秒數，回傳從 1970/1/1 00:00:00 開始算起的時間點。</li>
+<li>參數為多個整數值：參數為代表年、月、日、小時、分鐘、秒、毫秒，回傳對應的時間。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 參數為時間零點開始計算的毫秒數</span></span><br><span class="line"><span class="keyword">let</span> date1 = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">157821628600</span>);</span><br><span class="line"><span class="comment">// Wed Jan 01 1975 16:20:28 GMT+0100 (中歐標準時間)</span></span><br><span class="line"><span class="comment">// 從 1970/1/1 00:00:00 開始算起的時間點</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 參數為字串的時間日期</span></span><br><span class="line"><span class="keyword">let</span> date2 = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'08/08/2020'</span>);</span><br><span class="line"><span class="comment">// Sat Aug 08 2020 00:00:00 GMT+0200 (中歐夏令時間)</span></span><br><span class="line"><span class="keyword">let</span> date3 = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'08/08/2020 12:42:24'</span>);</span><br><span class="line"><span class="comment">// Sat Aug 08 2020 12:42:24 GMT+0200 (中歐夏令時間)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 參數為多個整數值: 年、月、日、小時、分鐘、秒、毫秒</span></span><br><span class="line"><span class="keyword">let</span> date4 = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2020</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"><span class="comment">// Tue Sep 08 2020 00:00:00 GMT+0200 (中歐夏令時間)</span></span><br></pre></td></tr></table></figure>
+
+<p>只要是能被<code>Date.parse()</code>解析的字串，都可以當作是<code>Date()</code>的參數，所以不同的參數寫法都可以得到相同的時間。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'2020/5/8'</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'2020-8-8'</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'05/8/2020'</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'2020-August-8'</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'August 8, 2020'</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'August, 8, 2020'</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'8, August, 2020'</span>);</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'8 August 2020'</span>);</span><br><span class="line"><span class="comment">// Sat Aug 08 2020 00:00:00 GMT+0200 (中歐夏令時間)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Date-以物件的方法取得時間計算"><a href="#Date-以物件的方法取得時間計算" class="headerlink" title="Date() 以物件的方法取得時間計算"></a>Date() 以物件的方法取得時間計算</h2><p><code>Date()</code>包含了許多的方法，透過呼叫這些方法，可以得到較為細節的時間，以下我們只介紹我們常用的方法。</p>
+<h3 id="get-得到特定的時間，並回傳整數"><a href="#get-得到特定的時間，並回傳整數" class="headerlink" title="get*() 得到特定的時間，並回傳整數"></a>get*() 得到特定的時間，並回傳整數</h3><p>以 get 開頭的方法顧名思義是用來取得時間的，以字串為參數，直接指定時間，回傳的整數皆以 0 為起始，以星期來說，0 為週日、月份 0 為一月，以此類推。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'08/08/2020 12:42:24'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(date); <span class="comment">// Sat Aug 08 2020 12:42:24 GMT+0200 (中歐夏令時間)</span></span><br><span class="line"><span class="keyword">let</span> day = date.getDay(); <span class="comment">// 回傳數字 6 ，表示 08/08/2020 這天是週六</span></span><br></pre></td></tr></table></figure>
+
+<p>以下為常用的<code>get*()</code>方法</p>
+<ul>
+<li>getTime()：回傳當下時間距離 1970 年 1 月 1 日 00:00:00 的毫秒數</li>
+<li>getDate()：回傳當下時間對應每個月的幾號（從 1 開始）。</li>
+<li>getDay()：回傳星期幾，星期日為 0，星期一為 1，以此類推。</li>
+<li>getFullYear()：回傳四位的年份。</li>
+<li>getMonth()：回傳月份（0 表示 1 月，11 表示 12 月）。</li>
+<li>getHours()：回傳小時（0-23）。</li>
+<li>getMilliseconds()：回傳毫秒（0-999）。</li>
+<li>getMinutes()：回傳分鐘（0-59）。</li>
+<li>getSeconds()：回傳秒（0-59）。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">let</span> time = date.getTime();</span><br><span class="line"><span class="comment">// 回傳的是從1970年到至今的時間</span></span><br><span class="line"><span class="built_in">console</span>.log(time / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span> / <span class="number">24</span> / <span class="number">365</span>);</span><br><span class="line"><span class="comment">// 得到的時間值除以毫秒單位/秒單位/分單位/時單位/日單位</span></span><br><span class="line"><span class="comment">// 50.63727990001903</span></span><br><span class="line"><span class="comment">// 從1970 到現在 08/08/2020 共經過了50.637年</span></span><br></pre></td></tr></table></figure>
+
+<p>如果把戳印時間減去現在時間，原本應該是得到 0，卻回傳-3600000，是因為時區不同的原因，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> testDate = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'1/1/1970 0:0:0'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(testDate);</span><br><span class="line"><span class="comment">// Thu Jan 01 1970 00:00:00 GMT+0100 (中歐標準時間)</span></span><br><span class="line"><span class="comment">// 現在時間</span></span><br><span class="line"><span class="keyword">let</span> nowTime = testDate.getTime();</span><br><span class="line"><span class="built_in">console</span>.log(nowTime); <span class="comment">// -3600000</span></span><br><span class="line"><span class="comment">// 和標準時間相差值</span></span><br><span class="line"><span class="keyword">let</span> differTime = nowTime / <span class="number">1000</span> / <span class="number">60</span> / <span class="number">60</span>;</span><br><span class="line"><span class="built_in">console</span>.log(differTime); <span class="comment">// -1 差一小時</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="now-回傳當下的時間戳印"><a href="#now-回傳當下的時間戳印" class="headerlink" title="now()回傳當下的時間戳印"></a>now()回傳當下的時間戳印</h3><p>可利用<code>now()</code>方法得到當下的時間，利用時間的戳印特性來測試程式碼的執行效能</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> start = <span class="built_in">Date</span>.now();</span><br><span class="line"><span class="built_in">console</span>.log(start);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">  <span class="comment">// console.log(i);</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> end = <span class="built_in">Date</span>.now();</span><br><span class="line"><span class="built_in">console</span>.log(end);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`執行了<span class="subst">$&#123;end - start&#125;</span>毫秒`</span>);</span><br></pre></td></tr></table></figure>
+
+<p>取執行前和執行後的時間戳印相減，即可得執行時間</p>
+<h3 id="set-設置時間的方法"><a href="#set-設置時間的方法" class="headerlink" title="set*() 設置時間的方法"></a>set*() 設置時間的方法</h3><p>以 set 為開頭的方法，主要以設定時間為主，<code>set*()</code>來設定當下的時間點，常用的有：</p>
+<ul>
+<li>setDate(date)：設置當前時間對應的每個月的幾號（1-31），返回改變後時間(毫秒)。</li>
+<li>setFullYear(year)：設置四位數的年份。</li>
+<li>setHours(hour)：設置小時（0-23）。</li>
+<li>setMilliseconds()：設置毫秒（0-999）。</li>
+<li>setMinutes(min)：設置分鐘（0-59）。</li>
+<li>setMonth(month)：設置月份（0-11）。</li>
+<li>setSeconds(sec)：設置秒（0-59）。</li>
+<li>setTime(milliseconds)：設置毫秒時間。</li>
+</ul>
+<h3 id="Timer-設定定時的方法"><a href="#Timer-設定定時的方法" class="headerlink" title="Timer 設定定時的方法"></a>Timer 設定定時的方法</h3><p>使用定時的方法可以讓我們時做出不同的效果，另如定時器、倒數、重複時間循環。</p>
+<h4 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout()"></a>setTimeout()</h4><p><code>setTimeout()</code>用來指定某個函數或某段 code 在多少毫秒之後執行。<br>此方法有兩個參數： <code>setTimeout(function|code, delay);</code><br><code>setTimeout(將要延遲執行的函式或 code, 延遲執行的毫秒數)</code>，如果省略第二個參數，則默認為 0(也就沒有延遲的意義並馬上執行)。</p>
+<h4 id="clearTimeout"><a href="#clearTimeout" class="headerlink" title="clearTimeout()"></a>clearTimeout()</h4><p>取消｀ setTimeout()｀設的定時器。</p>
+<h4 id="setInterval"><a href="#setInterval" class="headerlink" title="setInterval()"></a>setInterval()</h4><p>和<code>setTimeout()</code>完全一致，差別在於<code>setInterval()</code>可以無限次的設置定時器的執行。<br>此方法有兩個參數：<code>setInterval(function|code, delay);</code>第一參數為執行的函式或程式、第二參數為延遲的毫秒數。</p>
+<h4 id="clearInterval"><a href="#clearInterval" class="headerlink" title="clearInterval()"></a>clearInterval()</h4><p>取消<code>setInterval()</code>設的定時器。</p>
+<h2 id="實作電子時鐘"><a href="#實作電子時鐘" class="headerlink" title="實作電子時鐘"></a>實作電子時鐘</h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/JS_Axios_Api_show_Data/" rel="prev" title="JS Axios API、表單元素切換顯示資料">
+      <i class="fa fa-chevron-left"></i> JS Axios API、表單元素切換顯示資料
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/Add_unique_generated_Identifier_on_array_of_json_objec/" rel="next" title="在 JSON 物件陣列上增加一對鍵與唯一值">
+      在 JSON 物件陣列上增加一對鍵與唯一值 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#new-Date-物件的時間處理"><span class="nav-number">1.</span> <span class="nav-text">new Date() 物件的時間處理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#構造函式-new-Date"><span class="nav-number"></span> <span class="nav-text">構造函式 new Date()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#以參數的方式取得時間"><span class="nav-number"></span> <span class="nav-text">以參數的方式取得時間</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Date-以物件的方法取得時間計算"><span class="nav-number"></span> <span class="nav-text">Date() 以物件的方法取得時間計算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#get-得到特定的時間，並回傳整數"><span class="nav-number">1.</span> <span class="nav-text">get*() 得到特定的時間，並回傳整數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#now-回傳當下的時間戳印"><span class="nav-number">2.</span> <span class="nav-text">now()回傳當下的時間戳印</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set-設置時間的方法"><span class="nav-number">3.</span> <span class="nav-text">set*() 設置時間的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Timer-設定定時的方法"><span class="nav-number">4.</span> <span class="nav-text">Timer 設定定時的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#setTimeout"><span class="nav-number">4.1.</span> <span class="nav-text">setTimeout()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#clearTimeout"><span class="nav-number">4.2.</span> <span class="nav-text">clearTimeout()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setInterval"><span class="nav-number">4.3.</span> <span class="nav-text">setInterval()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#clearInterval"><span class="nav-number">4.4.</span> <span class="nav-text">clearInterval()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#實作電子時鐘"><span class="nav-number"></span> <span class="nav-text">實作電子時鐘</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+  <div class="site-description" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tsuifei" title="GitHub → https://github.com/tsuifei" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tsuifei@gmail.com" title="E-Mail → mailto:tsuifei@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tsuifei.github.io","root":"/blog/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Day 18 別把我頭上的角取下來，這樣我就被 Shift 了。不過也好，這樣我看起來會比較正常。  前一篇我們認識了從陣列的頭部加上一個或多個元素的unshift()，今天要介紹的是從陣列的開端刪除元素的shift()，這一對陣列方法，都屬於佇列(Queue)「先進先出 FIFO」的資料結構。">
+<meta name="keywords" content="JavaScript,JS_Array,Iron man 30 鐵人賽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 從陣列 Array 的開頭刪除元素 shift()">
+<meta property="og:url" content="tsuifei.github.io/JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="Day 18 別把我頭上的角取下來，這樣我就被 Shift 了。不過也好，這樣我看起來會比較正常。  前一篇我們認識了從陣列的頭部加上一個或多個元素的unshift()，今天要介紹的是從陣列的開端刪除元素的shift()，這一對陣列方法，都屬於佇列(Queue)「先進先出 FIFO」的資料結構。">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20191002/20104175DIqBdswLxB.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20191217/20104175Y17sjkGr8Y.png">
+<meta property="og:updated_time" content="2020-02-25T21:29:57.403Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 從陣列 Array 的開頭刪除元素 shift()">
+<meta name="twitter:description" content="Day 18 別把我頭上的角取下來，這樣我就被 Shift 了。不過也好，這樣我看起來會比較正常。  前一篇我們認識了從陣列的頭部加上一個或多個元素的unshift()，今天要介紹的是從陣列的開端刪除元素的shift()，這一對陣列方法，都屬於佇列(Queue)「先進先出 FIFO」的資料結構。">
+<meta name="twitter:image" content="https://ithelp.ithome.com.tw/upload/images/20191002/20104175DIqBdswLxB.png">
+
+<link rel="canonical" href="tsuifei.github.io/JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>JS 從陣列 Array 的開頭刪除元素 shift() | Cré-Coder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Je code donc je suis là.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">53</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">105</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS 從陣列 Array 的開頭刪除元素 shift()
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-18 04:21:14" itemprop="dateCreated datePublished" datetime="2019-11-18T04:21:14+08:00">2019-11-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-26 05:29:57" itemprop="dateModified" datetime="2020-02-26T05:29:57+08:00">2020-02-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h6 id="Day-18"><a href="#Day-18" class="headerlink" title="Day 18"></a>Day 18</h6><blockquote>
+<p>別把我頭上的角取下來，這樣我就被 Shift 了。不過也好，這樣我看起來會比較正常。</p>
+</blockquote>
+<p>前一篇我們認識了從陣列的頭部加上一個或多個元素的<code>unshift()</code>，今天要介紹的是從陣列的開端刪除元素的<code>shift()</code>，這一對陣列方法，都屬於佇列(Queue)「先進先出 FIFO」的資料結構。</p>
+<a id="more"></a>
+
+<p>我們再來以此圖複習一下：<br><img src="https://ithelp.ithome.com.tw/upload/images/20191002/20104175DIqBdswLxB.png" alt="資料結構"></p>
+<h2 id="shift-幫我把頭拿下來"><a href="#shift-幫我把頭拿下來" class="headerlink" title="shift() 幫我把頭拿下來"></a>shift() 幫我把頭拿下來</h2><p>使用<code>shift()</code>方法，會移除陣列的第一個元素，也就是索引值為零的元素，並把這個元素的值回傳回來。也就是說，它會永遠回傳原陣列的第一個元素。</p>
+<p><a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/shift" target="_blank" rel="noopener">Array.prototype.shift() - JavaScript | MDN</a></p>
+<p><strong>原型：</strong> Array.prototype.shift()<br><strong>功能：</strong> 會移除並回傳陣列的第一個元素。<br><strong>改變：</strong> 此方法會改變原陣列的長度和內容。<br><strong>語法：</strong> arr.shift()<br><strong>回傳值：</strong> 自陣列中移除的元素；若陣列為空，則會回傳 undefined。<br><strong>參數：</strong> 無</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191217/20104175Y17sjkGr8Y.png" alt="shift()"></p>
+<p>我們先來看一下用法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">arr.shift(); <span class="comment">// 1 回傳第一個被刪掉的元素值</span></span><br><span class="line">arr; <span class="comment">// [2, 3, 4, 5] 陣列已經去掉第一個元素</span></span><br></pre></td></tr></table></figure>
+
+<p>陣列中索引值為零的元素，就是第一個元素 <del>廢話</del>，執行之後，<code>shift()</code>會將隨後的其他元素的索引值減一（往前移一位）。假如陣列已經被清空，也就是 length 屬性的值是 0，<code>shift()</code>就會回傳 undefined 給我們。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">arr.shift(); <span class="comment">// 1</span></span><br><span class="line">arr.shift(); <span class="comment">// 2</span></span><br><span class="line">arr.shift(); <span class="comment">// undefined</span></span><br><span class="line">arr; <span class="comment">//[]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="如果第一個元素是物件類型的資料"><a href="#如果第一個元素是物件類型的資料" class="headerlink" title="如果第一個元素是物件類型的資料?"></a>如果第一個元素是物件類型的資料?</h3><p>即使想要處理的陣列裡，有包含物件類型的元素，如陣列或物件，<code>shift()</code>也會乖乖的把它傳回來，字串也是如此。 <del>實在是好聽話</del></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [&#123; <span class="attr">a</span>: <span class="number">42</span> &#125;, <span class="string">'Hi'</span>, <span class="number">24</span>];</span><br><span class="line">arr.shift(); <span class="comment">// &#123;a: 42&#125;</span></span><br><span class="line">arr.shift(); <span class="comment">// "Hi"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="如果陣列裡的元素包含無效的資料"><a href="#如果陣列裡的元素包含無效的資料" class="headerlink" title="如果陣列裡的元素包含無效的資料?"></a>如果陣列裡的元素包含無效的資料?</h3><p>如果陣列裡頭包含了<code>undefined</code>、<code>null</code>或者是<code>NaN</code>，在使用<code>shift()</code>時會回傳什麼呢？ <del>它還是很聽話</del><code>shift()</code>還是會把這些無效的值回傳給我們。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr3 = [<span class="literal">undefined</span>, <span class="literal">null</span>, <span class="literal">NaN</span>];</span><br><span class="line">arr3.shift(); <span class="comment">// undefined</span></span><br><span class="line">arr3.shift(); <span class="comment">// null</span></span><br><span class="line">arr3.shift(); <span class="comment">// NaN</span></span><br><span class="line">arr3.shift(); <span class="comment">// undefined 因為陣列空了，所以還是回傳 undefined</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="多此一舉的徒勞"><a href="#多此一舉的徒勞" class="headerlink" title="多此一舉的徒勞"></a>多此一舉的徒勞</h3><p>使用<code>shift()</code>是不需要給參數的，所以，即使我們給它一些奇怪的參數，它也會無動於衷，做它該做的事，而且還不會報錯。<code>shift()</code>只會完全忽略這些參數。 <del>終於有個性了起來</del>不過，會這樣做存粹是實驗，了解<code>shift()</code>就不會這樣玩弄它。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">arr.shift([<span class="string">'hi'</span>]); <span class="comment">// 1</span></span><br><span class="line">arr.shift(<span class="literal">null</span>); <span class="comment">// 2</span></span><br><span class="line">arr.shift(<span class="number">42</span>); <span class="comment">// 3</span></span><br><span class="line">arr.shift(<span class="number">-42</span>); <span class="comment">// 4</span></span><br><span class="line">arr.shift(<span class="string">''</span>); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="shift-是如何辦到刪除第一個元素的？"><a href="#shift-是如何辦到刪除第一個元素的？" class="headerlink" title="shift() 是如何辦到刪除第一個元素的？"></a>shift() 是如何辦到刪除第一個元素的？</h3><p>接下來我們來看看 <code>shift()</code>可能是這樣被寫出來的程式碼：<br>先把第一個元素，也就是索引值是零的元素抓出來，接下來利用<code>for</code>迴圈把剩下的值做索引值的位移。然後，再把位移後的結果去掉最後一個元素，再回傳最開始抓到的第一個值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 這裡的 this 是原要處理的陣列</span></span><br><span class="line"><span class="built_in">Array</span>.prototype.shift2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> firstItem = <span class="keyword">this</span>[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    arr[i] = arr[i + <span class="number">1</span>]; <span class="comment">// 以 往前位移一位的方式，把每個元素往前移一個位置。</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 移位完成之後，陣列的尾端會是原本的陣列最後一個，這樣就重複了，所以使用length減 1 把最後面的元素刪除。</span></span><br><span class="line">  arr.length--;</span><br><span class="line">  <span class="keyword">return</span> firstItem;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr2 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">arr2.shift2(); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>以下為<code>shift2</code>裡的<code>for</code>迴圈運作步驟：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">以上面的例子 this 長度是 5</span><br><span class="line">this[i] = this[i + 1]</span><br><span class="line">第一圈 this[0] = this[1]  i = 1</span><br><span class="line">第二圈 this[1] = this[2]  i = 2</span><br><span class="line">第三圈 this[2] = this[3]  i = 3</span><br><span class="line">第四圈 this[3] = this[4]  i = 4</span><br><span class="line">第四圈 this[4] = this[5]  i = 5</span><br></pre></td></tr></table></figure>
+
+<p>今天的<code>shift()</code>就介紹到這裡，希望看完這篇會更清楚<code>shift()</code>的運作原理。另外，今天是本人鐵人賽的第 18 天，但是還有一拖車的陣列方法要介紹啊！</p>
+<p>這次的鐵人賽絕對是無法介紹完的，但是本人會默默地、不定期的繼續把陣列方法介紹下去。因為，鐵人結束後，本人是不可能變鐵人的，所以還是要繼續學習才是，對吧？</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/blog/tags/JS-Array/" rel="tag"># JS_Array</a>
+              <a href="/blog/tags/Iron-man-30-鐵人賽/" rel="tag"># Iron man 30 鐵人賽</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array/" rel="prev" title="JS 從陣列 Array 的開頭新增元素的 unshift()">
+      <i class="fa fa-chevron-left"></i> JS 從陣列 Array 的開頭新增元素的 unshift()
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/" rel="next" title="JS 合併陣列 Array 的方法 concat()">
+      JS 合併陣列 Array 的方法 concat() <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#Day-18"><span class="nav-number">1.</span> <span class="nav-text">Day 18</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shift-幫我把頭拿下來"><span class="nav-number"></span> <span class="nav-text">shift() 幫我把頭拿下來</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如果第一個元素是物件類型的資料"><span class="nav-number"></span> <span class="nav-text">如果第一個元素是物件類型的資料?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果陣列裡的元素包含無效的資料"><span class="nav-number"></span> <span class="nav-text">如果陣列裡的元素包含無效的資料?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多此一舉的徒勞"><span class="nav-number"></span> <span class="nav-text">多此一舉的徒勞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shift-是如何辦到刪除第一個元素的？"><span class="nav-number"></span> <span class="nav-text">shift() 是如何辦到刪除第一個元素的？</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+  <div class="site-description" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tsuifei" title="GitHub → https://github.com/tsuifei" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tsuifei@gmail.com" title="E-Mail → mailto:tsuifei@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

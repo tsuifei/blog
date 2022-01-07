@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tsuifei.github.io","root":"/blog/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="最近在學習的時候，常常遇到問題卻不知怎麼問人的窘狀，也發現自己常常把問題「複雜化」，而這個後果就是會讓自己如鬼打牆般轉不出來。程式設計最吸引我的一部份就是程式的結果或許一樣，但這中間的運作卻是多樣的，每次在看到其他人解出題來時，總會對於解題的方式感到讚嘆，自己不知要練多久才有那個程度。而也在透過「試著讀懂」其他人的程式碼的過程中又學習到許多。 在使用 Vue.js 的v-for時，需要使用v-bi">
+<meta name="keywords" content="API,JavaScript,JSON">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 JSON 物件陣列上增加一對鍵與唯一值">
+<meta property="og:url" content="tsuifei.github.io/Add_unique_generated_Identifier_on_array_of_json_objec/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="最近在學習的時候，常常遇到問題卻不知怎麼問人的窘狀，也發現自己常常把問題「複雜化」，而這個後果就是會讓自己如鬼打牆般轉不出來。程式設計最吸引我的一部份就是程式的結果或許一樣，但這中間的運作卻是多樣的，每次在看到其他人解出題來時，總會對於解題的方式感到讚嘆，自己不知要練多久才有那個程度。而也在透過「試著讀懂」其他人的程式碼的過程中又學習到許多。 在使用 Vue.js 的v-for時，需要使用v-bi">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2020-10-17T20:27:34.701Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在 JSON 物件陣列上增加一對鍵與唯一值">
+<meta name="twitter:description" content="最近在學習的時候，常常遇到問題卻不知怎麼問人的窘狀，也發現自己常常把問題「複雜化」，而這個後果就是會讓自己如鬼打牆般轉不出來。程式設計最吸引我的一部份就是程式的結果或許一樣，但這中間的運作卻是多樣的，每次在看到其他人解出題來時，總會對於解題的方式感到讚嘆，自己不知要練多久才有那個程度。而也在透過「試著讀懂」其他人的程式碼的過程中又學習到許多。 在使用 Vue.js 的v-for時，需要使用v-bi">
+
+<link rel="canonical" href="tsuifei.github.io/Add_unique_generated_Identifier_on_array_of_json_objec/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>在 JSON 物件陣列上增加一對鍵與唯一值 | Cré-Coder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Je code donc je suis là.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">53</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">105</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/Add_unique_generated_Identifier_on_array_of_json_objec/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在 JSON 物件陣列上增加一對鍵與唯一值
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-16 00:42:24" itemprop="dateCreated datePublished" datetime="2020-10-16T00:42:24+08:00">2020-10-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-18 04:27:34" itemprop="dateModified" datetime="2020-10-18T04:27:34+08:00">2020-10-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>最近在學習的時候，常常遇到問題卻不知怎麼問人的窘狀，也發現自己常常把問題「複雜化」，而這個後果就是會讓自己如鬼打牆般轉不出來。程式設計最吸引我的一部份就是程式的結果或許一樣，但這中間的運作卻是多樣的，每次在看到其他人解出題來時，總會對於解題的方式感到讚嘆，自己不知要練多久才有那個程度。而也在透過「試著讀懂」其他人的程式碼的過程中又學習到許多。</p>
+<p>在使用 Vue.js 的<code>v-for</code>時，需要使用<code>v-bind:key=&#39;uniqueValue&#39;</code>去綁定一個唯一值，這樣可以讓 Vue 知道哪一個元素有變動而單一渲染，但是有時拿到的資料並沒有「唯一」值，如果使用陣列的索引值(index)當 key 的唯一值，會有因陣列的變動而索引值被改動的問題。如果後端給的資料沒有在每一筆資料裡給各唯一值，那麼只好自己生成，但是怎麼在 JSON 格式裡為每一個陣列裡的物間自動加上一對「鍵與唯一值」例如:</p>
+<a id="more"></a>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> amis = [&#123; <span class="attr">name</span>: <span class="string">'Tracy'</span>, <span class="attr">age</span>: <span class="number">42</span> &#125;];</span><br><span class="line"><span class="comment">// 希望變成有 鍵與唯一值</span></span><br><span class="line"><span class="keyword">const</span> amis = [&#123; <span class="attr">name</span>: <span class="string">'Tracy'</span>, <span class="attr">age</span>: <span class="number">42</span>, <span class="attr">id</span>: 唯一值 &#125;];</span><br></pre></td></tr></table></figure>
+
+<p>想一想在程式中，有哪些東西會產生連續的數字？除了 索引值(index)之外，還有跑 for 回圈常用的計算陣列長度的<code>arr.length</code>與代表陣列每一個元素的變數<code>i</code>，利用迴圈和陣列長度就可以產生連續的唯一值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> list = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; list.length + <span class="number">1</span>; i++) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125; <span class="comment">// 1 2 3 4 5</span></span><br></pre></td></tr></table></figure>
+
+<p>理解了上面的原理就可以思考，如果是 JSON 的資料型態如何利用 for 迴圈來增加一對鍵與唯一值？<br>自己把事情複雜化的把型別轉來轉去，使用了<code>JSON.stringify()</code>又使用了<code>JSON.parse()</code>都不行，因為自己連基本的「資料結構都還沒真的弄懂」，所以才會複雜化，來看了這篇<a href="https://www.footmark.info/programming-language/javascript/json-format-and-javascript/#fm-chapter-5-1" target="_blank" rel="noopener">JSON 格式與 JavaScript 解析教學範例</a>，再一個個去試，才對這些方法比較瞭解也算是收穫。</p>
+<p>後來又去 <a href="https://stackoverflow.com/questions/52935903/add-unique-generated-identifier-on-array-of-json-object" target="_blank" rel="noopener">stackoverflow</a> 繞了一圈，才看到可以這樣解：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原資料</span></span><br><span class="line"><span class="keyword">const</span> amis = [</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'tracy'</span>, <span class="attr">age</span>: <span class="number">42</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'phi'</span>, <span class="attr">age</span>: <span class="number">58</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'ayde'</span>, <span class="attr">age</span>: <span class="number">38</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; amis.length; i++) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(amis[i]);</span><br><span class="line">  <span class="built_in">console</span>.log(i + <span class="number">1</span>);</span><br><span class="line">  amis[i].uniqueId = i + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(amis);</span><br><span class="line"><span class="comment">// 結果</span></span><br><span class="line"><span class="comment">// amis = [</span></span><br><span class="line"><span class="comment">//   &#123; name: 'tracy', age: 42, uniqueId: 1 &#125;,</span></span><br><span class="line"><span class="comment">//   &#123; name: 'phi', age: 58, uniqueId: 2 &#125;,</span></span><br><span class="line"><span class="comment">//   &#123; name: 'ayde', age: 38, uniqueId: 3 &#125;,</span></span><br><span class="line"><span class="comment">// ];</span></span><br></pre></td></tr></table></figure>
+
+<p>試著寫成一支函式，以後就可以用了，但還是不夠完善，想試著把唯一 key 也提出來做參數，卻一直失敗。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addUniKeyValue</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    arr[i].uniqueId = i + <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>決定請教朋友給的提示，他沒幾分鐘就寫出來了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addUniKeyValue</span>(<span class="params">arr, id</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> arr.map(<span class="function">(<span class="params">el, i</span>) =&gt;</span> &#123;</span><br><span class="line">    el[id] = i + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> el;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> amis3 = addUniKeyValue(amis, <span class="string">'ok'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(amis);</span><br></pre></td></tr></table></figure>
+
+<p>接著就是自己真的要好好理解這段碼了。</p>
+<p>發現這樣得到的 陣列是淺拷貝，所以就來試了一下深拷貝，拿出去年學的，有點耗效能的 JSON.parse and JSON.stringify (Deep copy)深拷貝，也就是把陣列轉成字串，在字串轉成物件。<br>JSON.stringify：將物件轉字串。 / JSON.parse：將字串轉物件。<br>就可以利用這個函式將一份沒有鍵與唯一值的資料，轉成有鍵與唯一值的 JSON 資料，而且還可以指定鍵值名稱。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 深拷貝</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addDeep</span>(<span class="params">arr, id</span>) </span>&#123;</span><br><span class="line">  arr.map(<span class="function">(<span class="params">el, i</span>) =&gt;</span> &#123;</span><br><span class="line">    el[id] = i + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> el;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(arr));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> amis3 = addDeep(amis, <span class="string">'ok'</span>);</span><br></pre></td></tr></table></figure>
+
+<p>…待續…</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/API/" rel="tag"># API</a>
+              <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/blog/tags/JSON/" rel="tag"># JSON</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/JS_Date_objects/" rel="prev" title="JavaScript Date & Times 時間處理">
+      <i class="fa fa-chevron-left"></i> JavaScript Date & Times 時間處理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/JS_Basic_function_method/" rel="next" title="JS 函式的方法與 This">
+      JS 函式的方法與 This <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+  <div class="site-description" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tsuifei" title="GitHub → https://github.com/tsuifei" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tsuifei@gmail.com" title="E-Mail → mailto:tsuifei@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

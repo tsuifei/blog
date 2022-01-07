@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tsuifei.github.io","root":"/blog/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Day 29 生活要簡約，寫程式也是。但是，可能嗎？  ECMAScript 5 的陣列方法，除了前兩篇介紹的indexOf()和lastIndexOf()外，還有許多非常好用的方法，這些方法包含了對陣列做迭代（iterating）、對映（mapping）、過濾（filtering）、測試（testing）、約簡（reducing）這是什麼？！ 和搜尋(search)的功能。 剛開始接觸這些「動詞">
+<meta name="keywords" content="JavaScript,JS_Array,Iron man 30 鐵人賽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS ECMAScript 5 的陣列 Array 方法淺析">
+<meta property="og:url" content="tsuifei.github.io/JS_ironMan29_About-ECMAScript5s-Array-Method/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="Day 29 生活要簡約，寫程式也是。但是，可能嗎？  ECMAScript 5 的陣列方法，除了前兩篇介紹的indexOf()和lastIndexOf()外，還有許多非常好用的方法，這些方法包含了對陣列做迭代（iterating）、對映（mapping）、過濾（filtering）、測試（testing）、約簡（reducing）這是什麼？！ 和搜尋(search)的功能。 剛開始接觸這些「動詞">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20191014/20104175XLumawbfhE.png">
+<meta property="og:updated_time" content="2020-02-25T21:29:12.407Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS ECMAScript 5 的陣列 Array 方法淺析">
+<meta name="twitter:description" content="Day 29 生活要簡約，寫程式也是。但是，可能嗎？  ECMAScript 5 的陣列方法，除了前兩篇介紹的indexOf()和lastIndexOf()外，還有許多非常好用的方法，這些方法包含了對陣列做迭代（iterating）、對映（mapping）、過濾（filtering）、測試（testing）、約簡（reducing）這是什麼？！ 和搜尋(search)的功能。 剛開始接觸這些「動詞">
+<meta name="twitter:image" content="https://ithelp.ithome.com.tw/upload/images/20191014/20104175XLumawbfhE.png">
+
+<link rel="canonical" href="tsuifei.github.io/JS_ironMan29_About-ECMAScript5s-Array-Method/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>JS ECMAScript 5 的陣列 Array 方法淺析 | Cré-Coder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Je code donc je suis là.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">53</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">105</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/JS_ironMan29_About-ECMAScript5s-Array-Method/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS ECMAScript 5 的陣列 Array 方法淺析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-29 04:21:14" itemprop="dateCreated datePublished" datetime="2019-11-29T04:21:14+08:00">2019-11-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-26 05:29:12" itemprop="dateModified" datetime="2020-02-26T05:29:12+08:00">2020-02-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h6 id="Day-29"><a href="#Day-29" class="headerlink" title="Day 29"></a>Day 29</h6><blockquote>
+<p>生活要簡約，寫程式也是。但是，可能嗎？</p>
+</blockquote>
+<p>ECMAScript 5 的陣列方法，除了前兩篇介紹的<code>indexOf()</code>和<code>lastIndexOf()</code>外，還有許多非常好用的方法，這些方法包含了對陣列做迭代（iterating）、對映（mapping）、過濾（filtering）、測試（testing）、約簡（reducing）<del>這是什麼？！</del> 和搜尋(search)的功能。</p>
+<p>剛開始接觸這些「動詞」時，實在有點不知所措，我們先來了解一下這些詞的意義。因為這些詞用在不同的領域會有不太相同的解釋，所以我們以 JavaScript 的解釋為主。中文翻譯部分也會以「JavaScript 大全中文版」為主。</p>
+<a id="more"></a>
+
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20191014/20104175XLumawbfhE.png" alt="https://ithelp.ithome.com.tw/upload/images/20191014/20104175XLumawbfhE.png"></p>
+<h3 id="迭代（iterating）"><a href="#迭代（iterating）" class="headerlink" title="迭代（iterating）"></a>迭代（iterating）</h3><ul>
+<li>forEach()</li>
+</ul>
+<p>Iterate 的中文是「重複」，在程式裡指的是反覆運算，如果我們希望程式重複的做一件事，最常想到的是迴圈，重複執行一項指令。而迭代也和迴圈相似，反覆的運算直到不符合我們給的條件而停止。迭代也常被拿來和「遞迴」（Recursively）一起討論，遞迴算是迭代的升級版，和迭代最大的不同是，遞迴會把我們運算出來的結果，當作下一次重複的初始值，直到找到符合我們要的值與到達終止的條件。<br>參考：<a href="https://zh.wikipedia.org/zh-tw/%E8%BF%AD%E4%BB%A3" target="_blank" rel="noopener">疊代 - 維基百科，自由的百科全書</a></p>
+<h3 id="對映（mapping）"><a href="#對映（mapping）" class="headerlink" title="對映（mapping）"></a>對映（mapping）</h3><ul>
+<li>map()</li>
+</ul>
+<p>有些書上也會把 mapping 翻譯成鏡射或是映射。較容易理解的解釋是我們對每一個陣列上的元素做一些「加工」，然後加工後的結果，再依原本的陣列順序「存放」在另一個新的陣列裡。例如，我們希望對每個陣列裡的數字做「同樣」的運算，然後再把這些運算完的結果，照順序放到另一個陣列裡。<br>參考：<a href="https://en.wikipedia.org/wiki/Mapping" target="_blank" rel="noopener">Mapping - Wikipedia</a></p>
+<h3 id="過濾（filtering）"><a href="#過濾（filtering）" class="headerlink" title="過濾（filtering）"></a>過濾（filtering）</h3><ul>
+<li>filter()</li>
+</ul>
+<p>相較於其他，過濾很容易懂。顧名思義就像是過濾器，很像我們常用的 if 語句，只把我們想要的（符合條件）留下來，集合起來成另一個陣列。</p>
+<h3 id="測試（testing）"><a href="#測試（testing）" class="headerlink" title="測試（testing）"></a>測試（testing）</h3><ul>
+<li>every()</li>
+<li>some()</li>
+</ul>
+<p>測試這個詞大家都懂，但是本人覺得這裡的測試，比較像是「是非題」，檢查陣列元素時，如果有一個符合我們給的條件，就會回傳 true，全部都不符合條件就會回傳 false。感覺這樣的運作方式很像 JavaScript 裡的邏輯運算子的 AND <code>&amp;&amp;</code>和 OR<code>||</code>，如果是<code>||</code>，只要有一個是<code>true</code>就算其他的都是<code>false</code>也會回傳<code>true</code>。</p>
+<h3 id="約簡（reducing）"><a href="#約簡（reducing）" class="headerlink" title="約簡（reducing）"></a>約簡（reducing）</h3><ul>
+<li>reduce()</li>
+<li>reduceRight()</li>
+</ul>
+<p>Reducer 的中文是「減速器」<del>是在簡約什麼？</del>，這聽起來有點古怪，被稱為 reduce 的原因是因為，我們通常會用它來將陣列精簡成一個值，例如加總或計算陣列的平均值。也就是說，依據我們指定的函式，結合陣列的元素而產生一個值。這樣的方式常被拿來用在程式中的運算，所以也會被成為注入（inject）或折疊（fold）。</p>
+<h3 id="搜尋-searching"><a href="#搜尋-searching" class="headerlink" title="搜尋(searching)"></a>搜尋(searching)</h3><ul>
+<li>indexOf()</li>
+<li>lastIndexOf()</li>
+</ul>
+<p>search 相信大家都知道，這個詞就是搜尋和查找的意思，這些方法會依照我們給的值，去陣列裡查找，並將找到的這個值的位置回傳給我們。這兩個搜尋的方法，是少數不以函式當參數的陣列方法。</p>
+<h3 id="ECMAScript-5-的陣列方法共同的特徵"><a href="#ECMAScript-5-的陣列方法共同的特徵" class="headerlink" title="ECMAScript 5 的陣列方法共同的特徵"></a>ECMAScript 5 的陣列方法共同的特徵</h3><p>以上就是 ECMAScript 5 的陣列方法的淺略解析，基本上這些方法都有一些共同的特徵：</p>
+<ol>
+<li>這些方法的基礎都是使用「迭代」，對陣列元素重複做同一件事。</li>
+<li>這些方法的參數大多是函式，以呼叫(callback)函式的方法，來當此方法的參數，且會對陣列裡的元素執行一次此函式。</li>
+<li>如果陣列是稀疏的，指定使用的函式不會在這些稀疏陣列上起作用。</li>
+<li>陣列方法的參數函式會用三個引數來調用：陣列的元素值、陣列的索引值以及陣列本身。通常只需引數的第一個，可忽略第二、三個引數。</li>
+<li>陣列方法的參數函式也可接受額外的第二引數（如語法的[, thisArg]），如果有此第二引數，那麼傳入的參數函式會被當作第二引數的方法來調用，等同於我們傳入的第二引數會變成傳入的參數函式內的<code>this</code>關鍵字的值。這部分是不是感覺有點混亂？ <del>我也是</del>我們之後有更詳細的說明。</li>
+</ol>
+<p>如果能了解上面的特性與規則，相信碰上 ECMAScript 5 的陣列方法，用起來就會更得心應手了。</p>
+<p>原本是想要今天開始進入 ECMAScript 5 陣列方法的重心的 <del>進入內心戲</del>，但是看來應該是要在鐵人賽之後了，明天是鐵人賽的最後一天，總是要聊一下參賽感言，感言講完了，我們再好好的來聊聊這幾個 ECMAScript 5 非常重要的陣列方法囉！<del>沒錯！我想繼續鐵人！</del></p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/blog/tags/JS-Array/" rel="tag"># JS_Array</a>
+              <a href="/blog/tags/Iron-man-30-鐵人賽/" rel="tag"># Iron man 30 鐵人賽</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/JS_ironMan28_Find-the-index-value-of-the-last-element/" rel="prev" title="JS 陣列 Array 方法，找出最後一個元素的索引值 lastIndexOf()">
+      <i class="fa fa-chevron-left"></i> JS 陣列 Array 方法，找出最後一個元素的索引值 lastIndexOf()
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/JS_ironMan30_Array-dinner-is-not-finished/" rel="next" title="JS 陣列 Array 之小菜還沒出完">
+      JS 陣列 Array 之小菜還沒出完 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#Day-29"><span class="nav-number">1.</span> <span class="nav-text">Day 29</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代（iterating）"><span class="nav-number"></span> <span class="nav-text">迭代（iterating）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#對映（mapping）"><span class="nav-number"></span> <span class="nav-text">對映（mapping）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#過濾（filtering）"><span class="nav-number"></span> <span class="nav-text">過濾（filtering）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#測試（testing）"><span class="nav-number"></span> <span class="nav-text">測試（testing）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#約簡（reducing）"><span class="nav-number"></span> <span class="nav-text">約簡（reducing）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜尋-searching"><span class="nav-number"></span> <span class="nav-text">搜尋(searching)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ECMAScript-5-的陣列方法共同的特徵"><span class="nav-number"></span> <span class="nav-text">ECMAScript 5 的陣列方法共同的特徵</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+  <div class="site-description" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tsuifei" title="GitHub → https://github.com/tsuifei" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tsuifei@gmail.com" title="E-Mail → mailto:tsuifei@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

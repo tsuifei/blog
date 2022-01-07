@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tsuifei.github.io","root":"/blog/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="模塊與組件 模塊化與組件化 好繞舌  模塊與組件的關係模塊 Module理解：向外提供特定功能的 JS 應用，一般就是以.js的檔案為單位。為什麼：因為 JS 程式碼會越多，會越來越複雜。作用：可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。">
+<meta name="keywords" content="JavaScript,React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React 的 模塊 Module 與組件 component">
+<meta property="og:url" content="tsuifei.github.io/React_module_component/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="模塊與組件 模塊化與組件化 好繞舌  模塊與組件的關係模塊 Module理解：向外提供特定功能的 JS 應用，一般就是以.js的檔案為單位。為什麼：因為 JS 程式碼會越多，會越來越複雜。作用：可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2020-02-25T21:27:20.765Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React 的 模塊 Module 與組件 component">
+<meta name="twitter:description" content="模塊與組件 模塊化與組件化 好繞舌  模塊與組件的關係模塊 Module理解：向外提供特定功能的 JS 應用，一般就是以.js的檔案為單位。為什麼：因為 JS 程式碼會越多，會越來越複雜。作用：可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。">
+
+<link rel="canonical" href="tsuifei.github.io/React_module_component/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>React 的 模塊 Module 與組件 component | Cré-Coder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Je code donc je suis là.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">53</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">105</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/React_module_component/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React 的 模塊 Module 與組件 component
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-01-28 00:42:24" itemprop="dateCreated datePublished" datetime="2020-01-28T00:42:24+08:00">2020-01-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-26 05:27:20" itemprop="dateModified" datetime="2020-02-26T05:27:20+08:00">2020-02-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>模塊與組件 模塊化與組件化 好繞舌</p>
+</blockquote>
+<h2 id="模塊與組件的關係"><a href="#模塊與組件的關係" class="headerlink" title="模塊與組件的關係"></a>模塊與組件的關係</h2><h3 id="模塊-Module"><a href="#模塊-Module" class="headerlink" title="模塊 Module"></a>模塊 Module</h3><p>理解：向外提供特定功能的 JS 應用，一般就是以<code>.js</code>的檔案為單位。<br>為什麼：因為 JS 程式碼會越多，會越來越複雜。<br>作用：可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p>
+<a id="more"></a>
+
+<h3 id="組件-Component"><a href="#組件-Component" class="headerlink" title="組件 Component"></a>組件 Component</h3><p>一個局部的介面功能模塊，介面所需元素的集合包含 HTML,CSS,JS,image。可用來做資料、變數與函式操作與儲存資料的操作。</p>
+<p>理解：用來實現特定（局部）功能效果的程式碼集合(HTML, CSS)。<br>為什麼：一個介面的功能很複雜，所以最好能拆分成多個組件會較清楚。<br>作用： 可重複使用、簡化 JS 的編寫、提高 JS 的執行效率。</p>
+<h3 id="模塊化-Modular"><a href="#模塊化-Modular" class="headerlink" title="模塊化 Modular"></a>模塊化 Modular</h3><p>當應用程式的 JS 都是以模塊的方式書寫，這個程式就是一個模塊化的應用程式。</p>
+<h3 id="組件化-Componentization"><a href="#組件化-Componentization" class="headerlink" title="組件化 Componentization"></a>組件化 Componentization</h3><p>當應用程式的 JS 都是以多個組件的方式編寫，這個應用程式就是一個組件化的應用程式。</p>
+<h2 id="物件導向的組件構成"><a href="#物件導向的組件構成" class="headerlink" title="物件導向的組件構成"></a>物件導向的組件構成</h2><h3 id="基本的理解和使用"><a href="#基本的理解和使用" class="headerlink" title="基本的理解和使用"></a>基本的理解和使用</h3><p>物件導向的物件 -&gt; 物件導向的模塊 -&gt; 物件導向的組件。</p>
+<p><code>&lt;MyComponent/&gt;</code>稱為組件標籤，組件名可任意，但第一個字母需大寫，且標籤需關閉<code>&lt;組件名/&gt;</code>。</p>
+<p>新增組件的步驟：</p>
+<ol>
+<li>定義組件有兩種方式：工廠模式組件(簡單組件)、ES6 類別組件(複雜組件)</li>
+<li>渲染組件標籤</li>
+</ol>
+<h3 id="工廠模式組件-簡單組件：沒有狀態的組件"><a href="#工廠模式組件-簡單組件：沒有狀態的組件" class="headerlink" title="工廠模式組件(簡單組件：沒有狀態的組件)"></a>工廠模式組件(簡單組件：沒有狀態的組件)</h3><p>工廠模式組件的效率會比類別組件好，但是只能在組件沒有「狀態」的情況下使用它，也就是說如果只是靜態顯示資料，就可考慮用工廠模式。</p>
+<p>工廠模式的寫法很像一般函式的寫法，且一定要有回傳，而回傳內容通常就包含了 HTML 標籤。</p>
+<p>重點：一定要有回傳<code>return</code>，只要組件有<code>state</code>狀態，就不能用工廠模式。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyComponent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>工廠模式組件(簡單組件) <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 渲染組件標籤</span></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MyComponent</span> /&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">'example1'</span>));</span><br></pre></td></tr></table></figure>
+
+<p>組件標籤的另一種寫法，如果需要內容物在組件標籤之間，就可用這種寫法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;MyComponent&gt;</span><br><span class="line">  &lt;h2&gt;工廠模式組件(簡單組件) &lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>MyComponent&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ES6-類別組件-複雜組件"><a href="#ES6-類別組件-複雜組件" class="headerlink" title="ES6 類別組件(複雜組件)"></a>ES6 類別組件(複雜組件)</h3><p>ES6 類別組件寫法是以物件導向的類別方式來攥寫，包在裡面的會有建構式、綁定自定義函式、狀態和渲染或者是事件監聽。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2. ES6 類別組件(複雜組件)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent2</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>ES6 類別組件(複雜組件)<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">MyComponent2</span> /&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">'example2'</span>));</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/blog/tags/React/" rel="tag"># React</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/React_virtual_DOM/" rel="prev" title="React 裡的虛擬 DOM">
+      <i class="fa fa-chevron-left"></i> React 裡的虛擬 DOM
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/Vue_Test_QA/" rel="next" title="Vuejs 線上問答題">
+      Vuejs 線上問答題 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模塊與組件的關係"><span class="nav-number">1.</span> <span class="nav-text">模塊與組件的關係</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模塊-Module"><span class="nav-number">1.1.</span> <span class="nav-text">模塊 Module</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#組件-Component"><span class="nav-number">1.2.</span> <span class="nav-text">組件 Component</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模塊化-Modular"><span class="nav-number">1.3.</span> <span class="nav-text">模塊化 Modular</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#組件化-Componentization"><span class="nav-number">1.4.</span> <span class="nav-text">組件化 Componentization</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物件導向的組件構成"><span class="nav-number">2.</span> <span class="nav-text">物件導向的組件構成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本的理解和使用"><span class="nav-number">2.1.</span> <span class="nav-text">基本的理解和使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工廠模式組件-簡單組件：沒有狀態的組件"><span class="nav-number">2.2.</span> <span class="nav-text">工廠模式組件(簡單組件：沒有狀態的組件)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6-類別組件-複雜組件"><span class="nav-number">2.3.</span> <span class="nav-text">ES6 類別組件(複雜組件)</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+  <div class="site-description" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tsuifei" title="GitHub → https://github.com/tsuifei" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tsuifei@gmail.com" title="E-Mail → mailto:tsuifei@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

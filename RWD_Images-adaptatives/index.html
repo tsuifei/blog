@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tsuifei.github.io","root":"/blog/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="RWD (responsive web design）中文為「響應式設計」簡單來說就是網頁會依照我們使用的載具(電腦、平版、手機)的螢幕大小與螢幕的像素密度不同，而顯示指定的圖片圖像。而針對 RWD 中的網頁圖像的處理，我們稱為是響應式圖片(responsive image)，使用 JS 或是 CSS 都可以操控要顯示的圖像，但使用具有語義性的 HTML 方法與屬性，可以讓瀏覽器原生就支援這個功能">
+<meta name="keywords" content="HTML,RWD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RWD 圖片選擇的 Html 屬性">
+<meta property="og:url" content="tsuifei.github.io/RWD_Images-adaptatives/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="RWD (responsive web design）中文為「響應式設計」簡單來說就是網頁會依照我們使用的載具(電腦、平版、手機)的螢幕大小與螢幕的像素密度不同，而顯示指定的圖片圖像。而針對 RWD 中的網頁圖像的處理，我們稱為是響應式圖片(responsive image)，使用 JS 或是 CSS 都可以操控要顯示的圖像，但使用具有語義性的 HTML 方法與屬性，可以讓瀏覽器原生就支援這個功能">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2020-11-07T20:13:11.307Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RWD 圖片選擇的 Html 屬性">
+<meta name="twitter:description" content="RWD (responsive web design）中文為「響應式設計」簡單來說就是網頁會依照我們使用的載具(電腦、平版、手機)的螢幕大小與螢幕的像素密度不同，而顯示指定的圖片圖像。而針對 RWD 中的網頁圖像的處理，我們稱為是響應式圖片(responsive image)，使用 JS 或是 CSS 都可以操控要顯示的圖像，但使用具有語義性的 HTML 方法與屬性，可以讓瀏覽器原生就支援這個功能">
+
+<link rel="canonical" href="tsuifei.github.io/RWD_Images-adaptatives/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>RWD 圖片選擇的 Html 屬性 | Cré-Coder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Je code donc je suis là.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">53</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">105</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/RWD_Images-adaptatives/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          RWD 圖片選擇的 Html 屬性
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-11-07 00:42:24" itemprop="dateCreated datePublished" datetime="2020-11-07T00:42:24+08:00">2020-11-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-11-08 04:13:11" itemprop="dateModified" datetime="2020-11-08T04:13:11+08:00">2020-11-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/RWD/" itemprop="url" rel="index"><span itemprop="name">RWD</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>RWD (responsive web design）中文為「響應式設計」簡單來說就是網頁會依照我們使用的載具(電腦、平版、手機)的螢幕大小與螢幕的像素密度不同，而顯示指定的圖片圖像。<br>而針對 RWD 中的網頁圖像的處理，我們稱為是響應式圖片(responsive image)，使用 JS 或是 CSS 都可以操控要顯示的圖像，但使用具有語義性的 HTML 方法與屬性，可以讓瀏覽器原生就支援這個功能。</p>
+<p>如果只是把一張圖片以<code>&lt;img&gt;</code>包起來，如<code>&lt;img src=&quot;paris.png&quot;&gt;</code>，那麼在手機或是在桌上型電腦上瀏覽時都會出現「同一張」<code>paris.png</code>的圖片。使用同意張圖片，卻要給不同的載據顯示，可能造成的問題會是在大螢幕瀏覽這張圖時解析度可能不夠、在手機上瀏覽這張圖時，會因為過大而顯示很慢。這時依照載具的條件不同，來載入相對應的圖像就變得很重要。</p>
+<p>HTML 提供了多個方法與屬性，讓我們可以在「響應式設計」上更彈性，以下是幾個常用的屬性。</p>
+<a id="more"></a>
+
+<h3 id="srcset-螢幕的像素密度選擇"><a href="#srcset-螢幕的像素密度選擇" class="headerlink" title="srcset 螢幕的像素密度選擇"></a><code>srcset</code> 螢幕的像素密度選擇</h3><p>一般的桌上型顯示器是單倍像素密度，而手機的螢幕往往是多倍像素密度，就是多個像素合成為一個像素，也稱為 Retina 。有時圖像在桌上型顯示器看很清晰，但從手機上看會有點模糊，因為大部分的手機螢幕像素的像素密度有可能是 1.5 或是 2 倍，所以在手機上圖像像素被擴充放大了。</p>
+<p>這時如果我們希望依不同的載具來顯示不同大小的圖片與像素密度，<code>&lt;img&gt;</code>的屬性<code>srcset</code> 就可派上用場。<code>srcset</code>屬性用來指定多張圖像，來適應不同像素密度的螢幕，語法為<code>&lt;img srcset=&quot;[圖像][像素密度描述符]&quot;&gt;</code>，不同的尺寸以逗點隔開。圖像後面的像素密度描述符，格式是像素密度倍數 + 字母 <code>x</code>。1x 表示單倍像素密度，可以省略。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">srcset</span>=<span class="string">"paris-320w.png,</span></span></span><br><span class="line"><span class="tag"><span class="string">             paris-480w.png 1.5x,</span></span></span><br><span class="line"><span class="tag"><span class="string">             paris-640w.png 2x"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">src</span>=<span class="string">"paris-640w.png"</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>瀏覽器會依照當前螢幕設備的像素密度，去選擇載入的圖像，如果<code>srcset</code>屬性都沒有符合的條件，那麼就會去載入<code>src</code>的圖像。</p>
+<h3 id="srcset-sizes-屬性-圖像大小的選擇"><a href="#srcset-sizes-屬性-圖像大小的選擇" class="headerlink" title="srcset + sizes 屬性 = 圖像大小的選擇"></a><code>srcset</code> + <code>sizes</code> 屬性 = 圖像大小的選擇</h3><p>想要依照螢幕的「像素密度」和「螢幕大小」顯示載入的圖像，就必須加上<code>sizes</code> 屬性，使用時必須在不同的圖像後加上「寬度描述符」。<br>「寬度描述符」其實就是圖像原始的寬度，再加上代表寬度的<code>w</code>。所以在<code>paris-320.png 320w</code>裡的<code>320w</code>表示這張圖像的原始寬度為 320。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">srcset</span>=<span class="string">"paris-320.png 320w,</span></span></span><br><span class="line"><span class="tag"><span class="string">             paris-480.png 480w,</span></span></span><br><span class="line"><span class="tag"><span class="string">             paris-640.png 640w,</span></span></span><br><span class="line"><span class="tag"><span class="string">             paris-1280.png 1280w"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">sizes</span>=<span class="string">"(max-width: 440px) 100vw,</span></span></span><br><span class="line"><span class="tag"><span class="string">             (max-width: 800px) 33vw,</span></span></span><br><span class="line"><span class="tag"><span class="string">             320px"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">src</span>=<span class="string">"paris-1280w.png"</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>sizes</code>屬性會列出不同載據的圖像顯示寬度，語法：<code>sizes=&quot;([媒體查詢表達式]) [圖像的顯示寬度]</code>。<br><code>(max-width: 440px) 100vw</code>＝ 如果載具的螢幕最大寬度是(不超過) 440px，圖像顯示寬度就為 100％。<br><code>(max-width: 800px) 33vw</code>＝ 載具螢幕寬度 441~800px，圖像顯示寬度就為 33％。<br>最後一個<code>320px</code>即是載具螢幕寬度為 800px 以上，圖像顯示寬度就為 320px。</p>
+<h3 id="小測試"><a href="#小測試" class="headerlink" title="小測試"></a>小測試</h3><p>問題 <strong>- What is the meaning of the “800px” value below?</strong><br>“800px” 在下列程式碼中代表什麼？</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span></span></span><br><span class="line"><span class="tag">  <span class="attr">srcset</span>=<span class="string">"</span></span></span><br><span class="line"><span class="tag"><span class="string">    https://i.imgur.com/wdpNu4W.jpeg 480w,</span></span></span><br><span class="line"><span class="tag"><span class="string">    https://i.imgur.com/mY3Cz2I.jpg  800w</span></span></span><br><span class="line"><span class="tag"><span class="string">  "</span></span></span><br><span class="line"><span class="tag">  <span class="attr">sizes</span>=<span class="string">"(max-width:600px) 480px, 800px"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">"https://i.imgur.com/JiVQRCg.jpg"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">alt</span>=<span class="string">""</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>答案：如果螢幕大小最大是 600px 就把圖片寬度以 480px 顯示，600px 以上就顯示 800px。答對了嗎？</p>
+<p>後記：每一個語言和技術都會有新的語法和擴充功能，雖然 HTML 和 CSS 用了這麼多年，但每次碰到這些問題，都還是覺得自己所學不足，所以特地記錄一下。</p>
+<p>參考：</p>
+<ul>
+<li><a href="https://developer.mozilla.org/fr/docs/Apprendre/HTML/Comment/Ajouter_des_images_adaptatives_%C3%A0_une_page_web" target="_blank" rel="noopener">Images adaptatives - Apprendre le développement web | MDN</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2019/06/responsive-images.html" target="_blank" rel="noopener">響應式圖像教程 - 阮一峰的網絡日誌</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/HTML/" rel="tag"># HTML</a>
+              <a href="/blog/tags/RWD/" rel="tag"># RWD</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/Html_figure/" rel="prev" title="HTML figure 標籤的用法">
+      <i class="fa fa-chevron-left"></i> HTML figure 標籤的用法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/CSS_Tips/" rel="next" title="CSS 的 小技巧">
+      CSS 的 小技巧 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#srcset-螢幕的像素密度選擇"><span class="nav-number">1.</span> <span class="nav-text">srcset 螢幕的像素密度選擇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#srcset-sizes-屬性-圖像大小的選擇"><span class="nav-number">2.</span> <span class="nav-text">srcset + sizes 屬性 = 圖像大小的選擇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小測試"><span class="nav-number">3.</span> <span class="nav-text">小測試</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+  <div class="site-description" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tsuifei" title="GitHub → https://github.com/tsuifei" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tsuifei@gmail.com" title="E-Mail → mailto:tsuifei@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
