@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="前陣子在進行 Vue.js 專案時，因為要使用 Tailwind Css 的關係所以把 Node 的版本升到 v14.17.6 的版本，但最近在更新 hexo 文章時卻無法部署，查了一下錯誤訊息hexo The &amp;quot;mode&amp;quot; argument must be integer. Received an instance of Object的來源才知道是因為 Node 的版本對 h">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2022-01-07T20:46:59.433Z">
+<meta property="og:updated_time" content="2022-01-07T20:51:54.028Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 nvm 切換與 hexo 相容的 Node 版本">
 <meta name="twitter:description" content="前陣子在進行 Vue.js 專案時，因為要使用 Tailwind Css 的關係所以把 Node 的版本升到 v14.17.6 的版本，但最近在更新 hexo 文章時卻無法部署，查了一下錯誤訊息hexo The &amp;quot;mode&amp;quot; argument must be integer. Received an instance of Object的來源才知道是因為 Node 的版本對 h">
@@ -200,7 +200,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-01-08 04:46:59" itemprop="dateModified" datetime="2022-01-08T04:46:59+08:00">2022-01-08</time>
+                <time title="Modified: 2022-01-08 04:51:54" itemprop="dateModified" datetime="2022-01-08T04:51:54+08:00">2022-01-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -227,15 +227,15 @@
 <p>已經忘記當初裝 hexo 的 Node 版本是多少，於是從 v11.13.0 開始安裝，裝了之後 hexo 出現一片白，看來是太低，憑印象好像是 v12，查了一下穩定版本是 v12.22.8 於是使用 nvm 指令安裝：<br><code>nvm install v12.22.8</code><br>安裝完畢 node 會直接使用剛安裝的版本，這時再生成和部署一次 Hexo 就沒問題了。</p>
 <h2 id="NVM-是什麼？"><a href="#NVM-是什麼？" class="headerlink" title="NVM 是什麼？"></a>NVM 是什麼？</h2><p>NVM 是 node 版本管理工具<br>以下記錄一下 nvm 的指令：</p>
 <ul>
-<li>查看版本：<code>nvm v</code>或<code>nvm version</code></li>
+<li>查看版本：<code>nvm v</code> 或 <code>nvm version</code></li>
 <li>查看所有可安装 Node 版本： <code>nvm list available</code></li>
-<li>node 安装最新版本（最新不一定最穩） :<code>vm install node</code> </li>
-<li>node 安装指定版本(推薦) :<code>vm install [指定版本]</code> </li>
-<li>查看已安装 node 版本：<code>nvm ls</code>或<code>vm list</code></li>
-<li>使用指定版本：<code>nvm use [指定版本]</code></li>
-<li>卸載已安装的 node 版本：<code>nvm uninstall [版本]</code></li>
+<li>node 安装最新版本（最新不一定最穩） : <code>nvm install node</code> </li>
+<li>node 安装指定版本(推薦) : <code>nvm install [指定版本]</code> </li>
+<li>查看已安装 node 版本： <code>nvm ls</code> 或 <code>vm list</code></li>
+<li>使用指定版本： <code>nvm use [指定版本]</code></li>
+<li>卸載已安装的 node 版本： <code>nvm uninstall [版本]</code></li>
 </ul>
-<p>所以記得下次要在 Hexo 發文部署前，先使用<code>nvm use v12.22.8</code>切回 hexo 相容的 node 版本，發完文章再切回 Tailwind Css 需要的，也就是當前常用的 v14.17.6 版本就可以了。</p>
+<p>所以記得下次要在 Hexo 發文部署前，先使用 <code>nvm use v12.22.8</code> 切回 hexo 相容的 node 版本，發完文章再切回 Tailwind Css 需要的，也就是當前常用的 v14.17.6 版本就可以了。</p>
 
     </div>
 
