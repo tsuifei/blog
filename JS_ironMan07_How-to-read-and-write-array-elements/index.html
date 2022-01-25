@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tsuifei.github.io","root":"/blog/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Day 07 只要有資料，都會有 CRUD ，那陣列呢？  CRUD 是什麼？ 能吃嗎？？ CRUD 分別代表：建立 Create, 讀取 Read, 更新 Update 和刪除 delete 。 如果資料只能讀不能取，那會很悲慘，就像逛到一間好吃的甜點店，裡面擺滿了好吃的法式甜點，我們無法吃到，也無法買到，那不是很失落？ 其實掏錢就可以了。 這一排的第[ ]個位子坐著誰？要讀取或寫入陣列這件事情">
+<meta name="keywords" content="JavaScript,JS_Array,Iron man 30 鐵人賽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何讀取和寫入陣列 Array 元素">
+<meta property="og:url" content="tsuifei.github.io/JS_ironMan07_How-to-read-and-write-array-elements/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="Day 07 只要有資料，都會有 CRUD ，那陣列呢？  CRUD 是什麼？ 能吃嗎？？ CRUD 分別代表：建立 Create, 讀取 Read, 更新 Update 和刪除 delete 。 如果資料只能讀不能取，那會很悲慘，就像逛到一間好吃的甜點店，裡面擺滿了好吃的法式甜點，我們無法吃到，也無法買到，那不是很失落？ 其實掏錢就可以了。 這一排的第[ ]個位子坐著誰？要讀取或寫入陣列這件事情">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2020-02-25T21:30:45.493Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何讀取和寫入陣列 Array 元素">
+<meta name="twitter:description" content="Day 07 只要有資料，都會有 CRUD ，那陣列呢？  CRUD 是什麼？ 能吃嗎？？ CRUD 分別代表：建立 Create, 讀取 Read, 更新 Update 和刪除 delete 。 如果資料只能讀不能取，那會很悲慘，就像逛到一間好吃的甜點店，裡面擺滿了好吃的法式甜點，我們無法吃到，也無法買到，那不是很失落？ 其實掏錢就可以了。 這一排的第[ ]個位子坐著誰？要讀取或寫入陣列這件事情">
+
+<link rel="canonical" href="tsuifei.github.io/JS_ironMan07_How-to-read-and-write-array-elements/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>如何讀取和寫入陣列 Array 元素 | Cré-Coder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Je code donc je suis là.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">56</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">107</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/JS_ironMan07_How-to-read-and-write-array-elements/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何讀取和寫入陣列 Array 元素
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-03 04:25:35" itemprop="dateCreated datePublished" datetime="2019-11-03T04:25:35+08:00">2019-11-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-26 05:30:45" itemprop="dateModified" datetime="2020-02-26T05:30:45+08:00">2020-02-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h6 id="Day-07"><a href="#Day-07" class="headerlink" title="Day 07"></a>Day 07</h6><blockquote>
+<p>只要有資料，都會有 CRUD ，那陣列呢？</p>
+</blockquote>
+<p>CRUD 是什麼？ <del>能吃嗎？？</del> CRUD 分別代表：建立 Create, 讀取 Read, 更新 Update 和刪除 delete 。 如果資料只能讀不能取，那會很悲慘，就像逛到一間好吃的甜點店，裡面擺滿了好吃的法式甜點，我們無法吃到，也無法買到，那不是很失落？ <del>其實掏錢就可以了。</del></p>
+<h2 id="這一排的第-個位子坐著誰？"><a href="#這一排的第-個位子坐著誰？" class="headerlink" title="這一排的第[ ]個位子坐著誰？"></a>這一排的第[ ]個位子坐著誰？</h2><p>要讀取或寫入陣列這件事情，並不是那麼困難，因為陣列是物件的另一種特殊形式，只要使用方括號 [ ]，即可指定某個元素，如果陣列裡有物件型態的元素也一樣用這種方式取得。記得方括號是元素的位置，也就是這個元素的所在索引值(index)。</p>
+<a id="more"></a>
+
+<p>如果想讀取的元素不存在，例如陣列只有 5 個元素，我們卻想要讀取第 7 個，Javascrupt 並不會因此報錯，而直接回應 <code>undefined</code>給我們。我們來看看如何取值吧！</p>
+<h4 id="arrayName-index-陣列名-索引值"><a href="#arrayName-index-陣列名-索引值" class="headerlink" title="arrayName[index] / 陣列名[索引值]"></a>arrayName[index] / 陣列名[索引值]</h4><p>以下有許多不同型態的陣列：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 陣列常値 // 數字陣列</span></span><br><span class="line"><span class="keyword">const</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 非同型陣列</span></span><br><span class="line"><span class="keyword">const</span> arr2 = [<span class="string">'one'</span>, <span class="number">2</span>, <span class="string">'three'</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 陣列裡有陣列</span></span><br><span class="line"><span class="keyword">const</span> arr3 = [</span><br><span class="line">  [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">  [<span class="string">'one'</span>, <span class="number">2</span>, <span class="string">'three'</span>]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 非同型陣列</span></span><br><span class="line"><span class="keyword">const</span> arr4 = [</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'Tsuifei'</span>, <span class="attr">type</span>: <span class="string">'object'</span>, <span class="attr">luckyNumber</span>: [<span class="number">5</span>, <span class="number">7</span>, <span class="number">13</span>, <span class="number">42</span>] &#125;,</span><br><span class="line">  [</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'Philippe'</span>, <span class="attr">type</span>: <span class="string">'object'</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'Ayda'</span>, <span class="attr">type</span>: <span class="string">'object'</span> &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="number">1</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">too</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'array can contain function too'</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">'three'</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>如果想要取出某個陣列，只要照<code>arrayName[index]</code>這個規則取就可以了:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr1[<span class="number">1</span>]; <span class="comment">// 2</span></span><br><span class="line">arr2[<span class="number">0</span>]; <span class="comment">// "one"</span></span><br><span class="line">arr3[<span class="number">1</span>]; <span class="comment">//(3) ["one", 2, "three"]</span></span><br><span class="line">arr4[<span class="number">3</span>]; <span class="comment">// ƒ too() &#123; return "array can contain function too" &#125;</span></span><br><span class="line">arr3[<span class="number">2</span>]; <span class="comment">// undefined, arr3 並沒有這個元素</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="取陣列的最後一個元素"><a href="#取陣列的最後一個元素" class="headerlink" title="取陣列的最後一個元素"></a>取陣列的最後一個元素</h3><p>也可以利用陣列長度屬性 <code>length-1</code> 的特性，輕鬆取到最後一個元素。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr4[arr4.length - <span class="number">1</span>]; <span class="comment">// "three"</span></span><br><span class="line">arr3[arr3.length - <span class="number">1</span>]; <span class="comment">// (3) ["one", 2, "three"]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="取陣列中的陣列-一層層找"><a href="#取陣列中的陣列-一層層找" class="headerlink" title="取陣列中的陣列 一層層找"></a>取陣列中的陣列 一層層找</h3><p>如果遇到陣列中還有陣列，可以利用多層的中括號<code>[ ][ ]</code>取到值。但只限於陣列裡的陣列，如果是非同型資料的陣列資料，就無法用這個方式取了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr3[<span class="number">1</span>][<span class="number">2</span>]; <span class="comment">// "three"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="座位沒人-undefined"><a href="#座位沒人-undefined" class="headerlink" title="座位沒人 undefined"></a>座位沒人 undefined</h3><p>如果陣列是稀疏陣列，那麼當然是找不到，而會丟個<code>undefined</code>回來。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr5 = [</span><br><span class="line">  [<span class="number">1</span>, <span class="number">2</span>, , , <span class="number">5</span>],</span><br><span class="line">  [<span class="string">'a'</span>, , <span class="string">'c'</span>]</span><br><span class="line">];</span><br><span class="line">arr5[<span class="number">1</span>][<span class="number">1</span>]; <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="取物件型態資料的方法"><a href="#取物件型態資料的方法" class="headerlink" title="取物件型態資料的方法"></a>取物件型態資料的方法</h3><p>如果是陣列裡面有物件型態的資料，就無法用陣列的方括號<code>[]</code>來取，而要用點 <code>.</code>加上<code>key</code>來取值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr4[<span class="number">0</span>].luckyNumber; <span class="comment">// (4) [5, 7, 13, 42]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ES6-的好物"><a href="#ES6-的好物" class="headerlink" title="ES6 的好物"></a>ES6 的好物</h3><p>在 ES6 新增加的功能中，有一個很好用的方法叫解構賦值，它可以把陣列或物件中的資料取出成一個獨立變數，也算是讀取的一種方法，但有礙篇幅，有機會我們再來討論吧。</p>
+<h2 id="寫入即是更新-update"><a href="#寫入即是更新-update" class="headerlink" title="寫入即是更新 update"></a>寫入即是更新 update</h2><p>當我們是某一個網站的會員，我們都可以找到可以修改我們個人資料的頁面，我們把新的資料更新，其實也是在「覆蓋」我們之前填的資料。</p>
+<p>陣列讀入資料的方式基本上和取出的方式ㄧ樣，都是依照陣列的位置來進行覆蓋，以單個元素或整個陣列為單位的方式都可行。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr5 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">arr5[<span class="number">2</span>] = <span class="number">42</span>; <span class="comment">// [1, 2, 42, 4, 5]</span></span><br><span class="line"></span><br><span class="line">arr5[<span class="number">5</span>] = &#123; <span class="attr">say</span>: <span class="string">'hi'</span>, <span class="attr">name</span>: <span class="string">'Tsuifei'</span>, <span class="attr">city</span>: <span class="string">'Tainan'</span> &#125;;</span><br><span class="line"><span class="comment">// [1, 2, 42, 4, 5, &#123;say: "hi", name:"Tsuifei", city:"Tainan"&#125;]</span></span><br><span class="line"></span><br><span class="line">arr5[<span class="number">5</span>].say = <span class="string">'Hello'</span>;</span><br><span class="line">arr5[<span class="number">5</span>]; <span class="comment">// &#123;say: "hi", name:"Tsuifei", city:"Tainan"&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="不小心成為稀疏陣列"><a href="#不小心成為稀疏陣列" class="headerlink" title="不小心成為稀疏陣列"></a>不小心成為稀疏陣列</h3><p>如果陣列長度是 5 ，但我們指定讀入的位置比陣列長度大，那麼就會造成陣列成為稀疏陣列，JavaScript 也會以<code>undefined</code>來填補這些空隙，並將長度延展至指定讀入的長度。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr6 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">arr6[<span class="number">8</span>] = <span class="number">42</span>; <span class="comment">// (9) [1, 2, 3, 4, 5, empty × 3, 42]</span></span><br></pre></td></tr></table></figure>
+
+<p>今天就介紹到這裡，相信今天的小菜口味不是很重，且很好消化，如果熟悉這些讀取規則，相信在將來學到物件<code>Object</code>或<code>JSON</code>格式的資料，應該會更好瞭解才是。</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/blog/tags/JS-Array/" rel="tag"># JS_Array</a>
+              <a href="/blog/tags/Iron-man-30-鐵人賽/" rel="tag"># Iron man 30 鐵人賽</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/JS_ironMan06_What-are-the-types-of-Array/" rel="prev" title="陣列 Array 有哪幾種型態 ?">
+      <i class="fa fa-chevron-left"></i> 陣列 Array 有哪幾種型態 ?
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/JS_ironMan08_How-to-determine-if-it-is-an-array/" rel="next" title="判別是否為陣列 Array">
+      判別是否為陣列 Array <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#Day-07"><span class="nav-number">1.</span> <span class="nav-text">Day 07</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#這一排的第-個位子坐著誰？"><span class="nav-number"></span> <span class="nav-text">這一排的第[ ]個位子坐著誰？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#arrayName-index-陣列名-索引值"><span class="nav-number"></span> <span class="nav-text">arrayName[index] / 陣列名[索引值]</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取陣列的最後一個元素"><span class="nav-number"></span> <span class="nav-text">取陣列的最後一個元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取陣列中的陣列-一層層找"><span class="nav-number"></span> <span class="nav-text">取陣列中的陣列 一層層找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#座位沒人-undefined"><span class="nav-number"></span> <span class="nav-text">座位沒人 undefined</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取物件型態資料的方法"><span class="nav-number"></span> <span class="nav-text">取物件型態資料的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6-的好物"><span class="nav-number"></span> <span class="nav-text">ES6 的好物</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#寫入即是更新-update"><span class="nav-number"></span> <span class="nav-text">寫入即是更新 update</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不小心成為稀疏陣列"><span class="nav-number"></span> <span class="nav-text">不小心成為稀疏陣列</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+  <div class="site-description" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">107</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tsuifei" title="GitHub → https://github.com/tsuifei" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tsuifei@gmail.com" title="E-Mail → mailto:tsuifei@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tsuifei.github.io","root":"/blog/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Un blog pour partager, expérimenter et s&apos;améliorer en programmation.">
+<meta name="keywords" content="tsuifei, Pommier, Front-End, developpeurse, JavaScript, Vuejs, HTML, CSS, linux, sass, coding">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cré-Coder">
+<meta property="og:url" content="tsuifei.github.io/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="Un blog pour partager, expérimenter et s&apos;améliorer en programmation.">
+<meta property="og:locale" content="zh-tw">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cré-Coder">
+<meta name="twitter:description" content="Un blog pour partager, expérimenter et s&apos;améliorer en programmation.">
+
+<link rel="canonical" href="tsuifei.github.io/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
+  };
+</script>
+
+  <title>Cré-Coder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Je code donc je suis là.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">56</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">107</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/JS-daily-practice/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/JS-daily-practice/" class="post-title-link" itemprop="url">JS 日常練習</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-20 00:42:24" itemprop="dateCreated datePublished" datetime="2022-01-20T00:42:24+08:00">2022-01-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-01-25 19:01:59" itemprop="dateModified" datetime="2022-01-25T19:01:59+08:00">2022-01-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>這裡蒐集平常看到的小題目，無論做對或做錯，都記錄下來。</p>
+<h3 id="No-1"><a href="#No-1" class="headerlink" title="No.1"></a>No.1</h3><p>What will this code log to the consol?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">const</span> [n] = foo;</span><br><span class="line"><span class="built_in">console</span>.log(n); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>使用解構賦值 (Destructuring assignment) ，可以把陣列或物件中的資料解開擷取成為獨立變數。<br>解構賦值使用類似語法；不過在指定敘述式的左側，要宣告從來源變數接收解開值之變數。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> [y, z] = x;</span><br><span class="line"><span class="built_in">console</span>.log(y); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(z); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="No-2"><a href="#No-2" class="headerlink" title="No.2"></a>No.2</h3><p>What does this code print to the consol?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x =[<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> y =[<span class="number">5</span>, <span class="number">7</span>];</span><br><span class="line"><span class="keyword">const</span> z =[x,y];</span><br><span class="line"><span class="built_in">console</span>.log(z); <span class="comment">// [1,2,5,7]</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 ES6 的解構賦值 (Destructuring assignment)，可以把陣列或物件中的資料解開擷取。</p>
+<h3 id="No-3"><a href="#No-3" class="headerlink" title="No.3"></a>No.3</h3><p>What value is assigned to total after this code executes?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sum = <span class="function"><span class="keyword">function</span>(<span class="params">num1, num2 =<span class="number">2</span>, num3 = <span class="number">3</span></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2 + num3</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> values = [<span class="number">1</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> total = sum(<span class="number">4</span>, ...values);</span><br><span class="line"><span class="built_in">console</span>.log(total); <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+
+<p>一樣使用 ES6 的解構賦值 (Destructuring assignment)</p>
+<h3 id="No-4"><a href="#No-4" class="headerlink" title="No.4"></a>No.4</h3><p>What line of code causes this code segment to throw an error?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> lion = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> tiger = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> bear;</span><br><span class="line"></span><br><span class="line">++lion;</span><br><span class="line">bear += lion + tiger;</span><br><span class="line">tiger++;</span><br></pre></td></tr></table></figure>
+
+<p><code>++lion;</code>，因為是以 const 賦值，如果值為原始型別，就無法再度賦值。如果是物件型別則可修改物件裡的內容。<br>所以答案是：<code>++lion;</code>，because lion cannot be reassigned a value.</p>
+<h3 id="No-5"><a href="#No-5" class="headerlink" title="No.5"></a>No.5</h3><p>What is the output that is printed when the div containing the text “click Here” is clicked?</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"A"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"B"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"C"</span>&gt;</span>Click Here<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">"div"</span>).forEach(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">  e.onclick = <span class="function"><span class="params">e</span> =&gt;</span> <span class="built_in">console</span>.log(e.currentTarget.id);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>答案是 “C” “B” “A”，冒泡（bubbling）<br>可參考這篇：<a href="https://zh.javascript.info/bubbling-and-capturing" target="_blank" rel="noopener">冒泡和捕获</a></p>
+<h3 id="No-6"><a href="#No-6" class="headerlink" title="No.6"></a>No.6</h3><p>把缺的 code 補上</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Missing Line</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; vowels.length; i++)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(vowels[i]); <span class="comment">// a e i o u</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>別想太多，就是 vowels 變數沒定義與賦值：<code>let vowels = &quot;aeiou&quot;</code></p>
+<h3 id="No-7"><a href="#No-7" class="headerlink" title="No.7"></a>No.7</h3><p>Which snippet could you add to this code to print “YOU GOT THIS” to the console?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> cipherText = [...<span class="string">"YZOGUT QGMORTZ MTRHTILS"</span>];</span><br><span class="line"><span class="keyword">let</span> plainText = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Missing Snippet */</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(plainText); <span class="comment">// YOU GOT THIS</span></span><br></pre></td></tr></table></figure>
+
+<p>答案：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> [index, value] <span class="keyword">of</span> cipherText.entries())&#123;</span><br><span class="line">  plainText += index % <span class="number">2</span> === <span class="number">0</span> ? value : <span class="string">""</span></span><br><span class="line"><span class="comment">// 如果 index 除二餘數是零，就取 value 不然就空字串</span></span><br><span class="line">  <span class="built_in">console</span>.log(index,value); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>原來可以使用 for..of 這樣取到 index 和 value !</p>
+<h3 id="No-8"><a href="#No-8" class="headerlink" title="No.8"></a>No.8</h3><p>Which code would you yse to access the Irish flag?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> flagsJSON = <span class="string">'&#123;"countries" : ['</span> +</span><br><span class="line"><span class="string">'&#123;"country":"Ireland" , "flag":"irish"&#125;, '</span> +</span><br><span class="line"><span class="string">'&#123;"country":"Serbia" , "flag":"serbia"&#125;, '</span> +</span><br><span class="line"><span class="string">'&#123;"country":"Peru" , "flag":"peru"&#125; ]&#125;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> flagDatabase = <span class="built_in">JSON</span>.parse(flagsJSON);</span><br><span class="line"><span class="built_in">console</span>.log(flagDatabase);</span><br></pre></td></tr></table></figure>
+
+<p>答案：<code>flagDatabase.countries[0].flag</code></p>
+<h3 id="No-9"><a href="#No-9" class="headerlink" title="No.9"></a>No.9</h3><p>What statement can be used to select the element from the DOM containing the “The LinkedIn Learning library has great Javascript courses” from this markup”?</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span>LinkedIn Learning<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span>The LinkedIn Learning library has great Javascript courses<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>答案：<code>document.querySelector(&quot;span.content&quot;);</code></p>
+<h3 id="No-10"><a href="#No-10" class="headerlink" title="No.10"></a>No.10</h3><p>What is wrong with this code?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = &#123;</span><br><span class="line">  bar()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Hello World!"</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  name: <span class="string">"Tracy"</span>,</span><br><span class="line">  age: <span class="number">42</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一切正常，不會出錯。</p>
+<h3 id="No-11"><a href="#No-11" class="headerlink" title="No.11"></a>No.11</h3><p>Which line could you add to this code to print “jaguar” to the console?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> animals = [<span class="string">"jaguar"</span>, <span class="string">"eagle"</span>];</span><br><span class="line"><span class="comment">// Missing Line</span></span><br><span class="line"><span class="keyword">let</span> </span><br><span class="line"><span class="built_in">console</span>.log(animals.pop()); <span class="comment">// prints jaguar</span></span><br></pre></td></tr></table></figure>
+
+<p>答案：<code>animals.reverse()</code><br>Array.prototype.pop() 會刪除陣列的最後一個元素，並回傳刪除元素，先使用 reverse() 將陣列反轉，在取出最後一個元素。</p>
+<h3 id="No-12"><a href="#No-12" class="headerlink" title="No.12"></a>No.12</h3><p>What is the output of the code?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> rainForests = [<span class="string">"Amazon"</span>, <span class="string">"Borneo"</span>, <span class="string">"Cerrado"</span>, <span class="string">"Congo"</span>];</span><br><span class="line">rainForests.splice(<span class="number">0</span>,<span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(rainForests);</span><br></pre></td></tr></table></figure>
+
+<p>答案： <code>[&#39;Cerrado&#39;, &#39;Congo&#39;]</code><br>splice(0,2):從 index 0 切兩個掉。</p>
+<p>￼</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/hexo_nvm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/hexo_nvm/" class="post-title-link" itemprop="url">使用 nvm 切換與 hexo 相容的 Node 版本</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-07 00:42:24" itemprop="dateCreated datePublished" datetime="2022-01-07T00:42:24+08:00">2022-01-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-01-08 04:51:54" itemprop="dateModified" datetime="2022-01-08T04:51:54+08:00">2022-01-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Other/" itemprop="url" rel="index"><span itemprop="name">Other</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>前陣子在進行 Vue.js 專案時，因為要使用 Tailwind Css 的關係所以把 Node 的版本升到 v14.17.6 的版本，但最近在更新 hexo 文章時卻無法部署，查了一下錯誤訊息<code>hexo The &quot;mode&quot; argument must be integer. Received an instance of Object</code>的來源才知道是因為 Node 的版本對 hexo 來說太高，所以無法生成與部署，記得 nvm 是在做 Node 版本控管，查了一下只要再把較低版本安裝回去，然後切換到原本的版本就好了。</p>
+<p>已經忘記當初裝 hexo 的 Node 版本是多少，於是從 v11.13.0 開始安裝，裝了之後 hexo 出現一片白，看來是太低，憑印象好像是 v12，查了一下穩定版本是 v12.22.8 於是使用 nvm 指令安裝：<br><code>nvm install v12.22.8</code><br>安裝完畢 node 會直接使用剛安裝的版本，這時再生成和部署一次 Hexo 就沒問題了。</p>
+<h2 id="NVM-是什麼？"><a href="#NVM-是什麼？" class="headerlink" title="NVM 是什麼？"></a>NVM 是什麼？</h2><p>NVM 是 node 版本管理工具<br>以下記錄一下 nvm 的指令：</p>
+<ul>
+<li>查看版本：<code>nvm v</code> 或 <code>nvm version</code></li>
+<li>查看所有可安装 Node 版本： <code>nvm list available</code></li>
+<li>node 安装最新版本（最新不一定最穩） : <code>nvm install node</code> </li>
+<li>node 安装指定版本(推薦) : <code>nvm install [指定版本]</code> </li>
+<li>查看已安装 node 版本： <code>nvm ls</code> 或 <code>vm list</code></li>
+<li>使用指定版本： <code>nvm use [指定版本]</code></li>
+<li>卸載已安装的 node 版本： <code>nvm uninstall [版本]</code></li>
+</ul>
+<p>所以記得下次要在 Hexo 發文部署前，先使用 <code>nvm use v12.22.8</code> 切回 hexo 相容的 node 版本，發完文章再切回 Tailwind Css 需要的，也就是當前常用的 v14.17.6 版本就可以了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/small_side_project/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/small_side_project/" class="post-title-link" itemprop="url">小專案記錄： Rezay 排班工具</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-06 00:42:24" itemprop="dateCreated datePublished" datetime="2022-01-06T00:42:24+08:00">2022-01-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-01-08 03:48:07" itemprop="dateModified" datetime="2022-01-08T03:48:07+08:00">2022-01-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>法國的小鄉村，因為人煙稀少所以許多小商店都無法繼續生存下去，在這個名為 Rezay 的小村莊，據說興盛時期曾有八間酒吧與餐廳，當然也有其他的商店和公共設施如學校等，而如今，這裡僅存的小餐廳也在三年前歇業了。</p>
+<p>沒有了酒吧的存在，就少了人們可以互相交流的地方，法國人很依靠酒吧搭建起來的人際關係，再加上如果有人聚集的地方，各方的消息與資訊更容易流通，所以小村莊如果有間小酒吧，ㄧ定會促進人們資訊流通的速度，尤其是冬季這裡更是一片死寂，如果有個溫暖的地方，讓人們聚一聚聊些家常，也一定會讓村莊的人們關係更熱絡，進而相互分享與幫忙，尤其這些交流對於老人更為重要。</p>
+<p>在 2021 年年初知道村裡有幾位接近退休年齡的居民希望重啟酒吧，但是礙於開間酒吧的成本與費用的考量，實在不是一般人負擔得起的，於是集眾人的力量成立協會，並和村公所以低微的價格租下場地，村中唯一的酒吧得以開始試營運。當時正值疫情嚴重並且封城，既然不移動動，那我們就到鄉下去吧！於是住在巴黎的我們， 2021 年拜疫情所賜，封城時待在鄉下遠距工作。我在春夏交界的時候加入協會，並擔任起所有資訊相關的志工，包括架網站、處理電子報的發送、酒吧的主視覺與臉書粉絲專頁的管理，或是酒吧有活動時需要線上報名的表單都一併處理。</p>
+<p>協會的成員有一部份是較於活躍的，也是這群人撐起協會大大小小的事物，且負責酒吧的服務與餐點的準備，有時酒吧也會舉辦藝文活動，例如說書、戲劇表演、音樂演奏或是有主題的聚會。因為大部份的志工都要上班（還沒退休）所以酒吧只有週末的時候會營業，並且由志工輪流輪班當服務生與廚房餐點的準備。關於輪班這件事，原本是使用某個免費的線上服務來調配排班這件事，但是因為那個服務不太穩定，所以討論之下就自告奮勇說要做個排班系統給他們用。</p>
+<p>因為會員每一個人使用手幾與網頁的體驗都不太一樣，最無法控制的例如老人也想幫忙，但是不知如何自己報名排班，所以有好幾個月，想輪班的只能在酒吧裡的黑板上填上自己的名字，非常不方便。</p>
+<p>原本想說這樣的東西應該用 Google 的表單就可以處理，但是並不是每個人都有 Gmail 帳號，因此使用起來不是很方便便做罷。想說好吧，需要儲存資料，所以再把很久沒碰的 PHP 和 MySql 拿出來碰，但是自己的免費伺服器因為Php版本太低的關係做罷，也有考慮以 firebase 當資料庫，但是研究幾天又被雜事打斷，想說其實不就是讀寫的功能，如果先不要做登入，會不會比較好做？後來還研究到如何把Google Sheet 當成資料庫來用，並且以 HTML 來讀寫。看了一些教學，原來是要在 google app script 裡寫好腳本，再以 get 和 post 的方式將資料引入並顯示。</p>
+<p>在研究怎麼寫的期間，也不知怎麼的，撇見了 Google 有個新的服務叫做 AppSheet ，看了一下官方教學影片馬上就來試做，結果不到兩小時就處理好了！驚艷到使用上的方便，且可以自動部屬，就差網址連結沒那麼好看，但是讀寫的功能操作起來也頗順暢的。部屬完成之後寄給同是志工的老鄰居（原本在大學教 C 語言），寄過去沒幾分鐘就收到訊息說好用，並且自己已經上去填了排班表，接著下午寄給負責排班的志工和協會長，傍晚就說可以公佈了！</p>
+<p>很神奇的，就這樣完成了卡了一些時間的排班工具，真的超神奇的！今年所訂定的 output 顯化年，就這樣開啟了！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/6_practical_tips_for_writing_programs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/6_practical_tips_for_writing_programs/" class="post-title-link" itemprop="url">寫程式的 6 招實用技巧</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-07-08 00:42:24 / Modified: 03:30:13" itemprop="dateCreated datePublished" datetime="2021-07-08T00:42:24+08:00">2021-07-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/學習二三事/" itemprop="url" rel="index"><span itemprop="name">學習二三事</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Coding 其實是有招式的，如果招式沒打好，除了效率打折，還會讓其他合作夥伴抱頭燒，所以好的開發習慣有必要好好養成。</p>
+<p>此篇來自於「在地上滾的工程師 Nic」的 YouTube 頻道的「<a href="https://www.youtube.com/watch?v=cfeKek8p9us" target="_blank" rel="noopener">提升軟體開發品質! 寫程式的 6 招實用技巧</a>」觀看後的筆記，因為覺得條條建議都很重要，又怕忘記，所以寫個筆記來記錄，希望自己可以把這些好習慣養成。同時也很推薦 Nic 的頻道，很多很受用的經驗分享，對於新手工程師而言，這些經驗是早知道的些好。很值得訂閱觀賞，當然也記得要好好的記住他分享的經驗，對往開發工程師的路上前行的人，一定會有幫助的！</p>
+<p>他提到培養寫程式的好習慣有什麼好處？有三大好處：</p>
+<ul>
+<li>有效提升協做效率</li>
+<li>增加程式被測試的可能性</li>
+<li>建立一定的專頁度</li>
+</ul>
+<p>通常專案都會有時程的的壓力與要求，一定有時間的壓力，必然會犧牲掉程式碼的品質，但如果程式碼的品質不夠好，接下來就有技術債的問題，然後新的功能越來越難增加，或是增加了，所許要付出的時間會更多。主要是程式碼不只是要會運作，也需要讓其他協做的工程式看得懂，所以如果能夠對自身有「寫好扣」的要求，對自己或是協作者而言，都可省不少力，如果想當一個好工程師，一定要把這些好習慣養成。</p>
+<p>以下就是好習慣養成的六招</p>
+<h2 id="避免簡寫，使用有意義的命名"><a href="#避免簡寫，使用有意義的命名" class="headerlink" title="避免簡寫，使用有意義的命名"></a>避免簡寫，使用有意義的命名</h2><p>除了函式需要有意義的命名外，變數、參數都應該盡量避免使用簡寫，資料本身已經有型別的問題，如果參數、變數名語意不明。也不能直覺的知道是哪種型態的型別。如果寫簡寫，其他人甚至自己都有可能忘記代表其意義，然後還要花時間去猜，去看上下文，很花時間，更有可能猜錯。<br>多打幾個字不會花你很多時間，少打幾個字，會花掉無法想像的許多時間。</p>
+<h2 id="限制傳入參數的數量"><a href="#限制傳入參數的數量" class="headerlink" title="限制傳入參數的數量"></a>限制傳入參數的數量</h2><p>因為需求增加，有可能在寫函式時會增加數個參數傳進函式裡處理，但是如果參數過多，很難定義這個函式要處理的邏輯，因為變因多也會很難做測試，讓函式變得複雜，且一次做太多事會很難拆解並降低函式的複用性，所以參數最好不要超過三個，如果超過三個，可試著再拆解出另一支函式，或是用 has 或 Object 的方式，把這些參數包成一個物件，直接傳進去函式。這樣其他人在看這支函式時，比較可以一目了然這支函式所要處理的邏輯與資料。</p>
+<h2 id="簡化條件的表達-判斷-式"><a href="#簡化條件的表達-判斷-式" class="headerlink" title="簡化條件的表達(判斷)式"></a>簡化條件的表達(判斷)式</h2><p>可以試著把判斷式的結果直接回傳出去，試著避免撰寫多餘的部份。因為需要回傳的是 Boolean 值，只要把符合的條件以判斷的結果直接回傳就可做到。<br>以下例子是自己用 JS 改寫，可回去看 Nic 的影片例子會更精確。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 是否有符合騎車資格，回傳值為 Boolean </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">canPersonRideMotorbike</span>(<span class="params">person</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(person.age &gt;= <span class="number">18</span> &amp;&amp; person.has_rider_license)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 建議寫成這樣：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">canPersonRideMotorbike</span>(<span class="params">person</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> person.age &gt;= <span class="number">18</span> &amp;&amp; person.has_rider_license</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="變數定義範圍的限制"><a href="#變數定義範圍的限制" class="headerlink" title="變數定義範圍的限制"></a>變數定義範圍的限制</h2><p>盡量讓變數在函式裡面讀取的到就好（區域變數），也就是盡量避免使用全域的變數。現今 ES6 已有限制區域的 let 和 const ，最好棄用全域的 var ，除非變數有全域可存取的需求。<br>盡可能把一個變數的作用域限制在函式裡，只讓這個函式可以讀取或修改這個變數，在函式使用之後就丟棄此變數，才是比較好的方式。這樣才能避免全域變數污染與程式難以測試的問題。</p>
+<h2 id="一支程式只做一件事情"><a href="#一支程式只做一件事情" class="headerlink" title="一支程式只做一件事情"></a>一支程式只做一件事情</h2><p>在封裝函式時，函式定義命名必須要和函式所處理的邏輯有一致的行為，不要在同一支函式裡，加入其他要處理的功能，這樣會造成其他工程師在閱讀與理解上，或是呼叫這支函式而造成無法想像的 effect。例如函式處理訂單總價，就不要夾雜打折或其他邏輯。<br>如果一定要把另一個行為包進去同一支函式裡，可以把函式取名為比較中性的名字，例如 xxxService，明確撰寫函式需要做什麼事、流程或邏輯，讓其他工程師在乎叫這支函式時，很明確知道這支函式的用途。或是，更改函式的命名，同時把兩個功能行為寫進命名裡，但這樣仍不是個好做法。</p>
+<h2 id="Early-return-提前回傳"><a href="#Early-return-提前回傳" class="headerlink" title="Early return (提前回傳)"></a>Early return (提前回傳)</h2><p>當 if, else 超過兩層以上，會形成多層巢狀，結構會越來越複雜且難以閱讀，尤其要找出對應的條件更是困難。設計多條件判斷的邏輯時，可使用 Early return 技巧，讓程式盡可能提早結束，避免去執行到不該執行的部份，</p>
+<p>改寫成 JS 的範例：<br>技巧：<strong>只要遇到不符合條件，就跳出函式</strong>這樣就可以讓程式盡可能保持一層的判斷，如果 if 條件有符合再繼續。<br>這種在相關的 Design pattern 也有提到，例如 fail fast, guard clause（改天找來看）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 錯誤示範</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">returnStuff</span>(<span class="params">argument1, argument2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(argument1 === <span class="literal">true</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(argument2 === <span class="literal">true</span>)&#123;</span><br><span class="line">      <span class="keyword">let</span> otherValue = getSomeStuff(argument1, argument2)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(otherValue === <span class="literal">true</span>) <span class="keyword">return</span> <span class="string">"Stuff"</span></span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">return</span> <span class="string">"Error"</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">return</span> <span class="string">"Error"</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">return</span> <span class="string">"Error"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 較理想的寫法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">returnStuff</span>(<span class="params">argument1, argument2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(argument1 !== <span class="literal">true</span>) <span class="keyword">return</span> <span class="string">"Error"</span></span><br><span class="line">  <span class="keyword">if</span>(argument2 !== <span class="literal">true</span>) <span class="keyword">return</span> <span class="string">"Error"</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> otherValue = getSomeStuff(argument1, argument2)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(otherValue !== <span class="literal">true</span>) <span class="keyword">return</span> <span class="keyword">return</span> <span class="string">"Error"</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span><span class="string">"Stuff"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再次感謝 Nic 提供實用的資訊與技巧，把這樣的習慣養成，應該可以提高可讀性，也可降低殘害合作同伴的可能。</p>
+<p>補充：<br>關於命名，可參考<a href="https://medium.com/%E6%89%8B%E5%AF%AB%E7%AD%86%E8%A8%98/meaningful-names-893d3ae05ec" target="_blank" rel="noopener">有意義的命名 | Clean Code.</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/六角Vue直播班心得/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/六角Vue直播班心得/" class="post-title-link" itemprop="url">參加六角Vue直播班心得</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-07-07 10:07:02 / Modified: 20:29:46" itemprop="dateCreated datePublished" datetime="2021-07-07T10:07:02+08:00">2021-07-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Other/" itemprop="url" rel="index"><span itemprop="name">Other</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>感覺，走在一條看不見盡頭的路上，又有時，偶而會像是看到隧道盡頭的光。</p>
+<p>如果，這條路上真的是一條看不見盡頭的路，那麼有其他人一起走在這條路上，是不是比較不悲情？</p>
+<p>身處在與台灣飛行需要 13 小時的國度，自身條件又是中年轉職，已經不想再去回頭看當初的決定是否錯誤，雖然知道這個職場上喜歡新鮮的肝，但是也曾被操過的肝是否會有看不見的優勢？</p>
+<p>如果自己有耐心的可以在電腦前超過十幾個小時，為了解決一個小問題，是否我應該能有最不值錢的努力獎或入門票？</p>
+<p>把自己當成一個實驗體已經有一段時間了，每次沮喪時，總是想到那些實驗的科學家，或是其他努力經過數十載才看到結果的例子，就會想再給自己一次機會。</p>
+<p>Q：當初為什麼報名這堂課？<br>因為校長曾在直播時說：「我陪你們學到會！」這句話讓我紅了眼眶，覺得或許可以再給自己一次機會，所以連續參加 JS 直播、Vue 直播與接下來的切版直播。想說如果有跟上，如果職場不要我，我還可以做些事。</p>
+<p>Q：第一週~第八週的學習過程<br>手沒有髒都不算。<br>之前已經有自學過 Vue2 但是沒有完成一個完整專案，很難知道自己的技能是否達到業界的技術要求。<br>對自己的要求是希望每次繳交任務都是 LV3 但越是後面越覺得困難，主要是還是需要參考其他人的程式碼，如果沒有釐清邏輯，會有很大的問題。<br>尤其是在使用 Props 和 emit 這部份，好幾次畫面拍下來畫圖示意，然後用時忘了再回去看，反反覆覆好幾次。<br>每次接任務都怕自己做不出來，做出來又非常高興，情緒很像三溫暖。</p>
+<p>Q：最大的收獲是？<br>這就是程式與一起學的魔力。<br>自己是金魚腦，語法忘的快，概念也是，所以必須一直去查語法，也需要錄影看好幾遍，有時真的會被自己嚇到，不是看過怎麼沒記住！？<br>每日的練習和每週任務對語法與邏輯的熟悉很有幫助，其實很想要 Kata 但是時間不夠很可惜。<br>最大的收獲是有讓自己不間斷的訓練各方面。雖然動作還是不夠快，但是持續做習題很重要。</p>
+<p>能夠提問也是天堂。<br>一直不敢提問，但後來想想自己或許無法都看清楚問題，那就容許自己讓其他人來幫忙，可以提問真的是很棒的環境，許多卡好久的部份，都被大家的仙女棒一點出現解答，或是常在提問的時候中途就發現問題點。</p>
+<p>Q：最喜歡直播班的哪些活動？<br>我什麼都要，都喜歡。<br>每日作業、每週任務、老師，助教的直播、小組討論都有幫助，尤其是每日作業，真的可以讓一些概念理的更清楚。如果有每週測驗，我應該可以更記得注意一點！</p>
+<p>Q：如果時光能倒流，會希望自己再次注意哪些細節？<br>如果時間能倒流，可能會先參加切版直播班、再來是 JS直播班，然後才是 Vue.js 直播班，因為發現在做 Vue 的作業時，調版面好花時間，而且不是自己切的版，所以看準備好的版也蠻吃力的。</p>
+<p>一天只有 24 小時，自己是除了睡覺、煮飯、吃飯之外的時間，都在課程，作業和練習上，所以如果能重來，我應該還是會努力跟上。</p>
+<p>JS 直播班因為時差不好意思加入小組，後來發現其實小組討論互相鼓勵也很好，Vue 直播有加入小組，果然感受到大家一起互相鼓勵互相學習的作用。</p>
+<p>Q：身為學長姐，分享些想入坑的新同學一些勉勵的話</p>
+<ul>
+<li>有校長的「我陪你們學到會！」這句話，你還在怕什麼！</li>
+<li>能的話盡量把基礎打好，不然坑要填會更花時間。</li>
+<li>把自己一天精力最好的時段留給學習，因為大量用腦很容易沒電。</li>
+</ul>
+<p>最後，想感謝六角的洧傑校長和卡斯伯老師，還有助教群與同學們的幫忙，還有默默在一旁陪我的老公。</p>
+<p>期待自己 可以對程式感到自在<br>期待自己 可以信心滿滿的做出想要的功能<br>期待自己 可以對其他人有回饋與幫助<br>期待這樣的自己，我會繼續努力！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/module_form_Valitatation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/module_form_Valitatation/" class="post-title-link" itemprop="url">Validate.JS  表單驗證套件</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-06 00:42:24 / Modified: 19:53:13" itemprop="dateCreated datePublished" datetime="2021-04-06T00:42:24+08:00">2021-04-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/module/" itemprop="url" rel="index"><span itemprop="name">module</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>表單在網頁上的應用很頻繁，也是與使用者互動的重要部分，凡舉聯絡的表單，或是資料的填寫、登入，都會用到表單，透過表單所得取的資料，如果不符合格式，也會造成後續資料處理上的麻煩與困難，雖然我們也可以透過 HTML5 來驗證使用者填入的是否符合一些基本的規則，但是無法定義比較細微的部分，這時候就必須自己動手寫驗證了。</p>
+<h3 id="好工具哪有不用的道理"><a href="#好工具哪有不用的道理" class="headerlink" title="好工具哪有不用的道理"></a>好工具哪有不用的道理</h3><p>如果自己寫過表單的驗證，就會知道其實是很瑣碎的，在邏輯的處理上也必須花些心思，如果能力許可當然可以自己寫一個套件來用，但是套件如果別人寫的又好又完善，也真的可以不需要自己刻。</p>
+<p>使用套件的心態或許可以放在：「套件會用就好」，第一時間或許不需要了解原始碼怎麼寫，但一定要遵循官方文件，來理解如何使用，且官網的文件解說與使用說明大都很清楚，也就很容易上手。待有多的時間再來翻看原始碼也不遲。</p>
+<p>validate.js 便是一個完善的套件，表單需要的驗證該有的都有，而且引入就可以使用了，那麼就來理解一下，如何使用 validate.js 來驗證表單。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/module_form_Valitatation/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/API_Introduction_to_Ajax_and_Applications/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/API_Introduction_to_Ajax_and_Applications/" class="post-title-link" itemprop="url">淺談 Ajax 與應用</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-28 00:42:24" itemprop="dateCreated datePublished" datetime="2021-03-28T00:42:24+08:00">2021-03-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-29 22:13:48" itemprop="dateModified" datetime="2021-03-29T22:13:48+08:00">2021-03-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Ajax/" itemprop="url" rel="index"><span itemprop="name">Ajax</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Ajax 的出現，優化了不少使用者體驗，也縮短了網頁顯示的時間，這篇僅單純的淺談什麼是 Ajax 以及應用 Ajax 來做非同步資料請求的方式。</p>
+<p>Ajax 全名為 Asynchronous JavaScript and XML，一種允許瀏覽器與伺服器交換資料，而不需刷新頁面的技術，都可以叫做 Ajax.</p>
+<p>Ajax 這個名字是在 2005 年 5 月的時候，Adaptive Path 的 Jasse James Garrett 在他所寫的「Ajax : New Approach to Web Application」文章中提出的。而 Ajax 這項技術，是由 Google 在 Google labs 發佈的 Google Maps 和 Google Suggest 後真正為人所認識。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/API_Introduction_to_Ajax_and_Applications/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/DOM_Methodes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/DOM_Methodes/" class="post-title-link" itemprop="url">DOM - 操控網頁元素的必學技巧</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-18 00:42:24" itemprop="dateCreated datePublished" datetime="2021-03-18T00:42:24+08:00">2021-03-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-03-15 22:20:25" itemprop="dateModified" datetime="2021-03-15T22:20:25+08:00">2021-03-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>現在的網頁講求的是不只是速度，與使用者之間的互動也非常的重要，這些互動免不了由 JavaScript 的「事件」或「監聽」來操作，而這些操作往往包含了對 HTML 標籤或網頁元素取值，增加元素或屬性來達到效果，這篇主要介紹如何透過 JavaScript 來控制或修改 DOM Tree 上面的節點元素。</p>
+<h2 id="DOM-是什麼？"><a href="#DOM-是什麼？" class="headerlink" title="DOM 是什麼？"></a>DOM 是什麼？</h2><p>DOM, (Document Object Model, 檔案物件模型)，是網頁內容（HTML 或 XML）所建構網頁的內容結構，並提供給編程語言一套完整的操控檔案文件的 API 。</p>
+<p>DOM Tree 樹狀結構與節點：網頁的結構有如樹狀般，這些相連的交會點，有如骨骼的關節，每一個節點上是網頁結構的元素所構成。這些節點具有關連性，也具有父層或兄弟層的關係。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/DOM_Methodes/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/JS_Date_to_Number/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/JS_Date_to_Number/" class="post-title-link" itemprop="url">將字串轉成數字的 parseInt()和 Number()</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-03-13 12:42:24 / Modified: 23:14:52" itemprop="dateCreated datePublished" datetime="2021-03-13T12:42:24+08:00">2021-03-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我們常常需要把一些資料裡面的數字相加，但是拿到的資料卻是字串，字串和字串相加，只會讓數字串在一起，並不會計算數字，這時我們會先將字串，轉成數字型別再做運算，最常用的方法就是<code>parseInt()</code>和 <code>Number()</code>。但這兩種有什麼不同呢？</p>
+<h2 id="parseInt"><a href="#parseInt" class="headerlink" title="parseInt()"></a>parseInt()</h2><blockquote>
+<p>語法：‵parseInt(string, radix);‵</p>
+</blockquote>
+<p>parseInt() 會將指定的字串以指定的進位方式轉換成整數。 parseInt() 可以帶入兩個參數 <code>parseInt（string，radix）</code>，第一個參數就是我們希望轉換成數字的「數字字串」，第二個參數為指定的「進位制」，我們一般使用 10 進位制，也有可能會用到其他進位制，如 8 或 16，解析出來的結果也會依進位制不同而轉換。如果沒有給第二參數，則會默認以 10 進位制來轉換數字。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/JS_Date_to_Number/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/module_AOS_animation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/module_AOS_animation/" class="post-title-link" itemprop="url">Animate On Scroll Library 套件使用</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-04 00:42:24" itemprop="dateCreated datePublished" datetime="2021-03-04T00:42:24+08:00">2021-03-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-06 19:52:31" itemprop="dateModified" datetime="2021-04-06T19:52:31+08:00">2021-04-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/module/" itemprop="url" rel="index"><span itemprop="name">module</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>AOS 是個支援因網頁捲軸(scroll)變化的動畫效果套件，可以在 VueJs 的專案直接使用，讓頁面內容或圖片量多需要往下滑動時，內容或圖片會出現以動畫效果出現在頁面上，讓頁面增加一些互動性。</p>
+<p>這次重新以 Vus 3 建構自己的個人網站時，就以 AOS 的套件來製作動畫效果，其實這些效果使用 CSS 的 Animation 也是可以達到的，但測試之後發現手刻的 CSS 動畫可能 keyframe 分的不夠細，和 AOS 的動畫相較起來沒那麼順暢，所以才又回來改用 AOS 套件。</p>
+<p>官網的展示效果清楚簡單，只要將 AOS 套件引入專案，變可以開始使用了，效果也只要下幾個關鍵字，就可達到不錯的結果。</p>
+<p>因為之前的作品頗多，所以個人網站上有很多圖片，使用的主要是<a href="https://tsuifei.github.io/profile/portfolio">這一頁</a>。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/module_AOS_animation/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/11/">11</a><a class="extend next" rel="next" href="/blog/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+  <div class="site-description" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">107</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tsuifei" title="GitHub → https://github.com/tsuifei" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tsuifei@gmail.com" title="E-Mail → mailto:tsuifei@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
