@@ -20,19 +20,20 @@
     var CONFIG = {"hostname":"tsuifei.github.io","root":"/blog/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Un blog pour partager, expérimenter et s&apos;améliorer en programmation.">
-<meta name="keywords" content="tsuifei, Pommier, Front-End, developpeurse, JavaScript, Vuejs, HTML, CSS, linux, sass, coding">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Cré-Coder">
-<meta property="og:url" content="tsuifei.github.io/categories/HTML/index.html">
+  <meta name="description" content="有很多時候，我們只會拿這放大鏡看，而忘了抬起頭來，退後幾步讓視野看得更多更廣。有時候 coding 就是這麼一回事。 如何開始一個小專案想要做一個小小志工排班管理系統，卻不知如何開始，花了許多時間在看線上教學，但自己實作時卻遇上許多問題，如何開始是一個大問題，接著網頁要放哪裡？要不要有登入機制？資料要放哪裡？開放哪些權限？這些只是大方向，接著就會陷入糾結，例如用哪個框架？（其實比較會的也只有Vue">
+<meta name="keywords" content="VueJs,note,Firebase">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一個小專案紀錄">
+<meta property="og:url" content="tsuifei.github.io/How-to-start-a-small-project/index.html">
 <meta property="og:site_name" content="Cré-Coder">
-<meta property="og:description" content="Un blog pour partager, expérimenter et s&apos;améliorer en programmation.">
+<meta property="og:description" content="有很多時候，我們只會拿這放大鏡看，而忘了抬起頭來，退後幾步讓視野看得更多更廣。有時候 coding 就是這麼一回事。 如何開始一個小專案想要做一個小小志工排班管理系統，卻不知如何開始，花了許多時間在看線上教學，但自己實作時卻遇上許多問題，如何開始是一個大問題，接著網頁要放哪裡？要不要有登入機制？資料要放哪裡？開放哪些權限？這些只是大方向，接著就會陷入糾結，例如用哪個框架？（其實比較會的也只有Vue">
 <meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2022-02-04T12:14:38.851Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cré-Coder">
-<meta name="twitter:description" content="Un blog pour partager, expérimenter et s&apos;améliorer en programmation.">
+<meta name="twitter:title" content="一個小專案紀錄">
+<meta name="twitter:description" content="有很多時候，我們只會拿這放大鏡看，而忘了抬起頭來，退後幾步讓視野看得更多更廣。有時候 coding 就是這麼一回事。 如何開始一個小專案想要做一個小小志工排班管理系統，卻不知如何開始，花了許多時間在看線上教學，但自己實作時卻遇上許多問題，如何開始是一個大問題，接著網頁要放哪裡？要不要有登入機制？資料要放哪裡？開放哪些權限？這些只是大方向，接著就會陷入糾結，例如用哪個框架？（其實比較會的也只有Vue">
 
-<link rel="canonical" href="tsuifei.github.io/categories/HTML/">
+<link rel="canonical" href="tsuifei.github.io/How-to-start-a-small-project/">
 
 
 <script id="page-configurations">
@@ -40,11 +41,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false
+    isPost: true
   };
 </script>
 
-  <title>Category: HTML | Cré-Coder</title>
+  <title>一個小專案紀錄 | Cré-Coder</title>
   
 
 
@@ -130,12 +131,12 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">56</span></a>
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">58</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">107</span></a>
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">109</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -164,50 +165,104 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h1 class="collection-header">HTML
-          <small>Category</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/How-to-start-a-small-project/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一個小專案紀錄
         </h1>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-30 00:42:24" itemprop="dateCreated datePublished" datetime="2022-01-30T00:42:24+08:00">2022-01-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-02-04 20:14:38" itemprop="dateModified" datetime="2022-02-04T20:14:38+08:00">2022-02-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Notes/" itemprop="url" rel="index"><span itemprop="name">Notes</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2020</h1>
+        <p>有很多時候，我們只會拿這放大鏡看，而忘了抬起頭來，退後幾步讓視野看得更多更廣。有時候 coding 就是這麼一回事。</p>
+<h2 id="如何開始一個小專案"><a href="#如何開始一個小專案" class="headerlink" title="如何開始一個小專案"></a>如何開始一個小專案</h2><p>想要做一個小小志工排班管理系統，卻不知如何開始，花了許多時間在看線上教學，但自己實作時卻遇上許多問題，如何開始是一個大問題，接著網頁要放哪裡？要不要有登入機制？資料要放哪裡？開放哪些權限？這些只是大方向，接著就會陷入糾結，例如用哪個框架？（其實比較會的也只有Vue），以 CDN 或 CLI 實作？要用自己的資料庫還是線上的（比較熟mySql，但是PHP有點忘了？），就這樣反覆折騰之後，想說那就用 VueJs 和 Firebase 搭配吧？接這就花些時間熟悉 Firebase 所提供的服務，且看來在自己還不會後端自己開 API 之前，Firebase 似乎是比較適合。</p>
+<h2 id="Firebase"><a href="#Firebase" class="headerlink" title="Firebase"></a>Firebase</h2><p>看來 firebase 的功能不少，如果熟悉應該會對開發小專案有用，十幾年前開始使用 MySql 也真的習慣「關連式」的資料結構，firebase 使用的是 collection 的資料結構，我把它想成想是一個物件型態，這樣或許比較好理解。</p>
+<p>collection 的資料結構有個好處就是想加資料就加資料，彈性很大。先把需要的資料大概的列出來，在 firebase 設定好，再去設定連線資料，回到開發環境，就可以連上去了。firebase 也提供 CLI 工具，讓我們在本地開發更方便，且可以直接將專案推上 Github 真的蠻不錯的。</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-11-02T00:42:24+08:00"
-              content="2020-11-02">
-          11-02
-        </time>
-      </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/VueJs/" rel="tag"># VueJs</a>
+              <a href="/blog/tags/note/" rel="tag"># note</a>
+              <a href="/blog/tags/Firebase/" rel="tag"># Firebase</a>
+          </div>
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/blog/Html_figure/" itemprop="url">
-            <span itemprop="name">HTML figure 標籤的用法</span>
-          </a>
-      </h2>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/JS-daily-practice/" rel="prev" title="JS 日常練習">
+      <i class="fa fa-chevron-left"></i> JS 日常練習
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/VueJs2-and-3-differences/" rel="next" title="Vuejs 2 和 3 的差異">
+      Vuejs 2 和 3 的差異 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
+  
+  
+  
 
-    </div>
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
@@ -258,6 +313,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何開始一個小專案"><span class="nav-number">1.</span> <span class="nav-text">如何開始一個小專案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Firebase"><span class="nav-number">2.</span> <span class="nav-text">Firebase</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -271,7 +327,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">107</span>
+          <span class="site-state-item-count">109</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -284,7 +340,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
