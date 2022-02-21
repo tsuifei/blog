@@ -655,7 +655,7 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Date &amp; Times </category>
           
       </categories>
       
@@ -1099,9 +1099,9 @@
       
         <tags>
             
-            <tag> Rendering </tag>
-            
             <tag> List </tag>
+            
+            <tag> Rendering </tag>
             
         </tags>
       
