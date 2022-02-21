@@ -99,9 +99,9 @@
       
         <tags>
             
-            <tag> debug </tag>
-            
             <tag> Hexo </tag>
+            
+            <tag> debug </tag>
             
             <tag> Node </tag>
             
@@ -657,14 +657,14 @@
       
       <categories>
           
-          <category> Date &amp; Times </category>
+          <category> JavaScript </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
+            <tag> Date &amp; Times </tag>
             
         </tags>
       
@@ -751,9 +751,9 @@
             
             <tag> Other </tag>
             
-            <tag> debug </tag>
-            
             <tag> Hexo </tag>
+            
+            <tag> debug </tag>
             
         </tags>
       
