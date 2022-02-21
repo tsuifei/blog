@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/VueJs2-and-3-differences/</loc>
+    
+    <lastmod>2022-02-21T14:41:08.863Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_Test_QA/</loc>
+    
+    <lastmod>2022-02-21T14:40:37.173Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_14_Cli3_environment_deployment/</loc>
+    
+    <lastmod>2022-02-21T14:40:20.212Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_09_Instance_Lifecycle_Hooks/</loc>
+    
+    <lastmod>2022-02-21T14:40:00.303Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/Vue_06_Displaying_Filtered_Sorted_Results/</loc>
+    
+    <lastmod>2022-02-21T14:39:32.493Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/module_form_Valitatation/</loc>
+    
+    <lastmod>2022-02-21T14:38:47.327Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/JS_Date_objects/</loc>
     
     <lastmod>2022-02-21T14:34:33.404Z</lastmod>
@@ -114,14 +156,14 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan10_Remove-empty-or-delete-array-elements/</loc>
+    <loc>tsuifei.github.io/JS_ironMan11_How-to-copy-an-Array-in-JavaScript-part1/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan11_How-to-copy-an-Array-in-JavaScript-part1/</loc>
+    <loc>tsuifei.github.io/JS_ironMan10_Remove-empty-or-delete-array-elements/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -149,14 +191,14 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/</loc>
+    <loc>tsuifei.github.io/JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/</loc>
+    <loc>tsuifei.github.io/JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -380,13 +422,6 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/Vue_06_Displaying_Filtered_Sorted_Results/</loc>
-    
-    <lastmod>2022-02-21T13:47:13.883Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/Vue_07_Event_Handling/</loc>
     
     <lastmod>2022-02-21T13:46:53.195Z</lastmod>
@@ -397,13 +432,6 @@
     <loc>tsuifei.github.io/Vue_08_Form_Input_Bindings/</loc>
     
     <lastmod>2022-02-21T13:46:26.508Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_09_Instance_Lifecycle_Hooks/</loc>
-    
-    <lastmod>2022-02-21T13:46:02.098Z</lastmod>
     
   </url>
   
@@ -436,30 +464,9 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/Vue_14_Cli3_environment_deployment/</loc>
-    
-    <lastmod>2022-02-21T13:44:29.471Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/React_module_component/</loc>
     
     <lastmod>2022-02-21T13:44:01.432Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/Vue_Test_QA/</loc>
-    
-    <lastmod>2022-02-21T13:43:02.182Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/VueJs2-and-3-differences/</loc>
-    
-    <lastmod>2022-02-21T13:42:37.635Z</lastmod>
     
   </url>
   
@@ -579,13 +586,6 @@
     <loc>tsuifei.github.io/%E5%85%AD%E8%A7%92Vue%E7%9B%B4%E6%92%AD%E7%8F%AD%E5%BF%83%E5%BE%97/</loc>
     
     <lastmod>2021-07-07T12:29:46.090Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/module_form_Valitatation/</loc>
-    
-    <lastmod>2021-04-06T11:53:13.615Z</lastmod>
     
   </url>
   

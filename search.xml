@@ -20,7 +20,9 @@
       
         <tags>
             
-            <tag> VueJS </tag>
+            <tag> Vue3 </tag>
+            
+            <tag> Vue2 </tag>
             
         </tags>
       
@@ -206,12 +208,14 @@
       
       <categories>
           
-          <category> module </category>
+          <category> Vue </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> Vue3 </tag>
             
             <tag> module </tag>
             
@@ -778,7 +782,7 @@
       
         <tags>
             
-            <tag> Cli </tag>
+            <tag> deployment </tag>
             
         </tags>
       
@@ -999,9 +1003,9 @@
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> Vue </tag>
+            
+            <tag> Lifecycle </tag>
             
         </tags>
       
@@ -1069,7 +1073,7 @@
       
       <categories>
           
-          <category> Event </category>
+          <category> Vue </category>
           
       </categories>
       
@@ -1312,8 +1316,6 @@
       
       
         <tags>
-            
-            <tag> JavaScript </tag>
             
             <tag> Vue </tag>
             
