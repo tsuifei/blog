@@ -2,6 +2,237 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/JS_ironMan03_What-can-the-array-do/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.992Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan06_What-are-the-types-of-Array/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.992Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan07_How-to-read-and-write-array-elements/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.992Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan05_The-array-property-length/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan08_How-to-determine-if-it-is-an-array/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan10_Remove-empty-or-delete-array-elements/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan11_How-to-copy-an-Array-in-JavaScript-part1/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan16_JavaScript-Array-pop()-Method/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan20_Shallow-copy-array-slice()-method/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan21_Changes-the-contents-of-an-array-method%20/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan02_What-is-the-array/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan01_foreword/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan04_create-and-declare-arrays/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan09_How-to-convert-to-Array-in-JavaScript/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan23_Reverses-an-array-in-place-reverse()-method/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan22_%20Sorts-the-elements-of-an-array-sort()-method/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS30_00_start/</loc>
+    
+    <lastmod>2022-02-21T14:07:12.769Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS30_01_Drum-Kit/</loc>
+    
+    <lastmod>2022-02-21T14:07:12.769Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_Basic_Lexical_Scope/</loc>
+    
+    <lastmod>2022-02-21T14:07:12.769Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_What-is-an-IIFE-in-JavaScript/</loc>
+    
+    <lastmod>2022-02-21T14:06:15.373Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_This_how_it_works/</loc>
+    
+    <lastmod>2022-02-21T14:06:05.889Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function/</loc>
+    
+    <lastmod>2022-02-21T14:05:52.295Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan14_About-JavaScript-Array-Methods/</loc>
+    
+    <lastmod>2022-02-21T14:05:41.753Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan15_JavaScript-Array-push()-Method/</loc>
+    
+    <lastmod>2022-02-21T14:05:39.694Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan30_Array-dinner-is-not-finished/</loc>
+    
+    <lastmod>2022-02-21T14:05:36.775Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/JS_ES6-%E7%AE%AD%E9%A0%AD%E5%87%BD%E5%BC%8F-Arrow-function/</loc>
     
     <lastmod>2022-02-21T14:04:09.075Z</lastmod>
@@ -198,13 +429,6 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_Basic_Lexical_Scope/</loc>
-    
-    <lastmod>2022-02-21T13:40:56.482Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/JS_Axios_Api_show_by_D3Js/</loc>
     
     <lastmod>2022-02-21T13:40:05.806Z</lastmod>
@@ -359,13 +583,6 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_This_how_it_works/</loc>
-    
-    <lastmod>2021-01-29T16:59:49.902Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/logic-training02/</loc>
     
     <lastmod>2021-01-27T15:54:34.108Z</lastmod>
@@ -383,13 +600,6 @@
     <loc>tsuifei.github.io/logic-training03/</loc>
     
     <lastmod>2021-01-27T15:54:13.733Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS30_01_Drum-Kit/</loc>
-    
-    <lastmod>2021-01-05T21:05:46.812Z</lastmod>
     
   </url>
   
@@ -478,13 +688,6 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan09_How-to-convert-to-Array-in-JavaScript/</loc>
-    
-    <lastmod>2020-08-19T12:57:26.796Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/Discutable_code/</loc>
     
     <lastmod>2020-04-07T20:26:04.565Z</lastmod>
@@ -509,167 +712,6 @@
     <loc>tsuifei.github.io/JS_Converting-strings-to-numbers/</loc>
     
     <lastmod>2020-02-25T21:31:37.326Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan01_foreword/</loc>
-    
-    <lastmod>2020-02-25T21:31:10.475Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan02_What-is-the-array/</loc>
-    
-    <lastmod>2020-02-25T21:31:04.741Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan03_What-can-the-array-do/</loc>
-    
-    <lastmod>2020-02-25T21:31:02.157Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan04_create-and-declare-arrays/</loc>
-    
-    <lastmod>2020-02-25T21:30:58.860Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan05_The-array-property-length/</loc>
-    
-    <lastmod>2020-02-25T21:30:53.817Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan06_What-are-the-types-of-Array/</loc>
-    
-    <lastmod>2020-02-25T21:30:49.340Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan07_How-to-read-and-write-array-elements/</loc>
-    
-    <lastmod>2020-02-25T21:30:45.493Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan08_How-to-determine-if-it-is-an-array/</loc>
-    
-    <lastmod>2020-02-25T21:30:41.547Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan10_Remove-empty-or-delete-array-elements/</loc>
-    
-    <lastmod>2020-02-25T21:30:34.208Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan11_How-to-copy-an-Array-in-JavaScript-part1/</loc>
-    
-    <lastmod>2020-02-25T21:30:31.291Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/</loc>
-    
-    <lastmod>2020-02-25T21:30:26.706Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript/</loc>
-    
-    <lastmod>2020-02-25T21:30:20.473Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan14_About-JavaScript-Array-Methods/</loc>
-    
-    <lastmod>2020-02-25T21:30:15.423Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan15_JavaScript-Array-push()-Method/</loc>
-    
-    <lastmod>2020-02-25T21:30:11.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan16_JavaScript-Array-pop()-Method/</loc>
-    
-    <lastmod>2020-02-25T21:30:07.883Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array/</loc>
-    
-    <lastmod>2020-02-25T21:30:04.353Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/</loc>
-    
-    <lastmod>2020-02-25T21:29:57.403Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/</loc>
-    
-    <lastmod>2020-02-25T21:29:54.045Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan20_Shallow-copy-array-slice()-method/</loc>
-    
-    <lastmod>2020-02-25T21:29:50.603Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan21_Changes-the-contents-of-an-array-method%20/</loc>
-    
-    <lastmod>2020-02-25T21:29:45.773Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan22_%20Sorts-the-elements-of-an-array-sort()-method/</loc>
-    
-    <lastmod>2020-02-25T21:29:41.018Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan23_Reverses-an-array-in-place-reverse()-method/</loc>
-    
-    <lastmod>2020-02-25T21:29:37.261Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/</loc>
-    
-    <lastmod>2020-02-25T21:29:33.596Z</lastmod>
     
   </url>
   
@@ -709,37 +751,9 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan30_Array-dinner-is-not-finished/</loc>
-    
-    <lastmod>2020-02-25T21:29:08.158Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/</loc>
     
     <lastmod>2020-02-25T21:29:01.003Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/</loc>
-    
-    <lastmod>2020-02-25T21:28:57.533Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan33_All-elements-that-pass-the-test-implemented-by-the-provided-function/</loc>
-    
-    <lastmod>2020-02-25T21:28:53.290Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/</loc>
-    
-    <lastmod>2020-02-25T21:28:46.775Z</lastmod>
     
   </url>
   
@@ -765,23 +779,9 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_What-is-an-IIFE-in-JavaScript/</loc>
-    
-    <lastmod>2020-02-25T21:28:17.137Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/JS-Confirm-whether-is-Array/</loc>
     
     <lastmod>2020-02-25T21:28:07.216Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS30_00_start/</loc>
-    
-    <lastmod>2020-02-25T21:27:58.731Z</lastmod>
     
   </url>
   
