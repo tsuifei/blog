@@ -13,16 +13,14 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Vue </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
-            <tag> Vue </tag>
+            <tag> VueJS </tag>
             
         </tags>
       
@@ -76,8 +74,6 @@
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> Daily practice </tag>
             
         </tags>
@@ -103,9 +99,9 @@
       
         <tags>
             
-            <tag> Hexo </tag>
-            
             <tag> debug </tag>
+            
+            <tag> Hexo </tag>
             
             <tag> Node </tag>
             
@@ -610,9 +606,9 @@
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> JS Basic </tag>
+            
+            <tag> This </tag>
             
         </tags>
       
@@ -637,9 +633,9 @@
       
         <tags>
             
-            <tag> API </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> API </tag>
             
             <tag> JSON </tag>
             
@@ -684,7 +680,7 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Ajax </category>
           
       </categories>
       
@@ -692,8 +688,6 @@
         <tags>
             
             <tag> API </tag>
-            
-            <tag> JavaScript </tag>
             
             <tag> Axios </tag>
             
@@ -715,7 +709,7 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Ajax </category>
           
       </categories>
       
@@ -755,9 +749,9 @@
             
             <tag> Other </tag>
             
-            <tag> Hexo </tag>
-            
             <tag> debug </tag>
+            
+            <tag> Hexo </tag>
             
         </tags>
       
@@ -775,16 +769,14 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Vue </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
-            <tag> Vue </tag>
+            <tag> Cli </tag>
             
         </tags>
       
@@ -806,12 +798,6 @@
           
       </categories>
       
-      
-        <tags>
-            
-            <tag> Entretien </tag>
-            
-        </tags>
       
     </entry>
     
@@ -859,8 +845,6 @@
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> JavaScript 30 </tag>
             
         </tags>
@@ -906,16 +890,14 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Vue </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
-            <tag> Vue </tag>
+            <tag> Directives </tag>
             
         </tags>
       
@@ -933,16 +915,14 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Vue </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
-            <tag> Vue </tag>
+            <tag> Directives </tag>
             
         </tags>
       
@@ -960,16 +940,14 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Vue </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
-            <tag> Vue </tag>
+            <tag> Filters </tag>
             
         </tags>
       
@@ -987,16 +965,14 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Vue </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
-            <tag> Vue </tag>
+            <tag> Transitioning </tag>
             
         </tags>
       
@@ -1014,7 +990,7 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Vue </category>
           
       </categories>
       
@@ -1041,16 +1017,14 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Vue </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
-            <tag> Vue </tag>
+            <tag> Form </tag>
             
         </tags>
       
@@ -1068,16 +1042,14 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Vue </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
-            <tag> Vue </tag>
+            <tag> Event </tag>
             
         </tags>
       
@@ -1095,16 +1067,14 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Event </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
-            <tag> Vue </tag>
+            <tag> Displaying </tag>
             
         </tags>
       
@@ -1122,16 +1092,16 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Vue </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
+            <tag> List </tag>
             
-            <tag> Vue </tag>
+            <tag> Rendering </tag>
             
         </tags>
       
@@ -1149,16 +1119,14 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Vue </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
-            <tag> Vue </tag>
+            <tag> Rendering </tag>
             
         </tags>
       
@@ -1176,16 +1144,16 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Vue </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
+            <tag> Class </tag>
             
-            <tag> Vue </tag>
+            <tag> Style </tag>
             
         </tags>
       
@@ -1203,16 +1171,16 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Vue </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
+            <tag> computed </tag>
             
-            <tag> Vue </tag>
+            <tag> watch </tag>
             
         </tags>
       
@@ -1230,16 +1198,16 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Vue </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
+            <tag> Template </tag>
             
-            <tag> Vue </tag>
+            <tag> Syntax </tag>
             
         </tags>
       
@@ -1316,7 +1284,7 @@
       
         <tags>
             
-            <tag> VSCode </tag>
+            <tag> Prettier </tag>
             
             <tag> ESLint </tag>
             
@@ -1336,7 +1304,7 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> Entretien </category>
           
       </categories>
       
@@ -1363,16 +1331,16 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> React </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
+            <tag> Module </tag>
             
-            <tag> React </tag>
+            <tag> component </tag>
             
         </tags>
       
@@ -1471,16 +1439,14 @@
       
       <categories>
           
-          <category> JavaScript </category>
+          <category> React </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
-            <tag> React </tag>
+            <tag> development </tag>
             
         </tags>
       
@@ -1505,9 +1471,9 @@
       
         <tags>
             
-            <tag> HTML </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> HTML </tag>
             
             <tag> CSS </tag>
             
@@ -2659,8 +2625,6 @@
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> JS_Array </tag>
             
         </tags>
@@ -2733,16 +2697,16 @@
       
       <categories>
           
-          <category> SASS </category>
+          <category> CSS </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> CSS </tag>
-            
             <tag> SASS </tag>
+            
+            <tag> SCSS </tag>
             
         </tags>
       
@@ -2819,7 +2783,9 @@
       
         <tags>
             
-            <tag> JavaScript </tag>
+            <tag> By reference </tag>
+            
+            <tag> By value </tag>
             
         </tags>
       
@@ -2900,7 +2866,11 @@
       
         <tags>
             
-            <tag> JavaScript </tag>
+            <tag> Callbacks </tag>
+            
+            <tag> Promises </tag>
+            
+            <tag> Async/Await </tag>
             
         </tags>
       
@@ -3006,7 +2976,7 @@
       
         <tags>
             
-            <tag> VSCode </tag>
+            <tag> Formatting </tag>
             
         </tags>
       

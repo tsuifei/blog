@@ -21,14 +21,14 @@
   </script>
 
   <meta name="description" content="昨天介紹了 VueJs 裡常用的模板語法，今天就來介紹在我們 new Vue({ })裡面會用到到的 computed(計算屬性)和 watch(監視器) 我們可以先來看一下範例：去 codepen 看看效果 同樣的以 cdn 的方式先引入vue.js。 前兩個是「姓」和「名」的輸入框inputFirst Name 和 Last Name，先在實例裡的data初始化他們的值之後，就可以在各別的in">
-<meta name="keywords" content="JavaScript,Vue">
+<meta name="keywords" content="computed,watch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue.js computed &amp; watch 計算屬性與監視器">
 <meta property="og:url" content="tsuifei.github.io/Vue_02_computed_watch/index.html">
 <meta property="og:site_name" content="Cré-Coder">
 <meta property="og:description" content="昨天介紹了 VueJs 裡常用的模板語法，今天就來介紹在我們 new Vue({ })裡面會用到到的 computed(計算屬性)和 watch(監視器) 我們可以先來看一下範例：去 codepen 看看效果 同樣的以 cdn 的方式先引入vue.js。 前兩個是「姓」和「名」的輸入框inputFirst Name 和 Last Name，先在實例裡的data初始化他們的值之後，就可以在各別的in">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2020-09-21T10:25:48.859Z">
+<meta property="og:updated_time" content="2022-02-21T13:48:29.205Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue.js computed &amp; watch 計算屬性與監視器">
 <meta name="twitter:description" content="昨天介紹了 VueJs 裡常用的模板語法，今天就來介紹在我們 new Vue({ })裡面會用到到的 computed(計算屬性)和 watch(監視器) 我們可以先來看一下範例：去 codepen 看看效果 同樣的以 cdn 的方式先引入vue.js。 前兩個是「姓」和「名」的輸入框inputFirst Name 和 Last Name，先在實例裡的data初始化他們的值之後，就可以在各別的in">
@@ -126,12 +126,12 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">18</span></a>
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">20</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">58</span></a>
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">84</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -200,7 +200,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-21 18:25:48" itemprop="dateModified" datetime="2020-09-21T18:25:48+08:00">2020-09-21</time>
+                <time title="Modified: 2022-02-21 21:48:29" itemprop="dateModified" datetime="2022-02-21T21:48:29+08:00">2022-02-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -208,7 +208,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                  <a href="/blog/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
                 </span>
             </span>
 
@@ -266,8 +266,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
-              <a href="/blog/tags/Vue/" rel="tag"># Vue</a>
+              <a href="/blog/tags/computed/" rel="tag"># computed</a>
+              <a href="/blog/tags/watch/" rel="tag"># watch</a>
           </div>
 
         
@@ -363,13 +363,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">84</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
