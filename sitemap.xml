@@ -2,6 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/JSstrange_call-function-execution-stack/</loc>
+    
+    <lastmod>2022-02-21T14:12:49.602Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/</loc>
+    
+    <lastmod>2022-02-21T14:08:44.162Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan26_Converts-Array-to-string-and-localized/</loc>
+    
+    <lastmod>2022-02-21T14:08:44.140Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan27_Finding-element-index-values-in-an-array/</loc>
+    
+    <lastmod>2022-02-21T14:08:44.095Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan28_Find-the-index-value-of-the-last-element/</loc>
+    
+    <lastmod>2022-02-21T14:08:44.095Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan29_About-ECMAScript5s-Array-Method/</loc>
+    
+    <lastmod>2022-02-21T14:08:44.095Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/</loc>
+    
+    <lastmod>2022-02-21T14:08:44.095Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/JS_ironMan03_What-can-the-array-do/</loc>
     
     <lastmod>2022-02-21T14:08:23.992Z</lastmod>
@@ -51,14 +100,14 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript/</loc>
+    <loc>tsuifei.github.io/JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/</loc>
+    <loc>tsuifei.github.io/JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -114,14 +163,14 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan02_What-is-the-array/</loc>
+    <loc>tsuifei.github.io/JS_ironMan01_foreword/</loc>
     
     <lastmod>2022-02-21T14:08:23.903Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan01_foreword/</loc>
+    <loc>tsuifei.github.io/JS_ironMan02_What-is-the-array/</loc>
     
     <lastmod>2022-02-21T14:08:23.903Z</lastmod>
     
@@ -149,14 +198,14 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan23_Reverses-an-array-in-place-reverse()-method/</loc>
+    <loc>tsuifei.github.io/JS_ironMan22_%20Sorts-the-elements-of-an-array-sort()-method/</loc>
     
     <lastmod>2022-02-21T14:08:23.903Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan22_%20Sorts-the-elements-of-an-array-sort()-method/</loc>
+    <loc>tsuifei.github.io/JS_ironMan23_Reverses-an-array-in-place-reverse()-method/</loc>
     
     <lastmod>2022-02-21T14:08:23.903Z</lastmod>
     
@@ -243,13 +292,6 @@
     <loc>tsuifei.github.io/JS_book-club-note-array/</loc>
     
     <lastmod>2022-02-21T14:03:04.446Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JSstrange_call-function-execution-stack/</loc>
-    
-    <lastmod>2022-02-21T14:00:00.481Z</lastmod>
     
   </url>
   
@@ -712,48 +754,6 @@
     <loc>tsuifei.github.io/JS_Converting-strings-to-numbers/</loc>
     
     <lastmod>2020-02-25T21:31:37.326Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan25_Returns-string-representing-specified-array-and-its-elements/</loc>
-    
-    <lastmod>2020-02-25T21:29:30.824Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan26_Converts-Array-to-string-and-localized/</loc>
-    
-    <lastmod>2020-02-25T21:29:28.203Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan27_Finding-element-index-values-in-an-array/</loc>
-    
-    <lastmod>2020-02-25T21:29:24.702Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan28_Find-the-index-value-of-the-last-element/</loc>
-    
-    <lastmod>2020-02-25T21:29:18.254Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan29_About-ECMAScript5s-Array-Method/</loc>
-    
-    <lastmod>2020-02-25T21:29:12.407Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan31_Executes-a-provided-function-once-for-each-array-element/</loc>
-    
-    <lastmod>2020-02-25T21:29:01.003Z</lastmod>
     
   </url>
   
