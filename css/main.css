@@ -160,7 +160,7 @@ template {
   display: none;
 }
 ::selection {
-  background: #262a30;
+  background: #273776;
   color: #fff;
 }
 html,
@@ -1162,7 +1162,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #7cb914;
+  background: #d15b32;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2207,7 +2207,7 @@ ul.breadcrumb li + li:last-child {
   }
 }
 .site-brand-container {
-  background: #222;
+  background: #45cfad;
 }
 @media (max-width: 991px) {
   .site-brand-container {
