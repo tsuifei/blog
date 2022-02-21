@@ -606,9 +606,9 @@
       
         <tags>
             
-            <tag> This </tag>
-            
             <tag> JS Basic </tag>
+            
+            <tag> This </tag>
             
         </tags>
       
@@ -1099,9 +1099,9 @@
       
         <tags>
             
-            <tag> List </tag>
-            
             <tag> Rendering </tag>
+            
+            <tag> List </tag>
             
         </tags>
       
@@ -1471,9 +1471,9 @@
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> HTML </tag>
+            
+            <tag> JavaScript </tag>
             
             <tag> CSS </tag>
             
@@ -1584,8 +1584,6 @@
       
       
         <tags>
-            
-            <tag> JavaScript </tag>
             
             <tag> JS_Array </tag>
             
@@ -2566,14 +2564,10 @@
           
           <category> JavaScript </category>
           
-          <category> StrangeJS </category>
-          
       </categories>
       
       
         <tags>
-            
-            <tag> JavaScript </tag>
             
             <tag> StrangeJS </tag>
             
@@ -2942,16 +2936,14 @@
           
           <category> JavaScript </category>
           
-          <category> ES6 </category>
-          
       </categories>
       
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> ES6 </tag>
+            
+            <tag> Arrow function </tag>
             
         </tags>
       
