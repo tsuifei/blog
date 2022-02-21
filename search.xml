@@ -298,7 +298,9 @@
       
         <tags>
             
-            <tag> JavaScript </tag>
+            <tag> Array </tag>
+            
+            <tag> Number </tag>
             
         </tags>
       
@@ -1099,9 +1101,9 @@
       
         <tags>
             
-            <tag> List </tag>
-            
             <tag> Rendering </tag>
+            
+            <tag> List </tag>
             
         </tags>
       

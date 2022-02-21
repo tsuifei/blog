@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/JS_book-club-note-array/</loc>
+    
+    <lastmod>2022-02-21T14:18:16.266Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ES6-%E7%AE%AD%E9%A0%AD%E5%87%BD%E5%BC%8F-Arrow-function/</loc>
+    
+    <lastmod>2022-02-21T14:18:06.440Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_Date_to_Number/</loc>
+    
+    <lastmod>2022-02-21T14:17:46.686Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/JS_Date_objects/</loc>
     
     <lastmod>2022-02-21T14:13:05.834Z</lastmod>
@@ -37,14 +58,14 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan29_About-ECMAScript5s-Array-Method/</loc>
+    <loc>tsuifei.github.io/JS_ironMan28_Find-the-index-value-of-the-last-element/</loc>
     
     <lastmod>2022-02-21T14:08:44.095Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan28_Find-the-index-value-of-the-last-element/</loc>
+    <loc>tsuifei.github.io/JS_ironMan29_About-ECMAScript5s-Array-Method/</loc>
     
     <lastmod>2022-02-21T14:08:44.095Z</lastmod>
     
@@ -86,6 +107,13 @@
   </url>
   
   <url>
+    <loc>tsuifei.github.io/JS_ironMan08_How-to-determine-if-it-is-an-array/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/JS_ironMan10_Remove-empty-or-delete-array-elements/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
@@ -114,13 +142,6 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan08_How-to-determine-if-it-is-an-array/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/JS_ironMan16_JavaScript-Array-pop()-Method/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
@@ -142,13 +163,6 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan21_Changes-the-contents-of-an-array-method%20/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/JS_ironMan20_Shallow-copy-array-slice()-method/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
@@ -156,7 +170,7 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/</loc>
+    <loc>tsuifei.github.io/JS_ironMan21_Changes-the-contents-of-an-array-method%20/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -164,6 +178,13 @@
   
   <url>
     <loc>tsuifei.github.io/JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -198,13 +219,6 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan22_%20Sorts-the-elements-of-an-array-sort()-method/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.903Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array/</loc>
     
     <lastmod>2022-02-21T14:08:23.903Z</lastmod>
@@ -212,7 +226,7 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/</loc>
+    <loc>tsuifei.github.io/JS_ironMan22_%20Sorts-the-elements-of-an-array-sort()-method/</loc>
     
     <lastmod>2022-02-21T14:08:23.903Z</lastmod>
     
@@ -226,14 +240,21 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS30_01_Drum-Kit/</loc>
+    <loc>tsuifei.github.io/JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS30_00_start/</loc>
     
     <lastmod>2022-02-21T14:07:12.769Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS30_00_start/</loc>
+    <loc>tsuifei.github.io/JS30_01_Drum-Kit/</loc>
     
     <lastmod>2022-02-21T14:07:12.769Z</lastmod>
     
@@ -285,20 +306,6 @@
     <loc>tsuifei.github.io/JS_ironMan30_Array-dinner-is-not-finished/</loc>
     
     <lastmod>2022-02-21T14:05:36.775Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ES6-%E7%AE%AD%E9%A0%AD%E5%87%BD%E5%BC%8F-Arrow-function/</loc>
-    
-    <lastmod>2022-02-21T14:04:09.075Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_book-club-note-array/</loc>
-    
-    <lastmod>2022-02-21T14:03:04.446Z</lastmod>
     
   </url>
   
@@ -607,13 +614,6 @@
     <loc>tsuifei.github.io/DOM_Methodes/</loc>
     
     <lastmod>2021-03-15T14:20:25.872Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_Date_to_Number/</loc>
-    
-    <lastmod>2021-03-13T15:14:52.914Z</lastmod>
     
   </url>
   
