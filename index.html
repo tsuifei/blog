@@ -135,7 +135,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">110</span></a>
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">111</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -165,6 +165,129 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/DOM_interface/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/DOM_interface/" class="post-title-link" itemprop="url">DOM - 操控 DOM 介面的方法</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-03-05 00:42:24 / Modified: 23:58:07" itemprop="dateCreated datePublished" datetime="2022-03-05T00:42:24+08:00">2022-03-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model" target="_blank" rel="noopener">MDN</a>的 Document Object Model (DOM) 介紹了許多 DOM 的相關資訊，有佳惠用到再來仔細研究以下介紹之外的其他方法，這裡只會介紹最常用的部份。<br>之前曾寫過一篇<a href="https://tsuifei.github.io/blog/DOM_Methodes/">DOM - 操控網頁元素的必學技巧</a>這篇就算是再一次複習吧！</p>
+<p>使用 JavaScript 來操控網頁有三種方法：</p>
+<ul>
+<li>介面：如何改變介面</li>
+<li>事件：如何監聽事件並做出反應</li>
+<li>資料：如何與伺服器交換資料</li>
+</ul>
+<p>本篇先介紹如何以操控 DOM 來達到改變頁面的」介面部份。</p>
+<h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><p>DOM 是 JS 跟 HTML 溝通的橋樑。</p>
+<p>DOM 是文件物件模型(Document, Object, Model)，是用來呈現與操控 HTML 節點，或 XML 檔案的互動 API。也就是把 HTML 標記（Document）轉換成物件（Object）。</p>
+<p>JS 可以操作物件，但不能直接操控頁面上的標籤，DOM 所做的事就是瀏覽器幫 Object 轉換成 HTML 對應的標記，進而讓 JS 可以改變頁面上的元素。</p>
+<h2 id="選取-DOM-元素"><a href="#選取-DOM-元素" class="headerlink" title="選取 DOM 元素"></a>選取 DOM 元素</h2><ul>
+<li>Tag</li>
+<li>Class Name</li>
+<li>ID (getElementById) Element 為單數，因為 ID 只有一個。</li>
+<li>CSS 選擇器</li>
+<li><code>element.closest()</code> 最靠近父層的元素</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> header = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'header'</span>); <span class="comment">// tag 指 HTML 標籤</span></span><br><span class="line"><span class="keyword">const</span> box = <span class="built_in">document</span>.getElementsByClassName(<span class="string">'box'</span>); <span class="comment">// class name</span></span><br><span class="line"><span class="keyword">const</span> icebox = <span class="built_in">document</span>.getElementById(<span class="string">'ice-box'</span>); <span class="comment">// ID</span></span><br><span class="line"><span class="keyword">const</span> icebox_p = <span class="built_in">document</span>.querySelector(<span class="string">'#ice-box p'</span>); <span class="comment">// 匹配到的第一個 #ice-box p</span></span><br><span class="line"><span class="keyword">const</span> icebox_p_all = <span class="built_in">document</span>.querySelectorAll(<span class="string">'#ice-box p'</span>); <span class="comment">// // 匹配到的 所有 #ice-box p ，抓取成為 NodeList Array</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="CSS-選擇器"><a href="#CSS-選擇器" class="headerlink" title="CSS 選擇器"></a>CSS 選擇器</h3><ul>
+<li>CSS 選擇器最常使用<code>querySelector</code>與<code>querySelectorAll</code></li>
+<li><code>querySelector</code>只會抓取並回傳第一個找到的元素，</li>
+<li><code>querySelectorAll</code> 會選取匹配條件的元素，並且把收集到的元素存成陣列(NodeList)回傳回來。</li>
+</ul>
+<h3 id="改變-CSS"><a href="#改變-CSS" class="headerlink" title="改變 CSS"></a>改變 CSS</h3><p>我們可以直接改變 DOM 的樣式，但是累贅，需要一個一個寫入 style 的屬性，最常處理的方式是在元素上加上 class 類別，需要時例如事件觸發時，再加上狀態或屬性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> linkA = <span class="built_in">document</span>.querySelector(<span class="string">'.box a'</span>);</span><br><span class="line">linkA.classList.add(<span class="string">'active'</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="增加或刪減-className"><a href="#增加或刪減-className" class="headerlink" title="增加或刪減 className"></a>增加或刪減 className</h3><ul>
+<li>增加：<code>.classList.add(&#39;active&#39;);</code></li>
+<li>移除：<code>.classList.remove(&#39;active&#39;);</code></li>
+<li>切換：<code>.classList.toggle(&#39;active&#39;);</code> 如果沒這個 class 就新增，有就移除</li>
+<li>包含：是否包含此 class<code>.classList.contains(&#39;active&#39;);</code> 回傳布林值</li>
+</ul>
+<h3 id="取得、改變文字或標籤內容"><a href="#取得、改變文字或標籤內容" class="headerlink" title="取得、改變文字或標籤內容"></a>取得、改變文字或標籤內容</h3><p>會替代掉原本的元素內文字或內容</p>
+<ul>
+<li><code>[DOM].innerText =</code><br>只抓取元素的內容，不包含子元素，只能寫入存文字</li>
+<li><code>element.innerHTML =</code><br>會抓取元素的內容，包含子元素，且寫入標籤元素<br>ex.<code>element.innerHTML = &#39;&lt;div&gt;Hello&lt;div&gt;&#39;</code></li>
+<li><code>element.outerHTML=</code><br>不只改變元件內容，也可替換掉元件本身的標籤<br>ex.<code>element.outerHTML = &#39;&lt;div&gt;Hello&lt;div&gt;&#39;</code></li>
+</ul>
+<h3 id="加入與移除元素"><a href="#加入與移除元素" class="headerlink" title="加入與移除元素"></a>加入與移除元素</h3><ul>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/append" target="_blank" rel="noopener">Element.append()</a><br>是在元素的最後一個子節點之後插入一組 Node 物件或是 DOMString 物件，被插入的 DOMString 物件等價為 Text 節點。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Node/appendChild" target="_blank" rel="noopener">Element.appendChild(aChild)</a><br>將一個節點加到指定的父節點，子節點的列表的末端。如果某個結點已經擁有父節點，使用此方法後，此節點會先被移除，在被插入到新的位置。如果要保留原本的節點，可先使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Node/cloneNode" target="_blank" rel="noopener">Node.cloneNode()</a>來複製一份，再將這個複製的節點附加到目標父節點下。而使用<code>Node.cloneNode()</code>複製的節點不會自動保持同步。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Node/removeChild" target="_blank" rel="noopener">Node.removeChild()</a><br>從 DOM 移除一個子節點，並回傳移除的節點。</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 創建一個新的段落元素 &lt;p&gt;，然後增加到 &lt;body&gt; 的最尾端</span></span><br><span class="line"><span class="keyword">const</span> p = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(p);</span><br></pre></td></tr></table></figure>
+
+<h2 id="複製元素"><a href="#複製元素" class="headerlink" title="複製元素"></a>複製元素</h2><ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Node/cloneNode" target="_blank" rel="noopener">Node.cloneNode(Deep)</a><br>參數如果是 tree，表示為深度 clone， 節點的所有的後代節點都會被複製，如果是 false 則只會複製節點本身。<br>如是 深度 clone，需注意後代節點中是否有唯一的 ID</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="built_in">document</span>.getElementById(<span class="string">'para1'</span>);</span><br><span class="line"><span class="keyword">const</span> p_prime = p.cloneNode(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p>學習程式就是如此，常常沒用的東西就忘了，要用的時會再來找其實也可以，但是如果可以使用的更熟練，應該可以省下一些時間找資料吧。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -1098,94 +1221,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/API_Introduction_to_Ajax_and_Applications/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Tsuifei Pommier">
-      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cré-Coder">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/API_Introduction_to_Ajax_and_Applications/" class="post-title-link" itemprop="url">淺談 Ajax 與應用</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-28 00:42:24" itemprop="dateCreated datePublished" datetime="2021-03-28T00:42:24+08:00">2021-03-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-29 22:13:48" itemprop="dateModified" datetime="2021-03-29T22:13:48+08:00">2021-03-29</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Ajax/" itemprop="url" rel="index"><span itemprop="name">Ajax</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Ajax 的出現，優化了不少使用者體驗，也縮短了網頁顯示的時間，這篇僅單純的淺談什麼是 Ajax 以及應用 Ajax 來做非同步資料請求的方式。</p>
-<p>Ajax 全名為 Asynchronous JavaScript and XML，一種允許瀏覽器與伺服器交換資料，而不需刷新頁面的技術，都可以叫做 Ajax.</p>
-<p>Ajax 這個名字是在 2005 年 5 月的時候，Adaptive Path 的 Jasse James Garrett 在他所寫的「Ajax : New Approach to Web Application」文章中提出的。而 Ajax 這項技術，是由 Google 在 Google labs 發佈的 Google Maps 和 Google Suggest 後真正為人所認識。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/API_Introduction_to_Ajax_and_Applications/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/11/">11</a><a class="extend next" rel="next" href="/blog/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/12/">12</a><a class="extend next" rel="next" href="/blog/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1251,7 +1291,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">111</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

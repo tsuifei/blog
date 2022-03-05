@@ -135,7 +135,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">110</span></a>
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">111</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -165,6 +165,90 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/Vue_08_Form_Input_Bindings/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/Vue_08_Form_Input_Bindings/" class="post-title-link" itemprop="url">Vue.js Form Input Bindings 表單輸入綁定</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-02-19 00:42:24" itemprop="dateCreated datePublished" datetime="2020-02-19T00:42:24+08:00">2020-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-02-21 22:41:29" itemprop="dateModified" datetime="2022-02-21T22:41:29+08:00">2022-02-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用 Vue 資料雙向綁定的特性，做表單資料的自動收集。</p>
+<p>先去 codepen 看看：<a href="https://codepen.io/tsuifei/pen/qBdaPrL?editors=1111" target="_blank" rel="noopener">Vue.js Form Input Bindings 表單輸入綁定</a></p>
+<p>通常在處理表單的時候，在填完表單時，通常以<code>&lt;from&gt;</code>標籤內的<code>action</code>屬性來傳送，但在 Vue 裡，可以先把<code>&lt;from&gt;</code>的預設<code>submit</code>動作取消，並以監聽的方式(v-on)處理：<code>@submit.prevent(方法)</code>。當我們按下送出表單鍵時，就會去執行<code>handleSubmit</code>這個方法，在方法裡在指定我們希望如何處理表單內的資料就可以了。</p>
+<h3 id="表單裡的標籤綁定"><a href="#表單裡的標籤綁定" class="headerlink" title="表單裡的標籤綁定"></a>表單裡的標籤綁定</h3><p>主要以<code>v-model</code>來做資料的雙向綁定，達到自動收集填入資料的目的。<br>表單裡有單純的輸入(text/textarea)、單選項(radio)、複選項(checkbox)和選單(select)，實例中我們必須先在<code>data</code>裡初始化我們會用到的值，這些初始值則是對應到 HTML 表單標籤裡的<code>value</code>，例如，如果我們希望預設的<code>radio</code>選項是 female，在<code>data</code>裡的<code>sex</code>初始，給<code>female</code>就可以了，以此類推。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/Vue_08_Form_Input_Bindings/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -919,96 +1003,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/VSCode_ESLint_Setup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Tsuifei Pommier">
-      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cré-Coder">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/VSCode_ESLint_Setup/" class="post-title-link" itemprop="url">在 VSCode 裡使用 ESLint, Prettier & Airbnb Style Guide</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-02-02 02:02:02" itemprop="dateCreated datePublished" datetime="2020-02-02T02:02:02+08:00">2020-02-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-02-21 21:49:12" itemprop="dateModified" datetime="2022-02-21T21:49:12+08:00">2022-02-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/VSCode/" itemprop="url" rel="index"><span itemprop="name">VSCode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>想要矯正儀容端正，看來也沒那麼簡單。</p>
-</blockquote>
-<p>前陣子面試時，有被問到有沒有用 ESLint 來讓自己的寫碼風格統一些，被問了才想到，在舊電腦時還有用這個在 VSCode 裡的外掛，換了電腦就幾乎忘記它了，再加上將來開發專案時，也希望自己在寫碼的統一風格上做改善，所以想說也應該再來重新部署一次，可以以 Airbnb 的寫作風格為榜樣的規則，訓練自己養成專業開發人員應有的寫作習慣。</p>
-<p>這次的部署主要參考很喜歡的老師 Traversy 所放在 Youtube 的影片，再參考其他大神的文章當輔助，試著了解每一個步驟或指令背後的意義，這樣應該比較可以理解原理，將來遇到問題比較有可能解決。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/VSCode_ESLint_Setup/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/blog/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/blog/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/11/">11</a><a class="extend next" rel="next" href="/blog/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/blog/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/blog/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/12/">12</a><a class="extend next" rel="next" href="/blog/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1074,7 +1073,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">111</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
