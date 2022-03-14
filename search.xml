@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Vue3 + Vue-Cli + TailwindCss3 環境設置</title>
+      <link href="/blog/How-To-Setup-Vue-and-Tailwind/"/>
+      <url>/blog/How-To-Setup-Vue-and-Tailwind/</url>
+      
+        <content type="html"><![CDATA[<p>最近發現以 Vue Vite 的方式來設置環境超級快，build 也快，開啟也快，但是因為有些舊專案仍然需要用的 Vue-CLI 所以就退回來以 Vue-CLI 設置專案，順便也想把 TailwindCss 設置好，才發現有許多眉眉角角的事情要注意。</p><p>通常我們會先去看官方文件怎麼寫，但是解決方案真的只有官方文件寫的那樣嗎？還有，網路上的資源那麼多，但是真的對你而言都適用嗎？在出現錯誤的過程中，我們匍匐前進，但是如果不去推敲，很難找出為什麼跑不起來的原因。例如，只是想要簡單的使用 TailwindCss，卻不想使用 CDN 的方式引進來，於是去 TailwindCss 的官網看，發現還有 Tailwind CLI、Using PostCSS、Framework Guides 這幾種。先從 Tailwind CLI 的方式來，卻怎麼樣也裝不起來，或許是配置的設定不熟，於是退而求其次的試著 Using PostCSS 的方式安裝，跑步起來，加上自己要的只是簡單的介面，不置於客製化或加上自己的樣式，所以繼續看下去…。這時候以 Vue-CLI 安裝的配置被自己弄得好複雜，依照網路上找到的設置也跑步起來，打掉重練，最後找到這個 <a href="https://www.npmjs.com/package/vue-cli-plugin-tailwind" target="_blank" rel="noopener">vue-cli-plugin-tailwind</a>，只要再安裝完 Vue-CLI，加上這麼一個神奇的指令<code>vue add tailwind</code>就，好，了。<br>當然，安裝套件也是有依賴的風險，但是這算是目前用最順的方式，所以在此記錄一下。</p><p>環境設置需求：</p><ul><li>MacOS</li><li>Vue3</li><li>Vue-CLI</li><li>TailwindCss3</li></ul><p><strong>方法</strong>：</p><ul><li>以 Vue-CLI 安裝好 Vue3 之後，再補上<code>vue add tailwind</code>指令來安裝 vue-cli-plugin-tailwind 這個套件。</li><li>套件會自動生成 tailwind.config.js 設置檔案。</li><li>在根目錄底下的 main.js 也會自動引入 <code>import &#39;./assets/tailwind.css&#39;</code></li><li>這時 src 底下的 assets 會自動生成 tailwind.css 裡面會引入 tailwind 主要的三支 Css : base, components 和 utilities。</li><li>同時也會自動生成一個 postcss.config.js，主要是可以改變 build 出來後的 CSS 檔案。</li></ul><p>接下來就可以寫入 TailwindCss 的語法在頁面上試試了。</p><p>後續在網路上查找發先已經有前輩介紹的更詳細，如果想瞭解更細部的設定可參考：<a href="https://www.letswrite.tw/vue-cli-tailwindcss/" target="_blank" rel="noopener">Vue CLI 安裝 Tailwind CSS</a>，雖是2020年的文章，但大致上安裝方式沒什麼變喔～</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Vue3 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> API </tag>
+            
+            <tag> TailwindCss </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>DOM - 操控 DOM 介面的方法</title>
       <link href="/blog/DOM_interface/"/>
       <url>/blog/DOM_interface/</url>

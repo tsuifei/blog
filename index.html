@@ -130,12 +130,12 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">91</span></a>
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">92</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">111</span></a>
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">112</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -165,6 +165,98 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/How-To-Setup-Vue-and-Tailwind/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/How-To-Setup-Vue-and-Tailwind/" class="post-title-link" itemprop="url">Vue3 + Vue-Cli + TailwindCss3 環境設置</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-03-14 00:42:24" itemprop="dateCreated datePublished" datetime="2022-03-14T00:42:24+08:00">2022-03-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-03-15 00:17:36" itemprop="dateModified" datetime="2022-03-15T00:17:36+08:00">2022-03-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Vue3/" itemprop="url" rel="index"><span itemprop="name">Vue3</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近發現以 Vue Vite 的方式來設置環境超級快，build 也快，開啟也快，但是因為有些舊專案仍然需要用的 Vue-CLI 所以就退回來以 Vue-CLI 設置專案，順便也想把 TailwindCss 設置好，才發現有許多眉眉角角的事情要注意。</p>
+<p>通常我們會先去看官方文件怎麼寫，但是解決方案真的只有官方文件寫的那樣嗎？還有，網路上的資源那麼多，但是真的對你而言都適用嗎？在出現錯誤的過程中，我們匍匐前進，但是如果不去推敲，很難找出為什麼跑不起來的原因。例如，只是想要簡單的使用 TailwindCss，卻不想使用 CDN 的方式引進來，於是去 TailwindCss 的官網看，發現還有 Tailwind CLI、Using PostCSS、Framework Guides 這幾種。先從 Tailwind CLI 的方式來，卻怎麼樣也裝不起來，或許是配置的設定不熟，於是退而求其次的試著 Using PostCSS 的方式安裝，跑步起來，加上自己要的只是簡單的介面，不置於客製化或加上自己的樣式，所以繼續看下去…。這時候以 Vue-CLI 安裝的配置被自己弄得好複雜，依照網路上找到的設置也跑步起來，打掉重練，最後找到這個 <a href="https://www.npmjs.com/package/vue-cli-plugin-tailwind" target="_blank" rel="noopener">vue-cli-plugin-tailwind</a>，只要再安裝完 Vue-CLI，加上這麼一個神奇的指令<code>vue add tailwind</code>就，好，了。<br>當然，安裝套件也是有依賴的風險，但是這算是目前用最順的方式，所以在此記錄一下。</p>
+<p>環境設置需求：</p>
+<ul>
+<li>MacOS</li>
+<li>Vue3</li>
+<li>Vue-CLI</li>
+<li>TailwindCss3</li>
+</ul>
+<p><strong>方法</strong>：</p>
+<ul>
+<li>以 Vue-CLI 安裝好 Vue3 之後，再補上<code>vue add tailwind</code>指令來安裝 vue-cli-plugin-tailwind 這個套件。</li>
+<li>套件會自動生成 tailwind.config.js 設置檔案。</li>
+<li>在根目錄底下的 main.js 也會自動引入 <code>import &#39;./assets/tailwind.css&#39;</code></li>
+<li>這時 src 底下的 assets 會自動生成 tailwind.css 裡面會引入 tailwind 主要的三支 Css : base, components 和 utilities。</li>
+<li>同時也會自動生成一個 postcss.config.js，主要是可以改變 build 出來後的 CSS 檔案。</li>
+</ul>
+<p>接下來就可以寫入 TailwindCss 的語法在頁面上試試了。</p>
+<p>後續在網路上查找發先已經有前輩介紹的更詳細，如果想瞭解更細部的設定可參考：<a href="https://www.letswrite.tw/vue-cli-tailwindcss/" target="_blank" rel="noopener">Vue CLI 安裝 Tailwind CSS</a>，雖是2020年的文章，但大致上安裝方式沒什麼變喔～</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -1143,90 +1235,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/module_form_Valitatation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Tsuifei Pommier">
-      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cré-Coder">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/module_form_Valitatation/" class="post-title-link" itemprop="url">Validate.JS  表單驗證套件</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-04-06 00:42:24" itemprop="dateCreated datePublished" datetime="2021-04-06T00:42:24+08:00">2021-04-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-02-21 22:38:47" itemprop="dateModified" datetime="2022-02-21T22:38:47+08:00">2022-02-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>表單在網頁上的應用很頻繁，也是與使用者互動的重要部分，凡舉聯絡的表單，或是資料的填寫、登入，都會用到表單，透過表單所得取的資料，如果不符合格式，也會造成後續資料處理上的麻煩與困難，雖然我們也可以透過 HTML5 來驗證使用者填入的是否符合一些基本的規則，但是無法定義比較細微的部分，這時候就必須自己動手寫驗證了。</p>
-<h3 id="好工具哪有不用的道理"><a href="#好工具哪有不用的道理" class="headerlink" title="好工具哪有不用的道理"></a>好工具哪有不用的道理</h3><p>如果自己寫過表單的驗證，就會知道其實是很瑣碎的，在邏輯的處理上也必須花些心思，如果能力許可當然可以自己寫一個套件來用，但是套件如果別人寫的又好又完善，也真的可以不需要自己刻。</p>
-<p>使用套件的心態或許可以放在：「套件會用就好」，第一時間或許不需要了解原始碼怎麼寫，但一定要遵循官方文件，來理解如何使用，且官網的文件解說與使用說明大都很清楚，也就很容易上手。待有多的時間再來翻看原始碼也不遲。</p>
-<p>validate.js 便是一個完善的套件，表單需要的驗證該有的都有，而且引入就可以使用了，那麼就來理解一下，如何使用 validate.js 來驗證表單。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/module_form_Valitatation/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1297,7 +1305,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">111</span>
+          <span class="site-state-item-count">112</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1310,7 +1318,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">91</span>
+        <span class="site-state-item-count">92</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
