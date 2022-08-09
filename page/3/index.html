@@ -569,6 +569,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/debug_note_02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/debug_note_02/" class="post-title-link" itemprop="url">JSON 的方法和型別</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-21 00:42:42" itemprop="dateCreated datePublished" datetime="2020-10-21T00:42:42+08:00">2020-10-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-22 04:11:56" itemprop="dateModified" datetime="2020-10-22T04:11:56+08:00">2020-10-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Other/" itemprop="url" rel="index"><span itemprop="name">Other</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>有時候在學習的時候，最怕就是遇到一個問題越解越混淆的狀況，原本只是一個小小的問題，卻越發不可收拾，努力了幾個小時決定上網問人，好險都能在好心人的幫助下，釐清自己的一些觀念。</p>
+<p>今天試著接 API ，對於教學範例的 API 都是結構較於單純的 JSON ，自己上網找到想接的巴黎開放數據，資料結構卻很複雜，包了好幾層物件、陣列，在一一抓出來後在迴圈的使用上又有點生疏，然後在休息的時候找到一個範例，剛好講到處理 JSON 的一些方法，然後就照著範例丟到瀏覽器的開發工具，然後無限迴圈就開始了。</p>
+<p>先來釐清幾件事：<br>MDN <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse" target="_blank" rel="noopener">JSON.parse()</a> 方法把會把一個 JSON <strong>字串</strong>轉換成 JavaScript 的<strong>數值</strong>或是<strong>物件</strong>。</p>
+<p>MDN <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" target="_blank" rel="noopener">JSON.stringify()</a> 方法將一個 JavaScript <strong>物件</strong>或<strong>值</strong>轉換為 JSON <strong>字串</strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/debug_note_02/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
     <link itemprop="mainEntityOfPage" href="tsuifei.github.io/debug_throw/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -641,90 +725,6 @@
 <p>在拋出的Error對像中有一個被廣泛支持的屬性：name、message。<br>name：用來存儲錯誤的類型，在ECMA-262定義了七種錯誤類型：Error、EvalError、RangeError、ReferenceError、SyntaxError、TypeError、URIError。詳情見：try-catch語句<br>message：用來存儲error message，就是你new Error()時候穿進去的參數<br>到此，上面的問題應迎刃而解。</p>
 <p><code>throw new Error();</code> 這是創建一個錯誤實例，創造一個錯誤類型拋出。<br><code>throw error</code> 是拋出錯誤。</p>
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/debug_note_02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Tsuifei Pommier">
-      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cré-Coder">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/debug_note_02/" class="post-title-link" itemprop="url">JSON 的方法和型別</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-10-21 00:42:42" itemprop="dateCreated datePublished" datetime="2020-10-21T00:42:42+08:00">2020-10-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-22 04:11:56" itemprop="dateModified" datetime="2020-10-22T04:11:56+08:00">2020-10-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Other/" itemprop="url" rel="index"><span itemprop="name">Other</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>有時候在學習的時候，最怕就是遇到一個問題越解越混淆的狀況，原本只是一個小小的問題，卻越發不可收拾，努力了幾個小時決定上網問人，好險都能在好心人的幫助下，釐清自己的一些觀念。</p>
-<p>今天試著接 API ，對於教學範例的 API 都是結構較於單純的 JSON ，自己上網找到想接的巴黎開放數據，資料結構卻很複雜，包了好幾層物件、陣列，在一一抓出來後在迴圈的使用上又有點生疏，然後在休息的時候找到一個範例，剛好講到處理 JSON 的一些方法，然後就照著範例丟到瀏覽器的開發工具，然後無限迴圈就開始了。</p>
-<p>先來釐清幾件事：<br>MDN <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse" target="_blank" rel="noopener">JSON.parse()</a> 方法把會把一個 JSON <strong>字串</strong>轉換成 JavaScript 的<strong>數值</strong>或是<strong>物件</strong>。</p>
-<p>MDN <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" target="_blank" rel="noopener">JSON.stringify()</a> 方法將一個 JavaScript <strong>物件</strong>或<strong>值</strong>轉換為 JSON <strong>字串</strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/debug_note_02/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
