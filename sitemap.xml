@@ -2,14 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>tsuifei.github.io/React-deploy_01/</loc>
+    <loc>tsuifei.github.io/React_module_component/</loc>
     
     <lastmod>2022-08-09T16:15:42.328Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/React_module_component/</loc>
+    <loc>tsuifei.github.io/React-deploy_01/</loc>
     
     <lastmod>2022-08-09T16:15:42.328Z</lastmod>
     
@@ -191,13 +191,6 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan06_What-are-the-types-of-Array/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.992Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/JS_ironMan07_How-to-read-and-write-array-elements/</loc>
     
     <lastmod>2022-02-21T14:08:23.992Z</lastmod>
@@ -205,14 +198,21 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan05_The-array-property-length/</loc>
+    <loc>tsuifei.github.io/JS_ironMan06_What-are-the-types-of-Array/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.992Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan08_How-to-determine-if-it-is-an-array/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan08_How-to-determine-if-it-is-an-array/</loc>
+    <loc>tsuifei.github.io/JS_ironMan05_The-array-property-length/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -240,13 +240,6 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/JS_ironMan16_JavaScript-Array-pop()-Method/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
@@ -254,14 +247,14 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/</loc>
+    <loc>tsuifei.github.io/JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan20_Shallow-copy-array-slice()-method/</loc>
+    <loc>tsuifei.github.io/JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -290,6 +283,13 @@
   
   <url>
     <loc>tsuifei.github.io/JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan20_Shallow-copy-array-slice()-method/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
