@@ -130,12 +130,12 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">92</span></a>
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">95</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">112</span></a>
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">114</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -165,6 +165,122 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/React_hook_useEffect/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/React_hook_useEffect/" class="post-title-link" itemprop="url">React useEffect() 與如何使用  呼叫 API</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-08-07 00:42:24" itemprop="dateCreated datePublished" datetime="2022-08-07T00:42:24+08:00">2022-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-08-10 00:15:20" itemprop="dateModified" datetime="2022-08-10T00:15:20+08:00">2022-08-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><code>useEffect()</code> 本身是個函式，由 React 框架提供。</p>
+<h2 id="什麼時候使用-useEffect"><a href="#什麼時候使用-useEffect" class="headerlink" title="什麼時候使用 useEffect()"></a>什麼時候使用 useEffect()</h2><p>當元件狀態(useState)或變數變動之後，要做什麼事情可透過useEffect來監聽執行。<br><code>useEffect()</code> 也是個通用的 Hook，找不到對應的 Hook 使用時也可以使用 <code>useEffect()</code>。</p>
+<p>例如當我們載某個元件載入之後，希望網頁標題隨之變化顯示：「歡迎來這裡」，那麼改變網頁標題這個動作就需要透過 useEffect 來完成。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useEffect &#125; <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">"react-dom"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Welcome=<span class="function">(<span class="params">props</span>)=&gt;</span>&#123;</span><br><span class="line">  useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">document</span>.title = <span class="string">'歡迎來這裡'</span></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, &#123;props.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> rootElement = <span class="built_in">document</span>.getElementById(<span class="string">"root"</span>);</span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">Welcome</span> <span class="attr">name</span>=<span class="string">"Tracy"</span> /&gt;</span></span>, rootElement);</span><br></pre></td></tr></table></figure>
+
+<h2 id="useEffect-做什麼事？"><a href="#useEffect-做什麼事？" class="headerlink" title="useEffect() 做什麼事？"></a>useEffect() 做什麼事？</h2><p>以上述的例子來說，<code>useEffect()</code> 的參數是函式，這個函式要完成的就是改變網頁的標題，元件載入後 React 就會去執行這個參數的函式。元件每渲染一次，此函式就自動執行一次，元件在第一次載入頁面時，這個函式也會執行。</p>
+<h2 id="useEffect-的第二個參數"><a href="#useEffect-的第二個參數" class="headerlink" title="useEffect() 的第二個參數"></a>useEffect() 的第二個參數</h2><p>剛剛說過 <code>useEffect()</code>的第一個參數是函式，第二個參數何時用呢？<br>有時候我們並不希望 useEffect() 每次渲染都執行，這時第二參數就派上用場，使用一個 Array 來指定 <code>useEffect()</code> 的依賴項(資料)，只有依賴項發生變化，才會重新渲染。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Welcome=<span class="function">(<span class="params">props</span>)=&gt;</span>&#123;</span><br><span class="line">  useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">document</span>.title = <span class="string">`hello, <span class="subst">$&#123;props.name&#125;</span>`</span></span><br><span class="line">  &#125;,[props.name])</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, &#123;props.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述例子中，<code>useEffect()</code>的第二個參數是 Array，指定第一個參數函式的依賴項<code>(props.name)</code>只有此依賴項的變數產生變化時，第一參數的函式才會執行。<br>如果第二參數是一個空的 Array，就表示第一個參數函式沒有依賴項，也因此第個參數函式只會在元件載入頁面時執行一次，之後元件重新渲染時就不會執行了。</p>
+<h2 id="useEffect-的用途"><a href="#useEffect-的用途" class="headerlink" title="useEffect() 的用途"></a>useEffect() 的用途</h2><p><code>useEffect()</code> 常見的用途有：</p>
+<ul>
+<li>獲取資料/call API (data fetching)</li>
+<li>事件的監聽或訂閱（setting up a subscription）</li>
+<li>改變 DOM 元素（changing the DOM）</li>
+<li>輸出日誌（logging）</li>
+</ul>
+<h2 id="使用-useEffect-call-API"><a href="#使用-useEffect-call-API" class="headerlink" title="使用 useEffect call API"></a>使用 useEffect call API</h2><p>終於寫到重點了，<code>useEffect()</code>最常用來獲取遠端伺服器上的資料(call API)，以下是範例：<br>此範例使用 <code>axios</code> 套件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;useState, useEffect&#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> urlAPI = <span class="string">'https://hn.algolia.com/api/v1/search'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> GetHitList = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [data, setData] = useState(&#123;<span class="attr">hits</span>:[]&#125;) <span class="comment">// hit: 轟動一時的人的列表</span></span><br><span class="line"></span><br><span class="line">  useEffect(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> fetchData = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">      <span class="keyword">const</span> result = <span class="keyword">await</span> axios(<span class="string">`<span class="subst">$&#123;urlAPI&#125;</span>?query=redux`</span>)</span><br><span class="line"></span><br><span class="line">      setDate(result.data)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fetchData()</span><br><span class="line">  &#125;,[])</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &#123;data.hits.map(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">        &lt;li key=&#123;item.objectID&#125;&gt;</span><br><span class="line">        &lt;a href=&#123;item.url&#125;&gt;&#123;item.title&#125;&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>li&gt;</span><br><span class="line">      &#125;)&#125;</span><br><span class="line">    &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">  )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default GetHitList</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>以<code>useState()</code>來產生一個狀態變數<code>data</code>來保存取的得的資料；</li>
+<li><code>useEffect()</code>的第一參數函式使用 async 用來取得從遠端伺服器上非同步取得的資料；</li>
+<li>取得資料後再用<code>setData()</code>來觸發元件的重新渲染；</li>
+<li>因為取得資料只需要一次，所以<code>useState()</code>的第二參數依賴項為空的 Array；</li>
+</ul>
+<h2 id="其他-Call-API-的寫法"><a href="#其他-Call-API-的寫法" class="headerlink" title="其他 Call API 的寫法"></a>其他 Call API 的寫法</h2><p>以下範例是以<code>useEffect()</code>呼叫 API ，並把回傳的圖片 url 顯示到畫面上的三種寫法，都是使用<code>fetch()</code></p>
+<ul>
+<li><code>fetch()</code>是XMLHttpRequest 的升級版，用於在 JavaScript 裡發出 HTTP 請求時使用。</li>
+<li><code>fetch()</code>使用Promise，不使用回調函數，因此大大簡化了寫法，寫起來更簡潔。</li>
+</ul>
+<h3 id="第一種寫法-fetch-async-await"><a href="#第一種寫法-fetch-async-await" class="headerlink" title="第一種寫法 fetch, async / await"></a>第一種寫法 fetch, async / await</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">CallApi</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [data, setData] = React.useState(&#123;&#125;)</span><br><span class="line">  <span class="keyword">const</span> urlAPI = <span class="string">'https://dog.ceo/api/breeds/image/random'</span>  </span><br><span class="line">  <span class="comment">// 第一種寫法 async / await 1.</span></span><br><span class="line">  React.useEffect(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">// 先把 call API 的邏輯放到一個單獨的函式中，再呼叫它</span></span><br><span class="line">    <span class="keyword">const</span> fetchAPI =  <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">      <span class="keyword">const</span> res = <span class="keyword">await</span> fetch(urlAPI)</span><br><span class="line">      <span class="keyword">const</span> resJson = <span class="keyword">await</span> res.json()</span><br><span class="line">      setData(resJson)</span><br><span class="line">    &#125;</span><br><span class="line">    fetchAPI()</span><br><span class="line">  &#125;, [])</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二種寫法-fetch-async-await-try-catch"><a href="#第二種寫法-fetch-async-await-try-catch" class="headerlink" title="第二種寫法 fetch, async / await + try / catch"></a>第二種寫法 fetch, async / await + try / catch</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">React.useEffect(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> getData = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> res = <span class="keyword">await</span> fetch(urlAPI)</span><br><span class="line">      <span class="keyword">const</span> resJson = <span class="keyword">await</span> res.json()</span><br><span class="line">      <span class="keyword">return</span> setData(resJson)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(err)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  getData()</span><br><span class="line">&#125;, [])</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二種寫法-fetch-then-catch"><a href="#第二種寫法-fetch-then-catch" class="headerlink" title="第二種寫法 fetch, then / catch"></a>第二種寫法 fetch, then / catch</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">React.useEffect(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">  fetch(urlAPI)</span><br><span class="line">  .then(<span class="function"><span class="params">res</span> =&gt;</span> res.json())</span><br><span class="line">  .then(<span class="function"><span class="params">resJson</span> =&gt;</span> setData(resJson))</span><br><span class="line">  .catch(<span class="function"><span class="params">err</span> =&gt;</span> <span class="built_in">console</span>.log(err))</span><br><span class="line">&#125;, [])</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">  &#123;</span></span><br><span class="line"><span class="xml">    data.message &amp;&amp; <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#123;data.message&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="useEffect-何時需要回傳值？"><a href="#useEffect-何時需要回傳值？" class="headerlink" title="useEffect() 何時需要回傳值？"></a>useEffect() 何時需要回傳值？</h2><p><code>useEffect()</code>是隨著元件載入的時候執行的，那麼在元件卸載時，有時也需要清理這些<code>useEffect()</code>，<code>useEffect()</code>可以回傳一個函式，在元件卸載時執行這個函式就可以清除。<br>如果不需要清除<code>useEffect()</code>第一參數函式所做的事，就可以不用回傳任何值。<br>例如，在元件載入時，我們使用<code>useEffect()</code>在加載時訂閱了一個事件，並希望在元件卸載時取消訂閱，這時就可以用<code>useEffect()</code>回傳的函式去取消。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> subscription = props.source.subscribe()</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    subscription.unsubscribe()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,[props,source])</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用-useEffect-的注意事項"><a href="#使用-useEffect-的注意事項" class="headerlink" title="使用 useEffect() 的注意事項"></a>使用 useEffect() 的注意事項</h2><ul>
+<li>一次只做一件事，不要在<code>useEffect()</code>裡一次做多件事，例如 TodoList 有讀取、寫入、刪除，這三件事需要寫成三個<code>useEffect()</code></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -1147,94 +1263,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/六角Vue直播班心得/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Tsuifei Pommier">
-      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cré-Coder">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/六角Vue直播班心得/" class="post-title-link" itemprop="url">參加六角Vue直播班心得</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-07-07 10:07:02 / Modified: 20:29:46" itemprop="dateCreated datePublished" datetime="2021-07-07T10:07:02+08:00">2021-07-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Other/" itemprop="url" rel="index"><span itemprop="name">Other</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>感覺，走在一條看不見盡頭的路上，又有時，偶而會像是看到隧道盡頭的光。</p>
-<p>如果，這條路上真的是一條看不見盡頭的路，那麼有其他人一起走在這條路上，是不是比較不悲情？</p>
-<p>身處在與台灣飛行需要 13 小時的國度，自身條件又是中年轉職，已經不想再去回頭看當初的決定是否錯誤，雖然知道這個職場上喜歡新鮮的肝，但是也曾被操過的肝是否會有看不見的優勢？</p>
-<p>如果自己有耐心的可以在電腦前超過十幾個小時，為了解決一個小問題，是否我應該能有最不值錢的努力獎或入門票？</p>
-<p>把自己當成一個實驗體已經有一段時間了，每次沮喪時，總是想到那些實驗的科學家，或是其他努力經過數十載才看到結果的例子，就會想再給自己一次機會。</p>
-<p>Q：當初為什麼報名這堂課？<br>因為校長曾在直播時說：「我陪你們學到會！」這句話讓我紅了眼眶，覺得或許可以再給自己一次機會，所以連續參加 JS 直播、Vue 直播與接下來的切版直播。想說如果有跟上，如果職場不要我，我還可以做些事。</p>
-<p>Q：第一週~第八週的學習過程<br>手沒有髒都不算。<br>之前已經有自學過 Vue2 但是沒有完成一個完整專案，很難知道自己的技能是否達到業界的技術要求。<br>對自己的要求是希望每次繳交任務都是 LV3 但越是後面越覺得困難，主要是還是需要參考其他人的程式碼，如果沒有釐清邏輯，會有很大的問題。<br>尤其是在使用 Props 和 emit 這部份，好幾次畫面拍下來畫圖示意，然後用時忘了再回去看，反反覆覆好幾次。<br>每次接任務都怕自己做不出來，做出來又非常高興，情緒很像三溫暖。</p>
-<p>Q：最大的收獲是？<br>這就是程式與一起學的魔力。<br>自己是金魚腦，語法忘的快，概念也是，所以必須一直去查語法，也需要錄影看好幾遍，有時真的會被自己嚇到，不是看過怎麼沒記住！？<br>每日的練習和每週任務對語法與邏輯的熟悉很有幫助，其實很想要 Kata 但是時間不夠很可惜。<br>最大的收獲是有讓自己不間斷的訓練各方面。雖然動作還是不夠快，但是持續做習題很重要。</p>
-<p>能夠提問也是天堂。<br>一直不敢提問，但後來想想自己或許無法都看清楚問題，那就容許自己讓其他人來幫忙，可以提問真的是很棒的環境，許多卡好久的部份，都被大家的仙女棒一點出現解答，或是常在提問的時候中途就發現問題點。</p>
-<p>Q：最喜歡直播班的哪些活動？<br>我什麼都要，都喜歡。<br>每日作業、每週任務、老師，助教的直播、小組討論都有幫助，尤其是每日作業，真的可以讓一些概念理的更清楚。如果有每週測驗，我應該可以更記得注意一點！</p>
-<p>Q：如果時光能倒流，會希望自己再次注意哪些細節？<br>如果時間能倒流，可能會先參加切版直播班、再來是 JS直播班，然後才是 Vue.js 直播班，因為發現在做 Vue 的作業時，調版面好花時間，而且不是自己切的版，所以看準備好的版也蠻吃力的。</p>
-<p>一天只有 24 小時，自己是除了睡覺、煮飯、吃飯之外的時間，都在課程，作業和練習上，所以如果能重來，我應該還是會努力跟上。</p>
-<p>JS 直播班因為時差不好意思加入小組，後來發現其實小組討論互相鼓勵也很好，Vue 直播有加入小組，果然感受到大家一起互相鼓勵互相學習的作用。</p>
-<p>Q：身為學長姐，分享些想入坑的新同學一些勉勵的話</p>
-<ul>
-<li>有校長的「我陪你們學到會！」這句話，你還在怕什麼！</li>
-<li>能的話盡量把基礎打好，不然坑要填會更花時間。</li>
-<li>把自己一天精力最好的時段留給學習，因為大量用腦很容易沒電。</li>
-</ul>
-<p>最後，想感謝六角的洧傑校長和卡斯伯老師，還有助教群與同學們的幫忙，還有默默在一旁陪我的老公。</p>
-<p>期待自己 可以對程式感到自在<br>期待自己 可以信心滿滿的做出想要的功能<br>期待自己 可以對其他人有回饋與幫助<br>期待這樣的自己，我會繼續努力！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1305,7 +1333,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-count">114</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1318,7 +1346,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">92</span>
+        <span class="site-state-item-count">95</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

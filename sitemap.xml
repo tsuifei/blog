@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/React-deploy_01/</loc>
+    
+    <lastmod>2022-08-09T16:15:42.328Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/React_module_component/</loc>
+    
+    <lastmod>2022-08-09T16:15:42.328Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/React_hook_useEffect/</loc>
+    
+    <lastmod>2022-08-09T16:15:20.682Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/debug_throw/</loc>
+    
+    <lastmod>2022-04-23T21:29:13.404Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/How-To-Setup-Vue-and-Tailwind/</loc>
     
     <lastmod>2022-03-14T16:17:36.622Z</lastmod>
@@ -177,14 +205,14 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan05_The-array-property-length/</loc>
+    <loc>tsuifei.github.io/JS_ironMan08_How-to-determine-if-it-is-an-array/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan08_How-to-determine-if-it-is-an-array/</loc>
+    <loc>tsuifei.github.io/JS_ironMan05_The-array-property-length/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -254,14 +282,14 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/</loc>
+    <loc>tsuifei.github.io/JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/</loc>
+    <loc>tsuifei.github.io/JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -394,13 +422,6 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/React-deploy_01/</loc>
-    
-    <lastmod>2022-02-21T13:50:38.969Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/SASS_deployment-environment-and-fundamental/</loc>
     
     <lastmod>2022-02-21T13:50:07.860Z</lastmod>
@@ -488,13 +509,6 @@
     <loc>tsuifei.github.io/Vue_13_Custom_Directives/</loc>
     
     <lastmod>2022-02-21T13:44:58.773Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/React_module_component/</loc>
-    
-    <lastmod>2022-02-21T13:44:01.432Z</lastmod>
     
   </url>
   
