@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tsuifei.github.io","root":"/blog/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Day 04這次的鐵人賽，參考書籍有可拿來當枕頭的大犀牛「Javascript 大全」和「你所不知道的 JS」系列為主要參考，學習前端以來深深覺得有些書，程度不到來讀，真的很吃力，本人就是如此。但既然知道這些書都是許多大神推薦的書，那麼就試著了解，不懂的地方透過實作和請教前輩得到答案，也是頗好的學習方式，但本人不才，如有解釋錯誤的地方，還請各位海函啊。 前一篇我們有提到陣列可以做什麼，是不是對陣列">
+<meta name="keywords" content="JS_Array,Iron man 30 鐵人賽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="創建與宣告陣列 Array">
+<meta property="og:url" content="tsuifei.github.io/JS_ironMan04_create-and-declare-arrays/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="Day 04這次的鐵人賽，參考書籍有可拿來當枕頭的大犀牛「Javascript 大全」和「你所不知道的 JS」系列為主要參考，學習前端以來深深覺得有些書，程度不到來讀，真的很吃力，本人就是如此。但既然知道這些書都是許多大神推薦的書，那麼就試著了解，不懂的地方透過實作和請教前輩得到答案，也是頗好的學習方式，但本人不才，如有解釋錯誤的地方，還請各位海函啊。 前一篇我們有提到陣列可以做什麼，是不是對陣列">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2022-02-21T14:08:23.903Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="創建與宣告陣列 Array">
+<meta name="twitter:description" content="Day 04這次的鐵人賽，參考書籍有可拿來當枕頭的大犀牛「Javascript 大全」和「你所不知道的 JS」系列為主要參考，學習前端以來深深覺得有些書，程度不到來讀，真的很吃力，本人就是如此。但既然知道這些書都是許多大神推薦的書，那麼就試著了解，不懂的地方透過實作和請教前輩得到答案，也是頗好的學習方式，但本人不才，如有解釋錯誤的地方，還請各位海函啊。 前一篇我們有提到陣列可以做什麼，是不是對陣列">
+
+<link rel="canonical" href="tsuifei.github.io/JS_ironMan04_create-and-declare-arrays/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>創建與宣告陣列 Array | Cré-Coder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Je code donc je suis là.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">98</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">116</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/JS_ironMan04_create-and-declare-arrays/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          創建與宣告陣列 Array
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-09-22 03:29:42" itemprop="dateCreated datePublished" datetime="2019-09-22T03:29:42+08:00">2019-09-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-02-21 22:08:23" itemprop="dateModified" datetime="2022-02-21T22:08:23+08:00">2022-02-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h6 id="Day-04"><a href="#Day-04" class="headerlink" title="Day 04"></a>Day 04</h6><p>這次的鐵人賽，參考書籍有可拿來當枕頭的大犀牛「Javascript 大全」和「你所不知道的 JS」系列為主要參考，學習前端以來深深覺得有些書，程度不到來讀，真的很吃力，本人就是如此。但既然知道這些書都是許多大神推薦的書，那麼就試著了解，不懂的地方透過實作和請教前輩得到答案，也是頗好的學習方式，但本人不才，如有解釋錯誤的地方，還請各位海函啊。</p>
+<p>前一篇我們有提到陣列可以做什麼，是不是對陣列有個比較清楚的概念？有些參考書籍會把陣列形容成有很多個格子的抽屜或盒子，這樣去解釋陣列也是頗具體的，但要記得一般來說，每個格子都會有連續的編號，也就是前幾篇提到的索引值(index)是「有序」的這件事情。但到底有序是不是絕對呢？記得曾經看過，把陣列的索引值改成字串的數字作法，例如：let arr = []; arr[“5”] = 42 會有什麼結果呢？我們先賣個關子。</p>
+ <a id="more"></a>
+
+<p>當我們宣告一個陣列時，也同時在創建一個陣列，如果沒有考慮後續的處理問題，創建陣列是非常簡單的，但如果要讓陣列在後續可以很順利地被處理與運用，就不得不謹慎的考慮陣列裡的元素是什麼型別的問題了。</p>
+<h2 id="字面值宣告陣列"><a href="#字面值宣告陣列" class="headerlink" title="字面值宣告陣列"></a>字面值宣告陣列</h2><p>最簡單的創建陣列方式是使用陣列的字面值(array literal)，也就是用一對中括號 []，把值放在[]中，並以逗號區隔陣列中的值(元素)，再指定給一個變數。</p>
+<h3 id="空陣列"><a href="#空陣列" class="headerlink" title="空陣列"></a>空陣列</h3><p>什麼都沒放，當然也可以。通常是先設一個空陣列，再將要放進去的值已不同的方法放入，列如 push();。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> emptyArray = [];</span><br></pre></td></tr></table></figure>
+
+<h3 id="同型陣列"><a href="#同型陣列" class="headerlink" title="同型陣列"></a>同型陣列</h3><p>陣列裡面的值都是同類型的資料，這種陣列最好做後續的處理，處理過後的結果也最穩定。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrNumber = [<span class="number">2</span>, <span class="number">4</span>, <span class="number">24</span>, <span class="number">42</span>];</span><br></pre></td></tr></table></figure>
+
+<h3 id="非同型陣列"><a href="#非同型陣列" class="headerlink" title="非同型陣列"></a>非同型陣列</h3><p>什麼資料型別都有的陣列， <del>不知道是什麼意圖</del> 或許可以用物件來裝會比較清楚一些，不然只有你知道每個元素的意義。有沒發現陣列的結尾也有一個逗點，在 JavaScript 裡是被允許的，但並不會因為有這個逗點，而讓陣列的長度變長，或者是多一個空值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrMixValue = [<span class="string">'Hi'</span>, <span class="number">4.2</span>, <span class="literal">true</span>, <span class="string">'24'</span>];</span><br></pre></td></tr></table></figure>
+
+<h3 id="包含運算式的陣列"><a href="#包含運算式的陣列" class="headerlink" title="包含運算式的陣列"></a>包含運算式的陣列</h3><p>陣列裡的值不一定是要常數，陣列裡面的元素也可以是任意的運算式，例如，某一個商品的定價是 42，我們想知道這個商品打七折、八折、九折的價錢，並把它放在陣列裡， <del>或許</del>就可以用這個方法，但是，有時會有些意想不到的結果，這部分可以另外去查看 JavaScript 是如何處理運算子與數字的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> unit = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">let</span> rebateList = [unit, unit * <span class="number">0.7</span>, unit * <span class="number">0.8</span>, unit * <span class="number">0.9</span>];</span><br><span class="line"><span class="comment">//  [42, 29.4, 33.6, 37.800000000000004]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="逗點造成的稀疏陣列"><a href="#逗點造成的稀疏陣列" class="headerlink" title="逗點造成的稀疏陣列"></a>逗點造成的稀疏陣列</h3><p>如果在宣告陣列時，夾雜了多個分隔的痘點，逗號和逗號之間沒有值，都會被視為是 undefined。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrNumber = [<span class="number">2</span>, <span class="number">4</span>, , <span class="number">24</span>, , <span class="number">42</span>];</span><br></pre></td></tr></table></figure>
+
+<h3 id="含有-undefined-的陣列"><a href="#含有-undefined-的陣列" class="headerlink" title="含有 undefined 的陣列"></a>含有 undefined 的陣列</h3><p>如果宣告陣列時，介於兩個逗號之間沒有值或空的，這個陣列就會成為稀疏陣列，這些空的元素會被填入 undefined，變成所謂的空插槽(empty slots)，這些空的位置看似被填入了 undefined，但是在瀏覽器的開發工具 Console 使用同樣的語法，填入的卻是 Empty 而不是 undefined。在「你所不知道的 JS - 導讀，型別語文法」裡也有寫到這樣的現象，說明了在這裡產生的 undefined 和 arr[1] = undefined 不同，使用方法的結果也較不穩定，需要特別注意。</p>
+<h3 id="包含物件和陣列的陣列"><a href="#包含物件和陣列的陣列" class="headerlink" title="包含物件和陣列的陣列"></a>包含物件和陣列的陣列</h3><p>在大全裡，有一個範例是陣列被宣告時，陣列裡的值如下，加好多料，有陣列也有物件，這真的超過本人的理解範圍，也真的不建議這麼寫。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> vrayMix = [</span><br><span class="line">  [<span class="number">0</span>, &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;],</span><br><span class="line">  [<span class="number">1</span>, &#123; <span class="attr">a</span>: <span class="number">3</span>, <span class="attr">b</span>: <span class="number">4</span> &#125;]</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<h2 id="建構式宣告"><a href="#建構式宣告" class="headerlink" title="建構式宣告"></a>建構式宣告</h2><p>另一種創建陣列的方式是使用 JavaScript 內建的建構式 Array() ，把建構式直接指定給變數，就成了陣列。<br>創建陣列有三種方法：</p>
+<h3 id="不帶引數就是空陣列"><a href="#不帶引數就是空陣列" class="headerlink" title="不帶引數就是空陣列"></a>不帶引數就是空陣列</h3><p>1.不帶引數的呼叫，這裡的引數指的是 new Array()括號內所放的值，結果同等於空陣列。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(); <span class="comment">// -&gt; []</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="給長度仍然是空的"><a href="#給長度仍然是空的" class="headerlink" title="給長度仍然是空的"></a>給長度仍然是空的</h3><p>2.在內建的建構式 Array() 裡帶一個值數值，而這個值也會成為這個陣列的長度，且裡面的值都會是空值 undefined。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">5</span>); <span class="comment">// -&gt; [empty × 5]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="陣列內容就在括弧裡"><a href="#陣列內容就在括弧裡" class="headerlink" title="陣列內容就在括弧裡"></a>陣列內容就在括弧裡</h3><p>3.把要宣告的陣列內容，直接以引數的方式帶入建構式，感覺建構式的括號裡可以包山包海，放不同的型別資料也可以。但是放入時記得要把陣列的中括號[]拿掉。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr3 = <span class="keyword">new</span> <span class="built_in">Array</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">'hi'</span>, <span class="number">42</span>); <span class="comment">// -&gt;  [Array(3), "hi", 42]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="總結：要用哪一種？"><a href="#總結：要用哪一種？" class="headerlink" title="總結：要用哪一種？"></a>總結：要用哪一種？</h2><p>看了「Javascript 大全」和「你所不知道的 JS」系列，都是建議盡量少用建構式的方式去宣告或創建陣列，原因不是很清楚，但比較下來「字面值」宣告陣列的方式明顯比「建構式」宣告來的直覺與簡單。</p>
+<p>建構式的陣列宣告與一般的陣列宣告本質上是相同的，唯一一點不同的是，如果宣告時我們只給一個參數，那麼字面值會把第一個參數當作是陣列裡第一個元素值，而建構式則會把第一個參數當作是陣列的長度，且只能給整數不能給小數點，不然會報錯，這點不可不注意。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">8</span>]; <span class="comment">// [8]  length: 1</span></span><br><span class="line"><span class="keyword">let</span> arr2 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">8</span>); <span class="comment">// [empty x 8] length: 1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="JS-很奇怪捏"><a href="#JS-很奇怪捏" class="headerlink" title="JS 很奇怪捏"></a>JS 很奇怪捏</h3><p>在文章的開頭，有提到把陣列的索引值改成字串的數字作法，例如：let arr = []; arr[“5”] = 42 會有什麼結果呢？答案是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line">arr[<span class="string">'5'</span>] = <span class="number">42</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// (6) [empty × 5, 42]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.length); <span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+<p>當我們這樣宣告時，JavaScript 並不會報錯，而直接把字串的數字轉成陣列長度，然後加上我們把 42 指定給它，JavaScript 直接把 42 放進陣列，長度因此變成 6，有猜對嗎？</p>
+<p>但這只有字串的數字會有這種現象，如果是純字串，那麼字串就會被轉換成 key，而指定的值則會轉換成為 key:value 的形式。<br>因為 Javascript 的陣列不能用字串作為索引值。 當一個 Javascript 陣列是只能以數字作為索引值的，所以當我們設定以字串作為索引值的時候，實際上是在設置物件的屬性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line">arr[<span class="string">'Hi'</span>] = <span class="number">42</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">// [Hi: 42]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.length); <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+
+<p>介紹了四天的陣列，有沒覺得膩？小菜才吃了四碟，明天我們就來介紹陣列唯一的屬性 length 與其他較輕鬆的話題吧！</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/JS-Array/" rel="tag"># JS_Array</a>
+              <a href="/blog/tags/Iron-man-30-鐵人賽/" rel="tag"># Iron man 30 鐵人賽</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/JS_ironMan03_What-can-the-array-do/" rel="prev" title="陣列可以做什麼、裝什麼有差嗎？">
+      <i class="fa fa-chevron-left"></i> 陣列可以做什麼、裝什麼有差嗎？
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/JS_ironMan05_The-array-property-length/" rel="next" title="陣列屬性 length 的真面貌 ">
+      陣列屬性 length 的真面貌  <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#Day-04"><span class="nav-number">1.</span> <span class="nav-text">Day 04</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字面值宣告陣列"><span class="nav-number"></span> <span class="nav-text">字面值宣告陣列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#空陣列"><span class="nav-number"></span> <span class="nav-text">空陣列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同型陣列"><span class="nav-number"></span> <span class="nav-text">同型陣列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非同型陣列"><span class="nav-number"></span> <span class="nav-text">非同型陣列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包含運算式的陣列"><span class="nav-number"></span> <span class="nav-text">包含運算式的陣列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逗點造成的稀疏陣列"><span class="nav-number"></span> <span class="nav-text">逗點造成的稀疏陣列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#含有-undefined-的陣列"><span class="nav-number"></span> <span class="nav-text">含有 undefined 的陣列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包含物件和陣列的陣列"><span class="nav-number"></span> <span class="nav-text">包含物件和陣列的陣列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建構式宣告"><span class="nav-number"></span> <span class="nav-text">建構式宣告</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不帶引數就是空陣列"><span class="nav-number"></span> <span class="nav-text">不帶引數就是空陣列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#給長度仍然是空的"><span class="nav-number"></span> <span class="nav-text">給長度仍然是空的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#陣列內容就在括弧裡"><span class="nav-number"></span> <span class="nav-text">陣列內容就在括弧裡</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#總結：要用哪一種？"><span class="nav-number"></span> <span class="nav-text">總結：要用哪一種？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JS-很奇怪捏"><span class="nav-number"></span> <span class="nav-text">JS 很奇怪捏</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+  <div class="site-description" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tsuifei" title="GitHub → https://github.com/tsuifei" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tsuifei@gmail.com" title="E-Mail → mailto:tsuifei@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tsuifei.github.io","root":"/blog/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="大部分的許多專案的開發，都是偏向 Cli 環境部署的方式開發，也就是常聽到的「腳手架」的方式，但為什麼是「腳手架」？還是這也代表「起手式」？也就是專案在開發，應該就把要開發與運行的環境架設好，到時要打包輸出相容個瀏覽器的語法就會變得簡單多了。 雖然剛開始設定有點繁複，但只要習慣了、工具都齊了，這樣開發起來在測試也會順手許多，所以開發基本功還是要學起來。 實際上以 Cli 的方式部署，也有許多優點，">
+<meta name="keywords" content="deployment">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VueJs Vue Cli 3 environment deployment 開發部署">
+<meta property="og:url" content="tsuifei.github.io/Vue_14_Cli3_environment_deployment/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="大部分的許多專案的開發，都是偏向 Cli 環境部署的方式開發，也就是常聽到的「腳手架」的方式，但為什麼是「腳手架」？還是這也代表「起手式」？也就是專案在開發，應該就把要開發與運行的環境架設好，到時要打包輸出相容個瀏覽器的語法就會變得簡單多了。 雖然剛開始設定有點繁複，但只要習慣了、工具都齊了，這樣開發起來在測試也會順手許多，所以開發基本功還是要學起來。 實際上以 Cli 的方式部署，也有許多優點，">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2022-02-21T14:40:20.212Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VueJs Vue Cli 3 environment deployment 開發部署">
+<meta name="twitter:description" content="大部分的許多專案的開發，都是偏向 Cli 環境部署的方式開發，也就是常聽到的「腳手架」的方式，但為什麼是「腳手架」？還是這也代表「起手式」？也就是專案在開發，應該就把要開發與運行的環境架設好，到時要打包輸出相容個瀏覽器的語法就會變得簡單多了。 雖然剛開始設定有點繁複，但只要習慣了、工具都齊了，這樣開發起來在測試也會順手許多，所以開發基本功還是要學起來。 實際上以 Cli 的方式部署，也有許多優點，">
+
+<link rel="canonical" href="tsuifei.github.io/Vue_14_Cli3_environment_deployment/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>VueJs Vue Cli 3 environment deployment 開發部署 | Cré-Coder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Je code donc je suis là.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">98</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">116</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/Vue_14_Cli3_environment_deployment/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VueJs Vue Cli 3 environment deployment 開發部署
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-04-20 00:42:24" itemprop="dateCreated datePublished" datetime="2020-04-20T00:42:24+08:00">2020-04-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-02-21 22:40:20" itemprop="dateModified" datetime="2022-02-21T22:40:20+08:00">2022-02-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>大部分的許多專案的開發，都是偏向 Cli 環境部署的方式開發，也就是常聽到的「腳手架」的方式，但為什麼是「腳手架」？還是這也代表「起手式」？也就是專案在開發，應該就把要開發與運行的環境架設好，到時要打包輸出相容個瀏覽器的語法就會變得簡單多了。</p>
+<p>雖然剛開始設定有點繁複，但只要習慣了、工具都齊了，這樣開發起來在測試也會順手許多，所以開發基本功還是要學起來。</p>
+<p>實際上以 Cli 的方式部署，也有許多優點，因為他不只會幫你部署，還把整個專案需要用的檔案與資料夾都自動生成，讓你一安裝完就可以寫「Hello World」，當然這些自動生成的檔案我們也需要去了解其作用與規則，不然檔案放錯位置也是會產生錯誤的。</p>
+<a id="more"></a>
+
+<p>需注意的是，每一個 Cli 的版本都會不太ㄧ樣，所以安裝時的選項也會依版本而略有不同。</p>
+<p>安裝後產生的檔案包也可以稱為「開發模板」我們可以在 <a href="https://github.com/vuejs/vue-cli" target="_blank" rel="noopener">vue-cli 的 github</a> 或<a href="https://cli.vuejs.org/" target="_blank" rel="noopener">官網</a>上找到文件。</p>
+<h2 id="Vue-Cli-3-的開發環境部署步驟"><a href="#Vue-Cli-3-的開發環境部署步驟" class="headerlink" title="Vue Cli 3 的開發環境部署步驟"></a>Vue Cli 3 的開發環境部署步驟</h2><h4 id="1-先確認本機是否裝了-Vue-的-cli-套件"><a href="#1-先確認本機是否裝了-Vue-的-cli-套件" class="headerlink" title="1.先確認本機是否裝了 Vue 的 cli 套件"></a>1.先確認本機是否裝了 Vue 的 cli 套件</h4><p><code>vue -- version</code> 或是 <code>vue -V</code>(大寫的 V)</p>
+<p>如果沒有，先以以下兩個方式一個選裝好 cli<br><code>npm install -g @vue/cli</code><br><code>npm install -g @vue/cli-service-global</code><br>或是<code>yarn global add @vue/cli</code><br>如果連<code>npm</code>和<code>yarn</code>都跑不起來，表示你的電腦上沒安裝管理套件工具，請先去<code>npm</code>和<code>yarn</code>的官方網站看看怎麼安裝囉。</p>
+<h4 id="2-至想創建專案的位置，執行並給予專案名稱-小寫"><a href="#2-至想創建專案的位置，執行並給予專案名稱-小寫" class="headerlink" title="2.至想創建專案的位置，執行並給予專案名稱(小寫)"></a>2.至想創建專案的位置，執行並給予專案名稱(小寫)</h4><p><a href="https://cli.vuejs.org/zh/guide/creating-a-project.html#vue-create" target="_blank" rel="noopener">官網解說</a></p>
+<p><code>vue create [ProjectName]</code></p>
+<h4 id="3-進入設置專案選項-一律以上下移動與按空白鍵選取選項"><a href="#3-進入設置專案選項-一律以上下移動與按空白鍵選取選項" class="headerlink" title="3.進入設置專案選項(一律以上下移動與按空白鍵選取選項)"></a>3.進入設置專案選項(一律以上下移動與按空白鍵選取選項)</h4><p>這時即進入開發部署的選項區，最好先了解一下，各個選項的作用，當然之後也可以修改，但比較麻煩，所以如果可以還是先想好自己要的開發環境，以及需要什麼工具，一次就把它安裝好。</p>
+<p>==選擇套件工具==</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? Please pick a preset: (Use arrow keys)</span><br><span class="line">❯ default (babel, eslint) // 預設</span><br><span class="line">  Manually select features // 自選，有其他選項如sass</span><br></pre></td></tr></table></figure>
+
+<p>==進入選擇 list==<br>使用<code>&lt;space&gt;</code>選擇 ｜ <code>&lt;a&gt;</code>全選或全不選 ｜ <code>&lt;i&gt;</code> 相反，選了可取消</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">? Check the features needed for your project:</span><br><span class="line">❯◉ Babel</span><br><span class="line"> ◯ TypeScript</span><br><span class="line"> ◯ Progressive Web App (PWA) Support</span><br><span class="line"> ◯ Router</span><br><span class="line"> ◯ Vuex</span><br><span class="line"> ◯ CSS Pre-processors // 使用 sass</span><br><span class="line"> ◉ Linter / Formatter</span><br><span class="line"> ◯ Unit Testing</span><br><span class="line"> ◯ E2E Testing</span><br></pre></td></tr></table></figure>
+
+<p>==進入各細項的選擇==<br>SASS</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">? Pick a CSS pre-processor (PostCSS, Autoprefixer and CSS Modules are supporte</span><br><span class="line">d by default): (Use arrow keys)</span><br><span class="line">❯ Sass/SCSS (with dart-sass)</span><br><span class="line">  Sass/SCSS (with node-sass) // Node</span><br><span class="line">  Less</span><br><span class="line">  Stylus</span><br></pre></td></tr></table></figure>
+
+<p>寫作風格與語法檢查</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Pick a linter / formatter config: (Use arrow keys)</span><br><span class="line">❯ ESLint with error prevention only</span><br><span class="line">  ESLint + Airbnb config</span><br><span class="line">  ESLint + Standard config</span><br><span class="line">  ESLint + Prettier</span><br></pre></td></tr></table></figure>
+
+<p>何時檢查語法寫作風格</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? Pick additional lint features:</span><br><span class="line">❯◉ Lint on save // 儲存時檢查</span><br><span class="line"> ◯ Lint and fix on commit // git commit 時檢查</span><br></pre></td></tr></table></figure>
+
+<p>要將這些套件的設定值放哪裡？</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? Where do you prefer placing config for Babel, PostCSS, ESLint, etc.?</span><br><span class="line">  In dedicated config files</span><br><span class="line">❯ In package.json</span><br></pre></td></tr></table></figure>
+
+<p>要將這些預設值儲存起來以後用嗎？</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">? Save this as a preset for future projects? (y/N)</span><br></pre></td></tr></table></figure>
+
+<p>如果選 y 以後一開始的選項就可選擇。</p>
+<h4 id="4-安裝完成啟動伺服器"><a href="#4-安裝完成啟動伺服器" class="headerlink" title="4. 安裝完成啟動伺服器"></a>4. 安裝完成啟動伺服器</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">⚓  Running completion hooks...</span><br><span class="line"></span><br><span class="line">📄  Generating README.md...</span><br><span class="line"></span><br><span class="line">🎉  Successfully created project test.</span><br><span class="line">👉  Get started with the following commands:</span><br><span class="line"></span><br><span class="line"><span class="meta"> $</span> cd test // 先進入專案檔案內</span><br><span class="line"><span class="meta"> $</span> npm run serve // 啟動伺服器</span><br></pre></td></tr></table></figure>
+
+<p>啟動完畢會顯示本地和客戶端的位址：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  App running at:</span><br><span class="line">  - Local:   http://localhost:8080/</span><br><span class="line">  - Network: http://192.168.53.40:8080/</span><br><span class="line"></span><br><span class="line">  Note that the development build is not optimized.</span><br><span class="line">  To create a production build, run npm run build.</span><br><span class="line">// 請注意，開發版本未進行優化。 要創建生產版本，請運行npm run build。</span><br></pre></td></tr></table></figure>
+
+<h3 id="部署完成的檔案的結構"><a href="#部署完成的檔案的結構" class="headerlink" title="部署完成的檔案的結構"></a>部署完成的檔案的結構</h3><p>部署完成後，檔案的結構大致上長這樣，但會依安裝的套件不同而些許不ㄧ樣。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">hello-world/        (專案目錄)</span><br><span class="line">│</span><br><span class="line">├── dist/           (使用 npm run build 構建完成的檔案)</span><br><span class="line">│</span><br><span class="line">├── node_modules/   (依賴的模組)</span><br><span class="line">│</span><br><span class="line">├── public/         (公共資源檔案，不做任何編譯壓縮處理，使用絕對路徑指定的檔案)</span><br><span class="line">│   │</span><br><span class="line">│   ├── favicon.ico (icon 圖片)</span><br><span class="line">│   └── index.html  (網站入口)</span><br><span class="line">│</span><br><span class="line">├── src/            (Vue 與前端的原始檔案)</span><br><span class="line">│   │</span><br><span class="line">│   ├── assets/     (公共資源檔案，與 public 不同的是，assets 會經由 webpack 構建處理，使用相對路徑指定的檔案，如 LOGO 圖片)</span><br><span class="line">│   ├── components/ (Vue 公共組件)</span><br><span class="line">│   ├── views/      (Vue Router 頁面組件)</span><br><span class="line">│   ├── App.vue     (項目入口)</span><br><span class="line">│   ├── main.js     (項目的核心)</span><br><span class="line">│   ├── router.js   (路由設定)</span><br><span class="line">│   └── store.js    (Vuex 狀態管理)</span><br><span class="line">│</span><br><span class="line">└── package.json    (相當於對整個項目的解釋說明文件)</span><br></pre></td></tr></table></figure>
+
+<h4 id="在現有的專案中安裝插件"><a href="#在現有的專案中安裝插件" class="headerlink" title="在現有的專案中安裝插件"></a>在現有的專案中安裝插件</h4><p>使用 vue create 來創建一個新專案的時候，有些插件會根據你選擇的特性被預安裝好，如果想在一個已經被創建好的專案中安裝一個插件，可以使用。vue add 命令：<br><code>vue add @vue/eslint</code></p>
+<h4 id="其他指令"><a href="#其他指令" class="headerlink" title="其他指令"></a>其他指令</h4><p>npm 快速安裝 bootstrap<br><code>npm install bootstrap --save</code></p>
+<h4 id="設定參考網站"><a href="#設定參考網站" class="headerlink" title="設定參考網站"></a>設定參考網站</h4><p><a href="https://footmark.info/programming-language/vuejs/vue-cli3-seting/" target="_blank" rel="noopener">MIS 腳印: Vue CLI 3 安裝與使用教學</a><br><a href="https://www.itread01.com/content/1548001296.html" target="_blank" rel="noopener">使用 vue-cli 3 快速建立 Vue 專案及專案配置 Vue.config.js</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/deployment/" rel="tag"># deployment</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/Question_Entretien_01/" rel="prev" title="法國面試筆記">
+      <i class="fa fa-chevron-left"></i> 法國面試筆記
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/debug_note_01/" rel="next" title="Zhs $ Hexo 故障解決記錄">
+      Zhs $ Hexo 故障解決記錄 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-Cli-3-的開發環境部署步驟"><span class="nav-number">1.</span> <span class="nav-text">Vue Cli 3 的開發環境部署步驟</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-先確認本機是否裝了-Vue-的-cli-套件"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.先確認本機是否裝了 Vue 的 cli 套件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-至想創建專案的位置，執行並給予專案名稱-小寫"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.至想創建專案的位置，執行並給予專案名稱(小寫)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-進入設置專案選項-一律以上下移動與按空白鍵選取選項"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.進入設置專案選項(一律以上下移動與按空白鍵選取選項)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-安裝完成啟動伺服器"><span class="nav-number">1.0.4.</span> <span class="nav-text">4. 安裝完成啟動伺服器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署完成的檔案的結構"><span class="nav-number">1.1.</span> <span class="nav-text">部署完成的檔案的結構</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在現有的專案中安裝插件"><span class="nav-number">1.1.1.</span> <span class="nav-text">在現有的專案中安裝插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他指令"><span class="nav-number">1.1.2.</span> <span class="nav-text">其他指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#設定參考網站"><span class="nav-number">1.1.3.</span> <span class="nav-text">設定參考網站</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+  <div class="site-description" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tsuifei" title="GitHub → https://github.com/tsuifei" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tsuifei@gmail.com" title="E-Mail → mailto:tsuifei@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tsuifei.github.io","root":"/blog/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="人總是在某種方式的評估下，才能清楚地知道自己的能耐。  法國有不少人力派遣公司，因為法國聘人程序繁瑣，徵人又需投入大量資源人力，所以越來越多公司採用人力派遣所派遣過來的工程師，來開發公司的專案。 此測驗是法國某大人力派遣公司，對應徵者所做的線上測驗，進入測驗網頁後，須依規定的時間作答，時間到會自動前往下一題，無法回頭修改答案。 以下是本人測驗之後，重新再花時間整理出來的，包含整理時「自己認為」的">
+<meta name="keywords" content="HTML,JavaScript,CSS,Test">
+<meta property="og:type" content="article">
+<meta property="og:title" content="法國前端初級測驗">
+<meta property="og:url" content="tsuifei.github.io/JS_front_test01/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="人總是在某種方式的評估下，才能清楚地知道自己的能耐。  法國有不少人力派遣公司，因為法國聘人程序繁瑣，徵人又需投入大量資源人力，所以越來越多公司採用人力派遣所派遣過來的工程師，來開發公司的專案。 此測驗是法國某大人力派遣公司，對應徵者所做的線上測驗，進入測驗網頁後，須依規定的時間作答，時間到會自動前往下一題，無法回頭修改答案。 以下是本人測驗之後，重新再花時間整理出來的，包含整理時「自己認為」的">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2020-11-07T20:18:53.545Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法國前端初級測驗">
+<meta name="twitter:description" content="人總是在某種方式的評估下，才能清楚地知道自己的能耐。  法國有不少人力派遣公司，因為法國聘人程序繁瑣，徵人又需投入大量資源人力，所以越來越多公司採用人力派遣所派遣過來的工程師，來開發公司的專案。 此測驗是法國某大人力派遣公司，對應徵者所做的線上測驗，進入測驗網頁後，須依規定的時間作答，時間到會自動前往下一題，無法回頭修改答案。 以下是本人測驗之後，重新再花時間整理出來的，包含整理時「自己認為」的">
+
+<link rel="canonical" href="tsuifei.github.io/JS_front_test01/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>法國前端初級測驗 | Cré-Coder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Je code donc je suis là.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">98</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">116</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/JS_front_test01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          法國前端初級測驗
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-01-20 09:17:36" itemprop="dateCreated datePublished" datetime="2020-01-20T09:17:36+08:00">2020-01-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-11-08 04:18:53" itemprop="dateModified" datetime="2020-11-08T04:18:53+08:00">2020-11-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>人總是在某種方式的評估下，才能清楚地知道自己的能耐。</p>
+</blockquote>
+<p>法國有不少人力派遣公司，因為法國聘人程序繁瑣，徵人又需投入大量資源人力，所以越來越多公司採用人力派遣所派遣過來的工程師，來開發公司的專案。</p>
+<p>此測驗是法國某大人力派遣公司，對應徵者所做的線上測驗，進入測驗網頁後，須依規定的時間作答，時間到會自動前往下一題，無法回頭修改答案。</p>
+<p>以下是本人測驗之後，重新再花時間整理出來的，包含整理時「自己認為」的正確答案，如對答案有意見，歡迎提示給予修正建議，感謝先。</p>
+<a id="more"></a>
+
+<p>這個測驗總共給約 55 分鐘。</p>
+<h3 id="1-21"><a href="#1-21" class="headerlink" title="1/21"></a>1/21</h3><p><strong>需要在<code>&lt;a&gt;</code>標籤加上什麼屬性讓連結可以另開分頁？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> target=”_self”</li>
+<li><input disabled type="checkbox"> href=”#”</li>
+<li><input disabled type="checkbox"> target=”_parent”</li>
+<li><input checked disabled type="checkbox"> target=”_blank”</li>
+</ul>
+<h3 id="2-21"><a href="#2-21" class="headerlink" title="2/21"></a>2/21</h3><p><strong>實做<code>findLargest（numbers）</code>函式。</strong><br><strong>將回傳<code>findLargest（numbers）</code>numbers 陣列中的最大整數。 <code>numbers</code>是一個整數陣列，至少包含一個元素。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findLargest</span>（<span class="title">numbers</span>）</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> max = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span> ; i &lt; arr.length; i++)&#123;</span><br><span class="line">      <span class="keyword">if</span>(max &lt; arr[i])&#123;</span><br><span class="line">        max = arr[i];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">findLargest（[<span class="number">1</span>, <span class="number">-28</span>, <span class="number">88</span>, <span class="number">200</span>, <span class="number">7</span>]）</span><br></pre></td></tr></table></figure>
+
+<p><strong>範例</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 實作 arr.max()</span></span><br><span class="line"><span class="built_in">Array</span>.prototype.max = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> max = <span class="keyword">this</span>[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">this</span>.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">ele, index, arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ele &gt; max) &#123;</span><br><span class="line">      max = ele;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> max;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">45</span>, <span class="number">23</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">234</span>, <span class="number">56</span>];</span><br><span class="line">arr.max(); <span class="comment">// 234</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*******************************/</span></span><br><span class="line"><span class="comment">// 取最大值函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">max</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> max = arr[<span class="number">0</span>];</span><br><span class="line">  arr.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">ele, index, arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ele &gt; max) &#123;</span><br><span class="line">      max = ele;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">45</span>, <span class="number">23</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">234</span>, <span class="number">56</span>];</span><br><span class="line">max(arr); <span class="comment">// 234</span></span><br><span class="line"><span class="comment">/*******************************/</span></span><br><span class="line"><span class="comment">// 取最小值函式</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">min</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> min = arr[<span class="number">0</span>];</span><br><span class="line">  arr.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">ele, index, arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ele &lt; min) &#123;</span><br><span class="line">      min = ele;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">45</span>, <span class="number">23</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">234</span>, <span class="number">56</span>];</span><br><span class="line">min(arr); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>參考出處：<a href="https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/268893/" target="_blank" rel="noopener">JavaScript 學習筆記之取陣列中最大值和最小值 | 程式前沿</a></p>
+<h3 id="3-21"><a href="#3-21" class="headerlink" title="3/21"></a>3/21</h3><p><strong>JavaScript <code>&quot;2&quot; === 2;</code> 會回傳以下哪個？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> null</li>
+<li><input disabled type="checkbox"> true</li>
+<li><input checked disabled type="checkbox"> false</li>
+<li><input disabled type="checkbox"> undefined</li>
+</ul>
+<h3 id="4-21"><a href="#4-21" class="headerlink" title="4/21"></a>4/21</h3><p><strong>Javascript 頁面加載完成後，可以使用哪個事件執行操作?</strong></p>
+<ul>
+<li><input disabled type="checkbox"> oncomplete</li>
+<li><input disabled type="checkbox"> onfinished</li>
+<li><input checked disabled type="checkbox"> onload</li>
+<li><input disabled type="checkbox"> onupload</li>
+<li><input disabled type="checkbox"> oninit</li>
+</ul>
+<h3 id="5-21"><a href="#5-21" class="headerlink" title="5/21"></a>5/21</h3><p><strong>哪個 HTML 標記用於定義<code>&lt;table&gt;</code>表格標題單元格?</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> th</li>
+<li><input disabled type="checkbox"> tr</li>
+<li><input disabled type="checkbox"> tt</li>
+<li><input disabled type="checkbox"> td</li>
+</ul>
+<h3 id="6-21"><a href="#6-21" class="headerlink" title="6/21"></a>6/21</h3><p><strong>在 JavaScript 中，以下哪些語句可以退出循環？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> quit();</li>
+<li><input checked disabled type="checkbox"> break;</li>
+<li><input disabled type="checkbox"> exit;</li>
+<li><input disabled type="checkbox"> i = 99999999;</li>
+</ul>
+<h3 id="7-21"><a href="#7-21" class="headerlink" title="7/21"></a>7/21</h3><p><strong>在 JavaScript 中，如何聲明一個變數？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> var x = 7;</li>
+<li><input disabled type="checkbox"> x := 7;</li>
+<li><input disabled type="checkbox"> int x = 7;</li>
+<li><input disabled type="checkbox"> def x = 7;</li>
+</ul>
+<h3 id="8-21"><a href="#8-21" class="headerlink" title="8/21"></a>8/21</h3><p><strong>在 HTML 中，應如何編寫字符&lt;（小於）以防止將其視為打開標籤&lt; &gt;？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> <code>&amp;lt</code>;</li>
+<li><input disabled type="checkbox"> <code>%60</code></li>
+<li><input disabled type="checkbox"> <code>\&lt;</code></li>
+</ul>
+<h3 id="9-21"><a href="#9-21" class="headerlink" title="9/21"></a>9/21</h3><p><strong>在 CSS 中，選擇 ID 前綴是使用哪個符號？</strong><br><code>#</code></p>
+<h3 id="10-21"><a href="#10-21" class="headerlink" title="10/21"></a>10/21</h3><p><strong>哪一個是<code>foo.length</code>的值</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = [];</span><br><span class="line">foo.push(<span class="number">1</span>);</span><br><span class="line">foo.push(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><input disabled type="checkbox"> 3</li>
+<li><input checked disabled type="checkbox"> 2</li>
+<li><input disabled type="checkbox"> 1</li>
+<li><input disabled type="checkbox"> 0</li>
+<li><input disabled type="checkbox"> null</li>
+</ul>
+<h3 id="11-21"><a href="#11-21" class="headerlink" title="11/21"></a>11/21</h3><p><strong>寫出<code>average(table)</code>函式，該函式必須回傳作為參數給的<code>table</code>的平均值。<code>table</code>是已定義的陣列，並且僅包含數字。</strong><br><strong>如果<code>table</code>為空，則<code>averge</code>必須回傳<code>0</code>。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">average</span>(<span class="params">table</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (table.length === <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; table.length; i++) &#123;</span><br><span class="line">    sum += table[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum / table.length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="12-21"><a href="#12-21" class="headerlink" title="12/21"></a>12/21</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myJson = &#123;</span><br><span class="line">  cities: [</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'Paris'</span>, <span class="attr">pop</span>: <span class="number">2</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'London'</span>, <span class="attr">pop</span>: <span class="number">8</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'New York'</span>, <span class="attr">pop</span>: <span class="number">9</span> &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>以下哪一個的結果是<code>2</code></strong></p>
+<ul>
+<li><input disabled type="checkbox"> <code>myJson -&gt; cities -&gt; Laos -&gt; pop</code></li>
+<li><input disabled type="checkbox"> <code>myJson.cities.[&#39;Paris&#39;].[pop]</code></li>
+<li><input checked disabled type="checkbox"> <code>myJson.cities[0].pop</code></li>
+<li><input disabled type="checkbox"> <code>myJson.cities.Paris.pop</code></li>
+</ul>
+<h3 id="13-21"><a href="#13-21" class="headerlink" title="13/21"></a>13/21</h3><p><strong>在 JavaScript 中，您使用什麼函式在控制台中顯示錯誤？</strong></p>
+<p><code>consol.log();</code> ??? 不確定對不對</p>
+<h3 id="14-21"><a href="#14-21" class="headerlink" title="14/21"></a>14/21</h3><p><strong>在 CSS 中，如何選擇在<code>&lt;p&gt;</code>的元素中所有的<code>&lt;span&gt;</code>元素？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> <code>p.span</code></li>
+<li><input disabled type="checkbox"> <code>span p</code></li>
+<li><input disabled type="checkbox"> <code>p span</code></li>
+<li><input checked disabled type="checkbox"> <code>p &gt; span</code></li>
+<li><input disabled type="checkbox"> <code>span &lt; p</code></li>
+</ul>
+<h3 id="15-21"><a href="#15-21" class="headerlink" title="15/21"></a>15/21</h3><p><strong>HTML <code>&lt;p&gt;</code>在 CSS 默認下屬於什麼元素？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> true</li>
+<li><input checked disabled type="checkbox"> inline</li>
+<li><input disabled type="checkbox"> inline-block</li>
+<li><input disabled type="checkbox"> none</li>
+<li><input disabled type="checkbox"> block</li>
+</ul>
+<h3 id="16-21"><a href="#16-21" class="headerlink" title="16/21"></a>16/21</h3><p><strong>請寫出此函式，如果<code>a（i，j）</code>函式的參數至少一個等於 1 或<code>i,j</code>的總和等於 1，回傳<code>true</code>。</strong><br><strong>兩個參數皆為數字。</strong><br>Par exemple:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`a(1,5)`</span> <span class="keyword">return</span> <span class="string">`true`</span></span><br><span class="line"><span class="string">`a(2,3)`</span> <span class="keyword">return</span> <span class="string">`false`</span></span><br><span class="line"><span class="string">`a(-3,4)`</span> <span class="keyword">return</span> <span class="string">`true`</span></span><br><span class="line"><span class="string">``</span><span class="string">`javascript</span></span><br><span class="line"><span class="string">function a(i,j)&#123;</span></span><br><span class="line"><span class="string">  if(typeof i !== 'number' &amp;&amp; typeof j !== 'number') return false;</span></span><br><span class="line"><span class="string">  if(i == 1 || j == 1 || i+j == 1) return true</span></span><br><span class="line"><span class="string">  return false</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="17-21"><a href="#17-21" class="headerlink" title="17/21"></a>17/21</h3><p><strong>在以下範例，哪一個是 JQuer 的最佳選擇器？</strong><br><strong>答案只有一個</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span> id=<span class="string">"content"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><input disabled type="checkbox"> <code>$(&#39;.content&#39;);</code></li>
+<li><input checked disabled type="checkbox"> <code>$(&#39;#content&#39;);</code></li>
+<li><input disabled type="checkbox"> <code>$(&#39;box&#39;);</code></li>
+<li><input disabled type="checkbox"> <code>$(&#39;#box&#39;);</code></li>
+<li><input disabled type="checkbox"> <code>$(&#39;content&#39;);</code></li>
+<li><input disabled type="checkbox"> <code>$(&#39;.box&#39;);</code></li>
+</ul>
+<h3 id="18-21"><a href="#18-21" class="headerlink" title="18/21"></a>18/21</h3><p><strong>在 HTML 中，以下哪個答案對應於正確的元素層級結構？</strong></p>
+<ul>
+<li><input disabled type="checkbox"> <code>&lt;div&gt; &lt;p&gt; &lt;section&gt; &lt;span&gt;</code></li>
+<li><input checked disabled type="checkbox"> <code>&lt;section&gt; &lt;div&gt; &lt;p&gt; &lt;span&gt;</code></li>
+<li><input disabled type="checkbox"> <code>&lt;div&gt; &lt;p&gt; &lt;section&gt; &lt;span&gt;</code></li>
+<li><input disabled type="checkbox"> <code>&lt;div&gt; &lt;section&gt; &lt;span&gt; &lt;p&gt;</code></li>
+</ul>
+<h3 id="19-21"><a href="#19-21" class="headerlink" title="19/21"></a>19/21</h3><p><strong>你的同事把階乘<code>factorial</code>這個函式寫壞了，請把它修好。</strong></p>
+<p>Rappel : <code>factorial(n) = 1 * 2 * 3 *... * n</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> n != <span class="number">1</span> ? n * factorial(n - <span class="number">1</span>) : <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(factorial(<span class="number">5</span>));</span><br><span class="line"><span class="built_in">console</span>.log(factorial(<span class="number">4</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 基本寫法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorialBase</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> n * factorialBase(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(factorialBase(<span class="number">5</span>));</span><br><span class="line"><span class="built_in">console</span>.log(factorialBase(<span class="number">4</span>));</span><br></pre></td></tr></table></figure>
+
+<p>參考：<a href="https://javascript.info/task/factorial" target="_blank" rel="noopener">Calculate factorial</a></p>
+<h3 id="20-21"><a href="#20-21" class="headerlink" title="20/21"></a>20/21</h3><p><strong>JavaScript 是多序列語言嗎？</strong></p>
+<ul>
+<li><input checked disabled type="checkbox"> Faux 錯</li>
+<li><input disabled type="checkbox"> Vrai 對</li>
+</ul>
+<h3 id="21-21"><a href="#21-21" class="headerlink" title="21/21"></a>21/21</h3><p><strong>超市越來越配備自動收款機。 儘管大部分國家的消費者仍使用現金（包括鈔票和硬幣），但大多數收銀機僅接受銀行卡付款。</strong><br><strong>現金支付遇到的問題之一是貨幣兌換：如何以最佳方式製作給定的金額，也就是說，使用最少數量的硬幣和紙幣？ 這是我們每個人每天都會遇到的問題，更不用說在自動付款站了。</strong><br><strong>在本練習中，請嘗試找到在特定情況下進行更改的最佳解決方案：當自動提款機僅包含==2 歐元硬幣==，==5 歐元紙鈔== 和 ==10 歐元紙鈔==。</strong><br><strong>為了簡化問題，我們將考慮所有這些硬幣和紙幣以==無限數量==提供。</strong><br><strong>以下是一些示範：</strong></p>
+<table>
+<thead>
+<tr>
+<th>要退回的貨幣</th>
+<th>可能的解決方式</th>
+<th>優化後的解決方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>無解</td>
+<td>無解</td>
+</tr>
+<tr>
+<td>6</td>
+<td>2 + 2 + 2</td>
+<td>2 + 2 + 2</td>
+</tr>
+<tr>
+<td>10</td>
+<td>2 + 2 + 2 + 2 +</td>
+<td>10</td>
+</tr>
+<tr>
+<td></td>
+<td>5 + 5</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>10</td>
+<td></td>
+</tr>
+<tr>
+<td>9007199254740991</td>
+<td>…</td>
+<td>10 *</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>900719925474098 +</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>5 + 2 * 3</td>
+</tr>
+</tbody></table>
+<p><strong>金額由具有 3 個屬性的物件表示。<br>分別存儲 2 歐元硬幣，5 歐元鈔票和 10 歐元的鈔票數量，以<code>two</code>,<code>five</code>,<code>ten</code>為屬性。</strong></p>
+<p><strong>例如第二個例子，如果我們從表中獲取 6 歐元，則應獲取物件：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  two: <span class="number">3</span>,   <span class="comment">// 3 pièces de 2 euros</span></span><br><span class="line">  five: <span class="number">0</span>,  <span class="comment">// 0 pièces de 5 euros</span></span><br><span class="line">  ten: <span class="number">0</span>    <span class="comment">// 0 pièces de 10 euros</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>寫出<code>change（cash）</code>函式，該函式需回傳一個物件，其中包含總和為<code>s</code>。 如果不可能進行更改（例如第一個例子），則回傳<code>null</code>。</strong><br><strong>為了獲得最高分，您的解決方案必須盡可能使用「最小面額的硬幣和紙幣」</strong>。<br><strong>數據：<code>0 &lt;</code>cash<code>&lt; 9007199254740991</code></strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">change</span>(<span class="params">cash</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    two: <span class="number">0</span>,</span><br><span class="line">    five: <span class="number">0</span>,</span><br><span class="line">    ten: <span class="number">0</span>,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">1</span>)); <span class="comment">// null</span></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">42</span>).ten); <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">42</span>).five); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">42</span>).two); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>回答：<a href="https://jsbin.com/duzefon/edit?js,console" target="_blank" rel="noopener">20/20 找錢 - JS Bin</a><br>後記：最後ㄧ題似乎還有些問題，如果把範例中最後一個拿來測試，會有問題，且無法做到優化，也就是說如果尾數是 11，就可變成（5<em>1）+(2</em>3)。這部分得再好好想想才行。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/HTML/" rel="tag"># HTML</a>
+              <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/blog/tags/CSS/" rel="tag"># CSS</a>
+              <a href="/blog/tags/Test/" rel="tag"># Test</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/JS30_01_Drum-Kit/" rel="prev" title="JS 30 - 01. Drum Kit 鍵盤音樂">
+      <i class="fa fa-chevron-left"></i> JS 30 - 01. Drum Kit 鍵盤音樂
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/React-deploy_01/" rel="next" title="ReactJS 環境佈署">
+      ReactJS 環境佈署 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-21"><span class="nav-number">1.</span> <span class="nav-text">1/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-21"><span class="nav-number">2.</span> <span class="nav-text">2/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-21"><span class="nav-number">3.</span> <span class="nav-text">3/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-21"><span class="nav-number">4.</span> <span class="nav-text">4/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-21"><span class="nav-number">5.</span> <span class="nav-text">5/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-21"><span class="nav-number">6.</span> <span class="nav-text">6/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-21"><span class="nav-number">7.</span> <span class="nav-text">7/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-21"><span class="nav-number">8.</span> <span class="nav-text">8/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-21"><span class="nav-number">9.</span> <span class="nav-text">9/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-21"><span class="nav-number">10.</span> <span class="nav-text">10/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-21"><span class="nav-number">11.</span> <span class="nav-text">11/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-21"><span class="nav-number">12.</span> <span class="nav-text">12/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-21"><span class="nav-number">13.</span> <span class="nav-text">13/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-21"><span class="nav-number">14.</span> <span class="nav-text">14/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-21"><span class="nav-number">15.</span> <span class="nav-text">15/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-21"><span class="nav-number">16.</span> <span class="nav-text">16/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-21"><span class="nav-number">17.</span> <span class="nav-text">17/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-21"><span class="nav-number">18.</span> <span class="nav-text">18/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-21"><span class="nav-number">19.</span> <span class="nav-text">19/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-21"><span class="nav-number">20.</span> <span class="nav-text">20/21</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-21"><span class="nav-number">21.</span> <span class="nav-text">21/21</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+  <div class="site-description" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tsuifei" title="GitHub → https://github.com/tsuifei" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tsuifei@gmail.com" title="E-Mail → mailto:tsuifei@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

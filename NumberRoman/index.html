@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tsuifei.github.io","root":"/blog/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="因為做練習接觸稻穀羅馬數字，才知道原來以前的數字那麼複雜、限制那麼多，而現在我們每天在用的阿拉伯數字卻是如此方便！人類的進化總是朝著更方便的方向走，用到後來覺得一切都如此合理與正常，卻不知在遠久的年代裡，也曾有這樣的紀錄數字方式，以及進位的演化。 每學一樣知識總是有驚嘆的部份，很難想像那沒有「零」的年代，且是一種談論禁忌，而在唸出數字時需要花腦筋想一下才能解讀數字，真的很神奇。 這個習題是寫出一個">
+<meta name="keywords" content="logic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="古羅馬數字">
+<meta property="og:url" content="tsuifei.github.io/NumberRoman/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="因為做練習接觸稻穀羅馬數字，才知道原來以前的數字那麼複雜、限制那麼多，而現在我們每天在用的阿拉伯數字卻是如此方便！人類的進化總是朝著更方便的方向走，用到後來覺得一切都如此合理與正常，卻不知在遠久的年代裡，也曾有這樣的紀錄數字方式，以及進位的演化。 每學一樣知識總是有驚嘆的部份，很難想像那沒有「零」的年代，且是一種談論禁忌，而在唸出數字時需要花腦筋想一下才能解讀數字，真的很神奇。 這個習題是寫出一個">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2022-11-21T10:41:59.405Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="古羅馬數字">
+<meta name="twitter:description" content="因為做練習接觸稻穀羅馬數字，才知道原來以前的數字那麼複雜、限制那麼多，而現在我們每天在用的阿拉伯數字卻是如此方便！人類的進化總是朝著更方便的方向走，用到後來覺得一切都如此合理與正常，卻不知在遠久的年代裡，也曾有這樣的紀錄數字方式，以及進位的演化。 每學一樣知識總是有驚嘆的部份，很難想像那沒有「零」的年代，且是一種談論禁忌，而在唸出數字時需要花腦筋想一下才能解讀數字，真的很神奇。 這個習題是寫出一個">
+
+<link rel="canonical" href="tsuifei.github.io/NumberRoman/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>古羅馬數字 | Cré-Coder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Je code donc je suis là.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">98</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">116</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/NumberRoman/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          古羅馬數字
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-11-21 00:42:24 / Modified: 18:41:59" itemprop="dateCreated datePublished" datetime="2022-11-21T00:42:24+08:00">2022-11-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Other/" itemprop="url" rel="index"><span itemprop="name">Other</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>因為做練習接觸稻穀羅馬數字，才知道原來以前的數字那麼複雜、限制那麼多，而現在我們每天在用的阿拉伯數字卻是如此方便！人類的進化總是朝著更方便的方向走，用到後來覺得一切都如此合理與正常，卻不知在遠久的年代裡，也曾有這樣的紀錄數字方式，以及進位的演化。</p>
+<p>每學一樣知識總是有驚嘆的部份，很難想像那沒有「零」的年代，且是一種談論禁忌，而在唸出數字時需要花腦筋想一下才能解讀數字，真的很神奇。</p>
+<p>這個習題是寫出一個函式，給一個阿拉伯數字，必須回傳羅馬數字，當然也應該要了解一下羅馬數字的規則，感謝網路找到<a href="https://www.youtube.com/watch?v=x8xUDPO_JEE" target="_blank" rel="noopener">這個解說</a>，算是最清楚了，這篇是觀看這個影片的筆記。知道規則後就開始思考如何轉化成 JS，前人寫的<a href="https://medium.com/%E5%89%8D%E7%AB%AF%E8%8F%9C%E9%9B%9E%E7%AD%86%E8%A8%98%E4%B8%AD/javascript-%E7%BE%85%E9%A6%AC%E6%95%B8%E5%AD%97%E8%BD%89%E6%8F%9B%E5%99%A8-97115c011645" target="_blank" rel="noopener">這篇</a>也很值得參考。</p>
+<h3 id="認識古羅馬數字的字符"><a href="#認識古羅馬數字的字符" class="headerlink" title="認識古羅馬數字的字符"></a>認識古羅馬數字的字符</h3><pre><code>基本字符：
+I = 1
+V = 5
+X = 10
+L = 50
+C = 100
+D = 500
+M = 1000
+重點：七個拉丁字母 / 數字5 很重要 / 是種十進制系統 / 字符的值與位置無關（非位置計數法）</code></pre><h3 id="計數規則"><a href="#計數規則" class="headerlink" title="計數規則"></a>計數規則</h3><pre><code>- 相同的字符相連，表示的數＝字符相加得到的數 → III = 3
+- **右加左減** 小的字符在大的字符的右邊，表示的數等於這些字符相加的數 → VIII = 8 / XII = 12
+- 只有 I, X, C 可以把小的字符寫在大的字符的左邊，所表示的數等於大數減小數所得到的數  → IV=4 (5減左邊的1)  / IX = 9 (10減左邊的1)。這種情況下，大的字符左邊最多只能有一個小的字符。8 不可以寫成 IIX，而是 VIII
+- I 右邊最大字符為 X、 X 右邊最大字符為 C、 C 右邊最大字符為 M。99 = XCIM 而不是 IC
+- 相同字符不可重複超過三次 4 = IV  （但仍有古蹟是寫IIII）
+- 在一個數的上面畫橫線，表示這個數增值1000倍。 V = 5, V上面有橫線為5000
+- 滿足上面規則的情況下，要用最少的字符表示，如100 = C，而不是LL。</code></pre><h3 id="計數範例"><a href="#計數範例" class="headerlink" title="計數範例"></a>計數範例</h3><pre><code>- I, II, III, IV, V, VI, VII, VIII, IX, X, XI,XII (1-12)
+- 91  = XCI   → C100-X10 + I 1
+- 2017 = MMXVII → MM 2000 + X 10 + VII 7
+- 12345 = XIICCCXLV  → XII 12000 + CCC 300 + XLV 45 (L50 - X 10 + V 5)
+- XLIIDC = 42600  → XLII (L50- X10 + II 2) + DC (D500 + C100)
+- 加法運算  XIX + XXII = XLI  19+22 = 41
+- LXXVII - XLVIII = XXIX  77 - 48 =</code></pre><h3 id="關於-0"><a href="#關於-0" class="headerlink" title="關於 0"></a>關於 0</h3><pre><code>- 羅馬計數系統中沒有表示0的字符。歐洲教會阻止0的傳播。
+- 公元725年，聖彼得主教用字母N(N是 nulla 的簡稱，拉丁文解釋為零)代表零。</code></pre><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><pre><code>- 小寫拉丁字母表示數字 i, ii, iii, iv… 西羅馬帝國滅亡之後，開始引入小寫，規則與大寫相同，但使用範圍與用途不同，大寫是在建築、鐘錶、日曆、書籍文件、人名X世、文章編號。
+- 小寫用在有序列表(ordered list)的編號上</code></pre><p>###<br>先決定從大到小還是從小到大去對應<br>遇到5 轉成 V（1位） ，遇到10 轉成 X（2位）<br>從左到右逐字判斷</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/logic/" rel="tag"># logic</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/React_hook_useEffect/" rel="prev" title="React useEffect() 使用情境與呼叫 API">
+      <i class="fa fa-chevron-left"></i> React useEffect() 使用情境與呼叫 API
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/GrimmsLaw/" rel="next" title="什麼是格林法則">
+      什麼是格林法則 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#認識古羅馬數字的字符"><span class="nav-number">1.</span> <span class="nav-text">認識古羅馬數字的字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#計數規則"><span class="nav-number">2.</span> <span class="nav-text">計數規則</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#計數範例"><span class="nav-number">3.</span> <span class="nav-text">計數範例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#關於-0"><span class="nav-number">4.</span> <span class="nav-text">關於 0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">5.</span> <span class="nav-text">其他</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+  <div class="site-description" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tsuifei" title="GitHub → https://github.com/tsuifei" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tsuifei@gmail.com" title="E-Mail → mailto:tsuifei@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

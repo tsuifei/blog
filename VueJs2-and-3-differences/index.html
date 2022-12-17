@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tsuifei.github.io","root":"/blog/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="起手式的寫法Vu212345678910111213let app = new Vue(&amp;#123;  el: &quot;#app&quot;,   data:&amp;#123;    todos: [      &apos;todo1&apos;, &apos;todo2&apos;, &apos;todo3&apos;    ],  &amp;#125;,  methods: &amp;#123;    deleteTodo: (index)=&amp;gt; &amp;#123;      app.tod">
+<meta name="keywords" content="Vue3,Vue2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuejs 2 和 3 的差異">
+<meta property="og:url" content="tsuifei.github.io/VueJs2-and-3-differences/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="起手式的寫法Vu212345678910111213let app = new Vue(&amp;#123;  el: &quot;#app&quot;,   data:&amp;#123;    todos: [      &apos;todo1&apos;, &apos;todo2&apos;, &apos;todo3&apos;    ],  &amp;#125;,  methods: &amp;#123;    deleteTodo: (index)=&amp;gt; &amp;#123;      app.tod">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2022-02-21T14:41:08.863Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vuejs 2 和 3 的差異">
+<meta name="twitter:description" content="起手式的寫法Vu212345678910111213let app = new Vue(&amp;#123;  el: &quot;#app&quot;,   data:&amp;#123;    todos: [      &apos;todo1&apos;, &apos;todo2&apos;, &apos;todo3&apos;    ],  &amp;#125;,  methods: &amp;#123;    deleteTodo: (index)=&amp;gt; &amp;#123;      app.tod">
+
+<link rel="canonical" href="tsuifei.github.io/VueJs2-and-3-differences/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Vuejs 2 和 3 的差異 | Cré-Coder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Je code donc je suis là.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">98</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">116</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/VueJs2-and-3-differences/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vuejs 2 和 3 的差異
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-31 00:42:24" itemprop="dateCreated datePublished" datetime="2022-01-31T00:42:24+08:00">2022-01-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-02-21 22:41:08" itemprop="dateModified" datetime="2022-02-21T22:41:08+08:00">2022-02-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="起手式的寫法"><a href="#起手式的寫法" class="headerlink" title="起手式的寫法"></a>起手式的寫法</h2><h4 id="Vu2"><a href="#Vu2" class="headerlink" title="Vu2"></a>Vu2</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">"#app"</span>, </span><br><span class="line">  data:&#123;</span><br><span class="line">    todos: [</span><br><span class="line">      <span class="string">'todo1'</span>, <span class="string">'todo2'</span>, <span class="string">'todo3'</span></span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    deleteTodo: <span class="function">(<span class="params">index</span>)=&gt;</span> &#123;</span><br><span class="line">      app.todos.splice(index, <span class="number">1</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="Vue3"><a href="#Vue3" class="headerlink" title="Vue3"></a>Vue3</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = Vue.createApp(&#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      todos: [</span><br><span class="line">        <span class="string">'todo1'</span>, </span><br><span class="line">        <span class="string">'todo2'</span>, </span><br><span class="line">        <span class="string">'todo3'</span></span><br><span class="line">      ],</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    deleteItem: <span class="function"><span class="keyword">function</span>(<span class="params">index</span>)=&gt; </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.app.todos.splice(index, <span class="number">1</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> vm = app.mount(<span class="string">'#app'</span>); <span class="comment">// 最後在綁定</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="TELEPORT"><a href="#TELEPORT" class="headerlink" title="TELEPORT"></a>TELEPORT</h2><p>component 寫法不同</p>
+<h4 id="Vue2"><a href="#Vue2" class="headerlink" title="Vue2"></a>Vue2</h4><p>HTML 裡的 <code>&lt;model-button&gt;</code> 為自定義標籤，HTML 內容則寫在<code>model-button</code>的 <code>template</code>裡。<br>這個 Modal 彈出視窗通常會放在 <code>&lt;body&gt;</code>附近，如果寫在 HTML 太裡面會不好調整， 如果使用 Teleport 則可以使用<code>&lt;teleport to=&quot;body&quot;&gt;</code>語法，將這個 Modal 放到 <code>&lt;/body&gt;</code> 前面。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"position: relative;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h3</span>&gt;</span>cTooltips with Vue 3 Teleport<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">modal-button</span>&gt;</span><span class="tag">&lt;/<span class="name">modal-button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 使用 Teleport 會將 template 放到這裡來。 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<!-- Vue2寫法 -->
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// .Vue.extend(&#123;</span></span><br><span class="line">app.component(<span class="string">'modal-button'</span>,&#123;</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;button @click="modalOpen" = true&gt;</span></span><br><span class="line"><span class="string">      Open full screen modal!</span></span><br><span class="line"><span class="string">    &lt;/button&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &lt;div v-if="modalOpen" class="modal"&gt;</span></span><br><span class="line"><span class="string">      &lt;div&gt;</span></span><br><span class="line"><span class="string">        I'm a modal</span></span><br><span class="line"><span class="string">        &lt;button @click="modalOpen" = false&gt;</span></span><br><span class="line"><span class="string">          Close</span></span><br><span class="line"><span class="string">        &lt;/button&gt;</span></span><br><span class="line"><span class="string">      &lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">  data()&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      modalOpen: <span class="literal">false</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Teleport-寫法與用法"><a href="#Teleport-寫法與用法" class="headerlink" title="Teleport 寫法與用法"></a>Teleport 寫法與用法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Vue3寫法</span></span><br><span class="line">template: <span class="string">`</span></span><br><span class="line"><span class="string">  &lt;button @click="modalOpen" = true&gt;</span></span><br><span class="line"><span class="string">    Open full screen modal! (With teleport!)</span></span><br><span class="line"><span class="string">  &lt;/button&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  &lt;teleport to="body"&gt;</span></span><br><span class="line"><span class="string">    &lt;div v-if="modalOpen" class="modal"&gt;</span></span><br><span class="line"><span class="string">      &lt;div&gt;</span></span><br><span class="line"><span class="string">        I'm a teleport modal (my parent is "body")</span></span><br><span class="line"><span class="string">        &lt;button @click="modalOpen" = false&gt;</span></span><br><span class="line"><span class="string">          Close</span></span><br><span class="line"><span class="string">        &lt;/button&gt;</span></span><br><span class="line"><span class="string">      &lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;/teleport&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">  data()&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      modalOpen: <span class="literal">false</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Composition-API"><a href="#Composition-API" class="headerlink" title="Composition API"></a>Composition API</h2><p>Option API 的寫法叫零散，而 Composition API 寫法適合較大的專案，把同樣性質的碼放在同一區塊裡，讓專案更好管理。</p>
+<h2 id="KEY"><a href="#KEY" class="headerlink" title="KEY"></a>KEY</h2><h4 id="Vue2-1"><a href="#Vue2-1" class="headerlink" title="Vue2"></a>Vue2</h4><p>在 Vue2 時頗常使用 KEY 的寫法，來區分哪個 input</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Vue2 寫法</span></span><br><span class="line">&lt;template v-<span class="keyword">if</span>=<span class="string">"loginType === 'username'"</span>&gt;</span><br><span class="line">  &lt;label&gt;Username&lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">  &lt;input placeholder="Enter your username" key="username-input"&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line">&lt;template v-<span class="keyword">else</span>&gt;</span><br><span class="line">  &lt;label&gt;Email&lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">  &lt;input placeholder="Enter your email address" key="email-input"&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Vue3-1"><a href="#Vue3-1" class="headerlink" title="Vue3"></a>Vue3</h4><p>不需寫 key 讓程式碼更精簡，Vue3 會自動判斷。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Vue3 寫法</span></span><br><span class="line">&lt;template v-<span class="keyword">if</span>=<span class="string">"loginType === 'username'"</span>&gt;</span><br><span class="line">  &lt;label&gt;Username&lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">  &lt;input placeholder="Enter your username"&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line">&lt;template v-<span class="keyword">else</span>&gt;</span><br><span class="line">  &lt;label&gt;Email&lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">  &lt;input placeholder="Enter your email address"&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="在-Template-寫法"><a href="#在-Template-寫法" class="headerlink" title="在 Template 寫法"></a>在 Template 寫法</h3><h4 id="Vue2-2"><a href="#Vue2-2" class="headerlink" title="Vue2"></a>Vue2</h4><p>需要寫在每個標籤上</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Vue2</span></span><br><span class="line">&lt;template v-<span class="keyword">if</span>=<span class="string">"item in list"</span>&gt;</span><br><span class="line">  &lt;div :key=<span class="string">"item.id"</span>&gt;...&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;span :key="item.id"&gt;...&lt;/</span>span&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Vue3-2"><a href="#Vue3-2" class="headerlink" title="Vue3"></a>Vue3</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Vue3</span></span><br><span class="line">&lt;template v-<span class="keyword">if</span>=<span class="string">"item in list"</span> :key=<span class="string">"item.id"</span>&gt;</span><br><span class="line">  &lt;div &gt;...&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;span &gt;...&lt;/</span>span&gt;</span><br><span class="line">&lt;<span class="regexp">/te</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="ARRAY-CHANGE-DETECTION"><a href="#ARRAY-CHANGE-DETECTION" class="headerlink" title="ARRAY CHANGE DETECTION"></a>ARRAY CHANGE DETECTION</h2><p>通常 Data 裡面的資料只要一被更動，就會馬上畫面上更動呈現，但在 Array 的部份，並沒這麼聰明，當我們更改資料裡的陣列時， Vue2 不會立即反應至畫面，解決方法是在以 set 的方式來解決。</p>
+<h4 id="Vue2-3"><a href="#Vue2-3" class="headerlink" title="Vue2"></a>Vue2</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = Vue(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    items: [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>],</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">vm.item[<span class="number">1</span>] = <span class="string">"x"</span>; <span class="comment">// is NOT reactive</span></span><br><span class="line">vm.item.length = <span class="number">2</span>; <span class="comment">// is NOT reactive</span></span><br><span class="line"><span class="comment">// --------------</span></span><br><span class="line"><span class="comment">// 以 Vue.set來解決</span></span><br><span class="line">Vue.set(vm.items, indexOfItem, newValue)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Array.prototype.splice</span></span><br><span class="line">Vue.items.splice(indexOfItem, <span class="number">1</span>, newValue)</span><br><span class="line"></span><br><span class="line">Vue.$<span class="keyword">set</span>(vm.items, indexOfItem, 1, newValue)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="Vue3-3"><a href="#Vue3-3" class="headerlink" title="Vue3"></a>Vue3</h4><p>會直接修改畫面，而不需使用 set <a href="https://codepen.io/tsuifei/pen/QWOWeeZ" target="_blank" rel="noopener">範例</a></p>
+<h2 id="V-FOR-With-V-IF"><a href="#V-FOR-With-V-IF" class="headerlink" title="V-FOR With V-IF"></a>V-FOR With V-IF</h2><p>在Vue 裡 <code>V-FOR</code> 和 <code>V-IF</code> 混在一起寫的狀況是非常不推薦的。<br>在 Vue2 如把兩者寫在一起 <code>&lt;v-for&gt;</code> 會優先，再檢查<code>&lt;v-if&gt;</code> 有沒有成立，而 Vue3 則相反，會先檢查 <code>&lt;v-if&gt;</code> 條件有沒成立，再去跑<code>&lt;v-for&gt;</code> 迴圈。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;li v-<span class="keyword">for</span>=<span class="string">"todo in todos"</span> v-<span class="keyword">if</span>=<span class="string">"!todo.isComplete"</span>&gt; &#123;&#123; todo &#125;&#125; &lt;<span class="regexp">/li&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果不想記執行順序，最好還是多寫一層會比較清楚。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template v-<span class="keyword">for</span>=<span class="string">"todo in todos"</span>&gt;</span><br><span class="line">  &lt;li v-<span class="keyword">if</span>=<span class="string">"!todo.isComplete"</span>&gt; &#123;&#123; todo &#125;&#125; &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="KEY-CODE"><a href="#KEY-CODE" class="headerlink" title="KEY CODE"></a>KEY CODE</h2><p>KEY CODE 是鍵盤的對應代碼，例如 13 = enter，在 Vue3 裡已經棄用此方法，而直接以 Key modifiers 方式寫鍵盤名稱。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- vue2 寫法 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-on:keyup.13</span>=<span class="string">"submit"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- only call `vm.submit()` when the `key` is `Enter` --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> @<span class="attr">keyup.enter</span>=<span class="string">"submit"</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- converting key names to kebad-case --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> @<span class="attr">keyup.page-down</span>=<span class="string">"onPageDown"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Key-Aliases"><a href="#Key-Aliases" class="headerlink" title="Key Aliases"></a>Key Aliases</h4><p><code>.enter, 
+.tab, 
+.delete(captures both &quot;Delete&quot; and &quot;Backspace&quot; keys),
+.esc,
+.space,
+.up,
+.down,
+.left,
+.right</code></p>
+<h2 id="CONPONENT"><a href="#CONPONENT" class="headerlink" title="CONPONENT"></a>CONPONENT</h2><h4 id="Vue2-4"><a href="#Vue2-4" class="headerlink" title="Vue2"></a>Vue2</h4><p>component 在 Vue2 的寫法是用 vue 的物件去宣告，切需要將內容包在一個 div(html root) 裡。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Define a new component called button-counter</span></span><br><span class="line">Vue.component(<span class="string">'button-counter'</span>, &#123;</span><br><span class="line">  data: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      title: <span class="string">"title"</span>,</span><br><span class="line">      content: <span class="string">"&lt;p&gt;content...&lt;/p&gt;"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template:<span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div class="blog-post"&gt;</span></span><br><span class="line"><span class="string">      &lt;h3&gt;&#123;&#123;title&#125;&#125;&lt;/h3&gt;</span></span><br><span class="line"><span class="string">      &lt;div v-html="content"&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">new</span> Vue(&#123; <span class="attr">el</span>: <span class="string">'#components-demo'</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Vue3-4"><a href="#Vue3-4" class="headerlink" title="Vue3"></a>Vue3</h4><p>component 在 Vue3 的寫法會先<code>createApp({})</code>再去宣告一個 component。且內容物不需再以 div 包起來。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// create a Vue application</span></span><br><span class="line"><span class="keyword">const</span> app = Vue.createApp(&#123;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Define a  new global component called counter</span></span><br><span class="line">app.component(<span class="string">'button-counter'</span>, &#123;</span><br><span class="line">  data()&#123;</span><br><span class="line">    <span class="keyword">return</span>: &#123;</span><br><span class="line">      title: <span class="string">"title"</span>,</span><br><span class="line">      content: <span class="string">"&lt;p&gt;content...&lt;/p&gt;"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template:<span class="string">`</span></span><br><span class="line"><span class="string">      &lt;h3&gt;&#123;&#123;title&#125;&#125;&lt;/h3&gt;</span></span><br><span class="line"><span class="string">      &lt;div v-html="content"&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.mount(<span class="string">'#components-demo'</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="V-MODEL-ON-COMPONENT"><a href="#V-MODEL-ON-COMPONENT" class="headerlink" title="V-MODEL ON COMPONENT"></a>V-MODEL ON COMPONENT</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"searchText"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 綁定資料 / 監聽 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">:value</span>=<span class="string">"searchText"</span> @<span class="attr">input</span>=<span class="string">"searchText = 4event.target.value"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在 component 裡綁定的方法也不太相同</p>
+<h4 id="Vue2-5"><a href="#Vue2-5" class="headerlink" title="Vue2"></a>Vue2</h4><p>Vue2 的 v-model 是綁定 value，綁定的事件是 input</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;custom-input v-bind:value=<span class="string">"searchText"</span> v-on:input=<span class="string">"searchText = $event"</span>&gt;&lt;<span class="regexp">/custom-input&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ component</span></span><br><span class="line"><span class="regexp">Vue.component('custom-input', &#123;</span></span><br><span class="line"><span class="regexp">  props: ['value'],</span></span><br><span class="line"><span class="regexp">  templete:</span></span><br><span class="line"><span class="regexp">  `</span></span><br><span class="line"><span class="regexp">    &lt;input</span></span><br><span class="line"><span class="regexp">      v-bind:value="value",</span></span><br><span class="line"><span class="regexp">      v-on:input="$emit('input', $event.target.value)"</span></span><br><span class="line"><span class="regexp">  `</span></span><br><span class="line"><span class="regexp">&#125;)</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Vue3-5"><a href="#Vue3-5" class="headerlink" title="Vue3"></a>Vue3</h4><p>Vue3 的 v-model 綁定的是 model-value 與 update 的事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;custom-input v-bind:model-value=<span class="string">"searchText"</span> @update:model-value=<span class="string">"searchText = $event"</span>&gt;&lt;<span class="regexp">/custom-input&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ component</span></span><br><span class="line"><span class="regexp">app.component('custom-input', &#123;</span></span><br><span class="line"><span class="regexp">  props: ['modelValue'],</span></span><br><span class="line"><span class="regexp">  emits:['update:modelValue'],</span></span><br><span class="line"><span class="regexp">  templete:</span></span><br><span class="line"><span class="regexp">  `</span></span><br><span class="line"><span class="regexp">    &lt;input</span></span><br><span class="line"><span class="regexp">      :value="modelValue",</span></span><br><span class="line"><span class="regexp">      @input="$emit('update:modelValue', $event.target.value)"</span></span><br><span class="line"><span class="regexp">  `</span></span><br><span class="line"><span class="regexp">&#125;)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">custom-input</span> <span class="attr">v-model</span>=<span class="string">"searchText"</span>&gt;</span><span class="tag">&lt;/<span class="name">custom-input</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="DOM-TEMPLATE-PARSING-CAVEATS-DOM模板解析的注意事項"><a href="#DOM-TEMPLATE-PARSING-CAVEATS-DOM模板解析的注意事項" class="headerlink" title="DOM TEMPLATE PARSING CAVEATS (DOM模板解析的注意事項)"></a>DOM TEMPLATE PARSING CAVEATS (DOM模板解析的注意事項)</h2><p>有時想要在一個 <table> 塞入一個元件，但因為瀏覽器解析沒有表格標籤<code>tr</code>或<code>td</code>就會報錯，所以 vue.js 在 table 同樣置入一個<code>&lt;tr&gt;</code>的標籤，並在標籤上塞入元件名稱，來看看 vue2, 3的差異。</table></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 這樣寫會出錯 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">blog-post-row</span>&gt;</span><span class="tag">&lt;/<span class="name">blog-post-row</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Vue2-6"><a href="#Vue2-6" class="headerlink" title="Vue2"></a>Vue2</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span> <span class="attr">is</span>=<span class="string">"blog-post-row"</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Vue3-6"><a href="#Vue3-6" class="headerlink" title="Vue3"></a>Vue3</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 不可直接寫元件名，需用單引號包起來 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span> <span class="attr">iv-s</span>=<span class="string">"'blog-post-row'"</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="REMOVE-on-off-once-棄用"><a href="#REMOVE-on-off-once-棄用" class="headerlink" title="REMOVE $on / $off / $once (棄用)"></a>REMOVE $on / $off / $once (棄用)</h2><p>原本是以 $on / $off / $once 來湊出新的架構為： EVENBUS 來當作各元件之間的橋樑<br>現在作法會先開一個空的 Vue 並說明客製化一個名為 custom-event ，當event發生時會做一些事情。</p>
+<h4 id="Vue2-7"><a href="#Vue2-7" class="headerlink" title="Vue2"></a>Vue2</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// eventHub.JS</span></span><br><span class="line"><span class="keyword">const</span> eventHub = <span class="keyword">new</span> Vue()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> eventHub</span><br><span class="line"></span><br><span class="line"><span class="comment">// ChildComponent.vue </span></span><br><span class="line"><span class="keyword">import</span> eventHub <span class="keyword">from</span> <span class="string">'./eventHub'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    <span class="comment">// adding eventHub listener</span></span><br><span class="line">    eventHub.$on(<span class="string">'custom-event'</span>, ()=&gt;&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'Custom event triggered'</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeDestroy() &#123;</span><br><span class="line">    <span class="comment">// removing eventHub listener</span></span><br><span class="line">    eventHub.$off(<span class="string">'custom-event'</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ParentComponent.vue</span></span><br><span class="line"><span class="keyword">import</span> eventHub <span class="keyword">from</span> <span class="string">'./eventHub'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  methods:&#123;</span><br><span class="line">    callGlobalCustomEvent()&#123;</span><br><span class="line">      eventHub.$emit(<span class="string">'custom-event'</span>)</span><br><span class="line">      <span class="comment">// if ChildComponent is mounted, we will...</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>eventBus 被棄用後，替代方案為 Vuex</p>
+<h2 id="Vue-Cli-Vite"><a href="#Vue-Cli-Vite" class="headerlink" title="Vue Cli / Vite"></a>Vue Cli / Vite</h2><p>Vue Cli 以下指令的方式創建專案，使用webpack<br>Vite 以下指令的方式創建專案，但渲染頁面速度更快，因為使用瀏覽器內建系統。</p>
+<h4 id="Vue2-8"><a href="#Vue2-8" class="headerlink" title="Vue2"></a>Vue2</h4><h4 id="Vue3-7"><a href="#Vue3-7" class="headerlink" title="Vue3"></a>Vue3</h4><h4 id="Vue2-9"><a href="#Vue2-9" class="headerlink" title="Vue2"></a>Vue2</h4><h4 id="Vue3-8"><a href="#Vue3-8" class="headerlink" title="Vue3"></a>Vue3</h4><h4 id="Vue2-10"><a href="#Vue2-10" class="headerlink" title="Vue2"></a>Vue2</h4><h4 id="Vue3-9"><a href="#Vue3-9" class="headerlink" title="Vue3"></a>Vue3</h4>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/Vue3/" rel="tag"># Vue3</a>
+              <a href="/blog/tags/Vue2/" rel="tag"># Vue2</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/How-to-start-a-small-project/" rel="prev" title="一個小專案紀錄">
+      <i class="fa fa-chevron-left"></i> 一個小專案紀錄
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/JS_Spread_and_Rest_operator/" rel="next" title="JS ES6 展開與其餘運算子 Spread and Rest operator 應用">
+      JS ES6 展開與其餘運算子 Spread and Rest operator 應用 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起手式的寫法"><span class="nav-number">1.</span> <span class="nav-text">起手式的寫法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vu2"><span class="nav-number">1.0.1.</span> <span class="nav-text">Vu2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue3"><span class="nav-number">1.0.2.</span> <span class="nav-text">Vue3</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TELEPORT"><span class="nav-number">2.</span> <span class="nav-text">TELEPORT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue2"><span class="nav-number">2.0.1.</span> <span class="nav-text">Vue2</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Teleport-寫法與用法"><span class="nav-number">3.</span> <span class="nav-text">Teleport 寫法與用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Composition-API"><span class="nav-number">4.</span> <span class="nav-text">Composition API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KEY"><span class="nav-number">5.</span> <span class="nav-text">KEY</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue2-1"><span class="nav-number">5.0.1.</span> <span class="nav-text">Vue2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue3-1"><span class="nav-number">5.0.2.</span> <span class="nav-text">Vue3</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在-Template-寫法"><span class="nav-number">5.1.</span> <span class="nav-text">在 Template 寫法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue2-2"><span class="nav-number">5.1.1.</span> <span class="nav-text">Vue2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue3-2"><span class="nav-number">5.1.2.</span> <span class="nav-text">Vue3</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARRAY-CHANGE-DETECTION"><span class="nav-number">6.</span> <span class="nav-text">ARRAY CHANGE DETECTION</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue2-3"><span class="nav-number">6.0.1.</span> <span class="nav-text">Vue2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue3-3"><span class="nav-number">6.0.2.</span> <span class="nav-text">Vue3</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#V-FOR-With-V-IF"><span class="nav-number">7.</span> <span class="nav-text">V-FOR With V-IF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KEY-CODE"><span class="nav-number">8.</span> <span class="nav-text">KEY CODE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Key-Aliases"><span class="nav-number">8.0.1.</span> <span class="nav-text">Key Aliases</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CONPONENT"><span class="nav-number">9.</span> <span class="nav-text">CONPONENT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue2-4"><span class="nav-number">9.0.1.</span> <span class="nav-text">Vue2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue3-4"><span class="nav-number">9.0.2.</span> <span class="nav-text">Vue3</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#V-MODEL-ON-COMPONENT"><span class="nav-number">10.</span> <span class="nav-text">V-MODEL ON COMPONENT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue2-5"><span class="nav-number">10.0.1.</span> <span class="nav-text">Vue2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue3-5"><span class="nav-number">10.0.2.</span> <span class="nav-text">Vue3</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM-TEMPLATE-PARSING-CAVEATS-DOM模板解析的注意事項"><span class="nav-number">11.</span> <span class="nav-text">DOM TEMPLATE PARSING CAVEATS (DOM模板解析的注意事項)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue2-6"><span class="nav-number">11.0.1.</span> <span class="nav-text">Vue2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue3-6"><span class="nav-number">11.0.2.</span> <span class="nav-text">Vue3</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REMOVE-on-off-once-棄用"><span class="nav-number">12.</span> <span class="nav-text">REMOVE $on / $off / $once (棄用)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue2-7"><span class="nav-number">12.0.1.</span> <span class="nav-text">Vue2</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-Cli-Vite"><span class="nav-number">13.</span> <span class="nav-text">Vue Cli / Vite</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue2-8"><span class="nav-number">13.0.1.</span> <span class="nav-text">Vue2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue3-7"><span class="nav-number">13.0.2.</span> <span class="nav-text">Vue3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue2-9"><span class="nav-number">13.0.3.</span> <span class="nav-text">Vue2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue3-8"><span class="nav-number">13.0.4.</span> <span class="nav-text">Vue3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue2-10"><span class="nav-number">13.0.5.</span> <span class="nav-text">Vue2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue3-9"><span class="nav-number">13.0.6.</span> <span class="nav-text">Vue3</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+  <div class="site-description" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tsuifei" title="GitHub → https://github.com/tsuifei" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tsuifei@gmail.com" title="E-Mail → mailto:tsuifei@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

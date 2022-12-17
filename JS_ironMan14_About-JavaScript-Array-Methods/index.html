@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tsuifei.github.io","root":"/blog/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Day 14 知道怎麼做，但是如果有好工具會更得心應手。  JavaScript 一直在演化，也因此因不同時期推出的新方法好像是給我們補充能量，原本需要複雜的程序寫出來的函式，現在大多可用內建的方法處理 for 被放生了，不但直接且經過優化，以往使用For迴圈來遍歷陣列，現在只要用內建方法就可以，簡單又好用。 如果有用 javascript 來操作處理 JSON 的經驗，會發現陣列方法實在是非常好">
+<meta name="keywords" content="JS_Array,Iron man 30 鐵人賽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="陣列 Array 方法概觀">
+<meta property="og:url" content="tsuifei.github.io/JS_ironMan14_About-JavaScript-Array-Methods/index.html">
+<meta property="og:site_name" content="Cré-Coder">
+<meta property="og:description" content="Day 14 知道怎麼做，但是如果有好工具會更得心應手。  JavaScript 一直在演化，也因此因不同時期推出的新方法好像是給我們補充能量，原本需要複雜的程序寫出來的函式，現在大多可用內建的方法處理 for 被放生了，不但直接且經過優化，以往使用For迴圈來遍歷陣列，現在只要用內建方法就可以，簡單又好用。 如果有用 javascript 來操作處理 JSON 的經驗，會發現陣列方法實在是非常好">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20190929/20104175xe6gdKuhHZ.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20190929/20104175PsptgttSeB.png">
+<meta property="og:image" content="https://ithelp.ithome.com.tw/upload/images/20190929/20104175O7rB8LpoRb.png">
+<meta property="og:updated_time" content="2022-02-21T14:05:41.753Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="陣列 Array 方法概觀">
+<meta name="twitter:description" content="Day 14 知道怎麼做，但是如果有好工具會更得心應手。  JavaScript 一直在演化，也因此因不同時期推出的新方法好像是給我們補充能量，原本需要複雜的程序寫出來的函式，現在大多可用內建的方法處理 for 被放生了，不但直接且經過優化，以往使用For迴圈來遍歷陣列，現在只要用內建方法就可以，簡單又好用。 如果有用 javascript 來操作處理 JSON 的經驗，會發現陣列方法實在是非常好">
+<meta name="twitter:image" content="https://ithelp.ithome.com.tw/upload/images/20190929/20104175xe6gdKuhHZ.png">
+
+<link rel="canonical" href="tsuifei.github.io/JS_ironMan14_About-JavaScript-Array-Methods/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>陣列 Array 方法概觀 | Cré-Coder</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cré-Coder</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Je code donc je suis là.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">98</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">116</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/blog/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/JS_ironMan14_About-JavaScript-Array-Methods/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          陣列 Array 方法概觀
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-14 04:21:14" itemprop="dateCreated datePublished" datetime="2019-11-14T04:21:14+08:00">2019-11-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-02-21 22:05:41" itemprop="dateModified" datetime="2022-02-21T22:05:41+08:00">2022-02-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h6 id="Day-14"><a href="#Day-14" class="headerlink" title="Day 14"></a>Day 14</h6><blockquote>
+<p>知道怎麼做，但是如果有好工具會更得心應手。</p>
+</blockquote>
+<p>JavaScript 一直在演化，也因此因不同時期推出的新方法好像是給我們補充能量，原本需要複雜的程序寫出來的函式，現在大多可用內建的方法處理 <del>for 被放生了</del>，不但直接且經過優化，以往使用<code>For</code>迴圈來遍歷陣列，現在只要用內建方法就可以，簡單又好用。</p>
+<p>如果有用 javascript 來操作處理 JSON 的經驗，會發現陣列方法實在是非常好用，無論是在陣列上的資料過濾、排序、儲存、組合都超級方便！我們可以想像一下，如果我們想要做出好看又好吃的甜點，是不是需要一些必須的工具，例如刮刀、擠花袋、打蛋器（電動的更好、量匙、電子秤等等，如果沒有這些，即使有上好的材料與器材如烤箱，要做甜點勢必困難重重，而這些陣列 Array 的方法正如這些工具，幫我們快速又精準的把甜點做出來。 <del>寫著寫著就餓了</del></p>
+<a id="more"></a>
+
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20190929/20104175xe6gdKuhHZ.png" alt="dessert"></p>
+<h3 id="好工具永遠不嫌多"><a href="#好工具永遠不嫌多" class="headerlink" title="好工具永遠不嫌多"></a>好工具永遠不嫌多</h3><p>這些好用的陣列工具（功能），是<a href="https://zh.wikipedia.org/wiki/JavaScript" target="_blank" rel="noopener">什麼時候被增加</a>到 javascript 裡呢？javascript 發展至今，最主要的版本為 ECMAScript 3/5/6/7/10 ，在 ES3.0 的時期，推出了基本的新增、刪除與切割字串的方法; ES5 又推出了許多查詢與迭代，功能強大的方法。到了 ES6（2015 年發布)，又推出了一些更強大的陣列方法，如迭代器、尋找、替代等相關陣列方法。</p>
+<p>ES3.0 是最標準的，許多方法都是在 3.0 的時候推出來的，這個時期推出的方法，是現今使用的方法中最重要的部分。ES6 因為更新的部分頗多，所以許多人都把 ES6 當成一個檻，有了它可以更加速的開發專案，也因此成為前端工程師的標準技能之一。</p>
+<p>接下來的版本，我們就都知道了，越受歡迎的語言，更新的速度也會越頻繁 <del>看 Python 就知道了</del>。等到 ES7、ES10 出來了，但各家的瀏覽器卻不一定有支援這些新方法，就像年輕人發明的新詞彙、新說法，中年大嬸（瀏覽器）怎麼可能聽得懂？總要一些時間之後，才能讓大嬸聽懂年輕人說的話。</p>
+<p>但是，大嬸也是有愛追流行和傳統婦女之分，跟上潮流的大嬸(瀏覽器)就聽得懂年輕人的詞彙，<del>那些傳統婦女我們就放生吧！</del></p>
+<p>但是每次年輕人（新版 JS）說什麼，讓大部分的大嬸（瀏覽器）都聽不太懂也頗煩惱，會產生代溝啊！所以就有一位在年輕人之間走跳的壯年人（Babel）出來協調翻譯，讓大嬸都聽得懂年輕人的話，讓鴻溝化為無痕……<del>實在好難掰</del></p>
+<h2 id="以功能性來區分的陣列方法"><a href="#以功能性來區分的陣列方法" class="headerlink" title="以功能性來區分的陣列方法"></a>以功能性來區分的陣列方法</h2><p>我們可以發現許多人在介紹陣列方法時，都是以方法是否可以複製、回傳值來分，這也是一種不錯的記憶方法，畢竟方法那麼多，沒記好要用這些方法總是會卡卡的。先來看看以功能分類的陣列方法列表：</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20190929/20104175PsptgttSeB.png" alt="dessert"></p>
+<h2 id="JavaScript-的三巨頭"><a href="#JavaScript-的三巨頭" class="headerlink" title="JavaScript 的三巨頭"></a>JavaScript 的三巨頭</h2><p>上面說了大嬸和年輕人的故事，其實應該說說 JavaScript 的源頭的，在 JavaScript 裡主要構成的成分有：</p>
+<ul>
+<li>ES3/5/6/7/10(ECMAScript) 規範</li>
+<li>DOM (Document Object Model) 文件物件模型</li>
+<li>BOM (Browser Object Model) 瀏覽器物件模型</li>
+</ul>
+<p>ECMAScript 是 JavaScript 所擬出來的規範，而 DOM 和 BOM 是以參與形式增加了許多使用上的規則，透過 DON 以 JavaScript 來操控 HTML 也就是 Windows; 而 BOM 則是透過 JavaScript 來操控瀏覽器。ECMAScript 給出 DOM 和 BOM 的標準，由各個瀏覽器來補充與支援這些方法，讓這些新功能可以在最新的瀏覽器上被讀取與使用。</p>
+<p>瀏覽器執行 JavaScript 的環境，是由不同的瀏覽器廠商，結合 ECMAScript 固定的規範而產生出來執行的環境，也因此，各個瀏覽器讀取 DOM 和 BOM 會有些許差異，才造成相同的程式碼在不同的瀏覽器解析下會有不同的結果。尤其是 BOM 是操作瀏覽器的規則，各家瀏覽器都以自己的標準為標準 <del>好任性</del>，自然呈現的差異性會比較大。</p>
+<p>接下來將介紹陣列方法的篇章，會以 Chrome 最新版的瀏覽器為主 <del>其他放生</del>，如何知道 Chrome 有支援哪些新的方法？只要我們打開 Chrome 的開發工具，選擇<code>console</code>分頁，輸入<code>Array.prototype</code>按<code>entre</code>之後就會出現在這個瀏覽器版本可以執行方法和屬性。</p>
+<p><img src="https://ithelp.ithome.com.tw/upload/images/20190929/20104175O7rB8LpoRb.png" alt="prototype"></p>
+<p>希望大家在學習 JavaScript 時可以多去了解 JavaScript 歷史與演化，這或許會對掌控這個語言的特性更有幫助。明天我們正式進入陣列方法的介紹囉～</p>
+<blockquote>
+<p>如有需要改進的地方，拜託懇求請告知，我會盡量快速度修改，感謝您～</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/JS-Array/" rel="tag"># JS_Array</a>
+              <a href="/blog/tags/Iron-man-30-鐵人賽/" rel="tag"># Iron man 30 鐵人賽</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/JS_ironMan13_Different-ways-to-traverse-an-Array-in-JavaScript/" rel="prev" title="遍歷陣列的方法">
+      <i class="fa fa-chevron-left"></i> 遍歷陣列的方法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/JS_ironMan15_JavaScript-Array-push()-Method/" rel="next" title="JS 從陣列 Array 尾端新增元素的 push()">
+      JS 從陣列 Array 尾端新增元素的 push() <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#Day-14"><span class="nav-number">1.</span> <span class="nav-text">Day 14</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#好工具永遠不嫌多"><span class="nav-number"></span> <span class="nav-text">好工具永遠不嫌多</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#以功能性來區分的陣列方法"><span class="nav-number"></span> <span class="nav-text">以功能性來區分的陣列方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-的三巨頭"><span class="nav-number"></span> <span class="nav-text">JavaScript 的三巨頭</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Tsuifei Pommier</p>
+  <div class="site-description" itemprop="description">Un blog pour partager, expérimenter et s'améliorer en programmation.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tsuifei" title="GitHub → https://github.com/tsuifei" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tsuifei@gmail.com" title="E-Mail → mailto:tsuifei@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tsuifei Pommier</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+<script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script>
+<script src="/blog/js/schemes/pisces.js"></script>
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
