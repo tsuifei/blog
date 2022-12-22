@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>tsuifei.github.io/DOM_interface/</loc>
+    
+    <lastmod>2022-12-22T17:08:35.915Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/GrimmsLaw/</loc>
     
     <lastmod>2022-12-17T20:49:16.768Z</lastmod>
@@ -75,13 +82,6 @@
     <loc>tsuifei.github.io/How-To-Setup-Vue-and-Tailwind/</loc>
     
     <lastmod>2022-03-14T16:17:36.622Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/DOM_interface/</loc>
-    
-    <lastmod>2022-03-05T15:58:07.767Z</lastmod>
     
   </url>
   
@@ -254,13 +254,6 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/JS_ironMan10_Remove-empty-or-delete-array-elements/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
@@ -269,6 +262,20 @@
   
   <url>
     <loc>tsuifei.github.io/JS_ironMan11_How-to-copy-an-Array-in-JavaScript-part1/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan08_How-to-determine-if-it-is-an-array/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -289,13 +296,6 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan08_How-to-determine-if-it-is-an-array/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
@@ -310,14 +310,14 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan21_Changes-the-contents-of-an-array-method%20/</loc>
+    <loc>tsuifei.github.io/JS_ironMan20_Shallow-copy-array-slice()-method/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan20_Shallow-copy-array-slice()-method/</loc>
+    <loc>tsuifei.github.io/JS_ironMan21_Changes-the-contents-of-an-array-method%20/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
