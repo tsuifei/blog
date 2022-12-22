@@ -29,7 +29,7 @@
 <meta property="og:description" content="現在的網頁講求的是不只是速度，與使用者之間的互動也非常的重要，這些互動免不了由 JavaScript 的「事件」或「監聽」來操作，而這些操作往往包含了對 HTML 標籤或網頁元素取值，增加元素或屬性來達到效果，這篇主要介紹如何透過 JavaScript 來控制或修改 DOM Tree 上面的節點元素。 DOM 是什麼？DOM, (Document Object Model, 檔案物件模型)，是網頁">
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/DOM-model.svg/langfr-440px-DOM-model.svg.png">
-<meta property="og:updated_time" content="2022-03-05T15:55:06.431Z">
+<meta property="og:updated_time" content="2022-12-22T17:40:35.335Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DOM - 操控網頁元素的必學技巧">
 <meta name="twitter:description" content="現在的網頁講求的是不只是速度，與使用者之間的互動也非常的重要，這些互動免不了由 JavaScript 的「事件」或「監聽」來操作，而這些操作往往包含了對 HTML 標籤或網頁元素取值，增加元素或屬性來達到效果，這篇主要介紹如何透過 JavaScript 來控制或修改 DOM Tree 上面的節點元素。 DOM 是什麼？DOM, (Document Object Model, 檔案物件模型)，是網頁">
@@ -202,7 +202,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-03-05 23:55:06" itemprop="dateModified" datetime="2022-03-05T23:55:06+08:00">2022-03-05</time>
+                <time title="Modified: 2022-12-23 01:40:35" itemprop="dateModified" datetime="2022-12-23T01:40:35+08:00">2022-12-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -227,7 +227,13 @@
       
         <p>現在的網頁講求的是不只是速度，與使用者之間的互動也非常的重要，這些互動免不了由 JavaScript 的「事件」或「監聽」來操作，而這些操作往往包含了對 HTML 標籤或網頁元素取值，增加元素或屬性來達到效果，這篇主要介紹如何透過 JavaScript 來控制或修改 DOM Tree 上面的節點元素。</p>
 <h2 id="DOM-是什麼？"><a href="#DOM-是什麼？" class="headerlink" title="DOM 是什麼？"></a>DOM 是什麼？</h2><p>DOM, (Document Object Model, 檔案物件模型)，是網頁內容（HTML 或 XML）所建構網頁的內容結構，並提供給編程語言一套完整的操控檔案文件的 API 。</p>
-<p>DOM Tree 樹狀結構與節點：網頁的結構有如樹狀般，這些相連的交會點，有如骨骼的關節，每一個節點上是網頁結構的元素所構成。這些節點具有關連性，也具有父層或兄弟層的關係。</p>
+<p>DOM Tree 樹狀結構與節點(node)：網頁的結構有如樹狀般，這些相連的交會點，有如骨骼的關節，每一個節點上是網頁結構的元素所構成。這些節點(node)具有關連性，也具有父層或兄弟層的關係。分為以下三種：</p>
+<ul>
+<li>HTML 元素節點(element nodes or element objects)</li>
+<li>文字節點(text node)</li>
+<li>註解節點(comment node)</li>
+</ul>
+<p>DOM 提供了兩種節點的集合：HTML collection(element nodes) 以及 NodeList (包含以上三種)。以下圖來說，如果選擇選取 HTML collection，那只會選取到 Element 的部份，但如果使用 NodeList 的方式，就可以選取指定元素底下所有的節點(NodeList)。</p>
 <a id="more"></a>
 <p>例如在 HTML 的文件(Document)中，主支幹為<code>HTML</code>，接著分為<code>&lt;head&gt;</code>和<code>&lt;body&gt;</code>，在各分支下，又有許多分支節點，利用找尋這些 HTML 結構的節點，我們可以依循找到我們希望操控的節點元素，來進行操控。JavaScript 可以透過這些節點為進入點，進行修改、新增、覆蓋和刪除元素或屬性。</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/DOM-model.svg/langfr-440px-DOM-model.svg.png" alt></p>
