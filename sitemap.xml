@@ -261,14 +261,7 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan08_How-to-determine-if-it-is-an-array/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan10_Remove-empty-or-delete-array-elements/</loc>
+    <loc>tsuifei.github.io/JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -282,7 +275,7 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/</loc>
+    <loc>tsuifei.github.io/JS_ironMan10_Remove-empty-or-delete-array-elements/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -296,21 +289,14 @@
   </url>
   
   <url>
+    <loc>tsuifei.github.io/JS_ironMan08_How-to-determine-if-it-is-an-array/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/JS_ironMan16_JavaScript-Array-pop()-Method/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -324,7 +310,21 @@
   </url>
   
   <url>
+    <loc>tsuifei.github.io/JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/JS_ironMan21_Changes-the-contents-of-an-array-method%20/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -345,14 +345,14 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan01_foreword/</loc>
+    <loc>tsuifei.github.io/JS_ironMan02_What-is-the-array/</loc>
     
     <lastmod>2022-02-21T14:08:23.903Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan02_What-is-the-array/</loc>
+    <loc>tsuifei.github.io/JS_ironMan01_foreword/</loc>
     
     <lastmod>2022-02-21T14:08:23.903Z</lastmod>
     
@@ -387,14 +387,14 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan23_Reverses-an-array-in-place-reverse()-method/</loc>
+    <loc>tsuifei.github.io/JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/</loc>
     
     <lastmod>2022-02-21T14:08:23.903Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/</loc>
+    <loc>tsuifei.github.io/JS_ironMan23_Reverses-an-array-in-place-reverse()-method/</loc>
     
     <lastmod>2022-02-21T14:08:23.903Z</lastmod>
     
