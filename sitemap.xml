@@ -240,14 +240,14 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan06_What-are-the-types-of-Array/</loc>
+    <loc>tsuifei.github.io/JS_ironMan07_How-to-read-and-write-array-elements/</loc>
     
     <lastmod>2022-02-21T14:08:23.992Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan07_How-to-read-and-write-array-elements/</loc>
+    <loc>tsuifei.github.io/JS_ironMan06_What-are-the-types-of-Array/</loc>
     
     <lastmod>2022-02-21T14:08:23.992Z</lastmod>
     
@@ -261,14 +261,7 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan11_How-to-copy-an-Array-in-JavaScript-part1/</loc>
+    <loc>tsuifei.github.io/JS_ironMan08_How-to-determine-if-it-is-an-array/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -289,7 +282,28 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan08_How-to-determine-if-it-is-an-array/</loc>
+    <loc>tsuifei.github.io/JS_ironMan11_How-to-copy-an-Array-in-JavaScript-part1/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -310,21 +324,7 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/JS_ironMan21_Changes-the-contents-of-an-array-method%20/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan19_Concatenate-or-merge-arrays-concat()-Methods/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -380,6 +380,13 @@
   </url>
   
   <url>
+    <loc>tsuifei.github.io/JS_ironMan23_Reverses-an-array-in-place-reverse()-method/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.903Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/JS_ironMan22_%20Sorts-the-elements-of-an-array-sort()-method/</loc>
     
     <lastmod>2022-02-21T14:08:23.903Z</lastmod>
@@ -388,13 +395,6 @@
   
   <url>
     <loc>tsuifei.github.io/JS_ironMan24_Returns-new-string-by-concatenating-elements-in-array/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.903Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan23_Reverses-an-array-in-place-reverse()-method/</loc>
     
     <lastmod>2022-02-21T14:08:23.903Z</lastmod>
     
