@@ -125,17 +125,17 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">19</span></a>
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">20</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">98</span></a>
+    <a href="/blog/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags<span class="badge">100</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">116</span></a>
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">117</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -165,6 +165,83 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/WP-Wha-is-a-block/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/WP-Wha-is-a-block/" class="post-title-link" itemprop="url">什麼是 Wordpress 的塊(Block)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-05-09 00:42:24 / Modified: 22:41:45" itemprop="dateCreated datePublished" datetime="2023-05-09T00:42:24+08:00">2023-05-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/WordPress/" itemprop="url" rel="index"><span itemprop="name">WordPress</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h6 id="時代推著我們走，技術也是。WP推出-6-2-版了，對-WP-的認知也應該要升級才是。透過官方文件，就再一次重新認識這個老朋友吧！"><a href="#時代推著我們走，技術也是。WP推出-6-2-版了，對-WP-的認知也應該要升級才是。透過官方文件，就再一次重新認識這個老朋友吧！" class="headerlink" title="時代推著我們走，技術也是。ＷＰ推出 6.2 版了，對 WP 的認知也應該要升級才是。透過官方文件，就再一次重新認識這個老朋友吧！"></a>時代推著我們走，技術也是。ＷＰ推出 6.2 版了，對 WP 的認知也應該要升級才是。透過官方文件，就再一次重新認識這個老朋友吧！</h6><h2 id="什麼是區塊？"><a href="#什麼是區塊？" class="headerlink" title="什麼是區塊？"></a>什麼是區塊？</h2><p>重點：</p>
+<ul>
+<li>區塊編輯器，也稱為 Gutenberg，是 TinyMCE 的現代替代品，它是 WordPress 傳統配備的編輯器，您可能已經熟悉。</li>
+<li>儘管它仍在不斷發展中，但區塊編輯器已經足夠成熟，可以成為新 WordPress 安裝的默認編輯器。</li>
+<li>區塊名稱的作用可透過區塊名稱理解，區塊編輯器可以讓我們將內容編輯為稱為「區塊」的離散單元，其中每個「區塊」包含某種類型的內容，例如段落、標題或圖像。如果之前使用過 Gutenberg，則可能知道其他類型的區塊，例如封面區塊、引用區塊或畫廊區塊。每個區塊都是文章或頁面中的一個元素。</li>
+<li>Gutenberg 區塊是用 React 構建的。我們可以從 WordPress 插件中實做自定義區塊，我們可以建立一個外掛，外掛主要是使用 JavaScript 和 React 來實作，而不是 PHP。</li>
+<li>某些類型的區塊（例如段落區塊或圖像區塊）是包含單個內容項目的「基本元素」又稱「基元」。其他類型的區塊可以包含許多「基元」區塊。這種類型的區塊的一個例子是群組區塊，它允許我們將區塊分組在一起，以便將它們視為單個單位。</li>
+<li>文章(article)或頁面(page)的內容仍然像以前基於 TinyMCE 的編輯器一樣存儲在數據庫的 wp_posts 表中。但是，區塊編輯器在內容中插入 HTML 註釋，以劃分個別區塊並提供此區塊的訊息，而在瀏覽器中呈現區塊的樣貌。</li>
+</ul>
+<p>透過<a href="https://wordpress.org/gutenberg/" target="_blank" rel="noopener">這個連結</a>可以直接操作 Gutenberg編輯器喔。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -1206,92 +1283,6 @@ M = 1000
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/hexo_nvm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Tsuifei Pommier">
-      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cré-Coder">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/hexo_nvm/" class="post-title-link" itemprop="url">使用 nvm 切換與 hexo 相容的 Node 版本</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-01-07 00:42:24" itemprop="dateCreated datePublished" datetime="2022-01-07T00:42:24+08:00">2022-01-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-01-08 04:51:54" itemprop="dateModified" datetime="2022-01-08T04:51:54+08:00">2022-01-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Other/" itemprop="url" rel="index"><span itemprop="name">Other</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>前陣子在進行 Vue.js 專案時，因為要使用 Tailwind Css 的關係所以把 Node 的版本升到 v14.17.6 的版本，但最近在更新 hexo 文章時卻無法部署，查了一下錯誤訊息<code>hexo The &quot;mode&quot; argument must be integer. Received an instance of Object</code>的來源才知道是因為 Node 的版本對 hexo 來說太高，所以無法生成與部署，記得 nvm 是在做 Node 版本控管，查了一下只要再把較低版本安裝回去，然後切換到原本的版本就好了。</p>
-<p>已經忘記當初裝 hexo 的 Node 版本是多少，於是從 v11.13.0 開始安裝，裝了之後 hexo 出現一片白，看來是太低，憑印象好像是 v12，查了一下穩定版本是 v12.22.8 於是使用 nvm 指令安裝：<br><code>nvm install v12.22.8</code><br>安裝完畢 node 會直接使用剛安裝的版本，這時再生成和部署一次 Hexo 就沒問題了。</p>
-<h2 id="NVM-是什麼？"><a href="#NVM-是什麼？" class="headerlink" title="NVM 是什麼？"></a>NVM 是什麼？</h2><p>NVM 是 node 版本管理工具<br>以下記錄一下 nvm 的指令：</p>
-<ul>
-<li>查看版本：<code>nvm v</code> 或 <code>nvm version</code></li>
-<li>查看所有可安装 Node 版本： <code>nvm list available</code></li>
-<li>node 安装最新版本（最新不一定最穩） : <code>nvm install node</code> </li>
-<li>node 安装指定版本(推薦) : <code>nvm install [指定版本]</code> </li>
-<li>查看已安装 node 版本： <code>nvm ls</code> 或 <code>vm list</code></li>
-<li>使用指定版本： <code>nvm use [指定版本]</code></li>
-<li>卸載已安装的 node 版本： <code>nvm uninstall [版本]</code></li>
-</ul>
-<p>所以記得下次要在 Hexo 發文部署前，先使用 <code>nvm use v12.22.8</code> 切回 hexo 相容的 node 版本，發完文章再切回 Tailwind Css 需要的，也就是當前常用的 v14.17.6 版本就可以了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1362,20 +1353,20 @@ M = 1000
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-count">117</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-count">100</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1408,7 +1399,7 @@ M = 1000
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

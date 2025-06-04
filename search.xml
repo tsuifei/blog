@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>什麼是 Wordpress 的塊(Block)</title>
+      <link href="/blog/WP-Wha-is-a-block/"/>
+      <url>/blog/WP-Wha-is-a-block/</url>
+      
+        <content type="html"><![CDATA[<h6 id="時代推著我們走，技術也是。WP推出-6-2-版了，對-WP-的認知也應該要升級才是。透過官方文件，就再一次重新認識這個老朋友吧！"><a href="#時代推著我們走，技術也是。WP推出-6-2-版了，對-WP-的認知也應該要升級才是。透過官方文件，就再一次重新認識這個老朋友吧！" class="headerlink" title="時代推著我們走，技術也是。ＷＰ推出 6.2 版了，對 WP 的認知也應該要升級才是。透過官方文件，就再一次重新認識這個老朋友吧！"></a>時代推著我們走，技術也是。ＷＰ推出 6.2 版了，對 WP 的認知也應該要升級才是。透過官方文件，就再一次重新認識這個老朋友吧！</h6><h2 id="什麼是區塊？"><a href="#什麼是區塊？" class="headerlink" title="什麼是區塊？"></a>什麼是區塊？</h2><p>重點：</p><ul><li>區塊編輯器，也稱為 Gutenberg，是 TinyMCE 的現代替代品，它是 WordPress 傳統配備的編輯器，您可能已經熟悉。</li><li>儘管它仍在不斷發展中，但區塊編輯器已經足夠成熟，可以成為新 WordPress 安裝的默認編輯器。</li><li>區塊名稱的作用可透過區塊名稱理解，區塊編輯器可以讓我們將內容編輯為稱為「區塊」的離散單元，其中每個「區塊」包含某種類型的內容，例如段落、標題或圖像。如果之前使用過 Gutenberg，則可能知道其他類型的區塊，例如封面區塊、引用區塊或畫廊區塊。每個區塊都是文章或頁面中的一個元素。</li><li>Gutenberg 區塊是用 React 構建的。我們可以從 WordPress 插件中實做自定義區塊，我們可以建立一個外掛，外掛主要是使用 JavaScript 和 React 來實作，而不是 PHP。</li><li>某些類型的區塊（例如段落區塊或圖像區塊）是包含單個內容項目的「基本元素」又稱「基元」。其他類型的區塊可以包含許多「基元」區塊。這種類型的區塊的一個例子是群組區塊，它允許我們將區塊分組在一起，以便將它們視為單個單位。</li><li>文章(article)或頁面(page)的內容仍然像以前基於 TinyMCE 的編輯器一樣存儲在數據庫的 wp_posts 表中。但是，區塊編輯器在內容中插入 HTML 註釋，以劃分個別區塊並提供此區塊的訊息，而在瀏覽器中呈現區塊的樣貌。</li></ul><p>透過<a href="https://wordpress.org/gutenberg/" target="_blank" rel="noopener">這個連結</a>可以直接操作 Gutenberg編輯器喔。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> WordPress </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> WP </tag>
+            
+            <tag> Basic </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>什麼是格林法則</title>
       <link href="/blog/GrimmsLaw/"/>
       <url>/blog/GrimmsLaw/</url>
@@ -259,9 +286,9 @@
       
         <tags>
             
-            <tag> Hexo </tag>
-            
             <tag> debug </tag>
+            
+            <tag> Hexo </tag>
             
             <tag> Node </tag>
             
@@ -936,9 +963,9 @@
             
             <tag> Other </tag>
             
-            <tag> Hexo </tag>
-            
             <tag> debug </tag>
+            
+            <tag> Hexo </tag>
             
         </tags>
       
