@@ -125,7 +125,7 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">20</span></a>
+    <a href="/blog/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories<span class="badge">21</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -135,7 +135,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">117</span></a>
+    <a href="/blog/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives<span class="badge">118</span></a>
 
   </li>
         <li class="menu-item menu-item-commonweal">
@@ -165,6 +165,136 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/JS-daily-practice/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="Tsuifei Pommier">
+      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cré-Coder">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/JS-daily-practice/" class="post-title-link" itemprop="url">JS 日常練習</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-20 00:42:24" itemprop="dateCreated datePublished" datetime="2022-01-20T00:42:24+08:00">2022-01-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-02-21 21:41:35" itemprop="dateModified" datetime="2022-02-21T21:41:35+08:00">2022-02-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>這裡蒐集平常看到的小題目，無論做對或做錯，都記錄下來。</p>
+<h3 id="No-1"><a href="#No-1" class="headerlink" title="No.1"></a>No.1</h3><p>What will this code log to the consol?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">const</span> [n] = foo;</span><br><span class="line"><span class="built_in">console</span>.log(n); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>使用解構賦值 (Destructuring assignment) ，可以把陣列或物件中的資料解開擷取成為獨立變數。<br>解構賦值使用類似語法；不過在指定敘述式的左側，要宣告從來源變數接收解開值之變數。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> [y, z] = x;</span><br><span class="line"><span class="built_in">console</span>.log(y); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(z); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="No-2"><a href="#No-2" class="headerlink" title="No.2"></a>No.2</h3><p>What does this code print to the consol?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x =[<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> y =[<span class="number">5</span>, <span class="number">7</span>];</span><br><span class="line"><span class="keyword">const</span> z =[x,y];</span><br><span class="line"><span class="built_in">console</span>.log(z); <span class="comment">// [1,2,5,7]</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 ES6 的解構賦值 (Destructuring assignment)，可以把陣列或物件中的資料解開擷取。</p>
+<h3 id="No-3"><a href="#No-3" class="headerlink" title="No.3"></a>No.3</h3><p>What value is assigned to total after this code executes?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sum = <span class="function"><span class="keyword">function</span>(<span class="params">num1, num2 =<span class="number">2</span>, num3 = <span class="number">3</span></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2 + num3</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> values = [<span class="number">1</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> total = sum(<span class="number">4</span>, ...values);</span><br><span class="line"><span class="built_in">console</span>.log(total); <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+
+<p>一樣使用 ES6 的解構賦值 (Destructuring assignment)</p>
+<h3 id="No-4"><a href="#No-4" class="headerlink" title="No.4"></a>No.4</h3><p>What line of code causes this code segment to throw an error?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> lion = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> tiger = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> bear;</span><br><span class="line"></span><br><span class="line">++lion;</span><br><span class="line">bear += lion + tiger;</span><br><span class="line">tiger++;</span><br></pre></td></tr></table></figure>
+
+<p><code>++lion;</code>，因為是以 const 賦值，如果值為原始型別，就無法再度賦值。如果是物件型別則可修改物件裡的內容。<br>所以答案是：<code>++lion;</code>，because lion cannot be reassigned a value.</p>
+<h3 id="No-5"><a href="#No-5" class="headerlink" title="No.5"></a>No.5</h3><p>What is the output that is printed when the div containing the text “click Here” is clicked?</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"A"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"B"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"C"</span>&gt;</span>Click Here<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">"div"</span>).forEach(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">  e.onclick = <span class="function"><span class="params">e</span> =&gt;</span> <span class="built_in">console</span>.log(e.currentTarget.id);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>答案是 “C” “B” “A”，冒泡（bubbling）<br>可參考這篇：<a href="https://zh.javascript.info/bubbling-and-capturing" target="_blank" rel="noopener">冒泡和捕获</a></p>
+<h3 id="No-6"><a href="#No-6" class="headerlink" title="No.6"></a>No.6</h3><p>把缺的 code 補上</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Missing Line</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; vowels.length; i++)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(vowels[i]); <span class="comment">// a e i o u</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>別想太多，就是 vowels 變數沒定義與賦值：<code>let vowels = &quot;aeiou&quot;</code></p>
+<h3 id="No-7"><a href="#No-7" class="headerlink" title="No.7"></a>No.7</h3><p>Which snippet could you add to this code to print “YOU GOT THIS” to the console?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> cipherText = [...<span class="string">"YZOGUT QGMORTZ MTRHTILS"</span>];</span><br><span class="line"><span class="keyword">let</span> plainText = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Missing Snippet */</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(plainText); <span class="comment">// YOU GOT THIS</span></span><br></pre></td></tr></table></figure>
+
+<p>答案：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> [index, value] <span class="keyword">of</span> cipherText.entries())&#123;</span><br><span class="line">  plainText += index % <span class="number">2</span> === <span class="number">0</span> ? value : <span class="string">""</span></span><br><span class="line"><span class="comment">// 如果 index 除二餘數是零，就取 value 不然就空字串</span></span><br><span class="line">  <span class="built_in">console</span>.log(index,value); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>原來可以使用 for..of 這樣取到 index 和 value !</p>
+<h3 id="No-8"><a href="#No-8" class="headerlink" title="No.8"></a>No.8</h3><p>Which code would you yse to access the Irish flag?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> flagsJSON = <span class="string">'&#123;"countries" : ['</span> +</span><br><span class="line"><span class="string">'&#123;"country":"Ireland" , "flag":"irish"&#125;, '</span> +</span><br><span class="line"><span class="string">'&#123;"country":"Serbia" , "flag":"serbia"&#125;, '</span> +</span><br><span class="line"><span class="string">'&#123;"country":"Peru" , "flag":"peru"&#125; ]&#125;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> flagDatabase = <span class="built_in">JSON</span>.parse(flagsJSON);</span><br><span class="line"><span class="built_in">console</span>.log(flagDatabase);</span><br></pre></td></tr></table></figure>
+
+<p>答案：<code>flagDatabase.countries[0].flag</code></p>
+<h3 id="No-9"><a href="#No-9" class="headerlink" title="No.9"></a>No.9</h3><p>What statement can be used to select the element from the DOM containing the “The LinkedIn Learning library has great Javascript courses” from this markup”?</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span>LinkedIn Learning<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span>The LinkedIn Learning library has great Javascript courses<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>答案：<code>document.querySelector(&quot;span.content&quot;);</code></p>
+<h3 id="No-10"><a href="#No-10" class="headerlink" title="No.10"></a>No.10</h3><p>What is wrong with this code?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = &#123;</span><br><span class="line">  bar()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Hello World!"</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">  name: <span class="string">"Tracy"</span>,</span><br><span class="line">  age: <span class="number">42</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一切正常，不會出錯。</p>
+<h3 id="No-11"><a href="#No-11" class="headerlink" title="No.11"></a>No.11</h3><p>Which line could you add to this code to print “jaguar” to the console?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> animals = [<span class="string">"jaguar"</span>, <span class="string">"eagle"</span>];</span><br><span class="line"><span class="comment">// Missing Line</span></span><br><span class="line"><span class="keyword">let</span> </span><br><span class="line"><span class="built_in">console</span>.log(animals.pop()); <span class="comment">// prints jaguar</span></span><br></pre></td></tr></table></figure>
+
+<p>答案：<code>animals.reverse()</code><br>Array.prototype.pop() 會刪除陣列的最後一個元素，並回傳刪除元素，先使用 reverse() 將陣列反轉，在取出最後一個元素。</p>
+<h3 id="No-12"><a href="#No-12" class="headerlink" title="No.12"></a>No.12</h3><p>What is the output of the code?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> rainForests = [<span class="string">"Amazon"</span>, <span class="string">"Borneo"</span>, <span class="string">"Cerrado"</span>, <span class="string">"Congo"</span>];</span><br><span class="line">rainForests.splice(<span class="number">0</span>,<span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(rainForests);</span><br></pre></td></tr></table></figure>
+
+<p>答案： <code>[&#39;Cerrado&#39;, &#39;Congo&#39;]</code><br>splice(0,2):從 index 0 切兩個掉。</p>
+<p>￼</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -941,88 +1071,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/Deploy_vue3_Github_Pages_404/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-      <meta itemprop="name" content="Tsuifei Pommier">
-      <meta itemprop="description" content="Un blog pour partager, expérimenter et s'améliorer en programmation.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cré-Coder">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/Deploy_vue3_Github_Pages_404/" class="post-title-link" itemprop="url">在 Github Pages 上部屬 VueJs 遇上的 404</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-03-02 00:24:42" itemprop="dateCreated datePublished" datetime="2021-03-02T00:24:42+08:00">2021-03-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-11 04:22:34" itemprop="dateModified" datetime="2021-03-11T04:22:34+08:00">2021-03-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/Other/" itemprop="url" rel="index"><span itemprop="name">Other</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近重新以 Vue3 來建構自己的網站，雖然內容很簡單，也只有幾個頁面而已，但算是第一次從頭跑到尾。在以 VueJs 3 開發，並且部屬到 Github pages 上的過程中，才知道原來使用框架之後的部屬和以往傳統的部署，有很大的不同。原因是 VueJs 透過 Router 的設定，和 webpack 的編譯打包，有許多的細節設定要做，加上部屬到 Github pages 上，最上層的資料夾並不是路徑源頭，所以有時候出現問題會難找出原因(對我而言啦)。</p>
-<p>部屬完成後，網頁跑得還蠻順的，每個連結也都很聽話的顯示，唯有在瀏覽器上頭的連結網址框裡按下 enter 鍵時，噹～噹～出現 404 ，也就是找不到這一頁，怎麼回事？</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/Deploy_vue3_Github_Pages_404/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1093,14 +1141,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">117</span>
+          <span class="site-state-item-count">118</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/blog/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
