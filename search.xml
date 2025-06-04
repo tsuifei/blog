@@ -8,7 +8,7 @@
       <link href="/blog/Restarting-my-blog/"/>
       <url>/blog/Restarting-my-blog/</url>
       
-        <content type="html"><![CDATA[<p>距離上一篇是三年前，也表示三年沒來這裡了。時間總是過的快，這三年我做了什麼？有許多時間拿來和家人相處，更有許多時間在思考與摸索。<br>自從真的理解與接受「這世界唯一不變得就是變」我的世界明亮了起來，我理解「放下」的重要，說穿了就是接受，但接受之後時間的繼續，促使妳應該要爬起來，拍拍灰塵繼續向前走。<br>這世界有許多東西是無用的，無用的擔心、無用的恐懼、無用的學習？而無用的學習是否真的無用？應該不至於，那小小的記憶曾在你的腦肌理，就待需要的時候會自動跳出來幫你。每次感嘆自己化太多時間在紀錄時，總是這樣安慰自己：總有一天會用到。而現在，我也因為當年寫的 Hexo 筆記而幫到自己。</p><h2 id="AI-時代的來臨不需呻吟，學習就是了"><a href="#AI-時代的來臨不需呻吟，學習就是了" class="headerlink" title="AI 時代的來臨不需呻吟，學習就是了"></a>AI 時代的來臨不需呻吟，學習就是了</h2><p>是的，學也學不完，但還是想學。學習幫助我們思考、幫助我們優化，沒什麼不好。就這樣，我會繼續學，並是著保持平衡：家人與生活要排第一，雖然有時很難，但先讓自己站穩，能能有機會幫其他人，而學習是手段，幫人士目的，這樣想就好了。</p><p>今年給自己的目標是把某一個領域學會學熟，當年的 JS 是我嚮往的，但是它是如此高又遠，框架與技術一個一個來，但真的都要學嗎？如果以目標取向來說，只要任何一種能達成目的的工具都是好工具，哪麼衡量學習曲線所付出的時間就得自己評估，而我們而會高估自己（我啦！），現在比較會量力而為，同時接受新挑戰，既然世界會變，那就儘量掌握底層邏輯，只少邏輯變動不會大。</p><p>學習是條孤獨的路，尤其是自己又是喜歡分享的人，所以能碰到同好是非常開心的，希望今年也能相六年前，遇到一群一起學習的夥伴，一起向前。</p>]]></content>
+        <content type="html"><![CDATA[<p>距離上一篇是三年前，也表示三年沒來這裡了。時間總是過的快，這三年我做了什麼？有許多時間拿來和家人相處，更有許多時間在思考與摸索。<br>自從真的理解與接受「這世界唯一不變得就是變」我的世界明亮了起來，我理解「放下」的重要，說穿了就是接受，但接受之後時間的繼續，促使妳應該要爬起來，拍拍灰塵繼續向前走。<br>這世界有許多東西是無用的，無用的擔心、無用的恐懼、無用的學習？而無用的學習是否真的無用？應該不至於，那小小的記憶曾在你的腦肌裡，就待需要的時候會自動跳出來幫你。每次感嘆自己化太多時間在紀錄時，總是這樣安慰自己：總有一天會用到。而現在，我也因為當年寫的 Hexo 筆記而幫到自己。</p><h2 id="AI-時代的來臨不需呻吟，學習就是了"><a href="#AI-時代的來臨不需呻吟，學習就是了" class="headerlink" title="AI 時代的來臨不需呻吟，學習就是了"></a>AI 時代的來臨不需呻吟，學習就是了</h2><p>是的，學也學不完，但還是想學。學習幫助我們思考、幫助我們優化，沒什麼不好。就這樣，我會繼續學，並是著保持平衡：家人與生活要排第一，雖然有時很難，但先讓自己站穩，才能有機會幫其他人，而學習是手段，幫人是目的，這樣想就好了。</p><p>今年給自己的目標是把某一個領域學會學熟，當年的 JS 是我嚮往的，但是它是如此高又遠，框架與技術一個一個來，但真的都要學嗎？如果以目標取向來說，只要任何一種能達成目的的工具都是好工具，哪麼衡量學習曲線所付出的時間就得自己評估，而我們也會高估自己（我啦！），現在比較會量力而為，同時接受新挑戰，既然世界會變，那就儘量掌握底層邏輯，至少邏輯變動不至於太大。掌握我們可以掌握的就好，但仍要「盡人士聽天命」就是。</p><p>學習是條孤獨的路，尤其自己又是喜歡分享的人，所以能碰到同好是非常開心的，希望今年也能像六年前，遇到一群一起學習的夥伴，一起向前。</p>]]></content>
       
       
       <categories>
@@ -257,9 +257,9 @@
       
         <tags>
             
-            <tag> VueJs </tag>
-            
             <tag> note </tag>
+            
+            <tag> VueJs </tag>
             
             <tag> Firebase </tag>
             
@@ -566,11 +566,11 @@
       
         <tags>
             
+            <tag> VueJs </tag>
+            
             <tag> Other </tag>
             
             <tag> Github </tag>
-            
-            <tag> VueJs </tag>
             
         </tags>
       
@@ -777,31 +777,6 @@
     
     
     <entry>
-      <title>捕捉錯誤的方法</title>
-      <link href="/blog/debug_throw/"/>
-      <url>/blog/debug_throw/</url>
-      
-        <content type="html"><![CDATA[<p>throw -&gt; 扔出</p><p>前幾天和 Mentor 討論程式時，他使用了 <code>throw new Error</code> 來測試，覺得學到新的東西了，所以來記錄一下。<br>通常我們在捕捉錯誤時會使用<code>try, catch</code>的方式，但如果使用<code>throw new Error</code>是製造了一個錯誤，然後試著自己捕捉錯誤的方法。</p><p>throw new Error(‘error message’);<br>這是實例化寫法，是JavaScript規範所推崇的的寫法。需要注意的是 throw 拋出去的可以是單純的字串，也可以是物件，也就是說會有key 和 value。也因此如果在<code>throw</code>後面加字串就不能依物件的屬性名稱來捕捉錯誤，而會單純捕捉到我們定義的字串錯誤訊息。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// try, catch, finally</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'1. try 從這裡開始跑'</span>);</span><br><span class="line">  <span class="comment">// 在這裡故意放個不是語法的單字</span></span><br><span class="line">  testerror;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'2. try 的結尾但不會跑到這裡'</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span>(error)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'3. 錯誤發生'</span>, error.stack); <span class="comment">// .stack 會印出出錯的位置</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'4.無論如何會跑到這裡'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'5. 程式最後面的位置'</span>);</span><br></pre></td></tr></table></figure><p>執行結果</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="keyword">try</span> 從這裡開始跑</span><br><span class="line">VM10:<span class="number">7</span> <span class="number">3.</span> 錯誤發生 <span class="built_in">ReferenceError</span>: testerror is not defined at &lt;anonymous&gt;:<span class="number">4</span>:<span class="number">3</span></span><br><span class="line">VM10:<span class="number">9</span> <span class="number">4.</span>無論如何會跑到這裡</span><br><span class="line">VM10:<span class="number">11</span> <span class="number">5.</span> 程式最後面的位置</span><br></pre></td></tr></table></figure><p>假設我們有個物件，當我們要檢查這個物件是不是存在某個屬性存不存在時，就可以<code>throw</code>來自定義錯誤訊息</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> json = <span class="string">'&#123; "age" : 42&#125;'</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> user = <span class="built_in">JSON</span>.parse(json) <span class="comment">// 轉成正確JSON格式</span></span><br><span class="line">  <span class="keyword">if</span>(!user.name) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">SyntaxError</span>(<span class="string">'資料不齊全：沒有name'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(user.name); <span class="comment">// 如果有就印出來</span></span><br><span class="line">&#125; <span class="keyword">catch</span>(error)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'JSON error: '</span>,error.message );</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'JSON error: '</span>,error.name ); <span class="comment">// 印出錯誤的名稱會是 SyntaxError</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// JSON error:  資料不齊全：沒有name</span></span><br></pre></td></tr></table></figure><p><a href="https://www.youtube.com/watch?v=cFTFtuEQ-10" target="_blank" rel="noopener">https://www.youtube.com/watch?v=cFTFtuEQ-10</a></p><h2 id="使用-throw-創建一個錯誤實例"><a href="#使用-throw-創建一個錯誤實例" class="headerlink" title="使用 throw 創建一個錯誤實例"></a>使用 throw 創建一個錯誤實例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 拋出的地方 創建錯誤實例</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testNumber</span>(<span class="params">Number</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// doSomething</span></span><br><span class="line">  &#125; <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'not Number'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 捕獲此錯誤</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    testNumber(<span class="built_in">Number</span>)</span><br><span class="line">&#125; <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">    error.message === <span class="string">'not Number'</span></span><br><span class="line">    <span class="comment">// doSomething</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'error.message :'</span>, error.message)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>所以捕獲的時候捕獲到的也是一個對象，這樣一個對象與parse excel failed字符串比較顯然是不正確的。<br>那麼該怎麼去捕獲這個error message呢？<br>通過對《JavaScript高級程序設計(第三版) 》對於拋出錯誤的學習我們可以了解到：</p><p>在拋出的Error對像中有一個被廣泛支持的屬性：name、message。<br>name：用來存儲錯誤的類型，在ECMA-262定義了七種錯誤類型：Error、EvalError、RangeError、ReferenceError、SyntaxError、TypeError、URIError。詳情見：try-catch語句<br>message：用來存儲error message，就是你new Error()時候穿進去的參數<br>到此，上面的問題應迎刃而解。</p><p><code>throw new Error();</code> 這是創建一個錯誤實例，創造一個錯誤類型拋出。<br><code>throw error</code> 是拋出錯誤。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Other </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> debug </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>JSON 的方法和型別</title>
       <link href="/blog/debug_note_02/"/>
       <url>/blog/debug_note_02/</url>
@@ -819,6 +794,31 @@
         <tags>
             
             <tag> API </tag>
+            
+            <tag> debug </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>捕捉錯誤的方法</title>
+      <link href="/blog/debug_throw/"/>
+      <url>/blog/debug_throw/</url>
+      
+        <content type="html"><![CDATA[<p>throw -&gt; 扔出</p><p>前幾天和 Mentor 討論程式時，他使用了 <code>throw new Error</code> 來測試，覺得學到新的東西了，所以來記錄一下。<br>通常我們在捕捉錯誤時會使用<code>try, catch</code>的方式，但如果使用<code>throw new Error</code>是製造了一個錯誤，然後試著自己捕捉錯誤的方法。</p><p>throw new Error(‘error message’);<br>這是實例化寫法，是JavaScript規範所推崇的的寫法。需要注意的是 throw 拋出去的可以是單純的字串，也可以是物件，也就是說會有key 和 value。也因此如果在<code>throw</code>後面加字串就不能依物件的屬性名稱來捕捉錯誤，而會單純捕捉到我們定義的字串錯誤訊息。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// try, catch, finally</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'1. try 從這裡開始跑'</span>);</span><br><span class="line">  <span class="comment">// 在這裡故意放個不是語法的單字</span></span><br><span class="line">  testerror;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'2. try 的結尾但不會跑到這裡'</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span>(error)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'3. 錯誤發生'</span>, error.stack); <span class="comment">// .stack 會印出出錯的位置</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'4.無論如何會跑到這裡'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'5. 程式最後面的位置'</span>);</span><br></pre></td></tr></table></figure><p>執行結果</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="keyword">try</span> 從這裡開始跑</span><br><span class="line">VM10:<span class="number">7</span> <span class="number">3.</span> 錯誤發生 <span class="built_in">ReferenceError</span>: testerror is not defined at &lt;anonymous&gt;:<span class="number">4</span>:<span class="number">3</span></span><br><span class="line">VM10:<span class="number">9</span> <span class="number">4.</span>無論如何會跑到這裡</span><br><span class="line">VM10:<span class="number">11</span> <span class="number">5.</span> 程式最後面的位置</span><br></pre></td></tr></table></figure><p>假設我們有個物件，當我們要檢查這個物件是不是存在某個屬性存不存在時，就可以<code>throw</code>來自定義錯誤訊息</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> json = <span class="string">'&#123; "age" : 42&#125;'</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> user = <span class="built_in">JSON</span>.parse(json) <span class="comment">// 轉成正確JSON格式</span></span><br><span class="line">  <span class="keyword">if</span>(!user.name) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">SyntaxError</span>(<span class="string">'資料不齊全：沒有name'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(user.name); <span class="comment">// 如果有就印出來</span></span><br><span class="line">&#125; <span class="keyword">catch</span>(error)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'JSON error: '</span>,error.message );</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'JSON error: '</span>,error.name ); <span class="comment">// 印出錯誤的名稱會是 SyntaxError</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// JSON error:  資料不齊全：沒有name</span></span><br></pre></td></tr></table></figure><p><a href="https://www.youtube.com/watch?v=cFTFtuEQ-10" target="_blank" rel="noopener">https://www.youtube.com/watch?v=cFTFtuEQ-10</a></p><h2 id="使用-throw-創建一個錯誤實例"><a href="#使用-throw-創建一個錯誤實例" class="headerlink" title="使用 throw 創建一個錯誤實例"></a>使用 throw 創建一個錯誤實例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 拋出的地方 創建錯誤實例</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testNumber</span>(<span class="params">Number</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// doSomething</span></span><br><span class="line">  &#125; <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'not Number'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 捕獲此錯誤</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    testNumber(<span class="built_in">Number</span>)</span><br><span class="line">&#125; <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">    error.message === <span class="string">'not Number'</span></span><br><span class="line">    <span class="comment">// doSomething</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'error.message :'</span>, error.message)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>所以捕獲的時候捕獲到的也是一個對象，這樣一個對象與parse excel failed字符串比較顯然是不正確的。<br>那麼該怎麼去捕獲這個error message呢？<br>通過對《JavaScript高級程序設計(第三版) 》對於拋出錯誤的學習我們可以了解到：</p><p>在拋出的Error對像中有一個被廣泛支持的屬性：name、message。<br>name：用來存儲錯誤的類型，在ECMA-262定義了七種錯誤類型：Error、EvalError、RangeError、ReferenceError、SyntaxError、TypeError、URIError。詳情見：try-catch語句<br>message：用來存儲error message，就是你new Error()時候穿進去的參數<br>到此，上面的問題應迎刃而解。</p><p><code>throw new Error();</code> 這是創建一個錯誤實例，創造一個錯誤類型拋出。<br><code>throw error</code> 是拋出錯誤。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Other </category>
+          
+      </categories>
+      
+      
+        <tags>
             
             <tag> debug </tag>
             
@@ -910,6 +910,35 @@
     
     
     <entry>
+      <title>JS Axios API、表單元素切換顯示資料</title>
+      <link href="/blog/JS_Axios_Api_show_Data/"/>
+      <url>/blog/JS_Axios_Api_show_Data/</url>
+      
+        <content type="html"><![CDATA[<p>學習路上跌跌撞撞、過程總是零散，生活中總是被瑣事切割成碎片，如何把碎片時間拾揀與拼湊成可專心學習的塊狀已是一種考驗。</p><p>遇到六角舉辦的「JS 學徒特訓班」，給自己一次機會跟上進度，也要求自己要真的理解才寫，這需要時間，而語法的不熟悉仍然花時間，這樣一次、兩次、三次的記憶，希望能夠多留在腦中，很清楚知道自己忘的比記的還快，也在找尋且動自己對語法記憶的一把鑰匙。學習程式是非常全面性的，也因此看到自己在幾十年歲月裡看不到的盲點，雖然開始的非常慢，但總是比沒開始的好，那就透過寫程式當作一種自我的修煉吧。</p><a id="more"></a><p>這次的特訓班題目都很實用，尤其是對自己較不熟悉的 API 銜接、資料處理、資料圖形化的部分，覺得練習內容很受用，以此篇來記錄一下。</p><h2 id="第二十九關，監聽切換排序功能"><a href="#第二十九關，監聽切換排序功能" class="headerlink" title="第二十九關，監聽切換排序功能"></a>第二十九關，監聽切換排序功能</h2><p>內容：以 Axios 讀取 API、使用表單元素 select 切換資料條件。<br>方式：</p><ul><li>抓取 DOM</li><li>以 Axios 讀取 API 的資料</li><li>監聽 select 切換</li><li>處理資料</li><li>渲染畫面</li></ul><p>常常會忘記有些 JS 內建函式的參數是「函式」，然後常常用箭頭函式寫法忘記花括號…。</p><p>首先，需要先把 Axios 函式庫引進來</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>接著是 html 的內容</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">class</span>=<span class="string">"choose"</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- &lt;option value=""&gt;請選擇排序依據&lt;/option&gt; --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"id"</span>&gt;</span>依照 id 編號排序(由1開始從上往下)<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"process"</span>&gt;</span>依照完課率排序(由最高到最低)<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"list"</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure><p>再來就是 JavaScript 的部分了：</p><h3 id="抓取-DOM"><a href="#抓取-DOM" class="headerlink" title="抓取 DOM"></a>抓取 DOM</h3><p>把會用到的 DOM 和 裝載資料的變數先抓好</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> list = <span class="built_in">document</span>.querySelector(<span class="string">'.list'</span>);</span><br><span class="line"><span class="keyword">const</span> selector = <span class="built_in">document</span>.querySelector(<span class="string">'.choose'</span>);</span><br><span class="line"><span class="keyword">const</span> url =</span><br><span class="line">  <span class="string">'https://raw.githubusercontent.com/hexschool/hexschoolNewbieJS/master/data.json'</span>;</span><br><span class="line"><span class="keyword">let</span> data = [];</span><br></pre></td></tr></table></figure><h3 id="讀取資料"><a href="#讀取資料" class="headerlink" title="讀取資料"></a>讀取資料</h3><p>以 Axios 讀取 API 的資料</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">axios.get(url).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">  data = response.data;</span><br><span class="line">  <span class="comment">// console.log(data);</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h3 id="監聽-select-切換，取值"><a href="#監聽-select-切換，取值" class="headerlink" title="監聽 select 切換，取值"></a>監聽 select 切換，取值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 監聽事件綁定</span></span><br><span class="line">selector.addEventListener(<span class="string">'change'</span>, (event) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (event.target.value == <span class="string">''</span>) <span class="keyword">return</span>;</span><br><span class="line">  getSortData(event.target.value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h3 id="處理資料"><a href="#處理資料" class="headerlink" title="處理資料"></a>處理資料</h3><p>資料需要以 ID 或 完成率來做排序，所以這個函式負責排序資料的處理。當選單的值為<code>id</code>時，以<code>id</code>來排序，不然就是用完成率來排名。<br>而為了讓排序更精準，在使用<code>sort()</code>時，給函式當參數。記得最後要呼叫渲染畫面的函式<code>render()</code>。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 取得選單的value 並排序</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSortData</span>(<span class="params">choose</span>) </span>&#123;</span><br><span class="line">  data.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (choose == <span class="string">'id'</span>) <span class="keyword">return</span> <span class="built_in">parseInt</span>(a.id) - <span class="built_in">parseInt</span>(b.id);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">parseInt</span>(b.process) - <span class="built_in">parseInt</span>(a.process);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// 排序完炫染畫面</span></span><br><span class="line">  render();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="渲染畫面"><a href="#渲染畫面" class="headerlink" title="渲染畫面"></a>渲染畫面</h3><p>以<code>forEach()</code>把資料一一撈出來，放在要渲染頁面的元素裡。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 渲染畫面</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> str = <span class="string">''</span>;</span><br><span class="line">  data.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    str += <span class="string">`&lt;li&gt;ID: <span class="subst">$&#123;item.id&#125;</span> 是 <span class="subst">$&#123;item.name&#125;</span>，他的特訓班完成度是 <span class="subst">$&#123;item.process&#125;</span>&lt;/li&gt;`</span>;</span><br><span class="line">    <span class="comment">// console.log(item);</span></span><br><span class="line">  &#125;);</span><br><span class="line">  list.innerHTML = str;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Ajax </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> API </tag>
+            
+            <tag> Axios </tag>
+            
+            <tag> 六角JS學徒 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>以 Axios 讀取 API 並將資料 以 D3js 顯示出圖表</title>
       <link href="/blog/JS_Axios_Api_show_by_D3Js/"/>
       <url>/blog/JS_Axios_Api_show_by_D3Js/</url>
@@ -933,35 +962,6 @@
             <tag> 六角JS學徒 </tag>
             
             <tag> D3Js </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>JS Axios API、表單元素切換顯示資料</title>
-      <link href="/blog/JS_Axios_Api_show_Data/"/>
-      <url>/blog/JS_Axios_Api_show_Data/</url>
-      
-        <content type="html"><![CDATA[<p>學習路上跌跌撞撞、過程總是零散，生活中總是被瑣事切割成碎片，如何把碎片時間拾揀與拼湊成可專心學習的塊狀已是一種考驗。</p><p>遇到六角舉辦的「JS 學徒特訓班」，給自己一次機會跟上進度，也要求自己要真的理解才寫，這需要時間，而語法的不熟悉仍然花時間，這樣一次、兩次、三次的記憶，希望能夠多留在腦中，很清楚知道自己忘的比記的還快，也在找尋且動自己對語法記憶的一把鑰匙。學習程式是非常全面性的，也因此看到自己在幾十年歲月裡看不到的盲點，雖然開始的非常慢，但總是比沒開始的好，那就透過寫程式當作一種自我的修煉吧。</p><a id="more"></a><p>這次的特訓班題目都很實用，尤其是對自己較不熟悉的 API 銜接、資料處理、資料圖形化的部分，覺得練習內容很受用，以此篇來記錄一下。</p><h2 id="第二十九關，監聽切換排序功能"><a href="#第二十九關，監聽切換排序功能" class="headerlink" title="第二十九關，監聽切換排序功能"></a>第二十九關，監聽切換排序功能</h2><p>內容：以 Axios 讀取 API、使用表單元素 select 切換資料條件。<br>方式：</p><ul><li>抓取 DOM</li><li>以 Axios 讀取 API 的資料</li><li>監聽 select 切換</li><li>處理資料</li><li>渲染畫面</li></ul><p>常常會忘記有些 JS 內建函式的參數是「函式」，然後常常用箭頭函式寫法忘記花括號…。</p><p>首先，需要先把 Axios 函式庫引進來</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>接著是 html 的內容</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">class</span>=<span class="string">"choose"</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- &lt;option value=""&gt;請選擇排序依據&lt;/option&gt; --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"id"</span>&gt;</span>依照 id 編號排序(由1開始從上往下)<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"process"</span>&gt;</span>依照完課率排序(由最高到最低)<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"list"</span>&gt;</span><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure><p>再來就是 JavaScript 的部分了：</p><h3 id="抓取-DOM"><a href="#抓取-DOM" class="headerlink" title="抓取 DOM"></a>抓取 DOM</h3><p>把會用到的 DOM 和 裝載資料的變數先抓好</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> list = <span class="built_in">document</span>.querySelector(<span class="string">'.list'</span>);</span><br><span class="line"><span class="keyword">const</span> selector = <span class="built_in">document</span>.querySelector(<span class="string">'.choose'</span>);</span><br><span class="line"><span class="keyword">const</span> url =</span><br><span class="line">  <span class="string">'https://raw.githubusercontent.com/hexschool/hexschoolNewbieJS/master/data.json'</span>;</span><br><span class="line"><span class="keyword">let</span> data = [];</span><br></pre></td></tr></table></figure><h3 id="讀取資料"><a href="#讀取資料" class="headerlink" title="讀取資料"></a>讀取資料</h3><p>以 Axios 讀取 API 的資料</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">axios.get(url).then(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">  data = response.data;</span><br><span class="line">  <span class="comment">// console.log(data);</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h3 id="監聽-select-切換，取值"><a href="#監聽-select-切換，取值" class="headerlink" title="監聽 select 切換，取值"></a>監聽 select 切換，取值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 監聽事件綁定</span></span><br><span class="line">selector.addEventListener(<span class="string">'change'</span>, (event) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (event.target.value == <span class="string">''</span>) <span class="keyword">return</span>;</span><br><span class="line">  getSortData(event.target.value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h3 id="處理資料"><a href="#處理資料" class="headerlink" title="處理資料"></a>處理資料</h3><p>資料需要以 ID 或 完成率來做排序，所以這個函式負責排序資料的處理。當選單的值為<code>id</code>時，以<code>id</code>來排序，不然就是用完成率來排名。<br>而為了讓排序更精準，在使用<code>sort()</code>時，給函式當參數。記得最後要呼叫渲染畫面的函式<code>render()</code>。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 取得選單的value 並排序</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSortData</span>(<span class="params">choose</span>) </span>&#123;</span><br><span class="line">  data.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (choose == <span class="string">'id'</span>) <span class="keyword">return</span> <span class="built_in">parseInt</span>(a.id) - <span class="built_in">parseInt</span>(b.id);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">parseInt</span>(b.process) - <span class="built_in">parseInt</span>(a.process);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// 排序完炫染畫面</span></span><br><span class="line">  render();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="渲染畫面"><a href="#渲染畫面" class="headerlink" title="渲染畫面"></a>渲染畫面</h3><p>以<code>forEach()</code>把資料一一撈出來，放在要渲染頁面的元素裡。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 渲染畫面</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> str = <span class="string">''</span>;</span><br><span class="line">  data.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    str += <span class="string">`&lt;li&gt;ID: <span class="subst">$&#123;item.id&#125;</span> 是 <span class="subst">$&#123;item.name&#125;</span>，他的特訓班完成度是 <span class="subst">$&#123;item.process&#125;</span>&lt;/li&gt;`</span>;</span><br><span class="line">    <span class="comment">// console.log(item);</span></span><br><span class="line">  &#125;);</span><br><span class="line">  list.innerHTML = str;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> Ajax </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> API </tag>
-            
-            <tag> Axios </tag>
-            
-            <tag> 六角JS學徒 </tag>
             
         </tags>
       
@@ -1338,9 +1338,9 @@
       
         <tags>
             
-            <tag> Rendering </tag>
-            
             <tag> List </tag>
+            
+            <tag> Rendering </tag>
             
         </tags>
       
@@ -1712,9 +1712,9 @@
       
         <tags>
             
-            <tag> HTML </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> HTML </tag>
             
             <tag> CSS </tag>
             

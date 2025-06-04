@@ -4,7 +4,7 @@
   <url>
     <loc>tsuifei.github.io/Restarting-my-blog/</loc>
     
-    <lastmod>2025-06-04T15:11:36.629Z</lastmod>
+    <lastmod>2025-06-04T15:25:59.434Z</lastmod>
     
   </url>
   
@@ -79,14 +79,14 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/React-deploy_01/</loc>
+    <loc>tsuifei.github.io/React_module_component/</loc>
     
     <lastmod>2022-08-09T16:15:42.328Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/React_module_component/</loc>
+    <loc>tsuifei.github.io/React-deploy_01/</loc>
     
     <lastmod>2022-08-09T16:15:42.328Z</lastmod>
     
@@ -219,14 +219,14 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan28_Find-the-index-value-of-the-last-element/</loc>
+    <loc>tsuifei.github.io/JS_ironMan29_About-ECMAScript5s-Array-Method/</loc>
     
     <lastmod>2022-02-21T14:08:44.095Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan29_About-ECMAScript5s-Array-Method/</loc>
+    <loc>tsuifei.github.io/JS_ironMan28_Find-the-index-value-of-the-last-element/</loc>
     
     <lastmod>2022-02-21T14:08:44.095Z</lastmod>
     
@@ -247,14 +247,14 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan07_How-to-read-and-write-array-elements/</loc>
+    <loc>tsuifei.github.io/JS_ironMan06_What-are-the-types-of-Array/</loc>
     
     <lastmod>2022-02-21T14:08:23.992Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan06_What-are-the-types-of-Array/</loc>
+    <loc>tsuifei.github.io/JS_ironMan07_How-to-read-and-write-array-elements/</loc>
     
     <lastmod>2022-02-21T14:08:23.992Z</lastmod>
     
@@ -275,7 +275,7 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan11_How-to-copy-an-Array-in-JavaScript-part1/</loc>
+    <loc>tsuifei.github.io/JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -289,7 +289,7 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan12_How-to-copy-an-Array-in-JavaScript-part2/</loc>
+    <loc>tsuifei.github.io/JS_ironMan11_How-to-copy-an-Array-in-JavaScript-part1/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -303,13 +303,6 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>tsuifei.github.io/JS_ironMan16_JavaScript-Array-pop()-Method/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
@@ -317,21 +310,14 @@
   </url>
   
   <url>
+    <loc>tsuifei.github.io/JS_ironMan18_shift()to-delete-elements-from-the-beginning-of-the-array/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/JS_ironMan21_Changes-the-contents-of-an-array-method%20/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -346,6 +332,20 @@
   
   <url>
     <loc>tsuifei.github.io/JS_ironMan20_Shallow-copy-array-slice()-method/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan32_Calling-a-provided-function-on-every-element-and-return-result/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.991Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>tsuifei.github.io/JS_ironMan34_Determines-whether-an-array-includes-a-certain-value-among-its-entries/</loc>
     
     <lastmod>2022-02-21T14:08:23.991Z</lastmod>
     
@@ -380,6 +380,13 @@
   </url>
   
   <url>
+    <loc>tsuifei.github.io/JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array/</loc>
+    
+    <lastmod>2022-02-21T14:08:23.903Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>tsuifei.github.io/JS_ironMan22_%20Sorts-the-elements-of-an-array-sort()-method/</loc>
     
     <lastmod>2022-02-21T14:08:23.903Z</lastmod>
@@ -401,21 +408,14 @@
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS_ironMan17_unshift()to-add-elements-from-the-beginning-of-the-array/</loc>
-    
-    <lastmod>2022-02-21T14:08:23.903Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>tsuifei.github.io/JS30_01_Drum-Kit/</loc>
+    <loc>tsuifei.github.io/JS30_00_start/</loc>
     
     <lastmod>2022-02-21T14:07:12.769Z</lastmod>
     
   </url>
   
   <url>
-    <loc>tsuifei.github.io/JS30_00_start/</loc>
+    <loc>tsuifei.github.io/JS30_01_Drum-Kit/</loc>
     
     <lastmod>2022-02-21T14:07:12.769Z</lastmod>
     
