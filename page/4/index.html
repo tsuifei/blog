@@ -169,7 +169,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/debug_throw/">
+    <link itemprop="mainEntityOfPage" href="tsuifei.github.io/debug_note_02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/images/avatar.gif">
@@ -183,7 +183,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blog/debug_throw/" class="post-title-link" itemprop="url">捕捉錯誤的方法</a>
+            <a href="/blog/debug_note_02/" class="post-title-link" itemprop="url">JSON 的方法和型別</a>
         </h1>
 
         <div class="post-meta">
@@ -200,7 +200,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-24 05:29:13" itemprop="dateModified" datetime="2022-04-24T05:29:13+08:00">2022-04-24</time>
+                <time title="Modified: 2020-10-22 04:11:56" itemprop="dateModified" datetime="2020-10-22T04:11:56+08:00">2020-10-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -223,24 +223,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>throw -&gt; 扔出</p>
-<p>前幾天和 Mentor 討論程式時，他使用了 <code>throw new Error</code> 來測試，覺得學到新的東西了，所以來記錄一下。<br>通常我們在捕捉錯誤時會使用<code>try, catch</code>的方式，但如果使用<code>throw new Error</code>是製造了一個錯誤，然後試著自己捕捉錯誤的方法。</p>
-<p>throw new Error(‘error message’);<br>這是實例化寫法，是JavaScript規範所推崇的的寫法。需要注意的是 throw 拋出去的可以是單純的字串，也可以是物件，也就是說會有key 和 value。也因此如果在<code>throw</code>後面加字串就不能依物件的屬性名稱來捕捉錯誤，而會單純捕捉到我們定義的字串錯誤訊息。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// try, catch, finally</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'1. try 從這裡開始跑'</span>);</span><br><span class="line">  <span class="comment">// 在這裡故意放個不是語法的單字</span></span><br><span class="line">  testerror;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'2. try 的結尾但不會跑到這裡'</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span>(error)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'3. 錯誤發生'</span>, error.stack); <span class="comment">// .stack 會印出出錯的位置</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'4.無論如何會跑到這裡'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'5. 程式最後面的位置'</span>);</span><br></pre></td></tr></table></figure>
-
-<p>執行結果</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="keyword">try</span> 從這裡開始跑</span><br><span class="line">VM10:<span class="number">7</span> <span class="number">3.</span> 錯誤發生 <span class="built_in">ReferenceError</span>: testerror is not defined at &lt;anonymous&gt;:<span class="number">4</span>:<span class="number">3</span></span><br><span class="line">VM10:<span class="number">9</span> <span class="number">4.</span>無論如何會跑到這裡</span><br><span class="line">VM10:<span class="number">11</span> <span class="number">5.</span> 程式最後面的位置</span><br></pre></td></tr></table></figure>
-
-<p>假設我們有個物件，當我們要檢查這個物件是不是存在某個屬性存不存在時，就可以<code>throw</code>來自定義錯誤訊息</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> json = <span class="string">'&#123; "age" : 42&#125;'</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> user = <span class="built_in">JSON</span>.parse(json) <span class="comment">// 轉成正確JSON格式</span></span><br><span class="line">  <span class="keyword">if</span>(!user.name) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">SyntaxError</span>(<span class="string">'資料不齊全：沒有name'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(user.name); <span class="comment">// 如果有就印出來</span></span><br><span class="line">&#125; <span class="keyword">catch</span>(error)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'JSON error: '</span>,error.message );</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'JSON error: '</span>,error.name ); <span class="comment">// 印出錯誤的名稱會是 SyntaxError</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// JSON error:  資料不齊全：沒有name</span></span><br></pre></td></tr></table></figure>
-
-<p><a href="https://www.youtube.com/watch?v=cFTFtuEQ-10" target="_blank" rel="noopener">https://www.youtube.com/watch?v=cFTFtuEQ-10</a></p>
-<h2 id="使用-throw-創建一個錯誤實例"><a href="#使用-throw-創建一個錯誤實例" class="headerlink" title="使用 throw 創建一個錯誤實例"></a>使用 throw 創建一個錯誤實例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 拋出的地方 創建錯誤實例</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testNumber</span>(<span class="params">Number</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// doSomething</span></span><br><span class="line">  &#125; <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'not Number'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 捕獲此錯誤</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    testNumber(<span class="built_in">Number</span>)</span><br><span class="line">&#125; <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">    error.message === <span class="string">'not Number'</span></span><br><span class="line">    <span class="comment">// doSomething</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'error.message :'</span>, error.message)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>所以捕獲的時候捕獲到的也是一個對象，這樣一個對象與parse excel failed字符串比較顯然是不正確的。<br>那麼該怎麼去捕獲這個error message呢？<br>通過對《JavaScript高級程序設計(第三版) 》對於拋出錯誤的學習我們可以了解到：</p>
-<p>在拋出的Error對像中有一個被廣泛支持的屬性：name、message。<br>name：用來存儲錯誤的類型，在ECMA-262定義了七種錯誤類型：Error、EvalError、RangeError、ReferenceError、SyntaxError、TypeError、URIError。詳情見：try-catch語句<br>message：用來存儲error message，就是你new Error()時候穿進去的參數<br>到此，上面的問題應迎刃而解。</p>
-<p><code>throw new Error();</code> 這是創建一個錯誤實例，創造一個錯誤類型拋出。<br><code>throw error</code> 是拋出錯誤。</p>
-
+          <p>有時候在學習的時候，最怕就是遇到一個問題越解越混淆的狀況，原本只是一個小小的問題，卻越發不可收拾，努力了幾個小時決定上網問人，好險都能在好心人的幫助下，釐清自己的一些觀念。</p>
+<p>今天試著接 API ，對於教學範例的 API 都是結構較於單純的 JSON ，自己上網找到想接的巴黎開放數據，資料結構卻很複雜，包了好幾層物件、陣列，在一一抓出來後在迴圈的使用上又有點生疏，然後在休息的時候找到一個範例，剛好講到處理 JSON 的一些方法，然後就照著範例丟到瀏覽器的開發工具，然後無限迴圈就開始了。</p>
+<p>先來釐清幾件事：<br>MDN <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse" target="_blank" rel="noopener">JSON.parse()</a> 方法把會把一個 JSON <strong>字串</strong>轉換成 JavaScript 的<strong>數值</strong>或是<strong>物件</strong>。</p>
+<p>MDN <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" target="_blank" rel="noopener">JSON.stringify()</a> 方法將一個 JavaScript <strong>物件</strong>或<strong>值</strong>轉換為 JSON <strong>字串</strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/debug_note_02/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
