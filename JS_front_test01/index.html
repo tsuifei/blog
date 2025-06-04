@@ -21,7 +21,7 @@
   </script>
 
   <meta name="description" content="人總是在某種方式的評估下，才能清楚地知道自己的能耐。  法國有不少人力派遣公司，因為法國聘人程序繁瑣，徵人又需投入大量資源人力，所以越來越多公司採用人力派遣所派遣過來的工程師，來開發公司的專案。 此測驗是法國某大人力派遣公司，對應徵者所做的線上測驗，進入測驗網頁後，須依規定的時間作答，時間到會自動前往下一題，無法回頭修改答案。 以下是本人測驗之後，重新再花時間整理出來的，包含整理時「自己認為」的">
-<meta name="keywords" content="JavaScript,HTML,CSS,Test">
+<meta name="keywords" content="HTML,JavaScript,CSS,Test">
 <meta property="og:type" content="article">
 <meta property="og:title" content="法國前端初級測驗">
 <meta property="og:url" content="tsuifei.github.io/JS_front_test01/index.html">
@@ -333,7 +333,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`a(1,5)`</span> <span class="keyword">return</span> <span class="string">`true`</span></span><br><span class="line"><span class="string">`a(2,3)`</span> <span class="keyword">return</span> <span class="string">`false`</span></span><br><span class="line"><span class="string">`a(-3,4)`</span> <span class="keyword">return</span> <span class="string">`true`</span></span><br><span class="line"><span class="string">``</span><span class="string">`javascript</span></span><br><span class="line"><span class="string">function a(i,j)&#123;</span></span><br><span class="line"><span class="string">  if(typeof i !== 'number' &amp;&amp; typeof j !== 'number') return false;</span></span><br><span class="line"><span class="string">  if(i == 1 || j == 1 || i+j == 1) return true</span></span><br><span class="line"><span class="string">  return false</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="17-21"><a href="#17-21" class="headerlink" title="17/21"></a>17/21</h3><p><strong>在以下範例，哪一個是 JQuer 的最佳選擇器？</strong><br><strong>答案只有一個</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span> id=<span class="string">"content"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span> id=<span class="string">"content"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><input disabled type="checkbox"> <code>$(&#39;.content&#39;);</code></li>
@@ -414,7 +414,8 @@
 <p><strong>例如第二個例子，如果我們從表中獲取 6 歐元，則應獲取物件：</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  two: <span class="number">3</span>,   <span class="comment">// 3 pièces de 2 euros</span></span><br><span class="line">  five: <span class="number">0</span>,  <span class="comment">// 0 pièces de 5 euros</span></span><br><span class="line">  ten: <span class="number">0</span>    <span class="comment">// 0 pièces de 10 euros</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>寫出<code>change（cash）</code>函式，該函式需回傳一個物件，其中包含總和為<code>s</code>。 如果不可能進行更改（例如第一個例子），則回傳<code>null</code>。</strong><br><strong>為了獲得最高分，您的解決方案必須盡可能使用「最小面額的硬幣和紙幣」</strong>。<br><strong>數據：<code>0 &lt;</code>cash<code>&lt; 9007199254740991</code></strong></p>
+<p><strong>寫出<code>change（cash）</code>函式，該函式需回傳一個物件，其中包含總和為<code>s</code>。 如果不可能進行更改（例如第一個例子），則回傳<code>null</code>。</strong><br><strong>為了獲得最高分，您的解決方案必須盡可能使用「最小面額的硬幣和紙幣」</strong>。
+<strong>數據：<code>0 &lt;</code>cash<code>&lt; 9007199254740991</code></strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">change</span>(<span class="params">cash</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    two: <span class="number">0</span>,</span><br><span class="line">    five: <span class="number">0</span>,</span><br><span class="line">    ten: <span class="number">0</span>,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">1</span>)); <span class="comment">// null</span></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">42</span>).ten); <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">42</span>).five); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(change(<span class="number">42</span>).two); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
 
 <p>回答：<a href="https://jsbin.com/duzefon/edit?js,console" target="_blank" rel="noopener">20/20 找錢 - JS Bin</a><br>後記：最後ㄧ題似乎還有些問題，如果把範例中最後一個拿來測試，會有問題，且無法做到優化，也就是說如果尾數是 11，就可變成（5<em>1）+(2</em>3)。這部分得再好好想想才行。</p>
@@ -427,8 +428,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
               <a href="/blog/tags/HTML/" rel="tag"># HTML</a>
+              <a href="/blog/tags/JavaScript/" rel="tag"># JavaScript</a>
               <a href="/blog/tags/CSS/" rel="tag"># CSS</a>
               <a href="/blog/tags/Test/" rel="tag"># Test</a>
           </div>

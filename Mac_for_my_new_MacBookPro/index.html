@@ -239,7 +239,8 @@
 <p>To minimize the chance of permissions errors, you can configure npm to use a different directory. In this example, it will be a hidden directory on your home folder. 要最小化權限錯誤的可能性，可以將 npm 配置為使用其他目錄。在此示例中，它將是主文件夾中的隱藏目錄。</p>
 <p>Make a directory for global installations:<br>為全局安裝創建一個目錄：<br><code>mkdir ~/.npm-global</code></p>
 <p>Configure npm to use the new directory path:<br>配置 npm 以使用新的目錄路徑：<br><code>npm config set prefix &#39;~/.npm-global&#39;</code></p>
-<p>Open or create a <del>/.profile file and add this line:<br>打開或創建一個〜/ .profile 文件並添加以下行：<br>`export PATH=</del>/.npm-global/bin:$PATH`<br>Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profile，就解決了。</p>
+<p>Open or create a <del>/.profile file and add this line:<br>打開或創建一個〜/ .profile 文件並添加以下行：<br>`export PATH=</del>/.npm-global/bin:$PATH`
+Ps.發現自己有一個.bash_profile 所以就把以上這行存在.bash_profile，就解決了。</p>
 <p>Back on the command line, update your system variables:<br>返回命令行，更新系統變量：<br><code>source ~/.profile</code></p>
 <p>Test: Download a package globally without using sudo.<br>測試：在不使用 sudo 的情況下全局下載軟件包。<br><code>npm install -g jshint</code><br>==有試成功 安裝 hexo OK 但要用 hexo 時又不行==</p>
 <p>If still show permission error run (mac os):<br>如果仍顯示權限錯誤運行（mac os）：<br><code>sudo chown -R $USER ~/.npm-global</code></p>
